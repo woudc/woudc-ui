@@ -1,0 +1,2 @@
+Sitemap: https://woudc.org/sitemap.php?format=xml
+Disallow: /archive/Documentation/www/
