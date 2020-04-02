@@ -55,10 +55,6 @@ Translation of SEO text is handled by `nuxt-i18n`. Please see the [nuxt-i18n SEO
 
 The i18n framework is configured with [nuxt-i18n](https://nuxt-community.github.io/nuxt-i18n/) and is integrated with `vue-i18n`.
 
-### Syntax
-
-The translation [syntax formatting is done using vue-i18n](http://kazupon.github.io/vue-i18n/guide/formatting.html), specifically using [Vue single file components](http://kazupon.github.io/vue-i18n/guide/sfc.html#basic-usage).
-
 ### Routing
 
 Please see the [nuxt-i18n routing guide](https://nuxt-community.github.io/nuxt-i18n/routing.html).
