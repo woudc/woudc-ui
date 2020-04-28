@@ -1,6 +1,9 @@
 <template>
   <v-layout justify-center column align-content-center>
     <h1>{{ $t('title') }}</h1>
+    <h2 v-if="contributors.length > 0">
+      {{ contributors[0].acronym + ' - ' + contributors[0].name }}
+    </h2>
     <p>{{ $t('blurb') }}</p>
     <v-expansion-panels id="map-instructions">
       <v-expansion-panel>
@@ -23,9 +26,10 @@
       </v-expansion-panel>
     </v-expansion-panels>
     <v-data-table
-      id="contributors-table"
-      :headers="headers"
+      id="contributor-table"
+      :headers="contributorHeaders"
       :items="contributors"
+      hide-default-footer
       class="elevation-1"
     >
       <template v-slot:item.acronym="contributor">
@@ -34,12 +38,33 @@
         </nuxt-link>
       </template>
       <template v-slot:item.name="contributor">
-        <a :href="contributor.item.url" target="_blank">
+        <a :href="contributor.item.url">
           {{ contributor.item.name }}
         </a>
       </template>
       <template v-slot:item.country="contributor">
         {{ contributor.item.country_name[$i18n.locale] }}
+      </template>
+    </v-data-table>
+    <v-data-table
+      id="deployments-table"
+      :headers="deploymentHeaders"
+      :items="deployments"
+      class="elevation-1"
+    >
+      <template v-slot:item="deployment">
+        <tr>
+          <td>
+            <nuxt-link :to="'/data/stations/' + deployment.item.station_id">
+              {{ deployment.item.station_id }}
+            </nuxt-link>
+          </td>
+          <td>{{ deployment.item.station_name }}</td>
+          <td>{{ deployment.item.station_type }}</td>
+          <td>{{ deployment.item.country_name[$i18n.locale] }}</td>
+          <td>{{ deployment.item.start_date }}</td>
+          <td>{{ deployment.item.end_date }}</td>
+        </tr>
       </template>
     </v-data-table>
   </v-layout>
@@ -54,7 +79,7 @@
     "map-instructions": "Lorem Ipsum something something something",
     "table-instructions-label": "How to Use: Interactive Table",
     "table-instructions": "Lorem Ipsum something something something",
-    "headers" : [
+    "contributor-headers" : [
       {
         "text": "Acronym",
         "value": "acronym"
@@ -83,6 +108,32 @@
         "text": "WMO Region",
         "value": "wmo_region_id"
       }
+    ],
+    "deployment-headers": [
+      {
+        "text": "Station ID",
+        "value": "woudc_id"
+      },
+      {
+        "text": "Station Name",
+        "value": "name"
+      },
+      {
+        "text": "Station Type",
+        "value": "type"
+      },
+      {
+        "text": "Station Country",
+        "value": "country"
+      },
+      {
+        "text": "Date From",
+        "value": "start_date"
+      },
+      {
+        "text": "Date To",
+        "value": "end_date"
+      }
     ]
   },
   "fr": {
@@ -92,7 +143,7 @@
     "map-instructions": "Lorem Ipsum something something something",
     "table-instructions-label": "Guide d'utilisation : Tableau interactif",
     "table-instructions": "Lorem Ipsum something something something",
-    "headers" : [
+    "contributorHeaders" : [
       {
         "text": "Acronyme",
         "value": "acronym"
@@ -106,12 +157,12 @@
         "value": "name"
       },
       {
-        "text": "Pays",
-        "value": "country"
-      },
-      {
         "text": "À partir de cette date",
         "value": "start_date"
+      },
+      {
+        "text": "Pays",
+        "value": "country"
       },
       {
         "text": "Jusqu’à cette date",
@@ -130,30 +181,61 @@
 import axios from '~/plugins/axios'
 
 export default {
-  async asyncData({ params }) {
-    const contributorsURL = '/collections/contributors/items'
-    const queryParams = 'sortby=acronym:A,project:D'
+  async validate({ params }) {
+    const acronym = params.id
+    const url = '/collections/contributors/items'
 
+    const queryParams = 'acronym=' + acronym
+    let found = true
+    await axios.get(url + '?' + queryParams).catch(() => {
+      found = false
+    })
+
+    return found
+  },
+  async asyncData({ params }) {
+    const acronym = params.id
+    let queryParams
+
+    const contributorsURL = '/collections/contributors/items'
+    const deploymentsURL = '/collections/deployments/items'
+
+    queryParams = 'acronym=' + acronym + '&sortby=acronym:A,project:D'
     const contributorsResponse = await axios.get(contributorsURL + '?' + queryParams)
 
+    const contributorsList = contributorsResponse.data.features.map((contributor) => {
+      contributor.properties.country_name = {
+        en: contributor.properties.country_name_en,
+        fr: contributor.properties.country_name_fr
+      }
+      return contributor.properties
+    })
+
+    queryParams = 'contributor=' + acronym + '&sortby=station_id:A'
+    const deploymentsResponse = await axios.get(deploymentsURL + '?' + queryParams)
+
+    const deploymentsList = deploymentsResponse.data.features.map((deployment) => {
+      deployment.properties.country_name = {
+        en: deployment.properties.station_country_en,
+        fr: deployment.properties.station_country_fr
+      }
+      return deployment.properties
+    })
+
     return {
-      contributors: contributorsResponse.data.features.map((contributor) => {
-        contributor.properties.country_name = {
-          en: contributor.properties.country_name_en,
-          fr: contributor.properties.country_name_fr
-        }
-        return contributor.properties
-      })
+      contributors: contributorsList,
+      deployments: deploymentsList
     }
   },
   data() {
     return {
-      contributors: []
+      contributors: [],
+      deployments: []
     }
   },
   computed: {
-    headers() {
-      return this.$i18nToArray(this.$t('headers')).map((definition) => {
+    contributorHeaders() {
+      return this.$i18nToArray(this.$t('contributor-headers')).map((definition) => {
         return {
           text: definition.text,
           align: 'left',
@@ -161,12 +243,16 @@ export default {
           value: definition.value
         }
       })
-    }
-  },
-  nuxtI18n: {
-    paths: {
-      en: '/contributors',
-      fr: '/contributeurs'
+    },
+    deploymentHeaders() {
+      return this.$i18nToArray(this.$t('deployment-headers')).map((definition) => {
+        return {
+          text: definition.text,
+          align: 'left',
+          sortable: false,
+          value: definition.value
+        }
+      })
     }
   }
 }
