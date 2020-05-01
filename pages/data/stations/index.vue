@@ -1,24 +1,24 @@
 <template>
   <v-layout justify-center column align-content-center>
-    <h1>{{ $t('title') }}</h1>
-    <p>{{ $t('blurb') }}</p>
+    <h1>{{ $t('data.stations.title') }}</h1>
+    <p>{{ $t('data.stations.blurb') }}</p>
     <v-expansion-panels id="map-instructions">
       <v-expansion-panel>
         <v-expansion-panel-header>
-          <b>{{ $t('map-instructions-label') }}</b>
+          <b>{{ $t('data.stations.map-instructions.label') }}</b>
         </v-expansion-panel-header>
         <v-expansion-panel-content>
-          {{ $t('map-instructions') }}
+          {{ $t('data.stations.map-instructions.text') }}
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
     <v-expansion-panels id="table-instructions">
       <v-expansion-panel>
         <v-expansion-panel-header>
-          <b>{{ $t('table-instructions-label') }}</b>
+          <b>{{ $t('data.stations.table-instructions.label') }}</b>
         </v-expansion-panel-header>
         <v-expansion-panel-content>
-          {{ $t('table-instructions') }}
+          {{ $t('data.stations.table-instructions.text') }}
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
@@ -42,105 +42,20 @@
   </v-layout>
 </template>
 
-<i18n>
-{
-  "en": {
-    "title": "Station List",
-    "blurb": "The WOUDC data archive can be sorted by station. To find out the identifying number of a particular station, select the metadata link on the WOUDC website and then the region that you are interested in. All available stations and their numbers for that region will then be displayed.",
-    "map-instructions-label": "How to Use: Interactive Map",
-    "map-instructions": "Lorem Ipsum something something something",
-    "table-instructions-label": "How to Use: Interactive Table",
-    "table-instructions": "Lorem Ipsum something something something",
-    "headers" : [
-      {
-        "text": "WOUDC Station ID",
-        "value": "woudc_id"
-      },
-      {
-        "text": "GAW ID",
-        "value": "gaw_id"
-      },
-      {
-        "text": "Date From",
-        "value": "start_date"
-      },
-      {
-        "text": "Date To",
-        "value": "end_date"
-      },
-      {
-        "text": "Station Name",
-        "value": "name"
-      },
-      {
-        "text": "Station Country",
-        "value": "country"
-      },
-      {
-        "text": "Revision Date",
-        "value": "last_validated_datetime"
-      },
-      {
-        "text": "Station Type",
-        "value": "type"
-      },
-      {
-        "text": "WMO Region",
-        "value": "wmo_region_id"
-      }
-    ]
-  },
-  "fr": {
-    "title": "Liste des stations",
-    "blurb": "Les archives de données du WOUDC peuvent être classées par station. Pour connaître le numéro identificateur d’une station, sélectionner le lien des métadonnées sur le site Web du WOUDC, puis la région désirée. Vous pourrez ensuite consulter la liste des stations et leur numéro d’identification.",
-    "map-instructions-label": "Guide d'utilisation : Carte interactive",
-    "map-instructions": "Lorem Ipsum something something something",
-    "table-instructions-label": "Guide d'utilisation : Tableau interactif",
-    "table-instructions": "Lorem Ipsum something something something",
-    "headers" : [
-      {
-        "text": "Identification de la station du WOUDC",
-        "value": "woudc_id"
-      },
-      {
-        "text": "Identifiant VAG",
-        "value": "gaw_id"
-      },
-      {
-        "text": "À partir de cette date",
-        "value": "start_date"
-      },
-      {
-        "text": "Jusqu’à cette date",
-        "value": "end_date"
-      },
-      {
-        "text": "Nom de la station",
-        "value": "name"
-      },
-      {
-        "text": "Pays de la station",
-        "value": "country"
-      },
-      {
-        "text": "Date de révision",
-        "value": "last_validated_datetime"
-      },
-      {
-        "text": "Type de station",
-        "value": "type"
-      },
-      {
-        "text": "Région de l'OMM",
-        "value": "wmo_region_id"
-      }
-    ]
-  }
-}
-</i18n>
-
 <script>
 import axios from '~/plugins/axios'
+
+const headerKeys = [
+  'woudc_id',
+  'gaw_id',
+  'start_date',
+  'end_date',
+  'name',
+  'country',
+  'last_validated_datetime',
+  'type',
+  'wmo_region_id'
+]
 
 export default {
   async asyncData() {
@@ -164,19 +79,13 @@ export default {
   },
   data() {
     return {
-      stations: []
-    }
-  },
-  computed: {
-    headers() {
-      return this.$i18nToArray(this.$t('headers')).map((definition) => {
+      headers: [...headerKeys.keys()].map((index) => {
         return {
-          text: definition.text,
-          align: 'left',
-          sortable: false,
-          value: definition.value
+          text: this.$t('data.stations.station-headers[' + index + ']'),
+          value: headerKeys[index]
         }
-      })
+      }),
+      stations: []
     }
   },
   nuxtI18n: {

@@ -1,27 +1,27 @@
 <template>
   <v-layout justify-center column align-content-center>
-    <h1>{{ $t('title') }}</h1>
+    <h1>{{ $t('contributors.list.title') }}</h1>
     <h2 v-if="contributors.length > 0">
       {{ contributors[0].acronym + ' - ' + contributors[0].name }}
     </h2>
-    <p>{{ $t('blurb') }}</p>
+    <p>{{ $t('contributors.list.blurb') }}</p>
     <v-expansion-panels id="map-instructions">
       <v-expansion-panel>
         <v-expansion-panel-header>
-          <b>{{ $t('map-instructions-label') }}</b>
+          <b>{{ $t('contributors.list.map-instructions.label') }}</b>
         </v-expansion-panel-header>
         <v-expansion-panel-content>
-          {{ $t('map-instructions') }}
+          {{ $t('contributors.list.map-instructions.text') }}
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
     <v-expansion-panels id="table-instructions">
       <v-expansion-panel>
         <v-expansion-panel-header>
-          <b>{{ $t('table-instructions-label') }}</b>
+          <b>{{ $t('contributors.list.table-instructions.label') }}</b>
         </v-expansion-panel-header>
         <v-expansion-panel-content>
-          {{ $t('table-instructions') }}
+          {{ $t('contributors.list.table-instructions.text') }}
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
@@ -70,115 +70,26 @@
   </v-layout>
 </template>
 
-<i18n>
-{
-  "en": {
-    "title": "Contributor List",
-    "blurb": "The contributor list provides the institute or organization name and abbreviation, address, contact information and local file information.",
-    "map-instructions-label": "How to Use: Interactive Map",
-    "map-instructions": "Lorem Ipsum something something something",
-    "table-instructions-label": "How to Use: Interactive Table",
-    "table-instructions": "Lorem Ipsum something something something",
-    "contributor-headers" : [
-      {
-        "text": "Acronym",
-        "value": "acronym"
-      },
-      {
-        "text": "Project",
-        "value": "project"
-      },
-      {
-        "text": "Contributor Name",
-        "value": "name"
-      },
-      {
-        "text": "Country",
-        "value": "country"
-      },
-      {
-        "text": "Date From",
-        "value": "start_date"
-      },
-      {
-        "text": "Date To",
-        "value": "end_date"
-      },
-      {
-        "text": "WMO Region",
-        "value": "wmo_region_id"
-      }
-    ],
-    "deployment-headers": [
-      {
-        "text": "Station ID",
-        "value": "woudc_id"
-      },
-      {
-        "text": "Station Name",
-        "value": "name"
-      },
-      {
-        "text": "Station Type",
-        "value": "type"
-      },
-      {
-        "text": "Station Country",
-        "value": "country"
-      },
-      {
-        "text": "Date From",
-        "value": "start_date"
-      },
-      {
-        "text": "Date To",
-        "value": "end_date"
-      }
-    ]
-  },
-  "fr": {
-    "title": "Liste des contributeurs",
-    "blurb": "La liste des contributeurs contient le nom et l’abréviation de l’institut ou de l’organisation,l’adresse, les coordonnées et l’information sur le fichier local.",
-    "map-instructions-label": "Guide d'utilisation : Carte interactive",
-    "map-instructions": "Lorem Ipsum something something something",
-    "table-instructions-label": "Guide d'utilisation : Tableau interactif",
-    "table-instructions": "Lorem Ipsum something something something",
-    "contributorHeaders" : [
-      {
-        "text": "Acronyme",
-        "value": "acronym"
-      },
-      {
-        "text": "Project title in French",
-        "value": "project"
-      },
-      {
-        "text": "Nom du contributeur",
-        "value": "name"
-      },
-      {
-        "text": "À partir de cette date",
-        "value": "start_date"
-      },
-      {
-        "text": "Pays",
-        "value": "country"
-      },
-      {
-        "text": "Jusqu’à cette date",
-        "value": "end_date"
-      },
-      {
-        "text": "Région de l'OMM",
-        "value": "wmo_region_id"
-      }
-    ]
-  }
-}
-</i18n>
-
 <script>
 import axios from '~/plugins/axios'
+
+const contributorKeys = [
+  'acronym',
+  'project',
+  'name',
+  'country',
+  'start_date',
+  'end_date',
+  'wmo_region_id'
+]
+const deploymentKeys = [
+  'woudc_id',
+  'name',
+  'type',
+  'country',
+  'start_date',
+  'end_date'
+]
 
 export default {
   async validate({ params }) {
@@ -235,22 +146,18 @@ export default {
   },
   computed: {
     contributorHeaders() {
-      return this.$i18nToArray(this.$t('contributor-headers')).map((definition) => {
+      return [...contributorKeys.keys()].map((index) => {
         return {
-          text: definition.text,
-          align: 'left',
-          sortable: false,
-          value: definition.value
+          text: this.$t('contributors.list.contributor-headers[' + index + ']'),
+          value: contributorKeys[index]
         }
       })
     },
     deploymentHeaders() {
-      return this.$i18nToArray(this.$t('deployment-headers')).map((definition) => {
+      return [...deploymentKeys.keys()].map((index) => {
         return {
-          text: definition.text,
-          align: 'left',
-          sortable: false,
-          value: definition.value
+          text: this.$t('contributors.list.deployment-headers[' + index + ']'),
+          value: deploymentKeys[index]
         }
       })
     }
