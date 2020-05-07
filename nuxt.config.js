@@ -7,7 +7,8 @@ const PORT = process.env.npm_config_port || '3000'
 export default {
   mode: 'universal',
   env: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:' + PORT
+    baseUrl: process.env.BASE_URL || 'http://localhost:' + PORT,
+    pygeoapi: process.env.PYGEOAPI_HOSTNAME
   },
   router: {
     base: process.env.ROUTER_BASE || '/woudc-ui/'
@@ -40,7 +41,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ['~/plugins/util.js', '~/plugins/axios.js'],
   /*
    ** Nuxt.js dev-modules
    */
