@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <h1>{{ $t('title') }}</h1>
-    <p>{{ $t('blurb') }}</p>
+    <h1>{{ $t('news.title') }}</h1>
+    <p>{{ $t('news.blurb') }}</p>
     <v-card
       v-for="(announcement, i) in newsCollection"
       :key="i"
@@ -24,37 +24,6 @@
     </v-card>
   </v-container>
 </template>
-
-<style scoped>
-.news-panel > .news-panel-header {
-  background-color: lightblue;
-}
-
-.news-panel-header > .v-card__title {
-  padding-bottom: 0px;
-}
-
-.news-panel-header > .v-card__subtitle {
-  margin-top: -4px;
-}
-
-.news-panel-header > .v-card__subtitle > .news-date {
-  color: blue;
-}
-</style>
-
-<i18n>
-{
-  "en": {
-    "title": "News and Updates",
-    "blurb": "Data centre news, updates and notifications"
-  },
-  "fr": {
-    "title": "Nouvelles et mises à jour",
-    "blurb": "Nouvelles pour le Centre de données, mises à jour et des notifications"
-  }
-}
-</i18n>
 
 <script>
 import WoudcBlurb from '~/components/WoudcBlurb'
@@ -102,3 +71,21 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.news-panel > .news-panel-header {
+  background-color: lightblue;
+}
+
+.news-panel-header > .v-card__title {
+  padding-bottom: 0px;
+}
+
+.news-panel-header > .v-card__subtitle {
+  margin-top: -4px;
+}
+
+.news-panel-header > .v-card__subtitle > .news-date {
+  color: blue;
+}
+</style>

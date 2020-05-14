@@ -1,13 +1,12 @@
 <template>
   <v-layout justify-center column align-content-center>
     <h2>{{ $t('welcome') }}</h2>
-
     <v-card itemscope itemtype="http://schema.org/GovernmentOrganization">
       <v-card-title itemprop="name">
         WOUDC
       </v-card-title>
       <v-card-subtitle itemprop="description">
-        {{ $t('adTitle') }}
+        {{ $t('home.adTitle') }}
       </v-card-subtitle>
       <v-container class="d-flex justify-start">
         <v-card
@@ -24,13 +23,15 @@
                   {{ $t('wmo') }}
                 </a>
               </v-card-title>
-              <v-card-subtitle>{{ $t('wmoFull') }}</v-card-subtitle>
+              <v-card-subtitle>
+                {{ $t('wmoFull') }}
+              </v-card-subtitle>
             </div>
             <v-avatar class="ma-3" size="150" tile>
               <a target="_blank" href="http://www.wmo.int" itemprop="url">
                 <v-img
                   :src="require('~/assets/wmo_acronym_vertical_sm.jpg')"
-                  :alt="$t('wmoLogo')"
+                  :alt="$t('home.wmoLogo')"
                   width="111"
                   height="150"
                   itemprop="logo"
@@ -65,7 +66,7 @@
               <a target="_blank" href="http://www.wmo.int/gaw" itemprop="url">
                 <v-img
                   :src="require('~/assets/gaw_acronym_vertical_sm.jpg')"
-                  :alt="$t('gawLogo')"
+                  :alt="$t('home.gawLogo')"
                   width="102"
                   height="150"
                   itemprop="logo"
@@ -77,53 +78,24 @@
       </v-container>
       <v-card-text itemprop="description">
         A World Meteorological Organization (
-        <a href="https://www.wmo.int" target="_blank">WMO</a>
+        <a href="https://www.wmo.int" target="_blank">{{ $t('wmo') }}</a>
         ) data centre supporting the Global Atmosphere Watch (
-        <a href="https://www.wmo.int/gaw" target="_blank">GAW</a>
+        <a href="https://www.wmo.int/gaw" target="_blank">{{ $t('gaw') }}</a>
         ) program operated by Environment and Climate Change Canada.
       </v-card-text>
       <v-card-actions>
         <v-btn
           :to="localePath('about')"
-          :title="$t('aboutWoudc')"
+          :title="$t('home.aboutWoudc')"
           color="primary"
           nuxt
         >
-          {{ $t('learnMore') }}
+          {{ $t('home.learnMore') }}
         </v-btn>
       </v-card-actions>
     </v-card>
   </v-layout>
 </template>
-
-<i18n>
-{
-  "en": {
-    "aboutWoudc": "About WOUDC",
-    "adTitle": "Discover, Visualize and Access a Global Archive of Ground-based Ozone and UV Radiation Data",
-    "gaw": "GAW",
-    "gawFull": "Global Atmosphere Watch",
-    "gawLogo": "Logo: @.gawFull",
-    "learnMore": "Learn more",
-    "welcome": "Welcome",
-    "wmo": "WMO",
-    "wmoFull": "World Meteorological Organization",
-    "wmoLogo": "Logo: @.wmoFull"
-  },
-  "fr": {
-    "aboutWoudc": "Qu’est-ce que le WOUDC",
-    "adTitle": "Découvrez, visualisez ou accédez aux archives mondiales des données terrestres sur l’ozone et le rayonnement UV",
-    "gaw": "VAG",
-    "gawFull": "Veille de l'atmosphère globale",
-    "gawLogo": "Logo : @.gawFull",
-    "learnMore": "En savoir plus",
-    "welcome": "Bienvenue",
-    "wmo": "OMM",
-    "wmoFull": "Organisation météorologique mondiale",
-    "wmoLogo": "Logo : @.wmoFull"
-  }
-}
-</i18n>
 
 <script>
 export default {

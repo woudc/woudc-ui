@@ -105,7 +105,11 @@ export default {
     strategy: 'prefix_except_default',
     defaultLocale: 'en',
     vueI18n: {
-      fallbackLocale: 'en'
+      fallbackLocale: 'en',
+      messages: {
+        en: require('./locales/en.json'),
+        fr: require('./locales/fr.json')
+      }
     },
     vueI18nLoader: true,
     detectBrowserLanguage: {

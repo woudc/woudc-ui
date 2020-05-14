@@ -1,0 +1,1329 @@
+{
+  "gaw": "VAG",
+  "gawFull": "Veille de l'atmosphère globale",
+  "note": "Remarque",
+  "welcome": "Bienvenue",
+  "wmo": "OMM",
+  "wmoFull": "Organisation météorologique mondiale",
+  "woudcFull": "Centre mondial de données sur l’ozone et le rayonnement ultraviolet",
+  "about": {
+    "access": {
+      "blurb": [
+        "L’accès aux données archivées du WOUDC est possible par l’entremise de nombreux mécanismes en appui à une accessibilité multi-application non rattachée à un fournisseur donné. Que vous utilisiez le site web, les outils géospatiaux ou nos solutions personnalisées, les archives de données du WOUDC fournissent une accessibilité souple et officielle en plus de vous permettre l’accès aux données.",
+        "Tous les efforts ont été déployés pour rendre les archives de données du WOUDC aussi accessibles que possible. Si vous avez des questions, des commentaires ou des suggestions sur la façon dont nous pourrions améliorer l’accès aux données, veuillez ",
+        "nous contacter"
+      ],
+      "contents": {
+        "links": [
+          "Rechercher des données / Télécharger",
+          "Dossier accessible sur le web (WAF)",
+          "Services web",
+          "Service de catalogue pour le web (CSW)",
+          "Service de cartes web (WMS)",
+          "Service de caractéristiques web (WFS)",
+          "Service de traitement web (WPS)",
+          "Service de définitions",
+          "Catalogue des listes de codes ISO",
+          "Exemples"
+        ],
+        "title": "Table des matières"
+      },
+      "csw": {
+        "blurb": [
+          "Le ",
+          "service de catalogue de l’OGC",
+          " fournit une interface commune pour permettre à l’usager de découvrir, de parcourir et de faire des recherches de métadonnées (des données au sujet des données) facilement. Le CSW du WOUDC fournit un catalogue de type Pages Jaunes de toutes les données du WOUDC disponibles dans les archives. Les registres de métadonnées sont formatés selon les normes du contenu des métadonnées géospatiales ISO 19115/19139."
+        ],
+        "note": {
+          "body": [
+            "Le WOUDC donne accès au CSW de l’OGC (version 2.0.2) à ces différents endroits : ",
+            "https://geo.woudc.org/csw?service=CSW&version=2.0.2&request=GetCapabilities"
+          ],
+          "title": "Le WOUDC et le CSW de l’OGC"
+        },
+        "title": "Service de catalogue pour le web (CSW)"
+      },
+      "definitions": {
+        "blurb": "Les services web sont modélisés et gérés grâce à une taxonomie des données. Il existe un service dedéfinitions, fondé sur un modèle RDF, servant à décrire la taxonomie des données du WOUDC et les liens qui les unissent.",
+        "note": {
+          "body": [
+            "Le WOUDC fournit le modèle RDF/SKOS aux endroits suivants : ",
+            "https://geo.woudc.org/def"
+          ],
+          "title": "Le service de définitions du WOUDC"
+        },
+        "title": "Service de définitions"
+      },
+      "examples": {
+        "blurb": [
+          "Les exemples ",
+          "GitHub",
+          " suivants démontrent l’accessibilité de haut niveau et l’intégration dans les flux de travaux des Services Web du WOUDC :"
+        ],
+        "links": [
+          "L’ensemble de haut niveau permet un accès pythonique aux données de l’OMM et du WOUDC",
+          "Et regroupe toute une collection de flux de travaux provenant de divers centres de données qui sont implémentés comme cahiers IPython"
+        ],
+        "title": "Exemples"
+      },
+      "iso": {
+        "blurb1": "Les listes de codes sont gérées en conformité avec la norme ISO 19115. Il existe un catalogue répertoriant les listes de codes servant à décrire une variété d’objets de domaine du WOUDC servant dans les métadonnées.",
+        "blurb2": [
+          "Veuillez consulter les ",
+          "instructions pour les services web",
+          " pour plus de détails."
+        ],
+        "note": {
+          "body": [
+            "Le WOUDC donne accès au catalogue des listes de codes aux endroits suivants : ",
+            "https://geo.woudc.org/codelists.xml"
+          ],
+          "title": "Catalogue répertoriant les listes de codes du WOUDC"
+        },
+        "title": "Catalogue des listes de codes ISO"
+      },
+      "note1": {
+        "body": [
+          "Toutes les données et métadonnées sont assujetties à la ",
+          "politique en matière de données du WOUDC"
+        ],
+        "title": "Politiques en matière de données"
+      },
+      "note2": {
+        "body": [
+          "Les dates de révision des données sont disponibles à ",
+          "stations list",
+          " pour les postes qui ont fourni des données révisées."
+        ],
+        "title": "Révisions de données / mises à jour"
+      },
+      "search": {
+        "blurb": [
+          "Les données d’observation sont accessibles via ",
+          "la page Recherche de données / Téléchargement",
+          " qui permet aux usagers de parcourir l’ensemble des archives et de filtrer les résultats d’une façon réceptive et interactive. Toutes les données offrent un lien qui permet de télécharger les données dans divers formats pour une utilisation hors ligne.",
+          "Veuillez consulter les ",
+          "instructions de recherche / téléchargement de données",
+          " pour plus de détails."
+        ],
+        "note": " Veuillez noter que des limites spécifiques aux ensembles de données sont imposées au téléchargement de données en vrac afin de maintenir la qualité du service.",
+        "title": "Rechercher des données / Télécharger"
+      },
+      "title": "Accessibilité des données",
+      "waf": {
+        "blurb": [
+          "Toutes les archives de fichiers de données qui ont été envoyées par les contributeurs en format CSV étendu sont disponibles sur ",
+          "https://woudc.org/archive/",
+          ", les utilisateurs peuvent les parcourir, les télécharger ou les intégrer à leurs flux de travaux.",
+          "Les ",
+          "données d'archives",
+          " statiques sont également disponibles dans le WAF au format CSV avec compression ZIP. Ces archives sont mis à jour hebdomadairement et offrent aux usagers une méthode pour télécharger le jeu de données entier au format CSV.",
+          "Veuillez consulter les ",
+          "instructions de WAF",
+          " pour plus de détails."
+        ],
+        "title": "Dossier accessible sur le web (WAF)"
+      },
+      "web": {
+        "blurb": [
+          "En plus des mécanismes d’accès aux données traditionnels, le WOUDC rend égalementdisponible ses archives par l’entremise de services web géospatiaux, se conformant ainsi aux normes internationales accessibles au public. Les services web sont des systèmes informatiques conçus pour prendre en charge des interactions machine à machine sur un réseau. Ils sont normalement utilisés dans un environnement informatique de type client/serveur accessible par des accès programmatiques, des outils connexes et des applications.",
+          "Les services web du WOUDC se conforment aux normes ouvertes ratifiées par l’",
+          "Open Geospatial Consortium",
+          " (OGC) et l’",
+          "International Organization for Standardization",
+          " (ISO) qui assurent l’interopérabilité des données, en facilitant ainsi la découverte, l’accessibilité, la visualisation et l’intégration. Les normes de l’OGC et de l’Organisation internationale de normalisation (ISO) jouent un rôle prépondérant dans l’",
+          "interopérabilité de l’Organisation météorologique mondiale",
+          " où elles font partie intégrante du ",
+          "système d’information de l’OMM",
+          " et sont prises en charge par de nombreuses sources libres grand public ou outils commerciaux."
+        ],
+        "table": {
+          "links": [ "???" ],
+          "title": "Ces services web de l’OGC sont mis à la disposition des utilisateurs afin d’assurer une accessibilité des données rapideet conforme aux normes :"
+        },
+        "title": "Services web"
+      },
+      "wfs": {
+        "blurb": [
+          "Le ",
+          "Service de fonctionnalités web (WFS) de l’OGC",
+          " fournit une interface populaire pour permettre à l’utilisateur d’accéder aux données géospatiales. Le Service de fonctionnalités web (WFS) est habituellement utilisé pour effectuer des recherches personnalisées ou obtenir un accès brut aux fonctionnalités géospatiales. Le WFS du WOUDC permet l’accès à des données archivées dans divers formats comme le format CSV étendu, KML, CSV, GML, le fichier de formes ESRI, MapInfo, GeoJSON et NetCDF.",
+          "Le WFS a une limite côté serveur de 200000 entités au maximum, afin de pouvoir assurer la qualité du service et en garantir la disponibilité."
+        ],
+        "note": {
+          "body": [
+            "Le WOUDC donne accès au WFS de l’OGC (versions 1.0.0 - 1.1.0) à ces différents endroits : ",
+            "https://geo.woudc.org/ows?service=WFS&version=1.1.0&request=GetCapabilities"
+          ],
+          "title": "Le WOUDC et le WFS de l’OGC"
+        },
+        "title": "Service de caractéristiques web (WFS)"
+      },
+      "wms": {
+        "blurb": [
+          "Le ",
+          "Service de cartes Web de l’OGC",
+          " fournit une interface populaire utilisée pour visualiser des couches de données géospatiales. Le WMS est souvent utilisé pour effectuer une visualisation simple sur le web ou sur une application SIG à l’aide des formats d’image adaptés pour une utilisation sur le web comme les formats PNG ou JPEG, par exemple."
+        ],
+        "note": {
+          "body": [
+            "Le WOUDC donne accès au WMS de l’OGC (versions 1.1.1 - 1.3.0) à cet endroit : ",
+            "https://geo.woudc.org/ows?service=WMS&version=1.3.0&request=GetCapabilities"
+          ],
+          "title": "Le WOUDC et le WMS de l’OGC"
+        },
+        "title": "Service de cartes web (WMS)"
+      },
+      "wps": {
+        "blurb": [
+          "Le ",
+          "Service de fonctionnalités web (WFS) de l’OGC",
+          " fournit une interface populaire pour permettre à l’utilisateur d’accéder aux données géospatiales. Le Service de fonctionnalités web (WFS) est habituellement utilisé pour effectuer des recherches personnalisées ou obtenir un accès brut aux fonctionnalités géospatiales. Le WFS du WOUDC permet l’accès à des données archivées dans divers formats comme le format CSV étendu, KML, CSV, GML, le fichier de formes ESRI, MapInfo, GeoJSON et NetCDF."
+        ],
+        "note": {
+          "body": [
+            "Le WOUDC fournit le WPS de l'OGC (version 1.0.0.0) au point d'extrémité suivant : ",
+            "https://geo.woudc.org/wps?service=WPS&version=1.0.0&request=GetCapabilities"
+          ],
+          "title": "Le WOUDC et le WPS de l’OGC"
+        },
+        "title": "Service de traitement web (WPS)"
+      }
+    },
+    "faq": {
+      "blurb": "Voici les réponses aux questions les plus fréquemment poséesà propos de notre centre de données.",
+      "questions": [
+        {
+          "text": "Qui peut consulter les données du WOUDC ?",
+          "answer": [
+            "Le WOUDC est un site Web public qui appuie le programme de Veille de l’atmosphère globale (VAG) de l’OMM. Les données du WOUDC sont rendues publiques au nom de leurs contributeurs. Pour plus d’information à propos des données, de leur accessibilité et leur utilisation, voir la ",
+            "politique sur les données"
+          ]
+        },
+        {
+          "text": "Comment puis-je soumettre des données ?",
+          "answer": [
+            "Les contributeurs inscrits peuvent soumettre des données au WOUDC par FTP. Rendez-vous à la page de ",
+            "soumission des données",
+            " pour tous les détails. Créer de nouvelles données requiert un compte d’utilisateur du WOUDC. Pour devenir contributeur, visitez la page ",
+            "d’inscription"
+          ]
+        },
+        {
+          "text": "Comment puis-je accéder aux données du WOUDC ?",
+          "answer": [
+            "Les contributeurs enregistrés peuvent accéder aux données du WOUDC par l’entremise du site web du WOUDC, d’outils de renseignement géospatial ou d’autres solutions. Visitez la page d’",
+            "accès aux données",
+            " pourtous les détails."
+          ]
+        },
+        {
+          "text": "Quel genre de données trouverais-je dans le WOUDC ?",
+          "answer": [
+            "Le WOUDC gère et conserve des données sur l’ozone etle rayonnement UV. Veuillez vous référer au ",
+            "recherche de données / téléchargement",
+            " pour consulter la listedes ensembles de données du WOUDC. D’autres produits, comme des cartes, des graphiques et des rapports, sont également disponibles sur la page de ",
+            "données",
+            "."
+          ]
+        },
+        {
+          "text": "D’où viennent les données du WOUDC ?",
+          "answer": [
+            "Les données du WOUDC sont recueillies et partagées par des contributeurs de partout dans le monde, soit des établissements, des agences et des organisations. Les contributeurs soumettent leurs données au WOUDC, qui conserve les données et les rend disponibles sur son site web. Voir la ",
+            "liste des contributeurs"
+          ]
+        },
+        {
+          "text": "À quelle fréquence les données sont-elles mises à jour ?",
+          "answer": "Les données sont normalement mises à jour et disponibles pour la consultation cinq jours ouvrables après leur réception par le WOUDC. Les données en format CSV étendu (extCSV) sont traitées et mises en ligne presque immédiatement."
+        },
+        {
+          "text": "Qui est responsable de la mise à jour des données du WOUDC ?",
+          "answer": "Le WOUDC utilise les informations que lui soumettent des contributeurs. Les WOUDC s’assure que les informations les plus récentes envoyées par le contributeur sont disponibles pour tous les utilisateurs."
+        },
+        {
+          "text": "Est-ce que je peux me servir de mon application pour consulter des données du WOUDCet envoyer des données au WOUDC ?",
+          "answer": [
+            "Oui. Le WOUDC permet d’accéder aux données brutes par dossier accessible sur le web (WAF) ou les services Web de l’Open Geospatial Consortium tels que des services de cartographie web et des Service de caractéristiques web, procurant une accessibilité dynamique en temps réel aux données du WOUDC dans une variété de formats et d’encodages. Pour obtenir de plus amples renseignements, veuillez vous référer au d’",
+            "accès aux données",
+            "."
+          ]
+        },
+        {
+          "text": "Puis-je utiliser mon appareil mobile pour accéder au WOUDC ?",
+          "answer": [
+            "Oui. L’application web du WOUDC a été mise sur pied à partir des directives du gouvernement du Canada à propos de ",
+            "l’accessibilité",
+            " et ",
+            "l’utilisation",
+            ", qui sont alignées avec ",
+            "les directives d’accessibilité du contenu du site web W3C"
+          ]
+        }
+      ],
+      "title": "Foire aux questions"
+    },
+    "formats": {
+      "blurb": [
+        "Le WOUDC utilise le format de fichier texte ASCII pour la soumission de données dans un format CSV ",
+        " (ext).",
+        "Le format CSV étendu (extCSV) est le format de fichier de données standard pour les soumissions au WOUDC. Le format ",
+        " standard pour les règles de syntaxe du CSV prend en charge la formulation des observations ainsi que de multiple contenus dans des fichiers individuels. Lorsque les fournisseurs désirent soumettre des données au WOUDC, le extCSV leur simplifie la tâche avec un format texte classiqueen plus de leur permettre d’intégrer des données sur l’ozone et le rayonnement ultraviolet (UV) dans leur base de données, leur feuille de calcul et leurs analyses du déroulement du travail. Veuillez consulter la ",
+        "d'accès aux données",
+        " pour plus de renseignements au sujet de la découverte, de l’accessibilité et de la visualisation des données du WOUDC."
+      ],
+      "contributor-guide": {
+        "links": [
+          "Guide du contributeur WOUDC"
+        ],
+        "title": "Guide du contributeur"
+      },
+      "examples": {
+        "blurb": "Les exemples de fichiers extCSV suivants sont fondés sur la catégorie Observations (ouvrir les fichiers dans un éditeur de texte) :",
+        "title": "Exemple: format CSV (extended CSV)"
+      },
+      "extended": "étendu",
+      "note": " Le WOUDC n’accepte pas les fichiers en format binaire comme les fichiers MS-Excel ou MS-Word, par exemple.",
+      "ozone": {
+        "links": [
+          "Lidar (CSV)",
+          "Sonde pour l’ozone (CSV)",
+          "Quantité totale d’ozone (CSV)",
+          "Observations relatives à la quantité totale d’ozone (CSV)",
+          "UmkehrN14 (Niveau 1.0) (CSV)",
+          "UmkehrN14 (Niveau 2.0) (CSV)"
+        ],
+        "title": "Exemples portant sur l’ozone :"
+      },
+      "title": "Formats de fichier",
+      "uv": {
+        "links": [
+          "Large bande (CSV)",
+          "Multibande (CSV)",
+          "Spectrale (CSV)"
+        ],
+        "title": "Exemples portant sur le rayonnement ultraviolet :"
+      }
+    },
+    "glossary": {
+      "blurb": "Termes reliés au centre des données, y compris les définitions portant sur les centres d’exploitation du réseau et les mots et phrases qui portent sur l’entreposage, la gestion et la transmission de données.",
+      "terms": [
+        {
+          "term": "Acronyme de l’organisme",
+          "definition": "Forme abrégée ou simplifiée qu’utilise le WOUDC pour désigner le nom de l’institution."
+        },
+        {
+          "term": "Autorité scientifique",
+          "definition": "La personne responsable de la qualité des données."
+        },
+        {
+          "term": "Catégorie de données",
+          "definition": "Terme propre au WOUDC servant à désigner le type de données. Les catégories actuelles pour les données sur l’ozone sont colonne d’ozone total, lidar, sonde pour l’ozone, Umkehr et les catégories pour les données sur le rayonnement ultraviolet sont à large bande, multibande et haute résolution spectrale."
+        },
+        {
+          "term": "Centre mondial de données sur l’ozone et le rayonnement ultraviolet (WOUDC)",
+          "definition": "L’un des six CMD qui font partie du programme VAG de l’OMM. "
+        },
+        {
+          "term": "Centres mondiaux de données",
+          "definition": "Voir CMD."
+        },
+        {
+          "term": "Classe de données",
+          "definition": "Terme propre au WOUDC pour décrire le type d’ensemble de collecte de données d’observation.Les classes de données actuelles du WOUDC sont l’ozone et le rayonnement solaire ultraviolet."
+        },
+        {
+          "term": "Classe de la source",
+          "definition": "Le terme utilisé par le WOUDC pour désigner la source des données p. ex. NDACC, SHADOZ"
+        },
+        {
+          "term": "CMD",
+          "definition": "Abréviation pour les Centres mondiaux de données. Le WOUDC est l’un des six VAG CMD qui collecte, documente et archive des mesures atmosphériques et et les métadonnées qui y sont associées à partir de stations situées au quatre coins de la planète et qui produit ces données disponibles gratuitement dans toute la communauté scientifique. "
+        },
+        {
+          "term": "Contributeur",
+          "definition": "L’institut ou l’organisation qui obtient les données d’observation et les soumet au WOUDC."
+        },
+        {
+          "term": "Contributeur de soutien",
+          "definition": "L’institut ou organisation, outre le contributeur, qui soutien techniquement ou financièrement l’observation."
+        },
+        {
+          "term": "CSW",
+          "definition": "L’abréviation désignant le Service de catalogue pour le web."
+        },
+        {
+          "term": "Déclaration de patronage des données (DSS)",
+          "definition": "Désigne une description scientifique condensée de l’origine, du traitement et de la qualité des données, rédigée par le travailleur scientifique responsable de ces données et soumise par l’organisme contributeur (anciennement Déclaration de patronage scientifique [SSS])."
+        },
+        {
+          "term": "Déclaration de patronage scientifique",
+          "definition": "Consultez la Déclaration de patronage des données."
+        },
+        {
+          "term": "Dossier accessible sur le web (WAF)",
+          "definition": [
+            "Toutes les archives de fichiers de données qui ont été envoyées par les contributeurs en format CSV étendu sont disponibles au ",
+            { "link": { "to": "https://woudc.org/archive", "type": "external", "text": "https://woudc.org/archive/" } },
+            " pour les utilisateurs qui souhaitent consulter ou télécharger les données ou les intégrer dans leurs chaînes d’exploitation."
+          ]
+        },
+        {
+          "term": "DSS",
+          "definition": "L’abréviation qui désigne la Déclaration de patronage des données."
+        },
+        {
+          "term": "Emplacement",
+          "definition": "La latitude, la longitude et la hauteur de la collecte de données, généralementl’emplacement de la station (plate-forme) et l’instrument utilisé."
+        },
+        {
+          "term": "Érythémateux",
+          "definition": [
+            "Le rayonnement solaire ultraviolet à effet érythémateux se définit comme l’intégrale sur les longueurs d’onde UV de l’irradiation, multipliée par le spectre à action érythémateuse (consulter ",
+            { "link": { "to": "https://www.wmo.int/pages/prog/dra/etrp/documents/926E.pdf", "type": "external", "text": "efficacité sur la carcinogenèse" } },
+            ")."
+          ]
+        },
+        {
+          "term": "extCSV",
+          "definition": "L’abréviation qui désigne la forme étendue du format de fichier de type valeurs séparées par des virgules (CSV) qui a été créé par le WOUDC comme format de fichier normalisé pour l’archivage des données. Ce format de fichier prend en charge la formulation des observations et de multiples données contenus dans des fichiers individuels."
+        },
+        {
+          "term": "Fabricant d’instruments",
+          "definition": "Le constructeur ou le fabricant d’un instrument ou d’un capteur."
+        },
+        {
+          "term": "Format valeurs séparées par des virgules étendu",
+          "definition": "Voir extCSV."
+        },
+        {
+          "term": "Formulaire",
+          "definition": "La version du format de fichier extCSV du WOUDC (représenté par le fichier forme). Si la structure du fichier existant est modifiée, le fichier forme sera augmenté."
+        },
+        {
+          "term": "Fuseau horaire",
+          "definition": "Le nombre d’heures soustraites à l’heure locale afin d’obtenir l’UTC (le nombre est positif pour les fuseaux horaires à l’est et l’heure locale est définie par la source des données), comme décrite dans la norme ISO-8601 sur l'heure (hh)."
+        },
+        {
+          "term": "GCS",
+          "definition": "Abréviation pour le Groupe consultatif scientifique de l’OMM. Le WOUDC reçoit des directives du GCS de l’OMM en lien avec les questions les données sur l’ozoneet le rayonnement ultraviolet."
+        },
+        {
+          "term": "Groupe consultatif scientifique",
+          "definition": "Voir GCS."
+        },
+        {
+          "term": "Hauteur",
+          "definition": "Hauteur (élévation) en mètres au-dessus du niveau de la mer (m.a.s.l.)."
+        },
+        {
+          "term": "Identifiant de plate-forme WOUDC",
+          "definition": "Un nombre assigné à chaque station (plate-forme) par le WOUDC à des fins d’identification. Aussi appelé ID WOUDC."
+        },
+        {
+          "term": "Identifiant VAG",
+          "definition": "L’abréviation pour l’identificateur de station défini par le programme VAG de l’OMM. Cet identificateur est un code composé de trois chiffres et utilisé dans les fichiers extCSV du WOUDC."
+        },
+        {
+          "term": "Instrument",
+          "definition": "Le capteur ou dispositif utilisé pour relever / fournir les données."
+        },
+        {
+          "term": "ISO",
+          "definition": "L’abréviation pour l’Organisation internationale de normalisation."
+        },
+        {
+          "term": "Latitude",
+          "definition": "Elle est exprimée en degrés décimaux (DD) signés, une valeur positive est attribuée au nord et une valeur négative est attribuée au sud."
+        },
+        {
+          "term": "Lidar",
+          "definition": "Terme qui désigne la détection et télémétrie par ondes lumineuses. Il s’agit d’une catégorie définie par le WOUDC."
+        },
+        {
+          "term": "Longitude",
+          "definition": "Elle est exprimée en degrés décimaux (DD) signés, une valeur positive est attribuée à l’est et une valeur négative est attribuée à l’ouest."
+        },
+        {
+          "term": "Métadonnées",
+          "definition": "Données portant sur des données. Il s’agit d’informations supplémentaires spatiales et temporales, ainsi qu’à propos des instruments utilisés dans les données du WOUDC."
+        },
+        {
+          "term": "Modèle de l’instrument",
+          "definition": "l’identifiant du modèle (ID) s’il y a lieu. Par exemple, un spectrophotomètre Brewer commun est désigné par l’identifiant MKIII et une sonde CCE par le code 6A."
+        },
+        {
+          "term": "NDACC",
+          "definition": "Réseau pour la détection de changements dans la composition de l’atmosphère"
+        },
+        {
+          "term": "Niveau de données",
+          "definition": "Voir les produits de données. Les données brutes sont de niveau 0 et sont considérées comme inchangées. Les données élaborées sont de niveau 1 alors que les données maillées spectrales classées dans un tableau sont de niveau 2, et ainsi de suite."
+        },
+        {
+          "term": "Nom VAG",
+          "definition": "L’abréviation du nom de la station (plate-forme) du VAG."
+        },
+        {
+          "term": "Numéro de série de l’instrument",
+          "definition": "le numéro de série (N/S) d’un instrument ou d’un capteur."
+        },
+        {
+          "term": "OGC",
+          "definition": "Abréviation pour Open Geospatial Consortium, qui consiste en un forum global pour la collaboration des données géospatiales; ils établissent les normes internationales et offrent des services qui font la promotion de l’interopérabilité géospatiale."
+        },
+        {
+          "term": "OMM",
+          "definition": "Abréviation de l’Organisation météorologique mondiale. L’OMM mène ses activités par l’intermédiaire de programmes scientifiques et techniques tels que le WOUDC."
+        },
+        {
+          "term": "Open Geospatial Consortium",
+          "definition": "Voir OGC."
+        },
+        {
+          "term": "Organisation météorologique mondiale",
+          "definition": "Voir OMM."
+        },
+        {
+          "term": "Organisme",
+          "definition": "Terme propre au WOUDC pour décrire l’institution ou l’organisme contributeur qui est responsable des soumissions de données au WOUDC."
+        },
+        {
+          "term": "Ozone",
+          "definition": "Une forme spéciale d’oxygène dont la formule chimique est O3. L’ozone de la stratosphère absorbe les rayons ultraviolets biologiquement néfastes du soleil. L’ozone est l’une des classes de données actuelles du WOUDC et comprend ces catégories de données : colonne d’ozone total (deux niveaux : quotidien et mensuel), profils verticaux lidar, profils verticaux de sonde pour l’ozone, et profils verticaux (deux niveaux : valeur N et C-Umkehr) d'Umkehrn."
+        },
+        {
+          "term": "Ozone total",
+          "definition": "Contenu de la colonne d’ozone total. Il s’agit d’une catégorie de données définie par le WOUDC. Voir ozone et unité Dobson."
+        },
+        {
+          "term": "Période de temps d’observation",
+          "definition": "Période durant laquelle les observations sont notées, souvent un jour ou deux, qui donne un seul profile."
+        },
+        {
+          "term": "Plate-forme",
+          "definition": "Voir la station."
+        },
+        {
+          "term": "Produits de données",
+          "definition": "Désigne les produits de données à valeur ajoutée comme les cartes, les résumés statistiques (les moyennes quotidiennes, par exemple), les tableaux regroupant les données sur les longueurs d’onde et les largeurs de bande, les analyses de séries temporelles, et ainsi de suite."
+        },
+        {
+          "term": "Projet",
+          "definition": "Le nom du projet (p. ex. IONS, EUVB, Antarctique)."
+        },
+        {
+          "term": "Rayonnement ultraviolet (UV)",
+          "definition": "Souvent abrégé UV. Les ondes courtes (UV-B) sont absorbées par la couche d’ozone, tandis que les rayons UV à ondes longues (UVA) passent à travers la couche d’ozone et atteignent le sol. Les données de rayonnement UV du WOUDC se situent dans les alentours des UVA et UVB (290 à 400 nm) sur le spectre électromagnétique. Les données sur les rayons UVfigurent parmi les classes de données recueillies par la WOUDC et comprennent trois catégories : à large bande, multibande, et à haute résolution."
+        },
+        {
+          "term": "Rayonnement UV",
+          "definition": "L’une des classes de données du WOUDC. Des exemples de données de rayonnement UV du WOUDC sont multibandes, à large bande et spectrales."
+        },
+        {
+          "term": "RDF",
+          "definition": [
+            "Resource Description Framework - Une partie de la norme de service Web SKOS de World Wide Web Consortium (",
+            { "link": { "to": "https://www.w3.org/", "type": "external", "text": "www.w3.org" } },
+            ")."
+          ]
+        },
+        {
+          "term": "Régions de l’OMM",
+          "definition": "L’OMM divise la Terre en six régions géographiques."
+        },
+        {
+          "term": "Résolution des données",
+          "definition": "Désigne la fréquence des données où Q = quotidiennement M = mensuellement."
+        },
+        {
+          "term": "Révision",
+          "definition": "Une mise à jour apportée à une donnée existante. Il peut s’agit d’un ajustement mineur ou d’une réécriture importante de la donnée."
+        },
+        {
+          "term": "Service de caractéristiques web (WFS)",
+          "definition": "Une interface populaire utilisée pour consulter des données géospatiales. L’utilisateur du WFS va généralement indiquer une requête personnalisée / accéder à des données géospatiales brutes. Le centre de données permet d’accéder aux données d’archive sous de nombreux formats de données, dont CSV, KML, CSV, GML, ESRI Shapefile, MapInfo, GeoJSON, et NetCDF."
+        },
+        {
+          "term": "Service de cartes web (WMS)",
+          "definition": "Une interface populaire utilisée pour visualiser des couches de données géospatiales. L’utilisateur du WMS va généralement accéder à une simple visualisation sur le web ou une application SIG dans un format d’image connu tel que PNG ou JPEG."
+        },
+        {
+          "term": "Service de catalogue pour le web (CSW)",
+          "definition": "Norme de l’Open Geospatial Consortium (OGC) pour définir des interfaces servant à découvrir, parcourir et rechercher des métadonnées sur les registres géospatiaux."
+        },
+        {
+          "term": "SHADOZ",
+          "definition": "L’abréviation de Southern Hemisphere ADditional Ozonesondes (Sondes pour l’ozone supplémentaires de l’hémisphère sud)."
+        },
+        {
+          "term": "SHP",
+          "definition": "L’abréviation et l’indicatif pour une station mobile du WOUDC (plate-forme) pour données embarquées Se réfère au type de station (plate-forme)."
+        },
+        {
+          "term": "SIO",
+          "definition": "Acronyme pour le système d’information de l’OMM responsable des télécommunications et de la gestion des données météorologiques et climatiques et de l’information à propos des eaux afin d’assurer l’uniformité et la normalisation des données, de l’information et des communications, ainsi que des procédures et normes qui y sont reliées dont se servent les membres de l’OMM."
+        },
+        {
+          "term": "SISVAG",
+          "definition": "L’abréviation pour le Système d’information de la station du VAG."
+        },
+        {
+          "term": "SKOS",
+          "definition": [
+            "Simple Knowledge Organization System - Une partie de la norme du Consortium World Wide Web Service Web (",
+            { "link": { "to": "https://www.w3.org/", "type": "external", "text": "www.w3.org" } },
+            ")."
+          ]
+        },
+        {
+          "term": "S/N",
+          "definition": "Le numéro de série de l’instrument. Il s’agit du numéro de série de l’instrument."
+        },
+        {
+          "term": "Sonde pour l’ozone",
+          "definition": "Instrument à ballon servant à mesurer la concentration en ozone atmosphérique selon l’altitude. Il s’agit d’une catégorie de données définie par le WOUDC. Voir ozone."
+        },
+        {
+          "term": "Station",
+          "definition": "La station de la plate-forme à partir de laquelle une observation est effectuée. Les stations sont des plates-formes stationnaires (y compris les tours) et des plates-formes mobiles (y compris les navires)."
+        },
+        {
+          "term": "STN",
+          "definition": "L’abréviation et l’indicatif pour une station stationnaire du WOUDC ou (plate-forme) données. Se réfère au type de station (plate-forme)."
+        },
+        {
+          "term": "Système d’information de l’OMM",
+          "definition": "Voir SIO."
+        },
+        {
+          "term": "Type de plate-forme",
+          "definition": "Voir type de station."
+        },
+        {
+          "term": "Type de station",
+          "definition": "L’abréviation est utilisée pour déterminer si une station (plate-forme) est stationnaire (STN) ou sur un navire (SHP)."
+        },
+        {
+          "term": "Type d’instrument",
+          "definition": "Le nom commun de l’instrument ou du capteur. Par exemple, le spectrophotomètre est appelé le \"Brewer\" alors que la sonde pour l’ozone Brewer-Mast est appelée la \"Brewer-Mast.\""
+        },
+        {
+          "term": "UmkehrN14",
+          "definition": "Pour les mesures obtenues à l’aide de la technique Umkehr avec 14 valeurs-N (représentant 14 angles zénithaux du soleil). Il s’agit d’une catégorie de données définie par le WOUDC. Se référer à l'ozone."
+        },
+        {
+          "term": "Unité Dobson (UD)",
+          "definition": "Unité de mesure qui permet d’évaluer la densité d’une colonne atmosphérique d’ozone, utilisée pour mesurer la colonne d’ozone total, laquelle est dominée par l’ozone présent dans la couche d’ozone stratosphérique."
+        },
+        {
+          "term": "UTC",
+          "definition": "L’abréviation uniformisée pour le temps universel coordonné. Il s’agit de l’heure officielle dans tous les pays. L’OMM a adopté l’UTC en tant que temps standard dans tous ses rapports de données météorologiques."
+        },
+        {
+          "term": "UV à large bande",
+          "definition": "Relevés des rayonnements UVA, UVB ou des rayons UV à effet érythémateux.Il s’agit d’une catégorie de données définie par le WOUDC. Voir rayonnement ultraviolet."
+        },
+        {
+          "term": "UV multibande",
+          "definition": "Mesuré à l’aide de quelques filtres passe-bande discrets avec une résolution spectrale de 2 à 10 miles nautiques de largeur totale à mi-hauteur. Il s’agit d’une catégorie de données définie par le WOUDC. Voir rayonnement ultraviolet."
+        },
+        {
+          "term": "UV spectral",
+          "definition": "Le rayonnement est mesuré par une bande spectrale continue d’une résolution inférieure ou égale à 2 miles nautiques. Il s’agit d’une catégorie de données définie par le WOUDC. Voir rayonnement ultraviolet."
+        },
+        {
+          "term": "VAG",
+          "definition": "L’abréviation qui désigne le programme Veille de l’atmosphère du globe de l’Organisation météorologique mondiale (OMM). Le programme VAG a étéinstauré en 1991 pour fournir des données scientifiques sur la composition chimique de l’atmosphère."
+        },
+        {
+          "term": "Veille de l’atmosphère du globe",
+          "definition": "Voir VAG."
+        },
+        {
+          "term": "Version des données",
+          "definition": "Version des données définie par l’organisme qui les soumet. Ces versions se présentent sous une forme majeure.mineure (3.2, par exemple)."
+        },
+        {
+          "term": "Version du format de fichier",
+          "definition": [
+            "Terme propre au WOUDC pour décrire le format d’un fichier de données. Les fichiers de données portant sur un sujet précis contiendront toujours les tableaux et les champs définis par le WOUDC pour ce formulaire. Consulter le ",
+            { "link": { "to": "contributors-registration", "text": "formulaire d’inscription des contributeurs" } },
+            "."
+          ]
+        },
+        {
+          "term": "WOUDC",
+          "definition": "Le Centre mondial de données sur l’ozone et le rayonnement ultraviolet."
+        },
+        {
+          "term": "",
+          "definition": ""
+        }
+      ],
+      "title": "Glossaire"
+    },
+    "home": {
+      "blurb": [
+        "Le Centre mondial de données sur l’ozone et le rayonnement ultraviolet (WOUDC) est l’undes six Centres mondiaux de données reconnus qui font partie du programme de Veille de l’atmosphère du globe de l’Organisation météorologique mondiale. Le centre de données du WOUDC est exploité par Service météorologique du Canada, une branche d’Environnement et Changement climatique Canada.",
+        "Les catégories d’ensembles de données sur l’ozone comprennent les mesures de la colonne d’ozone total et de la courbe de répartition verticale de l’ozone relevées par des lidar, des sondes pour l’ozone en vol et par la technique Umkehr. Les catégories d’ensemble de données sur le rayonnement ultraviolet (UV) incluent les données de type spectrale, à large bande, multibande et à haute résolution.",
+        "Il y a plus de 500 ",
+        "stations enregistrées",
+        " dans les archives, provenant de plus de 150 ",
+        "contributeurs",
+        ". Des métadonnées telles que les listes des stations et leur emplacement sont offertes sur le site Web du WOUDC.",
+        "Les données à valeur ajoutée incluent les graphiques représentant la quantité totale d’ozone, classés en ordre chronologique, et les cartes des quantités d’ozone qui en montrent l’évolution en temps quasi réel.",
+        "Toutes les données du WOUDC sont fournies en utilisant la ",
+        "recherche de données / téléchargement",
+        ", ou pardossier accessible sur le web (WAF). De plus, les services web de l’Open Geospatial Consortium fournissent une accessibilité accrue aux archives ce qui permet un accès sur demande conforme aux normes. Pour obtenir de plus amples renseignements, veuillez vous référer à la ",
+        "d'accès aux données",
+        "."
+      ],
+      "history": {
+        "milestones": [
+          "Le Centre mondial des données sur l’ozone (WODC) a vu le jour",
+          "la première publication de données sur l’ozone à l’échelle mondiale du WODC a été émise",
+          "les données sur le rayonnement solaire ultraviolet (UV) ont été ajoutées aux archives ; le centre de données a alors été rebaptisé le Centre mondial de données sur l’ozone et le rayonnement ultraviolet (WOUDC)",
+          "site initial et le site FTP ont été créé",
+          "les premières données du cdrom ont été produites",
+          "les premières données du DVD ROM avec l'archive complète sont sorties",
+          "le site Web du WOUDC, mis à jour, fournit des mécanismes modernisés qui soutiennent la découverte, la visualisation et la gestion des données sur l’ozone et les UV, en plus d’en favoriser l’accessibilité"
+        ],
+        "title": "Le centre de données - un peu d’histoire"
+      },
+      "title": "Qu’est-ce que le WOUDC"
+    },
+    "policy": {
+      "blurb": [
+        "L’utilisation des données du WOUDC est régie par la ",
+        "politique sur les données de L’Organisation météorologique mondiale (OMM)",
+        " et la ",
+        "politique d’utilisation des données de la Veille de l’atmosphère du globe (VAG) de l’OMM"
+      ],
+      "doi": {
+        "blurb": [
+          "WOUDC a enregistré ",
+          "DOIs",
+          " pour les données sur l’ozone et les rayons UV. Les identificateurs d’objets numériques (ION) sont des identificateurs permanents qui rendent les données de recherche accessibles et en permettent la citation. Ils facilitent l’accès aux données de recherche, la réutilisation et la vérification, et ainsi tirer profit du travail déjà réalisé, mener de nouvelles recherches et éviter la duplication du travail déjà fait."
+        ],
+        "note1": {
+          "items": [
+            "Ozone: doi:10.14287/10000001",
+            "Rayonnement UV: doi:10.14287/10000002"
+          ],
+          "title": "Identificateurs d'objets numériques WOUDC (premier ordre)"
+        },
+        "note2": {
+          "items": [
+            "Ozone total - observations quotidiennes: doi:10.14287/10000004",
+            "Ozone total - Observations horaires: doi:10.14287/10000003",
+            "Lidar: doi:10.14287/10000007",
+            "Sonde pour l’ozone: doi:10.14287/10000008",
+            "UmkehrN14 (Niveau 1.0): doi:10.14287/10000005",
+            "UmkehrN14 (Niveau 2.0): doi:10.14287/10000006",
+            "RocketSonde: doi:10.14287/10000009",
+            "Large bande: doi:10.14287/10000012",
+            "Multibande: doi:10.14287/10000010",
+            "Spectrale: doi:10.14287/10000011",
+            "Indice UV: doi:10.14287/10000013"
+          ],
+          "title": "Identificateurs d'objets numériques WOUDC (ensembles de données)"
+        },
+        "title": "Identificateurs d'objets numériques (DOI)"
+      },
+      "gaw": {
+        "blurb": "L’utilisation des données obtenues de l’un des Centre mondial de données (CMD) de la VAG de l’OMM est régie par la déclaration suivante, endossée par le Conseil exécutif et la Commission des sciences de l’atmosphère (CE/CSA), un groupe de travail composé d’experts de la pollution environnementale et la chimie atmosphérique [OMM, 2001a].:",
+        "note": {
+          "body": "Pour l’utilisation à des fins scientifiques, éducatives et stratégiques, l’accès à ces données [de la VAG] doit être illimité et gratuit. En utilisant ces données vous acceptez qu’une offre de collaboration sera envoyée directement aux fournisseurs ou aux propriétaires des données lorsque leurs données sont utilisées de manière significative. Dans tous les cas, une reconnaissance de la propriété des données doit être fournie, pour leurs auteurs et le centre de données dès que ces données sont utilisées dans une publication.",
+          "title": "Énoncé de politique de l’OMM"
+        },
+        "title": "Politique d’utilisation des données de Veille de l’atmosphère du globe"
+      },
+      "products": {
+        "blurb": "Lors de la publication de produits extraites du WOUDC, tels que des graphiques, listes, cartes ou métadonnées, vous devez indiquer que ces produits proviennent du WOUDC, en utilisant la citation appropriée comme indiqué dans l’exemple suivant.",
+        "note": {
+          "body": "Environnement et Changement climatique Canada, Toronto (n.d.). Organisation météorologique mondiale-Programme de Veille de l’atmosphère du globe (OMM-VAG)/Centre mondial des données sur l’ozone et le rayonnement ultraviolet (WOUDC) Page consultée le 24 octobre 2013 : https://woudc.org.",
+          "title": "Exemple (3) : Citation d'un produit provenant du site du WOUDC"
+        },
+        "title": "Publication de produits"
+      },
+      "publishing": {
+        "blurb1": "Lors de la publication de données extraites du WOUDC, vous devezindiquer les contributeurs qui ont fourni les données, ainsi que la source des données et le WOUDC, en utilisant la citation appropriée comme indiqué dans l’exemple suivant.",
+        "blurb2": [
+          "Pour la liste complète de tous les contributeurs, voir la ",
+          "liste des contributeurs"
+        ],
+        "note1": {
+          "body": "JMA, & NASA-WFF. Organisation météorologique mondiale-Programme de Veille de l’atmosphère du globe (OMM-VAG)/Centre mondial des données sur l’ozone et le rayonnement ultraviolet (WOUDC) [Données]. Page consultée le 24 octobre 2013 : https://woudc.org. doi:10.14287/10000001",
+          "title": "Exemple (1) : Citation des données provenant (contribuées par) la Japan Meteorological Agency (JMA) et la NASA (NASA-WFF) et extraites du site du WOUDC"
+        },
+        "note2": {
+          "items": [
+            "Environnement et Changement climatique Canada, Toronto (n.d.). Organisation météorologique mondiale-Programme de Veille de l’atmosphère du globe (OMM-VAG)/Centre mondial des données sur l’ozone et le rayonnement ultraviolet (WOUDC) Page consultée le 24 octobre 2013 : https://woudc.org. doi:10.14287/10000001",
+            "Environnement et Changement climatique Canada, Toronto (n.d.). Organisation météorologique mondiale-Programme de Veille de l’atmosphère du globe (OMM-VAG)/Centre mondial des données sur l’ozone et le rayonnement ultraviolet (WOUDC) Page consultée le 24 octobre 2013 : https://woudc.org. doi:10.14287/10000002"
+          ],
+          "title": "Exemple (2) : Citation des données provenant (contribuées par) la Japan Meteorological Agency (JMA) et la NASA (NASA-WFF) et extraites du site du WOUDC"
+        },
+        "title": "Publication des données"
+      },
+      "title": "Politique d’utilisation des données",
+      "wmo": {
+        "blurb": [
+          "L’OMM facilite l’échange gratuit et sans restriction, en temps réel ou quasi réel, de données, d’informations, de produits et de services propres à renforcer la sécurité des populations, le bien-être économique et la protection de l’environnement.",
+          "Résolution 40 (Cg-XII)",
+          " : Politique et pratique adoptée par l’OMM pour l’échange de données et de produits météorologiques et connexes, y compris ses principes directeurs applicables aux relations entre partenaires en matière de commercialisation des services météorologiques."
+        ],
+        "title": "Politique des données de l’Organisation météorologique mondiale"
+      }
+    },
+    "quality": {
+      "blurb": "Les données du WOUDC sont régies par le système de contrôle de la qualité de l’Organisation météorologique mondiale et sous la surveillance des Groupes consultatifs scientifiques sur l’ozone et le rayonnement UV solaire.",
+      "eccc": {
+        "blurb": "Le WOUDC relève du ministère de l’Environnement (aussi connu sous le nom d’Environnement et Changement climatique Canada) et exécute les activités suivantes :",
+        "item1": [
+          "Élabore ",
+          "des directives",
+          " pour la soumission de données ;"
+        ],
+        "item2": [
+          "Vérifie que les données soumises possèdent tous les éléments de format nécessaires, assure la disponibilité de métadonnées complètes et rejette la soumission de données ne répondant pas à ces critères ;"
+        ],
+        "item3": [
+          "Effectue des contrôles de vraisemblance et de cohérence sur les données soumises, identifie les problèmes avec les données, et fournit une rétroaction lorsque nécessaire ;"
+        ],
+        "item4": [
+          "Fournit la collection de la rétroaction des utilisateurs de données ;"
+        ],
+        "item5": [
+          "Partage les résultats de l’évaluation de la qualité et de la rétroaction des utilisateurs avec les contributeurs afin que ceux-ci puissent apporter les mesures correctives lorsque nécessaire ; et"
+        ],
+        "item6": [
+          "Fournitdes mécanismes ",
+          "d’accès aux données",
+          "."
+        ],
+        "title": "Environnement et Changement climatique Canada"
+      },
+      "gaw-blurb": [
+        "Le ",
+        "système de contrôle de la qualité de l’OMM",
+        " sert principalement à s’assurer que les données des Centres mondiaux de données sont pertinentes, de qualité vérifiable et adéquate, appuyées par des métadonnées complètes, et suffisamment complètes pour décrire des états atmosphériques globaux selon la distribution spatiale et temporelle."
+      ],
+      "sag": {
+        "blurb":  [
+          "Le GCS sur l’ozone et le rayonnement UV solaire établit des objectifs de qualité et ",
+          "procédures opérationnelles normalisées",
+          " qui décrivent les méthodes et procédures de mesure.",
+          "Le GCS s’assure que toutes les données produites par le système sont conformes aux normes internationales par l’entremise des centres d’étalonnage suivants"
+        ],
+        "links": [
+          {
+            "text": "Centre d’étalonnage mondial pour les mesures Dobson d’ozone totale de l’OMM et de la VAG",
+            "note": "Section de la surveillance mondiale, NOAA"
+          },
+          {
+            "text": "Centre d’étalonnage mondial pour les mesures Brewer d’ozone totale de l’OMM et de la VAG",
+            "note": "Environnement et Changement climatique Canada"
+          },
+          {
+            "text": "Centre d’étalonnage mondial pour les mesures de sondes pour l’ozone de l’OMM et de la VAG",
+            "note": "Centre de recherche de Jülich, en Allemagne"
+          }
+        ],
+        "title": "Groupes consultatifs scientifiques"
+      },
+      "title": "Qualité des données"
+    },
+    "standards": {
+      "blurb1": "",
+      "blurb2": "",
+      "headers": [
+        "Ressource",
+        "Format/Codage",
+        "Services web"
+      ],
+      "links": [
+        {
+          "resource": "Métadonnées de découverte",
+          "formats": [
+            "ISO 19115 WMO Core Metadata Profile"
+          ],
+          "services": [
+            "OGC:CSW",
+            "OAI-PMH",
+            "OpenSearch"
+          ]
+        },
+        {
+          "resource": "Station de métadonnées",
+          "formats": [
+            "OGC:GML",
+            "WIGOS"
+          ],
+          "services": [
+            "OGC:WMS",
+            "OGC:WFS"
+          ]
+        },
+        {
+          "resource": "Métadonnées des instruments",
+          "formats": [
+            "OGC:GML",
+            "WIGOS"
+          ],
+          "services": [
+            "OGC:WMS",
+            "OGC:WFS"
+          ]
+        },
+        {
+          "resource": "Observations",
+          "formats": [
+            "CSV",
+            "GeoJSON",
+            "OGC:GML",
+            "WIGOS"
+          ],
+          "services": [
+            "OGC:WMS",
+            "OGC:WFS"
+          ]
+        }
+      ],
+      "title": "Normes"
+    }
+  },
+  "banner": {
+    "about": "À propos",
+    "about-access": "Accessibilité des données",
+    "about-faq": "FAQ",
+    "about-formats": "Formats de fichier",
+    "about-glossary": "Glossaire",
+    "about-home": "Qu’est-ce que le WOUDC",
+    "about-policy": "Politique d’utilisation des données",
+    "about-quality": "Qualité des données",
+    "about-standards": "Normes",
+    "contributors": "Contributeurs",
+    "contributors-list": "Liste des contributeurs",
+    "contributors-guide": "Guide du contributeur",
+    "contributors-registration": "Inscription",
+    "contributors-submission": "Soumission de données",
+    "contributors-validation": "Validateur de données",
+    "data": "Données",
+    "data-explore": "Rechercher des données / Télécharger",
+    "data-info": "Information sur les jeux de données",
+    "data-instruments": "Liste des instruments",
+    "data-products": "Produits de données",
+    "data-stations": "Liste des stations",
+    "home": "Accueil",
+    "resources": "Ressources",
+    "resources-groups": "Groupes de travail",
+    "resources-links": "Liens de données connexes",
+    "resources-software": "Logiciel",
+    "resources-sop": "Procédures d'utilisation normalisées",
+    "news": "Nouvelles"
+  },
+  "contact": {
+    "blurb": [
+      "Pour les questions techniques, consultez la ",
+      "Foire aux questions",
+      ".",
+      "Si vous ne trouvez pas de réponse à vos questions, ou si vous désirez nous faire part de vos commentaires, suggestions ou idées à propos du ",
+      ", veuillez remplir le formulaire ci-dessous.",
+      "Si vous avez des problèmes avec le formulaire suivant, vous pouvez utiliser une des ",
+      "autres voies de service",
+      " pour communiquer avec nous."
+    ],
+    "contact-info": "Vos Coordonnées",
+    "contact-methods": {
+      "Par la poste": [
+        "Centre mondial de données sur l’ozone et le rayonnement ultraviolet",
+        "Services météorologiques du Canada",
+        "Environnement et Changement climatique Canada",
+        "4905, rue Dufferin",
+        "Toronto, ON M3H 5T4",
+        "Canada"
+      ]
+    },
+    "email": "Courriel",
+    "message": "Message",
+    "name": "Nom",
+    "note-body": [
+      "Tous les renseignements personnels créés, recueillis ou conservés par le ministère sont protégés par la ",
+      "Loi sur la protection des renseignements personnels",
+      ". Cela signifie qu'on vous informera des fins auxquelles ces renseignements sont recueillis et de la façon dont vous pouvez exercer votre droit d'accès à ces renseignements. Le cas échéant, on vous demandera d'exprimer votre consentement par rapport à ces renseignements."
+    ],
+    "note-title": "Énoncé de collecte de renseignements personnels",
+    "other-channels": "Autres voies de service",
+    "prompt": "S'il vous plaît fournir des informations que nous pourrions utiliser pour communiquer avec vous.",
+    "required": "obligatoire",
+    "reset": "Réinitialisation",
+    "subject": "Sujet",
+    "submit": "Soumettre",
+    "title": "Communiquez avec le WOUDC"
+  },
+  "contributors": {
+    "list": {
+      "blurb": "La liste des contributeurs contient le nom et l’abréviation de l’institut ou de l’organisation,l’adresse, les coordonnées et l’information sur le fichier local.",
+      "contributor-headers": [
+        "Acronyme",
+        "Project title in French",
+        "Nom du contributeur",
+        "Pays",
+        "À partir de cette date",
+        "Jusqu’à cette date",
+        "Région de l'OMM"
+      ],
+      "deployment-headers": [
+        "Identification de la station du WOUDC",
+        "Nom de la station",
+        "Type de station",
+        "Pays de la station",
+        "À partir de cette date",
+        "Jusqu’à cette date"
+      ],
+      "map-instructions": {
+        "label": "Guide d'utilisation : Carte interactive",
+        "text": "Lorem Ipsum something something something"
+      },
+      "table-instructions": {
+        "label": "Guide d'utilisation : Tableau interactif",
+        "text": "Lorem Ipsum something something something"
+      },
+      "title": "Liste des contributeurs"
+    },
+    "registration": {
+      "blurb1": [
+        "Tous les nouveaux contributeurs aux données doivent posséder un compte WOUDC. Toutes les demandes pour la création de nouveaux comptes devront être vérifiées par le personnel du WOUDC. Le WOUDC se réserve le droit de vérifier toutes les demandes de soumission de données afin de s’assurer qu’elles soient conformes avec les protocoles d’échange de données du programme de Veille de l’atmosphère du globe (VAG) de l’Organisation météorologique mondiale (OMM).",
+        "Les contributeurs qui désirent soumettre de nouvelles données doivent suivre les étapes suivantes afin d’organiser ",
+        "les soumissions de données",
+        " au WOUDC en ensembles de données sur l’ozone ou le rayonnement ultraviolet :"
+      ],
+      "blurb2": [
+        "Nous vous remercions de votre inscription au WOUDC."
+      ],
+      "step1": [
+        "Lire la politique du WOUDC ",
+        "relative aux données"
+      ],
+      "step2": [
+        "Obtenir un identifiant VAG (obligatoire) pour chacune des stations en s’inscrivant avec ",
+        "OMM/VAG",
+        "En savoir plus sur la VAG"
+      ],
+      "step3": [
+        "Compléter le processus d'enregistrement de WOUDC en ",
+        "contactant WOUDC",
+        " avec comme titre : ",
+        "nouvelle inscription",
+        "et inclut votre nouvel identifiant VAG ; et"
+      ],
+      "step4": [
+        "Après réception et approbation de votre inscription, le WOUDC attribuera un emplacement FTP / compte FTP (avec un nom d'utilisateur / mot de passe personnel) à utiliser exclusivement pour la soumission des données."
+      ],
+      "title": "Inscription"
+    },
+    "submission": {
+      "blurb1": [
+        "Le WOUDC traite les données de façon quotidienne afin que les soumissions de données soient complétées pratiquement en temps réel. Les contributeurs inscrits peuvent soumettre des données1 au WOUDC via le serveur FTP."
+      ],
+      "blurb2": [
+        "Il est recommandé de soumettre les données au moins une fois par mois. Veuillez ",
+        "communiquer avec nous",
+        " pour obtenir plus de renseignements"
+      ],
+      "step1": [
+        "Les fichiers de données peuvent être envoyés individuellement ou compressés en format .zip, .tar ou tar.gz. Consultez ",
+        "Formats de fichiers",
+        " pour obtenir de plus amples renseignements"
+      ],
+      "step2": [
+        "Vous connecter au serveur FTP du WOUDC ",
+        "en utilisant un client FTP"
+      ],
+      "step3": [
+        "Vous connecter à l’aide du nom d’utilisateur et du mot de passe qui vous a été attribué"
+      ],
+      "step4": [
+        "Chacun des contributeurs transfère ses fichiers respectifs dans leur dossier individuel sur le serveur FTP (une fois transférés au WOUDC, les fichiers ne peuvent être mis à jour pour soumettre des fichiers mis à jour, il faut les transférer de nouveau en utilisant un nom de fichier différent)"
+      ],
+      "step5": [
+        "Veuillez vous déconnecter pour mettre fin à la session FTP"
+      ],
+      "note1": "une fois les fichiers transférés au WOUDC, il ne sera plus possible de les mettre à jour. Pour soumettre des fichiers mis à jour, les transférer de nouveau en utilisant un nom de fichier différent.",
+      "note2": "les détails de chacune des étapes peuvent varier selon le type d’ordinateur et le serveur FTP.",
+      "subtitle": "Étapes de soumission des données",
+      "title": "Soumission de données"
+    },
+    "validation": {
+      "blurb": "Ce processus effectue des contrôles de syntaxe et de format sur un fichier à l'appui de temps réel le format de validation de l'ozone et le rayonnement ultraviolet soumission des données au centre de données.",
+      "title": "Validateur de données"
+    }
+  },
+  "data": {
+    "links": [
+      "Rechercher des données / Télécharger",
+      "Produits de données",
+      "Information sur les jeux de données",
+      "Liste des stations",
+      "Liste des instruments"
+    ],
+    "title": "Données",
+    "explore": {
+      "blurb": [
+        "La recherche dans l’archive de données du WOUDC peut se faire par catégorie de données : il y a six catégories de données sur l’ozone et trois sur le rayonnement ultraviolet (UV). Les jeux de données pour la colonne d’ozone totale comprennent l’ozone total et les observations sur l’ozone total, et la courbe de répartition verticale de l’ozone comprend les valeurs obtenues à l’aide des techniques lidar et des sondages d’ozone, ainsi que les valeurs N obtenues à l’aide de la technique Umkehr et celles établies à l’aide de la technique C-Umkehr. Les jeux de données sur le rayonnement UV comprennent celles à large bande, multibandes, et spectrales.",
+        "Pour chercher et télécharger des données, sélectionnez l’ensemble de données et la période d’observation. Vous pouvez également choisir l’étendue géographique de votre recherche et cliquer sur envoyer la requête. Toutes les données disponibles pour cette période seront affichées.",
+        "Pour obtenir plus d’information à propos de l’utilisation de cette page, consultez le ",
+        "Guide d’utilisation",
+        "."
+      ],
+      "country": "Pays",
+      "dataset": "Jeu de Données",
+      "instrument": "Instrument",
+      "end": "Fin",
+      "placeholders": {
+        "country": "Select a Country in French",
+        "dataset": "Select a Dataset in French",
+        "instrument": "Select an Instrument in French",
+        "station": "Select a Station in French"
+      },
+      "start": "Début",
+      "station": "Station",
+      "title": "Rechercher des données / Télécharger"
+    },
+    "info": {
+      "blurb": "L'archive de données WOUDC peut fournir des informations de haut niveau sur chaque ensemble de données. Sélectionnez un ensemble de données d'intérêt pour voir ses métadonnées de découverte de l'ISO et une carte contextuelle des stations.",
+      "sections": {
+        "total-ozone": {
+          "links": [
+            "Ozone total - observations quotidiennes",
+            "Ozone total - Observations horaires"
+          ],
+          "title": "Colonne d’ozone total"
+        },
+        "vertical-ozone": {
+          "links": [
+            "Lidar",
+            "Sonde pour l’ozone",
+            "UmkehrN14 (Niveau 1.0)",
+            "UmkehrN14 (Niveau 2.0)",
+            "RocketSonde"
+          ],
+          "title": "Courbe de répartition verticale de l’ozone"
+        },
+        "uv-irradiance": {
+          "links": [
+            "Large bande",
+            "Multibande",
+            "Spectrale",
+            "Indice UV"
+          ],
+          "title": "Rayonnement UV"
+        }
+      },
+      "subtitle": "Jeu de données",
+      "title": "Information sur les jeux de données:"
+    },
+    "instruments": {
+      "blurb": "Les archives de données du WOUDC peuvent être classées par instrument. La liste d’instruments comprend le type d’instrument, le nom et le modèle.",
+      "headers": [
+        "Type d'instrument",
+        "Modèle de l’instrument",
+        "À partir de cette date",
+        "Jusqu’à cette date",
+        "Classe de données",
+        "Catégorie de données",
+        "Nom de la station",
+        "Dossier accessible sur le web"
+      ],
+      "map-instructions": {
+        "label": "Guide d'utilisation : Carte interactive",
+        "text": "Lorem Ipsum something something something"
+      },
+      "table-instructions": {
+        "label": "Guide d'utilisation : Tableau interactif",
+        "text": "Lorem Ipsum something something something"
+      },
+      "title": "Liste des instruments"
+    },
+    "products": {
+      "blurb": "Des données de sortie spéciales sont préparées par le WOUDC afin d’aider les chercheurs et leur fournir des renseignements à valeur ajoutée ; certaines données comprennent des graphiques de série chronologique détaillant l’épaisseur de la colonne d’ozone total ainsi que des cartes indiquant la quantité d’ozone en temps quasi réel.",
+      "maps": {
+        "blurb": "Des cartes de l’ozone total en temps quasi réel, mises à jour quotidiennement à environ 14:00 (UTC).",
+        "links": [
+          "Cartes globales de l’ozone total les plus récentes",
+          "Cartes de l’ozone de l’hémisphère nord",
+          "Cartes de l’ozone de l’hémisphère sud",
+          "Archive des cartes d’ozone",
+          "Sources des données individuelles des cartes de l’ozone récentes et cartes de prévision de l’ozone"
+        ],
+        "title": "Cartes de l’ozone"
+      },
+      "related": {
+        "blurb": "_",
+        "links": [
+          "Données sommaires de l’ozone total : Moyennes quotidiennes et mensuelles",
+          "Comparaison des résultats d’ozone total obtenus au sol et par satellite",
+          "Données obtenues par la technique Umkehr par algorithme",
+          "Résumés et schémas des UV spectraux mensuels",
+          "Moyenne de l’ozone par zone obtenue par les instruments au sol",
+          "Ensemble de données cartographié par des Trajectoires provenant des sondages d'Ozone dans la Stratosphère et la Troposphère (TOST)"
+        ],
+        "title": "Produits relatifs à l'ozone"
+      },
+      "summaries": {
+        "blurb": "_",
+        "links": [
+          "Les bulletins sur l'ozone de l'Antarctique et de l'Arctique - OMM",
+          "VAG recherche et rapports de surveillance - OMM",
+          "Recherche sur l'ozone mondial de surveillance et les rapports de projet - de l'OMM",
+          "Du trou d'ozone Watch - NASA",
+          "Mesures de satellite en orbite polaire - FMI",
+          "Emission troposphérique service surveillance d'Internet"
+        ],
+        "title": "Sommaires et rapports des données"
+      },
+      "time-series": {
+        "blurb": "Une variété de schémas sont disponibles afin de vérifier la disponibilité des données, par exemple.",
+        "links": [
+          "Schémas de sondes pour l’ozone",
+          "Schémas d’ozone total",
+          "Schémas d’indice UV"
+        ],
+        "title": "Graphiques de séries chronologiques"
+      },
+      "title": "Produits de données"
+    },
+    "stations": {
+      "blurb": "Les archives de données du WOUDC peuvent être classées par station. Pour connaître le numéro identificateur d’une station, sélectionner le lien des métadonnées sur le site Web du WOUDC, puis la région désirée. Vous pourrez ensuite consulter la liste des stations et leur numéro d’identification.",
+      "deployment-headers": [],
+      "instrument-headers": [
+        "Type d'instrument",
+        "Modèle de l’instrument",
+        "Numéro de l’instrument",
+        "À partir de cette date",
+        "Jusqu’à cette date",
+        "Classe de données",
+        "Catégorie de données",
+        "Dossier accessible sur le web"
+      ],
+      "map-instructions": {
+        "label": "Guide d'utilisation : Carte interactive",
+        "text": "Lorem Ipsum something something something"
+      },
+      "station-headers": [
+        "Identification de la station du WOUDC",
+        "Identifiant VAG",
+        "À partir de cette date",
+        "Jusqu’à cette date",
+        "Nom de la station",
+        "Pays de la station",
+        "Date de révision",
+        "Type de station",
+        "Région de l'OMM"
+      ],
+      "table-instructions": {
+        "label": "Guide d'utilisation : Tableau interactif",
+        "text": "Lorem Ipsum something something something"
+      },
+      "title": "Liste des stations"
+    }
+  },
+  "home": {
+    "aboutWoudc": "Qu’est-ce que le WOUDC",
+    "adTitle": "Découvrez, visualisez ou accédez aux archives mondiales des données terrestres sur l’ozone et le rayonnement UV",
+    "gawLogo": "Logo : @.gawFull",
+    "learnMore": "En savoir plus",
+    "wmoLogo": "Logo : @.wmoFull"
+  },
+  "news": {
+    "title": "Nouvelles et mises à jour",
+    "blurb": "Nouvelles pour le Centre de données, mises à jour et des notifications"
+  },
+  "resources": {
+    "links": [
+      "Procédures d'utilisation normalisées",
+      "Groupes de travail",
+      "Liens de données connexes",
+      "Logiciel"
+    ],
+    "title": "Ressources",
+    "procedures": {
+      "blurb": "Liens vers les Procédures d'utilisation normalisées (PUN) sur l’ozone et les rayons UV Données sur le rayonnement.",
+      "headers": [
+        "Catégorie",
+        "PUN",
+        "Source"
+      ],
+      "rows": [
+        {
+          "category": "PUN de Brewer",
+          "text": "Manuel de PUN pour le spectrophotomètre Brewer",
+          "source": "Environnement et Changement climatique Canada"
+        },
+        {
+          "category": "PUN Dobson",
+          "text": "Guide des opérations - observation de l’ozone avec un spectrophotomètre de Dobson",
+          "source": "Rapport VAG no 183"
+        },
+        {
+          "category": "AQ/CQ ozone",
+          "text": "Assurance de la qualité et contrôle de la qualité des relevés des sondes pour l’ozone de la VAG",
+          "source": "Rapport VAG no 201"
+        },
+        {
+          "category": "Qualité des données sur le rayonnement UV",
+          "text": "Objectifs de qualité des données (OQD) pour le rayonnement solaire ultravioletRelevés (Partie I). Addenda au rapport OMM/VAG no 146 - Qualité Assurance de la surveillance du rayonnement solaire ultraviolet : État actuel de la technologie",
+          "source": "Rapport VAG no 198"
+        },
+        {
+          "category": "Instruments pour les UV",
+          "text": "Instruments servant à la mesure du rayonnement solaire ultraviolet Partie 4 : Dispositif Spectroradiomètres",
+          "source": "Rapport VAG no 191"
+        },
+        {
+          "category": "Étude des UV",
+          "text": "Comparaison corrélative de l’index UV mondial relevé par les radiomètres multibandes : Harmonisation de l’index UV mondial et de l’irradiance spectrale",
+          "source": "Rapport VAG no 190"
+        }
+      ],
+      "title": "Procédures d'utilisation normalisées"
+    },
+    "related-links": {
+      "other-links": [
+        "Centre pour la validation de données du satellite Aura (AVDC) - NASA",
+        "Climat package de recherche de données (CRDP) - ESA",
+        "Laboratoire de recherche sur le système terrestre / division mondiale de surveillance (ESRL / GMD) - NOAA",
+        "Réseau européen pour le Brewer (de EUBREWNET)",
+        "Base de données UV européenne (EUVDB)",
+        "Chimie de l'ozone mondial et connexes enregistrements de données de traces de gaz pour la stratosphère (GOZCARDS) - NASA",
+        "Base de données MOZAIC / IAGOS ",
+        "Réseau de détection des changements de composition de l'atmosphère (NDACC) - NOAA",
+        "Réseau de surveillance NSF Polar Programs UV",
+        "Archives Polar / UVI données - NASA",
+        "Sondes d'ozone additionnelles de l'hémisphère sud (SHADOZ) - NASA"
+      ],
+      "other-title": "Autres données connexes",
+      "title": "Liens de données connexes",
+      "wmo-links": [
+        "Système d'information sur les stations de la VAG (GAWSIS)",
+        "L'outil OSCAR",
+        "Projets et campagnes",
+        "Centre mondial de données relatives aux aérosols",
+        "Centre mondial de données relatives aux gaz à effet de serre",
+        "Centre mondial de données relatives à la composition chimique des précipitations",
+        "Centre mondial de données relatives à la télédétection de l’atmosphère",
+        "Centre mondial de données rde radiation"
+      ]
+    },
+    "working-groups": {
+      "links": [
+        "Groupe d'utilasateurs pour le Brewer",
+        "Comité ad hoc pour le Dobson",
+        "Sous-comité pour la méthode d’Umkehr"
+      ],
+      "title": "Groupes de travail"
+    }
+  }
+}
