@@ -4,3 +4,14 @@
     <p>{{ $t('contributors.validation.blurb') }}</p>
   </v-layout>
 </template>
+
+<script>
+export default {
+  nuxtI18n: {
+    paths: {
+      en: '/contributors/validation',
+      fr: '/contributeurs/validateur'
+    }
+  }
+}
+</script>

@@ -17,9 +17,13 @@
     </i18n>
     <h2>{{ $t('about.policy.gaw.title') }}</h2>
     <p>{{ $t('about.policy.gaw.blurb') }}</p>
-    <v-card class="woudc-note" tile min-width="0px">
-      <v-card-title>{{ $t('about.policy.gaw.note.title') }}</v-card-title>
-      <v-card-text>{{ $t('about.policy.gaw.note.body') }}</v-card-text>
+    <v-card class="mt-1 mb-4" color="info">
+      <v-card-title class="pt-3 pb-0">
+        {{ $t('about.policy.gaw.note.title') }}
+      </v-card-title>
+      <v-card-text>
+        {{ $t('about.policy.gaw.note.body') }}
+      </v-card-text>
     </v-card>
     <h2>{{ $t('about.policy.doi.title') }}</h2>
     <i18n path="about.policy.doi.blurb.template" tag="p">

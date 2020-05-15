@@ -2,9 +2,9 @@
   <v-layout justify-center column align-content-center>
     <h1>{{ $t('resources.working-groups.title') }}</h1>
     <ul>
-      <li v-for="(link, i) in links" :key="i">
-        <a :href="link.to">
-          {{ link.text }}
+      <li v-for="(value, key) in urls" :key="key">
+        <a :href="value" target="_blank">
+          {{ $t('resources.working-groups.links.' + key) }}
         </a>
       </li>
     </ul>
@@ -12,27 +12,20 @@
 </template>
 
 <script>
-const urls = [
-  'https://woudc.org/archive/Documentation/www/bdms/meetings/',
-  'http://www.o3soft.eu/dobsonweb/committee.html',
-  'https://woudc.org/archive/Publications/Meeting_Reports/Umkehr_Sub-Committee/'
-]
-
 export default {
   data() {
     return {
-      links: [...urls.keys()].map((index) => {
-        return {
-          text: this.$t('resources.working-groups.links[' + index + ']'),
-          to: urls[index]
-        }
-      })
+      urls: {
+        brewer: 'https://woudc.org/archive/Documentation/www/bdms/meetings/',
+        dobson: 'http://www.o3soft.eu/dobsonweb/committee.html',
+        umkehr: 'https://woudc.org/archive/Publications/Meeting_Reports/Umkehr_Sub-Committee/'
+      }
     }
   },
   nuxtI18n: {
     paths: {
-      en: '/workinggroups',
-      fr: '/workinggroups-in-fr'
+      en: '/resources/working-groups',
+      fr: '/ressources/groupes-travail'
     }
   }
 }

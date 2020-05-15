@@ -2,14 +2,34 @@
   <v-layout justify-center column align-content-center>
     <h1>{{ $t('data.info.title') }}</h1>
     <p>{{ $t('data.info.blurb') }}</p>
-    <h3>{{ $t('data.info.subtitle') }}</h3>
+    <h2>{{ $t('data.info.subtitle') }}</h2>
     <ul>
-      <li v-for="(value, name) in links" :key="name">
-        {{ $t('data.info.sections.' + name + '.title') }}
+      <li id="totalozone-section">
+        <span>{{ $t('data.info.sections.totalozone.title') }}</span>
         <ul>
-          <li v-for="link in value" :key="link.to">
-            <nuxt-link :to="localePath(link.to)">
-              {{ link.text }}
+          <li v-for="(path, key) in totalozoneLinks" :key="key">
+            <nuxt-link :to="localePath(path)">
+              {{ $t('data.info.sections.totalozone.' + key) }}
+            </nuxt-link>
+          </li>
+        </ul>
+      </li>
+      <li id="ozone-section">
+        <span>{{ $t('data.info.sections.vertical-ozone.title') }}</span>
+        <ul>
+          <li v-for="(path, key) in ozoneLinks" :key="key">
+            <nuxt-link :to="localePath(path)">
+              {{ $t('data.info.sections.vertical-ozone.' + key) }}
+            </nuxt-link>
+          </li>
+        </ul>
+      </li>
+      <li id="uv-section">
+        <span>{{ $t('data.info.sections.uv-irradiance.title') }}</span>
+        <ul>
+          <li v-for="(path, key) in uvLinks" :key="key">
+            <nuxt-link :to="localePath(path)">
+              {{ $t('data.info.sections.uv-irradiance.' + key) }}
             </nuxt-link>
           </li>
         </ul>
@@ -22,81 +42,29 @@
 export default {
   data() {
     return {
-      links: {
-        'total-ozone': [
-          {
-            text: this.$t('data.info.sections.total-ozone.links[0]'),
-            to: 'data-datasetinfo-totalozone'
-          },
-          {
-            text: this.$t('data.info.sections.total-ozone.links[1]'),
-            to: 'data-datasetinfo-totalozoneobs'
-          }
-        ],
-        'vertical-ozone': [
-          {
-            text: this.$t('data.info.sections.vertical-ozone.links[0]'),
-            to: 'data-datasetinfo-lidar'
-          },
-          {
-            text: this.$t('data.info.sections.vertical-ozone.links[1]'),
-            to: 'data-datasetinfo-ozonesonde'
-          },
-          {
-            text: this.$t('data.info.sections.vertical-ozone.links[2]'),
-            to: 'data-datasetinfo-umkehrn14-1'
-          },
-          {
-            text: this.$t('data.info.sections.vertical-ozone.links[3]'),
-            to: 'data-datasetinfo-umkehrn14-2'
-          },
-          {
-            text: this.$t('data.info.sections.vertical-ozone.links[4]'),
-            to: 'data-datasetinfo-rocketsonde'
-          }
-        ],
-        'uv-index': [
-          {
-            text: this.$t('data.info.sections.uv-irradiance.links[0]'),
-            to: 'data-datasetinfo-broadband'
-          },
-          {
-            text: this.$t('data.info.sections.uv-irradiance.links[1]'),
-            to: 'data-datasetinfo-multiband'
-          },
-          {
-            text: this.$t('data.info.sections.uv-irradiance.links[2]'),
-            to: 'data-datasetinfo-spectral'
-          },
-          {
-            text: this.$t('data.info.sections.uv-irradiance.links[3]'),
-            to: 'data-datasetinfo-uvindex'
-          }
-        ]
+      ozoneLinks: {
+        lidar: 'data-datasetinfo-lidar',
+        ozonesonde: 'data-datasetinfo-ozonesonde',
+        rocketsonde: 'data-datasetinfo-rocketsonde',
+        umkehr1: 'data-datasetinfo-umkehrn14-1',
+        umkehr2: 'data-datasetinfo-umkehrn14-2'
+      },
+      totalozoneLinks: {
+        daily: 'data-datasetinfo-totalozone',
+        hourly: 'data-datasetinfo-totalozoneobs'
+      },
+      uvLinks: {
+        broadband: 'data-datasetinfo-broadband',
+        multiband: 'data-datasetinfo-multiband',
+        spectral: 'data-datasetinfo-spectral',
+        'uv-index': 'data-datasetinfo-uvindex'
       }
-    }
-  },
-  computed: {
-    totalOzoneSectionHead() {
-      return this.$t('data.info.sections.total-ozone.title')
-    },
-    verticalOzoneSectionHead() {
-      return this.$t('data.info.sections.vertical-ozone.title')
-    },
-    uvIrradianceSectionHead() {
-      return this.$t('data.info.sections.uv-irradiance.title')
-    }
-  },
-  methods: {
-    constructLink(dataset) {
-      const basepath = 'data-datasetinfo'
-      return this.localePath(basepath) + '/' + dataset
     }
   },
   nuxtI18n: {
     paths: {
-      en: '/datasetinfo',
-      fr: '/datasetinfo-in-fr'
+      en: '/data/info',
+      fr: '/donnees/information'
     }
   }
 }

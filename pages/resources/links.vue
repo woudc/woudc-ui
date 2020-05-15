@@ -3,17 +3,17 @@
     <h1>{{ $t('resources.related-links.title') }}</h1>
     <h2>{{ $t('wmo') }}</h2>
     <ul>
-      <li v-for="(link, i) in wmoLinks" :key="i">
-        <a :href="link.to">
-          {{ link.text }}
+      <li v-for="(value, key) in wmoURLs" :key="key">
+        <a :href="value" target="_blank">
+          {{ $t('resources.related-links.links.' + key) }}
         </a>
       </li>
     </ul>
     <h2>{{ $t('resources.related-links.other-title') }}</h2>
     <ul>
-      <li v-for="(link, i) in otherLinks" :key="i">
-        <a :href="link.to">
-          {{ link.text }}
+      <li v-for="(value, key) in relatedURLs" :key="key">
+        <a :href="value" target="_blank">
+          {{ $t('resources.related-links.links.' + key) }}
         </a>
       </li>
     </ul>
@@ -21,52 +21,38 @@
 </template>
 
 <script>
-const otherURLs = [
-  'https://avdc.gsfc.nasa.gov/',
-  'http://cci.esa.int/ozone/?q=node/160',
-  'https://www.esrl.noaa.gov/gmd/dv/data/',
-  'http://www.eubrewnet.org/cost1207/',
-  'https://www1.muk.uni-hannover.de/~seckmeyer/EDUCE/',
-  'https://gozcards.jpl.nasa.gov/',
-  'http://www.iagos-data.fr/',
-  'https://www.ndsc.ncep.noaa.gov/data/',
-  'http://uv.biospherical.com/',
-  'https://spacephysics.msfc.nasa.gov/projects/uvi/data_archives.shtml',
-  'https://croc.gsfc.nasa.gov/shadoz/'
-]
-
-const wmoURLs = [
-  'https://gawsis.meteoswiss.ch/',
-  'https://www.wmo-sat.info/oscar/',
-  'https://woudc.org/archive/Projects-Campaigns',
-  'https://www.gaw-wdca.org/',
-  'https://gaw.kishou.go.jp/',
-  'http://wdcpc.org/',
-  'https://wdc.dlr.de/',
-  'http://wrdc.mgo.rssi.ru/'
-]
-
 export default {
   data() {
     return {
-      wmoLinks: [...wmoURLs.keys()].map((index) => {
-        return {
-          text: this.$t('resources.related-links.wmo-links[' + index + ']'),
-          to: wmoURLs[index]
-        }
-      }),
-      otherLinks: [...otherURLs.keys()].map((index) => {
-        return {
-          text: this.$t('resources.related-links.other-links[' + index + ']'),
-          to: otherURLs[index]
-        }
-      })
+      wmoURLs: {
+        gawsis: 'https://gawsis.meteoswiss.ch/',
+        oscar: 'https://www.wmo-sat.info/oscar/',
+        projects: 'https://woudc.org/archive/Projects-Campaigns',
+        'wdc-aerosol': 'https://www.gaw-wdca.org/',
+        'wdc-ghg': 'https://gaw.kishou.go.jp/',
+        'wdc-precip': 'http://wdcpc.org/',
+        'wdc-sensing': 'https://wdc.dlr.de/',
+        wrdc: 'http://wrdc.mgo.rssi.ru/'
+      },
+      relatedURLs: {
+        avdc: 'https://avdc.gsfc.nasa.gov/',
+        crdp: 'http://cci.esa.int/ozone/?q=node/160',
+        esrl: 'https://www.esrl.noaa.gov/gmd/dv/data/',
+        eubrewnet: 'http://www.eubrewnet.org/cost1207/',
+        euvdb: 'https://www1.muk.uni-hannover.de/~seckmeyer/EDUCE/',
+        gozcards: 'https://gozcards.jpl.nasa.gov/',
+        mozaic: 'http://www.iagos-data.fr/',
+        ndacc: 'https://www.ndsc.ncep.noaa.gov/data/',
+        polar: 'http://uv.biospherical.com/',
+        uvi: 'https://spacephysics.msfc.nasa.gov/projects/uvi/data_archives.shtml',
+        shadoz: 'https://croc.gsfc.nasa.gov/shadoz/'
+      }
     }
   },
   nuxtI18n: {
     paths: {
-      en: '/links',
-      fr: '/links-in-fr'
+      en: '/resources/links',
+      fr: '/ressources/liens'
     }
   }
 }

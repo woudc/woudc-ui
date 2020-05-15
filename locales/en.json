@@ -865,65 +865,47 @@
       "title": "Contributor List"
     },
     "registration": {
-      "blurb1": [
-        "All new data contributors require a WOUDC account. All account applications are subject to review by the WOUDC personnel. WOUDC reserves the right to evaluate all applications for data submission for compliance with the World Meteorological Organization (WMO) Global Atmosphere Watch (GAW) data exchange protocols.",
-        "Contributors of new data are asked to follow the steps below for arranging ",
-        "data submissions",
-        " to WOUDC for ozone and/or ultraviolet radiation data sets:"
-      ],
-      "blurb2": [
-        "Thank you for registering with WOUDC."
-      ],
-      "step1": [
-        "Review the WOUDC ",
-        "data policy"
-      ],
-      "step2": [
-        "Obtain a GAW ID (required) for each station by registering with ",
-        "WMO/GAW",
-        "more about GAW"
-      ],
-      "step3": [
-        "Complete the WOUDC registration process by ",
-        "contacting WOUDC",
-        " with the subject line: ",
-        "new registration",
-        " and include your new GAW ID; and"
-      ],
-      "step4": [
-        "Upon receipt and approval of your registration, the WOUDC will assign an FTP location / account (with a personal username/password) to be used exclusively for data submission."
-      ],
+      "blurb1": {
+        "submission": "data submissions",
+        "template": "All new data contributors require a WOUDC account. All account applications are subject to review by the WOUDC personnel. WOUDC reserves the right to evaluate all applications for data submission for compliance with the World Meteorological Organization (WMO) Global Atmosphere Watch (GAW) data exchange protocols.\n\nContributors of new data are asked to follow the steps below for arranging {submission} to WOUDC for ozone and/or ultraviolet radiation data sets:"
+      },
+      "blurb2": "Thank you for registering with WOUDC.",
+      "step1": {
+        "policy": "data policy",
+        "template": "Review the WOUDC {policy};"
+      },
+      "step2": {
+        "more": "more about GAW",
+        "template": "Obtain a GAW ID (required) for each station by registering with {wmo} ({more});",
+        "wmo": "WMO/GAW"
+      },
+      "step3": {
+        "contact": "contacting WOUDC",
+        "register": "new registration",
+        "template": "Complete the WOUDC registration process by {contact} with the subject line: {register} and include your new GAW ID; and"
+      },
+      "step4": "Upon receipt and approval of your registration, the WOUDC will assign an FTP location / account (with a personal username/password) to be used exclusively for data submission.",
       "title": "Registration"
     },
     "submission": {
-      "blurb1": [
-        "The WOUDC processes data on a daily basis for near real-time data submissions. Registered contributors can submit data to the WOUDC via FTP."
-      ],
-      "blurb2": [
-        "It is recommended that data be submitted at least once a month. Please ",
-        "contact us",
-        " for further information"
-      ],
+      "blurb1": "The WOUDC processes data on a daily basis for near real-time data submissions. Registered contributors can submit data to the WOUDC via FTP.",
+      "blurb2": {
+        "contact": "contact us",
+        "template": "It is recommended that data be submitted at least once a month. Please {contact} for further information"
+      },
       "note1": "files cannot be updated after they are transferred to the WOUDC. To submit updated data files, transfer again using a different file name.",
       "note2": "step details may vary depending on your computer system and FTP software.",
-      "step1": [
-        "Data files can be sent individually or packaged into .zip, .tar, or .tar.gz format. See ",
-        "File Formats",
-        " for more information"
-      ],
-      "step2": [
-        "Using an FTP client, connect to the ",
-        "WOUDC FTP server"
-      ],
-      "step3": [
-        "Log in with your pre-assigned username and password"
-      ],
-      "step4": [
-        "Each contributor transfers their respective files to their individual folder on the FTP site (files cannot be updated after transfer to WOUDC. To submit updated data files, they must be transferred again, using a different file name)"
-      ],
-      "step5": [
-        "Log out to end the FTP session"
-      ],
+      "step1": {
+        "formats": "File Formats",
+        "template": "Data files can be sent individually or packaged into .zip, .tar, or .tar.gz format. See {formats} for more information"
+      },
+      "step2": {
+        "ftp": "WOUDC FTP server",
+        "template": "Using an FTP client, connect to the {ftp}"
+      },
+      "step3": "Log in with your pre-assigned username and password",
+      "step4": "Each contributor transfers their respective files to their individual folder on the FTP site (files cannot be updated after transfer to WOUDC. To submit updated data files, they must be transferred again, using a different file name)",
+      "step5": "Log out to end the FTP session",
       "subtitle": "Data Submission Steps",
       "title": "Data Submission"
     },
@@ -933,13 +915,13 @@
     }
   },
   "data": {
-    "links": [
-      "Data Search / Download",
-      "Data Products",
-      "Dataset Information",
-      "Station List",
-      "Instrument List"
-    ],
+    "links": {
+      "datasetinfo": "Dataset Information",
+      "explore": "Data Search / Download",
+      "instruments": "Instrument List",
+      "products": "Data Products",
+      "stations": "Station List"
+    },
     "title": "Data",
     "explore": {
       "blurb": [
@@ -966,31 +948,25 @@
     "info": {
       "blurb": "The WOUDC data archive can provide high level information about each dataset. Select a dataset of interest to see its ISO discovery metadata and a contextual map of the stations.",
       "sections": {
-        "total-ozone": {
-          "links": [
-            "Total Ozone - Daily Observations",
-            "Total Ozone - Hourly Observations"
-          ],
+        "totalozone": {
+          "daily": "Total Ozone - Daily Observations",
+          "hourly": "Total Ozone - Hourly Observations",
           "title": "Total Column Ozone"
         },
         "vertical-ozone": {
-          "links": [
-            "Lidar",
-            "OzoneSonde",
-            "UmkehrN14 (Level 1.0)",
-            "UmkehrN14 (Level 2.0)",
-            "RocketSonde"
-          ],
-          "title": "Vertical Ozone Profile"
+          "lidar": "Lidar",
+          "ozonesonde": "OzoneSonde",
+          "rocketsonde": "RocketSonde",
+          "title": "Vertical Ozone Profile",
+          "umkehr1": "UmkehrN14 (Level 1.0)",
+          "umkehr2": "UmkehrN14 (Level 2.0)"
         },
         "uv-irradiance": {
-          "links": [
-            "Broadband",
-            "Multiband",
-            "Spectral",
-            "UV Index"
-          ],
-          "title": "UV Irradiance"
+          "broadband": "Broadband",
+          "multiband": "Multiband",
+          "spectral": "Spectral",
+          "title": "UV Irradiance",
+          "uv-index": "UV Index"
         }
       },
       "subtitle": "Dataset",
@@ -1022,46 +998,44 @@
       "blurb": "Special output data products are prepared by the WOUDC to assist researchers and provide value added information; some of the data products include total column ozone time series graphs and near real-time ozone maps.",
       "maps": {
         "blurb": "Near-real time, global total ozone maps, normally updated daily at approximately 1400 UTC.",
-        "links": [
-          "Most Recent Global Total Ozone Maps",
-          "Ozone Maps for the Northern Hemisphere",
-          "Ozone Maps for the Southern Hemisphere",
-          "Ozone Map Archive",
-          "Recent Ozone Maps Individual Data Sources and Ozone Forecast Maps"
-        ],
+        "links": {
+          "archive": "Ozone Map Archive",
+          "global": "Most Recent Global Total Ozone Maps",
+          "individual": "Recent Ozone Maps Individual Data Sources and Ozone Forecast Maps",
+          "north": "Ozone Maps for the Northern Hemisphere",
+          "south": "Ozone Maps for the Southern Hemisphere"
+        },
         "title": "Ozone Maps"
       },
       "related": {
-        "blurb": "_",
-        "links": [
-          "Total Ozone Summary Data: Daily and Monthly Means",
-          "Satellite versus Ground-based Total Ozone Comparison Results",
-          "Umkehr Data by Algorithm",
-          "Spectral UV Monthly Summaries and Plots",
-          "Zonal Mean Ozone from Ground-Based Instruments",
-          "Trajectory-mapped Ozonesonde dataset for the Stratosphere and Troposphere (TOST)"
-        ],
+        "links": {
+          "ozone-zonal": "Zonal Mean Ozone from Ground-Based Instruments",
+          "spectral": "Spectral UV Monthly Summaries and Plots",
+          "tost": "Trajectory-mapped Ozonesonde dataset for the Stratosphere and Troposphere (TOST)",
+          "totalozone-daily-monthly": "Total Ozone Summary Data: Daily and Monthly Means",
+          "totalozone-satellite-ground": "Satellite versus Ground-based Total Ozone Comparison Results",
+          "umkehr": "Umkehr Data by Algorithm"
+        },
         "title": "Related Ozone Products"
       },
       "summaries": {
-        "blurb": "_",
-        "links": [
-          "Antarctic and Arctic ozone bulletins - WMO",
-          "GAW Research and Monitoring Reports - WMO",
-          "Global Ozone Research and Monitoring Project Reports - WMO",
-          "Ozone Hole Watch - NASA",
-          "Satellite Measurements from Polar Orbit - FMI",
-          "Tropospheric Emission Monitoring Internet Service"
-        ],
+        "links": {
+          "gaw-reports": "GAW Research and Monitoring Reports - WMO",
+          "ozone-hole": "Ozone Hole Watch - NASA",
+          "ozone-reports": "Global Ozone Research and Monitoring Project Reports - WMO",
+          "polar-bulletins": "Antarctic and Arctic ozone bulletins - WMO",
+          "sampo": "Satellite Measurements from Polar Orbit - FMI",
+          "temis": "Tropospheric Emission Monitoring Internet Service"
+        },
         "title": "Data Summaries and Reports"
       },
       "time-series": {
         "blurb": "A variety of plots are available which can be used, for example, to check the data availability.",
-        "links": [
-          "Ozonesonde plots",
-          "Total Ozone plots",
-          "UV index plots"
-        ],
+        "links": {
+          "ozonesonde": "Ozonesonde plots",
+          "totalozone": "Total Ozone plots",
+          "uv-index": "UV index plots"
+        },
         "title": "Time Series Graphs"
       },
       "title": "Data Products"
@@ -1110,7 +1084,7 @@
   "home": {
     "aboutWoudc": "About WOUDC",
     "adTitle": "Discover, Visualize and Access a Global Archive of Ground-based Ozone and UV Radiation Data",
-    "description": "",
+    "blurb": "A World Meteorological Organization ({wmo}) data center supporting the Global Atmosphere Watch ({gaw}) program operated by Environment and Climate Change Canada.",
     "gawLogo": "Logo: @.gawFull",
     "learnMore": "Learn more",
     "wmoLogo": "Logo: @.wmoFull"
@@ -1120,20 +1094,20 @@
     "blurb": "Data centre news, updates and notifications"
   },
   "resources": {
-    "links": [
-      "Standard Operating Procedures",
-      "Working Groups",
-      "Related Data Links",
-      "Software"
-    ],
+    "links": {
+      "links": "Related Data Links",
+      "software": "Software",
+      "sop": "Standard Operating Procedures",
+      "workinggroups": "Working Groups"
+    },
     "title": "Resources",
     "procedures": {
       "blurb": "Links to Standard Operating Procedures (SOP) related to Ozone and UV Radiation data.",
-      "headers": [
-        "Category",
-        "SOP",
-        "Source"
-      ],
+      "headers": {
+        "category": "Category",
+        "link": "SOP",
+        "source": "Source"
+      },
       "rows": [
         {
           "category": "Brewer SOP",
@@ -1169,38 +1143,36 @@
       "title": "Standard Operating Procedures"
     },
     "related-links": {
+      "links": {
+        "avdc": "Aura Validation Data Center (AVDC) - NASA",
+        "crdp": "Climate Research Data Package (CRDP) - ESA",
+        "esrl": "Earth System Research Laboratory/Global Monitoring Division (ESRL/GMD) - NOAA",
+        "eubrewnet": "European Brewer Network (EUBREWNET)",
+        "euvdb": "European UV Database (EUVDB)",
+        "gawsis": "GAW Station Information System (GAWSIS)",
+        "gozcards": "Global OZone Chemistry And Related trace gas Data records for the Stratosphere (GOZCARDS) - NASA",
+        "mozaic": "MOZAIC/IAGOS Database ",
+        "ndacc": "Network for the Detection of Atmospheric Composition Change (NDACC) - NOAA",
+        "oscar": "Observing Systems Capability Analysis and Review Tool (OSCAR)",
+        "polar": "NSF Polar Programs UV Monitoring Network",
+        "projects": "Projects and Campaigns",
+        "shadoz": "Southern Hemisphere Additional Ozonesondes (SHADOZ) - NASA",
+        "uvi": "Polar/UVI Data Archives - NASA",
+        "wdc-aerosol": "World Data Centre for Aerosols",
+        "wdc-ghg": "World Data Centre for Greenhouse Gases",
+        "wdc-precip": "World Data Centre for Precipitation Chemistry",
+        "wdc-sensing": "World Data Center for Remote Sensing of the Atmosphere",
+        "wrdc": "World Radiation Data Centre"
+      },
       "other-title": "Other Related Data",
-      "other-links": [
-        "Aura Validation Data Center (AVDC) - NASA",
-        "Climate Research Data Package (CRDP) - ESA",
-        "Earth System Research Laboratory/Global Monitoring Division (ESRL/GMD) - NOAA",
-        "European Brewer Network (EUBREWNET)",
-        "European UV Database (EUVDB)",
-        "Global OZone Chemistry And Related trace gas Data records for the Stratosphere (GOZCARDS) - NASA",
-        "MOZAIC/IAGOS Database ",
-        "Network for the Detection of Atmospheric Composition Change (NDACC) - NOAA",
-        "NSF Polar Programs UV Monitoring Network",
-        "Polar/UVI Data Archives - NASA",
-        "Southern Hemisphere Additional Ozonesondes (SHADOZ) - NASA"
-      ],
-      "wmo-links": [
-        "GAW Station Information System (GAWSIS)",
-        "Observing Systems Capability Analysis and Review Tool (OSCAR)",
-        "Projects and Campaigns",
-        "World Data Centre for Aerosols",
-        "World Data Centre for Greenhouse Gases",
-        "World Data Centre for Precipitation Chemistry",
-        "World Data Center for Remote Sensing of the Atmosphere",
-        "World Radiation Data Centre"
-      ],
       "title": "Related Data Links"
     },
     "working-groups": {
-      "links": [
-        "Brewer User Group",
-        "Dobson Ad-Hoc Committee",
-        "Umkehr Sub-Committee"
-      ],
+      "links": {
+        "brewer": "Brewer User Group",
+        "dobson": "Dobson Ad-Hoc Committee",
+        "umkehr": "Umkehr Sub-Committee"
+      },
       "title": "Working Groups"
     }
   }

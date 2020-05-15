@@ -10,9 +10,7 @@
     >
       <template v-slot:item.link="link">
         <td>
-          <a :href="link.item.to">
-            {{ link.item.text }}
-          </a>
+          <a :href="link.item.to" target="_blank">{{ link.item.text }}</a>
         </td>
       </template>
     </v-data-table>
@@ -20,29 +18,31 @@
 </template>
 
 <script>
-const headerKeys = [ 'category', 'link', 'source' ]
-
-const linkURLs = [
-  'https://woudc.org/archive/Documentation/SOP_Documents',
-  'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW183-Dobson-WEB.pdf',
-  'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW_201.pdf',
-  'https://www.wmo.int/pages/prog/arep/gaw/documents/Final_GAW198_18_June.pdf',
-  'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW191_TD_No_1538_web.pdf',
-  'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW190_TD_No_1537_web.pdf'
-]
-
 export default {
-  data() {
-    return {
-      headers: [...headerKeys.keys()].map((index) => {
+  computed: {
+    headers() {
+      const headerKeys = [ 'category', 'link', 'source' ]
+
+      return headerKeys.map((column) => {
         return {
-          text: this.$t('resources.procedures.headers[' + index + ']'),
           align: 'left',
           sortable: false,
-          value: headerKeys[index]
+          value: column,
+          text: this.$t('resources.procedures.headers.' + column)
         }
-      }),
-      rows: [...linkURLs.keys()].map((index) => {
+      })
+    },
+    rows() {
+      const linkURLs = [
+        'https://woudc.org/archive/Documentation/SOP_Documents',
+        'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW183-Dobson-WEB.pdf',
+        'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW_201.pdf',
+        'https://www.wmo.int/pages/prog/arep/gaw/documents/Final_GAW198_18_June.pdf',
+        'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW191_TD_No_1538_web.pdf',
+        'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW190_TD_No_1537_web.pdf'
+      ]
+
+      return [...linkURLs.keys()].map((index) => {
         const definition = this.$t('resources.procedures.rows[' + index + ']')
         definition.to = linkURLs[index]
 
@@ -52,8 +52,8 @@ export default {
   },
   nuxtI18n: {
     paths: {
-      en: '/sop',
-      fr: '/sop-in-fr'
+      en: '/resources/sop',
+      fr: '/ressources/pun'
     }
   }
 }
