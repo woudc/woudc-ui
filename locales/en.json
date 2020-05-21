@@ -225,25 +225,19 @@
       "title": "Frequently Asked Questions"
     },
     "formats": {
-      "blurb": [
-        "The WOUDC uses ASCII text file format standard for data submissions in an ",
-        " (ext) Comma-Separated Value (CSV) format.",
-        "The extended CSV (extCSV) is the standard data file format for submission to WOUDC. The ",
-        " standard for the CSV syntax rules support the provision of comments and multiple data content within individual files. The extCSV provides a simple text-based format for data providers when submitting data to the WOUDC, as well as one of many ways for users to integrate ozone and ultraviolet (UV) radiation data into their database, spreadsheet and workflow analysis. Please refer to the ",
-        "data access",
-        " page for more information on WOUDC data discovery, access and visualization."
-      ],
+      "blurb": {
+        "access": "data access",
+        "extended": "extended",
+        "template": "The WOUDC uses ASCII text file format standard for data submissions in an {extcsv} (ext) Comma-Separated Value (CSV) format.\n\nThe extended CSV (extCSV) is the standard data file format for submission to WOUDC. The {extended} standard for the CSV syntax rules support the provision of comments and multiple data content within individual files. The extCSV provides a simple text-based format for data providers when submitting data to the WOUDC, as well as one of many ways for users to integrate ozone and ultraviolet (UV) radiation data into their database, spreadsheet and workflow analysis. Please refer to the {access} page for more information on WOUDC data discovery, access and visualization."
+      },
       "contributor-guide": {
-        "links": [
-          "WOUDC Contributor Guide"
-        ],
+        "link": "WOUDC Contributor Guide",
         "title": "Contributor Guide"
       },
       "examples": {
         "blurb": "The following examples of extCSV files are based on the observation category (open files in a text editor):",
         "title": "Examples: extended Comma-Separated Value"
       },
-      "extended": "extended",
       "note": " The WOUDC does not accept files in binary formats such as MS-Excel or MS-Word.",
       "ozone": {
         "links": [

@@ -1,44 +1,41 @@
 <template>
   <v-layout justify-center column align-content-center>
-    <h1>{{ $t('about.formats.title') }}</h1>
-    <woudc-blurb :items="mainBlurb" />
-    <woudc-note :body="$t('about.formats.note')" />
-    <h2>{{ $t('about.formats.contributor-guide.title') }}</h2>
+    <h1 v-text="$t('about.formats.title')" />
+    <i18n class="newlines" path="about.formats.blurb.template" tag="p">
+      <template v-slot:extended>
+        <b v-text="$t('about.formats.blurb.extended')" />
+      </template>
+      <template v-slot:access>
+        <nuxt-link :to="localePath('about-dataaccess')" v-text="$t('about.formats.blurb.access')" />
+      </template>
+    </i18n>
+    <v-card class="woudc-note" tile min-width="0px">
+      <v-card-text v-text="$t('about.formats.note')" />
+    </v-card>
+    <h2 v-text="$t('about.formats.contributor-guide.title')" />
     <ul>
-      <li v-for="(link, i) in contributorLinks" :key="i">
-        <a :href="link.url">
-          {{ link.text }}
-        </a>
+      <li>
+        <a :href="contributorsURL" v-text="$t('about.formats.contributor-guide.link')" />
       </li>
     </ul>
-    <h2>{{ $t('about.formats.examples.title') }}</h2>
-    <p>{{ $t('about.formats.examples.blurb') }}</p>
-    <h2>{{ $t('about.formats.ozone.title') }}</h2>
+    <h2 v-text="$t('about.formats.examples.title')" />
+    <p v-text="$t('about.formats.examples.blurb')" />
+    <h3 v-text="$t('about.formats.ozone.title')" />
     <ul>
       <li v-for="(link, i) in ozoneLinks" :key="i">
-        <a :href="link.url">
-          {{ link.text }}
-        </a>
+        <a :href="link.url" v-text="link.text" />
       </li>
     </ul>
-    <h2>{{ $t('about.formats.uv.title') }}</h2>
+    <h3 v-text="$t('about.formats.uv.title')" />
     <ul>
       <li v-for="(link, i) in uvLinks" :key="i">
-        <a :href="link.url">
-          {{ link.text }}
-        </a>
+        <a :href="link.url" v-text="link.text" />
       </li>
     </ul>
   </v-layout>
 </template>
 
 <script>
-import WoudcBlurb from '~/components/WoudcBlurb'
-import WoudcNote from '~/components/WoudcNote'
-
-const contributorURLs = [
-  'https://guide.woudc.org/en/'
-]
 const ozoneURLs = [
   'https://woudc.org/archive/Documentation/Examples-extCSV/Lidar.csv',
   'https://woudc.org/archive/Documentation/Examples-extCSV/Ozonesonde.csv',
@@ -54,36 +51,22 @@ const uvURLs = [
 ]
 
 export default {
-  components: {
-    'woudc-blurb': WoudcBlurb,
-    'woudc-note': WoudcNote
-  },
   data() {
     return {
-      contributorLinks: [...contributorURLs.keys()].map((index) => {
-        return {
-          text: this.$t('about.formats.contributor-guide.links[' + index + ']'),
-          url: contributorURLs[index]
-        }
-      }),
-      mainBlurb: [
-        { text: this.$t('about.formats.blurb[0]') },
-        { bold: this.$t('about.formats.extended') },
-        { text: this.$t('about.formats.blurb[1]') },
-        { newlines: 2 },
-        { text: this.$t('about.formats.blurb[2]') },
-        { bold: this.$t('about.formats.extended') },
-        { text: this.$t('about.formats.blurb[3]') },
-        { link: { to: 'about-dataaccess', text: this.$t('about.formats.blurb[4]') } },
-        { text: this.$t('about.formats.blurb[5]') }
-      ],
-      ozoneLinks: [...ozoneURLs.keys()].map((index) => {
+      contributorsURL: 'https://guide.woudc.org/en/'
+    }
+  },
+  computed: {
+    ozoneLinks() {
+      return [...ozoneURLs.keys()].map((index) => {
         return {
           text: this.$t('about.formats.ozone.links[' + index + ']'),
           url: ozoneURLs[index]
         }
-      }),
-      uvLinks: [...uvURLs.keys()].map((index) => {
+      })
+    },
+    uvLinks() {
+      return [...uvURLs.keys()].map((index) => {
         return {
           text: this.$t('about.formats.uv.links[' + index + ']'),
           url: uvURLs[index]

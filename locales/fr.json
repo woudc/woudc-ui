@@ -225,25 +225,19 @@
       "title": "Foire aux questions"
     },
     "formats": {
-      "blurb": [
-        "Le WOUDC utilise le format de fichier texte ASCII pour la soumission de données dans un format CSV ",
-        " (ext).",
-        "Le format CSV étendu (extCSV) est le format de fichier de données standard pour les soumissions au WOUDC. Le format ",
-        " standard pour les règles de syntaxe du CSV prend en charge la formulation des observations ainsi que de multiple contenus dans des fichiers individuels. Lorsque les fournisseurs désirent soumettre des données au WOUDC, le extCSV leur simplifie la tâche avec un format texte classiqueen plus de leur permettre d’intégrer des données sur l’ozone et le rayonnement ultraviolet (UV) dans leur base de données, leur feuille de calcul et leurs analyses du déroulement du travail. Veuillez consulter la ",
-        "d'accès aux données",
-        " pour plus de renseignements au sujet de la découverte, de l’accessibilité et de la visualisation des données du WOUDC."
-      ],
+      "blurb": {
+        "access": "d'accès aux données",
+        "extended": "étendu",
+        "template": "Le WOUDC utilise le format de fichier texte ASCII pour la soumission de données dans un format CSV {extended} (ext).\n\nLe format CSV étendu (extCSV) est le format de fichier de données standard pour les soumissions au WOUDC. Le format {extended} standard pour les règles de syntaxe du CSV prend en charge la formulation des observations ainsi que de multiple contenus dans des fichiers individuels. Lorsque les fournisseurs désirent soumettre des données au WOUDC, le extCSV leur simplifie la tâche avec un format texte classiqueen plus de leur permettre d’intégrer des données sur l’ozone et le rayonnement ultraviolet (UV) dans leur base de données, leur feuille de calcul et leurs analyses du déroulement du travail. Veuillez consulter la {access} pour plus de renseignements au sujet de la découverte, de l’accessibilité et de la visualisation des données du WOUDC."
+      },
       "contributor-guide": {
-        "links": [
-          "Guide du contributeur WOUDC"
-        ],
+        "link": "Guide du contributeur WOUDC",
         "title": "Guide du contributeur"
       },
       "examples": {
         "blurb": "Les exemples de fichiers extCSV suivants sont fondés sur la catégorie Observations (ouvrir les fichiers dans un éditeur de texte) :",
         "title": "Exemple: format CSV (extended CSV)"
       },
-      "extended": "étendu",
       "note": " Le WOUDC n’accepte pas les fichiers en format binaire comme les fichiers MS-Excel ou MS-Word, par exemple.",
       "ozone": {
         "links": [
