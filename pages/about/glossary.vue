@@ -1,24 +1,34 @@
 <template>
   <v-layout justify-center column align-content-center>
-    <h1>{{ $t('about.glossary.title') }}</h1>
-    <p>{{ $t('about.glossary.blurb') }}</p>
-    <div v-for="(entry, i) in terms" :key="i">
-      <h4>{{ entry.term }}</h4>
-      <woudc-blurb :items="entry.definition" />
+    <h1 v-text="$t('about.glossary.title')" />
+    <p v-text="$t('about.glossary.blurb')" />
+    <div v-for="(_, index) in $t('about.glossary.terms').length" :key="index">
+      <h4 v-text="$t('about.glossary.terms[' + index + '].term')" />
+      <i18n :path="'about.glossary.terms[' + index + '].definition'" tag="p">
+        <template v-slot:carcinogenesis>
+          <a :href="carcinogensURL" target="_blank" v-text="$t('about.glossary.substitutions.carcinogenesis')" />
+        </template>
+        <template v-slot:registration>
+          <nuxt-link :to="localePath('contributors-registration')" v-text="$t('about.glossary.substitutions.registration')" />
+        </template>
+        <template v-slot:w3>
+          <a :href="w3URL" target="_blank">www.w3.org</a>
+        </template>
+        <template v-slot:waf>
+          <a :href="wafURL" target="_blank" v-text="wafURL" />
+        </template>
+      </i18n>
     </div>
   </v-layout>
 </template>
 
 <script>
-import WoudcBlurb from '~/components/WoudcBlurb'
-
 export default {
-  components: {
-    'woudc-blurb': WoudcBlurb
-  },
-  computed: {
-    terms() {
-      return this.$t('about.glossary.terms')
+  data() {
+    return {
+      carcinogensURL: 'https://www.wmo.int/pages/prog/dra/etrp/documents/926E.pdf',
+      w3URL: 'https://www.w3.org/',
+      wafURL: "https://woudc.org/archive"
     }
   },
   nuxtI18n: {
