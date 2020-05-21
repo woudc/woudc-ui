@@ -262,6 +262,10 @@
     },
     "glossary": {
       "blurb": "Terms related to the data centre, including definitions about network operations centres and words and phrases about the storage, management and the transmission of data.",
+      "substitutions": {
+        "carcinogenesis": "carcinogenesis effectiveness",
+        "registration": "contributor registration form"
+      },
       "terms": [
         {
           "term": "Agency",
@@ -325,11 +329,7 @@
         },
         {
           "term": "Erythemal",
-          "definition": [
-            "The solar erythemal ultraviolet (UV) radiation which is defined by the integral over the UV wavelengths of the irradiance multiplied by the erythemal action spectrum (refer to ",
-            { "link": { "to": "https://www.wmo.int/pages/prog/dra/etrp/documents/926E.pdf", "type": "external", "text": "carcinogenesis effectiveness" } },
-            ")."
-          ]
+          "definition": "The solar erythemal ultraviolet (UV) radiation which is defined by the integral over the UV wavelengths of the irradiance multiplied by the erythemal action spectrum (refer to {carcinogenesis})."
         },
         {
           "term": "extCSV",
@@ -341,11 +341,7 @@
         },
         {
           "term": "File Format Version",
-          "definition": [
-            "The WOUDC term for the format of a data file. Data files of a given content will always contain the tables and fields specified by the WOUDC for that form. Refer to ",
-            { "link": { "to": "contributors-registration", "text": "contributor registration form" } },
-            "."
-          ]
+          "definition": "The WOUDC term for the format of a data file. Data files of a given content will always contain the tables and fields specified by the WOUDC for that form. Refer to {registration}."
         },
         {
           "term": "Form",
@@ -461,11 +457,7 @@
         },
         {
           "term": "RDF",
-          "definition": [
-            "Resource Description Framework - A part of the SKOS Web Service standard from World Wide Web Consortium (",
-            { "link": { "to": "https://www.w3.org/", "type": "external", "text": "www.w3.org" } },
-            ")."
-          ]
+          "definition": "Resource Description Framework - A part of the SKOS Web Service standard from World Wide Web Consortium ({w3})."
         },
         {
           "term": "Revision",
@@ -497,11 +489,7 @@
         },
         {
           "term": "SKOS",
-          "definition": [
-            "Simple Knowledge Organization System - A part of the Web Service standard from World Wide Web Consortium (",
-            { "link": { "to": "https://www.w3.org/", "type": "external", "text": "www.w3.org" } },
-            ")."
-          ]
+          "definition": "Simple Knowledge Organization System - A part of the Web Service standard from World Wide Web Consortium ({w3})."
         },
         {
           "term": "S/N",
@@ -561,11 +549,7 @@
         },
         {
           "term": "Web Accessible Folder (WAF)",
-          "definition": [
-            "The entire archive of contributed data files in Extended CSV format is made available at ",
-            { "link": { "to": "https://woudc.org/archive", "type": "external", "text": "https://woudc.org/archive/" } },
-            " for users to browse, download or integrate into their workflows."
-          ]
+          "definition": "The entire archive of contributed data files in Extended CSV format is made available at {waf} for users to browse, download or integrate into their workflows."
         },
         {
           "term": "Web Feature Service (WFS)",
