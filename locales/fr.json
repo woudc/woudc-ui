@@ -154,74 +154,54 @@
       "blurb": "Voici les réponses aux questions les plus fréquemment poséesà propos de notre centre de données.",
       "questions": [
         {
-          "text": "Qui peut consulter les données du WOUDC ?",
-          "answer": [
-            "Le WOUDC est un site Web public qui appuie le programme de Veille de l’atmosphère globale (VAG) de l’OMM. Les données du WOUDC sont rendues publiques au nom de leurs contributeurs. Pour plus d’information à propos des données, de leur accessibilité et leur utilisation, voir la ",
-            "politique sur les données"
-          ]
+          "answer": "Le WOUDC est un site Web public qui appuie le programme de Veille de l’atmosphère globale (VAG) de l’OMM. Les données du WOUDC sont rendues publiques au nom de leurs contributeurs. Pour plus d’information à propos des données, de leur accessibilité et leur utilisation, voir la {policy}.",
+          "text": "Qui peut consulter les données du WOUDC ?"
         },
         {
-          "text": "Comment puis-je soumettre des données ?",
-          "answer": [
-            "Les contributeurs inscrits peuvent soumettre des données au WOUDC par FTP. Rendez-vous à la page de ",
-            "soumission des données",
-            " pour tous les détails. Créer de nouvelles données requiert un compte d’utilisateur du WOUDC. Pour devenir contributeur, visitez la page ",
-            "d’inscription"
-          ]
+          "answer": "Les contributeurs inscrits peuvent soumettre des données au WOUDC par FTP. Rendez-vous à la page de {submission} pour tous les détails. Créer de nouvelles données requiert un compte d’utilisateur du WOUDC. Pour devenir contributeur, visitez la page {registration}.",
+          "text": "Comment puis-je soumettre des données ?"
         },
         {
-          "text": "Comment puis-je accéder aux données du WOUDC ?",
-          "answer": [
-            "Les contributeurs enregistrés peuvent accéder aux données du WOUDC par l’entremise du site web du WOUDC, d’outils de renseignement géospatial ou d’autres solutions. Visitez la page d’",
-            "accès aux données",
-            " pourtous les détails."
-          ]
+          "answer": "Les contributeurs enregistrés peuvent accéder aux données du WOUDC par l’entremise du site web du WOUDC, d’outils de renseignement géospatial ou d’autres solutions. Visitez la page d’{access} pourtous les détails.",
+          "text": "Comment puis-je accéder aux données du WOUDC ?"
         },
         {
-          "text": "Quel genre de données trouverais-je dans le WOUDC ?",
-          "answer": [
-            "Le WOUDC gère et conserve des données sur l’ozone etle rayonnement UV. Veuillez vous référer au ",
-            "recherche de données / téléchargement",
-            " pour consulter la listedes ensembles de données du WOUDC. D’autres produits, comme des cartes, des graphiques et des rapports, sont également disponibles sur la page de ",
-            "données",
-            "."
-          ]
+          "answer": "Le WOUDC gère et conserve des données sur l’ozone etle rayonnement UV. Veuillez vous référer au {search} pour consulter la listedes ensembles de données du WOUDC. D’autres produits, comme des cartes, des graphiques et des rapports, sont également disponibles sur la page de {products}.",
+          "text": "Quel genre de données trouverais-je dans le WOUDC ?"
         },
         {
-          "text": "D’où viennent les données du WOUDC ?",
-          "answer": [
-            "Les données du WOUDC sont recueillies et partagées par des contributeurs de partout dans le monde, soit des établissements, des agences et des organisations. Les contributeurs soumettent leurs données au WOUDC, qui conserve les données et les rend disponibles sur son site web. Voir la ",
-            "liste des contributeurs"
-          ]
+          "answer": "Les données du WOUDC sont recueillies et partagées par des contributeurs de partout dans le monde, soit des établissements, des agences et des organisations. Les contributeurs soumettent leurs données au WOUDC, qui conserve les données et les rend disponibles sur son site web. Voir la {contributors}.",
+          "text": "D’où viennent les données du WOUDC ?"
         },
         {
-          "text": "À quelle fréquence les données sont-elles mises à jour ?",
-          "answer": "Les données sont normalement mises à jour et disponibles pour la consultation cinq jours ouvrables après leur réception par le WOUDC. Les données en format CSV étendu (extCSV) sont traitées et mises en ligne presque immédiatement."
+          "answer": "Les données sont normalement mises à jour et disponibles pour la consultation cinq jours ouvrables après leur réception par le WOUDC. Les données en format CSV étendu (extCSV) sont traitées et mises en ligne presque immédiatement.",
+          "text": "À quelle fréquence les données sont-elles mises à jour ?"
         },
         {
-          "text": "Qui est responsable de la mise à jour des données du WOUDC ?",
-          "answer": "Le WOUDC utilise les informations que lui soumettent des contributeurs. Les WOUDC s’assure que les informations les plus récentes envoyées par le contributeur sont disponibles pour tous les utilisateurs."
+          "answer": "Le WOUDC utilise les informations que lui soumettent des contributeurs. Les WOUDC s’assure que les informations les plus récentes envoyées par le contributeur sont disponibles pour tous les utilisateurs.",
+          "text": "Qui est responsable de la mise à jour des données du WOUDC ?"
         },
         {
-          "text": "Est-ce que je peux me servir de mon application pour consulter des données du WOUDCet envoyer des données au WOUDC ?",
-          "answer": [
-            "Oui. Le WOUDC permet d’accéder aux données brutes par dossier accessible sur le web (WAF) ou les services Web de l’Open Geospatial Consortium tels que des services de cartographie web et des Service de caractéristiques web, procurant une accessibilité dynamique en temps réel aux données du WOUDC dans une variété de formats et d’encodages. Pour obtenir de plus amples renseignements, veuillez vous référer au d’",
-            "accès aux données",
-            "."
-          ]
+          "answer": "Oui. Le WOUDC permet d’accéder aux données brutes par dossier accessible sur le web (WAF) ou les services Web de l’Open Geospatial Consortium tels que des services de cartographie web et des Service de caractéristiques web, procurant une accessibilité dynamique en temps réel aux données du WOUDC dans une variété de formats et d’encodages. Pour obtenir de plus amples renseignements, veuillez vous référer au d’{access}.",
+          "text": "Est-ce que je peux me servir de mon application pour consulter des données du WOUDCet envoyer des données au WOUDC ?"
         },
         {
-          "text": "Puis-je utiliser mon appareil mobile pour accéder au WOUDC ?",
-          "answer": [
-            "Oui. L’application web du WOUDC a été mise sur pied à partir des directives du gouvernement du Canada à propos de ",
-            "l’accessibilité",
-            " et ",
-            "l’utilisation",
-            ", qui sont alignées avec ",
-            "les directives d’accessibilité du contenu du site web W3C"
-          ]
+          "answer": "Oui. L’application web du WOUDC a été mise sur pied à partir des directives du gouvernement du Canada à propos de {accessibility} et {usability}, qui sont alignées avec {w3c}.",
+          "text": "Puis-je utiliser mon appareil mobile pour accéder au WOUDC ?"
         }
       ],
+      "substitutions": {
+        "access": "accès aux données",
+        "accessibility": "l’accessibilité",
+        "contributors": "liste des contributeurs",
+        "policy": "politique sur les données",
+        "products": "données",
+        "registration": "d’inscription",
+        "search": "recherche de données / téléchargement",
+        "submission": "soumission des données",
+        "usability": "l’utilisation",
+        "w3c": "les directives d’accessibilité du contenu du site web W3C"
+      },
       "title": "Foire aux questions"
     },
     "formats": {

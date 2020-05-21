@@ -154,74 +154,54 @@
       "blurb": "Here are the answers to some of the most frequently asked questions about our data centre.",
       "questions": [
         {
-          "text": "Who can access the WOUDC data?",
-          "answer": [
-            "The WOUDC is a public website in support of the WMO Global Atmospheric Watch (GAW) programme. WOUDC data is made publically available on behalf of data contributors. For information on data access and usage, please refer to the ",
-            "data policy page"
-          ]
+          "answer": "The WOUDC is a public website in support of the WMO Global Atmospheric Watch (GAW) programme. WOUDC data is made publically available on behalf of data contributors. For information on data access and usage, please refer to the {policy}.",
+          "text": "Who can access the WOUDC data?"
         },
         {
-          "text": "How do I submit data?",
-          "answer": [
-            "Registered contributors can submit data to the WOUDC via FTP. Visit the ",
-            "data submission",
-            " page for all of the details. All new data contributors require a WOUDC account. To become a contributor, please visit the ",
-            "registration page"
-          ]
+          "answer": "Registered contributors can submit data to the WOUDC via FTP. Visit the {submission} page for all of the details. All new data contributors require a WOUDC account. To become a contributor, please visit the {registration}.",
+          "text": "How do I submit data?"
         },
         {
-          "text": "How do I access the WOUDC data archive?",
-          "answer": [
-            "Registered contributors can access the WOUDC data archive using the WOUDC website, geospatial tools or custom solutions. Visit the ",
-            "data access",
-            " page for all the details."
-          ]
+          "answer": "Registered contributors can access the WOUDC data archive using the WOUDC website, geospatial tools or custom solutions. Visit the {access} page for all the details.",
+          "text": "How do I access the WOUDC data archive?"
         },
         {
-          "text": "What data can I find in WOUDC?",
-          "answer": [
-            "The WOUDC currently manages and provides Ozone and Ultra Violet Radiation data. Please refer to ",
-            "data search / download",
-            " to see all WOUDC datasets. Other products such as maps, graphs and reports are also available on the ",
-            "data products",
-            " page."
-          ]
+          "answer": "The WOUDC currently manages and provides Ozone and Ultra Violet Radiation data. Please refer to {search} to see all WOUDC datasets. Other products such as maps, graphs and reports are also available on the {products} page.",
+          "text": "What data can I find in WOUDC?"
         },
         {
-          "text": "Where does WOUDC get its data from?",
-          "answer": [
-            "WOUDC data comes from worldwide contributors consisting of institutions, agencies and organizations. Contributors submit their data to WOUDC, where the data are then archived and made available. Please refer to ",
-            "contributor list"
-          ]
+          "answer": "WOUDC data comes from worldwide contributors consisting of institutions, agencies and organizations. Contributors submit their data to WOUDC, where the data are then archived and made available. Please refer to {contributors}.",
+          "text": "Where does WOUDC get its data from?"
         },
         {
-          "text": "How frequently is data updated?",
-          "answer": "Data is typically updated and made available to users within five business day of receipt by WOUDC. Extended CSV (extCSV) data are processed and made available in near real time."
+          "answer": "Data is typically updated and made available to users within five business day of receipt by WOUDC. Extended CSV (extCSV) data are processed and made available in near real time.",
+          "text": "How frequently is data updated?"
         },
         {
-          "text": "Who is responsible for keeping WOUDC information up-to-date?",
-          "answer": "WOUDC uses information provided by contributors who submit data. The WOUDC is responsible for ensuring that the most recent information provided by the contributors is available to all users."
+          "answer": "WOUDC uses information provided by contributors who submit data. The WOUDC is responsible for ensuring that the most recent information provided by the contributors is available to all users.","text": "Who is responsible for keeping WOUDC information up-to-date?",
+          "text": "Who is responsible for keeping WOUDC information up-to-date?"
         },
         {
-          "text": "Can I use my application to automatically retrieve data from WOUDC and also to upload data to WOUDC?",
-          "answer": [
-            "Yes. The WOUDC provides raw data through a web accessible folder (WAF) as well as Open Geospatial Consortium web services such as Web Map Service and Web Feature Service, providing dynamic, real-time access of the WOUDC data in numerous formats and encodings. For more information, please refer to the ",
-            "data access",
-            " page."
-          ]
+          "answer": "Yes. The WOUDC provides raw data through a web accessible folder (WAF) as well as Open Geospatial Consortium web services such as Web Map Service and Web Feature Service, providing dynamic, real-time access of the WOUDC data in numerous formats and encodings. For more information, please refer to the {access} page.",
+          "text": "Can I use my application to automatically retrieve data from WOUDC and also to upload data to WOUDC?"
         },
         {
-          "text": "Can I use my handheld device to access WOUDC?",
-          "answer": [
-            "Yes. The WOUDC web application has been developed using Government of Canada directives on ",
-            "accessibility",
-            " and ",
-            "usability",
-            ", which align with ",
-            "W3C Web Content Accessibility Guidelines"
-          ]
+          "answer": "Yes. The WOUDC web application has been developed using Government of Canada directives on {accessibility} and {usability}, which align with {w3c}",
+          "text": "Can I use my handheld device to access WOUDC?"
         }
       ],
+      "substitutions": {
+        "access": "data access",
+        "accessibility": "accessibility",
+        "contributors": "contributor list",
+        "policy": "data policy page",
+        "products": "data products",
+        "registration": "registration page",
+        "search": "data search / download",
+        "submission": "data submission",
+        "usability": "usability",
+        "w3c": "W3C Web Content Accessibility Guidelines"
+      },
       "title": "Frequently Asked Questions"
     },
     "formats": {
