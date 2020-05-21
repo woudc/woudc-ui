@@ -625,31 +625,23 @@
       "title": "Glossaire"
     },
     "home": {
-      "blurb": [
-        "Le Centre mondial de données sur l’ozone et le rayonnement ultraviolet (WOUDC) est l’undes six Centres mondiaux de données reconnus qui font partie du programme de Veille de l’atmosphère du globe de l’Organisation météorologique mondiale. Le centre de données du WOUDC est exploité par Service météorologique du Canada, une branche d’Environnement et Changement climatique Canada.",
-        "Les catégories d’ensembles de données sur l’ozone comprennent les mesures de la colonne d’ozone total et de la courbe de répartition verticale de l’ozone relevées par des lidar, des sondes pour l’ozone en vol et par la technique Umkehr. Les catégories d’ensemble de données sur le rayonnement ultraviolet (UV) incluent les données de type spectrale, à large bande, multibande et à haute résolution.",
-        "Il y a plus de 500 ",
-        "stations enregistrées",
-        " dans les archives, provenant de plus de 150 ",
-        "contributeurs",
-        ". Des métadonnées telles que les listes des stations et leur emplacement sont offertes sur le site Web du WOUDC.",
-        "Les données à valeur ajoutée incluent les graphiques représentant la quantité totale d’ozone, classés en ordre chronologique, et les cartes des quantités d’ozone qui en montrent l’évolution en temps quasi réel.",
-        "Toutes les données du WOUDC sont fournies en utilisant la ",
-        "recherche de données / téléchargement",
-        ", ou pardossier accessible sur le web (WAF). De plus, les services web de l’Open Geospatial Consortium fournissent une accessibilité accrue aux archives ce qui permet un accès sur demande conforme aux normes. Pour obtenir de plus amples renseignements, veuillez vous référer à la ",
-        "d'accès aux données",
-        "."
-      ],
+      "blurb": {
+        "access": "d'accès aux données",
+        "contributors": "contributeurs",
+        "search": "recherche de données / téléchargement",
+        "stations": "stations enregistrées",
+        "template": "Le Centre mondial de données sur l’ozone et le rayonnement ultraviolet (WOUDC) est l’undes six Centres mondiaux de données reconnus qui font partie du programme de Veille de l’atmosphère du globe de l’Organisation météorologique mondiale. Le centre de données du WOUDC est exploité par Service météorologique du Canada, une branche d’Environnement et Changement climatique Canada.\n\nLes catégories d’ensembles de données sur l’ozone comprennent les mesures de la colonne d’ozone total et de la courbe de répartition verticale de l’ozone relevées par des lidar, des sondes pour l’ozone en vol et par la technique Umkehr. Les catégories d’ensemble de données sur le rayonnement ultraviolet (UV) incluent les données de type spectrale, à large bande, multibande et à haute résolution.\n\nIl y a plus de 500 {stations} dans les archives, provenant de plus de 150 {contributors}. Des métadonnées telles que les listes des stations et leur emplacement sont offertes sur le site Web du WOUDC.\n\nLes données à valeur ajoutée incluent les graphiques représentant la quantité totale d’ozone, classés en ordre chronologique, et les cartes des quantités d’ozone qui en montrent l’évolution en temps quasi réel.\n\nToutes les données du WOUDC sont fournies en utilisant la {search}, ou pardossier accessible sur le web (WAF). De plus, les services web de l’Open Geospatial Consortium fournissent une accessibilité accrue aux archives ce qui permet un accès sur demande conforme aux normes. Pour obtenir de plus amples renseignements, veuillez vous référer à la {access}."
+      },
       "history": {
-        "milestones": [
-          "Le Centre mondial des données sur l’ozone (WODC) a vu le jour",
-          "la première publication de données sur l’ozone à l’échelle mondiale du WODC a été émise",
-          "les données sur le rayonnement solaire ultraviolet (UV) ont été ajoutées aux archives ; le centre de données a alors été rebaptisé le Centre mondial de données sur l’ozone et le rayonnement ultraviolet (WOUDC)",
-          "site initial et le site FTP ont été créé",
-          "les premières données du cdrom ont été produites",
-          "les premières données du DVD ROM avec l'archive complète sont sorties",
-          "le site Web du WOUDC, mis à jour, fournit des mécanismes modernisés qui soutiennent la découverte, la visualisation et la gestion des données sur l’ozone et les UV, en plus d’en favoriser l’accessibilité"
-        ],
+        "milestones": {
+          "1960": "Le Centre mondial des données sur l’ozone (WODC) a vu le jour",
+          "1964": "la première publication de données sur l’ozone à l’échelle mondiale du WODC a été émise",
+          "1992": "les données sur le rayonnement solaire ultraviolet (UV) ont été ajoutées aux archives ; le centre de données a alors été rebaptisé le Centre mondial de données sur l’ozone et le rayonnement ultraviolet (WOUDC)",
+          "1995": "site initial et le site FTP ont été créé",
+          "1996": "les premières données du cdrom ont été produites",
+          "2006": "les premières données du DVD ROM avec l'archive complète sont sorties",
+          "2015": "le site Web du WOUDC, mis à jour, fournit des mécanismes modernisés qui soutiennent la découverte, la visualisation et la gestion des données sur l’ozone et les UV, en plus d’en favoriser l’accessibilité"
+        },
         "title": "Le centre de données - un peu d’histoire"
       },
       "title": "Qu’est-ce que le WOUDC"

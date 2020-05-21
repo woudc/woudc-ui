@@ -621,31 +621,23 @@
       "title": "Glossary"
     },
     "home": {
-      "blurb": [
-        "The World Ozone and Ultraviolet Radiation Data Centre (WOUDC) is one of six World Data Centres which are part of the Global Atmosphere Watch programme of the World Meteorological Organization. The WOUDC data centre is operated by the Meteorological Service of Canada, a branch of Environment and Climate Change Canada.",
-        "Ozone data set categories include total column ozone and vertical profile data from lidar measurements, ozonesonde flights, and the Umkehr technique. Ultraviolet (UV) radiation data set categories include broadband, multiband, and high resolution spectral data types.",
-        "There are over 500 registered ",
-        "stations",
-        " in the archive from over 150 ",
-        "contributors",
-        ". Metadata such as station lists with locations, are available from the WOUDC Website.",
-        "Value added data products include total ozone time series graphs and near real-time ozone maps.",
-        "All WOUDC data are made available by using the ",
-        "data search / download",
-        ", or web accessible folder (WAF) access. In addition, the Open Geospatial Consortium web services provide enhanced access to the archive, which provides standards-based-on-demand access to the archive. For more information, please refer to the ",
-        "data access",
-        " page."
-      ],
+      "blurb": {
+        "access": "data access",
+        "contributors": "contributors",
+        "search": "data search / download",
+        "stations": "stations",
+        "template": "The World Ozone and Ultraviolet Radiation Data Centre (WOUDC) is one of six World Data Centres which are part of the Global Atmosphere Watch programme of the World Meteorological Organization. The WOUDC data centre is operated by the Meteorological Service of Canada, a branch of Environment and Climate Change Canada.\n\nOzone data set categories include total column ozone and vertical profile data from lidar measurements, ozonesonde flights, and the Umkehr technique. Ultraviolet (UV) radiation data set categories include broadband, multiband, and high resolution spectral data types.\n\nThere are over 500 registered {stations} in the archive from over 150 {contributors}. Metadata such as station lists with locations, are available from the WOUDC Website.\n\nValue added data products include total ozone time series graphs and near real-time ozone maps.\n\nAll WOUDC data are made available by using the {search}, or web accessible folder (WAF) access. In addition, the Open Geospatial Consortium web services provide enhanced access to the archive, which provides standards-based-on-demand access to the archive. For more information, please refer to the {access} page."
+      },
       "history": {
-        "milestones": [
-          "World Ozone Data Centre (WODC) created",
-          "first publication of Ozone Data for the World issued",
-          "solar ultraviolet (UV) radiation data is added to the data archives; data centre renamed to World Ozone and Ultraviolet Radiation Data Centre (WOUDC)",
-          "initial website and FTP site created",
-          "first data CD ROM produced",
-          "first data DVD ROM with complete data archive released",
-          "website updated, providing modernized mechanisms supporting discovery, visualization, access and management of ozone and UV data"
-        ],
+        "milestones": {
+          "1960": "World Ozone Data Centre (WODC) created",
+          "1964": "first publication of Ozone Data for the World issued",
+          "1992": "solar ultraviolet (UV) radiation data is added to the data archives; data centre renamed to World Ozone and Ultraviolet Radiation Data Centre (WOUDC)",
+          "1995": "initial website and FTP site created",
+          "1996": "first data CD ROM produced",
+          "2006": "first data DVD ROM with complete data archive released",
+          "2015": "website updated, providing modernized mechanisms supporting discovery, visualization, access and management of ozone and UV data"
+        },
         "title": "History of the Data Centre"
       },
       "title": "About WOUDC"

@@ -1,8 +1,20 @@
 <template>
   <v-layout justify-center column align-content-center>
-    <h2>{{ $t('about.home.title') }}</h2>
-    <woudc-blurb :items="blurb" />
-
+    <h2 v-text="$t('about.home.title')" />
+    <i18n class="newlines" path="about.home.blurb.template" tag="p">
+      <template v-slot:stations>
+        <nuxt-link :to="localePath('data-stations')" v-text="$t('about.home.blurb.stations')" />
+      </template>
+      <template v-slot:contributors>
+        <nuxt-link :to="localePath('contributors')" v-text="$t('about.home.blurb.contributors')" />
+      </template>
+      <template v-slot:search>
+        <nuxt-link :to="localePath('data-explore')" v-text="$t('about.home.blurb.search')" />
+      </template>
+      <template v-slot:access>
+        <nuxt-link :to="localePath('about-dataaccess')" v-text="$t('about.home.blurb.access')" />
+      </template>
+    </i18n>
     <v-card
       id="history"
       itemprop="hasPart"
@@ -14,13 +26,12 @@
       </v-card-title>
       <v-list itemprop="about" itemscope itemtype="http://schema.org/ItemList">
         <v-list-item
-          v-for="(milestone, i) in milestones"
+          v-for="(event, year, i) in $t('about.home.history.milestones')"
           :key="i"
           itemprop="itemListElement"
         >
           <span>
-            <b>{{ milestone.year }}</b>
-            : {{ milestone.text }}
+            <b>{{ year }}</b> : {{ event }}
           </span>
         </v-list-item>
       </v-list>
@@ -29,43 +40,7 @@
 </template>
 
 <script>
-import WoudcBlurb from '~/components/WoudcBlurb'
-
-const years = [ 1960, 1964, 1992, 1995, 1996, 2006, 2015 ]
-
 export default {
-  components: {
-    'woudc-blurb': WoudcBlurb
-  },
-  data() {
-    return {
-      blurb: [
-        { text: this.$t('about.home.blurb[0]') },
-        { newlines: 2 },
-        { text: this.$t('about.home.blurb[1]') },
-        { newlines: 2 },
-        { text: this.$t('about.home.blurb[2]') },
-        { link: { to: 'data-stations', text: this.$t('about.home.blurb[3]') } },
-        { text: this.$t('about.home.blurb[4]') },
-        { link: { to: 'contributors', text: this.$t('about.home.blurb[5]') } },
-        { text: this.$t('about.home.blurb[6]') },
-        { newlines: 2 },
-        { text: this.$t('about.home.blurb[7]') },
-        { newlines: 2 },
-        { text: this.$t('about.home.blurb[8]') },
-        { link: { to: 'data-explore', text: this.$t('about.home.blurb[9]') } },
-        { text: this.$t('about.home.blurb[10]') },
-        { link: { to: 'about-dataaccess', text: this.$t('about.home.blurb[11]') } },
-        { text: this.$t('about.home.blurb[12]') },
-      ],
-      milestones: [...years.keys()].map((index) => {
-        return {
-          year: years[index],
-          text: this.$t('about.home.history.milestones[' + index + ']')
-        }
-      })
-    }
-  },
   head() {
     return {
       title: this.$t('about.home.title'),
