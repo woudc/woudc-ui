@@ -1,17 +1,32 @@
 <template>
   <v-layout justify-center column align-content-center>
     <h1>{{ $t('about.policy.title') }}</h1>
-    <woudc-blurb :items="mainBlurb" />
-    <h2>{{ $t('about.policy.wmo.title') }}</h2>
-    <woudc-blurb :items="wmoBlurb" />
-    <h2>{{ $t('about.policy.gaw.title') }}</h2>
-    <p>{{ gawBlurb }}</p>
-    <woudc-note
-      :title="$t('about.policy.gaw.note.title')"
-      :body="$t('about.policy.gaw.note.body')"
-    />
-    <h2>{{ $t('about.policy.doi.title') }}</h2>
-    <woudc-blurb :items="doiBlurb" />
+    <i18n path="about.policy.blurb.template" tag="p">
+      <template v-slot:wmo>
+        <a :href="wmoURL" target="_blank" v-text="$t('about.policy.blurb.wmo')" />
+      </template>
+      <template v-slot:gaw>
+        <a :href="gawURL" target="_blank" v-text="$t('about.policy.blurb.gaw')" />
+      </template>
+    </i18n>
+    <h2 v-text="$t('about.policy.wmo.title')" />
+    <i18n class="newlines" path="about.policy.wmo.blurb.template" tag="p">
+      <template v-slot:link>
+        <a :href="resolution40" target="_blank" v-text="$t('about.policy.wmo.blurb.link')" />
+      </template>
+    </i18n>
+    <h2 v-text="$t('about.policy.gaw.title')" />
+    <p v-text="$t('about.policy.gaw.blurb')" />
+    <v-card class="woudc-note" tile min-width="0px">
+      <v-card-title v-text="$t('about.policy.gaw.note.title')" />
+      <v-card-text v-text="$t('about.policy.gaw.note.body')" />
+    </v-card>
+    <h2 v-text="$t('about.policy.doi.title')" />
+    <i18n path="about.policy.doi.blurb.template" tag="p">
+      <template v-slot:dois>
+        <a :href="doisURL" target="_blank" v-text="$t('about.policy.doi.blurb.dois')" />
+      </template>
+    </i18n>
     <v-card>
       <v-card-title class="card">
         {{ $t('about.policy.doi.note1.title') }}
@@ -25,9 +40,7 @@
       </v-card-text>
     </v-card>
     <v-card>
-      <v-card-title class="card">
-        {{ $t('about.policy.doi.note2.title') }}
-      </v-card-title>
+      <v-card-title class="card" v-text="$t('about.policy.doi.note2.title')" />
       <v-card-text>
         <ul>
           <li v-for="text in $t('about.policy.doi.note2.items')" :key="text">
@@ -36,20 +49,14 @@
         </ul>
       </v-card-text>
     </v-card>
-    <h2>{{ $t('about.policy.publishing.title') }}</h2>
-    <p>{{ publishingBlurb1 }}</p>
+    <h2 v-text="$t('about.policy.publishing.title')" />
+    <p v-text="$t('about.policy.publishing.blurb1')" />
     <v-card>
-      <v-card-title class="card">
-        {{ $t('about.policy.publishing.note1.title') }}
-      </v-card-title>
-      <v-card-text>
-        {{ $t('about.policy.publishing.note1.body') }}
-      </v-card-text>
+      <v-card-title class="card" v-text="$t('about.policy.publishing.note1.title')" />
+      <v-card-text v-text="$t('about.policy.publishing.note1.body')" />
     </v-card>
     <v-card>
-      <v-card-title class="card">
-        {{ $t('about.policy.publishing.note2.title') }}
-      </v-card-title>
+      <v-card-title class="card" v-text="$t('about.policy.publishing.note2.title')" />
       <v-card-text>
         <ol>
           <li v-for="text in $t('about.policy.publishing.note2.items')" :key="text">
@@ -58,63 +65,34 @@
         </ol>
       </v-card-text>
     </v-card>
-    <woudc-blurb :items="publishingBlurb2" />
-    <h2>{{ $t('about.policy.products.title') }}</h2>
-    <p>{{ productsBlurb }}</p>
+    <i18n path="about.policy.publishing.blurb2.template" tag="p">
+      <template v-slot:contributors>
+        <nuxt-link :to="localePath('contributors')" v-text="$t('about.policy.publishing.blurb2.contributors')" />
+      </template>
+    </i18n>
+    <h2 v-text="$t('about.policy.products.title')" />
+    <p v-text="$t('about.policy.products.blurb')" />
     <v-card>
-      <v-card-title class="card">
-        {{ $t('about.policy.products.note.title') }}
-      </v-card-title>
-      <v-card-text>
-        {{ $t('about.policy.products.note.body') }}
-      </v-card-text>
+      <v-card-title class="card" v-text="$t('about.policy.products.note.title')" />
+      <v-card-text v-text="$t('about.policy.products.note.body')" />
     </v-card>
   </v-layout>
 </template>
 
 <script>
-import WoudcBlurb from '~/components/WoudcBlurb'
-import WoudcNote from '~/components/WoudcNote'
-
 export default {
-  components: {
-    'woudc-blurb': WoudcBlurb,
-    'woudc-note': WoudcNote
-  },
   data() {
     return {
-      mainBlurb: [
-        { text: this.$t('about.policy.blurb[0]') },
-        { link: { to: 'https://www.wmo.int/pages/about/exchangingdata_en.html', type: 'external', text: this.$t('about.policy.blurb[1]') } },
-        { text: this.$t('about.policy.blurb[2]') },
-        { link: { to: 'https://gawsis.meteoswiss.ch/GAWSIS/index.html#/faq', type: 'external', text: this.$t('about.policy.blurb[3]') } },
-        { text: '.' }
-      ],
-      doiBlurb: [
-        { text: this.$t('about.policy.doi.blurb[0]') },
-        { link: { to: 'https://en.wikipedia.org/wiki/Digital_object_identifier', type: 'external', text: this.$t('about.policy.doi.blurb[1]') } },
-        { text: this.$t('about.policy.doi.blurb[2]') }
-      ],
-      gawBlurb: this.$t('about.policy.gaw.blurb'),
-      productsBlurb: this.$t('about.policy.products.blurb'),
-      publishingBlurb1: this.$t('about.policy.publishing.blurb1'),
-      publishingBlurb2: [
-        { text: this.$t('about.policy.publishing.blurb2[0]') },
-        { link: { to: 'contributors', text: this.$t('about.policy.publishing.blurb2[1]') } },
-        { text: '.' }
-      ],
-      wmoBlurb: [
-        { text: this.$t('about.policy.wmo.blurb[0]') },
-        { newlines: 2 },
-        { link: { to: 'https://www.wmo.int/pages/about/Resolution40_en.html', type: 'external', text: this.$t('about.policy.wmo.blurb[1]') } },
-        { text: this.$t('about.policy.wmo.blurb[0]') }
-      ],
+      doisURL: 'https://en.wikipedia.org/wiki/Digital_object_identifier',
+      gawURL: 'https://gawsis.meteoswiss.ch/GAWSIS/index.html#/faq',
+      resolution40: 'https://www.wmo.int/pages/about/Resolution40_en.html',
+      wmoURL: 'https://www.wmo.int/pages/about/exchangingdata_en.html'
     }
   },
   nuxtI18n: {
     paths: {
-      en: '/data-policy',
-      fr: '/politique-donnees'
+      en: '/about/data-policy',
+      fr: '/apropos/politique-donnees'
     }
   }
 }

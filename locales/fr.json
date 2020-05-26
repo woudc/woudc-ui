@@ -2,17 +2,17 @@
   "gaw": "VAG",
   "gawFull": "Veille de l'atmosphère globale",
   "note": "Remarque",
+  "wafFull": "Dossier Accessible sur le Web",
   "welcome": "Bienvenue",
   "wmo": "OMM",
   "wmoFull": "Organisation météorologique mondiale",
   "woudcFull": "Centre mondial de données sur l’ozone et le rayonnement ultraviolet",
   "about": {
     "access": {
-      "blurb": [
-        "L’accès aux données archivées du WOUDC est possible par l’entremise de nombreux mécanismes en appui à une accessibilité multi-application non rattachée à un fournisseur donné. Que vous utilisiez le site web, les outils géospatiaux ou nos solutions personnalisées, les archives de données du WOUDC fournissent une accessibilité souple et officielle en plus de vous permettre l’accès aux données.",
-        "Tous les efforts ont été déployés pour rendre les archives de données du WOUDC aussi accessibles que possible. Si vous avez des questions, des commentaires ou des suggestions sur la façon dont nous pourrions améliorer l’accès aux données, veuillez ",
-        "nous contacter"
-      ],
+      "blurb": {
+        "contact": "nous contacter",
+        "template": "L’accès aux données archivées du WOUDC est possible par l’entremise de nombreux mécanismes en appui à une accessibilité multi-application non rattachée à un fournisseur donné. Que vous utilisiez le site web, les outils géospatiaux ou nos solutions personnalisées, les archives de données du WOUDC fournissent une accessibilité souple et officielle en plus de vous permettre l’accès aux données.\n\nTous les efforts ont été déployés pour rendre les archives de données du WOUDC aussi accessibles que possible. Si vous avez des questions, des commentaires ou des suggestions sur la façon dont nous pourrions améliorer l’accès aux données, veuillez {contact}."
+      },
       "contents": {
         "links": [
           "Rechercher des données / Télécharger",
@@ -29,16 +29,12 @@
         "title": "Table des matières"
       },
       "csw": {
-        "blurb": [
-          "Le ",
-          "service de catalogue de l’OGC",
-          " fournit une interface commune pour permettre à l’usager de découvrir, de parcourir et de faire des recherches de métadonnées (des données au sujet des données) facilement. Le CSW du WOUDC fournit un catalogue de type Pages Jaunes de toutes les données du WOUDC disponibles dans les archives. Les registres de métadonnées sont formatés selon les normes du contenu des métadonnées géospatiales ISO 19115/19139."
-        ],
+        "blurb": {
+          "policy": "service de catalogue de l’OGC",
+          "template": "Le {policy} fournit une interface commune pour permettre à l’usager de découvrir, de parcourir et de faire des recherches de métadonnées (des données au sujet des données) facilement. Le CSW du WOUDC fournit un catalogue de type Pages Jaunes de toutes les données du WOUDC disponibles dans les archives. Les registres de métadonnées sont formatés selon les normes du contenu des métadonnées géospatiales ISO 19115/19139."
+        },
         "note": {
-          "body": [
-            "Le WOUDC donne accès au CSW de l’OGC (version 2.0.2) à ces différents endroits : ",
-            "https://geo.woudc.org/csw?service=CSW&version=2.0.2&request=GetCapabilities"
-          ],
+          "template": "Le WOUDC donne accès au CSW de l’OGC (version 2.0.2) à ces différents endroits : {link}",
           "title": "Le WOUDC et le CSW de l’OGC"
         },
         "title": "Service de catalogue pour le web (CSW)"
@@ -46,20 +42,16 @@
       "definitions": {
         "blurb": "Les services web sont modélisés et gérés grâce à une taxonomie des données. Il existe un service dedéfinitions, fondé sur un modèle RDF, servant à décrire la taxonomie des données du WOUDC et les liens qui les unissent.",
         "note": {
-          "body": [
-            "Le WOUDC fournit le modèle RDF/SKOS aux endroits suivants : ",
-            "https://geo.woudc.org/def"
-          ],
+          "template": "Le WOUDC fournit le modèle RDF/SKOS aux endroits suivants : {link}",
           "title": "Le service de définitions du WOUDC"
         },
         "title": "Service de définitions"
       },
       "examples": {
-        "blurb": [
-          "Les exemples ",
-          "GitHub",
-          " suivants démontrent l’accessibilité de haut niveau et l’intégration dans les flux de travaux des Services Web du WOUDC :"
-        ],
+        "blurb": {
+          "github": "GitHub",
+          "template": "Les exemples {github} suivants démontrent l’accessibilité de haut niveau et l’intégration dans les flux de travaux des Services Web du WOUDC :"
+        },
         "links": [
           "L’ensemble de haut niveau permet un accès pythonique aux données de l’OMM et du WOUDC",
           "Et regroupe toute une collection de flux de travaux provenant de divers centres de données qui sont implémentés comme cahiers IPython"
@@ -68,75 +60,56 @@
       },
       "iso": {
         "blurb1": "Les listes de codes sont gérées en conformité avec la norme ISO 19115. Il existe un catalogue répertoriant les listes de codes servant à décrire une variété d’objets de domaine du WOUDC servant dans les métadonnées.",
-        "blurb2": [
-          "Veuillez consulter les ",
-          "instructions pour les services web",
-          " pour plus de détails."
-        ],
+        "blurb2": {
+          "how-to": "instructions pour les services web",
+          "template": "Veuillez consulter les {how-to} pour plus de détails."
+        },
         "note": {
-          "body": [
-            "Le WOUDC donne accès au catalogue des listes de codes aux endroits suivants : ",
-            "https://geo.woudc.org/codelists.xml"
-          ],
+          "template": "Le WOUDC donne accès au catalogue des listes de codes aux endroits suivants : {link}",
           "title": "Catalogue répertoriant les listes de codes du WOUDC"
         },
         "title": "Catalogue des listes de codes ISO"
       },
       "note1": {
-        "body": [
-          "Toutes les données et métadonnées sont assujetties à la ",
-          "politique en matière de données du WOUDC"
-        ],
+        "body": {
+          "policy": "politique en matière de données du WOUDC",
+          "template": "Toutes les données et métadonnées sont assujetties à la {policy}"
+        },
         "title": "Politiques en matière de données"
       },
       "note2": {
-        "body": [
-          "Les dates de révision des données sont disponibles à ",
-          "stations list",
-          " pour les postes qui ont fourni des données révisées."
-        ],
+        "body": {
+          "stations": "stations list",
+          "template": "Les dates de révision des données sont disponibles à {stations} pour les postes qui ont fourni des données révisées."
+        },
         "title": "Révisions de données / mises à jour"
       },
       "search": {
-        "blurb": [
-          "Les données d’observation sont accessibles via ",
-          "la page Recherche de données / Téléchargement",
-          " qui permet aux usagers de parcourir l’ensemble des archives et de filtrer les résultats d’une façon réceptive et interactive. Toutes les données offrent un lien qui permet de télécharger les données dans divers formats pour une utilisation hors ligne.",
-          "Veuillez consulter les ",
-          "instructions de recherche / téléchargement de données",
-          " pour plus de détails."
-        ],
+        "blurb": {
+          "how-to": "instructions de recherche / téléchargement de données",
+          "search": "la page Recherche de données / Téléchargement",
+          "template": "Les données d’observation sont accessibles via {search} qui permet aux usagers de parcourir l’ensemble des archives et de filtrer les résultats d’une façon réceptive et interactive. Toutes les données offrent un lien qui permet de télécharger les données dans divers formats pour une utilisation hors ligne.\n\nVeuillez consulter les {how-to} pour plus de détails."
+        },
         "note": " Veuillez noter que des limites spécifiques aux ensembles de données sont imposées au téléchargement de données en vrac afin de maintenir la qualité du service.",
         "title": "Rechercher des données / Télécharger"
       },
       "title": "Accessibilité des données",
       "waf": {
-        "blurb": [
-          "Toutes les archives de fichiers de données qui ont été envoyées par les contributeurs en format CSV étendu sont disponibles sur ",
-          "https://woudc.org/archive/",
-          ", les utilisateurs peuvent les parcourir, les télécharger ou les intégrer à leurs flux de travaux.",
-          "Les ",
-          "données d'archives",
-          " statiques sont également disponibles dans le WAF au format CSV avec compression ZIP. Ces archives sont mis à jour hebdomadairement et offrent aux usagers une méthode pour télécharger le jeu de données entier au format CSV.",
-          "Veuillez consulter les ",
-          "instructions de WAF",
-          " pour plus de détails."
-        ],
+        "blurb": {
+          "how-to": "instructions de WAF",
+          "summary": "données d'archives",
+          "template": "Toutes les archives de fichiers de données qui ont été envoyées par les contributeurs en format CSV étendu sont disponibles sur {waf} les utilisateurs peuvent les parcourir, les télécharger ou les intégrer à leurs flux de travaux.\n\nLes {summary} statiques sont également disponibles dans le WAF au format CSV avec compression ZIP. Ces archives sont mis à jour hebdomadairement et offrent aux usagers une méthode pour télécharger le jeu de données entier au format CSV.\n\nVeuillez consulter les {how-to} pour plus de détails."
+        },
         "title": "Dossier accessible sur le web (WAF)"
       },
       "web": {
-        "blurb": [
-          "En plus des mécanismes d’accès aux données traditionnels, le WOUDC rend égalementdisponible ses archives par l’entremise de services web géospatiaux, se conformant ainsi aux normes internationales accessibles au public. Les services web sont des systèmes informatiques conçus pour prendre en charge des interactions machine à machine sur un réseau. Ils sont normalement utilisés dans un environnement informatique de type client/serveur accessible par des accès programmatiques, des outils connexes et des applications.",
-          "Les services web du WOUDC se conforment aux normes ouvertes ratifiées par l’",
-          "Open Geospatial Consortium",
-          " (OGC) et l’",
-          "International Organization for Standardization",
-          " (ISO) qui assurent l’interopérabilité des données, en facilitant ainsi la découverte, l’accessibilité, la visualisation et l’intégration. Les normes de l’OGC et de l’Organisation internationale de normalisation (ISO) jouent un rôle prépondérant dans l’",
-          "interopérabilité de l’Organisation météorologique mondiale",
-          " où elles font partie intégrante du ",
-          "système d’information de l’OMM",
-          " et sont prises en charge par de nombreuses sources libres grand public ou outils commerciaux."
-        ],
+        "blurb": {
+          "interoperability": "interopérabilité de l’Organisation météorologique mondiale",
+          "iso": "International Organization for Standardization",
+          "ogc": "Open Geospatial Consortium",
+          "template": "En plus des mécanismes d’accès aux données traditionnels, le WOUDC rend égalementdisponible ses archives par l’entremise de services web géospatiaux, se conformant ainsi aux normes internationales accessibles au public. Les services web sont des systèmes informatiques conçus pour prendre en charge des interactions machine à machine sur un réseau. Ils sont normalement utilisés dans un environnement informatique de type client/serveur accessible par des accès programmatiques, des outils connexes et des applications.\n\nLes services web du WOUDC se conforment aux normes ouvertes ratifiées par l’{ogc} (OGC) et l’{iso} (ISO) qui assurent l’interopérabilité des données, en facilitant ainsi la découverte, l’accessibilité, la visualisation et l’intégration. Les normes de l’OGC et de l’Organisation internationale de normalisation (ISO) jouent un rôle prépondérant dans l’{interoperability} où elles font partie intégrante du {wis} et sont prises en charge par de nombreuses sources libres grand public ou outils commerciaux.",
+          "wis": "système d’information de l’OMM"
+        },
         "table": {
           "links": [ "???" ],
           "title": "Ces services web de l’OGC sont mis à la disposition des utilisateurs afin d’assurer une accessibilité des données rapideet conforme aux normes :"
@@ -144,47 +117,34 @@
         "title": "Services web"
       },
       "wfs": {
-        "blurb": [
-          "Le ",
-          "Service de fonctionnalités web (WFS) de l’OGC",
-          " fournit une interface populaire pour permettre à l’utilisateur d’accéder aux données géospatiales. Le Service de fonctionnalités web (WFS) est habituellement utilisé pour effectuer des recherches personnalisées ou obtenir un accès brut aux fonctionnalités géospatiales. Le WFS du WOUDC permet l’accès à des données archivées dans divers formats comme le format CSV étendu, KML, CSV, GML, le fichier de formes ESRI, MapInfo, GeoJSON et NetCDF.",
-          "Le WFS a une limite côté serveur de 200000 entités au maximum, afin de pouvoir assurer la qualité du service et en garantir la disponibilité."
-        ],
+        "blurb": {
+          "template": "Le {wfs} fournit une interface populaire pour permettre à l’utilisateur d’accéder aux données géospatiales. Le Service de fonctionnalités web (WFS) est habituellement utilisé pour effectuer des recherches personnalisées ou obtenir un accès brut aux fonctionnalités géospatiales. Le WFS du WOUDC permet l’accès à des données archivées dans divers formats comme le format CSV étendu, KML, CSV, GML, le fichier de formes ESRI, MapInfo, GeoJSON et NetCDF.\n\nLe WFS a une limite côté serveur de 200000 entités au maximum, afin de pouvoir assurer la qualité du service et en garantir la disponibilité.",
+          "wfs": "Service de fonctionnalités web (WFS) de l’OGC"
+        },
         "note": {
-          "body": [
-            "Le WOUDC donne accès au WFS de l’OGC (versions 1.0.0 - 1.1.0) à ces différents endroits : ",
-            "https://geo.woudc.org/ows?service=WFS&version=1.1.0&request=GetCapabilities"
-          ],
+          "template": "Le WOUDC donne accès au WFS de l’OGC (versions 1.0.0 - 1.1.0) à ces différents endroits : {link}",
           "title": "Le WOUDC et le WFS de l’OGC"
         },
         "title": "Service de caractéristiques web (WFS)"
       },
       "wms": {
-        "blurb": [
-          "Le ",
-          "Service de cartes Web de l’OGC",
-          " fournit une interface populaire utilisée pour visualiser des couches de données géospatiales. Le WMS est souvent utilisé pour effectuer une visualisation simple sur le web ou sur une application SIG à l’aide des formats d’image adaptés pour une utilisation sur le web comme les formats PNG ou JPEG, par exemple."
-        ],
+        "blurb": {
+          "template": "Le {wms} fournit une interface populaire utilisée pour visualiser des couches de données géospatiales. Le WMS est souvent utilisé pour effectuer une visualisation simple sur le web ou sur une application SIG à l’aide des formats d’image adaptés pour une utilisation sur le web comme les formats PNG ou JPEG, par exemple.",
+          "wms": "Service de cartes Web de l’OGC"
+        },
         "note": {
-          "body": [
-            "Le WOUDC donne accès au WMS de l’OGC (versions 1.1.1 - 1.3.0) à cet endroit : ",
-            "https://geo.woudc.org/ows?service=WMS&version=1.3.0&request=GetCapabilities"
-          ],
+          "template": "Le WOUDC donne accès au WMS de l’OGC (versions 1.1.1 - 1.3.0) à cet endroit : {link}",
           "title": "Le WOUDC et le WMS de l’OGC"
         },
         "title": "Service de cartes web (WMS)"
       },
       "wps": {
-        "blurb": [
-          "Le ",
-          "Service de fonctionnalités web (WFS) de l’OGC",
-          " fournit une interface populaire pour permettre à l’utilisateur d’accéder aux données géospatiales. Le Service de fonctionnalités web (WFS) est habituellement utilisé pour effectuer des recherches personnalisées ou obtenir un accès brut aux fonctionnalités géospatiales. Le WFS du WOUDC permet l’accès à des données archivées dans divers formats comme le format CSV étendu, KML, CSV, GML, le fichier de formes ESRI, MapInfo, GeoJSON et NetCDF."
-        ],
+        "blurb": {
+          "template": "Le {wps} fournit une interface populaire pour permettre à l’utilisateur d’accéder aux données géospatiales. Le Service de fonctionnalités web (WFS) est habituellement utilisé pour effectuer des recherches personnalisées ou obtenir un accès brut aux fonctionnalités géospatiales. Le WFS du WOUDC permet l’accès à des données archivées dans divers formats comme le format CSV étendu, KML, CSV, GML, le fichier de formes ESRI, MapInfo, GeoJSON et NetCDF.",
+          "wps": "Service de fonctionnalités web (WFS) de l’OGC"
+        },
         "note": {
-          "body": [
-            "Le WOUDC fournit le WPS de l'OGC (version 1.0.0.0) au point d'extrémité suivant : ",
-            "https://geo.woudc.org/wps?service=WPS&version=1.0.0&request=GetCapabilities"
-          ],
+          "template": "Le WOUDC fournit le WPS de l'OGC (version 1.0.0.0) au point d'extrémité suivant : {link}",
           "title": "Le WOUDC et le WPS de l’OGC"
         },
         "title": "Service de traitement web (WPS)"
@@ -695,18 +655,16 @@
       "title": "Qu’est-ce que le WOUDC"
     },
     "policy": {
-      "blurb": [
-        "L’utilisation des données du WOUDC est régie par la ",
-        "politique sur les données de L’Organisation météorologique mondiale (OMM)",
-        " et la ",
-        "politique d’utilisation des données de la Veille de l’atmosphère du globe (VAG) de l’OMM"
-      ],
+      "blurb": {
+        "gaw": "politique d’utilisation des données de la Veille de l’atmosphère du globe (VAG) de l’OMM",
+        "template": "L’utilisation des données du WOUDC est régie par la {wmo} et la {gaw}.",
+        "wmo": "politique sur les données de L’Organisation météorologique mondiale (OMM)"
+      },
       "doi": {
-        "blurb": [
-          "WOUDC a enregistré ",
-          "DOIs",
-          " pour les données sur l’ozone et les rayons UV. Les identificateurs d’objets numériques (ION) sont des identificateurs permanents qui rendent les données de recherche accessibles et en permettent la citation. Ils facilitent l’accès aux données de recherche, la réutilisation et la vérification, et ainsi tirer profit du travail déjà réalisé, mener de nouvelles recherches et éviter la duplication du travail déjà fait."
-        ],
+        "blurb": {
+          "dois": "DOIs",
+          "template": "WOUDC a enregistré {dois} pour les données sur l’ozone et les rayons UV. Les identificateurs d’objets numériques (ION) sont des identificateurs permanents qui rendent les données de recherche accessibles et en permettent la citation. Ils facilitent l’accès aux données de recherche, la réutilisation et la vérification, et ainsi tirer profit du travail déjà réalisé, mener de nouvelles recherches et éviter la duplication du travail déjà fait."
+        },
         "note1": {
           "items": [
             "Ozone: doi:10.14287/10000001",
@@ -750,10 +708,10 @@
       },
       "publishing": {
         "blurb1": "Lors de la publication de données extraites du WOUDC, vous devezindiquer les contributeurs qui ont fourni les données, ainsi que la source des données et le WOUDC, en utilisant la citation appropriée comme indiqué dans l’exemple suivant.",
-        "blurb2": [
-          "Pour la liste complète de tous les contributeurs, voir la ",
-          "liste des contributeurs"
-        ],
+        "blurb2": {
+          "contributors": "liste des contributeurs",
+          "template": "Pour la liste complète de tous les contributeurs, voir la {contributors}."
+        },
         "note1": {
           "body": "JMA, & NASA-WFF. Organisation météorologique mondiale-Programme de Veille de l’atmosphère du globe (OMM-VAG)/Centre mondial des données sur l’ozone et le rayonnement ultraviolet (WOUDC) [Données]. Page consultée le 24 octobre 2013 : https://woudc.org. doi:10.14287/10000001",
           "title": "Exemple (1) : Citation des données provenant (contribuées par) la Japan Meteorological Agency (JMA) et la NASA (NASA-WFF) et extraites du site du WOUDC"
@@ -769,11 +727,10 @@
       },
       "title": "Politique d’utilisation des données",
       "wmo": {
-        "blurb": [
-          "L’OMM facilite l’échange gratuit et sans restriction, en temps réel ou quasi réel, de données, d’informations, de produits et de services propres à renforcer la sécurité des populations, le bien-être économique et la protection de l’environnement.",
-          "Résolution 40 (Cg-XII)",
-          " : Politique et pratique adoptée par l’OMM pour l’échange de données et de produits météorologiques et connexes, y compris ses principes directeurs applicables aux relations entre partenaires en matière de commercialisation des services météorologiques."
-        ],
+        "blurb": {
+          "link": "Résolution 40 (Cg-XII)",
+          "template": "L’OMM facilite l’échange gratuit et sans restriction, en temps réel ou quasi réel, de données, d’informations, de produits et de services propres à renforcer la sécurité des populations, le bien-être économique et la protection de l’environnement.\n\n{link} : Politique et pratique adoptée par l’OMM pour l’échange de données et de produits météorologiques et connexes, y compris ses principes directeurs applicables aux relations entre partenaires en matière de commercialisation des services météorologiques."
+        },
         "title": "Politique des données de l’Organisation météorologique mondiale"
       }
     },
@@ -843,54 +800,28 @@
         "Format/Codage",
         "Services web"
       ],
-      "links": [
-        {
-          "resource": "Métadonnées de découverte",
-          "formats": [
-            "ISO 19115 WMO Core Metadata Profile"
-          ],
-          "services": [
-            "OGC:CSW",
-            "OAI-PMH",
-            "OpenSearch"
-          ]
+      "links": {
+        "resources": [
+          "Métadonnées de découverte",
+          "Station de métadonnées",
+          "Métadonnées des instruments",
+          "Observations"
+        ],
+        "formats": {
+          "csv": "CSV",
+          "geojson": "GeoJSON",
+          "gml": "OGC:GML",
+          "iso": "ISO 19115 WMO Core Metadata Profile",
+          "wigos": "WIGOS"
         },
-        {
-          "resource": "Station de métadonnées",
-          "formats": [
-            "OGC:GML",
-            "WIGOS"
-          ],
-          "services": [
-            "OGC:WMS",
-            "OGC:WFS"
-          ]
-        },
-        {
-          "resource": "Métadonnées des instruments",
-          "formats": [
-            "OGC:GML",
-            "WIGOS"
-          ],
-          "services": [
-            "OGC:WMS",
-            "OGC:WFS"
-          ]
-        },
-        {
-          "resource": "Observations",
-          "formats": [
-            "CSV",
-            "GeoJSON",
-            "OGC:GML",
-            "WIGOS"
-          ],
-          "services": [
-            "OGC:WMS",
-            "OGC:WFS"
-          ]
+        "services": {
+          "csw": "OGC:CSW",
+          "opensearch": "OpenSearch",
+          "pmh": "OAI-PMH",
+          "wfs": "OGC:WFS",
+          "wms": "OGC:WMS"
         }
-      ],
+      },
       "title": "Normes"
     }
   },
