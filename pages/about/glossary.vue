@@ -33,8 +33,8 @@ export default {
   },
   nuxtI18n: {
     paths: {
-      en: '/glossary',
-      fr: '/glossaire'
+      en: '/about/glossary',
+      fr: '/a-propos/glossaire'
     }
   }
 }

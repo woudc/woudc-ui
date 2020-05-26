@@ -75,8 +75,8 @@ export default {
   },
   nuxtI18n: {
     paths: {
-      en: '/formats',
-      fr: '/formats'
+      en: '/about/formats',
+      fr: '/a-propos/formats'
     }
   }
 }

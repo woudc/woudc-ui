@@ -92,7 +92,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/about/data-policy',
-      fr: '/apropos/politique-donnees'
+      fr: '/a-propos/politique-donnees'
     }
   }
 }

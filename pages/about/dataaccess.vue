@@ -291,7 +291,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/about/data-access',
-      fr: '/apropos/data-access-fr'
+      fr: '/a-propos/accessibilite-donnees'
     }
   }
 }

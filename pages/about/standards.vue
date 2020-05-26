@@ -110,7 +110,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/about/standards',
-      fr: '/apropos/normes'
+      fr: '/a-propos/normes'
     }
   }
 }

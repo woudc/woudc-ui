@@ -51,8 +51,8 @@ export default {
   },
   nuxtI18n: {
     paths: {
-      en: '/faq',
-      fr: '/faq-in-fr'
+      en: '/about/faq',
+      fr: '/a-propos/faq'
     }
   }
 }
