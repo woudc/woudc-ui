@@ -36,40 +36,39 @@
 </template>
 
 <script>
-const ozoneURLs = [
-  'https://woudc.org/archive/Documentation/Examples-extCSV/Lidar.csv',
-  'https://woudc.org/archive/Documentation/Examples-extCSV/Ozonesonde.csv',
-  'https://woudc.org/archive/Documentation/Examples-extCSV/TotalOzone-Brewer.csv',
-  'https://woudc.org/archive/Documentation/Examples-extCSV/TotalOzoneObs.csv',
-  'https://woudc.org/archive/Documentation/Examples-extCSV/Umkehr-N_values-Dobson.csv',
-  'https://woudc.org/archive/Documentation/Examples-extCSV/Umkehr_UMK92Retrieval-Dobson.csv'
-]
-const uvURLs = [
-  'https://woudc.org/archive/Documentation/Examples-extCSV/Broad-band.csv',
-  'https://woudc.org/archive/Documentation/Examples-extCSV/Multi-band.csv',
-  'https://woudc.org/archive/Documentation/Examples-extCSV/Spectral.csv'
-]
-
 export default {
   data() {
     return {
-      contributorsURL: 'https://guide.woudc.org/en/'
+      contributorsURL: 'https://guide.woudc.org/en/',
+      ozoneURLs: [
+        'https://woudc.org/archive/Documentation/Examples-extCSV/Lidar.csv',
+        'https://woudc.org/archive/Documentation/Examples-extCSV/Ozonesonde.csv',
+        'https://woudc.org/archive/Documentation/Examples-extCSV/TotalOzone-Brewer.csv',
+        'https://woudc.org/archive/Documentation/Examples-extCSV/TotalOzoneObs.csv',
+        'https://woudc.org/archive/Documentation/Examples-extCSV/Umkehr-N_values-Dobson.csv',
+        'https://woudc.org/archive/Documentation/Examples-extCSV/Umkehr_UMK92Retrieval-Dobson.csv'
+      ],
+      uvURLs: [
+        'https://woudc.org/archive/Documentation/Examples-extCSV/Broad-band.csv',
+        'https://woudc.org/archive/Documentation/Examples-extCSV/Multi-band.csv',
+        'https://woudc.org/archive/Documentation/Examples-extCSV/Spectral.csv'
+      ]
     }
   },
   computed: {
     ozoneLinks() {
-      return [...ozoneURLs.keys()].map((index) => {
+      return [...this.ozoneURLs.keys()].map((index) => {
         return {
           text: this.$t('about.formats.ozone.links[' + index + ']'),
-          url: ozoneURLs[index]
+          url: this.ozoneURLs[index]
         }
       })
     },
     uvLinks() {
-      return [...uvURLs.keys()].map((index) => {
+      return [...this.uvURLs.keys()].map((index) => {
         return {
           text: this.$t('about.formats.uv.links[' + index + ']'),
-          url: uvURLs[index]
+          url: this.uvURLs[index]
         }
       })
     }
