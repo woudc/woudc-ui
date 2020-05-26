@@ -18,12 +18,12 @@
     >
       <template v-slot:item.formats="props">
         <v-chip v-for="link in props.item.formats" :key="link.to" class="resource" label>
-          <a :href="link.to" v-text="link.text" />
+          <a :href="link.to" target="_blank" v-text="link.text" />
         </v-chip>
       </template>
       <template v-slot:item.services="props">
         <v-chip v-for="link in props.item.services" :key="link.to" class="resource" label>
-          <a :href="link.to" v-text="link.text" />
+          <a :href="link.to" target="_blank" v-text="link.text" />
         </v-chip>
       </template>
     </v-data-table>
@@ -50,6 +50,7 @@ export default {
       },
       serviceURLs: {
         csw: 'https://www.opengeospatial.org/standards/cat',
+        opensearch: 'https://github.com/dewitt/opensearch',
         pmh: 'https://www.openarchives.org/pmh/',
         wfs: 'https://www.opengeospatial.org/standards/wfs',
         wms: 'https://www.opengeospatial.org/standards/wms'
