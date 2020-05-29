@@ -1,9 +1,9 @@
 <template>
   <v-layout justify-center column align-content-center>
-    <h1 v-text="$t('about.formats.title')" />
+    <h1>{{ $t('about.formats.title') }}</h1>
     <i18n class="newlines" path="about.formats.blurb.template" tag="p">
       <template v-slot:extended>
-        <b v-text="$t('about.formats.blurb.extended')" />
+        <b>{{ $t('about.formats.blurb.extended') }}</b>
       </template>
       <template v-slot:access>
         <nuxt-link :to="localePath('about-dataaccess')" v-text="$t('about.formats.blurb.access')" />
@@ -12,24 +12,24 @@
     <v-card class="woudc-note" tile min-width="0px">
       <v-card-text v-text="$t('about.formats.note')" />
     </v-card>
-    <h2 v-text="$t('about.formats.contributor-guide.title')" />
+    <h2> {{ $t('about.formats.contributor-guide.title') }}</h2>
     <ul>
       <li>
-        <a :href="contributorsURL" v-text="$t('about.formats.contributor-guide.link')" />
+        <a :href="contributorsURL" target="_blank">{{ $t('about.formats.contributor-guide.link') }}</a>
       </li>
     </ul>
-    <h2 v-text="$t('about.formats.examples.title')" />
-    <p v-text="$t('about.formats.examples.blurb')" />
-    <h3 v-text="$t('about.formats.ozone.title')" />
+    <h2>{{ $t('about.formats.examples.title') }}</h2>
+    <p>{{ $t('about.formats.examples.blurb') }}</p>
+    <h3>{{ $t('about.formats.ozone.title') }}</h3>
     <ul>
       <li v-for="(link, i) in ozoneLinks" :key="i">
-        <a :href="link.url" v-text="link.text" />
+        <a :href="link.url" target="_blank">{{ link.text }}</a>
       </li>
     </ul>
-    <h3 v-text="$t('about.formats.uv.title')" />
+    <h3>{{ $t('about.formats.uv.title') }}</h3>
     <ul>
-      <li v-for="(link, i) in uvLinks" :key="i">
-        <a :href="link.url" v-text="link.text" />
+      <li v-for="(link, index) in uvLinks" :key="index">
+        <a :href="link.url" target="_blank">{{ link.text }}</a>
       </li>
     </ul>
   </v-layout>

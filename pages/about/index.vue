@@ -1,6 +1,6 @@
 <template>
   <v-layout justify-center column align-content-center>
-    <h2 v-text="$t('about.home.title')" />
+    <h2>{{ $t('about.home.title') }}</h2>
     <i18n class="newlines" path="about.home.blurb.template" tag="p">
       <template v-slot:stations>
         <nuxt-link :to="localePath('data-stations')" v-text="$t('about.home.blurb.stations')" />

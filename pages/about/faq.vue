@@ -2,9 +2,9 @@
   <v-layout justify-center column align-content-center>
     <h1>{{ $t('about.faq.title') }}</h1>
     <p>{{ $t('about.faq.blurb') }}</p>
-    <div v-for="index in $t('about.faq.questions').length" :key="index">
-      <h4 v-text="$t('about.faq.questions[' + (index - 1) + '].text')" />
-      <i18n :path="'about.faq.questions[' + (index - 1) + '].answer'" tag="p">
+    <div v-for="(question, index) in $t('about.faq.questions')" :key="index">
+      <h4>{{ question.text }}</h4>
+      <i18n :path="'about.faq.questions[' + index + '].answer'" tag="p">
         <template v-slot:policy>
           <nuxt-link :to="localePath('about-datapolicy')" v-text="$t('about.faq.substitutions.policy')" />
         </template>
@@ -27,13 +27,13 @@
           <nuxt-link :to="localePath('contributors')" v-text="$t('about.faq.substitutions.contributors')" />
         </template>
         <template v-slot:accessibility>
-          <a :href="accessibilityURL" target="_blank" v-text="$t('about.faq.substitutions.accessibility')" />
+          <a :href="accessibilityURL" target="_blank">{{ $t('about.faq.substitutions.accessibility') }}</a>
         </template>
         <template v-slot:usability>
-          <a :href="usabilityURL" target="_blank" v-text="$t('about.faq.substitutions.usability')" />
+          <a :href="usabilityURL" target="_blank">{{ $t('about.faq.substitutions.usability') }}</a>
         </template>
         <template v-slot:w3c>
-          <a :href="w3cURL" target="_blank" v-text="$t('about.faq.substitutions.w3c')" />
+          <a :href="w3cURL" target="_blank">{{ $t('about.faq.substitutions.w3c') }}</a>
         </template>
       </i18n>
     </div>
