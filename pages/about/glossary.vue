@@ -2,29 +2,39 @@
   <v-layout justify-center column align-content-center>
     <h1>{{ $t('about.glossary.title') }}</h1>
     <p>{{ $t('about.glossary.blurb') }}</p>
-    <div v-for="(entry, i) in terms" :key="i">
-      <h4>{{ entry.term }}</h4>
-      <woudc-blurb :items="entry.definition" />
+    <div v-for="(item, index) in $t('about.glossary.terms')" :key="index">
+      <h4>{{ item.term }}</h4>
+      <i18n :path="'about.glossary.terms[' + index + '].definition'" tag="p">
+        <template v-slot:carcinogenesis>
+          <a :href="carcinogensURL" target="_blank">{{ $t('about.glossary.substitutions.carcinogenesis') }}</a>
+        </template>
+        <template v-slot:registration>
+          <nuxt-link :to="localePath('contributors-registration')" v-text="$t('about.glossary.substitutions.registration')" />
+        </template>
+        <template v-slot:w3>
+          <a :href="w3URL" target="_blank">www.w3.org</a>
+        </template>
+        <template v-slot:waf>
+          <a :href="wafURL" target="_blank">{{ wafURL }}</a>
+        </template>
+      </i18n>
     </div>
   </v-layout>
 </template>
 
 <script>
-import WoudcBlurb from '~/components/WoudcBlurb'
-
 export default {
-  components: {
-    'woudc-blurb': WoudcBlurb
-  },
-  computed: {
-    terms() {
-      return this.$t('about.glossary.terms')
+  data() {
+    return {
+      carcinogensURL: 'https://www.wmo.int/pages/prog/dra/etrp/documents/926E.pdf',
+      w3URL: 'https://www.w3.org/',
+      wafURL: "https://woudc.org/archive"
     }
   },
   nuxtI18n: {
     paths: {
-      en: '/glossary',
-      fr: '/glossaire'
+      en: '/about/glossary',
+      fr: '/a-propos/glossaire'
     }
   }
 }

@@ -154,96 +154,70 @@
       "blurb": "Here are the answers to some of the most frequently asked questions about our data centre.",
       "questions": [
         {
-          "text": "Who can access the WOUDC data?",
-          "answer": [
-            "The WOUDC is a public website in support of the WMO Global Atmospheric Watch (GAW) programme. WOUDC data is made publically available on behalf of data contributors. For information on data access and usage, please refer to the ",
-            "data policy page"
-          ]
+          "answer": "The WOUDC is a public website in support of the WMO Global Atmospheric Watch (GAW) programme. WOUDC data is made publically available on behalf of data contributors. For information on data access and usage, please refer to the {policy}.",
+          "text": "Who can access the WOUDC data?"
         },
         {
-          "text": "How do I submit data?",
-          "answer": [
-            "Registered contributors can submit data to the WOUDC via FTP. Visit the ",
-            "data submission",
-            " page for all of the details. All new data contributors require a WOUDC account. To become a contributor, please visit the ",
-            "registration page"
-          ]
+          "answer": "Registered contributors can submit data to the WOUDC via FTP. Visit the {submission} page for all of the details. All new data contributors require a WOUDC account. To become a contributor, please visit the {registration}.",
+          "text": "How do I submit data?"
         },
         {
-          "text": "How do I access the WOUDC data archive?",
-          "answer": [
-            "Registered contributors can access the WOUDC data archive using the WOUDC website, geospatial tools or custom solutions. Visit the ",
-            "data access",
-            " page for all the details."
-          ]
+          "answer": "Registered contributors can access the WOUDC data archive using the WOUDC website, geospatial tools or custom solutions. Visit the {access} page for all the details.",
+          "text": "How do I access the WOUDC data archive?"
         },
         {
-          "text": "What data can I find in WOUDC?",
-          "answer": [
-            "The WOUDC currently manages and provides Ozone and Ultra Violet Radiation data. Please refer to ",
-            "data search / download",
-            " to see all WOUDC datasets. Other products such as maps, graphs and reports are also available on the ",
-            "data products",
-            " page."
-          ]
+          "answer": "The WOUDC currently manages and provides Ozone and Ultra Violet Radiation data. Please refer to {search} to see all WOUDC datasets. Other products such as maps, graphs and reports are also available on the {products} page.",
+          "text": "What data can I find in WOUDC?"
         },
         {
-          "text": "Where does WOUDC get its data from?",
-          "answer": [
-            "WOUDC data comes from worldwide contributors consisting of institutions, agencies and organizations. Contributors submit their data to WOUDC, where the data are then archived and made available. Please refer to ",
-            "contributor list"
-          ]
+          "answer": "WOUDC data comes from worldwide contributors consisting of institutions, agencies and organizations. Contributors submit their data to WOUDC, where the data are then archived and made available. Please refer to {contributors}.",
+          "text": "Where does WOUDC get its data from?"
         },
         {
-          "text": "How frequently is data updated?",
-          "answer": "Data is typically updated and made available to users within five business day of receipt by WOUDC. Extended CSV (extCSV) data are processed and made available in near real time."
+          "answer": "Data is typically updated and made available to users within five business day of receipt by WOUDC. Extended CSV (extCSV) data are processed and made available in near real time.",
+          "text": "How frequently is data updated?"
         },
         {
-          "text": "Who is responsible for keeping WOUDC information up-to-date?",
-          "answer": "WOUDC uses information provided by contributors who submit data. The WOUDC is responsible for ensuring that the most recent information provided by the contributors is available to all users."
+          "answer": "WOUDC uses information provided by contributors who submit data. The WOUDC is responsible for ensuring that the most recent information provided by the contributors is available to all users.","text": "Who is responsible for keeping WOUDC information up-to-date?",
+          "text": "Who is responsible for keeping WOUDC information up-to-date?"
         },
         {
-          "text": "Can I use my application to automatically retrieve data from WOUDC and also to upload data to WOUDC?",
-          "answer": [
-            "Yes. The WOUDC provides raw data through a web accessible folder (WAF) as well as Open Geospatial Consortium web services such as Web Map Service and Web Feature Service, providing dynamic, real-time access of the WOUDC data in numerous formats and encodings. For more information, please refer to the ",
-            "data access",
-            " page."
-          ]
+          "answer": "Yes. The WOUDC provides raw data through a web accessible folder (WAF) as well as Open Geospatial Consortium web services such as Web Map Service and Web Feature Service, providing dynamic, real-time access of the WOUDC data in numerous formats and encodings. For more information, please refer to the {access} page.",
+          "text": "Can I use my application to automatically retrieve data from WOUDC and also to upload data to WOUDC?"
         },
         {
-          "text": "Can I use my handheld device to access WOUDC?",
-          "answer": [
-            "Yes. The WOUDC web application has been developed using Government of Canada directives on ",
-            "accessibility",
-            " and ",
-            "usability",
-            ", which align with ",
-            "W3C Web Content Accessibility Guidelines"
-          ]
+          "answer": "Yes. The WOUDC web application has been developed using Government of Canada directives on {accessibility} and {usability}, which align with {w3c}",
+          "text": "Can I use my handheld device to access WOUDC?"
         }
       ],
+      "substitutions": {
+        "access": "data access",
+        "accessibility": "accessibility",
+        "contributors": "contributor list",
+        "policy": "data policy page",
+        "products": "data products",
+        "registration": "registration page",
+        "search": "data search / download",
+        "submission": "data submission",
+        "usability": "usability",
+        "w3c": "W3C Web Content Accessibility Guidelines"
+      },
       "title": "Frequently Asked Questions"
     },
     "formats": {
-      "blurb": [
-        "The WOUDC uses ASCII text file format standard for data submissions in an ",
-        " (ext) Comma-Separated Value (CSV) format.",
-        "The extended CSV (extCSV) is the standard data file format for submission to WOUDC. The ",
-        " standard for the CSV syntax rules support the provision of comments and multiple data content within individual files. The extCSV provides a simple text-based format for data providers when submitting data to the WOUDC, as well as one of many ways for users to integrate ozone and ultraviolet (UV) radiation data into their database, spreadsheet and workflow analysis. Please refer to the ",
-        "data access",
-        " page for more information on WOUDC data discovery, access and visualization."
-      ],
+      "blurb": {
+        "access": "data access",
+        "extended": "extended",
+        "template": "The WOUDC uses ASCII text file format standard for data submissions in an {extcsv} (ext) Comma-Separated Value (CSV) format.\n\nThe extended CSV (extCSV) is the standard data file format for submission to WOUDC. The {extended} standard for the CSV syntax rules support the provision of comments and multiple data content within individual files. The extCSV provides a simple text-based format for data providers when submitting data to the WOUDC, as well as one of many ways for users to integrate ozone and ultraviolet (UV) radiation data into their database, spreadsheet and workflow analysis. Please refer to the {access} page for more information on WOUDC data discovery, access and visualization."
+      },
       "contributor-guide": {
-        "links": [
-          "WOUDC Contributor Guide"
-        ],
+        "link": "WOUDC Contributor Guide",
         "title": "Contributor Guide"
       },
       "examples": {
         "blurb": "The following examples of extCSV files are based on the observation category (open files in a text editor):",
         "title": "Examples: extended Comma-Separated Value"
       },
-      "extended": "extended",
       "note": " The WOUDC does not accept files in binary formats such as MS-Excel or MS-Word.",
       "ozone": {
         "links": [
@@ -268,6 +242,10 @@
     },
     "glossary": {
       "blurb": "Terms related to the data centre, including definitions about network operations centres and words and phrases about the storage, management and the transmission of data.",
+      "substitutions": {
+        "carcinogenesis": "carcinogenesis effectiveness",
+        "registration": "contributor registration form"
+      },
       "terms": [
         {
           "term": "Agency",
@@ -331,11 +309,7 @@
         },
         {
           "term": "Erythemal",
-          "definition": [
-            "The solar erythemal ultraviolet (UV) radiation which is defined by the integral over the UV wavelengths of the irradiance multiplied by the erythemal action spectrum (refer to ",
-            { "link": { "to": "https://www.wmo.int/pages/prog/dra/etrp/documents/926E.pdf", "type": "external", "text": "carcinogenesis effectiveness" } },
-            ")."
-          ]
+          "definition": "The solar erythemal ultraviolet (UV) radiation which is defined by the integral over the UV wavelengths of the irradiance multiplied by the erythemal action spectrum (refer to {carcinogenesis})."
         },
         {
           "term": "extCSV",
@@ -347,11 +321,7 @@
         },
         {
           "term": "File Format Version",
-          "definition": [
-            "The WOUDC term for the format of a data file. Data files of a given content will always contain the tables and fields specified by the WOUDC for that form. Refer to ",
-            { "link": { "to": "contributors-registration", "text": "contributor registration form" } },
-            "."
-          ]
+          "definition": "The WOUDC term for the format of a data file. Data files of a given content will always contain the tables and fields specified by the WOUDC for that form. Refer to {registration}."
         },
         {
           "term": "Form",
@@ -467,11 +437,7 @@
         },
         {
           "term": "RDF",
-          "definition": [
-            "Resource Description Framework - A part of the SKOS Web Service standard from World Wide Web Consortium (",
-            { "link": { "to": "https://www.w3.org/", "type": "external", "text": "www.w3.org" } },
-            ")."
-          ]
+          "definition": "Resource Description Framework - A part of the SKOS Web Service standard from World Wide Web Consortium ({w3})."
         },
         {
           "term": "Revision",
@@ -503,11 +469,7 @@
         },
         {
           "term": "SKOS",
-          "definition": [
-            "Simple Knowledge Organization System - A part of the Web Service standard from World Wide Web Consortium (",
-            { "link": { "to": "https://www.w3.org/", "type": "external", "text": "www.w3.org" } },
-            ")."
-          ]
+          "definition": "Simple Knowledge Organization System - A part of the Web Service standard from World Wide Web Consortium ({w3})."
         },
         {
           "term": "S/N",
@@ -567,11 +529,7 @@
         },
         {
           "term": "Web Accessible Folder (WAF)",
-          "definition": [
-            "The entire archive of contributed data files in Extended CSV format is made available at ",
-            { "link": { "to": "https://woudc.org/archive", "type": "external", "text": "https://woudc.org/archive/" } },
-            " for users to browse, download or integrate into their workflows."
-          ]
+          "definition": "The entire archive of contributed data files in Extended CSV format is made available at {waf} for users to browse, download or integrate into their workflows."
         },
         {
           "term": "Web Feature Service (WFS)",
@@ -621,31 +579,23 @@
       "title": "Glossary"
     },
     "home": {
-      "blurb": [
-        "The World Ozone and Ultraviolet Radiation Data Centre (WOUDC) is one of six World Data Centres which are part of the Global Atmosphere Watch programme of the World Meteorological Organization. The WOUDC data centre is operated by the Meteorological Service of Canada, a branch of Environment and Climate Change Canada.",
-        "Ozone data set categories include total column ozone and vertical profile data from lidar measurements, ozonesonde flights, and the Umkehr technique. Ultraviolet (UV) radiation data set categories include broadband, multiband, and high resolution spectral data types.",
-        "There are over 500 registered ",
-        "stations",
-        " in the archive from over 150 ",
-        "contributors",
-        ". Metadata such as station lists with locations, are available from the WOUDC Website.",
-        "Value added data products include total ozone time series graphs and near real-time ozone maps.",
-        "All WOUDC data are made available by using the ",
-        "data search / download",
-        ", or web accessible folder (WAF) access. In addition, the Open Geospatial Consortium web services provide enhanced access to the archive, which provides standards-based-on-demand access to the archive. For more information, please refer to the ",
-        "data access",
-        " page."
-      ],
+      "blurb": {
+        "access": "data access",
+        "contributors": "contributors",
+        "search": "data search / download",
+        "stations": "stations",
+        "template": "The World Ozone and Ultraviolet Radiation Data Centre (WOUDC) is one of six World Data Centres which are part of the Global Atmosphere Watch programme of the World Meteorological Organization. The WOUDC data centre is operated by the Meteorological Service of Canada, a branch of Environment and Climate Change Canada.\n\nOzone data set categories include total column ozone and vertical profile data from lidar measurements, ozonesonde flights, and the Umkehr technique. Ultraviolet (UV) radiation data set categories include broadband, multiband, and high resolution spectral data types.\n\nThere are over 500 registered {stations} in the archive from over 150 {contributors}. Metadata such as station lists with locations, are available from the WOUDC Website.\n\nValue added data products include total ozone time series graphs and near real-time ozone maps.\n\nAll WOUDC data are made available by using the {search}, or web accessible folder (WAF) access. In addition, the Open Geospatial Consortium web services provide enhanced access to the archive, which provides standards-based-on-demand access to the archive. For more information, please refer to the {access} page."
+      },
       "history": {
-        "milestones": [
-          "World Ozone Data Centre (WODC) created",
-          "first publication of Ozone Data for the World issued",
-          "solar ultraviolet (UV) radiation data is added to the data archives; data centre renamed to World Ozone and Ultraviolet Radiation Data Centre (WOUDC)",
-          "initial website and FTP site created",
-          "first data CD ROM produced",
-          "first data DVD ROM with complete data archive released",
-          "website updated, providing modernized mechanisms supporting discovery, visualization, access and management of ozone and UV data"
-        ],
+        "milestones": {
+          "1960": "World Ozone Data Centre (WODC) created",
+          "1964": "first publication of Ozone Data for the World issued",
+          "1992": "solar ultraviolet (UV) radiation data is added to the data archives; data centre renamed to World Ozone and Ultraviolet Radiation Data Centre (WOUDC)",
+          "1995": "initial website and FTP site created",
+          "1996": "first data CD ROM produced",
+          "2006": "first data DVD ROM with complete data archive released",
+          "2015": "website updated, providing modernized mechanisms supporting discovery, visualization, access and management of ozone and UV data"
+        },
         "title": "History of the Data Centre"
       },
       "title": "About WOUDC"

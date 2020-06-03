@@ -154,96 +154,70 @@
       "blurb": "Voici les réponses aux questions les plus fréquemment poséesà propos de notre centre de données.",
       "questions": [
         {
-          "text": "Qui peut consulter les données du WOUDC ?",
-          "answer": [
-            "Le WOUDC est un site Web public qui appuie le programme de Veille de l’atmosphère globale (VAG) de l’OMM. Les données du WOUDC sont rendues publiques au nom de leurs contributeurs. Pour plus d’information à propos des données, de leur accessibilité et leur utilisation, voir la ",
-            "politique sur les données"
-          ]
+          "answer": "Le WOUDC est un site Web public qui appuie le programme de Veille de l’atmosphère globale (VAG) de l’OMM. Les données du WOUDC sont rendues publiques au nom de leurs contributeurs. Pour plus d’information à propos des données, de leur accessibilité et leur utilisation, voir la {policy}.",
+          "text": "Qui peut consulter les données du WOUDC ?"
         },
         {
-          "text": "Comment puis-je soumettre des données ?",
-          "answer": [
-            "Les contributeurs inscrits peuvent soumettre des données au WOUDC par FTP. Rendez-vous à la page de ",
-            "soumission des données",
-            " pour tous les détails. Créer de nouvelles données requiert un compte d’utilisateur du WOUDC. Pour devenir contributeur, visitez la page ",
-            "d’inscription"
-          ]
+          "answer": "Les contributeurs inscrits peuvent soumettre des données au WOUDC par FTP. Rendez-vous à la page de {submission} pour tous les détails. Créer de nouvelles données requiert un compte d’utilisateur du WOUDC. Pour devenir contributeur, visitez la page {registration}.",
+          "text": "Comment puis-je soumettre des données ?"
         },
         {
-          "text": "Comment puis-je accéder aux données du WOUDC ?",
-          "answer": [
-            "Les contributeurs enregistrés peuvent accéder aux données du WOUDC par l’entremise du site web du WOUDC, d’outils de renseignement géospatial ou d’autres solutions. Visitez la page d’",
-            "accès aux données",
-            " pourtous les détails."
-          ]
+          "answer": "Les contributeurs enregistrés peuvent accéder aux données du WOUDC par l’entremise du site web du WOUDC, d’outils de renseignement géospatial ou d’autres solutions. Visitez la page d’{access} pourtous les détails.",
+          "text": "Comment puis-je accéder aux données du WOUDC ?"
         },
         {
-          "text": "Quel genre de données trouverais-je dans le WOUDC ?",
-          "answer": [
-            "Le WOUDC gère et conserve des données sur l’ozone etle rayonnement UV. Veuillez vous référer au ",
-            "recherche de données / téléchargement",
-            " pour consulter la listedes ensembles de données du WOUDC. D’autres produits, comme des cartes, des graphiques et des rapports, sont également disponibles sur la page de ",
-            "données",
-            "."
-          ]
+          "answer": "Le WOUDC gère et conserve des données sur l’ozone etle rayonnement UV. Veuillez vous référer au {search} pour consulter la listedes ensembles de données du WOUDC. D’autres produits, comme des cartes, des graphiques et des rapports, sont également disponibles sur la page de {products}.",
+          "text": "Quel genre de données trouverais-je dans le WOUDC ?"
         },
         {
-          "text": "D’où viennent les données du WOUDC ?",
-          "answer": [
-            "Les données du WOUDC sont recueillies et partagées par des contributeurs de partout dans le monde, soit des établissements, des agences et des organisations. Les contributeurs soumettent leurs données au WOUDC, qui conserve les données et les rend disponibles sur son site web. Voir la ",
-            "liste des contributeurs"
-          ]
+          "answer": "Les données du WOUDC sont recueillies et partagées par des contributeurs de partout dans le monde, soit des établissements, des agences et des organisations. Les contributeurs soumettent leurs données au WOUDC, qui conserve les données et les rend disponibles sur son site web. Voir la {contributors}.",
+          "text": "D’où viennent les données du WOUDC ?"
         },
         {
-          "text": "À quelle fréquence les données sont-elles mises à jour ?",
-          "answer": "Les données sont normalement mises à jour et disponibles pour la consultation cinq jours ouvrables après leur réception par le WOUDC. Les données en format CSV étendu (extCSV) sont traitées et mises en ligne presque immédiatement."
+          "answer": "Les données sont normalement mises à jour et disponibles pour la consultation cinq jours ouvrables après leur réception par le WOUDC. Les données en format CSV étendu (extCSV) sont traitées et mises en ligne presque immédiatement.",
+          "text": "À quelle fréquence les données sont-elles mises à jour ?"
         },
         {
-          "text": "Qui est responsable de la mise à jour des données du WOUDC ?",
-          "answer": "Le WOUDC utilise les informations que lui soumettent des contributeurs. Les WOUDC s’assure que les informations les plus récentes envoyées par le contributeur sont disponibles pour tous les utilisateurs."
+          "answer": "Le WOUDC utilise les informations que lui soumettent des contributeurs. Les WOUDC s’assure que les informations les plus récentes envoyées par le contributeur sont disponibles pour tous les utilisateurs.",
+          "text": "Qui est responsable de la mise à jour des données du WOUDC ?"
         },
         {
-          "text": "Est-ce que je peux me servir de mon application pour consulter des données du WOUDCet envoyer des données au WOUDC ?",
-          "answer": [
-            "Oui. Le WOUDC permet d’accéder aux données brutes par dossier accessible sur le web (WAF) ou les services Web de l’Open Geospatial Consortium tels que des services de cartographie web et des Service de caractéristiques web, procurant une accessibilité dynamique en temps réel aux données du WOUDC dans une variété de formats et d’encodages. Pour obtenir de plus amples renseignements, veuillez vous référer au d’",
-            "accès aux données",
-            "."
-          ]
+          "answer": "Oui. Le WOUDC permet d’accéder aux données brutes par dossier accessible sur le web (WAF) ou les services Web de l’Open Geospatial Consortium tels que des services de cartographie web et des Service de caractéristiques web, procurant une accessibilité dynamique en temps réel aux données du WOUDC dans une variété de formats et d’encodages. Pour obtenir de plus amples renseignements, veuillez vous référer au d’{access}.",
+          "text": "Est-ce que je peux me servir de mon application pour consulter des données du WOUDCet envoyer des données au WOUDC ?"
         },
         {
-          "text": "Puis-je utiliser mon appareil mobile pour accéder au WOUDC ?",
-          "answer": [
-            "Oui. L’application web du WOUDC a été mise sur pied à partir des directives du gouvernement du Canada à propos de ",
-            "l’accessibilité",
-            " et ",
-            "l’utilisation",
-            ", qui sont alignées avec ",
-            "les directives d’accessibilité du contenu du site web W3C"
-          ]
+          "answer": "Oui. L’application web du WOUDC a été mise sur pied à partir des directives du gouvernement du Canada à propos de {accessibility} et {usability}, qui sont alignées avec {w3c}.",
+          "text": "Puis-je utiliser mon appareil mobile pour accéder au WOUDC ?"
         }
       ],
+      "substitutions": {
+        "access": "accès aux données",
+        "accessibility": "l’accessibilité",
+        "contributors": "liste des contributeurs",
+        "policy": "politique sur les données",
+        "products": "données",
+        "registration": "d’inscription",
+        "search": "recherche de données / téléchargement",
+        "submission": "soumission des données",
+        "usability": "l’utilisation",
+        "w3c": "les directives d’accessibilité du contenu du site web W3C"
+      },
       "title": "Foire aux questions"
     },
     "formats": {
-      "blurb": [
-        "Le WOUDC utilise le format de fichier texte ASCII pour la soumission de données dans un format CSV ",
-        " (ext).",
-        "Le format CSV étendu (extCSV) est le format de fichier de données standard pour les soumissions au WOUDC. Le format ",
-        " standard pour les règles de syntaxe du CSV prend en charge la formulation des observations ainsi que de multiple contenus dans des fichiers individuels. Lorsque les fournisseurs désirent soumettre des données au WOUDC, le extCSV leur simplifie la tâche avec un format texte classiqueen plus de leur permettre d’intégrer des données sur l’ozone et le rayonnement ultraviolet (UV) dans leur base de données, leur feuille de calcul et leurs analyses du déroulement du travail. Veuillez consulter la ",
-        "d'accès aux données",
-        " pour plus de renseignements au sujet de la découverte, de l’accessibilité et de la visualisation des données du WOUDC."
-      ],
+      "blurb": {
+        "access": "d'accès aux données",
+        "extended": "étendu",
+        "template": "Le WOUDC utilise le format de fichier texte ASCII pour la soumission de données dans un format CSV {extended} (ext).\n\nLe format CSV étendu (extCSV) est le format de fichier de données standard pour les soumissions au WOUDC. Le format {extended} standard pour les règles de syntaxe du CSV prend en charge la formulation des observations ainsi que de multiple contenus dans des fichiers individuels. Lorsque les fournisseurs désirent soumettre des données au WOUDC, le extCSV leur simplifie la tâche avec un format texte classiqueen plus de leur permettre d’intégrer des données sur l’ozone et le rayonnement ultraviolet (UV) dans leur base de données, leur feuille de calcul et leurs analyses du déroulement du travail. Veuillez consulter la {access} pour plus de renseignements au sujet de la découverte, de l’accessibilité et de la visualisation des données du WOUDC."
+      },
       "contributor-guide": {
-        "links": [
-          "Guide du contributeur WOUDC"
-        ],
+        "link": "Guide du contributeur WOUDC",
         "title": "Guide du contributeur"
       },
       "examples": {
         "blurb": "Les exemples de fichiers extCSV suivants sont fondés sur la catégorie Observations (ouvrir les fichiers dans un éditeur de texte) :",
         "title": "Exemple: format CSV (extended CSV)"
       },
-      "extended": "étendu",
       "note": " Le WOUDC n’accepte pas les fichiers en format binaire comme les fichiers MS-Excel ou MS-Word, par exemple.",
       "ozone": {
         "links": [
@@ -268,6 +242,9 @@
     },
     "glossary": {
       "blurb": "Termes reliés au centre des données, y compris les définitions portant sur les centres d’exploitation du réseau et les mots et phrases qui portent sur l’entreposage, la gestion et la transmission de données.",
+      "substitutions": {
+        "registration": "formulaire d’inscription des contributeurs"
+      },
       "terms": [
         {
           "term": "Acronyme de l’organisme",
@@ -323,11 +300,7 @@
         },
         {
           "term": "Dossier accessible sur le web (WAF)",
-          "definition": [
-            "Toutes les archives de fichiers de données qui ont été envoyées par les contributeurs en format CSV étendu sont disponibles au ",
-            { "link": { "to": "https://woudc.org/archive", "type": "external", "text": "https://woudc.org/archive/" } },
-            " pour les utilisateurs qui souhaitent consulter ou télécharger les données ou les intégrer dans leurs chaînes d’exploitation."
-          ]
+          "definition": "Toutes les archives de fichiers de données qui ont été envoyées par les contributeurs en format CSV étendu sont disponibles au {waf} pour les utilisateurs qui souhaitent consulter ou télécharger les données ou les intégrer dans leurs chaînes d’exploitation."
         },
         {
           "term": "DSS",
@@ -339,11 +312,7 @@
         },
         {
           "term": "Érythémateux",
-          "definition": [
-            "Le rayonnement solaire ultraviolet à effet érythémateux se définit comme l’intégrale sur les longueurs d’onde UV de l’irradiation, multipliée par le spectre à action érythémateuse (consulter ",
-            { "link": { "to": "https://www.wmo.int/pages/prog/dra/etrp/documents/926E.pdf", "type": "external", "text": "efficacité sur la carcinogenèse" } },
-            ")."
-          ]
+          "definition": "Le rayonnement solaire ultraviolet à effet érythémateux se définit comme l’intégrale sur les longueurs d’onde UV de l’irradiation, multipliée par le spectre à action érythémateuse (consulter {carcinogenesis})."
         },
         {
           "term": "extCSV",
@@ -483,11 +452,7 @@
         },
         {
           "term": "RDF",
-          "definition": [
-            "Resource Description Framework - Une partie de la norme de service Web SKOS de World Wide Web Consortium (",
-            { "link": { "to": "https://www.w3.org/", "type": "external", "text": "www.w3.org" } },
-            ")."
-          ]
+          "definition": "Resource Description Framework - Une partie de la norme de service Web SKOS de World Wide Web Consortium ({w3})."
         },
         {
           "term": "Régions de l’OMM",
@@ -531,11 +496,7 @@
         },
         {
           "term": "SKOS",
-          "definition": [
-            "Simple Knowledge Organization System - Une partie de la norme du Consortium World Wide Web Service Web (",
-            { "link": { "to": "https://www.w3.org/", "type": "external", "text": "www.w3.org" } },
-            ")."
-          ]
+          "definition": "Simple Knowledge Organization System - Une partie de la norme du Consortium World Wide Web Service Web ({w3})."
         },
         {
           "term": "S/N",
@@ -607,49 +568,33 @@
         },
         {
           "term": "Version du format de fichier",
-          "definition": [
-            "Terme propre au WOUDC pour décrire le format d’un fichier de données. Les fichiers de données portant sur un sujet précis contiendront toujours les tableaux et les champs définis par le WOUDC pour ce formulaire. Consulter le ",
-            { "link": { "to": "contributors-registration", "text": "formulaire d’inscription des contributeurs" } },
-            "."
-          ]
+          "definition": "Terme propre au WOUDC pour décrire le format d’un fichier de données. Les fichiers de données portant sur un sujet précis contiendront toujours les tableaux et les champs définis par le WOUDC pour ce formulaire. Consulter le {registration}."
         },
         {
           "term": "WOUDC",
           "definition": "Le Centre mondial de données sur l’ozone et le rayonnement ultraviolet."
-        },
-        {
-          "term": "",
-          "definition": ""
         }
       ],
       "title": "Glossaire"
     },
     "home": {
-      "blurb": [
-        "Le Centre mondial de données sur l’ozone et le rayonnement ultraviolet (WOUDC) est l’undes six Centres mondiaux de données reconnus qui font partie du programme de Veille de l’atmosphère du globe de l’Organisation météorologique mondiale. Le centre de données du WOUDC est exploité par Service météorologique du Canada, une branche d’Environnement et Changement climatique Canada.",
-        "Les catégories d’ensembles de données sur l’ozone comprennent les mesures de la colonne d’ozone total et de la courbe de répartition verticale de l’ozone relevées par des lidar, des sondes pour l’ozone en vol et par la technique Umkehr. Les catégories d’ensemble de données sur le rayonnement ultraviolet (UV) incluent les données de type spectrale, à large bande, multibande et à haute résolution.",
-        "Il y a plus de 500 ",
-        "stations enregistrées",
-        " dans les archives, provenant de plus de 150 ",
-        "contributeurs",
-        ". Des métadonnées telles que les listes des stations et leur emplacement sont offertes sur le site Web du WOUDC.",
-        "Les données à valeur ajoutée incluent les graphiques représentant la quantité totale d’ozone, classés en ordre chronologique, et les cartes des quantités d’ozone qui en montrent l’évolution en temps quasi réel.",
-        "Toutes les données du WOUDC sont fournies en utilisant la ",
-        "recherche de données / téléchargement",
-        ", ou pardossier accessible sur le web (WAF). De plus, les services web de l’Open Geospatial Consortium fournissent une accessibilité accrue aux archives ce qui permet un accès sur demande conforme aux normes. Pour obtenir de plus amples renseignements, veuillez vous référer à la ",
-        "d'accès aux données",
-        "."
-      ],
+      "blurb": {
+        "access": "d'accès aux données",
+        "contributors": "contributeurs",
+        "search": "recherche de données / téléchargement",
+        "stations": "stations enregistrées",
+        "template": "Le Centre mondial de données sur l’ozone et le rayonnement ultraviolet (WOUDC) est l’undes six Centres mondiaux de données reconnus qui font partie du programme de Veille de l’atmosphère du globe de l’Organisation météorologique mondiale. Le centre de données du WOUDC est exploité par Service météorologique du Canada, une branche d’Environnement et Changement climatique Canada.\n\nLes catégories d’ensembles de données sur l’ozone comprennent les mesures de la colonne d’ozone total et de la courbe de répartition verticale de l’ozone relevées par des lidar, des sondes pour l’ozone en vol et par la technique Umkehr. Les catégories d’ensemble de données sur le rayonnement ultraviolet (UV) incluent les données de type spectrale, à large bande, multibande et à haute résolution.\n\nIl y a plus de 500 {stations} dans les archives, provenant de plus de 150 {contributors}. Des métadonnées telles que les listes des stations et leur emplacement sont offertes sur le site Web du WOUDC.\n\nLes données à valeur ajoutée incluent les graphiques représentant la quantité totale d’ozone, classés en ordre chronologique, et les cartes des quantités d’ozone qui en montrent l’évolution en temps quasi réel.\n\nToutes les données du WOUDC sont fournies en utilisant la {search}, ou pardossier accessible sur le web (WAF). De plus, les services web de l’Open Geospatial Consortium fournissent une accessibilité accrue aux archives ce qui permet un accès sur demande conforme aux normes. Pour obtenir de plus amples renseignements, veuillez vous référer à la {access}."
+      },
       "history": {
-        "milestones": [
-          "Le Centre mondial des données sur l’ozone (WODC) a vu le jour",
-          "la première publication de données sur l’ozone à l’échelle mondiale du WODC a été émise",
-          "les données sur le rayonnement solaire ultraviolet (UV) ont été ajoutées aux archives ; le centre de données a alors été rebaptisé le Centre mondial de données sur l’ozone et le rayonnement ultraviolet (WOUDC)",
-          "site initial et le site FTP ont été créé",
-          "les premières données du cdrom ont été produites",
-          "les premières données du DVD ROM avec l'archive complète sont sorties",
-          "le site Web du WOUDC, mis à jour, fournit des mécanismes modernisés qui soutiennent la découverte, la visualisation et la gestion des données sur l’ozone et les UV, en plus d’en favoriser l’accessibilité"
-        ],
+        "milestones": {
+          "1960": "Le Centre mondial des données sur l’ozone (WODC) a vu le jour",
+          "1964": "la première publication de données sur l’ozone à l’échelle mondiale du WODC a été émise",
+          "1992": "les données sur le rayonnement solaire ultraviolet (UV) ont été ajoutées aux archives ; le centre de données a alors été rebaptisé le Centre mondial de données sur l’ozone et le rayonnement ultraviolet (WOUDC)",
+          "1995": "site initial et le site FTP ont été créé",
+          "1996": "les premières données du cdrom ont été produites",
+          "2006": "les premières données du DVD ROM avec l'archive complète sont sorties",
+          "2015": "le site Web du WOUDC, mis à jour, fournit des mécanismes modernisés qui soutiennent la découverte, la visualisation et la gestion des données sur l’ozone et les UV, en plus d’en favoriser l’accessibilité"
+        },
         "title": "Le centre de données - un peu d’histoire"
       },
       "title": "Qu’est-ce que le WOUDC"

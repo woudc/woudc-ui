@@ -1,12 +1,12 @@
 <template>
   <v-layout justify-center column align-content-center>
-    <h1 v-text="$t('about.standards.title')" />
+    <h1>{{ $t('about.standards.title') }}</h1>
     <i18n path="about.standards.blurb1.template" tag="p">
       <template v-slot:interoperability>
-        <a :href="interoperabilityURL" target="_blank" v-text="$t('about.standards.blurb1.interoperability')" />
+        <a :href="interoperabilityURL" target="_blank">{{ $t('about.standards.blurb1.interoperability') }}</a>
       </template>
       <template v-slot:wis>
-        <a :href="wisURL" target="_blank" v-text="$t('about.standards.blurb1.wis')" />
+        <a :href="wisURL" target="_blank">{{ $t('about.standards.blurb1.wis') }}</a>
       </template>
     </i18n>
     <v-data-table
@@ -18,12 +18,12 @@
     >
       <template v-slot:item.formats="props">
         <v-chip v-for="link in props.item.formats" :key="link.to" class="resource" label>
-          <a :href="link.to" v-text="link.text" />
+          <a :href="link.to" target="_blank">{{ link.text }}</a>
         </v-chip>
       </template>
       <template v-slot:item.services="props">
         <v-chip v-for="link in props.item.services" :key="link.to" class="resource" label>
-          <a :href="link.to" v-text="link.text" />
+          <a :href="link.to" target="_blank">{{ link.text }}</a>
         </v-chip>
       </template>
     </v-data-table>
@@ -50,6 +50,7 @@ export default {
       },
       serviceURLs: {
         csw: 'https://www.opengeospatial.org/standards/cat',
+        opensearch: 'https://github.com/dewitt/opensearch',
         pmh: 'https://www.openarchives.org/pmh/',
         wfs: 'https://www.opengeospatial.org/standards/wfs',
         wms: 'https://www.opengeospatial.org/standards/wms'
@@ -110,7 +111,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/about/standards',
-      fr: '/apropos/normes'
+      fr: '/a-propos/normes'
     }
   }
 }

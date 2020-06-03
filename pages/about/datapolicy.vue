@@ -3,28 +3,28 @@
     <h1>{{ $t('about.policy.title') }}</h1>
     <i18n path="about.policy.blurb.template" tag="p">
       <template v-slot:wmo>
-        <a :href="wmoURL" target="_blank" v-text="$t('about.policy.blurb.wmo')" />
+        <a :href="wmoURL" target="_blank">{{ $t('about.policy.blurb.wmo') }}</a>
       </template>
       <template v-slot:gaw>
-        <a :href="gawURL" target="_blank" v-text="$t('about.policy.blurb.gaw')" />
+        <a :href="gawURL" target="_blank">{{ $t('about.policy.blurb.gaw') }}</a>
       </template>
     </i18n>
-    <h2 v-text="$t('about.policy.wmo.title')" />
+    <h2>{{ $t('about.policy.wmo.title') }}</h2>
     <i18n class="newlines" path="about.policy.wmo.blurb.template" tag="p">
       <template v-slot:link>
-        <a :href="resolution40" target="_blank" v-text="$t('about.policy.wmo.blurb.link')" />
+        <a :href="resolution40" target="_blank">{{ $t('about.policy.wmo.blurb.link') }}</a>
       </template>
     </i18n>
-    <h2 v-text="$t('about.policy.gaw.title')" />
-    <p v-text="$t('about.policy.gaw.blurb')" />
+    <h2>{{ $t('about.policy.gaw.title') }}</h2>
+    <p>{{ $t('about.policy.gaw.blurb') }}</p>
     <v-card class="woudc-note" tile min-width="0px">
-      <v-card-title v-text="$t('about.policy.gaw.note.title')" />
-      <v-card-text v-text="$t('about.policy.gaw.note.body')" />
+      <v-card-title>{{ $t('about.policy.gaw.note.title') }}</v-card-title>
+      <v-card-text>{{ $t('about.policy.gaw.note.body') }}</v-card-text>
     </v-card>
-    <h2 v-text="$t('about.policy.doi.title')" />
+    <h2>{{ $t('about.policy.doi.title') }}</h2>
     <i18n path="about.policy.doi.blurb.template" tag="p">
       <template v-slot:dois>
-        <a :href="doisURL" target="_blank" v-text="$t('about.policy.doi.blurb.dois')" />
+        <a :href="doisURL" target="_blank">{{ $t('about.policy.doi.blurb.dois') }}</a>
       </template>
     </i18n>
     <v-card>
@@ -40,7 +40,9 @@
       </v-card-text>
     </v-card>
     <v-card>
-      <v-card-title class="card" v-text="$t('about.policy.doi.note2.title')" />
+      <v-card-title class="card">
+        {{ $t('about.policy.doi.note2.title') }}
+      </v-card-title>
       <v-card-text>
         <ul>
           <li v-for="text in $t('about.policy.doi.note2.items')" :key="text">
@@ -49,14 +51,20 @@
         </ul>
       </v-card-text>
     </v-card>
-    <h2 v-text="$t('about.policy.publishing.title')" />
-    <p v-text="$t('about.policy.publishing.blurb1')" />
+    <h2>{{ $t('about.policy.publishing.title') }}</h2>
+    <p>{{ $t('about.policy.publishing.blurb1') }}</p>
     <v-card>
-      <v-card-title class="card" v-text="$t('about.policy.publishing.note1.title')" />
-      <v-card-text v-text="$t('about.policy.publishing.note1.body')" />
+      <v-card-title class="card">
+        {{ $t('about.policy.publishing.note1.title') }}
+      </v-card-title>
+      <v-card-text>
+        {{ $t('about.policy.publishing.note1.body') }}
+      </v-card-text>
     </v-card>
     <v-card>
-      <v-card-title class="card" v-text="$t('about.policy.publishing.note2.title')" />
+      <v-card-title class="card">
+        {{ $t('about.policy.publishing.note2.title') }}
+      </v-card-title>
       <v-card-text>
         <ol>
           <li v-for="text in $t('about.policy.publishing.note2.items')" :key="text">
@@ -70,11 +78,15 @@
         <nuxt-link :to="localePath('contributors')" v-text="$t('about.policy.publishing.blurb2.contributors')" />
       </template>
     </i18n>
-    <h2 v-text="$t('about.policy.products.title')" />
-    <p v-text="$t('about.policy.products.blurb')" />
+    <h2>{{ $t('about.policy.products.title') }}</h2>
+    <p>{{ $t('about.policy.products.blurb') }}</p>
     <v-card>
-      <v-card-title class="card" v-text="$t('about.policy.products.note.title')" />
-      <v-card-text v-text="$t('about.policy.products.note.body')" />
+      <v-card-title class="card">
+        {{ $t('about.policy.products.note.title') }}
+      </v-card-title>
+      <v-card-text>
+        {{ $t('about.policy.products.note.body') }}
+      </v-card-text>
     </v-card>
   </v-layout>
 </template>
@@ -92,7 +104,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/about/data-policy',
-      fr: '/apropos/politique-donnees'
+      fr: '/a-propos/politique-donnees'
     }
   }
 }
