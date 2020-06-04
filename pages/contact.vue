@@ -1,7 +1,17 @@
 <template>
   <v-layout justify-center column align-content-center>
     <h1>{{ $t('contact.title') }}</h1>
-    <woudc-blurb :items="blurb" />
+    <i18n class="newlines" path="contact.blurb.template" tag="p">
+      <template v-slot:faq>
+        <nuxt-link :to="localePath('about-faq')" v-text="$t('contact.blurb.faq')" />
+      </template>
+      <template v-slot:woudc>
+        <b>WOUDC</b>
+      </template>
+      <template v-slot:channels>
+        <nuxt-link to="#other-contacts" v-text="$t('contact.blurb.channels')" />
+      </template>
+    </i18n>
     <hr>
     <span class="headline">{{ $t('contact.contact-info') }}</span>
     <p>{{ $t('contact.prompt') }}</p>
@@ -15,7 +25,20 @@
       {{ $t('contact.email') }} <span class="red--text">({{ $t('contact.required') }})</span>
     </h4>
     <v-text-field v-model="selectedEmail" solo />
-    <woudc-note :title="$t('contact.note-title')" :body="noteBody" />
+    <v-card class="mt-1 mb-4" color="info">
+      <v-card-title class="pt-3 pb-0">
+        {{ $t('contact.note.title') }}
+      </v-card-title>
+      <v-card-text>
+        <i18n path="contact.note.template" tag="span">
+          <template v-slot:privacy-act>
+            <i><a href="https://laws-lois.justice.gc.ca/eng/acts/P-21/index.html" target="_blank">
+              {{ $t('contact.note.privacy-act') }}
+            </a></i>
+          </template>
+        </i18n>
+      </v-card-text>
+    </v-card>
     <h4>
       <span class="red--text">*</span>
       {{ $t('contact.subject') }} <span class="red--text">({{ $t('contact.required') }})</span>
@@ -28,49 +51,24 @@
     <v-textarea v-model="selectedMessage" solo />
     <div id="other-contacts">
       <h2>{{ $t('contact.other-channels') }}</h2>
-      <div v-for="(lines, header) in $t('contact.contact-methods')" :key="header">
+      <div v-for="(line, header) in $t('contact.contact-methods')" :key="header">
         <h4>{{ header }}:</h4>
-        <div v-for="(line, i) in lines" :key="i">
+        <p class="newlines">
           {{ line }}
-        </div>
+        </p>
       </div>
     </div>
   </v-layout>
 </template>
 
 <script>
-import WoudcBlurb from '~/components/WoudcBlurb'
-import WoudcNote from '~/components/WoudcNote'
-
 export default {
-  components: {
-    'woudc-blurb': WoudcBlurb,
-    'woudc-note': WoudcNote
-  },
   data() {
     return {
-      selectedName: '',
-      selectedEmail: '',
-      selectedSubject: '',
-      selectedMessage: '',
-      blurb: [
-        { text: this.$t('contact.blurb[0]') },
-        { link: { to: 'about-faq', text: this.$t('contact.blurb[1]') } },
-        { text: this.$t('contact.blurb[2]') },
-        { newlines: 2 },
-        { text: this.$t('contact.blurb[3]') },
-        { bold: 'WOUDC' },
-        { text: this.$t('contact.blurb[4]') },
-        { newlines: 2 },
-        { text: this.$t('contact.blurb[5]') },
-        { link: { to: 'contact', selector: '#other-contacts', text: this.$t('contact.blurb[6]') } },
-        { text: this.$t('contact.blurb[7]') }
-      ],
-      noteBody: [
-        { text: this.$t('contact.note-body[0]') },
-        { italic: { link: { to: 'https://laws-lois.justice.gc.ca/eng/acts/P-21/index.html', type: 'external', text: this.$t('contact.note-body[1]') } } },
-        { text: this.$t('contact.note-body[2]') }
-      ]
+      selectedName: null,
+      selectedEmail: null,
+      selectedSubject: null,
+      selectedMessage: null
     }
   },
   nuxtI18n: {
