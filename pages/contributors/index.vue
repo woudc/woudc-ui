@@ -5,20 +5,46 @@
     <v-expansion-panels id="map-instructions">
       <v-expansion-panel>
         <v-expansion-panel-header>
-          <b>{{ $t('contributors.list.map-instructions.label') }}</b>
+          <b>{{ $t('map-instructions.label') }}</b>
         </v-expansion-panel-header>
         <v-expansion-panel-content>
-          {{ $t('contributors.list.map-instructions.text') }}
+          <i18n class="newlines" path="map-instructions.template" tag="p">
+            <template v-slot:panning>
+              <b>{{ $t('map-instructions.panning') }}</b>
+            </template>
+            <template v-slot:zooming>
+              <b>{{ $t('map-instructions.zooming') }}</b>
+            </template>
+            <template v-slot:tab>
+              <kbd>{{ $t('map-instructions.tab') }}</kbd>
+            </template>
+            <template v-slot:plus>
+              <kbd>+</kbd>
+            </template>
+            <template v-slot:minus>
+              <kbd>-</kbd>
+            </template>
+          </i18n>
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
     <v-expansion-panels id="table-instructions">
       <v-expansion-panel>
         <v-expansion-panel-header>
-          <b>{{ $t('contributors.list.table-instructions.label') }}</b>
+          <b>{{ $t('table-instructions.label') }}</b>
         </v-expansion-panel-header>
         <v-expansion-panel-content>
-          {{ $t('contributors.list.table-instructions.text') }}
+          <i18n class="newlines" path="table-instructions.template" tag="p">
+            <template v-slot:filtering>
+              <b>{{ $t('table-instructions.filtering') }}</b>
+            </template>
+            <template v-slot:sorting>
+              <b>{{ $t('table-instructions.sorting') }}</b>
+            </template>
+            <template v-slot:paging>
+              <b>{{ $t('table-instructions.paging') }}</b>
+            </template>
+          </i18n>
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
@@ -48,16 +74,6 @@
 <script>
 import axios from '~/plugins/axios'
 
-const contributorKeys = [
-  'acronym',
-  'project',
-  'name',
-  'country',
-  'start_date',
-  'end_date',
-  'wmo_region_id'
-]
-
 export default {
   async asyncData({ params }) {
     const contributorsURL = '/collections/contributors/items'
@@ -82,10 +98,20 @@ export default {
   },
   computed: {
     headers() {
-      return [...contributorKeys.keys()].map((index) => {
+      const contributorKeys = [
+        'acronym',
+        'project',
+        'name',
+        'country',
+        'start_date',
+        'end_date',
+        'wmo_region_id'
+      ]
+
+      return contributorKeys.map((key) => {
         return {
-          text: this.$t('contributors.list.contributor-headers[' + index + ']'),
-          value: contributorKeys[index]
+          text: this.$t('contributors.list.contributor-headers.' + key),
+          value: key
         }
       })
     }

@@ -5,20 +5,46 @@
     <v-expansion-panels id="map-instructions">
       <v-expansion-panel>
         <v-expansion-panel-header>
-          <b>{{ $t('data.instruments.map-instructions.label') }}</b>
+          <b>{{ $t('map-instructions.label') }}</b>
         </v-expansion-panel-header>
         <v-expansion-panel-content>
-          {{ $t('data.instruments.map-instructions.text') }}
+          <i18n class="newlines" path="map-instructions.template" tag="p">
+            <template v-slot:panning>
+              <b>{{ $t('map-instructions.panning') }}</b>
+            </template>
+            <template v-slot:zooming>
+              <b>{{ $t('map-instructions.zooming') }}</b>
+            </template>
+            <template v-slot:tab>
+              <kbd>{{ $t('map-instructions.tab') }}</kbd>
+            </template>
+            <template v-slot:plus>
+              <kbd>+</kbd>
+            </template>
+            <template v-slot:minus>
+              <kbd>-</kbd>
+            </template>
+          </i18n>
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
     <v-expansion-panels id="table-instructions">
       <v-expansion-panel>
         <v-expansion-panel-header>
-          <b>{{ $t('data.instruments.table-instructions.label') }}</b>
+          <b>{{ $t('table-instructions.label') }}</b>
         </v-expansion-panel-header>
         <v-expansion-panel-content>
-          {{ $t('data.instruments.table-instructions.text') }}
+          <i18n class="newlines" path="table-instructions.template" tag="p">
+            <template v-slot:filtering>
+              <b>{{ $t('table-instructions.filtering') }}</b>
+            </template>
+            <template v-slot:sorting>
+              <b>{{ $t('table-instructions.sorting') }}</b>
+            </template>
+            <template v-slot:paging>
+              <b>{{ $t('table-instructions.paging') }}</b>
+            </template>
+          </i18n>
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
@@ -28,7 +54,7 @@
       :items="instruments"
       class="elevation-1"
     >
-      <template v-slot:item.station_name="instrument">
+      <template v-slot:item.station="instrument">
         <nuxt-link :to="'/data/stations/' + instrument.item.station_id">
           {{ instrument.item.station_name }}
         </nuxt-link>
@@ -44,17 +70,6 @@
 
 <script>
 import axios from '~/plugins/axios'
-
-const headerKeys = [
-  'name',
-  'model',
-  'start_date',
-  'end_date',
-  'data_class',
-  'dataset',
-  'station',
-  'waf_url'
-]
 
 export default {
   async asyncData({ params }) {
@@ -76,18 +91,29 @@ export default {
   },
   computed: {
     headers() {
-      return [...headerKeys.keys()].map((index) => {
+      const headerKeys = [
+        'name',
+        'model',
+        'start_date',
+        'end_date',
+        'data_class',
+        'dataset',
+        'station',
+        'waf_url'
+      ]
+
+      return headerKeys.map((key) => {
         return {
-          text: this.$t('data.instruments.headers[' + index + ']'),
-          value: headerKeys[index]
+          text: this.$t('data.instruments.headers.' + key),
+          value: key
         }
       })
     }
   },
   nuxtI18n: {
     paths: {
-      en: '/instruments',
-      fr: '/instruments'
+      en: '/data/instruments',
+      fr: '/donnees/instruments'
     }
   }
 }

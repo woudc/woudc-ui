@@ -1,38 +1,59 @@
 <template>
   <v-layout justify-center column align-content-center>
     <h1>{{ $t('data.explore.title') }}</h1>
-    <woudc-blurb :items="blurb" />
-    <h3>{{ $t('data.explore.dataset') }}</h3>
-    <woudc-select
-      v-model="selectedDataset"
-      :options="datasets"
-      :placeholder="$t('data.explore.placeholders.dataset')"
+    <i18n class="newlines" path="data.explore.blurb.template" tag="p">
+      <template v-slot:access>
+        <nuxt-link
+          :to="localePath('about-dataaccess')"
+          v-text="$t('data.explore.blurb.access')"
+        />
+      </template>
+    </i18n>
+    <h3>{{ $t('data.explore.dataset.title') }}</h3>
+    <v-select
+      class="woudc-select"
+      :value="selectedDataset"
+      :items="datasetOptions"
+      :label="$t('data.explore.dataset.placeholder')"
+      item-text="name"
+      item-value="value"
+      solo
       @input="clearAll()"
     />
-    <h3>{{ $t('data.explore.country') }}</h3>
-    <woudc-select
-      v-model="selectedCountry"
-      :options="countries"
-      :placeholder="$t('data.explore.placeholders.country')"
-      :disabled="selectedDataset === ''"
+    <h3>{{ $t('data.explore.country.title') }}</h3>
+    <v-autocomplete
+      :value="selectedCountry"
+      :items="countries"
+      :label="$t('data.explore.country.placeholder')"
+      :item-text="countryText"
+      item-value="country_code"
+      solo
       @input="clearStationAndInstrument()"
     />
-    <h3>{{ $t('data.explore.station') }}</h3>
-    <woudc-select
-      v-model="selectedStation"
-      :options="stations"
-      :placeholder="$t('data.explore.placeholders.station')"
-      :disabled="selectedDataset === ''"
+    <h3>{{ $t('data.explore.station.title') }}</h3>
+    <v-autocomplete
+      :value="selectedStation"
+      :items="stations"
+      :label="$t('data.explore.station.placeholder')"
+      :item-text="stationText"
+      item-value="woudc_id"
+      solo
       @input="clearInstrument()"
     />
-    <h3>{{ $t('data.explore.instrument') }}</h3>
-    <woudc-select
-      v-model="selectedInstrument"
-      :options="instruments"
-      :placeholder="$t('data.explore.placeholders.instrument')"
-      :disabled="instruments.length === 0"
+    <h3>{{ $t('data.explore.instrument.title') }}</h3>
+    <v-select
+      :value="selectedInstrument"
+      :items="instruments"
+      :label="$t('data.explore.instrument.placeholder')"
+      :item-text="instrumentText"
+      item-value="name"
+      solo
     />
-    <v-range-slider v-model="selectedYearRange" :min="minYear" :max="maxYear" />
+    <v-range-slider
+      v-model="selectedYearRange"
+      :min="minSelectableYear"
+      :max="maxSelectableYear"
+    />
     <div id="start-year">
       <h4>{{ $t('data.explore.start') }}</h4>
       <input v-model="selectedYearRange[0]" type="text">
@@ -45,114 +66,177 @@
 </template>
 
 <script>
-import WoudcBlurb from '~/components/WoudcBlurb'
-import WoudcSelect from '~/components/WoudcSelect'
-
-const now = new Date()
-
 export default {
-  components: {
-    'woudc-blurb': WoudcBlurb,
-    'woudc-select': WoudcSelect
-  },
   data() {
     return {
-      blurb: [
-        { text: this.$t('data.explore.blurb[0]') },
-        { newlines: 2 },
-        { text: this.$t('data.explore.blurb[1]') },
-        { newlines: 2 },
-        { text: this.$t('data.explore.blurb[2]') },
-        { link: { to: 'about-dataaccess', text: this.$t('data.explore.blurb[3]') } },
-        { text: this.$t('data.explore.blurb[4]') }
-      ],
-      selectedDataset: '',
-      selectedCountry: '',
-      selectedStation: '',
-      selectedInstrument: '',
-      minYear: 1924,
-      maxYear: now.getFullYear(),
-      selectedYearRange: [1924, now.getFullYear()],
-      datasets: [
-        { text: 'All WOUDC Datasets', key: 'All' },
+      selectedDataset: null,
+      selectedCountry: null,
+      selectedStation: null,
+      selectedInstrument: null,
+      selectedYearRange: [null, null],
+      minSelectableYear: 1924,
+      countries: [
+        { country_code: null },
         {
-          category: 'Total Column Ozone',
-          children: [
-            { text: 'Total Ozone - Daily Observations', key: 'TotalOzone' },
-            { text: 'Total Ozone - Hourly Observations', key: 'TotalOzoneObs' }
-          ]
+          country_name: { en: 'Canada', fr: 'Canada' },
+          country_code: 'CAN'
         },
         {
-          category: 'Vertical Ozone Profile',
-          children: [
-            { text: 'Lidar', value: 'Lidar' },
-            { text: 'OzoneSonde', value: 'OzoneSonde' },
-            { text: 'UmkehrN14 (Level 1.0)', value: 'UmkehrN14_1.0' },
-            { text: 'UmkehrN14 (Level 2.0)', value: 'UmkehrN14_2.0' },
-            { text: 'RocketSonde', value: 'RocketSonde' }
-          ]
+          country_name: { en: 'Nepal', fr: 'Nepal' },
+          country_code: 'NPL'
         },
         {
-          category: 'UV Irradiance',
-          children: [
-            { text: 'Broadband', key: 'Broad-band' },
-            { text: 'Multiband', key: 'Multi-band' },
-            { text: 'Spectral', key: 'Spectral' },
-            { text: 'UV Index', key: 'uv_index_hourly' }
-          ]
-        },
-        {
-          category: 'Related Data Centers',
-          children: [
-            { text: 'NDACC: Total Column Ozone' },
-            { text: 'NDACC: Vertical Ozone Profile' },
-            { text: 'NDACC: UV Irradiance' }
-          ]
+          country_name: { en: 'Mount Kilimanjaro', fr: 'Mount Kilimanjaro' },
+          country_code: 'KMJ'
         }
       ],
-      countries: [
-        { text: 'Canada', key: 'CAN' },
-        { text: 'Nepal', key: 'NPL' },
-        { text: 'Mount Kilimanjaro', key: 'KMJ' }
-      ],
       stations: [
-        { text: 'Alert (018)', key: '018' },
-        { text: 'Edmonton (021)', key: '021' },
-        { text: 'Moosonee (023)', key: '023' },
-        { text: 'Resolute (024)', key: '024' },
-        { text: 'Toronto (065)', key: '065' },
-        { text: 'Goose Bay (076)', key: '076' },
-        { text: 'Churchill (077)', key: '077' },
-        { text: 'Iqaluit (303)', key: '303' },
-        { text: 'Eureka (315)', key: '315' },
-        { text: 'Kelowna (457)', key: '457' }
+        { woudc_id: null },
+        { name: 'Alert', woudc_id: '018' },
+        { name: 'Edmonton', woudc_id: '021' },
+        { name: 'Moosonee', woudc_id: '023' },
+        { name: 'Resolute', woudc_id: '024' },
+        { name: 'Toronto', woudc_id: '065' },
+        { name: 'Goose Bay', woudc_id: '076' },
+        { name: 'Churchill', woudc_id: '077' },
+        { name: 'Iqaluit', woudc_id: '303' },
+        { name: 'Eureka', woudc_id: '315' },
+        { name: 'Kelowna', woudc_id: '457' }
       ],
       instruments: [
-        { text: 'Some Brewer', key: 'brewer' },
-        { text: 'Some Dobson', key: 'dobson' },
-        { text: 'Another Brewer', key: 'also brewer' }
+        { name: null },
+        { name: 'Brewer' },
+        { name: 'Dobson' },
+        { name: 'ECC' }
       ]
     }
   },
+  computed: {
+    datasetOptions() {
+      const datasetSections = {
+        totalozone: {
+          daily: 'TotalOzone',
+          hourly: 'TotalOzoneObs'
+        },
+        'vertical-ozone': {
+          lidar: 'Lidar',
+          ozonesonde: 'OzoneSonde',
+          umkehr1: 'UmkehrN14_1.0',
+          umkehr2: 'UmkehrN14_2.0',
+          rocketsonde: 'RocketSonde'
+        },
+        'uv-irradiance': {
+          broadband: 'Broad-band',
+          multiband: 'Multi-band',
+          spectral: 'Spectral',
+          'uv-index': 'uv_index_hourly'
+        },
+        'data-centers': {
+          totalozone: 'ndacc-total',
+          'vertical-ozone': 'ndacc-vertical',
+          'uv-irradiance': 'ndacc-uv'
+        }
+      }
+
+      const datasetOptions = []
+      datasetOptions.push({
+        name: this.$t('data.explore.dataset.all'),
+        value: 'All',
+      })
+
+      for (const [section, children] of Object.entries(datasetSections)) {
+        datasetOptions.push({
+          header: this.$t('data.explore.dataset.' + section + '.label')
+        })
+        for (const [subsection, id] of Object.entries(children)) {
+          datasetOptions.push({
+            name: this.$t('data.explore.dataset.' + section + '.' + subsection),
+            value: id
+          })
+        }
+      }
+
+      return datasetOptions
+    },
+    maxSelectableYear() {
+      return (new Date()).getFullYear()
+    }
+  },
+  mounted() {
+    this.selectedYearRange = [
+      this.minSelectableYear, this.maxSelectableYear
+    ]
+  },
   methods: {
+    countryText(country) {
+      if (country.country_code === null) {
+        return '...'
+      } else {
+        const name = country.country_name[this.$i18n.locale]
+        return name + ' (' + country.country_code + ')'
+      }
+    },
+    stationText(station) {
+      if (station.woudc_id === null) {
+        return '...'
+      } else {
+        return station.name + ' (' + station.woudc_id + ')'
+      }
+    },
+    instrumentText(instrument) {
+      if (instrument.name === null) {
+        return '...'
+      } else {
+        return instrument.name
+      }
+    },
     clearAll() {
-      this.selectedCountry = ''
-      this.selectedStation = ''
-      this.selectedInstrument = ''
+      this.selectedCountry = null
+      this.selectedStation = null
+      this.selectedInstrument = null
     },
     clearStationAndInstrument() {
-      this.selectedStation = ''
-      this.selectedInstrument = ''
+      this.selectedStation = null
+      this.selectedInstrument = null
     },
     clearInstrument() {
-      this.selectedInstrument = ''
+      this.selectedInstrument = null
     }
   },
   nuxtI18n: {
     paths: {
-      en: '/explore',
-      fr: '/explore-fr'
+      en: '/data/explore',
+      fr: '/donnees/rechercher'
     }
   }
 }
 </script>
+
+<style scoped>
+.v-select-list >>> .v-list {
+  padding: 0px;
+}
+
+.v-select-list >>> .v-subheader {
+  font-weight: bold;
+  background-color: #e4e4e4;
+  max-height: 40px;
+  padding-left: 12px;
+  margin-left: 0px;
+}
+
+.v-select >>> .v-input__slot {
+  max-width: 60%;
+}
+
+.v-select-list >>> .v-list-item {
+  padding-left: 24px;
+}
+
+.v-select-list >>> .v-list-item,
+.v-select-list >>> .v-list-item__content {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  min-height: 32px;
+}
+</style>

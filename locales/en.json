@@ -7,6 +7,20 @@
   "wmo": "WMO",
   "wmoFull": "World Meteorological Organization",
   "woudcFull": "World Ozone and Ultraviolet Radiation Data Centre",
+  "map-instructions": {
+    "label": "How to Use: Interactive Map",
+    "panning": "Panning:",
+    "tab": "Tab",
+    "template": "{panning} To pan the map, click and drag over the interactive map. Alternatively, {tab} focus to the interactive map box and then press the arrow keys.\n\n{zooming} To zoom in and out of the map, mouse scroll up and down while you mouse over the interactive map or click the {plus} and {minus} buttons respectively. Alternatively, {tab} focus to the interactive map box and then press the {plus} or {minus} keys. To zoom out to the maximum map extent, press the \"zoom to globe\" button.",
+    "zooming": "Zooming:"
+  },
+  "table-instructions": {
+    "filtering": "Filtering:",
+    "label": "How to Use: Interactive Table",
+    "paging": "Paging:",
+    "sorting": "Sorting:",
+    "template": "{filtering} To filter the table, type in the search bars at the top of each column or the \"search all\" bar.\n\n{sorting} To sort the table, click on the arrow symbols next to the column headings.\n\n{paging} Change the \"show entries\" dropdown to change how many stations are displayed on the page. Click \"next\" or \"previous\" to show additional pages of the table."
+  },
   "about": {
     "access": {
       "blurb": {
@@ -796,36 +810,23 @@
     "news": "News"
   },
   "contact": {
-    "blurb": [
-      "For answers to technical questions, please consult the ",
-      "Frequently Asked Questions",
-      " section.",
-      "If you do not find answers to your questions or to submit your comments, suggestions, and ideas about ",
-      ", please fill out the form below.",
-      "If you have difficulty with the following form, you can use any of our ",
-      "other service channels",
-      " to contact us."
-    ],
+    "blurb": {
+      "channels": "other service channels",
+      "faq": "Frequently Asked Questions",
+      "template": "For answers to technical questions, please consult the {faq} section.\nIf you do not find answers to your questions or to submit your comments, suggestions, and ideas about {woudc}, please fill out the form below.\nIf you have difficulty with the following form, you can use any of our {channels} to contact us."
+    },
     "contact-info": "Your Contact Information",
     "contact-methods": {
-      "By Mail": [
-        "World Ozone and Ultraviolet Radiation Data Centre",
-        "Meteorological Service of Canada",
-        "Environment and Climate Change Canada",
-        "4905 Dufferin Street",
-        "Toronto, ON M3H 5T4",
-        "Canada"
-      ]
+      "By Mail": "World Ozone and Ultraviolet Radiation Data Centre\nMeteorological Service of Canada\nEnvironment and Climate Change Canada\n4905 Dufferin Street\nToronto, ON M3H 5T4\nCanada"
     },
     "email": "E-mail Address",
     "message": "Message",
     "name": "Name",
-    "note-body": [
-      "All personal information created, held or collected by this department is protected under the ",
-      "Privacy Act",
-      ". This means that you will be informed of the purpose for which it is being collected and how to exercise your right of access to that information. You will be asked for your consent where appropriate."
-    ],
-    "note-title": "Personal Information Collection Statement",
+    "note": {
+      "privacy": "Privacy Act",
+      "template": "All personal information created, held or collected by this department is protected under the {privacy}. This means that you will be informed of the purpose for which it is being collected and how to exercise your right of access to that information. You will be asked for your consent where appropriate.",
+      "title": "Personal Information Collection Statement"
+    },
     "other-channels": "Other Service Channels",
     "prompt": "Please provide information that we could use to contact you.",
     "required": "required",
@@ -837,30 +838,22 @@
   "contributors": {
     "list": {
       "blurb": "The contributor list provides the institute or organization name and abbreviation, address, contact information and local file information.",
-      "contributor-headers": [
-        "Acronym",
-        "Project",
-        "Contributor Name",
-        "Country",
-        "Date From",
-        "Date To",
-        "WMO Region"
-      ],
-      "deployment-headers": [
-        "WOUDC Station ID",
-        "Station Name",
-        "Station Type",
-        "Station Country",
-        "Date From",
-        "Date To"
-      ],
-      "map-instructions": {
-        "label": "How to Use: Interactive Map",
-        "text": "Lorem Ipsum something something something"
+      "contributor-headers": {
+        "acronym": "Acronym",
+        "country": "Country",
+        "end_date": "Date To",
+        "name": "Contributor Name",
+        "project": "Project",
+        "start_date": "Date From",
+        "wmo_region_id": "WMO Region"
       },
-      "table-instructions": {
-        "label": "How to Use: Interactive Table",
-        "text": "Lorem Ipsum something something something"
+      "deployment-headers": {
+        "country": "Station Country",
+        "end_date": "Date To",
+        "name": "Station Name",
+        "start_date": "Date From",
+        "type": "Station Type",
+        "woudc_id": "WOUDC Station ID"
       },
       "title": "Contributor List"
     },
@@ -924,25 +917,55 @@
     },
     "title": "Data",
     "explore": {
-      "blurb": [
-        "The WOUDC data archive can be searched by data category: there are six ozone data categories and three ultraviolet (UV) radiation data categories. The ozone datasets for total column ozone include total ozone and total ozone observations and the vertical ozone profile includes lidar, ozonesonde, Umkehr N-value and C-Umkehr. The UV datasets for UV irradiance include broadband, multiband and spectral.",
-        "To search and download data, select the dataset and observation time period. Optionally, draw your map extent of interest and then hit search. All available data for that time period will be displayed.",
-        "For more details on how to use this page, please view the ",
-        "How to Use",
-        "guide."
-      ],
-      "country": "Country",
-      "dataset": "Dataset",
-      "instrument": "Instrument",
+      "blurb": {
+        "access": "How to Use",
+        "template": "The WOUDC data archive can be searched by data category: there are six ozone data categories and three ultraviolet (UV) radiation data categories. The ozone datasets for total column ozone include total ozone and total ozone observations and the vertical ozone profile includes lidar, ozonesonde, Umkehr N-value and C-Umkehr. The UV datasets for UV irradiance include broadband, multiband and spectral.\n\nTo search and download data, select the dataset and observation time period. Optionally, draw your map extent of interest and then hit search. All available data for that time period will be displayed.\n\nFor more details on how to use this page, please view the {access} guide."
+      },
+      "country": {
+        "placeholder": "Select a Country",
+        "title": "Country"
+      },
+      "dataset": {
+        "all": "All WOUDC Datasets",
+        "placeholder": "Select a Dataset",
+        "title": "Dataset",
+        "data-centers": {
+          "label": "Related Data Centers",
+          "totalozone": "NDACC: Total Column Ozone",
+          "uv-irradiance": "NDACC: UV Irradiance",
+          "vertical-ozone": "NDACC: Vertical Ozone Profile"
+        },
+        "totalozone": {
+          "daily": "Total Ozone - Daily Observations",
+          "hourly": "Total Ozone - Hourly Observations",
+          "label": "Total Column Ozone"
+        },
+        "uv-irradiance": {
+          "broadband": "Broadband",
+          "label": "UV Irradiance",
+          "multiband": "Multiband",
+          "spectral": "Spectral",
+          "uv-index": "UV Index"
+        },
+        "vertical-ozone": {
+          "label": "Vertical Ozone Profile",
+          "lidar": "Lidar",
+          "ozonesonde": "OzoneSonde",
+          "rocketsonde": "RocketSonde",
+          "umkehr1": "UmkehrN14 (Level 1.0)",
+          "umkehr2": "UmkehrN14 (Level 2.0)"
+        }
+      },
       "end": "End",
-      "placeholders": {
-        "country": "Select a Country",
-        "dataset": "Select a Dataset",
-        "instrument": "Select an Instrument",
-        "station": "Select a Station"
+      "instrument": {
+        "placeholder": "Select an Instrument",
+        "title": "Instrument"
       },
       "start": "Start",
-      "station": "Station",
+      "station": {
+        "placeholder": "Select a Station",
+        "title": "Station"
+      },
       "title": "Data Search / Download"
     },
     "info": {
@@ -974,23 +997,15 @@
     },
     "instruments": {
       "blurb": "The WOUDC data archive can be sorted by instrument. The instrument list includes the instrument type, name and model.",
-      "headers": [
-        "Instrument Type",
-        "Instrument Model",
-        "Date From",
-        "Date To",
-        "Data Class",
-        "Data Category",
-        "Station Name",
-        "Web Accessible Folder"
-      ],
-      "map-instructions": {
-        "label": "How to Use: Interactive Map",
-        "text": "Lorem Ipsum something something something"
-      },
-      "table-instructions": {
-        "label": "How to Use: Interactive Table",
-        "text": "Lorem Ipsum something something something"
+      "headers": {
+        "data_class": "Data Class",
+        "dataset": "Data Category",
+        "end_date": "Date To",
+        "model": "Instrument Model",
+        "name": "Instrument Type",
+        "start_date": "Date From",
+        "station": "Station Name",
+        "waf_url": "Web Accessible Folder"
       },
       "title": "Instrument List"
     },
@@ -1042,41 +1057,33 @@
     },
     "stations": {
       "blurb": "The WOUDC data archive can be sorted by station. To find out the identifying number of a particular station, select the metadata link on the WOUDC website and then the region that you are interested in. All available stations and their numbers for that region will then be displayed.",
-      "deployment-headers": [
-        "Acronym",
-        "Project",
-        "Contributor Name",
-        "Date From",
-        "Date To"
-      ],
-      "instrument-headers": [
-        "Instrument Type",
-        "Instrument Model",
-        "Instrument Number",
-        "Date From",
-        "Date To",
-        "Data Class",
-        "Data Category",
-        "Web Accessible Folder"
-      ],
-      "map-instructions": {
-        "label": "How to Use: Interactive Map",
-        "text": "Lorem Ipsum something something something"
+      "deployment-headers": {
+        "acronym": "Acronym",
+        "end_date": "Date To",
+        "name": "Contributor Name",
+        "project": "Project",
+        "start_date": "Date From"
       },
-      "station-headers": [
-        "WOUDC Station ID",
-        "GAW ID",
-        "Date From",
-        "Date To",
-        "Station Name",
-        "Station Country",
-        "Revision Date",
-        "Station Type",
-        "WMO Region"
-      ],
-      "table-instructions": {
-        "label": "How to Use: Interactive Table",
-        "text": "Lorem Ipsum something something something"
+      "instrument-headers": {
+        "data_class": "Data Class",
+        "dataset": "Data Category",
+        "end_date": "Date To",
+        "model": "Instrument Model",
+        "name": "Instrument Type",
+        "serial": "Instrument Number",
+        "start_date": "Date From",
+        "waf_url": "Web Accessible Folder"
+      },
+      "station-headers": {
+        "woudc_id": "WOUDC Station ID",
+        "gaw_id": "GAW ID",
+        "start_date": "Date From",
+        "end_date": "Date To",
+        "name": "Station Name",
+        "country": "Station Country",
+        "last_validated_datetime": "Revision Date",
+        "type": "Station Type",
+        "wmo_region_id": "WMO Region"
       },
       "title": "Station List"
     }
