@@ -10,7 +10,9 @@
     >
       <template v-slot:item.link="link">
         <td>
-          <a :href="link.item.to" target="_blank">{{ link.item.text }}</a>
+          <a :href="link.item.to" target="_blank">
+            {{ link.item.text }}
+          </a>
         </td>
       </template>
     </v-data-table>
@@ -19,6 +21,18 @@
 
 <script>
 export default {
+  data() {
+    return {
+      linkURLs: {
+        brewer: 'https://woudc.org/archive/Documentation/SOP_Documents',
+        dobson: 'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW183-Dobson-WEB.pdf',
+        'ozone-quality': 'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW_201.pdf',
+        'uv-quality': 'https://www.wmo.int/pages/prog/arep/gaw/documents/Final_GAW198_18_June.pdf',
+        'uv-instruments': 'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW191_TD_No_1538_web.pdf',
+        'uv-study': 'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW190_TD_No_1537_web.pdf'
+      }
+    }
+  },
   computed: {
     headers() {
       const headerKeys = [ 'category', 'link', 'source' ]
@@ -33,18 +47,14 @@ export default {
       })
     },
     rows() {
-      const linkURLs = [
-        'https://woudc.org/archive/Documentation/SOP_Documents',
-        'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW183-Dobson-WEB.pdf',
-        'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW_201.pdf',
-        'https://www.wmo.int/pages/prog/arep/gaw/documents/Final_GAW198_18_June.pdf',
-        'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW191_TD_No_1538_web.pdf',
-        'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW190_TD_No_1537_web.pdf'
+      const categoryOrder = [
+        'brewer', 'dobson', 'ozone-quality',
+        'uv-quality', 'uv-instruments', 'uv-study'
       ]
 
-      return [...linkURLs.keys()].map((index) => {
-        const definition = this.$t('resources.procedures.rows[' + index + ']')
-        definition.to = linkURLs[index]
+      return categoryOrder.map((category) => {
+        const definition = this.$t('resources.procedures.rows.' + category)
+        definition.to = this.linkURLs[category]
 
         return definition
       })

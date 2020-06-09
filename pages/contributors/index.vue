@@ -2,52 +2,8 @@
   <v-layout justify-center column align-content-center>
     <h1>{{ $t('contributors.list.title') }}</h1>
     <p>{{ $t('contributors.list.blurb') }}</p>
-    <v-expansion-panels id="map-instructions">
-      <v-expansion-panel>
-        <v-expansion-panel-header>
-          <b>{{ $t('map-instructions.label') }}</b>
-        </v-expansion-panel-header>
-        <v-expansion-panel-content>
-          <i18n class="newlines" path="map-instructions.template" tag="p">
-            <template v-slot:panning>
-              <b>{{ $t('map-instructions.panning') }}</b>
-            </template>
-            <template v-slot:zooming>
-              <b>{{ $t('map-instructions.zooming') }}</b>
-            </template>
-            <template v-slot:tab>
-              <kbd>{{ $t('map-instructions.tab') }}</kbd>
-            </template>
-            <template v-slot:plus>
-              <kbd>+</kbd>
-            </template>
-            <template v-slot:minus>
-              <kbd>-</kbd>
-            </template>
-          </i18n>
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-    </v-expansion-panels>
-    <v-expansion-panels id="table-instructions">
-      <v-expansion-panel>
-        <v-expansion-panel-header>
-          <b>{{ $t('table-instructions.label') }}</b>
-        </v-expansion-panel-header>
-        <v-expansion-panel-content>
-          <i18n class="newlines" path="table-instructions.template" tag="p">
-            <template v-slot:filtering>
-              <b>{{ $t('table-instructions.filtering') }}</b>
-            </template>
-            <template v-slot:sorting>
-              <b>{{ $t('table-instructions.sorting') }}</b>
-            </template>
-            <template v-slot:paging>
-              <b>{{ $t('table-instructions.paging') }}</b>
-            </template>
-          </i18n>
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-    </v-expansion-panels>
+    <map-instructions id="map-instructions" />
+    <table-instructions id="table-instructions" />
     <v-data-table
       id="contributors-table"
       :headers="headers"
@@ -73,8 +29,14 @@
 
 <script>
 import axios from '~/plugins/axios'
+import mapInstructions from '~/components/MapInstructions'
+import tableInstructions from '~/components/TableInstructions'
 
 export default {
+  components: {
+    'map-instructions': mapInstructions,
+    'table-instructions': tableInstructions
+  },
   async asyncData({ params }) {
     const contributorsURL = '/collections/contributors/items'
     const queryParams = 'sortby=acronym:A,project:D'
