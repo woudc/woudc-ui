@@ -1,6 +1,6 @@
 <template>
   <v-layout justify-center column align-content-center>
-    <h2>{{ $t('welcome') }}</h2>
+    <h2>{{ $t('common.welcome') }}</h2>
     <v-card itemscope itemtype="http://schema.org/GovernmentOrganization">
       <v-card-title itemprop="name">
         WOUDC
@@ -20,11 +20,11 @@
             <div>
               <v-card-title class="headline">
                 <a :href="wmoURL" target="_blank" itemprop="name">
-                  {{ $t('wmo') }}
+                  {{ $t('common.wmo') }}
                 </a>
               </v-card-title>
               <v-card-subtitle>
-                {{ $t('wmoFull') }}
+                {{ $t('common.wmoFull') }}
               </v-card-subtitle>
             </div>
             <v-avatar class="ma-3" size="150" tile>
@@ -51,11 +51,11 @@
             <div>
               <v-card-title class="headline">
                 <a target="_blank" :href="gawURL" itemprop="name">
-                  {{ $t('gaw') }}
+                  {{ $t('common.gaw') }}
                 </a>
               </v-card-title>
               <v-card-subtitle>
-                {{ $t('gawFull') }}
+                {{ $t('common.gawFull') }}
               </v-card-subtitle>
             </div>
             <v-avatar class="ma-3" size="150" tile>
@@ -75,10 +75,14 @@
       <v-card-text itemprop="description">
         <i18n path="home.blurb" tag="span">
           <template v-slot:wmo>
-            <a :href="wmoURL" target="_blank">{{ $t('wmo') }}</a>
+            <a :href="wmoURL" target="_blank">
+              {{ $t('common.wmo') }}
+            </a>
           </template>
           <template v-slot:gaw>
-            <a :href="gawURL" target="_blank">{{ $t('gaw') }}</a>
+            <a :href="gawURL" target="_blank">
+              {{ $t('common.gaw') }}
+            </a>
           </template>
         </i18n>
       </v-card-text>

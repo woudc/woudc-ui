@@ -6,16 +6,24 @@
       <h4>{{ item.term }}</h4>
       <i18n :path="'about.glossary.terms[' + index + '].definition'" tag="p">
         <template v-slot:carcinogenesis>
-          <a :href="carcinogensURL" target="_blank">{{ $t('about.glossary.substitutions.carcinogenesis') }}</a>
+          <a :href="carcinogensURL" target="_blank">
+            {{ $t('about.glossary.carcinogenesis') }}
+          </a>
         </template>
-        <template v-slot:registration>
-          <nuxt-link :to="localePath('contributors-registration')" v-text="$t('about.glossary.substitutions.registration')" />
+        <template v-slot:registration-page>
+          <nuxt-link :to="localePath('contributors-registration')">
+            {{ $t('common.registration-page') }}
+          </nuxt-link>
         </template>
         <template v-slot:w3>
-          <a :href="w3URL" target="_blank">www.w3.org</a>
+          <a :href="w3URL" target="_blank">
+            www.w3.org
+          </a>
         </template>
         <template v-slot:waf>
-          <a :href="wafURL" target="_blank">{{ wafURL }}</a>
+          <a :href="wafURL" target="_blank">
+            {{ wafURL }}
+          </a>
         </template>
       </i18n>
     </div>

@@ -45,7 +45,7 @@
     </v-navigation-drawer>
     <v-app-bar fixed app>
       <v-app-bar-nav-icon @click.stop="drawerOpen = !drawerOpen" />
-      <v-toolbar-title v-text="$t('woudcFull')" />
+      <v-toolbar-title v-text="$t('common.woudcFull')" />
       <v-spacer />
       <nuxt-link v-if="locale === 'fr'" :to="switchLocalePath('en')">
         English
@@ -60,7 +60,14 @@
       </v-container>
     </v-content>
     <v-footer app>
-      <span>&copy; 2019</span>
+      <span>&copy; 2020</span>
+      <v-spacer />
+      <nuxt-link class="mr-10 no-underline" :to="localePath('contact')">
+        <v-icon class="mr-1 pb-1">
+          mdi-email
+        </v-icon>
+        {{ $t('banner.contact') }}
+      </nuxt-link>
     </v-footer>
   </v-app>
 </template>
@@ -137,3 +144,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.no-underline {
+  text-decoration: none;
+}
+</style>

@@ -1,18 +1,31 @@
 <template>
   <v-layout justify-center column align-content-center>
     <h2>{{ $t('about.home.title') }}</h2>
-    <i18n class="newlines" path="about.home.blurb.template" tag="p">
+    <p>{{ $t('about.home.blurb.body-intro') }}</p>
+    <p>{{ $t('about.home.blurb.body-datasets') }}</p>
+    <i18n path="about.home.blurb.body-contributors" tag="p">
       <template v-slot:stations>
-        <nuxt-link :to="localePath('data-stations')" v-text="$t('about.home.blurb.stations')" />
+        <nuxt-link :to="localePath('data-stations')">
+          {{ $t('common.stations') }}
+        </nuxt-link>
       </template>
       <template v-slot:contributors>
-        <nuxt-link :to="localePath('contributors')" v-text="$t('about.home.blurb.contributors')" />
+        <nuxt-link :to="localePath('contributors')">
+          {{ $t('common.contributors') }}
+        </nuxt-link>
       </template>
+    </i18n>
+    <p>{{ $t('about.home.blurb.body-products') }}</p>
+    <i18n path="about.home.blurb.body-access" tag="p">
       <template v-slot:search>
-        <nuxt-link :to="localePath('data-explore')" v-text="$t('about.home.blurb.search')" />
+        <nuxt-link :to="localePath('data-explore')">
+          {{ $t('common.search') }}
+        </nuxt-link>
       </template>
       <template v-slot:access>
-        <nuxt-link :to="localePath('about-dataaccess')" v-text="$t('about.home.blurb.access')" />
+        <nuxt-link :to="localePath('about-dataaccess')">
+          {{ $t('common.access') }}
+        </nuxt-link>
       </template>
     </i18n>
     <v-card
@@ -31,7 +44,7 @@
           itemprop="itemListElement"
         >
           <span>
-            <b>{{ year }}</b> : {{ event }}
+            <strong>{{ year }}</strong> : {{ event }}
           </span>
         </v-list-item>
       </v-list>

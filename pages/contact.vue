@@ -1,15 +1,23 @@
 <template>
   <v-layout justify-center column align-content-center>
     <h1>{{ $t('contact.title') }}</h1>
-    <i18n class="newlines" path="contact.blurb.template" tag="p">
+    <i18n path="contact.blurb.body-faq" tag="p">
       <template v-slot:faq>
-        <nuxt-link :to="localePath('about-faq')" v-text="$t('contact.blurb.faq')" />
+        <nuxt-link :to="localePath('about-faq')">
+          {{ $t('common.faq') }}
+        </nuxt-link>
       </template>
+    </i18n>
+    <i18n path="contact.blurb.body-contact" tag="p">
       <template v-slot:woudc>
-        <b>WOUDC</b>
+        <strong>{{ $t('common.woudc') }}</strong>
       </template>
-      <template v-slot:channels>
-        <nuxt-link to="#other-contacts" v-text="$t('contact.blurb.channels')" />
+    </i18n>
+    <i18n path="contact.blurb.body-alternatives" tag="p">
+      <template v-slot:contact-channels>
+        <nuxt-link to="#other-contacts">
+          {{ $t('contact.contact-channels') }}
+        </nuxt-link>
       </template>
     </i18n>
     <hr>
@@ -19,21 +27,21 @@
       <span class="red--text">*</span>
       {{ $t('contact.name') }} <span class="red--text">({{ $t('contact.required') }})</span>
     </h4>
-    <v-text-field v-model="selectedName" solo />
+    <v-text-field v-model="selectedName" :label="$t('contact.name')" solo />
     <h4>
       <span class="red--text">*</span>
       {{ $t('contact.email') }} <span class="red--text">({{ $t('contact.required') }})</span>
     </h4>
-    <v-text-field v-model="selectedEmail" solo />
+    <v-text-field v-model="selectedEmail" :label="$t('contact.email')" solo />
     <v-card class="mt-1 mb-4" color="info">
       <v-card-title class="pt-3 pb-0">
         {{ $t('contact.note.title') }}
       </v-card-title>
       <v-card-text>
-        <i18n path="contact.note.template" tag="span">
+        <i18n path="contact.note.body" tag="span">
           <template v-slot:privacy-act>
-            <i><a href="https://laws-lois.justice.gc.ca/eng/acts/P-21/index.html" target="_blank">
-              {{ $t('contact.note.privacy-act') }}
+            <i><a href="privacyActURL" target="_blank">
+              {{ $t('common.privacy-act') }}
             </a></i>
           </template>
         </i18n>
@@ -41,21 +49,23 @@
     </v-card>
     <h4>
       <span class="red--text">*</span>
-      {{ $t('contact.subject') }} <span class="red--text">({{ $t('contact.required') }})</span>
+      {{ $t('contact.subject') }}
+      <span class="red--text">({{ $t('contact.required') }})</span>
     </h4>
-    <v-text-field v-model="selectedSubject" solo />
+    <v-text-field v-model="selectedSubject" :label="$t('contact.subject')" solo />
     <h4>
       <span class="red--text">*</span>
-      {{ $t('contact.message') }} <span class="red--text">({{ $t('contact.required') }})</span>
+      {{ $t('contact.message') }}
+      <span class="red--text">({{ $t('contact.required') }})</span>
     </h4>
-    <v-textarea v-model="selectedMessage" solo />
+    <v-textarea v-model="selectedMessage" :label="$t('contact.message')" solo />
     <div id="other-contacts">
       <h2>{{ $t('contact.other-channels') }}</h2>
-      <div v-for="(line, header) in $t('contact.contact-methods')" :key="header">
+      <div v-for="(lines, header) in $t('contact.contact-methods')" :key="header">
         <h4>{{ header }}:</h4>
-        <p class="newlines">
+        <div v-for="(line, index) in lines" :key="index">
           {{ line }}
-        </p>
+        </div>
       </div>
     </div>
   </v-layout>
@@ -65,6 +75,7 @@
 export default {
   data() {
     return {
+      privacyActURL: 'https://laws-lois.justice.gc.ca/eng/acts/P-21/index.html',
       selectedName: null,
       selectedEmail: null,
       selectedSubject: null,

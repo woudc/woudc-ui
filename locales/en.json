@@ -1,54 +1,87 @@
 {
-  "gaw": "GAW",
-  "gawFull": "Global Atmosphere Watch",
-  "note": "Note",
-  "wafFull": "Web Accessible Folder",
-  "welcome": "Welcome",
-  "wmo": "WMO",
-  "wmoFull": "World Meteorological Organization",
-  "woudcFull": "World Ozone and Ultraviolet Radiation Data Centre",
-  "map-instructions": {
-    "label": "How to Use: Interactive Map",
-    "panning": "Panning:",
-    "tab": "Tab",
-    "template": "{panning} To pan the map, click and drag over the interactive map. Alternatively, {tab} focus to the interactive map box and then press the arrow keys.\n\n{zooming} To zoom in and out of the map, mouse scroll up and down while you mouse over the interactive map or click the {plus} and {minus} buttons respectively. Alternatively, {tab} focus to the interactive map box and then press the {plus} or {minus} keys. To zoom out to the maximum map extent, press the \"zoom to globe\" button.",
-    "zooming": "Zooming:"
-  },
-  "table-instructions": {
-    "filtering": "Filtering:",
-    "label": "How to Use: Interactive Table",
-    "paging": "Paging:",
-    "sorting": "Sorting:",
-    "template": "{filtering} To filter the table, type in the search bars at the top of each column or the \"search all\" bar.\n\n{sorting} To sort the table, click on the arrow symbols next to the column headings.\n\n{paging} Change the \"show entries\" dropdown to change how many stations are displayed on the page. Click \"next\" or \"previous\" to show additional pages of the table."
+  "common": {
+    "access": "data access",
+    "accessibility": "accessibility",
+    "contact-us": "contact us",
+    "contributors": "contributors",
+    "contributors-page": "contributor list",
+    "extended": "extended",
+    "faq": "Frequently Asked Questions",
+    "formats": "File Formats",
+    "ftp": "WOUDC FTP server",
+    "gaw": "GAW",
+    "gawFull": "Global Atmosphere Watch",
+    "github": "GitHub",
+    "guidelines": "guidelines",
+    "interoperability": "World Meteorological Organization interoperability",
+    "iso": "International Organization for Standardization",
+    "map-instructions": {
+      "body-panning": "{panning} To pan the map, click and drag over the interactive map. Alternatively, {tab} focus to the interactive map box and then press the arrow keys.",
+      "body-zooming": "{zooming} To zoom in and out of the map, mouse scroll up and down while you mouse over the interactive map or click the {plus} and {minus} buttons respectively. Alternatively, {tab} focus to the interactive map box and then press the {plus} or {minus} keys. To zoom out to the maximum map extent, press the \"zoom to globe\" button.",
+      "label": "How to Use: Interactive Map",
+      "panning": "Panning:",
+      "tab": "Tab",
+      "zooming": "Zooming:"
+    },
+    "note": "Note",
+    "ogc": "Open Geospatial Consortium",
+    "ogc-cs": "OGC Catalogue Service",
+    "policy": "data policy",
+    "privacy-act": "Privacy Act",
+    "products": "data products",
+    "registration-page": "registration page",
+    "registration-form": "contributor registration form",
+    "stations": "stations",
+    "stations-page": "stations list",
+    "search": "data search / download",
+    "sop": "standard operating procedures",
+    "submission": "data submission | data submissions",
+    "table-instructions": {
+      "body-filtering": "{filtering} To filter the table, type in the search bars at the top of each column or the \"search all\" bar.",
+      "body-paging": "{paging} Change the \"show entries\" dropdown to change how many stations are displayed on the page. Click \"next\" or \"previous\" to show additional pages of the table.",
+      "body-sorting": "{sorting} To sort the table, click on the arrow symbols next to the column headings.",
+      "filtering": "Filtering:",
+      "label": "How to Use: Interactive Table",
+      "paging": "Paging:",
+      "sorting": "Sorting:"
+    },
+    "w3c": "W3C Web Content Accessibility Guidelines",
+    "wafFull": "Web Accessible Folder",
+    "welcome": "Welcome",
+    "wfs": "OGC Web Feature Service",
+    "wis": "WMO Information System",
+    "wmo": "WMO",
+    "wmoFull": "World Meteorological Organization",
+    "wms": "OGC Web Map Service",
+    "wps": "OGC Web Processing Service",
+    "woudc": "WOUDC",
+    "woudcFull": "World Ozone and Ultraviolet Radiation Data Centre"
   },
   "about": {
     "access": {
       "blurb": {
-        "contact": "contact us",
-        "template": "Access to the WOUDC data archive is available via numerous mechanisms in support of vendor neutral, multi-application access and integration. Whether you are using the website, geospatial tools or custom solutions, the WOUDC data archive provides flexible, authoritative data access.\n\nEvery effort has been made to make the WOUDC data archive as accessible as possible. If you have any questions, comments, or suggestions on improving data access, please {contact}."
+        "body-accessibility": "Every effort has been made to make the WOUDC data archive as accessible as possible. If you have any questions, comments, or suggestions on improving data access, please {contact-us}.",
+        "body-intro": "Access to the WOUDC data archive is available via numerous mechanisms in support of vendor neutral, multi-application access and integration. Whether you are using the website, geospatial tools or custom solutions, the WOUDC data archive provides flexible, authoritative data access."
       },
       "contents": {
-        "links": [
-          "Data Search / Download",
-          "Web Accessible Folder (WAF)",
-          "Web Services",
-          "Catalogue Service for the Web (CSW)",
-          "Web Map Service (WMS)",
-          "Web Feature Service (WFS)",
-          "Web Processing Service (WPS)",
-          "Definitions Service",
-          "ISO Codelist Catalogue",
-          "Examples"
-        ],
+        "links": {
+          "csw": "Catalogue Service for the Web (CSW)",
+          "definitions": "Definitions Service",
+          "examples": "Examples",
+          "iso": "ISO Codelist Catalogue",
+          "search": "Data Search / Download",
+          "waf": "Web Accessible Folder (WAF)",
+          "web": "Web Services",
+          "wfs": "Web Feature Service (WFS)",
+          "wms": "Web Map Service (WMS)",
+          "wps": "Web Processing Service (WPS)"
+        },
         "title": "Table of Contents"
       },
       "csw": {
-        "blurb": {
-          "ogc": "OGC Catalogue Service",
-          "template": "The {ogc} provides a common interface to discover, browse and query discovery metadata (data about data). The WOUDC CSW provides a yellow pages catalogue of all WOUDC data available in the archive. Metadata records are formatted using the ISO 19115/19139 geospatial metadata standards."
-        },
+        "blurb": "The {ogc-cs} provides a common interface to discover, browse and query discovery metadata (data about data). The WOUDC CSW provides a yellow pages catalogue of all WOUDC data available in the archive. Metadata records are formatted using the ISO 19115/19139 geospatial metadata standards.",
         "note": {
-          "template": "WOUDC provides OGC CSW (version 2.0.2) at the following endpoint: {link}",
+          "body": "WOUDC provides OGC CSW (version 2.0.2) at the following endpoint: {link}",
           "title": "WOUDC OGC CSW"
         },
         "title": "Catalogue Service for the Web (CSW)"
@@ -56,73 +89,61 @@
       "definitions": {
         "blurb": "Web Services are modelled and managed using a data taxonomy. An RDF-based definitions service exists to describe WOUDC's data taxonomy and relationships.",
         "note": {
-          "template": "WOUDC provides RDF/SKOS at the following endpoint: {link}",
+          "body": "WOUDC provides RDF/SKOS at the following endpoint: {link}",
           "title": "WOUDC Definitions Service"
         },
         "title": "Definitions Service"
       },
       "examples": {
-        "blurb": {
-          "github": "GitHub",
-          "template": "The following {github} examples provide high level access and workflow examples of integrating WOUDC Web Services:"
+        "blurb": "The following {github} examples provide high level access and workflow examples of integrating WOUDC Web Services:",
+        "links": {
+          "pywoudc": "High level package providing Pythonic access to WMO WOUDC data services",
+          "notebooks": "A collection of data centre workflows implemented as IPython notebooks"
         },
-        "links": [
-          "High level package providing Pythonic access to WMO WOUDC data services",
-          "A collection of data centre workflows implemented as IPython notebooks"
-        ],
         "title": "Examples"
       },
       "iso": {
-        "blurb1": "Codelists are managed using the ISO 19115 standard. An ISO 19115 codelist catalogue exists to describe various WOUDC's domain objects for use in metadata.",
-        "blurb2": {
-          "how-to": "Web Services How To",
-          "template": "Please consult the {how-to} for detailed information."
-        },
+        "blurb-intro": "Codelists are managed using the ISO 19115 standard. An ISO 19115 codelist catalogue exists to describe various WOUDC's domain objects for use in metadata.",
+        "blurb-howto": "Please consult the {how-to} for detailed information.",
+        "how-to": "Web Services How To",
         "note": {
-          "template": "WOUDC provides the ISO Codelist Catalogue at the following endpoint: {link}",
+          "body": "WOUDC provides the ISO Codelist Catalogue at the following endpoint: {link}",
           "title": "WOUDC Codelist Catalogue"
         },
         "title": "ISO Codelist Catalogue"
       },
       "note1": {
-        "body": {
-          "policy": "data policy",
-          "template": "All data and metadata are subject to the WOUDC {policy}"
-        },
+        "body": "All data and metadata are subject to the WOUDC {policy}.",
         "title": "Data Policy"
       },
       "note2": {
-        "body": {
-          "stations": "stations list",
-          "template": "The data revision dates are available on the {stations} for stations that have provided revised data."
-        },
+        "body": "The data revision dates are available on the {stations-page} for stations that have provided revised data.",
         "title": "Data Revisions/Updates"
       },
       "search": {
         "blurb": {
-          "how-to": "Data Search / Download How To",
-          "search": "data search / download",
-          "template": "Observation data are made available via the {search} page, which allows users to browse and filter the entire archive in a responsive, interactive manner. All data provide a link to download data for offline use in a variety of formats.\n\nPlease consult the {how-to} for detailed information."
+          "body-howto": "Please consult the {how-to} for detailed information.",
+          "body-intro": "Observation data are made available via the {search} page, which allows users to browse and filter the entire archive in a responsive, interactive manner. All data provide a link to download data for offline use in a variety of formats."
         },
+        "how-to": "Data Search / Download How To",
         "note": " Please note that dataset specific limits are put on bulk data download to maintain quality of service.",
         "title": "Data Search / Download"
       },
       "title": "Data Access",
       "waf": {
         "blurb": {
-          "how-to": "WAF How To",
-          "summary": "archive files",
-          "template": "The entire archive of contributed data files in Extended CSV format is made available at {waf} for users to browse, download or integrate into their workflows.\n\nStatic dataset {summary} are also available on the WAF in CSV format with ZIP compression. These archive files are updated on a daily basis and provide users the option to download an entire dataset in CSV format.\n\nPlease consult the {how-to} for detailed information."
+          "body-files": "Static dataset {summary} are also available on the WAF in CSV format with ZIP compression. These archive files are updated on a daily basis and provide users the option to download an entire dataset in CSV format.",
+          "body-howto": "Please consult the {how-to} for detailed information.",
+          "body-intro": "The entire archive of contributed data files in Extended CSV format is made available at {waf} for users to browse, download or integrate into their workflows."
         },
+        "how-to": "WAF How To",
+        "summary": "archive files",
         "title": "Web Accessible Folder (WAF)"
       },
       "web": {
         "blurb": {
-          "interoperability": "World Meteorological Organization interoperability" ,
-          "iso": "International Organization for Standardization",
-          "ogc": "Open Geospatial Consortium",
-          "template": "In addition to traditional data access mechanisms, WOUDC has made the archive available using geospatial web services adhering to publically available international standards. Web services are systems designed to support machine to machine interaction over a network, and are typically utilized in a client/server computing environment made available through programmatic access, associated tools and applications.\n\nThe WOUDC web services adhere to open standards ratified by the {ogc} (OGC), and the {iso} (ISO) which enable interoperability and thus make data easy to discover, access, visualize and integrate. OGC and ISO standards play an important role in {interoperability} as part of the {wis} and are supported by numerous off the shelf open source or commercial tools.",
-          "wis": "WMO Information System"
+          "body-intro": "In addition to traditional data access mechanisms, WOUDC has made the archive available using geospatial web services adhering to publically available international standards. Web services are systems designed to support machine to machine interaction over a network, and are typically utilized in a client/server computing environment made available through programmatic access, associated tools and applications.",
+          "body-standards": "The WOUDC web services adhere to open standards ratified by the {ogc} (OGC), and the {iso} (ISO) which enable interoperability and thus make data easy to discover, access, visualize and integrate. OGC and ISO standards play an important role in {interoperability} as part of the {wis} and are supported by numerous off the shelf open source or commercial tools."
         },
         "table": {
           "links": [ "???" ],
@@ -132,33 +153,27 @@
       },
       "wfs": {
         "blurb": {
-          "template": "The {wfs} provides a common interface to access geospatial data. Typical use of WFS includes custom query / raw access to geospatial features. The WOUDC WFS provides archive data in numerous formats, including Extended CSV, KML, CSV, GML, ESRI Shapefile, MapInfo, GeoJSON, and NetCDF.\n\nThe WFS has a server side limit of a maximum of 200000 features to ensure quality of service and availability.",
-          "wfs": "OGC Web Feature Service"
+          "body-intro": "The {wfs} provides a common interface to access geospatial data. Typical use of WFS includes custom query / raw access to geospatial features. The WOUDC WFS provides archive data in numerous formats, including Extended CSV, KML, CSV, GML, ESRI Shapefile, MapInfo, GeoJSON, and NetCDF.",
+          "body-limits": "The WFS has a server side limit of a maximum of 200000 features to ensure quality of service and availability."
         },
         "note": {
-          "template": "WOUDC provides OGC WFS (versions 1.0.0 - 1.1.0) at the following endpoint: {link}",
+          "body": "WOUDC provides OGC WFS (versions 1.0.0 - 1.1.0) at the following endpoint: {link}",
           "title": "WOUDC OGC WFS"
         },
         "title": "Web Feature Service (WFS)"
       },
       "wms": {
-        "blurb": {
-          "template": "The {wms} provides a common interface to visualize geospatial data layers. Typical use of WMS includes simple visualization in web or desktop GIS applications via web friendly image formats such as PNG or JPEG.",
-          "wms": "OGC Web Map Service"
-        },
+        "blurb": "The {wms} provides a common interface to visualize geospatial data layers. Typical use of WMS includes simple visualization in web or desktop GIS applications via web friendly image formats such as PNG or JPEG.",
         "note": {
-          "template": "WOUDC provides OGC WMS (versions 1.1.1 - 1.3.0) at the following endpoint: {link}",
+          "body": "WOUDC provides OGC WMS (versions 1.1.1 - 1.3.0) at the following endpoint: {link}",
           "title": "WOUDC OGC WMS"
         },
         "title": "Web Map Service (WMS)"
       },
       "wps": {
-        "blurb": {
-          "template": "The {wps} provides a common interface to define rules, inputs, outputs for geospatial processing / calculations. Typical use of WPS includes custom processes (buffer, overlay). The WOUDC WPS provides a suite of tools used in support of validation of submissions to the Data Centre.",
-          "wps": "OGC Web Processing Service"
-        },
+        "blurb": "The {wps} provides a common interface to define rules, inputs, outputs for geospatial processing / calculations. Typical use of WPS includes custom processes (buffer, overlay). The WOUDC WPS provides a suite of tools used in support of validation of submissions to the Data Centre.",
         "note": {
-          "template": "WOUDC provides OGC WPS (version 1.0.0) at the following endpoint: {link}",
+          "body": "WOUDC provides OGC WPS (version 1.0.0) at the following endpoint: {link}",
           "title": "WOUDC OGC WPS"
         },
         "title": "Web Processing Service (WPS)"
@@ -168,11 +183,11 @@
       "blurb": "Here are the answers to some of the most frequently asked questions about our data centre.",
       "questions": [
         {
-          "answer": "The WOUDC is a public website in support of the WMO Global Atmospheric Watch (GAW) programme. WOUDC data is made publically available on behalf of data contributors. For information on data access and usage, please refer to the {policy}.",
+          "answer": "The WOUDC is a public website in support of the WMO Global Atmospheric Watch (GAW) programme. WOUDC data is made publically available on behalf of data contributors. For information on data access and usage, please refer to the {policy} page.",
           "text": "Who can access the WOUDC data?"
         },
         {
-          "answer": "Registered contributors can submit data to the WOUDC via FTP. Visit the {submission} page for all of the details. All new data contributors require a WOUDC account. To become a contributor, please visit the {registration}.",
+          "answer": "Registered contributors can submit data to the WOUDC via FTP. Visit the {submission} page for all of the details. All new data contributors require a WOUDC account. To become a contributor, please visit the {registration-form}.",
           "text": "How do I submit data?"
         },
         {
@@ -184,7 +199,7 @@
           "text": "What data can I find in WOUDC?"
         },
         {
-          "answer": "WOUDC data comes from worldwide contributors consisting of institutions, agencies and organizations. Contributors submit their data to WOUDC, where the data are then archived and made available. Please refer to {contributors}.",
+          "answer": "WOUDC data comes from worldwide contributors consisting of institutions, agencies and organizations. Contributors submit their data to WOUDC, where the data are then archived and made available. Please refer to the {contributors-page}.",
           "text": "Where does WOUDC get its data from?"
         },
         {
@@ -204,25 +219,13 @@
           "text": "Can I use my handheld device to access WOUDC?"
         }
       ],
-      "substitutions": {
-        "access": "data access",
-        "accessibility": "accessibility",
-        "contributors": "contributor list",
-        "policy": "data policy page",
-        "products": "data products",
-        "registration": "registration page",
-        "search": "data search / download",
-        "submission": "data submission",
-        "usability": "usability",
-        "w3c": "W3C Web Content Accessibility Guidelines"
-      },
-      "title": "Frequently Asked Questions"
+      "title": "Frequently Asked Questions",
+      "usability": "usability"
     },
     "formats": {
       "blurb": {
-        "access": "data access",
-        "extended": "extended",
-        "template": "The WOUDC uses ASCII text file format standard for data submissions in an {extcsv} (ext) Comma-Separated Value (CSV) format.\n\nThe extended CSV (extCSV) is the standard data file format for submission to WOUDC. The {extended} standard for the CSV syntax rules support the provision of comments and multiple data content within individual files. The extCSV provides a simple text-based format for data providers when submitting data to the WOUDC, as well as one of many ways for users to integrate ozone and ultraviolet (UV) radiation data into their database, spreadsheet and workflow analysis. Please refer to the {access} page for more information on WOUDC data discovery, access and visualization."
+        "body-extcsv": "The extended CSV (extCSV) is the standard data file format for submission to WOUDC. The {extended} standard for the CSV syntax rules support the provision of comments and multiple data content within individual files. The extCSV provides a simple text-based format for data providers when submitting data to the WOUDC, as well as one of many ways for users to integrate ozone and ultraviolet (UV) radiation data into their database, spreadsheet and workflow analysis. Please refer to the {access} page for more information on WOUDC data discovery, access and visualization.",
+        "body-intro": "The WOUDC uses ASCII text file format standard for data submissions in an {extended} (ext) Comma-Separated Value (CSV) format."
       },
       "contributor-guide": {
         "link": "WOUDC Contributor Guide",
@@ -230,36 +233,27 @@
       },
       "examples": {
         "blurb": "The following examples of extCSV files are based on the observation category (open files in a text editor):",
-        "title": "Examples: extended Comma-Separated Value"
+        "links": {
+          "broadband": "Broadband (CSV)",
+          "lidar": "Lidar (CSV)",
+          "multiband": "Multiband (CSV)",
+          "ozonesonde": "OzoneSonde (CSV)",
+          "spectral": "Spectral (CSV)",
+          "totalozone": "TotalOzone (CSV)",
+          "totalozoneobs": "TotalOzoneObs (CSV)",
+          "umkehr1": "UmkehrN14 (Level 1.0) (CSV)",
+          "umkehr2": "UmkehrN14 (Level 2.0) (CSV)"
+        },
+        "ozone": "Ozone Examples:",
+        "title": "Examples: extended Comma-Separated Value",
+        "uv": "Ultraviolet Radiation Examples:"
       },
       "note": " The WOUDC does not accept files in binary formats such as MS-Excel or MS-Word.",
-      "ozone": {
-        "links": [
-          "Lidar (CSV)",
-          "OzoneSonde (CSV)",
-          "TotalOzone (CSV)",
-          "TotalOzoneObs (CSV)",
-          "UmkehrN14 (Level 1.0) (CSV)",
-          "UmkehrN14 (Level 2.0) (CSV)"
-        ],
-        "title": "Ozone Examples:"
-      },
-      "title": "File Formats",
-      "uv": {
-        "links": [
-          "Broadband (CSV)",
-          "Multiband (CSV)",
-          "Spectral (CSV)"
-        ],
-        "title": "Ultraviolet Radiation Examples:"
-      }
+      "title": "File Formats"
     },
     "glossary": {
       "blurb": "Terms related to the data centre, including definitions about network operations centres and words and phrases about the storage, management and the transmission of data.",
-      "substitutions": {
-        "carcinogenesis": "carcinogenesis effectiveness",
-        "registration": "contributor registration form"
-      },
+      "carcinogenesis": "carcinogenesis effectiveness",
       "terms": [
         {
           "term": "Agency",
@@ -335,7 +329,7 @@
         },
         {
           "term": "File Format Version",
-          "definition": "The WOUDC term for the format of a data file. Data files of a given content will always contain the tables and fields specified by the WOUDC for that form. Refer to {registration}."
+          "definition": "The WOUDC term for the format of a data file. Data files of a given content will always contain the tables and fields specified by the WOUDC for that form. Refer to the {registration-page}."
         },
         {
           "term": "Form",
@@ -594,11 +588,11 @@
     },
     "home": {
       "blurb": {
-        "access": "data access",
-        "contributors": "contributors",
-        "search": "data search / download",
-        "stations": "stations",
-        "template": "The World Ozone and Ultraviolet Radiation Data Centre (WOUDC) is one of six World Data Centres which are part of the Global Atmosphere Watch programme of the World Meteorological Organization. The WOUDC data centre is operated by the Meteorological Service of Canada, a branch of Environment and Climate Change Canada.\n\nOzone data set categories include total column ozone and vertical profile data from lidar measurements, ozonesonde flights, and the Umkehr technique. Ultraviolet (UV) radiation data set categories include broadband, multiband, and high resolution spectral data types.\n\nThere are over 500 registered {stations} in the archive from over 150 {contributors}. Metadata such as station lists with locations, are available from the WOUDC Website.\n\nValue added data products include total ozone time series graphs and near real-time ozone maps.\n\nAll WOUDC data are made available by using the {search}, or web accessible folder (WAF) access. In addition, the Open Geospatial Consortium web services provide enhanced access to the archive, which provides standards-based-on-demand access to the archive. For more information, please refer to the {access} page."
+        "body-access": "All WOUDC data are made available by using the {search}, or web accessible folder (WAF) access. In addition, the Open Geospatial Consortium web services provide enhanced access to the archive, which provides standards-based-on-demand access to the archive. For more information, please refer to the {access} page.",
+        "body-contributors": "There are over 500 registered {stations} in the archive from over 150 {contributors}. Metadata such as station lists with locations, are available from the WOUDC Website.",
+        "body-datasets": "Ozone data set categories include total column ozone and vertical profile data from lidar measurements, ozonesonde flights, and the Umkehr technique. Ultraviolet (UV) radiation data set categories include broadband, multiband, and high resolution spectral data types.",
+        "body-intro": "The World Ozone and Ultraviolet Radiation Data Centre (WOUDC) is one of six World Data Centres which are part of the Global Atmosphere Watch programme of the World Meteorological Organization. The WOUDC data centre is operated by the Meteorological Service of Canada, a branch of Environment and Climate Change Canada.",
+        "body-products": "Value added data products include total ozone time series graphs and near real-time ozone maps."
       },
       "history": {
         "milestones": {
@@ -615,37 +609,33 @@
       "title": "About WOUDC"
     },
     "policy": {
-      "blurb": {
-        "gaw": "WMO Global Atmosphere Watch (GAW) data use policy",
-        "template": "Use of the WOUDC data are governed by the {wmo} and {gaw}.",
-        "wmo": "World Meteorological Organization (WMO) data policy"
-      },
+      "blurb": "Use of the WOUDC data are governed by the {wmo-policy} and {gaw-policy}.",
+      "gaw-policy": "WMO Global Atmosphere Watch (GAW) data use policy",
+      "wmo-policy": "World Meteorological Organization (WMO) data policy",
       "doi": {
-        "blurb": {
-          "dois": "DOIs",
-          "template": "WOUDC has registered {dois} for both Ozone and UV data. DOIs are persistent identifiers that allow research data to be accessible and citable. They make research data easier to access, reuse and verify, thereby making it easier to build on previous work, conduct new research and avoid duplicating already existing work."
-        },
+        "blurb": "WOUDC has registered {dois} for both Ozone and UV data. DOIs are persistent identifiers that allow research data to be accessible and citable. They make research data easier to access, reuse and verify, thereby making it easier to build on previous work, conduct new research and avoid duplicating already existing work.",
+        "dois": "DOIs",
         "note1": {
-          "items": [
-            "Ozone: doi:10.14287/10000001",
-            "UV Radiation: doi:10.14287/10000002"
-          ],
+          "items": {
+            "ozone": "Ozone: doi:10.14287/10000001",
+            "uv": "UV Radiation: doi:10.14287/10000002"
+          },
           "title": "WOUDC Digital Object Identifiers (first order)"
         },
         "note2": {
-          "items": [
-            "Total Ozone - Daily Observations: doi:10.14287/10000004",
-            "Total Ozone - Hourly Observations: doi:10.14287/10000003",
-            "Lidar: doi:10.14287/10000007",
-            "OzoneSonde: doi:10.14287/10000008",
-            "UmkehrN14 (Level 1.0): doi:10.14287/10000005",
-            "UmkehrN14 (Level 2.0): doi:10.14287/10000006",
-            "RocketSonde: doi:10.14287/10000009",
-            "Broadband: doi:10.14287/10000012",
-            "Multiband: doi:10.14287/10000010",
-            "Spectral: doi:10.14287/10000011",
-            "UV Index: doi:10.14287/10000013"
-          ],
+          "items": {
+            "broadband": "Broadband: doi:10.14287/10000012",
+            "lidar": "Lidar: doi:10.14287/10000007",
+            "multiband": "Multiband: doi:10.14287/10000010",
+            "ozonesonde": "OzoneSonde: doi:10.14287/10000008",
+            "rocketsonde": "RocketSonde: doi:10.14287/10000009",
+            "spectral": "Spectral: doi:10.14287/10000011",
+            "totalozone": "Total Ozone - Daily Observations: doi:10.14287/10000004",
+            "totalozoneobs": "Total Ozone - Hourly Observations: doi:10.14287/10000003",
+            "umkehr1": "UmkehrN14 (Level 1.0): doi:10.14287/10000005",
+            "umkehr2": "UmkehrN14 (Level 2.0): doi:10.14287/10000006",
+            "uv-index": "UV Index: doi:10.14287/10000013"
+          },
           "title": "WOUDC Digital Object Identifiers (datasets)"
         },
         "title": "Digital Object Identifiers (DOI)"
@@ -667,20 +657,17 @@
         "title": "Publishing Products"
       },
       "publishing": {
-        "blurb1": "When publishing data retrieved from the WOUDC you are expected to acknowledge the contributors who author these data as the data source and the WOUDC, using the appropriate citation as per the example provided.",
-        "blurb2": {
-          "contributors": "contributor list",
-          "template": "For a complete list of all contributors refer to the {contributors}."
-        },
+        "blurb-citation": "When publishing data retrieved from the WOUDC you are expected to acknowledge the contributors who author these data as the data source and the WOUDC, using the appropriate citation as per the example provided.",
+        "blurb-contributors": "For a complete list of all contributors refer to the {contributors-page}.",
         "note1": {
           "body": "JMA, & NASA-WFF. World Meteorological Organization-Global Atmosphere Watch Program (WMO-GAW)/World Ozone and Ultraviolet Radiation Data Centre (WOUDC) [Data]. Retrieved October 24, 2013, from https://woudc.org. doi:10.14287/10000001",
           "title": "Example (1): Citation for ozone data originating (contributed) from the Japan Meteorological Agency (JMA) and NASA (NASA-WFF) retrieved from the WOUDC site"
         },
         "note2": {
-          "items": [
-            "WMO/GAW Ozone Monitoring Community, World Meteorological Organization-Global Atmosphere Watch Program (WMO-GAW)/World Ozone and Ultraviolet Radiation Data Centre (WOUDC) [Data]. Retrieved October 24, 2013, from https://woudc.org. A list of all contributors is available on the website. doi:10.14287/10000001",
-            "WMO/GAW UV Radiation Monitoring Community, World Meteorological Organization-Global Atmosphere Watch Program (WMO-GAW)/World Ozone and Ultraviolet Radiation Data Centre (WOUDC) [Data]. Retrieved October 24, 2013, from https://woudc.org. A list of all contributors is available on the website. doi:10.14287/10000002"
-          ],
+          "items": {
+            "ozone": "WMO/GAW Ozone Monitoring Community, World Meteorological Organization-Global Atmosphere Watch Program (WMO-GAW)/World Ozone and Ultraviolet Radiation Data Centre (WOUDC) [Data]. Retrieved October 24, 2013, from https://woudc.org. A list of all contributors is available on the website. doi:10.14287/10000001",
+            "uv": "WMO/GAW UV Radiation Monitoring Community, World Meteorological Organization-Global Atmosphere Watch Program (WMO-GAW)/World Ozone and Ultraviolet Radiation Data Centre (WOUDC) [Data]. Retrieved October 24, 2013, from https://woudc.org. A list of all contributors is available on the website. doi:10.14287/10000002"
+          },
           "title": "Example (2): Citation for data originating (contributed) from a large number of organizations retrieved from the WOUDC site"
         },
         "title": "Publishing Data"
@@ -688,9 +675,10 @@
       "title": "Data Use Policy",
       "wmo": {
         "blurb": {
-          "link": "Resolution 40 (Cg-XII)",
-          "template": "The WMO facilitates the free and unrestricted exchange of data and information, products and services in real or near-real time on matters relating to safety and security of society, economic welfare and the protection of the environment.\n\n{link} WMO policy and practice for the exchange of meteorological and related data and products including guidelines on the relationships in commercial meteorological activities."
+          "body-intro": "The WMO facilitates the free and unrestricted exchange of data and information, products and services in real or near-real time on matters relating to safety and security of society, economic welfare and the protection of the environment.",
+          "body-resolution40": "{link} WMO policy and practice for the exchange of meteorological and related data and products including guidelines on the relationships in commercial meteorological activities."
         },
+        "link": "Resolution 40 (Cg-XII)",
         "title": "World Meteorological Organization Data Policy"
       }
     },
@@ -698,69 +686,54 @@
       "blurb": "The WOUDC data are subject to the Global Atmosphere Watch quality assurance system and the oversight of the Scientific Advisory Groups on ozone and solar ultraviolet radiation.",
       "eccc": {
         "blurb": "The WOUDC is operated by the Department of the Environment (referred to as Environment and Climate Change Canada) and undertakes the following activities:",
-        "item1": {
-          "guidelines": "guidelines",
-          "template": "Provides {guidelines} for submitting data;"
-        },
+        "item1": "Provides {guidelines} for submitting data;",
         "item2": "Checks submitted data for necessary format elements and the availability of comprehensive metadata and reject the submission of data that do not meet these formal criteria;",
         "item3": "Performs plausibility and consistency checks on submitted data, flag data problems, and provide feedback to the stations, when necessary;",
         "item4": "Provides collection of data user feedback;",
         "item5": "Shares results of quality assessment and user feedback with data contributors so that data can be corrected or corrective actions can be taken as required; and",
-        "item6": {
-          "access": "data access",
-          "template": "Provides {access} mechanisms."
-        },
+        "item6": "Provides {access} mechanisms.",
         "title": "Environment and Climate Change Canada"
       },
-      "gaw-blurb": {
-        "gaw-qa": "GAW quality assurance system",
-        "template": "The primary objectives of the {gaw-qa} are to ensure that the data in the World Data Centres are consistent, of known and adequate quality, supported by comprehensive metadata, and sufficiently complete to describe global atmospheric states with respect to spatial and temporal distribution."
-      },
+      "gaw-blurb": "The primary objectives of the {gaw-qa} are to ensure that the data in the World Data Centres are consistent, of known and adequate quality, supported by comprehensive metadata, and sufficiently complete to describe global atmospheric states with respect to spatial and temporal distribution.",
+      "gaw-qa": "GAW quality assurance system",
       "sag": {
         "blurb": {
-          "sop": "standard operating procedures",
-          "template": "The SAG on ozone and solar ultraviolet radiation establish data quality objectives and {sop} outlining measurement methods and procedures.\n\nThe SAG ensure that all data produced by the system conform to international standards, via the following calibration centres:"
+          "body-intro": "The SAG on ozone and solar ultraviolet radiation establish data quality objectives and {sop} outlining measurement methods and procedures.",
+          "body-standards": "The SAG ensure that all data produced by the system conform to international standards, via the following calibration centres:"
         },
-        "links": [
-          {
-            "text": "WMO GAW World Calibration Centre for Dobson total ozone measurements",
-            "note": "Global Monitoring Division, NOAA"
-          },
-          {
+        "links": {
+          "brewer": {
             "text": "WMO GAW World Calibration Centre for Brewer total ozone measurements",
             "note": "Environment and Climate Change Canada"
           },
-          {
+          "dobson": {
+            "text": "WMO GAW World Calibration Centre for Dobson total ozone measurements",
+            "note": "Global Monitoring Division, NOAA"
+          },
+          "ozonesonde": {
             "text": "WMO GAW World Calibration Centre for ozonesonde measurements",
             "note": "Forschungszentrum Jülich, Germany"
           }
-        ],
+        },
         "title": "Scientific Advisory Groups"
       },
       "title": "Data Quality"
     },
     "standards": {
-      "blurb1": {
-        "interoperability": "World Meteorological Organization interoperability",
-        "template": "WOUDC adheres to open standards which enable interoperability (discovery, access, visualization). Standards play an important role in {interoperability} as part of the {wis} and are supported by numerous off the shelf open source or commercial tools.",
-        "wis": "WMO Information System"
+      "blurb-intro": "WOUDC adheres to open standards which enable interoperability (discovery, access, visualization). Standards play an important role in {interoperability} as part of the {wis} and are supported by numerous off the shelf open source or commercial tools.",
+      "blurb-howto": "More information can be found on the {access} page.",
+      "headers": {
+        "formats": "Format/Encoding",
+        "resource": "Resources",
+        "services": "Service/API"
       },
-      "blurb2": {
-        "access": "Data Access page",
-        "template": "More information can be found on the {access}."
-      },
-      "headers": [
-        "Resources",
-        "Format/Encoding",
-        "Service/API"
-      ],
       "links": {
-        "resources": [
-          "Discovery Metadata",
-          "Station Metadata",
-          "Instrument Metadata",
-          "Observations"
-        ],
+        "resources": {
+          "discovery": "Discovery Metadata",
+          "instruments": "Instrument Metadata",
+          "observations": "Observations",
+          "stations": "Station Metadata"
+        },
         "formats": {
           "csv": "CSV",
           "geojson": "GeoJSON",
@@ -789,6 +762,7 @@
     "about-policy": "Data Policy",
     "about-quality": "Data Quality",
     "about-standards": "Standards",
+    "contact": "Contact us",
     "contributors": "Contributors",
     "contributors-list": "Contributors List",
     "contributors-guide": "Contributor Guide",
@@ -797,7 +771,7 @@
     "contributors-validation": "Data Validation",
     "data": "Data",
     "data-explore": "Data Search",
-    "data-info": "Summary",
+    "data-info": "Dataset Information",
     "data-instruments": "Instrument List",
     "data-products": "Products",
     "data-stations": "Station List",
@@ -811,20 +785,27 @@
   },
   "contact": {
     "blurb": {
-      "channels": "other service channels",
-      "faq": "Frequently Asked Questions",
-      "template": "For answers to technical questions, please consult the {faq} section.\nIf you do not find answers to your questions or to submit your comments, suggestions, and ideas about {woudc}, please fill out the form below.\nIf you have difficulty with the following form, you can use any of our {channels} to contact us."
+      "body-alternatives": "If you have difficulty with the following form, you can use any of our {contact-channels} to contact us.",
+      "body-contact": "If you do not find answers to your questions or to submit your comments, suggestions, and ideas about {woudc}, please fill out the form below.",
+      "body-faq": "For answers to technical questions, please consult the {faq} section."
     },
+    "contact-channels": "other service channels",
     "contact-info": "Your Contact Information",
     "contact-methods": {
-      "By Mail": "World Ozone and Ultraviolet Radiation Data Centre\nMeteorological Service of Canada\nEnvironment and Climate Change Canada\n4905 Dufferin Street\nToronto, ON M3H 5T4\nCanada"
+      "By Mail": [
+        "World Ozone and Ultraviolet Radiation Data Centre",
+        "Meteorological Service of Canada",
+        "Environment and Climate Change Canada",
+        "4905 Dufferin Street",
+        "Toronto, ON M3H 5T4",
+        "Canada"
+      ]
     },
     "email": "E-mail Address",
     "message": "Message",
     "name": "Name",
     "note": {
-      "privacy": "Privacy Act",
-      "template": "All personal information created, held or collected by this department is protected under the {privacy}. This means that you will be informed of the purpose for which it is being collected and how to exercise your right of access to that information. You will be asked for your consent where appropriate.",
+      "body": "All personal information created, held or collected by this department is protected under the {privacy-act}. This means that you will be informed of the purpose for which it is being collected and how to exercise your right of access to that information. You will be asked for your consent where appropriate.",
       "title": "Personal Information Collection Statement"
     },
     "other-channels": "Other Service Channels",
@@ -858,44 +839,28 @@
       "title": "Contributor List"
     },
     "registration": {
-      "blurb1": {
-        "submission": "data submissions",
-        "template": "All new data contributors require a WOUDC account. All account applications are subject to review by the WOUDC personnel. WOUDC reserves the right to evaluate all applications for data submission for compliance with the World Meteorological Organization (WMO) Global Atmosphere Watch (GAW) data exchange protocols.\n\nContributors of new data are asked to follow the steps below for arranging {submission} to WOUDC for ozone and/or ultraviolet radiation data sets:"
+      "blurb": {
+        "body-accounts": "All new data contributors require a WOUDC account. All account applications are subject to review by the WOUDC personnel. WOUDC reserves the right to evaluate all applications for data submission for compliance with the World Meteorological Organization (WMO) Global Atmosphere Watch (GAW) data exchange protocols.",
+        "body-submissions": "Contributors of new data are asked to follow the steps below for arranging {submissions} to WOUDC for ozone and/or ultraviolet radiation data sets:"
       },
-      "blurb2": "Thank you for registering with WOUDC.",
-      "step1": {
-        "policy": "data policy",
-        "template": "Review the WOUDC {policy};"
-      },
-      "step2": {
-        "more": "more about GAW",
-        "template": "Obtain a GAW ID (required) for each station by registering with {wmo} ({more});",
-        "wmo": "WMO/GAW"
-      },
-      "step3": {
-        "contact": "contacting WOUDC",
-        "register": "new registration",
-        "template": "Complete the WOUDC registration process by {contact} with the subject line: {register} and include your new GAW ID; and"
-      },
+      "contacting": "contacting WOUDC",
+      "more": "more about GAW",
+      "register": "new registration",
+      "step1": "Review the WOUDC {policy};",
+      "step2": "Obtain a GAW ID (required) for each station by registering with {wmo-gaw} ({more});",
+      "step3": "Complete the WOUDC registration process by {contacting} with the subject line: {register} and include your new GAW ID; and",
       "step4": "Upon receipt and approval of your registration, the WOUDC will assign an FTP location / account (with a personal username/password) to be used exclusively for data submission.",
-      "title": "Registration"
+      "thanks": "Thank you for registering with WOUDC.",
+      "title": "Registration",
+      "wmo-gaw": "WMO/GAW"
     },
     "submission": {
-      "blurb1": "The WOUDC processes data on a daily basis for near real-time data submissions. Registered contributors can submit data to the WOUDC via FTP.",
-      "blurb2": {
-        "contact": "contact us",
-        "template": "It is recommended that data be submitted at least once a month. Please {contact} for further information"
-      },
+      "blurb-intro": "The WOUDC processes data on a daily basis for near real-time data submissions. Registered contributors can submit data to the WOUDC via FTP.",
+      "blurb-contact": "It is recommended that data be submitted at least once a month. Please {contact-us} for further information.",
       "note1": "files cannot be updated after they are transferred to the WOUDC. To submit updated data files, transfer again using a different file name.",
       "note2": "step details may vary depending on your computer system and FTP software.",
-      "step1": {
-        "formats": "File Formats",
-        "template": "Data files can be sent individually or packaged into .zip, .tar, or .tar.gz format. See {formats} for more information"
-      },
-      "step2": {
-        "ftp": "WOUDC FTP server",
-        "template": "Using an FTP client, connect to the {ftp}"
-      },
+      "step1": "Data files can be sent individually or packaged into .zip, .tar, or .tar.gz format. See {formats} for more information",
+      "step2": "Using an FTP client, connect to the {ftp}",
       "step3": "Log in with your pre-assigned username and password",
       "step4": "Each contributor transfers their respective files to their individual folder on the FTP site (files cannot be updated after transfer to WOUDC. To submit updated data files, they must be transferred again, using a different file name)",
       "step5": "Log out to end the FTP session",
@@ -918,9 +883,11 @@
     "title": "Data",
     "explore": {
       "blurb": {
-        "access": "How to Use",
-        "template": "The WOUDC data archive can be searched by data category: there are six ozone data categories and three ultraviolet (UV) radiation data categories. The ozone datasets for total column ozone include total ozone and total ozone observations and the vertical ozone profile includes lidar, ozonesonde, Umkehr N-value and C-Umkehr. The UV datasets for UV irradiance include broadband, multiband and spectral.\n\nTo search and download data, select the dataset and observation time period. Optionally, draw your map extent of interest and then hit search. All available data for that time period will be displayed.\n\nFor more details on how to use this page, please view the {access} guide."
+        "body-datasets": "The WOUDC data archive can be searched by data category: there are six ozone data categories and three ultraviolet (UV) radiation data categories. The ozone datasets for total column ozone include total ozone and total ozone observations and the vertical ozone profile includes lidar, ozonesonde, Umkehr N-value and C-Umkehr. The UV datasets for UV irradiance include broadband, multiband and spectral.",
+        "body-howto": "For more details on how to use this page, please view the {how-to} guide.",
+        "body-search": "To search and download data, select the dataset and observation time period. Optionally, draw your map extent of interest and then hit search. All available data for that time period will be displayed."
       },
+      "how-to": "How to Use",
       "country": {
         "placeholder": "Select a Country",
         "title": "Country"
@@ -1115,38 +1082,38 @@
         "link": "SOP",
         "source": "Source"
       },
-      "rows": [
-        {
+      "rows": {
+        "brewer": {
           "category": "Brewer SOP",
           "text": "SOP Manual for the Brewer Spectrophotometer",
           "source": "Environment and Climate Change Canada"
         },
-        {
+        "dobson": {
           "category": "Dobson SOP",
           "text": "Operations Handbook - Ozone Observations with a Dobson Spectrophotometer",
           "source": "GAW Report No. 183"
         },
-        {
+        "ozone-quality": {
           "category": "Ozone QA/QC",
           "text": "Quality Assurance and Quality Control for Ozonesonde Measurements in GAW",
           "source": "GAW Report No. 201"
         },
-        {
-          "category": "UV Data Quality",
-          "text": "Data Quality Objectives (DQO) for Solar Ultraviolet Radiation Measurements (Part I). Addendum to WMO/GAW Report No. 146 - Quality Assurance in Monitoring Solar Ultraviolet Radiation: State of the Art",
-          "source": "GAW Report No. 198"
-        },
-        {
+        "uv-instruments": {
           "category": "UV Instruments",
           "text": "Instruments to Measure Solar Ultraviolet Radiation Part 4: Array Spectroradiometers",
           "source": "GAW Report No. 191"
         },
-        {
+        "uv-quality": {
+          "category": "UV Data Quality",
+          "text": "Data Quality Objectives (DQO) for Solar Ultraviolet Radiation Measurements (Part I). Addendum to WMO/GAW Report No. 146 - Quality Assurance in Monitoring Solar Ultraviolet Radiation: State of the Art",
+          "source": "GAW Report No. 198"
+        },
+        "uv-study": {
           "category": "UV Study",
           "text": "Intercomparison of Global UV Index from Multiband Radiometers: Harmonization of Global UVI and Spectral Irradiance",
           "source": "GAW Report No. 190"
         }
-      ],
+      },
       "title": "Standard Operating Procedures"
     },
     "related-links": {

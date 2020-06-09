@@ -1,12 +1,16 @@
 <template>
   <v-layout justify-center column align-content-center>
     <h1>{{ $t('about.standards.title') }}</h1>
-    <i18n path="about.standards.blurb1.template" tag="p">
+    <i18n path="about.standards.blurb-intro" tag="p">
       <template v-slot:interoperability>
-        <a :href="interoperabilityURL" target="_blank">{{ $t('about.standards.blurb1.interoperability') }}</a>
+        <a :href="interoperabilityURL" target="_blank">
+          {{ $t('common.interoperability') }}
+        </a>
       </template>
       <template v-slot:wis>
-        <a :href="wisURL" target="_blank">{{ $t('about.standards.blurb1.wis') }}</a>
+        <a :href="wisURL" target="_blank">
+          {{ $t('common.wis') }}
+        </a>
       </template>
     </i18n>
     <v-data-table
@@ -18,18 +22,24 @@
     >
       <template v-slot:item.formats="props">
         <v-chip v-for="link in props.item.formats" :key="link.to" class="resource" label>
-          <a :href="link.to" target="_blank">{{ link.text }}</a>
+          <a :href="link.to" target="_blank">
+            {{ link.text }}
+          </a>
         </v-chip>
       </template>
       <template v-slot:item.services="props">
         <v-chip v-for="link in props.item.services" :key="link.to" class="resource" label>
-          <a :href="link.to" target="_blank">{{ link.text }}</a>
+          <a :href="link.to" target="_blank">
+            {{ link.text }}
+          </a>
         </v-chip>
       </template>
     </v-data-table>
-    <i18n path="about.standards.blurb2.template" tag="p">
+    <i18n path="about.standards.blurb-howto" tag="p">
       <template v-slot:access>
-        <nuxt-link :to="localePath('about-dataaccess')" v-text="$t('about.standards.blurb2.access')" />
+        <nuxt-link :to="localePath('about-dataaccess')">
+          {{ $t('common.access') }}
+        </nuxt-link>
       </template>
     </i18n>
   </v-layout>
@@ -57,18 +67,22 @@ export default {
       },
       tableRowIdentifiers: [
         {
+          resource: 'discovery',
           formats: [ 'iso' ],
           services: [ 'csw', 'pmh', 'opensearch' ]
         },
         {
+          resource: 'stations',
           formats: [ 'gml', 'wigos' ],
           services: [ 'wms', 'wfs' ]
         },
         {
+          resource: 'instruments',
           formats: [ 'gml', 'wigos' ],
           services: [ 'wms', 'wfs' ]
         },
         {
+          resource: 'observations',
           formats: [ 'csv', 'geojson', 'gml', 'wigos' ],
           services: [ 'wms', 'wfs' ]
         }
@@ -78,22 +92,22 @@ export default {
   computed: {
     headers() {
       const headerKeys = [ 'resource', 'formats', 'services' ]
-      return [...headerKeys.keys()].map((index) => {
+      return headerKeys.map((key) => {
         return {
-          text: this.$t('about.standards.headers[' + index + ']'),
-          value: headerKeys[index]
+          text: this.$t('about.standards.headers.' + key),
+          value: key
         }
       })
     },
     rows() {
-      return [...this.tableRowIdentifiers.keys()].map((index) => {
-        const formatsList = this.tableRowIdentifiers[index].formats.map((format) => {
+      return this.tableRowIdentifiers.map((definition) => {
+        const formatsList = definition.formats.map((format) => {
           return {
             text: this.$t('about.standards.links.formats.' + format),
             to: this.formatURLs[format]
           }
         })
-        const servicesList = this.tableRowIdentifiers[index].services.map((service) => {
+        const servicesList = definition.services.map((service) => {
           return {
             text: this.$t('about.standards.links.services.' + service),
             to: this.serviceURLs[service]
@@ -101,7 +115,7 @@ export default {
         })
 
         return {
-          resource: this.$t('about.standards.links.resources[' + index + ']'),
+          resource: this.$t('about.standards.links.resources.' + definition.resource),
           formats: formatsList,
           services: servicesList
         }

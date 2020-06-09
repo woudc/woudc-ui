@@ -1,29 +1,29 @@
 <template>
   <v-layout justify-center column align-content-center>
     <h1>{{ $t('contributors.submission.title') }}</h1>
-    <p>{{ $t('contributors.submission.blurb1') }}</p>
-    <v-card class="woudc-note mt-1 mb-4">
+    <p>{{ $t('contributors.submission.blurb-intro') }}</p>
+    <v-card class="mt-1 mb-4" color="info">
       <v-card-text>
-        <b>{{ $t('note') }} (1)</b> {{ $t('contributors.submission.note1') }}
+        <strong>{{ $t('common.note') }} (1)</strong>
+        {{ $t('contributors.submission.note1') }}
       </v-card-text>
     </v-card>
     <h2>{{ $t('contributors.submission.subtitle') }}</h2>
     <ol>
       <li>
-        <i18n path="contributors.submission.step1.template" tag="span">
+        <i18n path="contributors.submission.step1" tag="span">
           <template v-slot:formats>
-            <nuxt-link
-              :to="localePath('about-formats')"
-              v-text="$t('contributors.submission.step1.formats')"
-            />
+            <nuxt-link :to="localePath('about-formats')">
+              {{ $t('common.formats') }}
+            </nuxt-link>
           </template>
         </i18n>
       </li>
       <li>
-        <i18n path="contributors.submission.step2.template" tag="span">
+        <i18n path="contributors.submission.step2" tag="span">
           <template v-slot:ftp>
             <a :href="ftpPath" target="_blank">
-              {{ $t('contributors.submission.step2.ftp') }}
+              {{ $t('common.ftp') }}
             </a>
           </template>
         </i18n>
@@ -32,17 +32,17 @@
       <li>{{ $t('contributors.submission.step4') }}</li>
       <li>{{ $t('contributors.submission.step5') }}</li>
     </ol>
-    <v-card class="woudc-note mt-1 mb-4">
+    <v-card class="mt-1 mb-4" color="info">
       <v-card-text>
-        <b>{{ $t('note') }} (2)</b> {{ $t('contributors.submission.note2') }}
+        <strong>{{ $t('common.note') }} (2)</strong>
+        {{ $t('contributors.submission.note2') }}
       </v-card-text>
     </v-card>
-    <i18n path="contributors.submission.blurb2.template" tag="p">
-      <template v-slot:contact>
-        <nuxt-link
-          :to="localePath('contact')"
-          v-text="$t('contributors.submission.blurb2.contact')"
-        />
+    <i18n path="contributors.submission.blurb-contact" tag="p">
+      <template v-slot:contact-us>
+        <nuxt-link :to="localePath('contact')">
+          {{ $t('common.contact-us') }}
+        </nuxt-link>
       </template>
     </i18n>
   </v-layout>

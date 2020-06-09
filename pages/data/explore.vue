@@ -1,12 +1,13 @@
 <template>
   <v-layout justify-center column align-content-center>
     <h1>{{ $t('data.explore.title') }}</h1>
-    <i18n class="newlines" path="data.explore.blurb.template" tag="p">
-      <template v-slot:access>
-        <nuxt-link
-          :to="localePath('about-dataaccess')"
-          v-text="$t('data.explore.blurb.access')"
-        />
+    <p>{{ $t('data.explore.blurb.body-datasets') }}</p>
+    <p>{{ $t('data.explore.blurb.body-search') }}</p>
+    <i18n path="data.explore.blurb.body-howto" tag="p">
+      <template v-slot:how-to>
+        <nuxt-link :to="localePath('about-dataaccess')">
+          {{ $t('data.explore.how-to') }}
+        </nuxt-link>
       </template>
     </i18n>
     <h3>{{ $t('data.explore.dataset.title') }}</h3>

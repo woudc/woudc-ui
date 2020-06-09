@@ -1,7 +1,7 @@
 <template>
   <v-layout justify-center column align-content-center>
     <h1>{{ $t('resources.related-links.title') }}</h1>
-    <h2>{{ $t('wmo') }}</h2>
+    <h2>{{ $t('common.wmo') }}</h2>
     <ul>
       <li v-for="(value, key) in wmoURLs" :key="key">
         <a :href="value" target="_blank">
