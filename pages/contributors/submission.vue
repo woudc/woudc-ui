@@ -1,64 +1,64 @@
 <template>
   <v-layout justify-center column align-content-center>
     <h1>{{ $t('contributors.submission.title') }}</h1>
-    <woudc-blurb :items="blurb1" />
-    <span class="note">
-      <p>
-        <b>{{ $t('note') }} (1)</b>
-        {{ $t('contributors.submission.note1') }}
-      </p>
-    </span>
+    <p>{{ $t('contributors.submission.blurb1') }}</p>
+    <v-card class="woudc-note mt-1 mb-4">
+      <v-card-text>
+        <b>{{ $t('note') }} (1)</b> {{ $t('contributors.submission.note1') }}
+      </v-card-text>
+    </v-card>
     <h2>{{ $t('contributors.submission.subtitle') }}</h2>
     <ol>
-      <li v-for="(blurb, i) in steps" :key="i">
-        <woudc-blurb :items="blurb" />
+      <li>
+        <i18n path="contributors.submission.step1.template" tag="span">
+          <template v-slot:formats>
+            <nuxt-link
+              :to="localePath('about-formats')"
+              v-text="$t('contributors.submission.step1.formats')"
+            />
+          </template>
+        </i18n>
       </li>
+      <li>
+        <i18n path="contributors.submission.step2.template" tag="span">
+          <template v-slot:ftp>
+            <a :href="ftpPath" target="_blank">
+              {{ $t('contributors.submission.step2.ftp') }}
+            </a>
+          </template>
+        </i18n>
+      </li>
+      <li>{{ $t('contributors.submission.step3') }}</li>
+      <li>{{ $t('contributors.submission.step4') }}</li>
+      <li>{{ $t('contributors.submission.step5') }}</li>
     </ol>
-    <span class="note">
-      <p>
-        <b>{{ $t('note') }} (2)</b>
-        {{ $t('contributors.submission.note2') }}
-      </p>
-    </span>
-    <woudc-blurb :items="blurb2" />
+    <v-card class="woudc-note mt-1 mb-4">
+      <v-card-text>
+        <b>{{ $t('note') }} (2)</b> {{ $t('contributors.submission.note2') }}
+      </v-card-text>
+    </v-card>
+    <i18n path="contributors.submission.blurb2.template" tag="p">
+      <template v-slot:contact>
+        <nuxt-link
+          :to="localePath('contact')"
+          v-text="$t('contributors.submission.blurb2.contact')"
+        />
+      </template>
+    </i18n>
   </v-layout>
 </template>
 
 <script>
-import WoudcBlurb from '~/components/WoudcBlurb'
-
 export default {
-  components: {
-    'woudc-blurb': WoudcBlurb
-  },
   data() {
     return {
-      blurb1: [ { text: this.$t('contributors.submission.blurb1[0]') } ],
-      blurb2: [
-        { text: this.$t('contributors.submission.blurb2[0]') },
-        { link: { to: 'contact', text: this.$t('contributors.submission.blurb2[1]') } },
-        { text: this.$t('contributors.submission.blurb2[2]') }
-      ],
-      steps: [
-        [
-          { text: this.$t('contributors.submission.step1[0]') },
-          { link: { to: 'about-formats', text: this.$t('contributors.submission.step1[1]') } },
-          { text: this.$t('contributors.submission.step1[2]') }
-        ],
-        [
-          { text: this.$t('contributors.submission.step2[0]') },
-          { link: { to: 'ftp://ftp.woudc.org/', type: 'external', text: this.$t('contributors.submission.step2[1]') } }
-        ],
-        this.$t('contributors.submission.step3[0]'),
-        this.$t('contributors.submission.step4[0]'),
-        this.$t('contributors.submission.step5[0]')
-      ],
+      ftpPath: 'ftp://ftp.woudc.org/'
     }
   },
   nuxtI18n: {
     paths: {
-      en: '/submission',
-      fr: '/submission-in-fr'
+      en: '/contributors/submission',
+      fr: '/contributeurs/soumission'
     }
   }
 }

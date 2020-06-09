@@ -9,8 +9,8 @@
         <nuxt-link :to="localePath('about-dataaccess')" v-text="$t('about.formats.blurb.access')" />
       </template>
     </i18n>
-    <v-card class="woudc-note" tile min-width="0px">
-      <v-card-text v-text="$t('about.formats.note')" />
+    <v-card class="mt-1 mb-4" color="info">
+      <v-card-text>{{ $t('about.formats.note') }}</v-card-text>
     </v-card>
     <h2> {{ $t('about.formats.contributor-guide.title') }}</h2>
     <ul>

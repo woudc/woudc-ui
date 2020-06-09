@@ -870,63 +870,45 @@
       "title": "Liste des contributeurs"
     },
     "registration": {
-      "blurb1": [
-        "Tous les nouveaux contributeurs aux données doivent posséder un compte WOUDC. Toutes les demandes pour la création de nouveaux comptes devront être vérifiées par le personnel du WOUDC. Le WOUDC se réserve le droit de vérifier toutes les demandes de soumission de données afin de s’assurer qu’elles soient conformes avec les protocoles d’échange de données du programme de Veille de l’atmosphère du globe (VAG) de l’Organisation météorologique mondiale (OMM).",
-        "Les contributeurs qui désirent soumettre de nouvelles données doivent suivre les étapes suivantes afin d’organiser ",
-        "les soumissions de données",
-        " au WOUDC en ensembles de données sur l’ozone ou le rayonnement ultraviolet :"
-      ],
-      "blurb2": [
-        "Nous vous remercions de votre inscription au WOUDC."
-      ],
-      "step1": [
-        "Lire la politique du WOUDC ",
-        "relative aux données"
-      ],
-      "step2": [
-        "Obtenir un identifiant VAG (obligatoire) pour chacune des stations en s’inscrivant avec ",
-        "OMM/VAG",
-        "En savoir plus sur la VAG"
-      ],
-      "step3": [
-        "Compléter le processus d'enregistrement de WOUDC en ",
-        "contactant WOUDC",
-        " avec comme titre : ",
-        "nouvelle inscription",
-        "et inclut votre nouvel identifiant VAG ; et"
-      ],
-      "step4": [
-        "Après réception et approbation de votre inscription, le WOUDC attribuera un emplacement FTP / compte FTP (avec un nom d'utilisateur / mot de passe personnel) à utiliser exclusivement pour la soumission des données."
-      ],
+      "blurb1": {
+        "submission": "les soumissions de données",
+        "template": "Tous les nouveaux contributeurs aux données doivent posséder un compte WOUDC. Toutes les demandes pour la création de nouveaux comptes devront être vérifiées par le personnel du WOUDC. Le WOUDC se réserve le droit de vérifier toutes les demandes de soumission de données afin de s’assurer qu’elles soient conformes avec les protocoles d’échange de données du programme de Veille de l’atmosphère du globe (VAG) de l’Organisation météorologique mondiale (OMM).\n\nLes contributeurs qui désirent soumettre de nouvelles données doivent suivre les étapes suivantes afin d’organiser {submission} au WOUDC en ensembles de données sur l’ozone ou le rayonnement ultraviolet :"
+      },
+      "blurb2": "Nous vous remercions de votre inscription au WOUDC.",
+      "step1": {
+        "policy": "relative aux données",
+        "template": "Lire la politique du WOUDC {policy};"
+      },
+      "step2": {
+        "more": "En savoir plus sur la VAG",
+        "template": "Obtenir un identifiant VAG (obligatoire) pour chacune des stations en s’inscrivant avec {wmo} ({more});",
+        "wmo": "OMM/VAG"
+      },
+      "step3": {
+        "contact": "contactant WOUDC",
+        "register": "nouvelle inscription",
+        "template": "Compléter le processus d'enregistrement de WOUDC en {contact} avec comme titre : {register} et inclut votre nouvel identifiant VAG ; et"
+      },
+      "step4": "Après réception et approbation de votre inscription, le WOUDC attribuera un emplacement FTP / compte FTP (avec un nom d'utilisateur / mot de passe personnel) à utiliser exclusivement pour la soumission des données.",
       "title": "Inscription"
     },
     "submission": {
-      "blurb1": [
-        "Le WOUDC traite les données de façon quotidienne afin que les soumissions de données soient complétées pratiquement en temps réel. Les contributeurs inscrits peuvent soumettre des données1 au WOUDC via le serveur FTP."
-      ],
-      "blurb2": [
-        "Il est recommandé de soumettre les données au moins une fois par mois. Veuillez ",
-        "communiquer avec nous",
-        " pour obtenir plus de renseignements"
-      ],
-      "step1": [
-        "Les fichiers de données peuvent être envoyés individuellement ou compressés en format .zip, .tar ou tar.gz. Consultez ",
-        "Formats de fichiers",
-        " pour obtenir de plus amples renseignements"
-      ],
-      "step2": [
-        "Vous connecter au serveur FTP du WOUDC ",
-        "en utilisant un client FTP"
-      ],
-      "step3": [
-        "Vous connecter à l’aide du nom d’utilisateur et du mot de passe qui vous a été attribué"
-      ],
-      "step4": [
-        "Chacun des contributeurs transfère ses fichiers respectifs dans leur dossier individuel sur le serveur FTP (une fois transférés au WOUDC, les fichiers ne peuvent être mis à jour pour soumettre des fichiers mis à jour, il faut les transférer de nouveau en utilisant un nom de fichier différent)"
-      ],
-      "step5": [
-        "Veuillez vous déconnecter pour mettre fin à la session FTP"
-      ],
+      "blurb1": "Le WOUDC traite les données de façon quotidienne afin que les soumissions de données soient complétées pratiquement en temps réel. Les contributeurs inscrits peuvent soumettre des données1 au WOUDC via le serveur FTP.",
+      "blurb2": {
+        "contact": "communiquer avec nous",
+        "template": "Il est recommandé de soumettre les données au moins une fois par mois. Veuillez {contact} pour obtenir plus de renseignements"
+      },
+      "step1": {
+        "formats": "Formats de fichiers",
+        "template": "Les fichiers de données peuvent être envoyés individuellement ou compressés en format .zip, .tar ou tar.gz. Consultez {formats} pour obtenir de plus amples renseignements"
+      },
+      "step2": {
+        "ftp": "en utilisant un client FTP",
+        "template": "Vous connecter au serveur FTP du WOUDC {ftp}"
+      },
+      "step3": "Vous connecter à l’aide du nom d’utilisateur et du mot de passe qui vous a été attribué",
+      "step4": "Chacun des contributeurs transfère ses fichiers respectifs dans leur dossier individuel sur le serveur FTP (une fois transférés au WOUDC, les fichiers ne peuvent être mis à jour pour soumettre des fichiers mis à jour, il faut les transférer de nouveau en utilisant un nom de fichier différent)",
+      "step5": "Veuillez vous déconnecter pour mettre fin à la session FTP",
       "note1": "une fois les fichiers transférés au WOUDC, il ne sera plus possible de les mettre à jour. Pour soumettre des fichiers mis à jour, les transférer de nouveau en utilisant un nom de fichier différent.",
       "note2": "les détails de chacune des étapes peuvent varier selon le type d’ordinateur et le serveur FTP.",
       "subtitle": "Étapes de soumission des données",
@@ -938,13 +920,13 @@
     }
   },
   "data": {
-    "links": [
-      "Rechercher des données / Télécharger",
-      "Produits de données",
-      "Information sur les jeux de données",
-      "Liste des stations",
-      "Liste des instruments"
-    ],
+    "links": {
+      "datasetinfo": "Information sur les jeux de données",
+      "explore": "Rechercher des données / Télécharger",
+      "instruments": "Liste des instruments",
+      "products": "Produits de données",
+      "stations": "Liste des stations"
+    },
     "title": "Données",
     "explore": {
       "blurb": [
@@ -971,31 +953,25 @@
     "info": {
       "blurb": "L'archive de données WOUDC peut fournir des informations de haut niveau sur chaque ensemble de données. Sélectionnez un ensemble de données d'intérêt pour voir ses métadonnées de découverte de l'ISO et une carte contextuelle des stations.",
       "sections": {
-        "total-ozone": {
-          "links": [
-            "Ozone total - observations quotidiennes",
-            "Ozone total - Observations horaires"
-          ],
+        "totalozone": {
+          "daily": "Ozone total - observations quotidiennes",
+          "hourly": "Ozone total - Observations horaires",
           "title": "Colonne d’ozone total"
         },
         "vertical-ozone": {
-          "links": [
-            "Lidar",
-            "Sonde pour l’ozone",
-            "UmkehrN14 (Niveau 1.0)",
-            "UmkehrN14 (Niveau 2.0)",
-            "RocketSonde"
-          ],
-          "title": "Courbe de répartition verticale de l’ozone"
+          "lidar": "Lidar",
+          "ozonesonde": "Sonde pour l’ozone",
+          "rocketsonde": "RocketSonde",
+          "title": "Courbe de répartition verticale de l’ozone",
+          "umkehr1": "UmkehrN14 (Niveau 1.0)",
+          "umkehr2": "UmkehrN14 (Niveau 2.0)"
         },
         "uv-irradiance": {
-          "links": [
-            "Large bande",
-            "Multibande",
-            "Spectrale",
-            "Indice UV"
-          ],
-          "title": "Rayonnement UV"
+          "broadband": "Large bande",
+          "multiband": "Multibande",
+          "spectral": "Spectrale",
+          "title": "Rayonnement UV",
+          "uv-index": "Indice UV"
         }
       },
       "subtitle": "Jeu de données",
@@ -1027,46 +1003,46 @@
       "blurb": "Des données de sortie spéciales sont préparées par le WOUDC afin d’aider les chercheurs et leur fournir des renseignements à valeur ajoutée ; certaines données comprennent des graphiques de série chronologique détaillant l’épaisseur de la colonne d’ozone total ainsi que des cartes indiquant la quantité d’ozone en temps quasi réel.",
       "maps": {
         "blurb": "Des cartes de l’ozone total en temps quasi réel, mises à jour quotidiennement à environ 14:00 (UTC).",
-        "links": [
-          "Cartes globales de l’ozone total les plus récentes",
-          "Cartes de l’ozone de l’hémisphère nord",
-          "Cartes de l’ozone de l’hémisphère sud",
-          "Archive des cartes d’ozone",
-          "Sources des données individuelles des cartes de l’ozone récentes et cartes de prévision de l’ozone"
-        ],
+        "links": {
+          "archive": "Archive des cartes d’ozone",
+          "global": "Cartes globales de l’ozone total les plus récentes",
+          "individual": "Sources des données individuelles des cartes de l’ozone récentes et cartes de prévision de l’ozone",
+          "north": "Cartes de l’ozone de l’hémisphère nord",
+          "south": "Cartes de l’ozone de l’hémisphère sud"
+        },
         "title": "Cartes de l’ozone"
       },
       "related": {
         "blurb": "_",
-        "links": [
-          "Données sommaires de l’ozone total : Moyennes quotidiennes et mensuelles",
-          "Comparaison des résultats d’ozone total obtenus au sol et par satellite",
-          "Données obtenues par la technique Umkehr par algorithme",
-          "Résumés et schémas des UV spectraux mensuels",
-          "Moyenne de l’ozone par zone obtenue par les instruments au sol",
-          "Ensemble de données cartographié par des Trajectoires provenant des sondages d'Ozone dans la Stratosphère et la Troposphère (TOST)"
-        ],
+        "links": {
+          "ozone-zonal": "Moyenne de l’ozone par zone obtenue par les instruments au sol",
+          "spectral": "Résumés et schémas des UV spectraux mensuels",
+          "tost": "Ensemble de données cartographié par des Trajectoires provenant des sondages d'Ozone dans la Stratosphère et la Troposphère (TOST)",
+          "totalozone-daily-monthly": "Données sommaires de l’ozone total : Moyennes quotidiennes et mensuelles",
+          "totalozone-satellite-ground": "Comparaison des résultats d’ozone total obtenus au sol et par satellite",
+          "umkehr": "Données obtenues par la technique Umkehr par algorithme"
+        },
         "title": "Produits relatifs à l'ozone"
       },
       "summaries": {
         "blurb": "_",
-        "links": [
-          "Les bulletins sur l'ozone de l'Antarctique et de l'Arctique - OMM",
-          "VAG recherche et rapports de surveillance - OMM",
-          "Recherche sur l'ozone mondial de surveillance et les rapports de projet - de l'OMM",
-          "Du trou d'ozone Watch - NASA",
-          "Mesures de satellite en orbite polaire - FMI",
-          "Emission troposphérique service surveillance d'Internet"
-        ],
+        "links": {
+          "gaw-reports": "VAG recherche et rapports de surveillance - OMM",
+          "ozone-reports": "Recherche sur l'ozone mondial de surveillance et les rapports de projet - de l'OMM",
+          "ozone-hole": "Du trou d'ozone Watch - NASA",
+          "polar-bulletins": "Les bulletins sur l'ozone de l'Antarctique et de l'Arctique - OMM",
+          "sampo": "Mesures de satellite en orbite polaire - FMI",
+          "temis": "Emission troposphérique service surveillance d'Internet"
+        },
         "title": "Sommaires et rapports des données"
       },
       "time-series": {
         "blurb": "Une variété de schémas sont disponibles afin de vérifier la disponibilité des données, par exemple.",
-        "links": [
-          "Schémas de sondes pour l’ozone",
-          "Schémas d’ozone total",
-          "Schémas d’indice UV"
-        ],
+        "links": {
+          "ozonesonde": "Schémas de sondes pour l’ozone",
+          "totalozone": "Schémas d’ozone total",
+          "uv-index": "Schémas d’indice UV"
+        },
         "title": "Graphiques de séries chronologiques"
       },
       "title": "Produits de données"
@@ -1118,20 +1094,20 @@
     "blurb": "Nouvelles pour le Centre de données, mises à jour et des notifications"
   },
   "resources": {
-    "links": [
-      "Procédures d'utilisation normalisées",
-      "Groupes de travail",
-      "Liens de données connexes",
-      "Logiciel"
-    ],
+    "links": {
+      "links": "Liens de données connexes",
+      "software": "Logiciel",
+      "sop": "Procédures d'utilisation normalisées",
+      "workinggroups": "Groupes de travail"
+    },
     "title": "Ressources",
     "procedures": {
       "blurb": "Liens vers les Procédures d'utilisation normalisées (PUN) sur l’ozone et les rayons UV Données sur le rayonnement.",
-      "headers": [
-        "Catégorie",
-        "PUN",
-        "Source"
-      ],
+      "headers": {
+        "category": "Catégorie",
+        "link": "PUN",
+        "source": "Source"
+      },
       "rows": [
         {
           "category": "PUN de Brewer",
@@ -1167,38 +1143,36 @@
       "title": "Procédures d'utilisation normalisées"
     },
     "related-links": {
-      "other-links": [
-        "Centre pour la validation de données du satellite Aura (AVDC) - NASA",
-        "Climat package de recherche de données (CRDP) - ESA",
-        "Laboratoire de recherche sur le système terrestre / division mondiale de surveillance (ESRL / GMD) - NOAA",
-        "Réseau européen pour le Brewer (de EUBREWNET)",
-        "Base de données UV européenne (EUVDB)",
-        "Chimie de l'ozone mondial et connexes enregistrements de données de traces de gaz pour la stratosphère (GOZCARDS) - NASA",
-        "Base de données MOZAIC / IAGOS ",
-        "Réseau de détection des changements de composition de l'atmosphère (NDACC) - NOAA",
-        "Réseau de surveillance NSF Polar Programs UV",
-        "Archives Polar / UVI données - NASA",
-        "Sondes d'ozone additionnelles de l'hémisphère sud (SHADOZ) - NASA"
-      ],
+      "links": {
+        "avdc": "Centre pour la validation de données du satellite Aura (AVDC) - NASA",
+        "crdp": "Climat package de recherche de données (CRDP) - ESA",
+        "esrl": "Laboratoire de recherche sur le système terrestre / division mondiale de surveillance (ESRL / GMD) - NOAA",
+        "eubrewnet": "Réseau européen pour le Brewer (de EUBREWNET)",
+        "euvdb": "Base de données UV européenne (EUVDB)",
+        "gawsis": "Système d'information sur les stations de la VAG (GAWSIS)",
+        "gozcards": "Chimie de l'ozone mondial et connexes enregistrements de données de traces de gaz pour la stratosphère (GOZCARDS) - NASA",
+        "mozaic": "Base de données MOZAIC / IAGOS ",
+        "ndacc": "Réseau de détection des changements de composition de l'atmosphère (NDACC) - NOAA",
+        "oscar": "L'outil OSCAR",
+        "polar": "Réseau de surveillance NSF Polar Programs UV",
+        "projects": "Projets et campagnes",
+        "shadoz": "Sondes d'ozone additionnelles de l'hémisphère sud (SHADOZ) - NASA",
+        "uvi": "Archives Polar / UVI données - NASA",
+        "wdc-aerosol": "Centre mondial de données relatives aux aérosols",
+        "wdc-ghg": "Centre mondial de données relatives aux gaz à effet de serre",
+        "wdc-precip": "Centre mondial de données relatives à la composition chimique des précipitations",
+        "wdc-sensing": "Centre mondial de données relatives à la télédétection de l’atmosphère",
+        "wrdc": "Centre mondial de données rde radiation"
+      },
       "other-title": "Autres données connexes",
-      "title": "Liens de données connexes",
-      "wmo-links": [
-        "Système d'information sur les stations de la VAG (GAWSIS)",
-        "L'outil OSCAR",
-        "Projets et campagnes",
-        "Centre mondial de données relatives aux aérosols",
-        "Centre mondial de données relatives aux gaz à effet de serre",
-        "Centre mondial de données relatives à la composition chimique des précipitations",
-        "Centre mondial de données relatives à la télédétection de l’atmosphère",
-        "Centre mondial de données rde radiation"
-      ]
+      "title": "Liens de données connexes"
     },
     "working-groups": {
-      "links": [
-        "Groupe d'utilasateurs pour le Brewer",
-        "Comité ad hoc pour le Dobson",
-        "Sous-comité pour la méthode d’Umkehr"
-      ],
+      "links": {
+        "brewer": "Groupe d'utilasateurs pour le Brewer",
+        "dobson": "Comité ad hoc pour le Dobson",
+        "umkehr": "Sous-comité pour la méthode d’Umkehr"
+      },
       "title": "Groupes de travail"
     }
   }

@@ -19,7 +19,7 @@
           <div class="d-flex flex-no-wrap justify-space-between">
             <div>
               <v-card-title class="headline">
-                <a target="_blank" href="http://www.wmo.int" itemprop="name">
+                <a :href="wmoURL" target="_blank" itemprop="name">
                   {{ $t('wmo') }}
                 </a>
               </v-card-title>
@@ -28,7 +28,7 @@
               </v-card-subtitle>
             </div>
             <v-avatar class="ma-3" size="150" tile>
-              <a target="_blank" href="http://www.wmo.int" itemprop="url">
+              <a target="_blank" :href="wmoURL" itemprop="url">
                 <v-img
                   :src="require('~/assets/wmo_acronym_vertical_sm.jpg')"
                   :alt="$t('home.wmoLogo')"
@@ -50,11 +50,7 @@
           <div class="d-flex flex-no-wrap justify-space-between">
             <div>
               <v-card-title class="headline">
-                <a
-                  target="_blank"
-                  href="http://www.wmo.int/gaw"
-                  itemprop="name"
-                >
+                <a target="_blank" :href="gawURL" itemprop="name">
                   {{ $t('gaw') }}
                 </a>
               </v-card-title>
@@ -63,7 +59,7 @@
               </v-card-subtitle>
             </div>
             <v-avatar class="ma-3" size="150" tile>
-              <a target="_blank" href="http://www.wmo.int/gaw" itemprop="url">
+              <a :href="gawURL" target="_blank" itemprop="url">
                 <v-img
                   :src="require('~/assets/gaw_acronym_vertical_sm.jpg')"
                   :alt="$t('home.gawLogo')"
@@ -77,11 +73,14 @@
         </v-card>
       </v-container>
       <v-card-text itemprop="description">
-        A World Meteorological Organization (
-        <a href="https://www.wmo.int" target="_blank">{{ $t('wmo') }}</a>
-        ) data centre supporting the Global Atmosphere Watch (
-        <a href="https://www.wmo.int/gaw" target="_blank">{{ $t('gaw') }}</a>
-        ) program operated by Environment and Climate Change Canada.
+        <i18n path="home.blurb" tag="span">
+          <template v-slot:wmo>
+            <a :href="wmoURL" target="_blank">{{ $t('wmo') }}</a>
+          </template>
+          <template v-slot:gaw>
+            <a :href="gawURL" target="_blank">{{ $t('gaw') }}</a>
+          </template>
+        </i18n>
       </v-card-text>
       <v-card-actions>
         <v-btn
@@ -102,11 +101,8 @@ export default {
   name: 'Home',
   data() {
     return {
-      envVarTest: {
-        servicesHostname: process.env.SERVICES_HOSTNAME,
-        routerBase: process.env.ROUTER_BASE,
-        emailAddress: process.env.EMAIL_ADDRESS
-      }
+      gawURL: 'http://www.wmo.int/gaw',
+      wmoURL: 'http://www.wmo.int'
     }
   },
   head() {

@@ -1,63 +1,69 @@
 <template>
   <v-layout justify-center column align-content-center>
     <h1>{{ $t('contributors.registration.title') }}</h1>
-    <woudc-blurb :items="blurb1" />
+    <i18n
+      class="newlines"
+      path="contributors.registration.blurb1.template"
+      tag="p"
+    >
+      <template v-slot:submission>
+        <nuxt-link
+          :to="localePath('contributors-submission')"
+          v-text="$t('contributors.registration.blurb1.submission')"
+        />
+      </template>
+    </i18n>
     <ol>
-      <li v-for="(blurb, i) in steps" :key="i">
-        <woudc-blurb :items="blurb" />
+      <li>
+        <i18n path="contributors.registration.step1.template" tag="span">
+          <template v-slot:policy>
+            <nuxt-link
+              :to="localePath('about-datapolicy')"
+              v-text="$t('contributors.registration.step1.policy')"
+            />
+          </template>
+        </i18n>
+      </li>
+      <li>
+        <i18n path="contributors.registration.step2.template" tag="span">
+          <template v-slot:wmo>
+            <a :href="gawHomeURL" target="_blank" v-text="$t('contributors.registration.step2.wmo')"></a>
+          </template>
+          <template v-slot:more>
+            <a :href="wmoGAWUrl" target="_blank" v-text="$t('contributors.registration.step2.more')"></a>
+          </template>
+        </i18n>
+      </li>
+      <li>
+        <i18n path="contributors.registration.step3.template" tag="span">
+          <template v-slot:contact>
+            <nuxt-link :to="localePath('contact')" v-text="$t('contributors.registration.step3.contact')" />
+          </template>
+          <template v-slot:register>
+            <strong>{{ $t('contributors.registration.step3.register') }}</strong>
+          </template>
+        </i18n>
+      </li>
+      <li>
+        {{ $t('contributors.registration.step4') }}
       </li>
     </ol>
-    <p>{{ blurb2 }}</p>
+    <p>{{ $t('contributors.registration.blurb2') }}</p>
   </v-layout>
 </template>
 
 <script>
-import WoudcBlurb from '~/components/WoudcBlurb'
-
 export default {
-  components: {
-    'woudc-blurb': WoudcBlurb
-  },
   data() {
     return {
-      blurb1: [
-        { text: this.$t('contributors.registration.blurb1[0]') },
-        { newlines: 2 },
-        { text: this.$t('contributors.registration.blurb1[1]') },
-        { link: { to: 'contributors-submission', text: this.$t('contributors.registration.blurb1[2]') } },
-        { text: this.$t('contributors.registration.blurb1[3]') }
-      ],
-      blurb2: this.$t('contributors.registration.blurb2[0]'),
-      steps: [
-        [
-          { text: this.$t('contributors.registration.step1[0]') },
-          { link: { to: 'about-datapolicy', text: this.$t('contributors.registration.step1[1]') } },
-          { text: ';' }
-        ],
-        [
-          { text: this.$t('contributors.registration.step2[0]') },
-          { link: { to: 'https://gawsis.meteoswiss.ch/', type: 'external', text: this.$t('contributors.registration.step2[1]') } },
-          { text: ' (' },
-          { link: { to: 'https://www.wmo.int/pages/prog/arep/gaw/gaw_home_en.html', type: 'external', text: this.$t('contributors.registration.step2[2]') } },
-          ');'
-        ],
-        [
-          { text: this.$t('contributors.registration.step3[0]') },
-          { link: { to: 'contact', text: this.$t('contributors.registration.step3[1]') } },
-          { text: this.$t('contributors.registration.step3[2]') },
-          { bold: this.$t('contributors.registration.step3[3]') },
-          { text: this.$t('contributors.registration.step3[4]') },
-        ],
-        [
-          { text: this.$t('contributors.registration.step4[0]') }
-        ]
-      ]
+      gawHomeURL: 'https://gawsis.meteoswiss.ch/',
+      wmoGAWUrl: 'https://www.wmo.int/pages/prog/arep/gaw/gaw_home_en.html'
     }
   },
   nuxtI18n: {
     paths: {
-      en: '/registration',
-      fr: '/registration-in-fr'
+      en: '/contributors/registration',
+      fr: '/contributeurs/inscription'
     }
   }
 }
