@@ -7,6 +7,20 @@
   "wmo": "OMM",
   "wmoFull": "Organisation météorologique mondiale",
   "woudcFull": "Centre mondial de données sur l’ozone et le rayonnement ultraviolet",
+  "map-instructions": {
+    "label": "Guide d'utilisation : Carte interactive",
+    "panning": "Déplacement :",
+    "tab": "tabulation (TAB)",
+    "template": "{panning} Cliquez sur n'importe quelle partie de la carte interactive et faites-la glisser. Ou alors, déplacer le curseur sur la fenêtre de la carte avec la touche {tab} et déplacez-vous à l’aide des touches fléchées.\n\n{zooming} Pour agrandir ou réduire la vue, servez-vous de la roulette de votre souris lorsque votre curseur se trouve sur la carte, ou cliquez sur la {plus} ou la touche {minus}. Ou alors, déplacez le curseur sur la fenêtre de la carte avec la touche {tab} et cliquez sur la {plus} ou la touche {minus}. Pour effectuer un zoom arrière complet, appuyez sur le bouton \"Voir le globe\".",
+    "zooming": "Zoom :"
+  },
+  "table-instructions": {
+    "filtering": "Filtrer :",
+    "label": "Guide d'utilisation : Tableau interactif",
+    "paging": "Pagination :",
+    "sorting": "Trier :",
+    "template": "{filtering} Pour filtrer le tableau, indiquez les termes dans la barre de recherche en haut de chaque colonne ou la barre \"rechercher tout\".\n\n{sorting} Pour trier le tableau, cliquez sur les flèches à côté des intitulés des colonnes.\n\n{paging} Changer l'option \"voir les entrées\" dans la liste déroulante pour changer le nombre de stations à afficher sur la page. Cliquez sur \"suivant\" ou \"précédent\" pour afficher plus de pages du tableau."
+  },
   "about": {
     "access": {
       "blurb": {
@@ -801,36 +815,23 @@
     "news": "Nouvelles"
   },
   "contact": {
-    "blurb": [
-      "Pour les questions techniques, consultez la ",
-      "Foire aux questions",
-      ".",
-      "Si vous ne trouvez pas de réponse à vos questions, ou si vous désirez nous faire part de vos commentaires, suggestions ou idées à propos du ",
-      ", veuillez remplir le formulaire ci-dessous.",
-      "Si vous avez des problèmes avec le formulaire suivant, vous pouvez utiliser une des ",
-      "autres voies de service",
-      " pour communiquer avec nous."
-    ],
+    "blurb": {
+      "channels": "autres voies de service",
+      "faq": "Foire aux questions",
+      "template": "Pour les questions techniques, consultez la {faq}.\nSi vous ne trouvez pas de réponse à vos questions, ou si vous désirez nous faire part de vos commentaires, suggestions ou idées à propos du {woudc}, veuillez remplir le formulaire ci-dessous.\nSi vous avez des problèmes avec le formulaire suivant, vous pouvez utiliser une des {channels} pour communiquer avec nous."
+    },
     "contact-info": "Vos Coordonnées",
     "contact-methods": {
-      "Par la poste": [
-        "Centre mondial de données sur l’ozone et le rayonnement ultraviolet",
-        "Services météorologiques du Canada",
-        "Environnement et Changement climatique Canada",
-        "4905, rue Dufferin",
-        "Toronto, ON M3H 5T4",
-        "Canada"
-      ]
+      "Par la poste": "Centre mondial de données sur l’ozone et le rayonnement ultraviolet\nServices météorologiques du Canada\nEnvironnement et Changement climatique Canada\n4905, rue Dufferin\nToronto, ON M3H 5T4\nCanada"
     },
     "email": "Courriel",
     "message": "Message",
     "name": "Nom",
-    "note-body": [
-      "Tous les renseignements personnels créés, recueillis ou conservés par le ministère sont protégés par la ",
-      "Loi sur la protection des renseignements personnels",
-      ". Cela signifie qu'on vous informera des fins auxquelles ces renseignements sont recueillis et de la façon dont vous pouvez exercer votre droit d'accès à ces renseignements. Le cas échéant, on vous demandera d'exprimer votre consentement par rapport à ces renseignements."
-    ],
-    "note-title": "Énoncé de collecte de renseignements personnels",
+    "note": {
+      "privacy": "Loi sur la protection des renseignements personnels",
+      "template": "Tous les renseignements personnels créés, recueillis ou conservés par le ministère sont protégés par la {privacy}. Cela signifie qu'on vous informera des fins auxquelles ces renseignements sont recueillis et de la façon dont vous pouvez exercer votre droit d'accès à ces renseignements. Le cas échéant, on vous demandera d'exprimer votre consentement par rapport à ces renseignements.",
+      "title": "Énoncé de collecte de renseignements personnels"
+    },
     "other-channels": "Autres voies de service",
     "prompt": "S'il vous plaît fournir des informations que nous pourrions utiliser pour communiquer avec vous.",
     "required": "obligatoire",
@@ -842,30 +843,22 @@
   "contributors": {
     "list": {
       "blurb": "La liste des contributeurs contient le nom et l’abréviation de l’institut ou de l’organisation,l’adresse, les coordonnées et l’information sur le fichier local.",
-      "contributor-headers": [
-        "Acronyme",
-        "Project title in French",
-        "Nom du contributeur",
-        "Pays",
-        "À partir de cette date",
-        "Jusqu’à cette date",
-        "Région de l'OMM"
-      ],
-      "deployment-headers": [
-        "Identification de la station du WOUDC",
-        "Nom de la station",
-        "Type de station",
-        "Pays de la station",
-        "À partir de cette date",
-        "Jusqu’à cette date"
-      ],
-      "map-instructions": {
-        "label": "Guide d'utilisation : Carte interactive",
-        "text": "Lorem Ipsum something something something"
+      "contributor-headers": {
+        "acronym": "Acronyme",
+        "country": "Pays",
+        "end_date": "Jusqu’à cette date",
+        "name": "Nom du contributeur",
+        "project": "Projet",
+        "start_date": "À partir de cette date",
+        "wmo_region_id": "Région de l'OMM"
       },
-      "table-instructions": {
-        "label": "Guide d'utilisation : Tableau interactif",
-        "text": "Lorem Ipsum something something something"
+      "deployment-headers": {
+        "country": "Pays de la station",
+        "end_date": "Jusqu’à cette date",
+        "name": "Nom de la station",
+        "start_date": "À partir de cette date",
+        "type": "Type de station",
+        "woudc_id": "Identification de la station du WOUDC"
       },
       "title": "Liste des contributeurs"
     },
@@ -929,25 +922,55 @@
     },
     "title": "Données",
     "explore": {
-      "blurb": [
-        "La recherche dans l’archive de données du WOUDC peut se faire par catégorie de données : il y a six catégories de données sur l’ozone et trois sur le rayonnement ultraviolet (UV). Les jeux de données pour la colonne d’ozone totale comprennent l’ozone total et les observations sur l’ozone total, et la courbe de répartition verticale de l’ozone comprend les valeurs obtenues à l’aide des techniques lidar et des sondages d’ozone, ainsi que les valeurs N obtenues à l’aide de la technique Umkehr et celles établies à l’aide de la technique C-Umkehr. Les jeux de données sur le rayonnement UV comprennent celles à large bande, multibandes, et spectrales.",
-        "Pour chercher et télécharger des données, sélectionnez l’ensemble de données et la période d’observation. Vous pouvez également choisir l’étendue géographique de votre recherche et cliquer sur envoyer la requête. Toutes les données disponibles pour cette période seront affichées.",
-        "Pour obtenir plus d’information à propos de l’utilisation de cette page, consultez le ",
-        "Guide d’utilisation",
-        "."
-      ],
-      "country": "Pays",
-      "dataset": "Jeu de Données",
-      "instrument": "Instrument",
-      "end": "Fin",
-      "placeholders": {
-        "country": "Select a Country in French",
-        "dataset": "Select a Dataset in French",
-        "instrument": "Select an Instrument in French",
-        "station": "Select a Station in French"
+      "blurb": {
+        "access": "Guide d’utilisation",
+        "template": "La recherche dans l’archive de données du WOUDC peut se faire par catégorie de données : il y a six catégories de données sur l’ozone et trois sur le rayonnement ultraviolet (UV). Les jeux de données pour la colonne d’ozone totale comprennent l’ozone total et les observations sur l’ozone total, et la courbe de répartition verticale de l’ozone comprend les valeurs obtenues à l’aide des techniques lidar et des sondages d’ozone, ainsi que les valeurs N obtenues à l’aide de la technique Umkehr et celles établies à l’aide de la technique C-Umkehr. Les jeux de données sur le rayonnement UV comprennent celles à large bande, multibandes, et spectrales.\n\nPour chercher et télécharger des données, sélectionnez l’ensemble de données et la période d’observation. Vous pouvez également choisir l’étendue géographique de votre recherche et cliquer sur envoyer la requête. Toutes les données disponibles pour cette période seront affichées.\n\nPour obtenir plus d’information à propos de l’utilisation de cette page, consultez le {access}."
       },
+      "country": {
+        "placeholder": "Choisis un Pays",
+        "title": "Pays"
+      },
+      "dataset": {
+        "all": "Tous les ensembles de données de WOUDC",
+        "placeholder": "Choisis un Jeu de Données",
+        "title": "Jeu de Données",
+        "data-centers": {
+          "label": "Centres de données connexes",
+          "totalozone": "Colonne d'ozone total",
+          "uv-irradiance": "Rayonnement UV",
+          "vertical-ozone": "Courbe de réparition verticale de l'ozone"
+        },
+        "totalozone": {
+          "daily": "Ozone total - Observations quotidiennes",
+          "hourly": "Ozone total - Observations horaires",
+          "label": "Colonne d'ozone total"
+        },
+        "uv-irradiance": {
+          "broadband": "Large bande",
+          "label": "Rayonnement UV",
+          "multiband": "Multibande",
+          "spectral": "Spectrale",
+          "uv-index": "Indice UV"
+        },
+        "vertical-ozone": {
+          "label": "Courbe de réparition verticale de l'ozone",
+          "lidar": "Lidar",
+          "ozonesonde": "Sonde pour l'ozone",
+          "rocketsonde": "RocketSonde",
+          "umkehr1": "UmkehrN14 (Niveau 1.0)",
+          "umkehr2": "UmkehrN14 (Niveau 2.0)"
+        }
+      },
+      "instrument": {
+        "placeholder": "Choisis un Instrument",
+        "title": "Instrument"
+      },
+      "end": "Fin",
       "start": "Début",
-      "station": "Station",
+      "station": {
+        "placeholder": "Choisis une Station",
+        "title": "Station"
+      },
       "title": "Rechercher des données / Télécharger"
     },
     "info": {
@@ -979,23 +1002,15 @@
     },
     "instruments": {
       "blurb": "Les archives de données du WOUDC peuvent être classées par instrument. La liste d’instruments comprend le type d’instrument, le nom et le modèle.",
-      "headers": [
-        "Type d'instrument",
-        "Modèle de l’instrument",
-        "À partir de cette date",
-        "Jusqu’à cette date",
-        "Classe de données",
-        "Catégorie de données",
-        "Nom de la station",
-        "Dossier accessible sur le web"
-      ],
-      "map-instructions": {
-        "label": "Guide d'utilisation : Carte interactive",
-        "text": "Lorem Ipsum something something something"
-      },
-      "table-instructions": {
-        "label": "Guide d'utilisation : Tableau interactif",
-        "text": "Lorem Ipsum something something something"
+      "headers": {
+        "data_class": "Classe de données",
+        "dataset": "Catégorie de données",
+        "end_date": "Jusqu’à cette date",
+        "model": "Modèle de l’instrument",
+        "name": "Type d'instrument",
+        "start_date": "À partir de cette date",
+        "station": "Nom de la station",
+        "waf_url": "Dossier accessible sur le web"
       },
       "title": "Liste des instruments"
     },
@@ -1049,35 +1064,33 @@
     },
     "stations": {
       "blurb": "Les archives de données du WOUDC peuvent être classées par station. Pour connaître le numéro identificateur d’une station, sélectionner le lien des métadonnées sur le site Web du WOUDC, puis la région désirée. Vous pourrez ensuite consulter la liste des stations et leur numéro d’identification.",
-      "deployment-headers": [],
-      "instrument-headers": [
-        "Type d'instrument",
-        "Modèle de l’instrument",
-        "Numéro de l’instrument",
-        "À partir de cette date",
-        "Jusqu’à cette date",
-        "Classe de données",
-        "Catégorie de données",
-        "Dossier accessible sur le web"
-      ],
-      "map-instructions": {
-        "label": "Guide d'utilisation : Carte interactive",
-        "text": "Lorem Ipsum something something something"
+      "deployment-headers": {
+        "acronym": "Acronyme",
+        "end_date": "Jusqu’à cette date",
+        "name": "Nom du contributeur",
+        "project": "Projet",
+        "start_date": "À partir de cette date"
       },
-      "station-headers": [
-        "Identification de la station du WOUDC",
-        "Identifiant VAG",
-        "À partir de cette date",
-        "Jusqu’à cette date",
-        "Nom de la station",
-        "Pays de la station",
-        "Date de révision",
-        "Type de station",
-        "Région de l'OMM"
-      ],
-      "table-instructions": {
-        "label": "Guide d'utilisation : Tableau interactif",
-        "text": "Lorem Ipsum something something something"
+      "instrument-headers": {
+        "data_class": "Classe de données",
+        "dataset": "Catégorie de données",
+        "end_date": "Jusqu’à cette date",
+        "model": "Modèle de l’instrument",
+        "name": "Type d'instrument",
+        "serial": "Numéro de l’instrument",
+        "start_date": "À partir de cette date",
+        "waf_url": "Dossier accessible sur le web"
+      },
+      "station-headers": {
+        "woudc_id": "Identification de la station du WOUDC",
+        "gaw_id": "Identifiant VAG",
+        "start_date": "À partir de cette date",
+        "end_date": "Jusqu’à cette date",
+        "name": "Nom de la station",
+        "country": "Pays de la station",
+        "last_validated_datetime": "Date de révision",
+        "type": "Type de station",
+        "wmo_region_id": "Région de l'OMM"
       },
       "title": "Liste des stations"
     }

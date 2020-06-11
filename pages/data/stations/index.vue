@@ -5,20 +5,46 @@
     <v-expansion-panels id="map-instructions">
       <v-expansion-panel>
         <v-expansion-panel-header>
-          <b>{{ $t('data.stations.map-instructions.label') }}</b>
+          <b>{{ $t('map-instructions.label') }}</b>
         </v-expansion-panel-header>
         <v-expansion-panel-content>
-          {{ $t('data.stations.map-instructions.text') }}
+          <i18n class="newlines" path="map-instructions.template" tag="p">
+            <template v-slot:panning>
+              <b>{{ $t('map-instructions.panning') }}</b>
+            </template>
+            <template v-slot:zooming>
+              <b>{{ $t('map-instructions.zooming') }}</b>
+            </template>
+            <template v-slot:tab>
+              <kbd>{{ $t('map-instructions.tab') }}</kbd>
+            </template>
+            <template v-slot:plus>
+              <kbd>+</kbd>
+            </template>
+            <template v-slot:minus>
+              <kbd>-</kbd>
+            </template>
+          </i18n>
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
     <v-expansion-panels id="table-instructions">
       <v-expansion-panel>
         <v-expansion-panel-header>
-          <b>{{ $t('data.stations.table-instructions.label') }}</b>
+          <b>{{ $t('table-instructions.label') }}</b>
         </v-expansion-panel-header>
         <v-expansion-panel-content>
-          {{ $t('data.stations.table-instructions.text') }}
+          <i18n class="newlines" path="table-instructions.template" tag="p">
+            <template v-slot:filtering>
+              <b>{{ $t('table-instructions.filtering') }}</b>
+            </template>
+            <template v-slot:sorting>
+              <b>{{ $t('table-instructions.sorting') }}</b>
+            </template>
+            <template v-slot:paging>
+              <b>{{ $t('table-instructions.paging') }}</b>
+            </template>
+          </i18n>
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
@@ -45,18 +71,6 @@
 <script>
 import axios from '~/plugins/axios'
 
-const headerKeys = [
-  'woudc_id',
-  'gaw_id',
-  'start_date',
-  'end_date',
-  'name',
-  'country',
-  'last_validated_datetime',
-  'type',
-  'wmo_region_id'
-]
-
 export default {
   async asyncData() {
     const stationsURL = '/collections/stations/items'
@@ -79,19 +93,35 @@ export default {
   },
   data() {
     return {
-      headers: [...headerKeys.keys()].map((index) => {
-        return {
-          text: this.$t('data.stations.station-headers[' + index + ']'),
-          value: headerKeys[index]
-        }
-      }),
       stations: []
+    }
+  },
+  computed: {
+    headers() {
+      const headerKeys = [
+        'woudc_id',
+        'gaw_id',
+        'start_date',
+        'end_date',
+        'name',
+        'country',
+        'last_validated_datetime',
+        'type',
+        'wmo_region_id'
+      ]
+
+      return headerKeys.map((key) => {
+        return {
+          text: this.$t('data.stations.station-headers.' + key),
+          value: key
+        }
+      })
     }
   },
   nuxtI18n: {
     paths: {
-      en: '/stations',
-      fr: '/stations'
+      en: '/data/stations',
+      fr: '/donnees/stations'
     }
   }
 }
