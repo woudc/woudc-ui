@@ -829,6 +829,8 @@
         "start_date": "À partir de cette date",
         "wmo_region_id": "Région de l'OMM"
       },
+      "contributor-name": "Nom du contributeur :",
+      "country-name": "Nom du pays :",
       "deployment-headers": {
         "country": "Pays de la station",
         "end_date": "Jusqu’à cette date",
@@ -965,6 +967,7 @@
     },
     "instruments": {
       "blurb": "Les archives de données du WOUDC peuvent être classées par instrument. La liste d’instruments comprend le type d’instrument, le nom et le modèle.",
+      "contributor-name": "Nom du contributeur :",
       "headers": {
         "data_class": "Classe de données",
         "dataset": "Catégorie de données",
@@ -975,6 +978,8 @@
         "station": "Nom de la station",
         "waf_url": "Dossier accessible sur le web"
       },
+      "instrument-type": "Type d’instrument :",
+      "station-name": "Nom de la station :",
       "title": "Liste des instruments"
     },
     "products": {
@@ -1027,6 +1032,7 @@
     },
     "stations": {
       "blurb": "Les archives de données du WOUDC peuvent être classées par station. Pour connaître le numéro identificateur d’une station, sélectionner le lien des métadonnées sur le site Web du WOUDC, puis la région désirée. Vous pourrez ensuite consulter la liste des stations et leur numéro d’identification.",
+      "country-name": "Pays de la station :",
       "deployment-headers": {
         "acronym": "Acronyme",
         "end_date": "Jusqu’à cette date",
@@ -1034,6 +1040,7 @@
         "project": "Projet",
         "start_date": "À partir de cette date"
       },
+      "gaw-id": "Identifiant VAG :",
       "instrument-headers": {
         "data_class": "Classe de données",
         "dataset": "Catégorie de données",
@@ -1055,6 +1062,8 @@
         "type": "Type de station",
         "wmo_region_id": "Région de l'OMM"
       },
+      "station-id": "Identification de la station du WOUDC :",
+      "station-name": "Nom de la station :",
       "title": "Liste des stations"
     }
   },

@@ -2,36 +2,83 @@
   <v-layout justify-center column align-content-center>
     <h1>{{ $t('data.stations.title') }}</h1>
     <p>{{ $t('data.stations.blurb') }}</p>
-    <map-instructions id="map-instructions" />
-    <table-instructions id="table-instructions" />
-    <v-data-table :headers="headers" :items="stations" class="elevation-1">
-      <template v-slot:item.woudc_id="station">
-        <nuxt-link :to="'/data/stations/' + station.item.woudc_id">
-          {{ station.item.woudc_id }}
-        </nuxt-link>
+    <v-row>
+      <v-col>
+        <selectable-map
+          :elements="stations"
+          :selected="selectedStation"
+          @select="selectedStation = $event"
+          @move="boundingBox = $event"
+        >
+          <template v-slot:popup="element">
+            <strong>{{ $t('data.stations.gaw-id') }}</strong>
+            <a :href="element.item.gaw_url" target="_blank">
+              <span> {{ element.item.gaw_id }}</span>
+            </a>
+            <br>
+            <strong>{{ $t('data.stations.station-id') }}</strong>
+            <nuxt-link :to="'/data/stations/' + element.item.woudc_id">
+              <span> {{ element.item.woudc_id }}</span>
+            </nuxt-link>
+            <br>
+            <strong>{{ $t('data.stations.station-name') }}</strong>
+            <span> {{ element.item.name }}</span>
+            <br>
+            <strong>{{ $t('data.stations.country-name') }}</strong>
+            <span> {{ element.item.country_name[$i18n.locale] }}</span>
+          </template>
+        </selectable-map>
+      </v-col>
+      <v-col>
+        <map-instructions id="map-instructions" />
+        <table-instructions id="table-instructions" />
+      </v-col>
+    </v-row>
+    <selectable-table
+      :headers="headers"
+      :elements="visibleStations"
+      :selected="selectedStation"
+      @select="selectedStation = $event"
+    >
+      <template v-slot:row="row">
+        <td>
+          <nuxt-link :to="'/data/stations/' + row.item.woudc_id">
+            {{ row.item.woudc_id }}
+          </nuxt-link>
+        </td>
+        <td>
+          <span v-if="row.item.gaw_id !== null">
+            <a :href="row.item.gaw_url" target="_blank">
+              {{ row.item.gaw_id }}
+            </a>
+          </span>
+        </td>
+        <td>{{ row.item.start_date }}</td>
+        <td>{{ row.item.end_date }}</td>
+        <td>{{ row.item.name }}</td>
+        <td>{{ row.item.country_name[$i18n.locale] }}</td>
+        <td>{{ row.item.last_validated_datetime }}</td>
+        <td>{{ row.item.type }}</td>
+        <td>{{ row.item.wmo_region_id }}</td>
       </template>
-      <template v-slot:item.gaw_id="station">
-        <span v-if="station.item.gaw_id !== null">
-          <a :href="station.item.gaw_url" target="_blank">
-            {{ station.item.gaw_id }}
-          </a>
-        </span>
-      </template>
-      <template v-slot:item.country="station">
-        {{ station.item.country[$i18n.locale] }}
-      </template>
-    </v-data-table>
+    </selectable-table>
   </v-layout>
 </template>
 
 <script>
 import axios from '~/plugins/axios'
+import { unpackageStation } from '~/plugins/unpackage'
+
 import mapInstructions from '~/components/MapInstructions'
 import tableInstructions from '~/components/TableInstructions'
+import SelectableMap from '~/components/SelectableMap'
+import SelectableTable from '~/components/SelectableTable'
 
 export default {
   components: {
     'map-instructions': mapInstructions,
+    'selectable-map': SelectableMap,
+    'selectable-table': SelectableTable,
     'table-instructions': tableInstructions
   },
   async asyncData() {
@@ -41,20 +88,13 @@ export default {
     const stationsResponse = await axios.get(stationsURL + '?' + queryParams)
 
     return {
-      stations: stationsResponse.data.features.map((station) => {
-        station.properties.country = {
-          en: station.properties.country_name_en,
-          fr: station.properties.country_name_fr
-        }
-        station.properties.last_validated_datetime =
-          station.properties.last_validated_datetime.substring(0, 10)
-
-        return station.properties
-      })
+      stations: stationsResponse.data.features.map(unpackageStation)
     }
   },
   data() {
     return {
+      boundingBox: null,
+      selectedStation: null,
       stations: []
     }
   },
@@ -78,6 +118,16 @@ export default {
           value: key
         }
       })
+    },
+    visibleStations() {
+      if (this.boundingBox === null) {
+        return this.stations
+      } else {
+        return this.stations.filter((station) => {
+          const coords = this.$L.latLng(station.geometry.coordinates)
+          return this.boundingBox.contains(coords)
+        })
+      }
     }
   },
   nuxtI18n: {

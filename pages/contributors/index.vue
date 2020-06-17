@@ -2,39 +2,71 @@
   <v-layout justify-center column align-content-center>
     <h1>{{ $t('contributors.list.title') }}</h1>
     <p>{{ $t('contributors.list.blurb') }}</p>
-    <map-instructions id="map-instructions" />
-    <table-instructions id="table-instructions" />
-    <v-data-table
-      id="contributors-table"
+    <v-row>
+      <v-col>
+        <selectable-map
+          :elements="contributors"
+          :selected="selectedContributor"
+          @select="selectedContributor = $event"
+          @move="boundingBox = $event"
+        >
+          <template v-slot:popup="element">
+            <strong>{{ $t('contributors.list.contributor-name') }}</strong>
+            <nuxt-link :to="localePath('contributors') + '/' + element.item.acronym">
+              {{ element.item.name }}
+            </nuxt-link>
+            <br>
+            <strong>{{ $t('contributors.list.country-name') }}</strong>
+            <span> {{ element.item.country_name[$i18n.locale] }}</span>
+          </template>
+        </selectable-map>
+      </v-col>
+      <v-col>
+        <map-instructions id="map-instructions" />
+        <table-instructions id="table-instructions" />
+      </v-col>
+    </v-row>
+    <selectable-table
+      :elements="visibleContributors"
       :headers="headers"
-      :items="contributors"
-      class="elevation-1"
+      :selected="selectedContributor"
+      @select="selectedContributor = $event"
     >
-      <template v-slot:item.acronym="contributor">
-        <nuxt-link :to="'/contributors/' + contributor.item.acronym">
-          {{ contributor.item.acronym }}
-        </nuxt-link>
+      <template v-slot:row="row">
+        <td>
+          <nuxt-link :to="'/contributors/' + row.item.acronym">
+            {{ row.item.acronym }}
+          </nuxt-link>
+        </td>
+        <td>{{ row.item.project }}</td>
+        <td>
+          <a :href="row.item.url" target="_blank">
+            {{ row.item.name }}
+          </a>
+        </td>
+        <td>{{ row.item.country_name[$i18n.locale] }}</td>
+        <td>{{ row.item.start_date }}</td>
+        <td>{{ row.item.end_date }}</td>
+        <td>{{ row.item.wmo_region_id }}</td>
       </template>
-      <template v-slot:item.name="contributor">
-        <a :href="contributor.item.url" target="_blank">
-          {{ contributor.item.name }}
-        </a>
-      </template>
-      <template v-slot:item.country="contributor">
-        {{ contributor.item.country_name[$i18n.locale] }}
-      </template>
-    </v-data-table>
+    </selectable-table>
   </v-layout>
 </template>
 
 <script>
 import axios from '~/plugins/axios'
+import { unpackageContributor } from '~/plugins/unpackage'
+
 import mapInstructions from '~/components/MapInstructions'
 import tableInstructions from '~/components/TableInstructions'
+import SelectableMap from '~/components/SelectableMap'
+import SelectableTable from '~/components/SelectableTable'
 
 export default {
   components: {
     'map-instructions': mapInstructions,
+    'selectable-map': SelectableMap,
+    'selectable-table': SelectableTable,
     'table-instructions': tableInstructions
   },
   async asyncData({ params }) {
@@ -44,18 +76,14 @@ export default {
     const contributorsResponse = await axios.get(contributorsURL + '?' + queryParams)
 
     return {
-      contributors: contributorsResponse.data.features.map((contributor) => {
-        contributor.properties.country_name = {
-          en: contributor.properties.country_name_en,
-          fr: contributor.properties.country_name_fr
-        }
-        return contributor.properties
-      })
+      contributors: contributorsResponse.data.features.map(unpackageContributor)
     }
   },
   data() {
     return {
-      contributors: []
+      boundingBox: null,
+      contributors: [],
+      selectedContributor: null
     }
   },
   computed: {
@@ -76,6 +104,16 @@ export default {
           value: key
         }
       })
+    },
+    visibleContributors() {
+      if (this.boundingBox === null) {
+        return this.contributors
+      } else {
+        return this.contributors.filter((contributor) => {
+          const coords = this.$L.latLng(contributor.geometry.coordinates)
+          return this.boundingBox.contains(coords)
+        })
+      }
     }
   },
   nuxtI18n: {
