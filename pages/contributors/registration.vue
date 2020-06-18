@@ -1,46 +1,47 @@
 <template>
   <v-layout justify-center column align-content-center>
     <h1>{{ $t('contributors.registration.title') }}</h1>
-    <i18n
-      class="newlines"
-      path="contributors.registration.blurb1.template"
-      tag="p"
-    >
-      <template v-slot:submission>
-        <nuxt-link
-          :to="localePath('contributors-submission')"
-          v-text="$t('contributors.registration.blurb1.submission')"
-        />
+    <p>{{ $t('contributors.registration.blurb.body-accounts') }}</p>
+    <i18n path="contributors.registration.blurb.body-submissions" tag="p">
+      <template v-slot:submissions>
+        <nuxt-link :to="localePath('contributors-submission')">
+          {{ $tc('common.submission', 2) }}
+        </nuxt-link>
       </template>
     </i18n>
     <ol>
       <li>
-        <i18n path="contributors.registration.step1.template" tag="span">
+        <i18n path="contributors.registration.step1" tag="span">
           <template v-slot:policy>
-            <nuxt-link
-              :to="localePath('about-datapolicy')"
-              v-text="$t('contributors.registration.step1.policy')"
-            />
+            <nuxt-link :to="localePath('about-datapolicy')">
+              {{ $t('common.policy') }}
+            </nuxt-link>
           </template>
         </i18n>
       </li>
       <li>
-        <i18n path="contributors.registration.step2.template" tag="span">
-          <template v-slot:wmo>
-            <a :href="gawHomeURL" target="_blank" v-text="$t('contributors.registration.step2.wmo')"></a>
+        <i18n path="contributors.registration.step2" tag="span">
+          <template v-slot:wmo-gaw>
+            <a :href="gawHomeURL" target="_blank">
+              {{ $t('contributors.registration.wmo-gaw') }}
+            </a>
           </template>
           <template v-slot:more>
-            <a :href="wmoGAWUrl" target="_blank" v-text="$t('contributors.registration.step2.more')"></a>
+            <a :href="wmoGAWUrl" target="_blank">
+              {{ $t('contributors.registration.more') }}
+            </a>
           </template>
         </i18n>
       </li>
       <li>
-        <i18n path="contributors.registration.step3.template" tag="span">
-          <template v-slot:contact>
-            <nuxt-link :to="localePath('contact')" v-text="$t('contributors.registration.step3.contact')" />
+        <i18n path="contributors.registration.step3" tag="span">
+          <template v-slot:contacting>
+            <nuxt-link :to="localePath('contact')">
+              {{ $t('contributors.registration.contacting') }}
+            </nuxt-link>
           </template>
           <template v-slot:register>
-            <strong>{{ $t('contributors.registration.step3.register') }}</strong>
+            <strong>{{ $t('contributors.registration.register') }}</strong>
           </template>
         </i18n>
       </li>
@@ -48,7 +49,7 @@
         {{ $t('contributors.registration.step4') }}
       </li>
     </ol>
-    <p>{{ $t('contributors.registration.blurb2') }}</p>
+    <p>{{ $t('contributors.registration.thanks') }}</p>
   </v-layout>
 </template>
 
