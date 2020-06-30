@@ -828,6 +828,8 @@
         "start_date": "Date From",
         "wmo_region_id": "WMO Region"
       },
+      "contributor-name": "Contributor Name:",
+      "country-name": "Country:",
       "deployment-headers": {
         "country": "Station Country",
         "end_date": "Date To",
@@ -964,6 +966,7 @@
     },
     "instruments": {
       "blurb": "The WOUDC data archive can be sorted by instrument. The instrument list includes the instrument type, name and model.",
+      "contributor-name": "Contributor Name:",
       "headers": {
         "data_class": "Data Class",
         "dataset": "Data Category",
@@ -974,6 +977,8 @@
         "station": "Station Name",
         "waf_url": "Web Accessible Folder"
       },
+      "instrument-type": "Instrument Type:",
+      "station-name": "Station Name:",
       "title": "Instrument List"
     },
     "products": {
@@ -1024,6 +1029,7 @@
     },
     "stations": {
       "blurb": "The WOUDC data archive can be sorted by station. To find out the identifying number of a particular station, select the metadata link on the WOUDC website and then the region that you are interested in. All available stations and their numbers for that region will then be displayed.",
+      "country-name": "Station Country:",
       "deployment-headers": {
         "acronym": "Acronym",
         "end_date": "Date To",
@@ -1031,6 +1037,7 @@
         "project": "Project",
         "start_date": "Date From"
       },
+      "gaw-id": "GAW ID:",
       "instrument-headers": {
         "data_class": "Data Class",
         "dataset": "Data Category",
@@ -1052,6 +1059,8 @@
         "type": "Station Type",
         "wmo_region_id": "WMO Region"
       },
+      "station-id": "WOUDC Station ID:",
+      "station-name": "Station Name:",
       "title": "Station List"
     }
   },

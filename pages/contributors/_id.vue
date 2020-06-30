@@ -5,10 +5,30 @@
       {{ contributors[0].acronym + ' - ' + contributors[0].name }}
     </h2>
     <p>{{ $t('contributors.list.blurb') }}</p>
-    <map-instructions id="map-instructions" />
-    <table-instructions id="table-instructions" />
+    <v-row>
+      <v-col>
+        <selectable-map
+          :elements="contributors"
+          :selected="selectedContributor"
+          @select="selectedContributor = $event"
+        >
+          <template v-slot:popup="element">
+            <strong>{{ $t('contributors.list.contributor-name') }}</strong>
+            <nuxt-link :to="localePath('contributors') + '/' + element.item.acronym">
+              {{ element.item.name }}
+            </nuxt-link>
+            <br>
+            <strong>{{ $t('contributors.list.country-name') }}</strong>
+            <span> {{ element.item.country_name[$i18n.locale] }}</span>
+          </template>
+        </selectable-map>
+      </v-col>
+      <v-col>
+        <map-instructions id="map-instructions" />
+        <table-instructions id="table-instructions" />
+      </v-col>
+    </v-row>
     <v-data-table
-      id="contributor-table"
       :headers="contributorHeaders"
       :items="contributors"
       hide-default-footer
@@ -54,12 +74,16 @@
 
 <script>
 import axios from '~/plugins/axios'
+import { unpackageContributor, unpackageDeployment } from '~/plugins/unpackage'
+
 import mapInstructions from '~/components/MapInstructions'
 import tableInstructions from '~/components/TableInstructions'
+import SelectableMap from '~/components/SelectableMap'
 
 export default {
   components: {
     'map-instructions': mapInstructions,
+    'selectable-map': SelectableMap,
     'table-instructions': tableInstructions
   },
   async validate({ params }) {
@@ -84,34 +108,24 @@ export default {
     queryParams = 'acronym=' + acronym + '&sortby=acronym:A,project:D'
     const contributorsResponse = await axios.get(contributorsURL + '?' + queryParams)
 
-    const contributorsList = contributorsResponse.data.features.map((contributor) => {
-      contributor.properties.country_name = {
-        en: contributor.properties.country_name_en,
-        fr: contributor.properties.country_name_fr
-      }
-      return contributor.properties
-    })
+    const contributorsList = contributorsResponse.data.features.map(unpackageContributor)
 
     queryParams = 'contributor=' + acronym + '&sortby=station_id:A'
     const deploymentsResponse = await axios.get(deploymentsURL + '?' + queryParams)
 
-    const deploymentsList = deploymentsResponse.data.features.map((deployment) => {
-      deployment.properties.country_name = {
-        en: deployment.properties.station_country_en,
-        fr: deployment.properties.station_country_fr
-      }
-      return deployment.properties
-    })
+    const deploymentsList = deploymentsResponse.data.features.map(unpackageDeployment)
 
     return {
       contributors: contributorsList,
-      deployments: deploymentsList
+      deployments: deploymentsList,
+      selectedContributor: contributorsList[0]
     }
   },
   data() {
     return {
       contributors: [],
-      deployments: []
+      deployments: [],
+      selectedContributor: null
     }
   },
   computed: {

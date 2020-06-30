@@ -5,11 +5,39 @@
       {{ station.name + ' - ' + station.woudc_id }}
     </h2>
     <p>{{ $t('data.stations.blurb') }}</p>
-    <map-instructions id="map-instructions" />
-    <table-instructions id="table-instructions" />
+    <v-row>
+      <v-col>
+        <selectable-map
+          :elements="[station]"
+          :selected="selectedStation"
+          @select="selectedStation = $event"
+        >
+          <template v-slot:popup="element">
+            <strong>{{ $t('data.stations.gaw-id') }}</strong>
+            <a :href="element.item.gaw_url" target="_blank">
+              <span> {{ element.item.gaw_id }}</span>
+            </a>
+            <br>
+            <strong>{{ $t('data.stations.station-id') }}</strong>
+            <nuxt-link :to="'/data/stations/' + element.item.woudc_id">
+              <span> {{ element.item.woudc_id }}</span>
+            </nuxt-link>
+            <br>
+            <strong>{{ $t('data.stations.station-name') }}</strong>
+            <span> {{ element.item.name }}</span>
+            <br>
+            <strong>{{ $t('data.stations.country-name') }}</strong>
+            <span> {{ element.item.country_name[$i18n.locale] }}</span>
+          </template>
+        </selectable-map>
+      </v-col>
+      <v-col>
+        <map-instructions id="map-instructions" />
+        <table-instructions id="table-instructions" />
+      </v-col>
+    </v-row>
     <v-data-table
       v-if="station !== null"
-      id="stations-table"
       :headers="stationHeaders"
       :items="[station]"
       hide-default-footer
@@ -75,12 +103,16 @@
 
 <script>
 import axios from '~/plugins/axios'
+import { unpackageStation, unpackageDefault } from '~/plugins/unpackage'
+
 import mapInstructions from '~/components/MapInstructions'
 import tableInstructions from '~/components/TableInstructions'
+import SelectableMap from '~/components/SelectableMap'
 
 export default {
   components: {
     'map-instructions': mapInstructions,
+    'selectable-map': SelectableMap,
     'table-instructions': tableInstructions
   },
   async validate({ params }) {
@@ -103,40 +135,31 @@ export default {
     const deploymentsURL = '/collections/deployments/items'
 
     const stationsResponse = await axios.get(stationsURL + '/' + woudcID)
-    const stationFeature = stationsResponse.data.properties
-
-    stationFeature.country_name = {
-      en: stationFeature.country_name_en,
-      fr: stationFeature.country_name_fr
-    }
-    stationFeature.last_validated_datetime =
-      stationFeature.last_validated_datetime.substring(0, 10)
+    const stationFeature = unpackageStation(stationsResponse.data)
 
     queryParams = 'station_id=' + woudcID + '&sortby=contributor:A'
     const deploymentsResponse = await axios.get(deploymentsURL + '?' + queryParams)
 
-    const deploymentsList = deploymentsResponse.data.features.map((deployment) => {
-      return deployment.properties
-    })
+    const deploymentsList = deploymentsResponse.data.features.map(unpackageDefault)
 
     queryParams = 'station_id=' + woudcID + '&sortby=dataset:A,name:A,model:A,serial:A'
     const instrumentsResponse =
       await axios.get(instrumentsURL + '?' + queryParams)
 
-    const instrumentsList = instrumentsResponse.data.features.map((instrument) => {
-      return instrument.properties
-    })
+    const instrumentsList = instrumentsResponse.data.features.map(unpackageDefault)
 
     return {
-      station: stationFeature,
       deployments: deploymentsList,
-      instruments: instrumentsList
+      instruments: instrumentsList,
+      selectedStation: stationFeature,
+      station: stationFeature
     }
   },
   data() {
     return {
       deployments: [],
       instruments: [],
+      selectedStation: null,
       station: null
     }
   },

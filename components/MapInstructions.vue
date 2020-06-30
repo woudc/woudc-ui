@@ -31,3 +31,9 @@
     </v-expansion-panel>
   </v-expansion-panels>
 </template>
+
+<script>
+export default {
+  name: 'MapInstructions'
+}
+</script>
