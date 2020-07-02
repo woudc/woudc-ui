@@ -14,6 +14,7 @@
     "gawFull": "Veille de l'atmosphère globale",
     "github": "GitHub",
     "guidelines": "des directives",
+    "instructions": "Instructions",
     "interoperability": "interopérabilité de l’OMM",
     "iso": "International Organization for Standardization",
     "map-instructions": {
@@ -32,7 +33,10 @@
     "products": "produits de données",
     "registration-form": "formulaire d’inscription des contributeurs",
     "registration-page": "page d’inscription",
+    "sort-by": "Ordre par",
     "stations": "stations enregistrées",
+    "station-id": "Identification de la Station",
+    "station-name": "Nom de la Station",
     "stations-page": "liste des stations",
     "search": "recherche de données / téléchargement",
     "sop": "procédures opérationnelles normalisées",
@@ -984,6 +988,20 @@
     },
     "products": {
       "blurb": "Des données de sortie spéciales sont préparées par le WOUDC afin d’aider les chercheurs et leur fournir des renseignements à valeur ajoutée ; certaines données comprennent des graphiques de série chronologique détaillant l’épaisseur de la colonne d’ozone total ainsi que des cartes indiquant la quantité d’ozone en temps quasi réel.",
+      "common": {
+        "all": "Tous",
+        "instrument": "Instrument",
+        "instruments": "instruments",
+        "required": "Requis",
+        "reset": "Réinitialisation",
+        "results": "Résultats",
+        "search": "Recherche",
+        "station": "station",
+        "Station": "Station",
+        "submit": "Soumettre",
+        "year": "Année",
+        "years": "années"
+      },
       "maps": {
         "blurb": "Des cartes de l’ozone total en temps quasi réel, mises à jour quotidiennement à environ 14:00 (UTC).",
         "links": {
@@ -994,6 +1012,25 @@
           "south": "Cartes de l’ozone de l’hémisphère sud"
         },
         "title": "Cartes de l’ozone"
+      },
+      "ozonesonde": {
+        "image-captions": {
+          "flights": "Sondage de l'ozone :",
+          "pressure": "Pression partielle de l'ozone (mPa)",
+          "temperature": "Température (degrés Celsius)"
+        },
+        "instructions": {
+          "body-flights": "{flight-plots} Les graphiques présentent les mesures acquises pour chaque envolée de l'année à la station ; pour chaque observation d'envolée, la pression est présentée avec la pression partielle en bleu, et l'altitude est présentée avec la température en rouge",
+          "body-grouping": "Les graphiques de sonde pour l’ozone sont regroupés par année dans les résultats de recherche.",
+          "body-pressure": "{pressure-plots} Graphique d'une coupe temps-altitude pour la pression partielle d'ozone mesurée par les sondes pour l’ozone d'ECC",
+          "body-searching": "Lancer la recherche pour afficher les graphiques de sonde pour l’ozone pour l'année et la station sélectionnée. Les graphiques de sonde pour l’ozone sont présentés pour chaque année sélectionée :",
+          "body-selections": "Sélectionner une {station} pour démarrer. Il en résultera une liste d'{years} pour lesquelles des données sont disponibles à la station. Veuillez sélectionner soit toutes les années soit une année spécifique.",
+          "body-temperature": "{temperature-plots} Graphique d'une coupe temps-altitude pour la température mesurée par les sondes pour l’ozone d'ECC",
+          "flight-plots": "Graphiques de vol de la sonde à ozone :",
+          "pressure-plots": "Graphique du profil annuel de la Pression partielle d'ozone :",
+          "temperature-plots": "Graphique du profil annuel de la température :"
+        },
+        "title": "Schémas de sondes pour l’ozone"
       },
       "related": {
         "blurb": "_",
@@ -1028,7 +1065,13 @@
         },
         "title": "Graphiques de séries chronologiques"
       },
-      "title": "Produits de données"
+      "title": "Produits de données",
+      "totalozone": {
+        "title": "Schémas d’ozone total"
+      },
+      "uv-index": {
+        "title": "Graphiques de l'indice UV"
+      }
     },
     "stations": {
       "blurb": "Les archives de données du WOUDC peuvent être classées par station. Pour connaître le numéro identificateur d’une station, sélectionner le lien des métadonnées sur le site Web du WOUDC, puis la région désirée. Vous pourrez ensuite consulter la liste des stations et leur numéro d’identification.",

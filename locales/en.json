@@ -2,6 +2,7 @@
   "common": {
     "access": "data access",
     "accessibility": "accessibility",
+    "colon-style": ":",
     "contact-us": "contact us",
     "contributors": "contributors",
     "contributors-page": "contributor list",
@@ -13,6 +14,7 @@
     "gawFull": "Global Atmosphere Watch",
     "github": "GitHub",
     "guidelines": "guidelines",
+    "instructions": "Instructions",
     "interoperability": "World Meteorological Organization interoperability",
     "iso": "International Organization for Standardization",
     "map-instructions": {
@@ -31,7 +33,10 @@
     "products": "data products",
     "registration-page": "registration page",
     "registration-form": "contributor registration form",
+    "sort-by": "Sort by:",
     "stations": "stations",
+    "station-id": "Station ID",
+    "station-name": "Station Name",
     "stations-page": "stations list",
     "search": "data search / download",
     "sop": "standard operating procedures",
@@ -983,6 +988,22 @@
     },
     "products": {
       "blurb": "Special output data products are prepared by the WOUDC to assist researchers and provide value added information; some of the data products include total column ozone time series graphs and near real-time ozone maps.",
+      "common": {
+        "all": "All",
+        "graph": "Graph",
+        "instrument": "Instrument",
+        "instruments": "instruments",
+        "required": "Required",
+        "reset": "Reset",
+        "results": "Results",
+        "search": "Search",
+        "station": "station",
+        "Station": "Station",
+        "submit": "Submit",
+        "viewing-label": "Viewing * out of *",
+        "year": "Year",
+        "years": "years"
+      },
       "maps": {
         "blurb": "Near-real time, global total ozone maps, normally updated daily at approximately 1400 UTC.",
         "links": {
@@ -993,6 +1014,25 @@
           "south": "Ozone Maps for the Southern Hemisphere"
         },
         "title": "Ozone Maps"
+      },
+      "ozonesonde": {
+        "image-captions": {
+          "flights": "Ozone Sounding:",
+          "pressure": "Ozone Parial Pressure (mPa)",
+          "temperature": "Temperature (Deg C)"
+        },
+        "instructions": {
+          "body-flights": "{flight-plots} Plots presenting the measurements took during every flight in that year at that station; for every flight observation, pressure is plotted against ozone partial pressure in blue and altitude is plotted against temperature in red",
+          "body-grouping": "OzoneSonde plots are grouped by year in the search result.",
+          "body-pressure": "{pressure-plots} Plots of the time-altitude cross-section of the ozone partial pressure measured by ECC ozonesondes",
+          "body-searching": "Submit the search to display ozonesonde plots for the selected station and year(s). The following types of ozonesonde plots are provided for each calendar year selected: ",
+          "body-selections": "Select a {station} to start. A list of {years} will be provided in which data is available for that station. Either select all years or a specific year.",
+          "body-temperature": "{temperature-plots} Plots of the time-altitude cross-section of the temperature measured by ECC ozonesondes",
+          "flight-plots": "Ozonesonde Flight Graphs:",
+          "pressure-plots": "Annual Profile Graph of Ozone Partial Pressure:",
+          "temperature-plots": "Annual Profile Graph of Temperature:"
+        },
+        "title": "Ozonesonde Plots"
       },
       "related": {
         "links": {
@@ -1025,7 +1065,23 @@
         },
         "title": "Time Series Graphs"
       },
-      "title": "Data Products"
+      "title": "Data Products",
+      "totalozone": {
+        "instructions": {
+          "body-selections": "Select a {station} to start. A list of {instruments} that have been used by that station will become available. Either select all instruments or a specific instrument network, and select either all years or a specific year of operation from the {years} list.",
+          "body-searching": "Submit the search to display totalozone plots for the selected station, instrument(s) and year(s).",
+          "body-grouping": "Totalozone plots are grouped by year in the search result."
+        },
+        "title": "Total Ozone Plots"
+      },
+      "uv-index": {
+        "instructions": {
+          "body-selections": "Select a {station} to start. A list of {instruments} that have been used by that station will become available: pick one of the options. Either select all {years} or a specific year from the final list.",
+          "body-searching": "Submit the search to display UV index plots for the selected station, instrument(s) and year(s).",
+          "body-grouping": "UV Index plots are grouped by year in the search result."
+        },
+        "title": "UV Index Plots"
+      }
     },
     "stations": {
       "blurb": "The WOUDC data archive can be sorted by station. To find out the identifying number of a particular station, select the metadata link on the WOUDC website and then the region that you are interested in. All available stations and their numbers for that region will then be displayed.",
