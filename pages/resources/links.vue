@@ -1,23 +1,27 @@
 <template>
-  <v-layout justify-center column align-content-center>
-    <h1>{{ $t('resources.related-links.title') }}</h1>
-    <h2>{{ $t('common.wmo') }}</h2>
-    <ul>
-      <li v-for="(value, key) in wmoURLs" :key="key">
-        <a :href="value" target="_blank">
-          {{ $t('resources.related-links.links.' + key) }}
-        </a>
-      </li>
-    </ul>
-    <h2>{{ $t('resources.related-links.other-title') }}</h2>
-    <ul>
-      <li v-for="(value, key) in relatedURLs" :key="key">
-        <a :href="value" target="_blank">
-          {{ $t('resources.related-links.links.' + key) }}
-        </a>
-      </li>
-    </ul>
-  </v-layout>
+  <v-container>
+    <v-row>
+      <v-col>
+        <h1>{{ $t('resources.related-links.title') }}</h1>
+        <h2>{{ $t('common.wmo') }}</h2>
+        <ul>
+          <li v-for="(value, key) in wmoURLs" :key="key">
+            <a :href="value" target="_blank">
+              {{ $t('resources.related-links.links.' + key) }}
+            </a>
+          </li>
+        </ul>
+        <h2>{{ $t('resources.related-links.other-title') }}</h2>
+        <ul>
+          <li v-for="(value, key) in relatedURLs" :key="key">
+            <a :href="value" target="_blank">
+              {{ $t('resources.related-links.links.' + key) }}
+            </a>
+          </li>
+        </ul>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

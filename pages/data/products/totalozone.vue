@@ -1,10 +1,9 @@
 <template>
-  <v-layout justify-center column align-content-center>
-    <h1>{{ $t('data.products.totalozone.title') }}</h1>
-    <v-spacer />
-    <h2>{{ $t('data.products.common.search') }}</h2>
+  <v-container>
     <v-row>
       <v-col>
+        <h1>{{ $t('data.products.totalozone.title') }}</h1>
+        <h2>{{ $t('data.products.common.search') }}</h2>
         <v-expansion-panels>
           <v-expansion-panel>
             <v-expansion-panel-header>
@@ -27,6 +26,10 @@
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
         <div class="requiredHead mb-2">
           <h3>{{ $t('data.products.common.Station') }}</h3>
           <v-chip small label class="ml-2 mt-1" color="warning">
@@ -118,29 +121,33 @@
         </selectable-map>
       </v-col>
     </v-row>
-    <div>
-      <v-btn
-        class="btn-left"
-        color="primary"
-        :disabled="selectedStation === null"
-        @click="getGraphs()"
-      >
-        {{ $t('data.products.common.submit') }}
-      </v-btn>
-      <v-btn class="btn-right" @click="reset()">
-        {{ $t('data.products.common.reset') }}
-      </v-btn>
-    </div>
-    <h2>{{ $t('data.products.common.results') }}</h2>
-    <div v-for="(graphs, year) in graphURLs" :key="year">
-      <h3>{{ $t('data.products.common.year') }}: {{ year }}</h3>
-      <graph-carousel :graphs="graphs">
-        <template v-slot:preview-caption="graph">
-          {{ imagePreviewCaption(graph.item, year) }}
-        </template>
-      </graph-carousel>
-    </div>
-  </v-layout>
+    <v-row>
+      <v-col>
+        <div>
+          <v-btn
+            class="btn-left"
+            color="primary"
+            :disabled="selectedStation === null"
+            @click="getGraphs()"
+          >
+            {{ $t('data.products.common.submit') }}
+          </v-btn>
+          <v-btn class="btn-right" @click="reset()">
+            {{ $t('data.products.common.reset') }}
+          </v-btn>
+        </div>
+        <h2>{{ $t('data.products.common.results') }}</h2>
+        <div v-for="(graphs, year) in graphURLs" :key="year">
+          <h3>{{ $t('data.products.common.year') }}: {{ year }}</h3>
+          <graph-carousel :graphs="graphs">
+            <template v-slot:preview-caption="graph">
+              {{ imagePreviewCaption(graph.item, year) }}
+            </template>
+          </graph-carousel>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

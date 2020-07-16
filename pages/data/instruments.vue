@@ -1,7 +1,11 @@
 <template>
-  <v-layout justify-center column align-content-center>
-    <h1>{{ $t('data.instruments.title') }}</h1>
-    <p>{{ $t('data.instruments.blurb') }}</p>
+  <v-container>
+    <v-row>
+      <v-col>
+        <h1>{{ $t('data.instruments.title') }}</h1>
+        <p>{{ $t('data.instruments.blurb') }}</p>
+      </v-col>
+    </v-row>
     <v-row>
       <v-col>
         <selectable-map
@@ -29,31 +33,35 @@
         <table-instructions id="table-instructions" />
       </v-col>
     </v-row>
-    <selectable-table
-      :headers="headers"
-      :elements="visibleInstruments"
-      :selected="selectedInstrument"
-      @select="selectedInstrument = $event"
-    >
-      <template v-slot:row="row">
-        <td>{{ row.item.name }}</td>
-        <td>{{ row.item.model }}</td>
-        <td>{{ row.item.start_date }}</td>
-        <td>{{ row.item.end_date }}</td>
-        <td>{{ row.item.data_class }}</td>
-        <td>{{ row.item.dataset }}</td>
-        <td>
-          <nuxt-link
-            :to="'/data/station/' + row.item.station_id"
-            v-text="row.item.station_name"
-          />
-        </td>
-        <td>
-          <a :href="row.item.waf_url" target="_blank">TODO</a>
-        </td>
-      </template>
-    </selectable-table>
-  </v-layout>
+    <v-row>
+      <v-col>
+        <selectable-table
+          :headers="headers"
+          :elements="visibleInstruments"
+          :selected="selectedInstrument"
+          @select="selectedInstrument = $event"
+        >
+          <template v-slot:row="row">
+            <td>{{ row.item.name }}</td>
+            <td>{{ row.item.model }}</td>
+            <td>{{ row.item.start_date }}</td>
+            <td>{{ row.item.end_date }}</td>
+            <td>{{ row.item.data_class }}</td>
+            <td>{{ row.item.dataset }}</td>
+            <td>
+              <nuxt-link
+                :to="'/data/station/' + row.item.station_id"
+                v-text="row.item.station_name"
+              />
+            </td>
+            <td>
+              <a :href="row.item.waf_url" target="_blank">TODO</a>
+            </td>
+          </template>
+        </selectable-table>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

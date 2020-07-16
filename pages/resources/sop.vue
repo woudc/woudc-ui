@@ -1,22 +1,26 @@
 <template>
-  <v-layout justify-center column align-content-center>
-    <h1>{{ $t('resources.procedures.title') }}</h1>
-    <p>{{ $t('resources.procedures.blurb') }}</p>
-    <v-data-table
-      :headers="headers"
-      :items="rows"
-      hide-default-footer
-      class="elevation-1"
-    >
-      <template v-slot:item.link="link">
-        <td>
-          <a :href="link.item.to" target="_blank">
-            {{ link.item.text }}
-          </a>
-        </td>
-      </template>
-    </v-data-table>
-  </v-layout>
+  <v-container>
+    <v-row>
+      <v-col>
+        <h1>{{ $t('resources.procedures.title') }}</h1>
+        <p>{{ $t('resources.procedures.blurb') }}</p>
+        <v-data-table
+          :headers="headers"
+          :items="rows"
+          hide-default-footer
+          class="elevation-1"
+        >
+          <template v-slot:item.link="link">
+            <td>
+              <a :href="link.item.to" target="_blank">
+                {{ link.item.text }}
+              </a>
+            </td>
+          </template>
+        </v-data-table>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

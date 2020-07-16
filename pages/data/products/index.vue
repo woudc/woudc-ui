@@ -1,50 +1,54 @@
 <template>
-  <v-layout justify-center column align-content-center>
-    <h1>{{ $t('data.products.title') }}</h1>
-    <p>{{ $t('data.products.blurb') }}</p>
-    <div id="time-series">
-      <h2>{{ $t('data.products.time-series.title') }}</h2>
-      <p>{{ $t('data.products.time-series.blurb') }}</p>
-      <ul>
-        <li v-for="(path, key) in timeSeriesLinks" :key="key">
-          <nuxt-link :to="localePath(path)">
-            {{ $t('data.products.time-series.links.' + key) }}
-          </nuxt-link>
-        </li>
-      </ul>
-    </div>
-    <div id="related-products">
-      <h2>{{ $t('data.products.related.title') }}</h2>
-      <ul>
-        <li v-for="(url, key) in relatedLinks" :key="key">
-          <a :href="url" target="_blank">
-            {{ $t('data.products.related.links.' + key) }}
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div id="ozone-maps">
-      <h2>{{ $t('data.products.maps.title') }}</h2>
-      <p>{{ $t('data.products.maps.blurb') }}</p>
-      <ul>
-        <li v-for="(url, key) in mapsLinks" :key="key">
-          <a :href="url" target="_blank">
-            {{ $t('data.products.maps.links.' + key) }}
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div id="summaries">
-      <h2>{{ $t('data.products.summaries.title') }}</h2>
-      <ul>
-        <li v-for="(url, key) in summariesLinks" :key="key">
-          <a :href="url" target="_blank">
-            {{ $t('data.products.summaries.links.' + key) }}
-          </a>
-        </li>
-      </ul>
-    </div>
-  </v-layout>
+  <v-container>
+    <v-row>
+      <v-col>
+        <h1>{{ $t('data.products.title') }}</h1>
+        <p>{{ $t('data.products.blurb') }}</p>
+        <div id="time-series">
+          <h2>{{ $t('data.products.time-series.title') }}</h2>
+          <p>{{ $t('data.products.time-series.blurb') }}</p>
+          <ul>
+            <li v-for="(path, key) in timeSeriesLinks" :key="key">
+              <nuxt-link :to="localePath(path)">
+                {{ $t('data.products.time-series.links.' + key) }}
+              </nuxt-link>
+            </li>
+          </ul>
+        </div>
+        <div id="related-products">
+          <h2>{{ $t('data.products.related.title') }}</h2>
+          <ul>
+            <li v-for="(url, key) in relatedLinks" :key="key">
+              <a :href="url" target="_blank">
+                {{ $t('data.products.related.links.' + key) }}
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div id="ozone-maps">
+          <h2>{{ $t('data.products.maps.title') }}</h2>
+          <p>{{ $t('data.products.maps.blurb') }}</p>
+          <ul>
+            <li v-for="(url, key) in mapsLinks" :key="key">
+              <a :href="url" target="_blank">
+                {{ $t('data.products.maps.links.' + key) }}
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div id="summaries">
+          <h2>{{ $t('data.products.summaries.title') }}</h2>
+          <ul>
+            <li v-for="(url, key) in summariesLinks" :key="key">
+              <a :href="url" target="_blank">
+                {{ $t('data.products.summaries.links.' + key) }}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

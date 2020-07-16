@@ -1,69 +1,73 @@
 <template>
-  <v-layout justify-center column align-content-center>
-    <h1>{{ $t('data.explore.title') }}</h1>
-    <p>{{ $t('data.explore.blurb.body-datasets') }}</p>
-    <p>{{ $t('data.explore.blurb.body-search') }}</p>
-    <i18n path="data.explore.blurb.body-howto" tag="p">
-      <template v-slot:how-to>
-        <nuxt-link :to="localePath('about-dataaccess')">
-          {{ $t('data.explore.how-to') }}
-        </nuxt-link>
-      </template>
-    </i18n>
-    <h3>{{ $t('data.explore.dataset.title') }}</h3>
-    <v-select
-      class="woudc-select"
-      :value="selectedDataset"
-      :items="datasetOptions"
-      :label="$t('data.explore.dataset.placeholder')"
-      item-text="name"
-      item-value="value"
-      solo
-      @input="clearAll()"
-    />
-    <h3>{{ $t('data.explore.country.title') }}</h3>
-    <v-autocomplete
-      :value="selectedCountry"
-      :items="countries"
-      :label="$t('data.explore.country.placeholder')"
-      :item-text="countryText"
-      item-value="country_code"
-      solo
-      @input="clearStationAndInstrument()"
-    />
-    <h3>{{ $t('data.explore.station.title') }}</h3>
-    <v-autocomplete
-      :value="selectedStation"
-      :items="stations"
-      :label="$t('data.explore.station.placeholder')"
-      :item-text="stationText"
-      item-value="woudc_id"
-      solo
-      @input="clearInstrument()"
-    />
-    <h3>{{ $t('data.explore.instrument.title') }}</h3>
-    <v-select
-      :value="selectedInstrument"
-      :items="instruments"
-      :label="$t('data.explore.instrument.placeholder')"
-      :item-text="instrumentText"
-      item-value="name"
-      solo
-    />
-    <v-range-slider
-      v-model="selectedYearRange"
-      :min="minSelectableYear"
-      :max="maxSelectableYear"
-    />
-    <div id="start-year">
-      <h4>{{ $t('data.explore.start') }}</h4>
-      <input v-model="selectedYearRange[0]" type="text">
-    </div>
-    <div id="end-year">
-      <h4>{{ $t('data.explore.end') }}</h4>
-      <input v-model="selectedYearRange[1]" type="text">
-    </div>
-  </v-layout>
+  <v-container>
+    <v-row>
+      <v-col>
+        <h1>{{ $t('data.explore.title') }}</h1>
+        <p>{{ $t('data.explore.blurb.body-datasets') }}</p>
+        <p>{{ $t('data.explore.blurb.body-search') }}</p>
+        <i18n path="data.explore.blurb.body-howto" tag="p">
+          <template v-slot:how-to>
+            <nuxt-link :to="localePath('about-dataaccess')">
+              {{ $t('data.explore.how-to') }}
+            </nuxt-link>
+          </template>
+        </i18n>
+        <h3>{{ $t('data.explore.dataset.title') }}</h3>
+        <v-select
+          class="woudc-select"
+          :value="selectedDataset"
+          :items="datasetOptions"
+          :label="$t('data.explore.dataset.placeholder')"
+          item-text="name"
+          item-value="value"
+          solo
+          @input="clearAll()"
+        />
+        <h3>{{ $t('data.explore.country.title') }}</h3>
+        <v-autocomplete
+          :value="selectedCountry"
+          :items="countries"
+          :label="$t('data.explore.country.placeholder')"
+          :item-text="countryText"
+          item-value="country_code"
+          solo
+          @input="clearStationAndInstrument()"
+        />
+        <h3>{{ $t('data.explore.station.title') }}</h3>
+        <v-autocomplete
+          :value="selectedStation"
+          :items="stations"
+          :label="$t('data.explore.station.placeholder')"
+          :item-text="stationText"
+          item-value="woudc_id"
+          solo
+          @input="clearInstrument()"
+        />
+        <h3>{{ $t('data.explore.instrument.title') }}</h3>
+        <v-select
+          :value="selectedInstrument"
+          :items="instruments"
+          :label="$t('data.explore.instrument.placeholder')"
+          :item-text="instrumentText"
+          item-value="name"
+          solo
+        />
+        <v-range-slider
+          v-model="selectedYearRange"
+          :min="minSelectableYear"
+          :max="maxSelectableYear"
+        />
+        <div id="start-year">
+          <h4>{{ $t('data.explore.start') }}</h4>
+          <input v-model="selectedYearRange[0]" type="text">
+        </div>
+        <div id="end-year">
+          <h4>{{ $t('data.explore.end') }}</h4>
+          <input v-model="selectedYearRange[1]" type="text">
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

@@ -1,6 +1,10 @@
 <template>
-  <div>
-    <h1>{{ $t('about.access.title') }}</h1>
+  <v-container>
+    <v-row>
+      <v-col>
+        <h1>{{ $t('about.access.title') }}</h1>
+      </v-col>
+    </v-row>
     <v-row>
       <v-col cols="8">
         <p>{{ $t('about.access.blurb.body-intro') }}</p>
@@ -82,252 +86,256 @@
         </v-card>
       </v-col>
     </v-row>
-    <div id="data-search-section">
-      <h2>{{ $t('about.access.search.title') }}</h2>
-      <i18n path="about.access.search.blurb.body-intro" tag="p">
-        <template v-slot:search>
-          <nuxt-link :to="localePath('data-explore')">
-            {{ $t('common.search') }}
-          </nuxt-link>
-        </template>
-      </i18n>
-      <i18n path="about.access.search.blurb.body-howto" tag="p">
-        <template v-slot:how-to>
-          <a :href="searchHelpURL" target="_blank">
-            {{ $t('about.access.search.how-to') }}
-          </a>
-        </template>
-      </i18n>
-      <v-card class="mt-1 mb-4" color="info">
-        <v-card-text>
-          {{ $t('about.access.search.note') }}
-        </v-card-text>
-      </v-card>
-    </div>
-    <div id="waf-section">
-      <h2>{{ $t('about.access.waf.title') }}</h2>
-      <i18n path="about.access.waf.blurb.body-intro" tag="p">
-        <template v-slot:waf>
-          <a :href="wafURL" target="_blank">
-            {{ $t('common.wafFull') }}
-          </a>
-        </template>
-      </i18n>
-      <i18n path="about.access.waf.blurb.body-files" tag="p">
-        <template v-slot:summary>
-          <a :href="wafSummaryURL" target="_blank">
-            {{ $t('about.access.waf.summary') }}
-          </a>
-        </template>
-      </i18n>
-      <i18n path="about.access.waf.blurb.body-howto" tag="p">
-        <template v-slot:how-to>
-          <a :href="wafGuideURL" target="_blank">
-            {{ $t('about.access.waf.how-to') }}
-          </a>
-        </template>
-      </i18n>
-    </div>
-    <div id="web-services-section">
-      <h2>{{ $t('about.access.web.title') }}</h2>
-      <p>{{ $t('about.access.web.blurb.body-intro') }}</p>
-      <i18n path="about.access.web.blurb.body-standards" tag="p">
-        <template v-slot:ogc>
-          <a :href="ogcURL" target="_blank">
-            {{ $t('common.ogc') }}
-          </a>
-        </template>
-        <template v-slot:iso>
-          <a :href="isoURL" target="_blank">
-            {{ $t('common.iso') }}
-          </a>
-        </template>
-        <template v-slot:interoperability>
-          <a :href="interoperabilityURL" target="_blank">
-            {{ $t('common.interoperability') }}
-          </a>
-        </template>
-        <template v-slot:wis>
-          <a :href="wisURL" target="_blank">
-            {{ $t('common.wis') }}
-          </a>
-        </template>
-      </i18n>
-      <v-card class="mt-1 mb-4" color="info">
-        <v-card-title class="pt-3 pb-0">
-          {{ $t('about.access.web.table.title') }}
-        </v-card-title>
-        <v-card-text>
-          <span>That font size is too big. Also the colour is wrong.</span>
-        </v-card-text>
-      </v-card>
-      <div id="csw-subsection">
-        <h3>{{ $t('about.access.csw.title') }}</h3>
-        <i18n class="mb-0" path="about.access.csw.blurb" tag="p">
-          <template v-slot:ogc-cs>
-            <a :href="ogcStandardsURL" target="_blank">
-              {{ $t('common.ogc-cs') }}
-            </a>
-          </template>
-        </i18n>
-        <v-card class="mt-1 mb-4" color="info">
-          <v-card-title class="pt-3 pb-0">
-            {{ $t('about.access.csw.note.title') }}
-          </v-card-title>
-          <v-card-text>
-            <i18n class="mb-0" path="about.access.csw.note.body" tag="p">
-              <template v-slot:link>
-                <a :href="cswURL" target="_blank">
-                  {{ cswURL }}
-                </a>
-              </template>
-            </i18n>
-          </v-card-text>
-        </v-card>
-      </div>
-      <div id="wms-subsection">
-        <h3>{{ $t('about.access.wms.title') }}</h3>
-        <i18n path="about.access.wms.blurb" tag="p">
-          <template v-slot:wms>
-            <a href="" target="_blank">
-              {{ $t('common.wms') }}
-            </a>
-          </template>
-        </i18n>
-        <v-card class="mt-1 mb-4" color="info">
-          <v-card-title class="pt-3 pb-0">
-            {{ $t('about.access.wms.note.title') }}
-          </v-card-title>
-          <v-card-text>
-            <i18n class="mb-0" path="about.access.wms.note.body" tag="p">
-              <template v-slot:link>
-                <a :href="wmsURL" target="_blank">
-                  {{ wmsURL }}
-                </a>
-              </template>
-            </i18n>
-          </v-card-text>
-        </v-card>
-      </div>
-      <div id="wfs-subsection">
-        <h3>{{ $t('about.access.wfs.title') }}</h3>
-        <i18n path="about.access.wfs.blurb.body-intro" tag="p">
-          <template v-slot:wfs>
-            <a href="" target="_blank">
-              {{ $t('common.wfs') }}
-            </a>
-          </template>
-        </i18n>
-        <p>{{ $t('about.access.wfs.blurb.body-limits') }}</p>
-        <v-card class="mt-1 mb-4" color="info">
-          <v-card-title class="pt-3 pb-0">
-            {{ $t('about.access.wfs.note.title') }}
-          </v-card-title>
-          <v-card-text>
-            <i18n class="mb-0" path="about.access.wfs.note.body" tag="p">
-              <template v-slot:link>
-                <a :href="wfsURL" target="_blank">
-                  {{ wfsURL }}
-                </a>
-              </template>
-            </i18n>
-          </v-card-text>
-        </v-card>
-      </div>
-      <div id="wps-section">
-        <h3>{{ $t('about.access.wps.title') }}</h3>
-        <i18n path="about.access.wps.blurb" tag="p">
-          <template v-slot:wps>
-            <a href="" target="_blank">
-              {{ $t('common.wps') }}
-            </a>
-          </template>
-        </i18n>
-        <v-card class="mt-1 mb-4" color="info">
-          <v-card-title class="pt-3 pb-0">
-            {{ $t('about.access.wps.note.title') }}
-          </v-card-title>
-          <v-card-text>
-            <i18n class="mb-0" path="about.access.wps.note.body" tag="p">
-              <template v-slot:link>
-                <a :href="wpsURL" target="_blank">
-                  {{ wpsURL }}
-                </a>
-              </template>
-            </i18n>
-          </v-card-text>
-        </v-card>
-      </div>
-    </div>
-    <div id="definitions-service-section">
-      <h2>{{ $t('about.access.definitions.title') }}</h2>
-      <p>{{ $t('about.access.definitions.blurb') }}</p>
-      <v-card class="mt-1 mb-4" color="info">
-        <v-card-title class="pt-3 pb-0">
-          {{ $t('about.access.definitions.note.title') }}
-        </v-card-title>
-        <v-card-text>
-          <i18n class="mb-0" path="about.access.definitions.note.body" tag="p">
-            <template v-slot:link>
-              <a :href="definitionsURL" target="_blank">
-                {{ definitionsURL }}
+    <v-row>
+      <v-col>
+        <div id="data-search-section">
+          <h2>{{ $t('about.access.search.title') }}</h2>
+          <i18n path="about.access.search.blurb.body-intro" tag="p">
+            <template v-slot:search>
+              <nuxt-link :to="localePath('data-explore')">
+                {{ $t('common.search') }}
+              </nuxt-link>
+            </template>
+          </i18n>
+          <i18n path="about.access.search.blurb.body-howto" tag="p">
+            <template v-slot:how-to>
+              <a :href="searchHelpURL" target="_blank">
+                {{ $t('about.access.search.how-to') }}
               </a>
             </template>
           </i18n>
-        </v-card-text>
-      </v-card>
-    </div>
-    <div id="iso-catalogue-section">
-      <h2>{{ $t('about.access.iso.title') }}</h2>
-      <p>{{ $t('about.access.iso.blurb-intro') }}</p>
-      <v-card class="mt-1 mb-4" color="info">
-        <v-card-title class="pt-3 pb-0">
-          {{ $t('about.access.iso.note.title') }}
-        </v-card-title>
-        <v-card-text>
-          <i18n class="mb-0" path="about.access.iso.note.body" tag="p">
-            <template v-slot:link>
+          <v-card class="mt-1 mb-4" color="info">
+            <v-card-text>
+              {{ $t('about.access.search.note') }}
+            </v-card-text>
+          </v-card>
+        </div>
+        <div id="waf-section">
+          <h2>{{ $t('about.access.waf.title') }}</h2>
+          <i18n path="about.access.waf.blurb.body-intro" tag="p">
+            <template v-slot:waf>
+              <a :href="wafURL" target="_blank">
+                {{ $t('common.wafFull') }}
+              </a>
+            </template>
+          </i18n>
+          <i18n path="about.access.waf.blurb.body-files" tag="p">
+            <template v-slot:summary>
+              <a :href="wafSummaryURL" target="_blank">
+                {{ $t('about.access.waf.summary') }}
+              </a>
+            </template>
+          </i18n>
+          <i18n path="about.access.waf.blurb.body-howto" tag="p">
+            <template v-slot:how-to>
+              <a :href="wafGuideURL" target="_blank">
+                {{ $t('about.access.waf.how-to') }}
+              </a>
+            </template>
+          </i18n>
+        </div>
+        <div id="web-services-section">
+          <h2>{{ $t('about.access.web.title') }}</h2>
+          <p>{{ $t('about.access.web.blurb.body-intro') }}</p>
+          <i18n path="about.access.web.blurb.body-standards" tag="p">
+            <template v-slot:ogc>
+              <a :href="ogcURL" target="_blank">
+                {{ $t('common.ogc') }}
+              </a>
+            </template>
+            <template v-slot:iso>
               <a :href="isoURL" target="_blank">
-                {{ isoURL }}
+                {{ $t('common.iso') }}
+              </a>
+            </template>
+            <template v-slot:interoperability>
+              <a :href="interoperabilityURL" target="_blank">
+                {{ $t('common.interoperability') }}
+              </a>
+            </template>
+            <template v-slot:wis>
+              <a :href="wisURL" target="_blank">
+                {{ $t('common.wis') }}
               </a>
             </template>
           </i18n>
-        </v-card-text>
-      </v-card>
-      <i18n path="about.access.iso.blurb-howto" tag="p">
-        <template v-slot:how-to>
-          <a href="" target="_blank">
-            {{ $t('about.access.iso.how-to') }}
-          </a>
-        </template>
-      </i18n>
-    </div>
-    <div id="examples-section">
-      <h2>{{ $t('about.access.examples.title') }}</h2>
-      <i18n path="about.access.examples.blurb" tag="p">
-        <template v-slot:github>
-          <a :href="githubURL" target="_blank">
-            {{ $t('common.github') }}
-          </a>
-        </template>
-      </i18n>
-      <v-card>
-        <v-list id="example-list" dense>
-          <v-list-item>
-            <a :href="examples.pywoudc" target="_blank">
-              pywoudc
-            </a> : {{ $t('about.access.examples.links.pywoudc') }}
-          </v-list-item>
-          <v-divider />
-          <v-list-item>
-            <a :href="examples.notebooks" target="_blank">
-              notebooks
-            </a> : {{ $t('about.access.examples.links.notebooks') }}
-          </v-list-item>
-        </v-list>
-      </v-card>
-    </div>
-  </div>
+          <v-card class="mt-1 mb-4" color="info">
+            <v-card-title class="pt-3 pb-0">
+              {{ $t('about.access.web.table.title') }}
+            </v-card-title>
+            <v-card-text>
+              <span>That font size is too big. Also the colour is wrong.</span>
+            </v-card-text>
+          </v-card>
+          <div id="csw-subsection">
+            <h3>{{ $t('about.access.csw.title') }}</h3>
+            <i18n class="mb-0" path="about.access.csw.blurb" tag="p">
+              <template v-slot:ogc-cs>
+                <a :href="ogcStandardsURL" target="_blank">
+                  {{ $t('common.ogc-cs') }}
+                </a>
+              </template>
+            </i18n>
+            <v-card class="mt-1 mb-4" color="info">
+              <v-card-title class="pt-3 pb-0">
+                {{ $t('about.access.csw.note.title') }}
+              </v-card-title>
+              <v-card-text>
+                <i18n class="mb-0" path="about.access.csw.note.body" tag="p">
+                  <template v-slot:link>
+                    <a :href="cswURL" target="_blank">
+                      {{ cswURL }}
+                    </a>
+                  </template>
+                </i18n>
+              </v-card-text>
+            </v-card>
+          </div>
+          <div id="wms-subsection">
+            <h3>{{ $t('about.access.wms.title') }}</h3>
+            <i18n path="about.access.wms.blurb" tag="p">
+              <template v-slot:wms>
+                <a href="" target="_blank">
+                  {{ $t('common.wms') }}
+                </a>
+              </template>
+            </i18n>
+            <v-card class="mt-1 mb-4" color="info">
+              <v-card-title class="pt-3 pb-0">
+                {{ $t('about.access.wms.note.title') }}
+              </v-card-title>
+              <v-card-text>
+                <i18n class="mb-0" path="about.access.wms.note.body" tag="p">
+                  <template v-slot:link>
+                    <a :href="wmsURL" target="_blank">
+                      {{ wmsURL }}
+                    </a>
+                  </template>
+                </i18n>
+              </v-card-text>
+            </v-card>
+          </div>
+          <div id="wfs-subsection">
+            <h3>{{ $t('about.access.wfs.title') }}</h3>
+            <i18n path="about.access.wfs.blurb.body-intro" tag="p">
+              <template v-slot:wfs>
+                <a href="" target="_blank">
+                  {{ $t('common.wfs') }}
+                </a>
+              </template>
+            </i18n>
+            <p>{{ $t('about.access.wfs.blurb.body-limits') }}</p>
+            <v-card class="mt-1 mb-4" color="info">
+              <v-card-title class="pt-3 pb-0">
+                {{ $t('about.access.wfs.note.title') }}
+              </v-card-title>
+              <v-card-text>
+                <i18n class="mb-0" path="about.access.wfs.note.body" tag="p">
+                  <template v-slot:link>
+                    <a :href="wfsURL" target="_blank">
+                      {{ wfsURL }}
+                    </a>
+                  </template>
+                </i18n>
+              </v-card-text>
+            </v-card>
+          </div>
+          <div id="wps-section">
+            <h3>{{ $t('about.access.wps.title') }}</h3>
+            <i18n path="about.access.wps.blurb" tag="p">
+              <template v-slot:wps>
+                <a href="" target="_blank">
+                  {{ $t('common.wps') }}
+                </a>
+              </template>
+            </i18n>
+            <v-card class="mt-1 mb-4" color="info">
+              <v-card-title class="pt-3 pb-0">
+                {{ $t('about.access.wps.note.title') }}
+              </v-card-title>
+              <v-card-text>
+                <i18n class="mb-0" path="about.access.wps.note.body" tag="p">
+                  <template v-slot:link>
+                    <a :href="wpsURL" target="_blank">
+                      {{ wpsURL }}
+                    </a>
+                  </template>
+                </i18n>
+              </v-card-text>
+            </v-card>
+          </div>
+        </div>
+        <div id="definitions-service-section">
+          <h2>{{ $t('about.access.definitions.title') }}</h2>
+          <p>{{ $t('about.access.definitions.blurb') }}</p>
+          <v-card class="mt-1 mb-4" color="info">
+            <v-card-title class="pt-3 pb-0">
+              {{ $t('about.access.definitions.note.title') }}
+            </v-card-title>
+            <v-card-text>
+              <i18n class="mb-0" path="about.access.definitions.note.body" tag="p">
+                <template v-slot:link>
+                  <a :href="definitionsURL" target="_blank">
+                    {{ definitionsURL }}
+                  </a>
+                </template>
+              </i18n>
+            </v-card-text>
+          </v-card>
+        </div>
+        <div id="iso-catalogue-section">
+          <h2>{{ $t('about.access.iso.title') }}</h2>
+          <p>{{ $t('about.access.iso.blurb-intro') }}</p>
+          <v-card class="mt-1 mb-4" color="info">
+            <v-card-title class="pt-3 pb-0">
+              {{ $t('about.access.iso.note.title') }}
+            </v-card-title>
+            <v-card-text>
+              <i18n class="mb-0" path="about.access.iso.note.body" tag="p">
+                <template v-slot:link>
+                  <a :href="isoURL" target="_blank">
+                    {{ isoURL }}
+                  </a>
+                </template>
+              </i18n>
+            </v-card-text>
+          </v-card>
+          <i18n path="about.access.iso.blurb-howto" tag="p">
+            <template v-slot:how-to>
+              <a href="" target="_blank">
+                {{ $t('about.access.iso.how-to') }}
+              </a>
+            </template>
+          </i18n>
+        </div>
+        <div id="examples-section">
+          <h2>{{ $t('about.access.examples.title') }}</h2>
+          <i18n path="about.access.examples.blurb" tag="p">
+            <template v-slot:github>
+              <a :href="githubURL" target="_blank">
+                {{ $t('common.github') }}
+              </a>
+            </template>
+          </i18n>
+          <v-card>
+            <v-list id="example-list" dense>
+              <v-list-item>
+                <a :href="examples.pywoudc" target="_blank">
+                  pywoudc
+                </a> : {{ $t('about.access.examples.links.pywoudc') }}
+              </v-list-item>
+              <v-divider />
+              <v-list-item>
+                <a :href="examples.notebooks" target="_blank">
+                  notebooks
+                </a> : {{ $t('about.access.examples.links.notebooks') }}
+              </v-list-item>
+            </v-list>
+          </v-card>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

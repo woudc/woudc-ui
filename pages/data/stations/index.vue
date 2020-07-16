@@ -1,7 +1,11 @@
 <template>
-  <v-layout justify-center column align-content-center>
-    <h1>{{ $t('data.stations.title') }}</h1>
-    <p>{{ $t('data.stations.blurb') }}</p>
+  <v-container>
+    <v-row>
+      <v-col>
+        <h1>{{ $t('data.stations.title') }}</h1>
+        <p>{{ $t('data.stations.blurb') }}</p>
+      </v-col>
+    </v-row>
     <v-row>
       <v-col>
         <selectable-map
@@ -34,35 +38,39 @@
         <table-instructions id="table-instructions" />
       </v-col>
     </v-row>
-    <selectable-table
-      :headers="headers"
-      :elements="visibleStations"
-      :selected="selectedStation"
-      @select="selectedStation = $event"
-    >
-      <template v-slot:row="row">
-        <td>
-          <nuxt-link :to="'/data/stations/' + row.item.woudc_id">
-            {{ row.item.woudc_id }}
-          </nuxt-link>
-        </td>
-        <td>
-          <span v-if="row.item.gaw_id !== null">
-            <a :href="row.item.gaw_url" target="_blank">
-              {{ row.item.gaw_id }}
-            </a>
-          </span>
-        </td>
-        <td>{{ row.item.start_date }}</td>
-        <td>{{ row.item.end_date }}</td>
-        <td>{{ row.item.name }}</td>
-        <td>{{ row.item.country_name[$i18n.locale] }}</td>
-        <td>{{ row.item.last_validated_datetime }}</td>
-        <td>{{ row.item.type }}</td>
-        <td>{{ row.item.wmo_region_id }}</td>
-      </template>
-    </selectable-table>
-  </v-layout>
+    <v-row>
+      <v-col>
+        <selectable-table
+          :headers="headers"
+          :elements="visibleStations"
+          :selected="selectedStation"
+          @select="selectedStation = $event"
+        >
+          <template v-slot:row="row">
+            <td>
+              <nuxt-link :to="'/data/stations/' + row.item.woudc_id">
+                {{ row.item.woudc_id }}
+              </nuxt-link>
+            </td>
+            <td>
+              <span v-if="row.item.gaw_id !== null">
+                <a :href="row.item.gaw_url" target="_blank">
+                  {{ row.item.gaw_id }}
+                </a>
+              </span>
+            </td>
+            <td>{{ row.item.start_date }}</td>
+            <td>{{ row.item.end_date }}</td>
+            <td>{{ row.item.name }}</td>
+            <td>{{ row.item.country_name[$i18n.locale] }}</td>
+            <td>{{ row.item.last_validated_datetime }}</td>
+            <td>{{ row.item.type }}</td>
+            <td>{{ row.item.wmo_region_id }}</td>
+          </template>
+        </selectable-table>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

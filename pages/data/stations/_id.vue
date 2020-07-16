@@ -1,10 +1,14 @@
 <template>
-  <v-layout justify-center column align-content-center>
-    <h1>{{ $t('data.stations.title') }}</h1>
-    <h2 v-if="station !== null">
-      {{ station.name + ' - ' + station.woudc_id }}
-    </h2>
-    <p>{{ $t('data.stations.blurb') }}</p>
+  <v-container>
+    <v-row>
+      <v-col>
+        <h1>{{ $t('data.stations.title') }}</h1>
+        <h2 v-if="station !== null">
+          {{ station.name + ' - ' + station.woudc_id }}
+        </h2>
+        <p>{{ $t('data.stations.blurb') }}</p>
+      </v-col>
+    </v-row>
     <v-row>
       <v-col>
         <selectable-map
@@ -36,69 +40,73 @@
         <table-instructions id="table-instructions" />
       </v-col>
     </v-row>
-    <v-data-table
-      v-if="station !== null"
-      :headers="stationHeaders"
-      :items="[station]"
-      hide-default-footer
-      class="elevation-1"
-    >
-      <template v-slot:item.woudc_id="stn">
-        <nuxt-link :to="'/data/stations/' + stn.item.woudc_id">
-          {{ stn.item.woudc_id }}
-        </nuxt-link>
-      </template>
-      <template v-slot:item.gaw_id="stn">
-        <span v-id="stn.item.gaw_id !== null">
-          <a :href="stn.item.gaw_url" target="_blank">
-            {{ stn.item.gaw_id }}
-          </a>
-        </span>
-      </template>
-      <template v-slot:item.country="stn">
-        {{ stn.item.country_name[$i18n.locale] }}
-      </template>
-    </v-data-table>
-    <v-data-table
-      v-if="deployments.length > 0"
-      id="deployments-table"
-      :headers="deploymentHeaders"
-      :items="deployments"
-      hide-default-footer
-      class="elevation-1"
-    >
-      <template v-slot:item="deployment">
-        <tr>
-          <td>
-            <nuxt-link :to="'/contributors/' + deployment.item.contributor">
-              {{ deployment.item.contributor }}
+    <v-row>
+      <v-col>
+        <v-data-table
+          v-if="station !== null"
+          :headers="stationHeaders"
+          :items="[station]"
+          hide-default-footer
+          class="elevation-1"
+        >
+          <template v-slot:item.woudc_id="stn">
+            <nuxt-link :to="'/data/stations/' + stn.item.woudc_id">
+              {{ stn.item.woudc_id }}
             </nuxt-link>
-          </td>
-          <td>{{ deployment.item.contributor_project }}</td>
-          <td>
-            <a :href="deployment.item.contributor_url" target="_blank">
-              {{ deployment.item.contributor_name }}
+          </template>
+          <template v-slot:item.gaw_id="stn">
+            <span v-id="stn.item.gaw_id !== null">
+              <a :href="stn.item.gaw_url" target="_blank">
+                {{ stn.item.gaw_id }}
+              </a>
+            </span>
+          </template>
+          <template v-slot:item.country="stn">
+            {{ stn.item.country_name[$i18n.locale] }}
+          </template>
+        </v-data-table>
+        <v-data-table
+          v-if="deployments.length > 0"
+          id="deployments-table"
+          :headers="deploymentHeaders"
+          :items="deployments"
+          hide-default-footer
+          class="elevation-1"
+        >
+          <template v-slot:item="deployment">
+            <tr>
+              <td>
+                <nuxt-link :to="'/contributors/' + deployment.item.contributor">
+                  {{ deployment.item.contributor }}
+                </nuxt-link>
+              </td>
+              <td>{{ deployment.item.contributor_project }}</td>
+              <td>
+                <a :href="deployment.item.contributor_url" target="_blank">
+                  {{ deployment.item.contributor_name }}
+                </a>
+              </td>
+              <td>{{ deployment.item.start_date }}</td>
+              <td>{{ deployment.item.end_date }}</td>
+            </tr>
+          </template>
+        </v-data-table>
+        <v-data-table
+          v-if="instruments.length > 0"
+          id="instruments-table"
+          :headers="instrumentHeaders"
+          :items="instruments"
+          class="elevation-1"
+        >
+          <template v-slot:item.waf_url="instrument">
+            <a :href="instrument.item.waf_url" target="_blank">
+              TODO
             </a>
-          </td>
-          <td>{{ deployment.item.start_date }}</td>
-          <td>{{ deployment.item.end_date }}</td>
-        </tr>
-      </template>
-    </v-data-table>
-    <v-data-table
-      v-if="instruments.length > 0"
-      id="instruments-table"
-      :headers="instrumentHeaders"
-      :items="instruments"
-      class="elevation-1"
-    >
-      <template v-slot:item.waf_url="instrument">
-        <a :href="instrument.item.waf_url" target="_blank">
-          TODO
-        </a>
-      </template>
-    </v-data-table>
-  </v-layout>
+          </template>
+        </v-data-table>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

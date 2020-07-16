@@ -1,48 +1,52 @@
 <template>
-  <v-layout justify-center column align-content-center>
-    <h1>{{ $t('about.standards.title') }}</h1>
-    <i18n path="about.standards.blurb-intro" tag="p">
-      <template v-slot:interoperability>
-        <a :href="interoperabilityURL" target="_blank">
-          {{ $t('common.interoperability') }}
-        </a>
-      </template>
-      <template v-slot:wis>
-        <a :href="wisURL" target="_blank">
-          {{ $t('common.wis') }}
-        </a>
-      </template>
-    </i18n>
-    <v-data-table
-      id="standards-table"
-      :headers="headers"
-      :items="rows"
-      hide-default-footer
-      class="elevation-1"
-    >
-      <template v-slot:item.formats="props">
-        <v-chip v-for="link in props.item.formats" :key="link.to" class="resource" label>
-          <a :href="link.to" target="_blank">
-            {{ link.text }}
-          </a>
-        </v-chip>
-      </template>
-      <template v-slot:item.services="props">
-        <v-chip v-for="link in props.item.services" :key="link.to" class="resource" label>
-          <a :href="link.to" target="_blank">
-            {{ link.text }}
-          </a>
-        </v-chip>
-      </template>
-    </v-data-table>
-    <i18n path="about.standards.blurb-howto" tag="p">
-      <template v-slot:access>
-        <nuxt-link :to="localePath('about-dataaccess')">
-          {{ $t('common.access') }}
-        </nuxt-link>
-      </template>
-    </i18n>
-  </v-layout>
+  <v-container>
+    <v-row>
+      <v-col>
+        <h1>{{ $t('about.standards.title') }}</h1>
+        <i18n path="about.standards.blurb-intro" tag="p">
+          <template v-slot:interoperability>
+            <a :href="interoperabilityURL" target="_blank">
+              {{ $t('common.interoperability') }}
+            </a>
+          </template>
+          <template v-slot:wis>
+            <a :href="wisURL" target="_blank">
+              {{ $t('common.wis') }}
+            </a>
+          </template>
+        </i18n>
+        <v-data-table
+          id="standards-table"
+          :headers="headers"
+          :items="rows"
+          hide-default-footer
+          class="elevation-1"
+        >
+          <template v-slot:item.formats="props">
+            <v-chip v-for="link in props.item.formats" :key="link.to" class="resource" label>
+              <a :href="link.to" target="_blank">
+                {{ link.text }}
+              </a>
+            </v-chip>
+          </template>
+          <template v-slot:item.services="props">
+            <v-chip v-for="link in props.item.services" :key="link.to" class="resource" label>
+              <a :href="link.to" target="_blank">
+                {{ link.text }}
+              </a>
+            </v-chip>
+          </template>
+        </v-data-table>
+        <i18n path="about.standards.blurb-howto" tag="p">
+          <template v-slot:access>
+            <nuxt-link :to="localePath('about-dataaccess')">
+              {{ $t('common.access') }}
+            </nuxt-link>
+          </template>
+        </i18n>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

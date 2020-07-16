@@ -1,45 +1,48 @@
 <template>
-  <v-layout justify-center column align-content-center>
-    <h1>{{ $t('data.products.ozonesonde.title') }}</h1>
-    <v-spacer />
-    <h2>{{ $t('data.products.common.search') }}</h2>
-    <v-expansion-panels>
-      <v-expansion-panel>
-        <v-expansion-panel-header>
-          <strong>{{ $t('common.instructions') }}</strong>
-        </v-expansion-panel-header>
-        <v-expansion-panel-content>
-          <i18n path="data.products.ozonesonde.instructions.body-selections" tag="p">
-            <template v-slot:station>
-              <strong>{{ $t('data.products.common.station') }}</strong>
-            </template>
-            <template v-slot:years>
-              <strong>{{ $t('data.products.common.years') }}</strong>
-            </template>
-          </i18n>
-          <p>{{ $t('data.products.ozonesonde.instructions.body-searching') }}</p>
-          <ul>
-            <i18n path="data.products.ozonesonde.instructions.body-pressure" tag="li">
-              <template v-slot:pressure-plots>
-                <strong>{{ $t('data.products.ozonesonde.instructions.pressure-plots') }}</strong>
-              </template>
-            </i18n>
-            <i18n path="data.products.ozonesonde.instructions.body-temperature" tag="li">
-              <template v-slot:temperature-plots>
-                <strong>{{ $t('data.products.ozonesonde.instructions.temperature-plots') }}</strong>
-              </template>
-            </i18n>
-            <i18n path="data.products.ozonesonde.instructions.body-flights" tag="li">
-              <template v-slot:flight-plots>
-                <strong>{{ $t('data.products.ozonesonde.instructions.flight-plots') }}</strong>
-              </template>
-            </i18n>
-          </ul>
-          <br>
-          <p>{{ $t('data.products.ozonesonde.instructions.body-grouping') }}</p>
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-    </v-expansion-panels>
+  <v-container>
+    <v-row>
+      <v-col>
+        <h1>{{ $t('data.products.ozonesonde.title') }}</h1>
+        <h2>{{ $t('data.products.common.search') }}</h2>
+        <v-expansion-panels>
+          <v-expansion-panel>
+            <v-expansion-panel-header>
+              <strong>{{ $t('common.instructions') }}</strong>
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <i18n path="data.products.ozonesonde.instructions.body-selections" tag="p">
+                <template v-slot:station>
+                  <strong>{{ $t('data.products.common.station') }}</strong>
+                </template>
+                <template v-slot:years>
+                  <strong>{{ $t('data.products.common.years') }}</strong>
+                </template>
+              </i18n>
+              <p>{{ $t('data.products.ozonesonde.instructions.body-searching') }}</p>
+              <ul>
+                <i18n path="data.products.ozonesonde.instructions.body-pressure" tag="li">
+                  <template v-slot:pressure-plots>
+                    <strong>{{ $t('data.products.ozonesonde.instructions.pressure-plots') }}</strong>
+                  </template>
+                </i18n>
+                <i18n path="data.products.ozonesonde.instructions.body-temperature" tag="li">
+                  <template v-slot:temperature-plots>
+                    <strong>{{ $t('data.products.ozonesonde.instructions.temperature-plots') }}</strong>
+                  </template>
+                </i18n>
+                <i18n path="data.products.ozonesonde.instructions.body-flights" tag="li">
+                  <template v-slot:flight-plots>
+                    <strong>{{ $t('data.products.ozonesonde.instructions.flight-plots') }}</strong>
+                  </template>
+                </i18n>
+              </ul>
+              <br>
+              <p>{{ $t('data.products.ozonesonde.instructions.body-grouping') }}</p>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-expansion-panels>
+      </v-col>
+    </v-row>
     <v-row>
       <v-col>
         <div class="requiredHead mb-2">
@@ -112,29 +115,33 @@
         </selectable-map>
       </v-col>
     </v-row>
-    <div>
-      <v-btn
-        class="btn-left"
-        color="primary"
-        :disabled="selectedStation === null"
-        @click="getGraphs"
-      >
-        {{ $t('data.products.common.submit') }}
-      </v-btn>
-      <v-btn class="btn-right" @click="reset()">
-        {{ $t('data.products.common.reset') }}
-      </v-btn>
-    </div>
-    <h2>{{ $t('data.products.common.results') }}</h2>
-    <div v-for="(graphs, year) in graphURLs" :key="year">
-      <h3>{{ $t('data.products.common.year') }}: {{ year }}</h3>
-      <graph-carousel :graphs="graphs">
-        <template v-slot:preview-caption="graph">
-          {{ imagePreviewCaption(graph.item, year) }}
-        </template>
-      </graph-carousel>
-    </div>
-  </v-layout>
+    <v-row>
+      <v-col>
+        <div>
+          <v-btn
+            class="btn-left"
+            color="primary"
+            :disabled="selectedStation === null"
+            @click="getGraphs"
+          >
+            {{ $t('data.products.common.submit') }}
+          </v-btn>
+          <v-btn class="btn-right" @click="reset()">
+            {{ $t('data.products.common.reset') }}
+          </v-btn>
+        </div>
+        <h2>{{ $t('data.products.common.results') }}</h2>
+        <div v-for="(graphs, year) in graphURLs" :key="year">
+          <h3>{{ $t('data.products.common.year') }}: {{ year }}</h3>
+          <graph-carousel :graphs="graphs">
+            <template v-slot:preview-caption="graph">
+              {{ imagePreviewCaption(graph.item, year) }}
+            </template>
+          </graph-carousel>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
