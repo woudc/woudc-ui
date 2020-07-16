@@ -14,6 +14,7 @@
           >
             <v-img
               :src="url"
+              :alt="caption"
               aspect-ratio="1.5"
               contain
               @click="selectImage((rowIndex * graphsPerRow) + columnIndex)"
