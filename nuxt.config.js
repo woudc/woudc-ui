@@ -5,13 +5,24 @@ require('dotenv').config()
 const PORT = process.env.npm_config_port || '3000'
 
 export default {
-  mode: 'universal',
+  mode: 'spa',
   env: {
     baseUrl: process.env.BASE_URL || 'http://localhost:' + PORT,
     pygeoapi: process.env.PYGEOAPI_HOSTNAME
   },
   router: {
     base: process.env.ROUTER_BASE || '/woudc-ui/'
+  },
+  generate: {
+    exclude: [
+      /^\/data\/stations\/[\d]+/,
+      /^\/contributors/,
+    ],
+    routes: [
+      '/contributors/registration',
+      '/contributors/submission',
+      '/contributors/validation'
+    ]
   },
   /*
    ** Global headers of the page
