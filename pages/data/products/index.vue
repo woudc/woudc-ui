@@ -75,9 +75,9 @@ export default {
         temis: 'http://www.temis.nl/index.php'
       },
       timeSeriesLinks: {
-        ozonesonde: '/data/products/ozonesonde',
-        totalozone: '/data/products/totalozone',
-        'uv-index': '/data/products/uv-index'
+        ozonesonde: 'data-products-ozonesonde',
+        totalozone: 'data-products-totalozone',
+        'uv-index': 'data-products-uvindex'
       }
     }
   },

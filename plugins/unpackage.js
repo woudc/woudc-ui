@@ -17,7 +17,7 @@ function standardizedGeometry(geoJSON) {
 }
 
 function unpackageStation(geoJSON) {
-  const station = geoJSON.properties
+  const station = Object.assign({}, geoJSON.properties)
   station.identifier = station.woudc_id
 
   station.country_name = standardizedCountryName(geoJSON)
