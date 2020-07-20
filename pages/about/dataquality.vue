@@ -1,58 +1,62 @@
 <template>
-  <v-layout justify-center column align-content-center>
-    <h1>{{ $t('about.quality.title') }}</h1>
-    <p>{{ $t('about.quality.blurb') }}</p>
-    <h2>{{ $t('common.gawFull') }}</h2>
-    <i18n path="about.quality.gaw-blurb" tag="p">
-      <template v-slot:gaw-qa>
-        <a :href="gawURL" target="_blank">
-          {{ $t('about.quality.gaw-qa') }}
-        </a>
-      </template>
-    </i18n>
-    <h2>{{ $t('about.quality.sag.title') }}</h2>
-    <i18n path="about.quality.sag.blurb.body-intro" tag="p">
-      <template v-slot:sop>
-        <nuxt-link :to="localePath('resources-sop')">
-          {{ $t('common.sop') }}
-        </nuxt-link>
-      </template>
-    </i18n>
-    <p>{{ $t('about.quality.sag.blurb.body-standards') }}</p>
-    <ul>
-      <li v-for="link in sagLinks" :key="link.to">
-        <a :href="link.to">
-          {{ link.text }}
-        </a> ({{ link.note }})
-      </li>
-    </ul>
-    <h2>{{ $t('about.quality.eccc.title') }}</h2>
-    <p>{{ $t('about.quality.eccc.blurb') }}</p>
-    <ul>
-      <li>
-        <i18n path="about.quality.eccc.item1" tag="span">
-          <template v-slot:guidelines>
-            <nuxt-link :to="localePath('about-formats')">
-              {{ $t('common.guidelines') }}
+  <v-container>
+    <v-row>
+      <v-col>
+        <h1>{{ $t('about.quality.title') }}</h1>
+        <p>{{ $t('about.quality.blurb') }}</p>
+        <h2>{{ $t('common.gawFull') }}</h2>
+        <i18n path="about.quality.gaw-blurb" tag="p">
+          <template v-slot:gaw-qa>
+            <a :href="gawURL" target="_blank">
+              {{ $t('about.quality.gaw-qa') }}
+            </a>
+          </template>
+        </i18n>
+        <h2>{{ $t('about.quality.sag.title') }}</h2>
+        <i18n path="about.quality.sag.blurb.body-intro" tag="p">
+          <template v-slot:sop>
+            <nuxt-link :to="localePath('resources-sop')">
+              {{ $t('common.sop') }}
             </nuxt-link>
           </template>
         </i18n>
-      </li>
-      <li>{{ $t('about.quality.eccc.item2') }}</li>
-      <li>{{ $t('about.quality.eccc.item3') }}</li>
-      <li>{{ $t('about.quality.eccc.item4') }}</li>
-      <li>{{ $t('about.quality.eccc.item5') }}</li>
-      <li>
-        <i18n path="about.quality.eccc.item6" tag="span">
-          <template v-slot:access>
-            <nuxt-link :to="localePath('about-dataaccess')">
-              {{ $t('common.access') }}
-            </nuxt-link>
-          </template>
-        </i18n>
-      </li>
-    </ul>
-  </v-layout>
+        <p>{{ $t('about.quality.sag.blurb.body-standards') }}</p>
+        <ul>
+          <li v-for="link in sagLinks" :key="link.to">
+            <a :href="link.to">
+              {{ link.text }}
+            </a> ({{ link.note }})
+          </li>
+        </ul>
+        <h2>{{ $t('about.quality.eccc.title') }}</h2>
+        <p>{{ $t('about.quality.eccc.blurb') }}</p>
+        <ul>
+          <li>
+            <i18n path="about.quality.eccc.item1" tag="span">
+              <template v-slot:guidelines>
+                <nuxt-link :to="localePath('about-formats')">
+                  {{ $t('common.guidelines') }}
+                </nuxt-link>
+              </template>
+            </i18n>
+          </li>
+          <li>{{ $t('about.quality.eccc.item2') }}</li>
+          <li>{{ $t('about.quality.eccc.item3') }}</li>
+          <li>{{ $t('about.quality.eccc.item4') }}</li>
+          <li>{{ $t('about.quality.eccc.item5') }}</li>
+          <li>
+            <i18n path="about.quality.eccc.item6" tag="span">
+              <template v-slot:access>
+                <nuxt-link :to="localePath('about-dataaccess')">
+                  {{ $t('common.access') }}
+                </nuxt-link>
+              </template>
+            </i18n>
+          </li>
+        </ul>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

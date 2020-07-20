@@ -1,7 +1,11 @@
 <template>
-  <v-layout justify-center column align-content-center>
-    <h1>{{ $t('contributors.list.title') }}</h1>
-    <p>{{ $t('contributors.list.blurb') }}</p>
+  <v-container>
+    <v-row>
+      <v-col>
+        <h1>{{ $t('contributors.list.title') }}</h1>
+        <p>{{ $t('contributors.list.blurb') }}</p>
+      </v-col>
+    </v-row>
     <v-row>
       <v-col>
         <selectable-map
@@ -26,31 +30,35 @@
         <table-instructions id="table-instructions" />
       </v-col>
     </v-row>
-    <selectable-table
-      :elements="visibleContributors"
-      :headers="headers"
-      :selected="selectedContributor"
-      @select="selectedContributor = $event"
-    >
-      <template v-slot:row="row">
-        <td>
-          <nuxt-link :to="'/contributors/' + row.item.acronym">
-            {{ row.item.acronym }}
-          </nuxt-link>
-        </td>
-        <td>{{ row.item.project }}</td>
-        <td>
-          <a :href="row.item.url" target="_blank">
-            {{ row.item.name }}
-          </a>
-        </td>
-        <td>{{ row.item.country_name[$i18n.locale] }}</td>
-        <td>{{ row.item.start_date }}</td>
-        <td>{{ row.item.end_date }}</td>
-        <td>{{ row.item.wmo_region_id }}</td>
-      </template>
-    </selectable-table>
-  </v-layout>
+    <v-row>
+      <v-col>
+        <selectable-table
+          :elements="visibleContributors"
+          :headers="headers"
+          :selected="selectedContributor"
+          @select="selectedContributor = $event"
+        >
+          <template v-slot:row="row">
+            <td>
+              <nuxt-link :to="'/contributors/' + row.item.acronym">
+                {{ row.item.acronym }}
+              </nuxt-link>
+            </td>
+            <td>{{ row.item.project }}</td>
+            <td>
+              <a :href="row.item.url" target="_blank">
+                {{ row.item.name }}
+              </a>
+            </td>
+            <td>{{ row.item.country_name[$i18n.locale] }}</td>
+            <td>{{ row.item.start_date }}</td>
+            <td>{{ row.item.end_date }}</td>
+            <td>{{ row.item.wmo_region_id }}</td>
+          </template>
+        </selectable-table>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

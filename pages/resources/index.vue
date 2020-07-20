@@ -1,19 +1,23 @@
 <template>
-  <v-layout justify-center column align-content-center>
-    <h2>{{ $t('resources.title') }}</h2>
-    <ul>
-      <li v-for="path in localLinks" :key="path">
-        <nuxt-link :to="localePath('resources-' + path)">
-          {{ $t('resources.links.' + path) }}
-        </nuxt-link>
-      </li>
-      <li>
-        <a :href="softwareURL" target="_blank">
-          {{ $t('resources.links.software') }}
-        </a>
-      </li>
-    </ul>
-  </v-layout>
+  <v-container>
+    <v-row>
+      <v-col>
+        <h2>{{ $t('resources.title') }}</h2>
+        <ul>
+          <li v-for="path in localLinks" :key="path">
+            <nuxt-link :to="localePath('resources-' + path)">
+              {{ $t('resources.links.' + path) }}
+            </nuxt-link>
+          </li>
+          <li>
+            <a :href="softwareURL" target="_blank">
+              {{ $t('resources.links.software') }}
+            </a>
+          </li>
+        </ul>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

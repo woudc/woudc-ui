@@ -1,14 +1,18 @@
 <template>
-  <v-layout justify-center column align-content-center>
-    <h1>{{ $t('resources.working-groups.title') }}</h1>
-    <ul>
-      <li v-for="(value, key) in urls" :key="key">
-        <a :href="value" target="_blank">
-          {{ $t('resources.working-groups.links.' + key) }}
-        </a>
-      </li>
-    </ul>
-  </v-layout>
+  <v-container>
+    <v-row>
+      <v-col>
+        <h1>{{ $t('resources.working-groups.title') }}</h1>
+        <ul>
+          <li v-for="(value, key) in urls" :key="key">
+            <a :href="value" target="_blank">
+              {{ $t('resources.working-groups.links.' + key) }}
+            </a>
+          </li>
+        </ul>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

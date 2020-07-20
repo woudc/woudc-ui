@@ -54,11 +54,9 @@
         Français
       </nuxt-link>
     </v-app-bar>
-    <v-content>
-      <v-container>
-        <nuxt />
-      </v-container>
-    </v-content>
+    <v-main>
+      <nuxt />
+    </v-main>
     <v-footer app>
       <span>&copy; 2020</span>
       <v-spacer />

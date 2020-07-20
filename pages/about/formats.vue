@@ -1,53 +1,57 @@
 <template>
-  <v-layout justify-center column align-content-center>
-    <h1>{{ $t('about.formats.title') }}</h1>
-    <i18n path="about.formats.blurb.body-intro" tag="p">
-      <template v-slot:extended>
-        <strong>{{ $t('common.extended') }}</strong>
-      </template>
-    </i18n>
-    <i18n path="about.formats.blurb.body-extcsv" tag="p">
-      <template v-slot:extended>
-        <strong>{{ $t('common.extended') }}</strong>
-      </template>
-      <template v-slot:access>
-        <nuxt-link :to="localePath('about-dataaccess')">
-          {{ $t('common.access') }}
-        </nuxt-link>
-      </template>
-    </i18n>
-    <v-card class="mt-1 mb-4" color="info">
-      <v-card-text>
-        {{ $t('about.formats.note') }}
-      </v-card-text>
-    </v-card>
-    <h2> {{ $t('about.formats.contributor-guide.title') }}</h2>
-    <ul>
-      <li>
-        <a :href="contributorsURL" target="_blank">
-          {{ $t('about.formats.contributor-guide.link') }}
-        </a>
-      </li>
-    </ul>
-    <h2>{{ $t('about.formats.examples.title') }}</h2>
-    <p>{{ $t('about.formats.examples.blurb') }}</p>
-    <h3>{{ $t('about.formats.examples.ozone') }}</h3>
-    <ul>
-      <li v-for="(link, i) in prepareLinks(ozoneDatasets)" :key="i">
-        <a :href="link.url" target="_blank">
-          {{ link.text }}
-        </a>
-      </li>
-    </ul>
-    <h3>{{ $t('about.formats.examples.uv') }}</h3>
-    <ul>
-      <li v-for="(link, index) in prepareLinks(uvDatasets)" :key="index">
-        <a :href="link.url" target="_blank">
-          {{ link.text }}
-        </a>
-      </li>
-    </ul>
-  </v-layout>
+  <v-container>
+    <v-row>
+      <v-col>
+        <h1>{{ $t('about.formats.title') }}</h1>
+        <i18n path="about.formats.blurb.body-intro" tag="p">
+          <template v-slot:extended>
+            <strong>{{ $t('common.extended') }}</strong>
+          </template>
+        </i18n>
+        <i18n path="about.formats.blurb.body-extcsv" tag="p">
+          <template v-slot:extended>
+            <strong>{{ $t('common.extended') }}</strong>
+          </template>
+          <template v-slot:access>
+            <nuxt-link :to="localePath('about-dataaccess')">
+              {{ $t('common.access') }}
+            </nuxt-link>
+          </template>
+        </i18n>
+        <v-card class="mt-1 mb-4" color="info">
+          <v-card-text>
+            {{ $t('about.formats.note') }}
+          </v-card-text>
+        </v-card>
+        <h2> {{ $t('about.formats.contributor-guide.title') }}</h2>
+        <ul>
+          <li>
+            <a :href="contributorsURL" target="_blank">
+              {{ $t('about.formats.contributor-guide.link') }}
+            </a>
+          </li>
+        </ul>
+        <h2>{{ $t('about.formats.examples.title') }}</h2>
+        <p>{{ $t('about.formats.examples.blurb') }}</p>
+        <h3>{{ $t('about.formats.examples.ozone') }}</h3>
+        <ul>
+          <li v-for="(link, i) in prepareLinks(ozoneDatasets)" :key="i">
+            <a :href="link.url" target="_blank">
+              {{ link.text }}
+            </a>
+          </li>
+        </ul>
+        <h3>{{ $t('about.formats.examples.uv') }}</h3>
+        <ul>
+          <li v-for="(link, index) in prepareLinks(uvDatasets)" :key="index">
+            <a :href="link.url" target="_blank">
+              {{ link.text }}
+            </a>
+          </li>
+        </ul>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

@@ -1,55 +1,59 @@
 <template>
-  <v-layout justify-center column align-content-center>
-    <h2>{{ $t('about.home.title') }}</h2>
-    <p>{{ $t('about.home.blurb.body-intro') }}</p>
-    <p>{{ $t('about.home.blurb.body-datasets') }}</p>
-    <i18n path="about.home.blurb.body-contributors" tag="p">
-      <template v-slot:stations>
-        <nuxt-link :to="localePath('data-stations')">
-          {{ $t('common.stations') }}
-        </nuxt-link>
-      </template>
-      <template v-slot:contributors>
-        <nuxt-link :to="localePath('contributors')">
-          {{ $t('common.contributors') }}
-        </nuxt-link>
-      </template>
-    </i18n>
-    <p>{{ $t('about.home.blurb.body-products') }}</p>
-    <i18n path="about.home.blurb.body-access" tag="p">
-      <template v-slot:search>
-        <nuxt-link :to="localePath('data-explore')">
-          {{ $t('common.search') }}
-        </nuxt-link>
-      </template>
-      <template v-slot:access>
-        <nuxt-link :to="localePath('about-dataaccess')">
-          {{ $t('common.access') }}
-        </nuxt-link>
-      </template>
-    </i18n>
-    <v-card
-      id="history"
-      itemprop="hasPart"
-      itemscope
-      itemtype="http://schema.org/CreativeWork"
-    >
-      <v-card-title itemprop="name">
-        {{ $t('about.home.history.title') }}
-      </v-card-title>
-      <v-list itemprop="about" itemscope itemtype="http://schema.org/ItemList">
-        <v-list-item
-          v-for="(event, year, i) in $t('about.home.history.milestones')"
-          :key="i"
-          itemprop="itemListElement"
+  <v-container>
+    <v-row>
+      <v-col>
+        <h2>{{ $t('about.home.title') }}</h2>
+        <p>{{ $t('about.home.blurb.body-intro') }}</p>
+        <p>{{ $t('about.home.blurb.body-datasets') }}</p>
+        <i18n path="about.home.blurb.body-contributors" tag="p">
+          <template v-slot:stations>
+            <nuxt-link :to="localePath('data-stations')">
+              {{ $t('common.stations') }}
+            </nuxt-link>
+          </template>
+          <template v-slot:contributors>
+            <nuxt-link :to="localePath('contributors')">
+              {{ $t('common.contributors') }}
+            </nuxt-link>
+          </template>
+        </i18n>
+        <p>{{ $t('about.home.blurb.body-products') }}</p>
+        <i18n path="about.home.blurb.body-access" tag="p">
+          <template v-slot:search>
+            <nuxt-link :to="localePath('data-explore')">
+              {{ $t('common.search') }}
+            </nuxt-link>
+          </template>
+          <template v-slot:access>
+            <nuxt-link :to="localePath('about-dataaccess')">
+              {{ $t('common.access') }}
+            </nuxt-link>
+          </template>
+        </i18n>
+        <v-card
+          id="history"
+          itemprop="hasPart"
+          itemscope
+          itemtype="http://schema.org/CreativeWork"
         >
-          <span>
-            <strong>{{ year }}</strong> : {{ event }}
-          </span>
-        </v-list-item>
-      </v-list>
-    </v-card>
-  </v-layout>
+          <v-card-title itemprop="name">
+            {{ $t('about.home.history.title') }}
+          </v-card-title>
+          <v-list itemprop="about" itemscope itemtype="http://schema.org/ItemList">
+            <v-list-item
+              v-for="(event, year, i) in $t('about.home.history.milestones')"
+              :key="i"
+              itemprop="itemListElement"
+            >
+              <span>
+                <strong>{{ year }}</strong> : {{ event }}
+              </span>
+            </v-list-item>
+          </v-list>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

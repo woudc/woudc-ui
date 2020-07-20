@@ -1,10 +1,14 @@
 <template>
-  <v-layout justify-center column align-content-center>
-    <h1>{{ $t('contributors.list.title') }}</h1>
-    <h2 v-if="contributors.length > 0">
-      {{ contributors[0].acronym + ' - ' + contributors[0].name }}
-    </h2>
-    <p>{{ $t('contributors.list.blurb') }}</p>
+  <v-container>
+    <v-row>
+      <v-col>
+        <h1>{{ $t('contributors.list.title') }}</h1>
+        <h2 v-if="contributors.length > 0">
+          {{ contributors[0].acronym + ' - ' + contributors[0].name }}
+        </h2>
+        <p>{{ $t('contributors.list.blurb') }}</p>
+      </v-col>
+    </v-row>
     <v-row>
       <v-col>
         <selectable-map
@@ -28,48 +32,52 @@
         <table-instructions id="table-instructions" />
       </v-col>
     </v-row>
-    <v-data-table
-      :headers="contributorHeaders"
-      :items="contributors"
-      hide-default-footer
-      class="elevation-1"
-    >
-      <template v-slot:item.acronym="contributor">
-        <nuxt-link :to="'/contributors/' + contributor.item.acronym">
-          {{ contributor.item.acronym }}
-        </nuxt-link>
-      </template>
-      <template v-slot:item.name="contributor">
-        <a :href="contributor.item.url">
-          {{ contributor.item.name }}
-        </a>
-      </template>
-      <template v-slot:item.country="contributor">
-        {{ contributor.item.country_name[$i18n.locale] }}
-      </template>
-    </v-data-table>
-    <v-data-table
-      id="deployments-table"
-      :headers="deploymentHeaders"
-      :items="deployments"
-      class="elevation-1"
-    >
-      <template v-slot:item="deployment">
-        <tr>
-          <td>
-            <nuxt-link :to="'/data/stations/' + deployment.item.station_id">
-              {{ deployment.item.station_id }}
+    <v-row>
+      <v-col>
+        <v-data-table
+          :headers="contributorHeaders"
+          :items="contributors"
+          hide-default-footer
+          class="elevation-1"
+        >
+          <template v-slot:item.acronym="contributor">
+            <nuxt-link :to="'/contributors/' + contributor.item.acronym">
+              {{ contributor.item.acronym }}
             </nuxt-link>
-          </td>
-          <td>{{ deployment.item.station_name }}</td>
-          <td>{{ deployment.item.station_type }}</td>
-          <td>{{ deployment.item.country_name[$i18n.locale] }}</td>
-          <td>{{ deployment.item.start_date }}</td>
-          <td>{{ deployment.item.end_date }}</td>
-        </tr>
-      </template>
-    </v-data-table>
-  </v-layout>
+          </template>
+          <template v-slot:item.name="contributor">
+            <a :href="contributor.item.url">
+              {{ contributor.item.name }}
+            </a>
+          </template>
+          <template v-slot:item.country="contributor">
+            {{ contributor.item.country_name[$i18n.locale] }}
+          </template>
+        </v-data-table>
+        <v-data-table
+          id="deployments-table"
+          :headers="deploymentHeaders"
+          :items="deployments"
+          class="elevation-1"
+        >
+          <template v-slot:item="deployment">
+            <tr>
+              <td>
+                <nuxt-link :to="'/data/stations/' + deployment.item.station_id">
+                  {{ deployment.item.station_id }}
+                </nuxt-link>
+              </td>
+              <td>{{ deployment.item.station_name }}</td>
+              <td>{{ deployment.item.station_type }}</td>
+              <td>{{ deployment.item.country_name[$i18n.locale] }}</td>
+              <td>{{ deployment.item.start_date }}</td>
+              <td>{{ deployment.item.end_date }}</td>
+            </tr>
+          </template>
+        </v-data-table>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
