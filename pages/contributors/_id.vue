@@ -106,29 +106,6 @@ export default {
 
     return found
   },
-  async asyncData({ params }) {
-    const acronym = params.id
-    let queryParams
-
-    const contributorsURL = '/collections/contributors/items'
-    const deploymentsURL = '/collections/deployments/items'
-
-    queryParams = 'acronym=' + acronym + '&sortby=acronym:A,project:D'
-    const contributorsResponse = await axios.get(contributorsURL + '?' + queryParams)
-
-    const contributorsList = contributorsResponse.data.features.map(unpackageContributor)
-
-    queryParams = 'contributor=' + acronym + '&sortby=station_id:A'
-    const deploymentsResponse = await axios.get(deploymentsURL + '?' + queryParams)
-
-    const deploymentsList = deploymentsResponse.data.features.map(unpackageDeployment)
-
-    return {
-      contributors: contributorsList,
-      deployments: deploymentsList,
-      selectedContributor: contributorsList[0]
-    }
-  },
   data() {
     return {
       contributors: [],
@@ -171,6 +148,32 @@ export default {
           value: key
         }
       })
+    }
+  },
+  watch: {
+    $route() {
+      this.populate()
+    }
+  },
+  async created() {
+    await this.$store.dispatch('contributors/download')
+
+    this.populate()
+  },
+  methods: {
+    async populate() {
+      const acronym = this.$route.params.id
+      const contributorMapFunc = this.$store.getters['contributors/getWithAcronym']
+      const contributors = contributorMapFunc(acronym).map(unpackageContributor)
+
+      const deploymentsURL = '/collections/deployments/items'
+      const queryParams = 'contributor=' + acronym + '&sortby=station_id:A'
+
+      const deploymentsResponse = await axios.get(deploymentsURL + '?' + queryParams)
+
+      this.deployments =  deploymentsResponse.data.features.map(unpackageDeployment)
+      this.contributors = contributors
+      this.selectedContributor = contributors[0]
     }
   }
 }

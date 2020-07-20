@@ -62,7 +62,6 @@
 </template>
 
 <script>
-import axios from '~/plugins/axios'
 import { unpackageContributor } from '~/plugins/unpackage'
 
 import mapInstructions from '~/components/MapInstructions'
@@ -76,16 +75,6 @@ export default {
     'selectable-map': SelectableMap,
     'selectable-table': SelectableTable,
     'table-instructions': tableInstructions
-  },
-  async asyncData({ params }) {
-    const contributorsURL = '/collections/contributors/items'
-    const queryParams = 'sortby=acronym:A,project:D'
-
-    const contributorsResponse = await axios.get(contributorsURL + '?' + queryParams)
-
-    return {
-      contributors: contributorsResponse.data.features.map(unpackageContributor)
-    }
   },
   data() {
     return {
@@ -123,6 +112,12 @@ export default {
         })
       }
     }
+  },
+  async created() {
+    await this.$store.dispatch('contributors/download')
+
+    const contributors = this.$store.getters['contributors/all']
+    this.contributors = contributors.map(unpackageContributor)
   },
   nuxtI18n: {
     paths: {

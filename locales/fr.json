@@ -982,6 +982,7 @@
         "station": "Nom de la station",
         "waf_url": "Dossier accessible sur le web"
       },
+      "instrument-model": "Modèle de l’instrument :",
       "instrument-type": "Type d’instrument :",
       "station-name": "Nom de la station :",
       "title": "Liste des instruments"

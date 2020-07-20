@@ -68,11 +68,15 @@ export default {
       if (newSelection === null) {
         // De-activate old selection (which is necessarily non-null).
         const markerID = oldSelection.identifier + '-marker'
-        this.$refs[markerID][0].mapObject.closePopup()
+        this.$nextTick(() => {
+          this.$refs[markerID][0].mapObject.closePopup()
+        })
       } else if (oldSelection === null) {
         // Make a selection when nothing was selected previously.
         const markerID = newSelection.identifier + '-marker'
-        this.$refs[markerID][0].mapObject.openPopup()
+        this.$nextTick(() => {
+          this.$refs[markerID][0].mapObject.openPopup()
+        })
       } else if (newSelection.identifier !== oldSelection.identifier) {
         // Change from one selection to a different one.
         // Block the close popup event from registering as a selection change.
@@ -82,7 +86,9 @@ export default {
         this.eventLock = false
 
         const newMarkerID = newSelection.identifier + '-marker'
-        this.$refs[newMarkerID][0].mapObject.openPopup()
+        this.$nextTick(() => {
+          this.$refs[newMarkerID][0].mapObject.openPopup()
+        })
       }
     }
   },
