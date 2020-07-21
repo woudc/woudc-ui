@@ -112,7 +112,7 @@
 
 <script>
 import axios from '~/plugins/axios'
-import { unpackageStation, unpackageDefault } from '~/plugins/unpackage'
+import { stripProperties, unpackageStation } from '~/plugins/unpackage'
 
 import mapInstructions from '~/components/MapInstructions'
 import tableInstructions from '~/components/TableInstructions'
@@ -225,13 +225,13 @@ export default {
       let queryParams = 'station_id=' + woudcID + '&sortby=contributor:A'
       const deploymentsResponse = await axios.get(deploymentsURL + '?' + queryParams)
 
-      this.deployments = deploymentsResponse.data.features.map(unpackageDefault)
+      this.deployments = deploymentsResponse.data.features.map(stripProperties)
 
       queryParams = 'station_id=' + woudcID + '&sortby=dataset:A,name:A,model:A,serial:A'
       const instrumentsResponse =
         await axios.get(instrumentsURL + '?' + queryParams)
 
-      this.instruments = instrumentsResponse.data.features.map(unpackageDefault)
+      this.instruments = instrumentsResponse.data.features.map(stripProperties)
     }
   }
 }

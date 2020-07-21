@@ -135,13 +135,13 @@
             :disabled="selectedStation === null || selectedInstrument === null"
             @click="getGraphs()"
           >
-            {{ $t('data.products.common.submit') }}
+            {{ $t('common.submit') }}
           </v-btn>
           <v-btn class="btn-right" @click="reset()">
-            {{ $t('data.products.common.reset') }}
+            {{ $t('common.reset') }}
           </v-btn>
         </div>
-        <h2>{{ $t('data.products.common.results') }}</h2>
+        <h2>{{ $t('common.results') }}</h2>
         <div v-for="(graphs, year) in graphURLs" :key="year">
           <h3>{{ $t('data.products.common.year') }}: {{ year }}</h3>
           <graph-carousel :graphs="graphs">
@@ -210,7 +210,7 @@ export default {
     },
     yearOptions() {
       const nullOption = {
-        text: this.$t('data.products.common.all'),
+        text: this.$t('common.all'),
         value: null
       }
 
@@ -221,7 +221,7 @@ export default {
   async mounted() {
     await this.$store.dispatch('stations/download')
 
-    const stationsRaw = this.$store.getters['stations/uvindex'].name
+    const stationsRaw = this.$store.getters['stations/uvindex'].orderByName
     this.stations = stationsRaw.map(unpackageStation)
   },
   methods: {
@@ -403,9 +403,9 @@ export default {
     reorderStations() {
       let stationsRaw
       if (this.stationOrderByID) {
-        stationsRaw = this.$store.getters['stations/uvindex'].id
+        stationsRaw = this.$store.getters['stations/uvindex'].orderByID
       } else {
-        stationsRaw = this.$store.getters['stations/uvindex'].name
+        stationsRaw = this.$store.getters['stations/uvindex'].orderByName
       }
 
       this.stations = stationsRaw.map(unpackageStation)

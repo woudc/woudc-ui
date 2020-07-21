@@ -2,6 +2,7 @@
   "common": {
     "access": "data access",
     "accessibility": "accessibility",
+    "all": "All",
     "colon-style": ":",
     "contact-us": "contact us",
     "contributors": "contributors",
@@ -33,14 +34,17 @@
     "products": "data products",
     "registration-page": "registration page",
     "registration-form": "contributor registration form",
+    "reset": "Reset",
+    "results": "Results",
+    "search": "data search / download",
+    "sop": "standard operating procedures",
     "sort-by": "Sort by:",
     "stations": "stations",
     "station-id": "Station ID",
     "station-name": "Station Name",
     "stations-page": "stations list",
-    "search": "data search / download",
-    "sop": "standard operating procedures",
     "submission": "data submission | data submissions",
+    "submit": "Submit",
     "table-instructions": {
       "body-filtering": "{filtering} To filter the table, type in the search bars at the top of each column or the \"search all\" bar.",
       "body-paging": "{paging} Change the \"show entries\" dropdown to change how many stations are displayed on the page. Click \"next\" or \"previous\" to show additional pages of the table.",
@@ -816,9 +820,7 @@
     "other-channels": "Other Service Channels",
     "prompt": "Please provide information that we could use to contact you.",
     "required": "required",
-    "reset": "Reset",
     "subject": "Subject",
-    "submit": "Submit",
     "title": "Contact WOUDC"
   },
   "contributors": {
@@ -894,8 +896,12 @@
         "body-howto": "For more details on how to use this page, please view the {how-to} guide.",
         "body-search": "To search and download data, select the dataset and observation time period. Optionally, draw your map extent of interest and then hit search. All available data for that time period will be displayed."
       },
+      "distribution-for": "Data distribution for:",
+      "file-count": "Files in Range:",
       "how-to": "How to Use",
       "country": {
+        "id": "Country Code",
+        "name": "Country Name",
         "placeholder": "Select a Country",
         "title": "Country"
       },
@@ -930,15 +936,30 @@
           "umkehr2": "UmkehrN14 (Level 2.0)"
         }
       },
-      "end": "End",
+      "end": "End Year",
       "instrument": {
         "placeholder": "Select an Instrument",
         "title": "Instrument"
       },
-      "start": "Start",
+      "no-results": "No search submitted yet",
+      "old-search": {
+        "body": "You have made changes in the search form that do not match with the current search results displayed. Please press the {search} button to update the search results.",
+        "title": "Outdated Search Results"
+      },
+      "search-results": "Search Results",
+      "start": "Start Year",
       "station": {
         "placeholder": "Select a Station",
         "title": "Station"
+      },
+      "table-headers": {
+        "timestamp-date": "Observation Date (UTC)",
+        "content-category": "Dataset Name",
+        "platform-type": "Platform Type",
+        "platform-id": "Platform ID",
+        "instrument-name": "Instrument Name",
+        "processed-datetime": "Processed Datetime",
+        "actions": "Actions"
       },
       "title": "Data Search / Download"
     },
@@ -990,17 +1011,13 @@
     "products": {
       "blurb": "Special output data products are prepared by the WOUDC to assist researchers and provide value added information; some of the data products include total column ozone time series graphs and near real-time ozone maps.",
       "common": {
-        "all": "All",
         "graph": "Graph",
         "instrument": "Instrument",
         "instruments": "instruments",
         "required": "Required",
-        "reset": "Reset",
-        "results": "Results",
         "search": "Search",
         "station": "station",
         "Station": "Station",
-        "submit": "Submit",
         "viewing-label": "Viewing * out of *",
         "year": "Year",
         "years": "years"

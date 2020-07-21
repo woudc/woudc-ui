@@ -2,9 +2,19 @@
 import axios from '~/plugins/axios'
 
 
+function instrumentModelID(instrumentModelObj) {
+  const components = [
+    instrumentModelObj.properties.name, instrumentModelObj.properties.model,
+    instrumentModelObj.properties.station_id, instrumentModelObj.properties.dataset
+  ]
+  return components.join(':')
+}
+
+
 const state = () => ({
   loaded: false,
-  instrumentModels: []  // List of unique instrument name/model combinations.
+  instrumentModels: [],  // List of unique instrument name/model combinations.
+  instrumentNames: []  // List of unique instrument names.
 })
 
 
@@ -12,11 +22,17 @@ const getters = {
   // Returns a list of unique instrument name/model combinations.
   modelResolution(state) {
     return state.instrumentModels
+  },
+  nameResolution(state) {
+    return state.instrumentNames
   }
 }
 
 
 const mutations = {
+  setInstrumentsNameResolution(state, instruments) {
+    state.instrumentNames = instruments
+  },
   setInstrumentsModelResolution(state, instruments) {
     state.instrumentModels = instruments
   },
@@ -32,36 +48,35 @@ const actions = {
       return false
     }
 
-    const contributionsURL = '/collections/contributions/items'
-    const queryParams = 'sortby=instrument_name:A,instrument_model:A&limit=5000'
+    const queryURL = '/processes/woudc-data-registry-select-distinct/jobs'
+    const inputs = [
+      { id: 'index', type: 'text/plain', value: 'instrument' },
+      { id: 'distinct', type: 'application/json', value: {
+        nameResolution: [ 'name' ],
+        modelResolution: [ 'name', 'model', 'station_id', 'dataset' ]
+      } },
+      { id: 'source', type: 'application/json', value: [
+        'station_name', 'data_class', 'country_name_en', 'country_name_fr',
+        'waf_url', 'start_date', 'end_date'
+      ] }
+    ]
 
-    const response = await axios.get(contributionsURL + '?' + queryParams)
-    const instruments = response.data.features
+    const queryParams = { inputs }
+    const response = await axios.post(queryURL, queryParams)
+    const instruments = response.data.outputs
 
-    const wafRoot = 'https://woudc.org/archive/Archive-NewFormat'
-    const shipIDs = [ '146', '188', '212', '440', '521' ]
+    for (const instrumentName of instruments.nameResolution) {
+      const id = instrumentName.properties.name
+      instrumentName.properties.identifier = id
+    }
 
-    // Eventually replace all this manual organization with a pygeoapi endpoint
-    // that describes all instrument name/model combinations.
-    instruments.forEach((instrument) => {
-      instrument.properties.name = instrument.properties.instrument_name
-      instrument.properties.model = instrument.properties.instrument_model
+    for (const instrumentModel of instruments.modelResolution) {
+      const id = instrumentModelID(instrumentModel)
+      instrumentModel.properties.identifier = id
+    }
 
-      delete instrument.properties.instrument_name
-      delete instrument.properties.instrument_model
-
-      const dataset = instrument.properties.dataset
-      const network = instrument.properties.name.toLowerCase()
-
-      const stationID = instrument.properties.station_id
-      const stationType = stationID in shipIDs ? 'SHP' : 'STN'
-      const stationKey = stationType.toLowerCase() + stationID
-
-      const wafURL = `${wafRoot}/${dataset}_1.0_1/${stationKey}/${network}`
-      instrument.properties.waf_url = wafURL
-    })
-
-    commit('setInstrumentsModelResolution', response.data.features)
+    commit('setInstrumentsNameResolution', instruments.nameResolution)
+    commit('setInstrumentsModelResolution', instruments.modelResolution)
     commit('setLoaded', true)
   }
 }
