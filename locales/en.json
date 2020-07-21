@@ -982,6 +982,7 @@
         "station": "Station Name",
         "waf_url": "Web Accessible Folder"
       },
+      "instrument-model": "Instrument Model:",
       "instrument-type": "Instrument Type:",
       "station-name": "Station Name:",
       "title": "Instrument List"

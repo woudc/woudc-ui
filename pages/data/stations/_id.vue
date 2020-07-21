@@ -12,6 +12,7 @@
     <v-row>
       <v-col>
         <selectable-map
+          v-if="station !== null"
           :elements="[station]"
           :selected="selectedStation"
           @select="selectedStation = $event"
@@ -55,7 +56,7 @@
             </nuxt-link>
           </template>
           <template v-slot:item.gaw_id="stn">
-            <span v-id="stn.item.gaw_id !== null">
+            <span v-if="stn.item.gaw_id !== null">
               <a :href="stn.item.gaw_url" target="_blank">
                 {{ stn.item.gaw_id }}
               </a>
@@ -134,35 +135,6 @@ export default {
 
     return found
   },
-  async asyncData({ params }) {
-    const woudcID = params.id
-    let queryParams
-
-    const stationsURL = '/collections/stations/items'
-    const instrumentsURL = '/collections/instruments/items'
-    const deploymentsURL = '/collections/deployments/items'
-
-    const stationsResponse = await axios.get(stationsURL + '/' + woudcID)
-    const stationFeature = unpackageStation(stationsResponse.data)
-
-    queryParams = 'station_id=' + woudcID + '&sortby=contributor:A'
-    const deploymentsResponse = await axios.get(deploymentsURL + '?' + queryParams)
-
-    const deploymentsList = deploymentsResponse.data.features.map(unpackageDefault)
-
-    queryParams = 'station_id=' + woudcID + '&sortby=dataset:A,name:A,model:A,serial:A'
-    const instrumentsResponse =
-      await axios.get(instrumentsURL + '?' + queryParams)
-
-    const instrumentsList = instrumentsResponse.data.features.map(unpackageDefault)
-
-    return {
-      deployments: deploymentsList,
-      instruments: instrumentsList,
-      selectedStation: stationFeature,
-      station: stationFeature
-    }
-  },
   data() {
     return {
       deployments: [],
@@ -226,6 +198,40 @@ export default {
           value: key
         }
       })
+    }
+  },
+  watch: {
+    $route() {
+      this.populate()
+    }
+  },
+  async created() {
+    await this.$store.dispatch('stations/download')
+
+    this.populate()
+  },
+  methods: {
+    async populate() {
+      const woudcID = this.$route.params.id
+      const stationMapFunc = this.$store.getters['stations/getWithID']
+      const station = unpackageStation(stationMapFunc(woudcID))
+
+      this.station = station
+      this.selectedStation = station
+
+      const instrumentsURL = '/collections/instruments/items'
+      const deploymentsURL = '/collections/deployments/items'
+
+      let queryParams = 'station_id=' + woudcID + '&sortby=contributor:A'
+      const deploymentsResponse = await axios.get(deploymentsURL + '?' + queryParams)
+
+      this.deployments = deploymentsResponse.data.features.map(unpackageDefault)
+
+      queryParams = 'station_id=' + woudcID + '&sortby=dataset:A,name:A,model:A,serial:A'
+      const instrumentsResponse =
+        await axios.get(instrumentsURL + '?' + queryParams)
+
+      this.instruments = instrumentsResponse.data.features.map(unpackageDefault)
     }
   }
 }

@@ -18,6 +18,9 @@
             <strong>{{ $t('data.instruments.instrument-type') }}</strong>
             <span> {{ element.item.name }}</span>
             <br>
+            <strong>{{ $t('data.instruments.instrument-model') }}</strong>
+            <span> {{ element.item.model }}</span>
+            <br>
             <strong>{{ $t('data.instruments.station-name') }}</strong>
             <nuxt-link :to="'/data/stations/' + element.item.station_id">
               {{ element.item.station_name }}
@@ -65,7 +68,6 @@
 </template>
 
 <script>
-import axios from '~/plugins/axios'
 import { unpackageInstrument } from '~/plugins/unpackage'
 
 import mapInstructions from '~/components/MapInstructions'
@@ -80,16 +82,6 @@ export default {
     'selectable-table': SelectableTable,
     'table-instructions': tableInstructions
   },
-  async asyncData({ params }) {
-    const instrumentsURL = '/collections/instruments/items'
-    const queryParams = 'sortby=dataset:A,station_id:A,name:A,model:A'
-
-    const instrumentsResponse = await axios.get(instrumentsURL + '?' + queryParams)
-
-    return {
-      instruments: instrumentsResponse.data.features.map(unpackageInstrument)
-    }
-  },
   data() {
     return {
       boundingBox: null,
@@ -102,10 +94,10 @@ export default {
       const headerKeys = [
         'name',
         'model',
+        'dataset',
         'start_date',
         'end_date',
         'data_class',
-        'dataset',
         'station',
         'waf_url'
       ]
@@ -121,12 +113,18 @@ export default {
       if (this.boundingBox === null) {
         return this.instruments
       } else {
-        return this.instrument.filter((instrument) => {
+        return this.instruments.filter((instrument) => {
           const coords = this.$L.latLng(instrument.geometry.coordinates)
           return this.boundingBox.contains(coords)
         })
       }
     }
+  },
+  async created() {
+    await this.$store.dispatch('instruments/download')
+
+    const instruments = this.$store.getters['instruments/modelResolution']
+    this.instruments = instruments.map(unpackageInstrument)
   },
   nuxtI18n: {
     paths: {

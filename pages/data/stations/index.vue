@@ -74,7 +74,6 @@
 </template>
 
 <script>
-import axios from '~/plugins/axios'
 import { unpackageStation } from '~/plugins/unpackage'
 
 import mapInstructions from '~/components/MapInstructions'
@@ -88,16 +87,6 @@ export default {
     'selectable-map': SelectableMap,
     'selectable-table': SelectableTable,
     'table-instructions': tableInstructions
-  },
-  async asyncData() {
-    const stationsURL = '/collections/stations/items'
-    const queryParams = 'sortby=woudc_id:A'
-
-    const stationsResponse = await axios.get(stationsURL + '?' + queryParams)
-
-    return {
-      stations: stationsResponse.data.features.map(unpackageStation)
-    }
   },
   data() {
     return {
@@ -137,6 +126,12 @@ export default {
         })
       }
     }
+  },
+  async created() {
+    await this.$store.dispatch('stations/download')
+
+    const stations = this.$store.getters['stations/all'].orderByID
+    this.stations = stations.map(unpackageStation)
   },
   nuxtI18n: {
     paths: {

@@ -3,13 +3,14 @@ import axios from '~/plugins/axios'
 
 
 const defaultStationList = () => ({
-  id: [],
-  name: []
+  orderByID: [],
+  orderByName: []
 })
 
 const state = () => ({
   loaded: false,
-  all: defaultStationList(),
+  stationsList: defaultStationList(),
+  stationsByID: {},
   ozonesonde: defaultStationList(),
   totalozone: defaultStationList(),
   totalozoneobs: defaultStationList(),
@@ -26,7 +27,16 @@ const state = () => ({
 
 const getters = {
   all(state) {
-    return state.all
+    return state.stationsList
+  },
+  getWithID(state) {
+    return (station) => {
+      if (station in state.stationsByID) {
+        return state.stationsByID[station]
+      } else {
+        return null
+      }
+    }
   },
   ozonesonde(state) {
     return state.ozonesonde
@@ -66,7 +76,15 @@ const getters = {
 
 const mutations = {
   setStations(state, stations, order) {
-    state.all = stations
+    const mappedByID = {}
+
+    stations.orderByID.forEach((station) => {
+      const id = station.properties.woudc_id
+      mappedByID[id] = station
+    })
+
+    state.stationsList = stations
+    state.stationsByID = mappedByID
   },
   setStationsOzoneSonde(state, stations) {
     state.ozonesonde = stations
@@ -108,11 +126,6 @@ const mutations = {
 
 
 const actions = {
-  setOrder({ commit, state }, order) {
-    if (order !== state.order) {
-      commit('setOrderProp', order)
-    }
-  },
   async download({ commit, state }, proc) {
     if (state.loaded) {
       return false
@@ -147,8 +160,8 @@ const actions = {
     const contributionsNameOrder = contributionsResponse.data.features
 
     const featuresByOrdering = {
-      id: contributionsIDOrder,
-      name: contributionsNameOrder
+      orderByID: contributionsIDOrder,
+      orderByName: contributionsNameOrder
     }
 
     // Group lists of stations be dataset in both orderings.
@@ -200,13 +213,13 @@ const actions = {
     commit('setStationsLidar', stationsByDataset.lidar)
 
     commit('setStations', {
-      id: stationsIDOrder,
-      name: stationsNameOrder
+      orderByID: stationsIDOrder,
+      orderByName: stationsNameOrder
     })
 
     const orderingProps = {
-      id: 'woudc_id',
-      name: 'name'
+      orderByID: 'woudc_id',
+      orderByName: 'name'
     }
 
     // Combine Broad-band and Spectral stations into UV Index for both orderings,
