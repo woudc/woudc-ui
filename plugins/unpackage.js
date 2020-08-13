@@ -16,52 +16,63 @@ function standardizedGeometry(geoJSON) {
   }
 }
 
-function unpackageStation(geoJSON) {
-  const station = Object.assign({}, geoJSON.properties)
-  station.identifier = station.woudc_id
 
+function stripProperties(geoJSON) {
+  const properties = Object.assign({}, geoJSON.properties)
+
+  if ('geometry' in geoJSON) {
+    properties.geometry = standardizedGeometry(geoJSON)
+  }
+
+  return properties
+}
+
+
+function unpackageStation(geoJSON) {
+  const station = stripProperties(geoJSON)
   station.country_name = standardizedCountryName(geoJSON)
-  station.geometry = standardizedGeometry(geoJSON)
+
+  station.identifier = station.woudc_id
   station.last_validated_datetime =
     station.last_validated_datetime.substring(0, 10)
 
   return station
 }
 
-function unpackageInstrument(geoJSON) {
-  const instrument = geoJSON.properties
 
+function unpackageBareStation(geoJSON) {
+  const station = stripProperties(geoJSON)
+
+  station.identifier = station.woudc_id || station.station_id
+  return station
+}
+
+function unpackageInstrument(geoJSON) {
+  const instrument = stripProperties(geoJSON)
   instrument.country_name = standardizedCountryName(geoJSON)
-  instrument.geometry = standardizedGeometry(geoJSON)
 
   return instrument
 }
 
 function unpackageContributor(geoJSON) {
-  const contributor = geoJSON.properties
-
+  const contributor = stripProperties(geoJSON)
   contributor.country_name = standardizedCountryName(geoJSON)
-  contributor.geometry = standardizedGeometry(geoJSON)
 
   return contributor
 }
 
 function unpackageDeployment(geoJSON) {
-  const deployment = geoJSON.properties
-
+  const deployment = stripProperties(geoJSON)
   deployment.country_name = standardizedCountryName(geoJSON)
 
   return deployment
 }
 
-function unpackageDefault(geoJSON) {
-  return geoJSON.properties
-}
-
 export {
+  stripProperties,
   unpackageStation,
+  unpackageBareStation,
   unpackageContributor,
   unpackageInstrument,
-  unpackageDeployment,
-  unpackageDefault
+  unpackageDeployment
 }

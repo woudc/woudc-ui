@@ -5,6 +5,7 @@
       ref="woudc-map"
       :zoom="startZoom"
       :center="startCenter"
+      @click="emitSelection(null)"
       @moveend="emitBoundaryChange"
     >
       <l-tile-layer :url="tileURLTemplate" />
@@ -19,20 +20,21 @@
         :geojson="region"
         :options="{ style: borderStyle }"
       />
-      <l-marker
-        v-for="element in elements"
-        :key="element.identifier"
-        :ref="element.identifier + '-marker'"
-        :lat-lng="element.geometry.coordinates"
-        @click="emitSelection(element)"
-        @popupclose="emitSelection(null)"
-      >
-        <l-popup>
-          <slot name="popup" :item="element">
-            {{ element.identifier }}
-          </slot>
-        </l-popup>
-      </l-marker>
+      <l-feature-group ref="marker-group">
+        <l-marker
+          v-for="element in elements"
+          :key="element.identifier"
+          :ref="element.identifier + '-marker'"
+          :lat-lng="element.geometry.coordinates"
+          @click="emitSelection(element)"
+        >
+          <l-popup>
+            <slot name="popup" :item="element">
+              {{ element.identifier }}
+            </slot>
+          </l-popup>
+        </l-marker>
+      </l-feature-group>
     </l-map>
   </client-only>
 </template>
@@ -42,7 +44,8 @@ export default {
   name: 'SelectableMap',
   props: {
     elements: { type: Array, required: true },
-    selected: { type: Object, required: false, default: null }
+    selected: { type: Object, required: false, default: null },
+    country: { type: String, required: false, default: null }
   },
   data() {
     return {
@@ -64,6 +67,11 @@ export default {
     }
   },
   watch: {
+    country(newSelection, oldSelection) {
+      if (newSelection !== null) {
+        this.autoZoomToCountry(newSelection)
+      }
+    },
     selected(newSelection, oldSelection) {
       if (newSelection === null) {
         // De-activate old selection (which is necessarily non-null).
@@ -108,6 +116,23 @@ export default {
     }
   },
   methods: {
+    autoZoomToCountry(countryCode) {
+      const boundaries = this.$store.getters['countries/boundaries']
+
+      if (boundaries[countryCode] === null) {
+        this.$nextTick(this.autoZoomToMarkers)
+      } else {
+        const map = this.$refs['woudc-map']
+        map.fitBounds(boundaries[countryCode])
+      }
+    },
+    autoZoomToMarkers() {
+      const markerGroup = this.$refs['marker-group']
+      const map = this.$refs['woudc-map']
+
+      const bounds = markerGroup.mapObject.getBounds()
+      map.fitBounds(bounds)
+    },
     emitBoundaryChange(event) {
       const bounds = event.target.getBounds()
       this.$emit('move', bounds)

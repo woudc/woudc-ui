@@ -2,6 +2,8 @@
   "common": {
     "access": "accès aux données",
     "accessibility": "l’accessibilité",
+    "all": "Tous",
+    "colon-style": " :",
     "contact-us": "communiquer avec nous",
     "contacting": "contactant WOUDC",
     "contributors": "contributeurs",
@@ -33,14 +35,17 @@
     "products": "produits de données",
     "registration-form": "formulaire d’inscription des contributeurs",
     "registration-page": "page d’inscription",
+    "reset": "Réinitialisation",
+    "results": "Résultats",
+    "search": "recherche de données / téléchargement",
+    "sop": "procédures opérationnelles normalisées",
     "sort-by": "Ordre par",
     "stations": "stations enregistrées",
     "station-id": "Identification de la Station",
     "station-name": "Nom de la Station",
     "stations-page": "liste des stations",
-    "search": "recherche de données / téléchargement",
-    "sop": "procédures opérationnelles normalisées",
     "submission": "soumission des données | soumissions de données",
+    "submit": "Soumettre",
     "table-instructions": {
       "body-filtering": "{filtering} Pour filtrer le tableau, indiquez les termes dans la barre de recherche en haut de chaque colonne ou la barre \"rechercher tout\".",
       "body-paging": "{paging} Changer l'option \"voir les entrées\" dans la liste déroulante pour changer le nombre de stations à afficher sur la page. Cliquez sur \"suivant\" ou \"précédent\" pour afficher plus de pages du tableau.",
@@ -816,9 +821,7 @@
     "other-channels": "Autres voies de service",
     "prompt": "S'il vous plaît fournir des informations que nous pourrions utiliser pour communiquer avec vous.",
     "required": "obligatoire",
-    "reset": "Réinitialisation",
     "subject": "Sujet",
-    "submit": "Soumettre",
     "title": "Communiquez avec le WOUDC"
   },
   "contributors": {
@@ -894,8 +897,12 @@
         "body-howto": "Pour obtenir plus d’information à propos de l’utilisation de cette page, consultez le {how-to}.",
         "body-search": "Pour chercher et télécharger des données, sélectionnez l’ensemble de données et la période d’observation. Vous pouvez également choisir l’étendue géographique de votre recherche et cliquer sur envoyer la requête. Toutes les données disponibles pour cette période seront affichées."
       },
+      "distribution-for": "Distribution de données pour :",
+      "file-count": "Nombre total de fichiers dans cet intervalle :",
       "how-to": "Guide d’utilisation",
       "country": {
+        "id": "Identifiant du Pays",
+        "name": "Nom du Pays",
         "placeholder": "Choisis un Pays",
         "title": "Pays"
       },
@@ -930,15 +937,30 @@
           "umkehr2": "UmkehrN14 (Niveau 2.0)"
         }
       },
+      "end": "Année de Fin",
       "instrument": {
         "placeholder": "Choisis un Instrument",
         "title": "Instrument"
       },
-      "end": "Fin",
-      "start": "Début",
+      "no-results": "Aucune recherche n’a été effectuée.",
+      "old-search": {
+        "body": "Vous avez apporté des modifications dans le formulaire de recherche qui ne correspondent pas avec les résultats de la recherche affichés actuellement. S'il vous plaît appuyez sur la {search} pour mettre à jour les résultats de la recherche.",
+        "title": "Anciens résultats"
+      },
+      "search-results": "Résultats de la recherche",
+      "start": "Année de Début",
       "station": {
         "placeholder": "Choisis une Station",
         "title": "Station"
+      },
+      "table-headers": {
+        "timestamp-date": "Date de l’observation (UTC)",
+        "content-category": "Nom de l’ensemble de données",
+        "platform-type": "Type de plate-forme",
+        "platform-id": "Identification de la plate-forme",
+        "instrument-name": "Nom de l’instrument",
+        "processed-datetime": "Date et heure de traitement",
+        "actions": "Actions"
       },
       "title": "Rechercher des données / Télécharger"
     },
@@ -990,16 +1012,12 @@
     "products": {
       "blurb": "Des données de sortie spéciales sont préparées par le WOUDC afin d’aider les chercheurs et leur fournir des renseignements à valeur ajoutée ; certaines données comprennent des graphiques de série chronologique détaillant l’épaisseur de la colonne d’ozone total ainsi que des cartes indiquant la quantité d’ozone en temps quasi réel.",
       "common": {
-        "all": "Tous",
         "instrument": "Instrument",
         "instruments": "instruments",
         "required": "Requis",
-        "reset": "Réinitialisation",
-        "results": "Résultats",
         "search": "Recherche",
         "station": "station",
         "Station": "Station",
-        "submit": "Soumettre",
         "year": "Année",
         "years": "années"
       },

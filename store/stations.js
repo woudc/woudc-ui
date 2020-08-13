@@ -7,6 +7,53 @@ const defaultStationList = () => ({
   orderByName: []
 })
 
+
+function groupStationsByDataset(features, stationsByID) {
+  const stationsByDataset = {}
+  const uvIndexDatasets = [ 'Broad-band', 'Spectral' ]
+
+  for (const feature of features) {
+    const dataset = feature.properties.dataset
+    const stationID = feature.properties.station_id
+    const station = stationsByID[stationID]
+
+    // Instead of using the straight dataset, use a shorter lowercase name.
+    const datasetKeys = []
+    if (dataset === 'UmkehrN14') {
+      const level = 1
+      const key = 'umkehr' + parseInt(level)
+      datasetKeys.push(key)
+    } else {
+      const key = dataset.replace('-', '').toLowerCase()
+      datasetKeys.push(key)
+    }
+
+    if (uvIndexDatasets.includes(dataset)) {
+      datasetKeys.push('uvindex')
+    }
+
+    // Add a station to its group (unless that station is already tracked).
+    for (const datasetKey of datasetKeys) {
+      if (!(datasetKey in stationsByDataset)) {
+        stationsByDataset[datasetKey] = [ station ]
+      } else {
+        const duplicate = stationsByDataset[datasetKey].some((oldStation) => {
+          return oldStation.properties.woudc_id === stationID
+        })
+        if (!duplicate) {
+          stationsByDataset[datasetKey].push(station)
+        }
+      }
+    }
+  }
+
+  // Adding an empty Umkehr2 list here is temporary until Contributions
+  // can identify level 2 Umkehr.
+  stationsByDataset.umkehr2 = defaultStationList()
+
+  return stationsByDataset
+}
+
 const state = () => ({
   loaded: false,
   stationsList: defaultStationList(),
@@ -131,75 +178,56 @@ const actions = {
       return false
     }
 
-    const stationsURL = '/collections/stations/items'
-    const contributionsURL = '/collections/contributions/items'
+    const queryURL = '/processes/woudc-data-registry-select-distinct/jobs'
 
     // Collect arrays of all stations in both ID and name order.
-    let queryParams = 'sortby=woudc_id:A&limit=1000'
-    let stationsResponse = await axios.get(stationsURL + '?' + queryParams)
-    const stationsIDOrder = stationsResponse.data.features
+    const stationInputs = [
+      { id: 'index', type: 'text/plain', value: 'station' },
+      { id: 'distinct', type: 'application/json', value: {
+        orderByID: [ 'woudc_id' ],
+        orderByName: [ 'name' ]
+      } }
+    ]
+    let queryParams = { inputs: stationInputs }
 
-    queryParams = 'sortby=name:A&limit=1000'
-    stationsResponse = await axios.get(stationsURL + '?' + queryParams)
-    const stationsNameOrder = stationsResponse.data.features
+    const stationsResponse = await axios.post(queryURL, queryParams)
+    const stationsByOrdering = stationsResponse.data.outputs
+
+    // Download all contributions (basically station-dataset pairs) in both orderings.
+    const contributionInputs = [
+      { id: 'index', type: 'text/plain', value: 'contribution' },
+      { id: 'distinct', type: 'application/json', value: {
+        orderByID: [ 'station_id', 'dataset' ],
+        orderByName: [ 'station_name', 'dataset' ]
+      } },
+      { id: 'source', type: 'application/json', value: [ 'station_id' ] }
+    ]
+    queryParams = { inputs: contributionInputs }
+
+    const contributionsResponse = await axios.post(queryURL, queryParams)
+    const featuresByOrdering = contributionsResponse.data.outputs
 
     // Use a map to let a station's properties all be available using just the ID.
     const stationsByID = {}
-    stationsIDOrder.forEach((station) => {
+    stationsByOrdering.orderByID.forEach((station) => {
       const stationID = station.properties.woudc_id
       stationsByID[stationID] = station
     })
 
-    // Download all contributions (basically station-dataset pairs) in both orderings.
-    queryParams = `sortby=dataset:A,station_id:A&limit=2500`
-    let contributionsResponse = await axios.get(contributionsURL + '?' + queryParams)
-    const contributionsIDOrder = contributionsResponse.data.features
+    const groupsOrderedByID = groupStationsByDataset(
+      featuresByOrdering.orderByID, stationsByID)
+    const groupsOrderedByName = groupStationsByDataset(
+      featuresByOrdering.orderByName, stationsByID)
 
-    queryParams = `sortby=dataset:A,station_name:A&limit=2500`
-    contributionsResponse = await axios.get(contributionsURL + '?' + queryParams)
-    const contributionsNameOrder = contributionsResponse.data.features
-
-    const featuresByOrdering = {
-      orderByID: contributionsIDOrder,
-      orderByName: contributionsNameOrder
-    }
-
-    // Group lists of stations be dataset in both orderings.
+    const allDatasets = Object.keys(groupsOrderedByID)
     const stationsByDataset = {}
-    for (const [ order, features ] of Object.entries(featuresByOrdering)) {
-      for (const feature of features) {
-        const dataset = feature.properties.dataset
-        const stationID = feature.properties.station_id
-        const station = stationsByID[stationID]
 
-        // Instead of using the straight dataset, use a shorter lowercase name.
-        let datasetKey
-        if (dataset !== 'UmkehrN14') {
-          datasetKey = dataset.replace('-', '').toLowerCase()
-        } else {
-          const level = 1
-          datasetKey = 'umkehr' + parseInt(level)
-        }
-
-        // Add a station to its group (unless that station is already tracked).
-        if (!(datasetKey in stationsByDataset)) {
-          stationsByDataset[datasetKey] = defaultStationList()
-          stationsByDataset[datasetKey][order] = [ station ]
-        } else {
-          const duplicate = stationsByDataset[datasetKey][order]
-            .some((oldStation) => {
-              return oldStation.properties.woudc_id === stationID
-            })
-          if (!duplicate) {
-            stationsByDataset[datasetKey][order].push(station)
-          }
-        }
+    allDatasets.forEach((datasetKey) => {
+      stationsByDataset[datasetKey] = {
+        orderByID: groupsOrderedByID[datasetKey],
+        orderByName: groupsOrderedByName[datasetKey]
       }
-    }
-
-    // Adding an empty Umkehr2 list here is temporary until Contributions
-    // can identify level 2 Umkehr.
-    stationsByDataset.umkehr2 = defaultStationList()
+    })
 
     commit('setStationsOzoneSonde', stationsByDataset.ozonesonde)
     commit('setStationsTotalOzone', stationsByDataset.totalozone)
@@ -211,34 +239,9 @@ const actions = {
     commit('setStationsUmkehr2', stationsByDataset.umkehr2)
     commit('setStationsRocketSonde', stationsByDataset.rocketsonde)
     commit('setStationsLidar', stationsByDataset.lidar)
-
-    commit('setStations', {
-      orderByID: stationsIDOrder,
-      orderByName: stationsNameOrder
-    })
-
-    const orderingProps = {
-      orderByID: 'woudc_id',
-      orderByName: 'name'
-    }
-
-    // Combine Broad-band and Spectral stations into UV Index for both orderings,
-    // being careful to eliminate duplicate stations.
-    stationsByDataset.uvindex = {}
-    for (const [ order, prop ] of Object.entries(orderingProps)) {
-      const uvStations = stationsByDataset.broadband[order].concat(
-        stationsByDataset.spectral[order]
-      ).sort((station1, station2) => {
-        return station1.properties[prop].localeCompare(station2.properties[prop])
-      }).filter((station, index, array) => {
-        const other = array[index - 1]
-        return index === 0
-               || station.properties.woudc_id !== other.properties.woudc_id
-      })
-      stationsByDataset.uvindex[order] = uvStations
-    }
-
     commit('setStationsUVIndex', stationsByDataset.uvindex)
+
+    commit('setStations', stationsByOrdering)
     commit('setLoaded', true)
   }
 }
