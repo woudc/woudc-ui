@@ -35,6 +35,9 @@
           </l-popup>
         </l-marker>
       </l-feature-group>
+      <v-overlay absolute opacity="0.66" z-index="1000" :value="loading">
+        <v-progress-circular indeterminate />
+      </v-overlay>
     </l-map>
   </client-only>
 </template>
@@ -45,7 +48,8 @@ export default {
   props: {
     elements: { type: Array, required: true },
     selected: { type: Object, required: false, default: null },
-    country: { type: String, required: false, default: null }
+    country: { type: String, required: false, default: null },
+    loading: { type: Boolean, required: false, default: false }
   },
   data() {
     return {

@@ -15,6 +15,7 @@
           v-if="station !== null"
           :elements="[station]"
           :selected="selectedStation"
+          :loading="loadingMap"
           @select="selectedStation = $event"
         >
           <template v-slot:popup="element">
@@ -47,6 +48,7 @@
           v-if="station !== null"
           :headers="stationHeaders"
           :items="[station]"
+          :loading="loadingTables"
           hide-default-footer
           class="elevation-1"
         >
@@ -71,6 +73,7 @@
           id="deployments-table"
           :headers="deploymentHeaders"
           :items="deployments"
+          :loading="loadingTables"
           hide-default-footer
           class="elevation-1"
         >
@@ -97,6 +100,7 @@
           id="instruments-table"
           :headers="instrumentHeaders"
           :items="instruments"
+          :loading="loadingTables"
           class="elevation-1"
         >
           <template v-slot:item.waf_url="instrument">
@@ -139,6 +143,8 @@ export default {
     return {
       deployments: [],
       instruments: [],
+      loadingMap: true,
+      loadingTables: true,
       selectedStation: null,
       station: null
     }
@@ -207,8 +213,9 @@ export default {
   },
   async created() {
     await this.$store.dispatch('stations/download')
-
-    this.populate()
+    await this.populate()
+    this.loadingMap = false
+    this.loadingTables = false
   },
   methods: {
     async populate() {

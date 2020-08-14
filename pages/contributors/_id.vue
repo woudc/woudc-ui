@@ -14,6 +14,7 @@
         <selectable-map
           :elements="contributors"
           :selected="selectedContributor"
+          :loading="loadingMap"
           @select="selectedContributor = $event"
         >
           <template v-slot:popup="element">
@@ -37,6 +38,7 @@
         <v-data-table
           :headers="contributorHeaders"
           :items="contributors"
+          :loading="loadingTables"
           hide-default-footer
           class="elevation-1"
         >
@@ -58,6 +60,7 @@
           id="deployments-table"
           :headers="deploymentHeaders"
           :items="deployments"
+          :loading="loadingTables"
           class="elevation-1"
         >
           <template v-slot:item="deployment">
@@ -110,6 +113,8 @@ export default {
     return {
       contributors: [],
       deployments: [],
+      loadingMap: true,
+      loadingTables: true,
       selectedContributor: null
     }
   },
@@ -157,8 +162,9 @@ export default {
   },
   async created() {
     await this.$store.dispatch('contributors/download')
-
-    this.populate()
+    await this.populate()
+    this.loadingMap = false
+    this.loadingTables = false
   },
   methods: {
     async populate() {
