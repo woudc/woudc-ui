@@ -5,6 +5,7 @@
     :items="elements"
     :items-per-page="rowsPerPage"
     :page="selectedPage"
+    :loading="loading"
     class="elevation-1"
     @update:items-per-page="rowsPerPage = $event; jumpToSelection()"
   >
@@ -25,7 +26,8 @@ export default {
   props: {
     elements: { type: Array, required: true },
     headers: { type: Array, required: true },
-    selected: { type: Object, required: false, default: null }
+    selected: { type: Object, required: false, default: null },
+    loading: { type: Boolean, required: false, default: false }
   },
   data() {
     return {

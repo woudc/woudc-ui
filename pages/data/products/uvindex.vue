@@ -30,42 +30,47 @@
     </v-row>
     <v-row>
       <v-col>
-        <div class="requiredHead mb-2">
-          <h3>{{ $t('data.products.common.Station') }}</h3>
-          <v-chip small label class="ml-2 mt-1" color="warning">
-            {{ $t('data.products.common.required') }}
-          </v-chip>
-        </div>
-        <v-select
-          :value="selectedStationID"
-          :items="stationOptions"
-          :disabled="stations.length === 0"
-          item-text="text"
-          menu-props="auto"
-          placeholder="..."
-          return-object
-          solo
-          dense
-          @input="changeStation"
-        >
-          <template v-slot:selection="selection">
-            <div class="my-3" color="auto">
-              {{ selection.item.text }}
+        <v-row>
+          <v-col cols="12" md="6" xl="9">
+            <div class="requiredHead mb-2">
+              <h3>{{ $t('data.products.common.Station') }}</h3>
+              <v-chip small label class="ml-2 mt-1" color="warning">
+                {{ $t('data.products.common.required') }}
+              </v-chip>
             </div>
-          </template>
-          <template v-slot:item="element">
-            <div>
-              {{ element.item.text }}
-            </div>
-          </template>
-        </v-select>
-        <div id="stationOrderContainer">
-          <span class="mt-1 mr-4 float-left">{{ $t('common.sort-by') }}</span>
-          <v-switch
-            v-model="stationOrderByID"
-            :label="stationSwitchText"
-            @change="reorderStations"
-          />
+            <v-select
+              :value="selectedStationID"
+              :items="stationOptions"
+              :loading="loadingStations"
+              :disabled="stations.length === 0 || loadingStations"
+              item-text="text"
+              menu-props="auto"
+              placeholder="..."
+              return-object
+              solo
+              dense
+              @input="changeStation"
+            >
+              <template v-slot:selection="selection">
+                <div class="my-3" color="auto">
+                  {{ selection.item.text }}
+                </div>
+              </template>
+              <template v-slot:item="element">
+                <div>
+                  {{ element.item.text }}
+                </div>
+              </template>
+            </v-select>
+          </v-col>
+          <v-col class="mt-1" align-self="center">
+            <span class="pt-0">{{ $t('common.sort-by') }}</span>
+            <v-radio-group v-model="stationOrder" class="mt-1 pt-0">
+              <v-radio class="mb-0" :label="$t('common.station-id')" value="orderByID" />
+              <v-radio :label="$t('common.station-name')" value="orderByName" />
+            </v-radio-group>
+          </v-col>
+        </v-row>
         </div>
         <div class="requiredHead mb-2">
           <h3>{{ $t('data.products.common.instrument') }}</h3>
@@ -76,7 +81,8 @@
         <v-select
           v-model="selectedInstrument"
           :items="instrumentOptions"
-          :disabled="selectedStation === null"
+          :loading="loadingInstruments"
+          :disabled="selectedStation === null || loadingInstruments"
           placeholder="..."
           solo
           dense
@@ -97,7 +103,8 @@
         <v-select
           v-model="selectedYear"
           :items="yearOptions"
-          :disabled="selectedStation === null || selectedInstrument === null"
+          :loading="loadingYears"
+          :disabled="selectedStation === null || selectedInstrument === null || loadingYears"
           solo
           dense
         >
@@ -115,8 +122,9 @@
       </v-col>
       <v-col>
         <selectable-map
-          :elements="stations"
+          :elements="stations.orderByID"
           :selected="selectedStation"
+          :loading="loadingMap"
           @select="changeStation"
           @move="boundingBox = $event"
         >
@@ -137,10 +145,18 @@
           >
             {{ $t('common.submit') }}
           </v-btn>
-          <v-btn class="btn-right" @click="reset()">
+          <v-btn
+            class="btn-right"
+            :disabled="loadingStations || loadingInstruments || loadingYears"
+            @click="reset()"
+          >
             {{ $t('common.reset') }}
           </v-btn>
         </div>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
         <h2>{{ $t('common.results') }}</h2>
         <div v-for="(graphs, year) in graphURLs" :key="year">
           <h3>{{ $t('data.products.common.year') }}: {{ year }}</h3>
@@ -172,13 +188,20 @@ export default {
       boundingBox: null,
       graphURLs: {},
       instruments: [],
+      loadingInstruments: false,
+      loadingMap: true,
+      loadingStations: true,
+      loadingYears: false,
       observationTools: {},
       selectedInstrument: null,
       selectedStation: null,
       selectedStationID: null,
       selectedYear: null,
-      stations: [],
-      stationOrderByID: false,
+      stations: {
+        orderByID: [],
+        orderByName: []
+      },
+      stationOrder: 'orderByName',
       years: []
     }
   },
@@ -187,10 +210,12 @@ export default {
       return this.instruments.map(this.instrumentToSelectOption)
     },
     stationOptions() {
+      const orderedStations = this.stations[this.stationOrder]
+
       if (this.boundingBox === null) {
-        return this.stations.map(this.stationToSelectOption)
+        return orderedStations.map(this.stationToSelectOption)
       } else {
-        const visibleOptions = this.stations.filter((station) => {
+        const visibleOptions = orderedStations.filter((station) => {
           const selected = station.identifier === this.selectedStationID
           const coords = this.$L.latLng(station.geometry.coordinates)
           const visible = this.boundingBox.contains(coords)
@@ -199,13 +224,6 @@ export default {
         })
 
         return visibleOptions.map(this.stationToSelectOption)
-      }
-    },
-    stationSwitchText() {
-      if (this.stationOrderByID) {
-        return this.$t('common.station-id')
-      } else {
-        return this.$t('common.station-name')
       }
     },
     yearOptions() {
@@ -221,8 +239,13 @@ export default {
   async mounted() {
     await this.$store.dispatch('stations/download')
 
-    const stationsRaw = this.$store.getters['stations/uvindex'].orderByName
-    this.stations = stationsRaw.map(unpackageStation)
+    const stationsRaw = this.$store.getters['stations/uvindex']
+    this.stations = {
+      orderByID: stationsRaw.orderByID.map(unpackageStation),
+      orderByName: stationsRaw.orderByName.map(unpackageStation)
+    }
+    this.loadingStations = false
+    this.loadingMap = false
   },
   methods: {
     changeInstrument(instrument) {
@@ -357,6 +380,8 @@ export default {
       let queryParams = 'sortby=name:A,serial:A'
       queryParams += '&station_id=' + this.selectedStationID
 
+      this.loadingInstruments = true
+
       const broadbandParams = queryParams + '&dataset=Broad-band'
       const broadbandResponse = await axios.get(instrumentsURL + '?' + broadbandParams)
 
@@ -381,6 +406,7 @@ export default {
         return instrument1.id.localeCompare(instrument2.id)
       })
       this.instruments = instruments
+      this.loadingInstruments = false
 
       const selectionPresent = instruments.some((instrument) => {
         return this.instrumentToKey(instrument) === this.selectedInstrument
@@ -390,25 +416,17 @@ export default {
       }
     },
     async refreshYears() {
+      this.loadingYears = true
       const toolsByYear = await this.getObservationTools()
       const years = Object.keys(toolsByYear).sort()
 
       this.years = years
       this.observationTools = toolsByYear
+      this.loadingYears = false
 
       if (!this.years.includes(this.selectedYear)) {
         this.selectedYear = null
       }
-    },
-    reorderStations() {
-      let stationsRaw
-      if (this.stationOrderByID) {
-        stationsRaw = this.$store.getters['stations/uvindex'].orderByID
-      } else {
-        stationsRaw = this.$store.getters['stations/uvindex'].orderByName
-      }
-
-      this.stations = stationsRaw.map(unpackageStation)
     },
     reset() {
       this.selectedStation = null

@@ -38,6 +38,8 @@
             <v-select
               v-model="selectedCountryID"
               :items="countryOptions"
+              :disabled="loadingCountries"
+              :loading="loadingCountries"
               menu-props="auto"
               return-object
               solo
@@ -65,6 +67,8 @@
             <v-select
               :value="selectedStationID"
               :items="stationOptions"
+              :disabled="loadingStations"
+              :loading="loadingStations"
               menu-props="auto"
               return-object
               solo
@@ -90,6 +94,8 @@
         <v-select
           v-model="selectedInstrumentID"
           :items="instrumentOptions"
+          :disabled="loadingInstruments"
+          :loading="loadingInstruments"
           menu-props="auto"
           return-object
           solo
@@ -158,6 +164,7 @@
           :elements="stations.orderByID"
           :selected="selectedStation"
           :country="mapFocusCountry"
+          :loading="loadingMap"
           @select="changeStation"
           @move="mapBoundingBox = $event"
         >
@@ -206,11 +213,16 @@
         <v-btn
           class="btn-left"
           color="primary"
+          :loading="loadingDataRecords"
           @click="refreshDataRecords()"
         >
           {{ $t('common.submit') }}
         </v-btn>
-        <v-btn class="btn-right" @click="reset()">
+        <v-btn
+          class="btn-right"
+          :disabled="loadingStations || loadingCountries || loadingInstruments || loadingMap || loadingDataRecords"
+          @click="reset()"
+        >
           {{ $t('common.reset') }}
         </v-btn>
       </v-col>
@@ -277,6 +289,11 @@ export default {
       countryOrder: 'orderByName',
       dataRecords: [],
       instruments: [],
+      loadingCountries: true,
+      loadingDataRecords: false,
+      loadingInstruments: true,
+      loadingMap: true,
+      loadingStations: true,
       mapBoundingBox: null,
       mapFocusCountry: null,
       metricsByYear: {},
@@ -485,6 +502,11 @@ export default {
     }
     this.instruments = instruments.map(stripProperties)
 
+    this.loadingCountries = false
+    this.loadingStations = false
+    this.loadingInstruments = false
+    this.loadingMap = false
+
     this.selectedDataset = this.$t('common.all')
     this.selectedYearRange = [
       this.minSelectableYear, this.maxSelectableYear
@@ -502,6 +524,11 @@ export default {
       this.setEndYear(newEndYear)
     },
     async changeDataset(dataset) {
+      this.loadingCountries = true
+      this.loadingStations = true
+      this.loadingInstruments = true
+      this.loadingMap = true
+
       const { countries, stations, instruments } =
         await this.sendDropdownRequest(dataset.value, null, null)
 
@@ -536,9 +563,18 @@ export default {
       this.selectedDatasetID = dataset.value
 
       this.refreshDropdowns()
+      this.loadingCountries = false
+      this.loadingStations = false
+      this.loadingInstruments = false
+      this.loadingMap = false
+
       this.refreshMetrics()
     },
     async changeCountry(country) {
+      this.loadingStations = true
+      this.loadingInstruments = true
+      this.loadingMap = true
+
       const { stations, instruments } =
         await this.sendDropdownRequest(this.selectedDatasetID, country.value, null)
 
@@ -567,6 +603,10 @@ export default {
       this.selectedCountryID = country.value
 
       await this.refreshDropdowns()
+      this.loadingStations = false
+      this.loadingInstruments = false
+      this.loadingMap = false
+
       this.mapFocusCountry = country.value
       this.refreshMetrics()
     },
@@ -579,7 +619,9 @@ export default {
         this.selectedStationID = station.woudc_id || station.station_id
       }
 
+      this.loadingInstruments = true
       await this.refreshDropdowns()
+      this.loadingInstruments = false
 
       const instrumentRetained = this.instruments.some((instrument) => {
         return instrument.instrument_name === this.selectedInstrumentID
@@ -624,7 +666,7 @@ export default {
     },
     stationText(station) {
       const stationID = station.woudc_id || station.station_id
-      const stationName = station.station_name
+      const stationName = station.name || station.station_name
 
       return stationName + ' (' + stationID + ')'
     },
@@ -635,7 +677,7 @@ export default {
         element: station
       }
     },
-    reset() {
+    async reset() {
       this.selectedDataset = this.$t('common.all')
       this.selectedDatasetID = null
       this.selectedCountry = null
@@ -650,10 +692,25 @@ export default {
         this.maxSelectableYear
       ]
 
-      this.refreshDropdowns()
+      this.dataRecords = []
+      this.oldSearchExists = false
+      this.oldSearchParams = {}
+
+      this.loadingCountries = true
+      this.loadingStations = true
+      this.loadingInstruments = true
+      this.loadingMap = true
+      await this.refreshDropdowns()
+      this.loadingCountries = false
+      this.loadingStations = false
+      this.loadingInstruments = false
+      this.loadingMap = false
+
       this.refreshMetrics()
     },
     async refreshDataRecords() {
+      this.loadingDataRecords = true
+
       const dataRecordsURL = '/collections/data_records/items'
       let queryParams = 'sortby=timestamp_date:D,platform_id:A,content_category:A'
 
@@ -682,6 +739,7 @@ export default {
         'end-year': this.selectedYearRange[1]
       }
       this.oldSearchExists = true
+      this.loadingDataRecords = false
     },
     async refreshDropdowns() {
       const { countries, stations, instruments } = await this.sendDropdownRequest(
@@ -697,6 +755,7 @@ export default {
         orderByName: stations.orderByName.map(unpackageBareStation)
       }
       this.instruments = instruments.map(stripProperties)
+
     },
     async refreshMetrics() {
       const inputs = [

@@ -11,6 +11,7 @@
         <selectable-map
           :elements="contributors"
           :selected="selectedContributor"
+          :loading="loadingMap"
           @select="selectedContributor = $event"
           @move="boundingBox = $event"
         >
@@ -36,6 +37,7 @@
           :elements="visibleContributors"
           :headers="headers"
           :selected="selectedContributor"
+          :loading="loadingTable"
           @select="selectedContributor = $event"
         >
           <template v-slot:row="row">
@@ -80,6 +82,8 @@ export default {
     return {
       boundingBox: null,
       contributors: [],
+      loadingMap: true,
+      loadingTable: true,
       selectedContributor: null
     }
   },
@@ -118,6 +122,8 @@ export default {
 
     const contributors = this.$store.getters['contributors/all']
     this.contributors = contributors.map(unpackageContributor)
+    this.loadingMap = false
+    this.loadingTable = false
   },
   nuxtI18n: {
     paths: {

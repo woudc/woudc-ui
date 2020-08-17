@@ -11,6 +11,7 @@
         <selectable-map
           :elements="instruments"
           :selected="selectedInstrument"
+          :loading="loadingMap"
           @select="selectedInstrument = $event"
           @move="boundingBox = $event"
         >
@@ -42,6 +43,7 @@
           :headers="headers"
           :elements="visibleInstruments"
           :selected="selectedInstrument"
+          :loading="loadingTable"
           @select="selectedInstrument = $event"
         >
           <template v-slot:row="row">
@@ -86,6 +88,8 @@ export default {
     return {
       boundingBox: null,
       instruments: [],
+      loadingMap: true,
+      loadingTable: true,
       selectedInstrument: null
     }
   },
@@ -125,6 +129,8 @@ export default {
 
     const instruments = this.$store.getters['instruments/modelResolution']
     this.instruments = instruments.map(unpackageInstrument)
+    this.loadingMap = false
+    this.loadingTable = false
   },
   nuxtI18n: {
     paths: {

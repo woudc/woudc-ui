@@ -11,6 +11,7 @@
         <selectable-map
           :elements="stations"
           :selected="selectedStation"
+          :loading="loadingMap"
           @select="selectedStation = $event"
           @move="boundingBox = $event"
         >
@@ -44,6 +45,7 @@
           :headers="headers"
           :elements="visibleStations"
           :selected="selectedStation"
+          :loading="loadingTable"
           @select="selectedStation = $event"
         >
           <template v-slot:row="row">
@@ -91,6 +93,8 @@ export default {
   data() {
     return {
       boundingBox: null,
+      loadingMap: true,
+      loadingTable: true,
       selectedStation: null,
       stations: []
     }
@@ -132,6 +136,8 @@ export default {
 
     const stations = this.$store.getters['stations/all'].orderByID
     this.stations = stations.map(unpackageStation)
+    this.loadingMap = false
+    this.loadingTable = false
   },
   nuxtI18n: {
     paths: {
