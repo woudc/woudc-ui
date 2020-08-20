@@ -60,15 +60,15 @@ export default {
     return {
       contributorsURL: 'https://guide.woudc.org/en/',
       exampleURLs: {
-        broadband: 'https://woudc.org/archive/Documentation/Examples-extCSV/Broad-band.csv',
-        lidar: 'https://woudc.org/archive/Documentation/Examples-extCSV/Lidar.csv',
-        multiband: 'https://woudc.org/archive/Documentation/Examples-extCSV/Multi-band.csv',
-        ozonesonde: 'https://woudc.org/archive/Documentation/Examples-extCSV/Ozonesonde.csv',
-        spectral: 'https://woudc.org/archive/Documentation/Examples-extCSV/Spectral.csv',
-        totalozone: 'https://woudc.org/archive/Documentation/Examples-extCSV/TotalOzone-Brewer.csv',
-        totalozoneobs: 'https://woudc.org/archive/Documentation/Examples-extCSV/TotalOzoneObs.csv',
-        umkehr1: 'https://woudc.org/archive/Documentation/Examples-extCSV/Umkehr-N_values-Dobson.csv',
-        umkehr2: 'https://woudc.org/archive/Documentation/Examples-extCSV/Umkehr_UMK92Retrieval-Dobson.csv'
+        broadband: process.env.WAF_URL + '/Documentation/Examples-extCSV/Broad-band.csv',
+        lidar: process.env.WAF_URL + '/Documentation/Examples-extCSV/Lidar.csv',
+        multiband: process.env.WAF_URL + '/Documentation/Examples-extCSV/Multi-band.csv',
+        ozonesonde: process.env.WAF_URL + '/Documentation/Examples-extCSV/Ozonesonde.csv',
+        spectral: process.env.WAF_URL + '/Documentation/Examples-extCSV/Spectral.csv',
+        totalozone: process.env.WAF_URL + '/Documentation/Examples-extCSV/TotalOzone-Brewer.csv',
+        totalozoneobs: process.env.WAF_URL + '/Documentation/Examples-extCSV/TotalOzoneObs.csv',
+        umkehr1: process.env.WAF_URL + '/Documentation/Examples-extCSV/Umkehr-N_values-Dobson.csv',
+        umkehr2: process.env.WAF_URL + '/Documentation/Examples-extCSV/Umkehr_UMK92Retrieval-Dobson.csv'
       },
       ozoneDatasets: [ 'lidar', 'ozonesonde', 'totalozone', 'totalozoneobs', 'umkehr1', 'umkehr2' ],
       uvDatasets: [ 'broadband', 'multiband', 'spectral' ]

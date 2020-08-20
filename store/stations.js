@@ -13,7 +13,7 @@ function groupStationsByDataset(features, stationsByID) {
   const uvIndexDatasets = [ 'Broad-band', 'Spectral' ]
 
   for (const feature of features) {
-    const dataset = feature.properties.dataset
+    const dataset = feature.properties.dataset_id
     const stationID = feature.properties.station_id
     const station = stationsByID[stationID]
 
@@ -197,8 +197,8 @@ const actions = {
     const contributionInputs = [
       { id: 'index', type: 'text/plain', value: 'contribution' },
       { id: 'distinct', type: 'application/json', value: {
-        orderByID: [ 'station_id', 'dataset' ],
-        orderByName: [ 'station_name', 'dataset' ]
+        orderByID: [ 'station_id', 'dataset_id' ],
+        orderByName: [ 'station_name', 'dataset_id' ]
       } },
       { id: 'source', type: 'application/json', value: [ 'station_id' ] }
     ]

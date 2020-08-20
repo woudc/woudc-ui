@@ -285,7 +285,7 @@ export default {
         yearsInRange = [ this.selectedYear ]
       }
 
-      const root = 'https://woudc.org/archive/products/ozone/total-column-ozone/totalozone/1.0/'
+      const root = process.env.WAF_URL + '/products/ozone/total-column-ozone/totalozone/1.0/'
 
       const stationID = this.selectedStationID
       const stationKey = this.selectedStation.name + ' (' + stationID + ')'

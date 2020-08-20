@@ -20,9 +20,9 @@ export default {
   data() {
     return {
       urls: {
-        brewer: 'https://woudc.org/archive/Documentation/www/bdms/meetings/',
+        brewer: process.env.WAF_URL + '/Documentation/www/bdms/meetings/',
         dobson: 'http://www.o3soft.eu/dobsonweb/committee.html',
-        umkehr: 'https://woudc.org/archive/Publications/Meeting_Reports/Umkehr_Sub-Committee/'
+        umkehr: process.env.WAF_URL + '/Publications/Meeting_Reports/Umkehr_Sub-Committee/'
       }
     }
   },

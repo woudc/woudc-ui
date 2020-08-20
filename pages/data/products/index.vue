@@ -63,12 +63,12 @@ export default {
         individual: 'http://exp-studies.tor.ec.gc.ca/cgi-bin/dailyMaps'
       },
       relatedLinks: {
-        'totalozone-daily-monthly': 'https://woudc.org/archive/Summaries/TotalOzone',
-        'totalozone-satellite-ground': 'https://woudc.org/archive/Projects-Campaigns/Ground-Sat_Plots/',
-        umkehr: 'https://woudc.org/archive/Summaries/Umkehr',
-        spectral: 'https://woudc.org/archive/Summaries/Spectral_UV',
-        'ozone-zonal': 'https://woudc.org/archive/Projects-Campaigns/ZonalMeans',
-        tost: 'https://woudc.org/archive/products/ozone/vertical-ozone-profile/ozonesonde/1.0/tost'
+        'totalozone-daily-monthly': process.env.WAF_URL + '/Summaries/TotalOzone',
+        'totalozone-satellite-ground': process.env.WAF_URL + '/Projects-Campaigns/Ground-Sat_Plots/',
+        umkehr: process.env.WAF_URL + '/Summaries/Umkehr',
+        spectral: process.env.WAF_URL + '/Summaries/Spectral_UV',
+        'ozone-zonal': process.env.WAF_URL + '/Projects-Campaigns/ZonalMeans',
+        tost: process.env.WAF_URL + '/products/ozone/vertical-ozone-profile/ozonesonde/1.0/tost'
       },
       summariesLinks: {
         'polar-bulletins': 'https://www.wmo.int/pages/prog/arep/gaw/ozone/index.html',

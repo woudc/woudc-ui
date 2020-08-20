@@ -252,7 +252,7 @@ export default {
         yearsInRange = [ this.selectedYear ]
       }
 
-      const rootURL = 'https://woudc.org/archive/products/ozone/vertical-ozone-profile/ozonesonde/1.0/'
+      const rootURL = process.env.WAF_URL + '/products/ozone/vertical-ozone-profile/ozonesonde/1.0/'
 
       const stationID = this.selectedStationID
       const stationKey = this.selectedStation.name + ' (' + stationID + ')'

@@ -114,7 +114,7 @@
           <h2>{{ $t('about.access.waf.title') }}</h2>
           <i18n path="about.access.waf.blurb.body-intro" tag="p">
             <template v-slot:waf>
-              <a :href="wafURL" target="_blank">
+              <a :href="process.env.WAF_URL" target="_blank">
                 {{ $t('common.wafFull') }}
               </a>
             </template>
@@ -350,9 +350,8 @@ export default {
       ogcStandardsURL: 'https://opengeospatial.org/standards/cat',
       ogcURL: 'https://opengeospatial.org/',
       searchHelpURL: 'https://github.com/woudc/woudc/wiki/DataSearchDownloadHowto',
-      wafURL: 'https://woudc.org/archive/',
       wafGuideURL: 'https://github.com/woudc/woudc/wiki/WAFHowto',
-      wafSummaryURL: 'https://woudc.org/archive/Summaries/dataset-snapshots',
+      wafSummaryURL: process.env.WAF_URL + '/Summaries/dataset-snapshots',
       wfsURL: 'https://geo.woudc.org/ows?service=WFS&version=1.1.0&request=GetCapabilities',
       wisURL: 'https://www.wmo.int/pages/prog/www/WIS/',
       wmsURL: 'https://geo.woudc.org/ows?service=WMS&version=1.3.0&request=GetCapabilities',
