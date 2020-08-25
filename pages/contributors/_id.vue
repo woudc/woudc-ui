@@ -12,6 +12,7 @@
     <v-row>
       <v-col>
         <selectable-map
+          v-if="contributors.length !== 0"
           :elements="contributors"
           :selected="selectedContributor"
           :loading="loadingMap"
@@ -180,6 +181,12 @@ export default {
       this.deployments =  deploymentsResponse.data.features.map(unpackageDeployment)
       this.contributors = contributors
       this.selectedContributor = contributors[0]
+    }
+  },
+  nuxtI18n: {
+    paths: {
+      en: '/contributors/:id',
+      fr: '/contributeurs/:id'
     }
   }
 }

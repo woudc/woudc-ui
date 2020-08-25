@@ -281,7 +281,7 @@ export default {
         yearsInRange = [ this.selectedYear ]
       }
 
-      const root = 'https://woudc.org/archive/products/uv-radiation/uv-irradiance/uv_index_hourly/2.0/'
+      const root = process.env.WAF_URL + '/products/uv-radiation/uv-irradiance/uv_index_hourly/2.0/'
 
       const stationID = this.selectedStationID
       const stationKey = this.selectedStation.name + ' (' + stationID + ')'

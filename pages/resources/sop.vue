@@ -28,7 +28,7 @@ export default {
   data() {
     return {
       linkURLs: {
-        brewer: 'https://woudc.org/archive/Documentation/SOP_Documents',
+        brewer: process.env.WAF_URL + '/Documentation/SOP_Documents',
         dobson: 'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW183-Dobson-WEB.pdf',
         'ozone-quality': 'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW_201.pdf',
         'uv-quality': 'https://www.wmo.int/pages/prog/arep/gaw/documents/Final_GAW198_18_June.pdf',
