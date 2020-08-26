@@ -46,9 +46,11 @@
       </v-col>
       <v-col cols="4">
         <v-card id="contents-table">
-          <v-card-title>{{ $t('about.access.contents.title') }}</v-card-title>
-          <v-list id="contents-body">
-            <div v-for="section in tableOfContents" :key="section.selector">
+          <v-card-title class="primary white--text">
+            {{ $t('about.access.contents.title') }}
+          </v-card-title>
+          <v-list id="contents-body" class="pa-0">
+            <div v-for="(section, i) in tableOfContents" :key="section.selector">
               <v-divider v-if="i !== 0" />
               <template v-if="section.subsections === null">
                 <v-list-item>
@@ -406,27 +408,7 @@ export default {
 </script>
 
 <style scoped>
-.card {
-  background-color: #cef;
-  color: steelblue;
-}
-
-#contents-table {
-  color: white;
-  background-color: royalblue;
-}
-
-#contents-body {
-  padding: 0px;
-  font-size: 14px;
-}
-
-#contents-body ul {
-  margin-bottom: 16px;
-}
-
-#example-list {
-  padding: 0px;
+#contents-body, #example-list {
   font-size: 14px;
 }
 </style>
