@@ -23,7 +23,7 @@
         <p>{{ $t('about.quality.sag.blurb.body-standards') }}</p>
         <ul>
           <li v-for="link in sagLinks" :key="link.to">
-            <a :href="link.to">
+            <a :href="link.to" target="_blank">
               {{ link.text }}
             </a> ({{ link.note }})
           </li>
