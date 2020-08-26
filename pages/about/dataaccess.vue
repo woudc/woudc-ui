@@ -93,7 +93,7 @@
           <i18n path="about.access.search.blurb.body-intro" tag="p">
             <template v-slot:search>
               <nuxt-link :to="localePath('data-explore')">
-                {{ $t('common.search-page') }}
+                {{ $t('common.search') }}
               </nuxt-link>
             </template>
           </i18n>
@@ -114,7 +114,7 @@
           <h2>{{ $t('about.access.waf.title') }}</h2>
           <i18n path="about.access.waf.blurb.body-intro" tag="p">
             <template v-slot:waf>
-              <a :href="process.env.WAF_URL" target="_blank">
+              <a :href="wafURL" target="_blank">
                 {{ $t('common.wafFull') }}
               </a>
             </template>
@@ -195,7 +195,7 @@
             <h3>{{ $t('about.access.wms.title') }}</h3>
             <i18n path="about.access.wms.blurb" tag="p">
               <template v-slot:wms>
-                <a href="" target="_blank">
+                <a :href="wmsURL" target="_blank">
                   {{ $t('common.wms') }}
                 </a>
               </template>
@@ -207,8 +207,8 @@
               <v-card-text>
                 <i18n class="mb-0" path="about.access.wms.note.body" tag="p">
                   <template v-slot:link>
-                    <a :href="wmsURL" target="_blank">
-                      {{ wmsURL }}
+                    <a :href="wmsAPIURL" target="_blank">
+                      {{ wmsAPIURL }}
                     </a>
                   </template>
                 </i18n>
@@ -219,7 +219,7 @@
             <h3>{{ $t('about.access.wfs.title') }}</h3>
             <i18n path="about.access.wfs.blurb.body-intro" tag="p">
               <template v-slot:wfs>
-                <a href="" target="_blank">
+                <a :href="wfsURL" target="_blank">
                   {{ $t('common.wfs') }}
                 </a>
               </template>
@@ -232,19 +232,19 @@
               <v-card-text>
                 <i18n class="mb-0" path="about.access.wfs.note.body" tag="p">
                   <template v-slot:link>
-                    <a :href="wfsURL" target="_blank">
-                      {{ wfsURL }}
+                    <a :href="wfsAPIURL" target="_blank">
+                      {{ wfsAPIURL }}
                     </a>
                   </template>
                 </i18n>
               </v-card-text>
             </v-card>
           </div>
-          <div id="wps-section">
+          <div id="wps-subsection">
             <h3>{{ $t('about.access.wps.title') }}</h3>
             <i18n path="about.access.wps.blurb" tag="p">
               <template v-slot:wps>
-                <a href="" target="_blank">
+                <a :href="wpsURL" target="_blank">
                   {{ $t('common.wps') }}
                 </a>
               </template>
@@ -256,8 +256,8 @@
               <v-card-text>
                 <i18n class="mb-0" path="about.access.wps.note.body" tag="p">
                   <template v-slot:link>
-                    <a :href="wpsURL" target="_blank">
-                      {{ wpsURL }}
+                    <a :href="wpsAPIURL" target="_blank">
+                      {{ wpsAPIURL }}
                     </a>
                   </template>
                 </i18n>
@@ -293,8 +293,8 @@
             <v-card-text>
               <i18n class="mb-0" path="about.access.iso.note.body" tag="p">
                 <template v-slot:link>
-                  <a :href="isoURL" target="_blank">
-                    {{ isoURL }}
+                  <a :href="isoAPIURL" target="_blank">
+                    {{ isoAPIURL }}
                   </a>
                 </template>
               </i18n>
@@ -302,7 +302,7 @@
           </v-card>
           <i18n path="about.access.iso.blurb-howto" tag="p">
             <template v-slot:how-to>
-              <a href="" target="_blank">
+              <a :href="isoServicesURL" target="_blank">
                 {{ $t('about.access.iso.how-to') }}
               </a>
             </template>
@@ -318,7 +318,7 @@
             </template>
           </i18n>
           <v-card>
-            <v-list id="example-list" dense>
+            <v-list id="example-list" class="pa-0" dense>
               <v-list-item>
                 <a :href="examples.pywoudc" target="_blank">
                   pywoudc
@@ -346,16 +346,22 @@ export default {
       definitionsURL: 'https://geo.woudc.org/def',
       githubURL: 'https://github.com/woudc',
       interoperabilityURL: 'https://www.wmo.int/pages/prog/www/WIS/documents/MOAWMO_OGC.pdf',
-      isoURL: 'https://geo.woudc.org/codelists.xml',
+      isoAPIURL: 'https://geo.woudc.org/codelists.xml',
+      isoURL: 'https://www.isotc211.org/',
+      isoServicesURL: 'https://github.com/woudc/woudc/wiki/WebServicesHowto',
       ogcStandardsURL: 'https://opengeospatial.org/standards/cat',
       ogcURL: 'https://opengeospatial.org/',
       searchHelpURL: 'https://github.com/woudc/woudc/wiki/DataSearchDownloadHowto',
+      wafURL: process.env.WAF_URL,
       wafGuideURL: 'https://github.com/woudc/woudc/wiki/WAFHowto',
-      wafSummaryURL: process.env.WAF_URL + '/Summaries/dataset-snapshots',
-      wfsURL: 'https://geo.woudc.org/ows?service=WFS&version=1.1.0&request=GetCapabilities',
+      wafSummaryURL: 'https://woudc.org/archive/Summaries/dataset-snapshots',
+      wfsAPIURL: 'https://geo.woudc.org/ows?service=WFS&version=1.1.0&request=GetCapabilities',
+      wfsURL: 'https://www.opengeospatial.org/standards/wfs',
       wisURL: 'https://www.wmo.int/pages/prog/www/WIS/',
-      wmsURL: 'https://geo.woudc.org/ows?service=WMS&version=1.3.0&request=GetCapabilities',
-      wpsURL: 'https://geo.woudc.org/wps?service=WPS&version=1.0.0&request=GetCapabilities',
+      wmsAPIURL: 'https://geo.woudc.org/ows?service=WMS&version=1.3.0&request=GetCapabilities',
+      wmsURL: 'https://www.opengeospatial.org/standards/wms',
+      wpsAPIURL: 'https://geo.woudc.org/wps?service=WPS&version=1.0.0&request=GetCapabilities',
+      wpsURL: 'https://www.opengeospatial.org/standards/wps',
       contentsSelectors: {
         csw: 'csw-subsection',
         definitions: 'definitions-service-section',

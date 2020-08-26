@@ -40,13 +40,13 @@ export default {
       },
       relatedURLs: {
         avdc: 'https://avdc.gsfc.nasa.gov/',
-        crdp: 'http://cci.esa.int/ozone/?q=node/160',
+        crdp: 'http://cci.esa.int/ozone',
         esrl: 'https://www.esrl.noaa.gov/gmd/dv/data/',
         eubrewnet: 'http://www.eubrewnet.org/cost1207/',
         euvdb: 'https://www1.muk.uni-hannover.de/~seckmeyer/EDUCE/',
         gozcards: 'https://gozcards.jpl.nasa.gov/',
         mozaic: 'http://www.iagos-data.fr/',
-        ndacc: 'https://www.ndsc.ncep.noaa.gov/data/',
+        ndacc: 'http://www.ndacc.org/',
         polar: 'http://uv.biospherical.com/',
         uvi: 'https://spacephysics.msfc.nasa.gov/projects/uvi/data_archives.shtml',
         shadoz: 'https://croc.gsfc.nasa.gov/shadoz/'

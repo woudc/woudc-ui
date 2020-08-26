@@ -14,7 +14,7 @@
             </template>
             <template v-slot:submission>
               <nuxt-link :to="localePath('contributors-submission')">
-                {{ $t('common.submission') }}
+                {{ $tc('common.submission', 1) }}
               </nuxt-link>
             </template>
             <template v-slot:registration-form>
@@ -29,7 +29,7 @@
             </template>
             <template v-slot:search>
               <nuxt-link :to="localePath('data-explore')">
-                {{ $t('common.search-page') }}
+                {{ $t('common.search') }}
               </nuxt-link>
             </template>
             <template v-slot:products>
@@ -68,8 +68,8 @@
 export default {
   data() {
     return {
-      accessibilityURL: 'https://www.tbs-sct.gc.ca/ws-nw/wa-aw/index-eng.asp',
-      usabilityURL: 'https://www.tbs-sct.gc.ca/ws-nw/wu-fe/index-eng.asp',
+      accessibilityURL: 'https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=23601',
+      usabilityURL: 'https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=24227',
       w3cURL: 'https://www.w3.org/WAI/intro/wcag'
     }
   },
