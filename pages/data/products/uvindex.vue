@@ -34,7 +34,7 @@
           <v-col cols="12" md="6" xl="9">
             <div class="requiredHead mb-2">
               <h3>{{ $t('data.products.common.Station') }}</h3>
-              <v-chip small label class="ml-2 mt-1" color="warning">
+              <v-chip small label class="ml-2 mt-1" color="primary">
                 {{ $t('data.products.common.required') }}
               </v-chip>
             </div>
@@ -74,7 +74,7 @@
         </div>
         <div class="requiredHead mb-2">
           <h3>{{ $t('data.products.common.instrument') }}</h3>
-          <v-chip small label class="ml-2 mt-1" color="warning">
+          <v-chip small label class="ml-2 mt-1" color="primary">
             {{ $t('data.products.common.required') }}
           </v-chip>
         </div>
