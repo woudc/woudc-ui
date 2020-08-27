@@ -36,13 +36,13 @@ export default {
         datasets: [
           {
             label: 'Total Files',
-            backgroundColor: '#FFD54F',
+            backgroundColor: this.$vuetify.theme.currentTheme.accent,
             data: this.createMetricsSummary('totalFiles'),
             yAxisID: 'files'
           },
           {
             label: 'Total Observations',
-            backgroundColor: '#2196F3',
+            backgroundColor: this.$vuetify.theme.currentTheme.primary,
             data: this.createMetricsSummary('totalObs'),
             yAxisID: 'observations'
           }
