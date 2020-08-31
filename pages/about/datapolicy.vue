@@ -121,8 +121,8 @@ export default {
         'multiband', 'spectral', 'uv-index'
       ],
       doisURL: 'https://en.wikipedia.org/wiki/Digital_object_identifier',
-      gawURL: 'https://gawsis.meteoswiss.ch/GAWSIS/index.html#/faq',
-      resolution40: 'https://www.wmo.int/pages/about/Resolution40_en.html',
+      gawURL: 'https://gawsis.meteoswiss.ch/GAWSIS/index.html#/faq/',
+      resolution40: 'https://www.wmo.int/pages/prog/hwrp/documents/wmo_827_enCG-XII-Res40.pdf',
       wmoURL: 'https://www.wmo.int/pages/about/exchangingdata_en.html'
     }
   },

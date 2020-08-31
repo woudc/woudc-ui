@@ -42,7 +42,7 @@
           <v-card-text>
             <i18n path="contact.note.body" tag="span">
               <template v-slot:privacy-act>
-                <i><a href="privacyActURL" target="_blank">
+                <i><a :href="privacyActURL" target="_blank">
                   {{ $t('common.privacy-act') }}
                 </a></i>
               </template>

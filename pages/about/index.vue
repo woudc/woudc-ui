@@ -21,7 +21,7 @@
         <i18n path="about.home.blurb.body-access" tag="p">
           <template v-slot:search>
             <nuxt-link :to="localePath('data-explore')">
-              {{ $t('common.search-page') }}
+              {{ $t('common.search') }}
             </nuxt-link>
           </template>
           <template v-slot:access>
