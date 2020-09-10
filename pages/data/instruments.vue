@@ -1,43 +1,143 @@
 <template>
-  <v-layout justify-center column align-content-center>
-    <h1>{{ $t('title') }}</h1>
-    <p>{{ $t('blurb') }}</p>
-    <v-expansion-panels id="instructions">
-      <v-expansion-panel>
-        <v-expansion-panel-header>
-          <b>{{ $t('instructions-label') }}</b>
-        </v-expansion-panel-header>
-        <v-expansion-panel-content>
-          {{ $t('instructions') }}
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-    </v-expansion-panels>
-  </v-layout>
+  <v-container>
+    <v-row>
+      <v-col>
+        <h1>{{ $t('data.instruments.title') }}</h1>
+        <p>{{ $t('data.instruments.blurb') }}</p>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <selectable-map
+          :elements="instruments"
+          :selected="selectedInstrument"
+          :loading="loadingMap"
+          @select="selectedInstrument = $event"
+          @move="boundingBox = $event"
+        >
+          <template v-slot:popup="element">
+            <strong>{{ $t('data.instruments.instrument-type') }}</strong>
+            <span> {{ element.item.name }}</span>
+            <br>
+            <strong>{{ $t('data.instruments.instrument-model') }}</strong>
+            <span> {{ element.item.model }}</span>
+            <br>
+            <strong>{{ $t('data.instruments.station-name') }}</strong>
+            <nuxt-link :to="'/data/stations/' + element.item.station_id">
+              {{ element.item.station_name }}
+            </nuxt-link>
+            <br>
+            <strong>{{ $t('data.instruments.contributor-name') }}</strong>
+            <span> TODO</span>
+          </template>
+        </selectable-map>
+      </v-col>
+      <v-col>
+        <map-instructions id="map-instructions" />
+        <table-instructions id="table-instructions" />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <selectable-table
+          :headers="headers"
+          :elements="visibleInstruments"
+          :selected="selectedInstrument"
+          :loading="loadingTable"
+          @select="selectedInstrument = $event"
+        >
+          <template v-slot:row="row">
+            <td>{{ row.item.name }}</td>
+            <td>{{ row.item.model }}</td>
+            <td>{{ row.item.start_date }}</td>
+            <td>{{ row.item.end_date }}</td>
+            <td>{{ row.item.data_class }}</td>
+            <td>{{ row.item.dataset }}</td>
+            <td>
+              <nuxt-link
+                :to="'/data/station/' + row.item.station_id"
+                v-text="row.item.station_name"
+              />
+            </td>
+            <td>
+              <a :href="row.item.waf_url" target="_blank">
+                <v-icon>mdi-file-download</v-icon>
+              </a>
+            </td>
+          </template>
+        </selectable-table>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
-<i18n>
-{
-  "en": {
-    "title": "Instrument List",
-    "blurb": "The WOUDC data archive can be sorted by instrument. The instrument list includes the instrument type, name and model.",
-    "instructions-label": "How to Use: Interactive Map",
-    "instructions": "Lorem Ipsum something something something"
-  },
-  "fr": {
-    "title": "Liste des instruments",
-    "blurb": "Les archives de données du WOUDC peuvent être classées par instrument. La liste d’instruments comprend le type d’instrument, le nom et le modèle.",
-    "instructions-label": "Guide d'utilisation : Carte interactive",
-    "instructions": "Lorem Ipsum something something something"
-  }
-}
-</i18n>
-
 <script>
+import { unpackageInstrument } from '~/plugins/unpackage'
+
+import mapInstructions from '~/components/MapInstructions'
+import tableInstructions from '~/components/TableInstructions'
+import SelectableMap from '~/components/SelectableMap'
+import SelectableTable from '~/components/SelectableTable'
+
 export default {
+  components: {
+    'map-instructions': mapInstructions,
+    'selectable-map': SelectableMap,
+    'selectable-table': SelectableTable,
+    'table-instructions': tableInstructions
+  },
+  data() {
+    return {
+      boundingBox: null,
+      instruments: [],
+      loadingMap: true,
+      loadingTable: true,
+      selectedInstrument: null
+    }
+  },
+  computed: {
+    headers() {
+      const headerKeys = [
+        'name',
+        'model',
+        'dataset',
+        'start_date',
+        'end_date',
+        'data_class',
+        'station',
+        'waf_url'
+      ]
+
+      return headerKeys.map((key) => {
+        return {
+          text: this.$t('data.instruments.headers.' + key),
+          value: key
+        }
+      })
+    },
+    visibleInstruments() {
+      if (this.boundingBox === null) {
+        return this.instruments
+      } else {
+        return this.instruments.filter((instrument) => {
+          const coords = this.$L.latLng(instrument.geometry.coordinates)
+          return this.boundingBox.contains(coords)
+        })
+      }
+    }
+  },
+  async created() {
+    await this.$store.dispatch('instruments/download')
+
+    const instruments = this.$store.getters['instruments/modelResolution']
+    this.instruments = instruments.map(unpackageInstrument)
+    this.loadingMap = false
+    this.loadingTable = false
+  },
   nuxtI18n: {
     paths: {
-      en: '/instruments',
-      fr: '/instruments'
+      en: '/data/instruments',
+      fr: '/donnees/instruments'
     }
   }
 }

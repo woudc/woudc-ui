@@ -1,98 +1,48 @@
 <template>
   <v-container>
-    <h1>{{ $t('title') }}</h1>
-    <p>{{ $t('blurb') }}</p>
-    <v-card
-      v-for="(announcement, i) in newsCollection"
-      :key="i"
-      class="news-panel"
-    >
-      <div class="news-panel-header">
-        <v-card-title>
-          {{ announcement.header }}
-        </v-card-title>
-        <v-card-subtitle>
-          <span class="news-date">{{ announcement.date }}</span>
-          <span class="news-keywords">
-            {{ announcement.keywords.join(',') }}
-          </span>
-        </v-card-subtitle>
-      </div>
-      <v-card-text>
-        <woudc-blurb :items="announcement.body" />
-      </v-card-text>
-    </v-card>
+    <v-row>
+      <v-col>
+        <h1>{{ $t('news.title') }}</h1>
+        <p>{{ $t('news.blurb') }}</p>
+        <v-card v-for="(newsItem, i) in newsCollection" :key="i">
+          <v-card-title class="info">
+            {{ newsItem.title }}
+          </v-card-title>
+          <v-card-subtitle class="info">
+            <span class="blue--text text--darken-3">{{ newsItem.date }}</span>
+            <span class="ml-2">{{ newsItem.keywords.join(',') }}</span>
+          </v-card-subtitle>
+          <!-- eslint-disable-next-line vue/no-v-html -->
+          <v-card-text class="pt-3" v-html="newsItem.content" />
+        </v-card>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
-<style scoped>
-.news-panel > .news-panel-header {
-  background-color: lightblue;
-}
-
-.news-panel-header > .v-card__title {
-  padding-bottom: 0px;
-}
-
-.news-panel-header > .v-card__subtitle {
-  margin-top: -4px;
-}
-
-.news-panel-header > .v-card__subtitle > .news-date {
-  color: blue;
-}
-</style>
-
-<i18n>
-{
-  "en": {
-    "title": "News and Updates",
-    "blurb": "Data centre news, updates and notifications"
-  },
-  "fr": {
-    "title": "Nouvelles et mises à jour",
-    "blurb": "Nouvelles pour le Centre de données, mises à jour et des notifications"
-  }
-}
-</i18n>
-
 <script>
-import WoudcBlurb from '~/components/WoudcBlurb'
-
 export default {
-  components: {
-    'woudc-blurb': WoudcBlurb
-  },
   data() {
     return {
-      newsCollection: [
-        {
-          header: 'New Website',
-          date: '2015/02/02',
-          keywords: ['new website', 'renewal'],
-          body: [
-            'Welcome to the renewed WOUDC! Improved data access is one of the major enhancements (see ',
-            {
-              link: {
-                to: 'about-dataaccess',
-                text: 'data access summary page'
-              }
-            },
-            ' for details). As part of the transition the ',
-            {
-              link: {
-                to: 'http://old.woudc.org/',
-                type: 'external',
-                text: 'legacy WOUDC'
-              }
-            },
-            ' will continue to be available for a short period of time. Users are encouraged to provide feedback through the WOUDC ',
-            { link: { to: 'contact', text: 'email address' } },
-            '.'
-          ]
-        }
-      ]
+      newsCollection: []
     }
+  },
+  computed: {
+    woudcLink() {
+      return 'https://woudc.org/home.php?lang=' + this.$i18n.locale
+    }
+  },
+  created() {
+    // Future: make an HTTP call to gather news items.
+    // For now, add one dummy news item as an example of the format.
+
+    const item = {
+      title: 'New Website',
+      date: '2015-02-02',
+      keywords: [ 'new website', 'renewal' ],
+      content: 'Welcome to the renewed WOUDC! Improved data access is one of the major enhancements (see <a href="/woudc-ui/about/data-access">data access summary page</a> for details). As part of the transition the <a href=' + this.woudcLink + '>legacy WOUDC</a> will continue to be available for a short period of time. Users are encouraged to provide feedback through the WOUDC <a href="/woudc-ui/contact">email address</a>.'
+    }
+    this.newsCollection.push(item)
   },
   nuxtI18n: {
     paths: {

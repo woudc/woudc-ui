@@ -1,67 +1,34 @@
 <template>
-  <v-layout justify-center column align-content-center>
-    <h1>{{ $t('title') }}</h1>
-    <ul>
-      <li v-for="(link, i) in $t('links')" :key="i">
-        <nuxt-link :to="localePath(link.to)">
-          {{ link.text }}
-        </nuxt-link>
-      </li>
-    </ul>
-  </v-layout>
+  <v-container>
+    <v-row>
+      <v-col>
+        <h2>{{ $t('data.title') }}</h2>
+        <ul>
+          <li v-for="path in localLinks" :key="path">
+            <nuxt-link :to="localePath('data-' + path)">
+              {{ $t('data.links.' + path) }}
+            </nuxt-link>
+          </li>
+        </ul>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
-<i18n>
-{
-  "en": {
-    "title": "Data",
-    "links": [
-      {
-        "text": "Data Search / Download",
-        "to": "data-explore"
-      },
-      {
-        "text": "Data Products",
-        "to": "data-products"
-      },
-      {
-        "text": "Dataset Information",
-        "to": "data-datasetinfo"
-      },
-      {
-        "text": "Station List",
-        "to": "data-stations"
-      },
-      {
-        "text": "Instrument List",
-        "to": "data-instruments"
-      }
-    ]
+<script>
+export default {
+  data() {
+    return {
+      localLinks: [
+        'explore', 'products', 'datasetinfo', 'stations', 'instruments'
+      ],
+    }
   },
-  "fr": {
-    "title": "Données",
-    "links": [
-      {
-        "text": "Rechercher des données / Télécharger",
-        "to": "data-explore"
-      },
-      {
-        "text": "Produits de données",
-        "to": "data-products"
-      },
-      {
-        "text": "Information sur les jeux de données",
-        "to": "data-datasetinfo"
-      },
-      {
-        "text": "Liste des stations",
-        "to": "data-stations"
-      },
-      {
-        "text": "Liste des instruments",
-        "to": "data-instruments"
-      }
-    ]
+  nuxtI18n: {
+    paths: {
+      en: '/data',
+      fr: '/donnees'
+    }
   }
 }
-</i18n>
+</script>

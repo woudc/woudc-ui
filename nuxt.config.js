@@ -5,12 +5,24 @@ require('dotenv').config()
 const PORT = process.env.npm_config_port || '3000'
 
 export default {
-  mode: 'universal',
+  mode: 'spa',
   env: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:' + PORT
+    baseUrl: process.env.BASE_URL || 'http://localhost:' + PORT,
+    pygeoapi: process.env.PYGEOAPI_HOSTNAME
   },
   router: {
     base: process.env.ROUTER_BASE || '/woudc-ui/'
+  },
+  generate: {
+    exclude: [
+      /^\/data\/stations\/[\d]+/,
+      /^\/contributors/,
+    ],
+    routes: [
+      '/contributors/registration',
+      '/contributors/submission',
+      '/contributors/validation'
+    ]
   },
   /*
    ** Global headers of the page
@@ -36,11 +48,13 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: [
+    '~/css/globals.css'
+  ],
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ['~/plugins/util.js', '~/plugins/axios.js'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -57,7 +71,8 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    'nuxt-i18n'
+    'nuxt-i18n',
+    'nuxt-leaflet'
   ],
   /*
    ** Axios module configuration
@@ -71,8 +86,16 @@ export default {
   vuetify: {
     // customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: false,
       themes: {
+        light: {
+          primary: '#358ED3',
+          secondary: '#9E9E9E',
+          success: '#83EF9E',
+          info: '#B3E5FC',
+          warning: '#FFF59D',
+          error: '#EF9A9A',
+          accent: '#FFD54F'
+        },
         dark: {
           primary: colors.blue.darken2,
           accent: colors.grey.darken3,
@@ -104,7 +127,11 @@ export default {
     strategy: 'prefix_except_default',
     defaultLocale: 'en',
     vueI18n: {
-      fallbackLocale: 'en'
+      fallbackLocale: 'en',
+      messages: {
+        en: require('./locales/en.json'),
+        fr: require('./locales/fr.json')
+      }
     },
     vueI18nLoader: true,
     detectBrowserLanguage: {
