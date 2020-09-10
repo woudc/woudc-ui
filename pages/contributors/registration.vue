@@ -62,7 +62,7 @@ export default {
   data() {
     return {
       gawHomeURL: 'https://gawsis.meteoswiss.ch/',
-      wmoGAWUrl: 'https://www.wmo.int/pages/prog/arep/gaw/gaw_home_en.html'
+      wmoGAWUrl: 'https://public.wmo.int/en/programmes/global-atmosphere-watch-programme'
     }
   },
   nuxtI18n: {

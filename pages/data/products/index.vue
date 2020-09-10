@@ -71,9 +71,9 @@ export default {
         tost: process.env.WAF_URL + '/products/ozone/vertical-ozone-profile/ozonesonde/1.0/tost'
       },
       summariesLinks: {
-        'polar-bulletins': 'https://www.wmo.int/pages/prog/arep/gaw/ozone/index.html',
-        'gaw-reports': 'https://www.wmo.int/pages/prog/arep/gaw/gaw-reports.html',
-        'ozone-reports': 'https://www.wmo.int/pages/prog/arep/gaw/ozone_reports.html',
+        'polar-bulletins': 'https://community.wmo.int/activity-areas/gaw/science/stratospheric-ozone-and-uv-radiation',
+        'gaw-reports': 'https://community.wmo.int/gaw-reports',
+        'ozone-reports': 'https://community.wmo.int/wmo-global-ozone-research-and-monitoring-project-reports',
         'ozone-hole': 'https://ozonewatch.gsfc.nasa.gov/SH.html',
         sampo: 'https://sampo.fmi.fi/',
         temis: 'http://www.temis.nl/index.php'

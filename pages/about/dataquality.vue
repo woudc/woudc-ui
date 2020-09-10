@@ -63,7 +63,7 @@
 export default {
   data() {
     return {
-      gawURL: 'https://www.wmo.int/pages/prog/arep/gaw/qassurance.html',
+      gawURL: 'https://community.wmo.int/quality-assurance',
       sagURLs: {
         brewer: 'http://exp-studies.tor.ec.gc.ca/e/ozone/ozone.htm',
         dobson: 'https://www.esrl.noaa.gov/gmd/ozwv/dobson/troubleshooting.html',
