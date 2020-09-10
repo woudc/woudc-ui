@@ -54,7 +54,7 @@ export default {
   data() {
     return {
       interoperabilityURL: 'https://www.wmo.int/pages/prog/www/WIS/documents/MOAWMO_OGC.pdf',
-      wisURL: 'https://www.wmo.int/pages/prog/www/WIS/',
+      wisURL: 'https://public.wmo.int/en/about-us/vision-mission-strategic-priorities/wmo-information-system-wis',
       formatURLs: {
         csv: 'https://en.wikipedia.org/wiki/Comma-separated_values',
         geojson: 'https://geojson.org/',
