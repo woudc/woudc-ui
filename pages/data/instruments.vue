@@ -60,7 +60,9 @@
               />
             </td>
             <td>
-              <a :href="row.item.waf_url" target="_blank">TODO</a>
+              <a :href="row.item.waf_url" target="_blank">
+                <v-icon>mdi-file-download</v-icon>
+              </a>
             </td>
           </template>
         </selectable-table>

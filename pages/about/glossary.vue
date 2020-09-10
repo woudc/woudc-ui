@@ -23,8 +23,8 @@
               </a>
             </template>
             <template v-slot:waf>
-              <a :href="process.env.WAF_URL" target="_blank">
-                {{ process.env.WAF_URL }}
+              <a :href="wafURL" target="_blank">
+                {{ wafURL }}
               </a>
             </template>
           </i18n>
@@ -39,7 +39,8 @@ export default {
   data() {
     return {
       carcinogensURL: 'https://www.wmo.int/pages/prog/dra/etrp/documents/926E.pdf',
-      w3URL: 'https://www.w3.org/'
+      w3URL: 'https://www.w3.org/',
+      wafURL: process.env.WAF_URL
     }
   },
   nuxtI18n: {
