@@ -49,7 +49,7 @@ export default {
     },
     ...mapState('news', 
       ['newsItems']),
-
+      
   },
   created() {
     if (this.$i18n.locale === "en"){
