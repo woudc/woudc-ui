@@ -48,8 +48,7 @@ export default {
       return 'https://woudc.org/home.php?lang=' + this.$i18n.locale
     },
     ...mapState('news', 
-      ['newsItems']),
-      
+      ['newsItems']),  
   },
   created() {
     if (this.$i18n.locale === "en"){
