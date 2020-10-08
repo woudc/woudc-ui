@@ -4,28 +4,29 @@
       <v-col v-if="loaded">
         <h1>{{ $t('news.title') }}</h1>
         <p>{{ $t('news.blurb') }}</p>
-        <v-card class = "my-6" v-for="(newsItem, i) in newsItems.json.features" :key="i">
-          <v-card-title class="info" v-if="en">
+        <v-card v-for="(newsItem, i) in newsItems.json.features" :key="i" class="my-6">
+          <v-card-title v-if="en" class="info">
             {{ newsItem.properties.title_en }}
           </v-card-title>
-          <v-card-title class="info" v-if="fr">
+          <v-card-title v-if="fr" class="info">
             {{ newsItem.properties.title_fr }}
           </v-card-title>
-          <v-card-subtitle class="info" v-if="en">
+          <v-card-subtitle v-if="en" class="info">
             <span class="blue--text text--darken-3">{{ newsItem.properties.published.slice(0,11) }}</span>
-            <v-chip class="ma-2" small v-for= "(keyword, j) in newsItem.properties.tags_en.split(',')" :key="j"> 
+            <v-chip v-for="(keyword, j) in newsItem.properties.tags_en.split(',')" :key="j" class="ma-2" small> 
               <span style="font-size: 12px">{{ keyword }}</span> 
             </v-chip>
           </v-card-subtitle>
-          <v-card-subtitle class="info" v-if="fr">
+          <v-card-subtitle v-if="fr" class="info">
             <span class="blue--text text--darken-3">{{ newsItem.properties.published.slice(0,11) }}</span>
-            <v-chip class="ma-2" small v-for= "(keyword, j) in newsItem.properties.tags_fr.split(',')" :key="j">
+            <v-chip v-for="(keyword, j) in newsItem.properties.tags_fr.split(',')" :key="j" class="ma-2" small>
               <span style="font-size: 12px">{{ keyword }}</span>
             </v-chip>
           </v-card-subtitle>
           <!-- eslint-disable-next-line vue/no-v-html -->
-          <v-card-text class="pt-3" v-if="en" v-html="newsItem.properties.description_en" />
-          <v-card-text class="pt-3" v-if="fr" v-html="newsItem.properties.description_fr" />
+          <v-card-text v-if="en" class="pt-3" v-html="newsItem.properties.description_en" />
+          <!-- eslint-disable-next-line vue/no-v-html -->
+          <v-card-text v-if="fr" class="pt-3" v-html="newsItem.properties.description_fr" />
         </v-card>
       </v-col>
     </v-row>
@@ -47,8 +48,7 @@ export default {
       return 'https://woudc.org/home.php?lang=' + this.$i18n.locale
     },
     ...mapState('news', 
-      ['newsItems']),
-
+      ['newsItems']),  
   },
   created() {
     if (this.$i18n.locale === "en"){
