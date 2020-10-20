@@ -1,6 +1,17 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row> 
+      <v-sheet v-if="notLoaded" class="mx-3">
+        <h1 class="mt-3">
+          {{ $t('news.title') }}
+        </h1>
+        <p class="mb-6">
+          {{ $t('news.blurb') }}
+        </p>
+        <v-skeleton-loader type="card-avatar, article" dark="true" elevation="2" min-width="1160" class="my-5" height="400" /> 
+        <v-skeleton-loader type="card-avatar, article" dark="true" elevation="2" min-width="1160" class="my-5" height="400" /> 
+        <v-skeleton-loader type="card-avatar, article" dark="true" elevation="2" min-width="1160" class="my-5" height="400" /> 
+      </v-sheet>
       <v-col v-if="loaded">
         <h1>{{ $t('news.title') }}</h1>
         <p>{{ $t('news.blurb') }}</p>
@@ -39,6 +50,7 @@ export default {
   data(){
     return{
       loaded: false,
+      notLoaded: true,
       en: false,
       fr: false
     }
@@ -49,7 +61,6 @@ export default {
     },
     ...mapState('news', 
       ['newsItems']),
-
   },
   created() {
     if (this.$i18n.locale === "en"){
@@ -68,6 +79,7 @@ export default {
     async loadNewsItems() {
       const holder = await this.$store.dispatch('news/loadNews')
       this.loaded = true
+      this.notLoaded = false
       return holder
     },
   },
