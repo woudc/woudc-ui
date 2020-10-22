@@ -44,7 +44,7 @@ export default {
       return 'https://woudc.org/home.php?lang=' + this.$i18n.locale
     },
     ...mapState('news', 
-      ['newsItems']),
+      ['newsItems']),  
   },
   created() {
     this.loadNewsItems()
