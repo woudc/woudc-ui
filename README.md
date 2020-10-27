@@ -25,6 +25,22 @@ $ npm run generate
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
 
+## SPA fallback in deployment
+
+Since not all pages in WOUDC will be pre-generated, a fallback is required to `index.html` or `200.html` to handle pages with dynamic data.
+
+Apache server mod-rewrite (deployed to subfolder):
+```xml
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /woudc-ui
+RewriteRule ^woudc-ui/index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /woudc-ui/index.html [L]
+</IfModule>
+```
+
 ## Environment variables (.env)
 
 This project includes a `.env.sample` file. **You must rename the file to `.env` and fill in your environment variables so that Nuxt will load it in by default.** If you don't rename or you want to have multiple `.env` files, you must [configure the options of the `dotenv-module`](https://github.com/nuxt-community/dotenv-module#options) module within the `nuxt.config.js` file to match the correct `.env` file accordingly.

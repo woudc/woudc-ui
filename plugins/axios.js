@@ -1,5 +1,11 @@
 import axios from 'axios'
 
-export default axios.create({
-  baseURL: process.env.pygeoapi
+const woudcClient = axios.create({
+  baseURL: process.env.PYGEOAPI_HOSTNAME,
+  timeout: 9000,
+  headers: {
+    'content-Type': 'application/json'
+  }
 })
+
+export default woudcClient
