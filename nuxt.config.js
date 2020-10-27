@@ -7,8 +7,7 @@ const PORT = process.env.npm_config_port || '3000'
 export default {
   mode: 'spa',
   env: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:' + PORT,
-    pygeoapi: process.env.PYGEOAPI_HOSTNAME
+    baseUrl: process.env.BASE_URL || 'http://localhost:' + PORT
   },
   router: {
     base: process.env.ROUTER_BASE || '/woudc-ui/'
