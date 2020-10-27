@@ -1,9 +1,9 @@
 <template>
   <v-container>
-    <h1 class="mt-3"> 
+    <h1> 
       {{ $t('news.title') }} 
     </h1>
-    <p class="mb-6"> 
+    <p> 
       {{ $t('news.blurb') }} 
     </p>
     <div v-if="!loaded">
@@ -19,8 +19,8 @@
           </v-card-title>
           <v-card-subtitle class="info">
             <span class="blue--text text--darken-3">{{ newsItem.properties.published.slice(0,11) }}</span>
-            <v-chip v-for="(keyword, j) in newsItem.properties[`tags_${$i18n.locale}`].split(',')" :key="j" class="ma-2" small>
-              <span style="font-size: 12px">{{ keyword }}</span>
+            <v-chip v-for="(keyword, j) in newsItem.properties[`tags_${$i18n.locale}`].split(',')" :key="j" class="ma-2" small> 
+              {{ keyword }}
             </v-chip>
           </v-card-subtitle>
           <!-- eslint-disable-next-line vue/no-v-html -->
