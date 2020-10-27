@@ -19,7 +19,7 @@
           </v-card-title>
           <v-card-subtitle class="info">
             <span class="blue--text text--darken-3">{{ newsItem.properties.published.slice(0,11) }}</span>
-            <v-chip v-for="(keyword, j) in newsItem.properties[`tags_${$i18n.locale}`].split(',')" :key="j" class="ma-2" small> 
+            <v-chip v-for="(keyword, j) in newsItem.properties[`tags_${$i18n.locale}`].split(',')" :key="j" class="ma-2" small>
               {{ keyword }}
             </v-chip>
           </v-card-subtitle>
