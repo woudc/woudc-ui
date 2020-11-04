@@ -1,14 +1,10 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col>
-        <h1>{{ $t('contributors.list.title') }}</h1>
-        <h2 v-if="contributors.length > 0">
-          {{ contributors[0].acronym + ' - ' + contributors[0].name }}
-        </h2>
-        <p>{{ $t('contributors.list.blurb') }}</p>
-      </v-col>
-    </v-row>
+    <h1>{{ $t('contributors.list.title') }}</h1>
+    <h2 v-if="contributors.length > 0">
+      {{ contributors[0].acronym + ' - ' + contributors[0].name }}
+    </h2>
+    <p>{{ $t('contributors.list.blurb') }}</p>
     <v-row>
       <v-col>
         <selectable-map

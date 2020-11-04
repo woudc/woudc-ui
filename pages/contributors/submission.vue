@@ -1,9 +1,9 @@
 <template>
   <v-container>
+    <h1>{{ $t('contributors.submission.title') }}</h1>
+    <p>{{ $t('contributors.submission.blurb-intro') }}</p>
     <v-row>
       <v-col>
-        <h1>{{ $t('contributors.submission.title') }}</h1>
-        <p>{{ $t('contributors.submission.blurb-intro') }}</p>
         <v-card class="mt-1 mb-4" color="info">
           <v-card-text>
             <strong>{{ $t('common.note') }} (1)</strong>

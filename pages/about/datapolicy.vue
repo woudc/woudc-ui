@@ -1,20 +1,20 @@
 <template>
   <v-container>
+    <h1>{{ $t('about.policy.title') }}</h1>
+    <i18n path="about.policy.blurb" tag="p">
+      <template v-slot:wmo-policy>
+        <a :href="wmoURL" target="_blank">
+          {{ $t('about.policy.wmo-policy') }}
+        </a>
+      </template>
+      <template v-slot:gaw-policy>
+        <a :href="gawURL" target="_blank">
+          {{ $t('about.policy.gaw-policy') }}
+        </a>
+      </template>
+    </i18n>
     <v-row>
       <v-col>
-        <h1>{{ $t('about.policy.title') }}</h1>
-        <i18n path="about.policy.blurb" tag="p">
-          <template v-slot:wmo-policy>
-            <a :href="wmoURL" target="_blank">
-              {{ $t('about.policy.wmo-policy') }}
-            </a>
-          </template>
-          <template v-slot:gaw-policy>
-            <a :href="gawURL" target="_blank">
-              {{ $t('about.policy.gaw-policy') }}
-            </a>
-          </template>
-        </i18n>
         <h2>{{ $t('about.policy.wmo.title') }}</h2>
         <p>{{ $t('about.policy.wmo.blurb.body-intro') }}</p>
         <i18n path="about.policy.wmo.blurb.body-resolution40" tag="p">

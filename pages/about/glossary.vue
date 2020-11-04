@@ -1,9 +1,9 @@
 <template>
   <v-container>
+    <h1>{{ $t('about.glossary.title') }}</h1>
+    <p>{{ $t('about.glossary.blurb') }}</p>
     <v-row>
       <v-col>
-        <h1>{{ $t('about.glossary.title') }}</h1>
-        <p>{{ $t('about.glossary.blurb') }}</p>
         <div v-for="(item, index) in $t('about.glossary.terms')" :key="index">
           <h4>{{ item.term }}</h4>
           <i18n :path="'about.glossary.terms[' + index + '].definition'" tag="p">

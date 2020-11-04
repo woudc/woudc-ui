@@ -1,23 +1,23 @@
 <template>
   <v-container>
+    <h1>{{ $t('about.formats.title') }}</h1>
+    <i18n path="about.formats.blurb.body-intro" tag="p">
+      <template v-slot:extended>
+        <strong>{{ $t('common.extended') }}</strong>
+      </template>
+    </i18n>
+    <i18n path="about.formats.blurb.body-extcsv" tag="p">
+      <template v-slot:extended>
+        <strong>{{ $t('common.extended') }}</strong>
+      </template>
+      <template v-slot:access>
+        <nuxt-link :to="localePath('about-dataaccess')">
+          {{ $t('common.access') }}
+        </nuxt-link>
+      </template>
+    </i18n>
     <v-row>
       <v-col>
-        <h1>{{ $t('about.formats.title') }}</h1>
-        <i18n path="about.formats.blurb.body-intro" tag="p">
-          <template v-slot:extended>
-            <strong>{{ $t('common.extended') }}</strong>
-          </template>
-        </i18n>
-        <i18n path="about.formats.blurb.body-extcsv" tag="p">
-          <template v-slot:extended>
-            <strong>{{ $t('common.extended') }}</strong>
-          </template>
-          <template v-slot:access>
-            <nuxt-link :to="localePath('about-dataaccess')">
-              {{ $t('common.access') }}
-            </nuxt-link>
-          </template>
-        </i18n>
         <v-card class="mt-1 mb-4" color="info">
           <v-card-text>
             {{ $t('about.formats.note') }}

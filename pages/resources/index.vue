@@ -1,8 +1,8 @@
 <template>
   <v-container>
+    <h2>{{ $t('resources.title') }}</h2>
     <v-row>
       <v-col>
-        <h2>{{ $t('resources.title') }}</h2>
         <ul>
           <li v-for="path in localLinks" :key="path">
             <nuxt-link :to="localePath('resources-' + path)">

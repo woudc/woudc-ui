@@ -1,20 +1,20 @@
 <template>
   <v-container>
+    <h1>{{ $t('about.standards.title') }}</h1>
+    <i18n path="about.standards.blurb-intro" tag="p">
+      <template v-slot:interoperability>
+        <a :href="interoperabilityURL" target="_blank">
+          {{ $t('common.interoperability') }}
+        </a>
+      </template>
+      <template v-slot:wis>
+        <a :href="wisURL" target="_blank">
+          {{ $t('common.wis') }}
+        </a>
+      </template>
+    </i18n>
     <v-row>
       <v-col>
-        <h1>{{ $t('about.standards.title') }}</h1>
-        <i18n path="about.standards.blurb-intro" tag="p">
-          <template v-slot:interoperability>
-            <a :href="interoperabilityURL" target="_blank">
-              {{ $t('common.interoperability') }}
-            </a>
-          </template>
-          <template v-slot:wis>
-            <a :href="wisURL" target="_blank">
-              {{ $t('common.wis') }}
-            </a>
-          </template>
-        </i18n>
         <v-data-table
           id="standards-table"
           :headers="headers"

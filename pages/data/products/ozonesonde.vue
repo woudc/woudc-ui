@@ -1,9 +1,9 @@
 <template>
   <v-container>
+    <h1>{{ $t('data.products.ozonesonde.title') }}</h1>
+    <h2>{{ $t('data.products.common.search') }}</h2>
     <v-row>
       <v-col>
-        <h1>{{ $t('data.products.ozonesonde.title') }}</h1>
-        <h2>{{ $t('data.products.common.search') }}</h2>
         <v-expansion-panels>
           <v-expansion-panel>
             <v-expansion-panel-header>
