@@ -1,8 +1,8 @@
 <template>
   <v-container>
+    <h1>{{ $t('resources.working-groups.title') }}</h1>
     <v-row>
       <v-col>
-        <h1>{{ $t('resources.working-groups.title') }}</h1>
         <ul>
           <li v-for="(value, key) in urls" :key="key">
             <a :href="value" target="_blank">

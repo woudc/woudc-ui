@@ -1,10 +1,6 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col>
-        <h1>{{ $t('about.access.title') }}</h1>
-      </v-col>
-    </v-row>
+    <h1>{{ $t('about.access.title') }}</h1>
     <v-row>
       <v-col cols="8">
         <p>{{ $t('about.access.blurb.body-intro') }}</p>

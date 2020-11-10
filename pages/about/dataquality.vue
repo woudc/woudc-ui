@@ -1,9 +1,9 @@
 <template>
   <v-container>
+    <h1>{{ $t('about.quality.title') }}</h1>
+    <p>{{ $t('about.quality.blurb') }}</p>
     <v-row>
       <v-col>
-        <h1>{{ $t('about.quality.title') }}</h1>
-        <p>{{ $t('about.quality.blurb') }}</p>
         <h2>{{ $t('common.gawFull') }}</h2>
         <i18n path="about.quality.gaw-blurb" tag="p">
           <template v-slot:gaw-qa>

@@ -1,9 +1,9 @@
 <template>
   <v-container>
+    <h1>{{ $t('about.faq.title') }}</h1>
+    <p>{{ $t('about.faq.blurb') }}</p>
     <v-row>
       <v-col>
-        <h1>{{ $t('about.faq.title') }}</h1>
-        <p>{{ $t('about.faq.blurb') }}</p>
         <div v-for="(question, index) in $t('about.faq.questions')" :key="index">
           <h4>{{ question.text }}</h4>
           <i18n :path="'about.faq.questions[' + index + '].answer'" tag="p">

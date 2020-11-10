@@ -1,11 +1,7 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col>
-        <h1>{{ $t('contributors.list.title') }}</h1>
-        <p>{{ $t('contributors.list.blurb') }}</p>
-      </v-col>
-    </v-row>
+    <h1>{{ $t('contributors.list.title') }}</h1>
+    <p>{{ $t('contributors.list.blurb') }}</p>
     <v-row>
       <v-col>
         <selectable-map

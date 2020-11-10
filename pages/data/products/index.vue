@@ -1,9 +1,9 @@
 <template>
   <v-container>
+    <h1>{{ $t('data.products.title') }}</h1>
+    <p>{{ $t('data.products.blurb') }}</p>
     <v-row>
       <v-col>
-        <h1>{{ $t('data.products.title') }}</h1>
-        <p>{{ $t('data.products.blurb') }}</p>
         <div id="time-series">
           <h2>{{ $t('data.products.time-series.title') }}</h2>
           <p>{{ $t('data.products.time-series.blurb') }}</p>

@@ -1,9 +1,9 @@
 <template>
   <v-container>
     <h1>{{ $t('data.info.title') }}</h1>
+    <p>{{ $t('data.info.blurb') }}</p>
     <v-row>
       <v-col>
-        <p>{{ $t('data.info.blurb') }}</p>
         <h2>{{ $t('data.info.subtitle') }}</h2>
         <ul>
           <li v-for="section in sectionOrder" :key="section">

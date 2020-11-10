@@ -1,9 +1,9 @@
 <template>
   <v-container>
+    <h1>{{ $t('resources.procedures.title') }}</h1>
+    <p>{{ $t('resources.procedures.blurb') }}</p>
     <v-row>
       <v-col>
-        <h1>{{ $t('resources.procedures.title') }}</h1>
-        <p>{{ $t('resources.procedures.blurb') }}</p>
         <v-data-table
           :headers="headers"
           :items="rows"

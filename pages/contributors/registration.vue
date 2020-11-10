@@ -1,16 +1,16 @@
 <template>
   <v-container>
+    <h1>{{ $t('contributors.registration.title') }}</h1>
+    <p>{{ $t('contributors.registration.blurb.body-accounts') }}</p>
+    <i18n path="contributors.registration.blurb.body-submissions" tag="p">
+      <template v-slot:submissions>
+        <nuxt-link :to="localePath('contributors-submission')">
+          {{ $tc('common.submission', 2) }}
+        </nuxt-link>
+      </template>
+    </i18n>
     <v-row>
       <v-col>
-        <h1>{{ $t('contributors.registration.title') }}</h1>
-        <p>{{ $t('contributors.registration.blurb.body-accounts') }}</p>
-        <i18n path="contributors.registration.blurb.body-submissions" tag="p">
-          <template v-slot:submissions>
-            <nuxt-link :to="localePath('contributors-submission')">
-              {{ $tc('common.submission', 2) }}
-            </nuxt-link>
-          </template>
-        </i18n>
         <ol>
           <li>
             <i18n path="contributors.registration.step1" tag="span">

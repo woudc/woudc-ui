@@ -1,14 +1,10 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col>
-        <h1>{{ $t('data.stations.title') }}</h1>
-        <h2 v-if="station !== null">
-          {{ station.name + ' - ' + station.woudc_id }}
-        </h2>
-        <p>{{ $t('data.stations.blurb') }}</p>
-      </v-col>
-    </v-row>
+    <h1>{{ $t('data.stations.title') }}</h1>
+    <h2 v-if="station !== null">
+      {{ station.name + ' - ' + station.woudc_id }}
+    </h2>
+    <p>{{ $t('data.stations.blurb') }}</p>
     <v-row>
       <v-col>
         <selectable-map

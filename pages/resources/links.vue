@@ -1,9 +1,9 @@
 <template>
   <v-container>
+    <h1>{{ $t('resources.related-links.title') }}</h1>
+    <h2>{{ $t('common.wmo') }}</h2>
     <v-row>
       <v-col>
-        <h1>{{ $t('resources.related-links.title') }}</h1>
-        <h2>{{ $t('common.wmo') }}</h2>
         <ul>
           <li v-for="(value, key) in wmoURLs" :key="key">
             <a :href="value" target="_blank">
