@@ -5,7 +5,7 @@ require('dotenv').config()
 const PORT = process.env.npm_config_port || '3000'
 
 export default {
-  mode: 'spa',
+  ssr: false,
   env: {
     baseUrl: process.env.BASE_URL || 'http://localhost:' + PORT
   },
@@ -152,7 +152,7 @@ export default {
       config.module.rules.push({
         resourceQuery: /blockType=i18n/,
         type: 'javascript/auto',
-        loader: ['@kazupon/vue-i18n-loader']
+        loader: ['@intlify/vue-i18n-loader']
       })
 
       // Run ESLint on save

@@ -1,5 +1,5 @@
 {
-  "name": "WOUDC",
+  "name": "woudc-ui",
   "version": "2.0.0-dev",
   "description": "The World Ozone and Ultraviolet Radiation Data Centre (WOUDC) is one of six World Data Centres which are part of the Global Atmosphere Watch (GAW) programme of the World Meteorological Organization (WMO).  WOUDC contains ozone and UV radiation data measured by instruments located on ground-based, shipborne or airborne platforms.",
   "author": "Kevin Ngai",
@@ -35,7 +35,7 @@
     "vue2-leaflet": "^2.5.2"
   },
   "devDependencies": {
-    "@kazupon/vue-i18n-loader": "^0.4.1",
+    "@intlify/vue-i18n-loader": "^2.0.0-beta.2",
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/eslint-config": "^1.1.2",
     "@nuxtjs/eslint-module": "^1.2.0",
