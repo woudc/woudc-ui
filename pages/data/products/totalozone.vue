@@ -71,7 +71,6 @@
             </v-radio-group>
           </v-col>
         </v-row>
-        </div>
         <h3>{{ $t('data.products.common.instrument') }}</h3>
         <v-select
           v-model="selectedInstrument"

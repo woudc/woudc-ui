@@ -71,7 +71,6 @@
             </v-radio-group>
           </v-col>
         </v-row>
-        </div>
         <div class="requiredHead mb-2">
           <h3>{{ $t('data.products.common.instrument') }}</h3>
           <v-chip small label class="ml-2 mt-1" color="primary">
