@@ -52,17 +52,17 @@ done
 
 echo "Setting up npm environment"
 mkdir -p $BASEDIR/.npm-global
-npm config set prefix $BASEDIR/.npm-global
+npm config set prefix "$BASEDIR/.npm-global"
 export N_PREFIX=$BASEDIR/.n
 export PATH=$N_PREFIX/bin:$PATH 
 npm install -g n
-n lts
+$BASEDIR/.npm-global/lib/node_modules/n/bin/n lts
+#$N_PREFIX/n lts
 
 echo "Generating nightly build for $TIMESTAMP"
 rm -fr latest
 mkdir $NIGHTLYDIR && cd $NIGHTLYDIR
-git clone $GITREPO . -b master --depth=1
-cd woudc-ui
+git clone $GITREPO .
 cp deploy/nightly/.env .
 npm install
 npm run build
