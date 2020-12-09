@@ -89,5 +89,6 @@ sw.*
 # Vim swap files
 *.swp
 
-# VS Code workspace
+# VS Code files
 /*.code-workspace
+/.vscode
