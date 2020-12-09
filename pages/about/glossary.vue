@@ -42,12 +42,6 @@ export default {
       w3URL: 'https://www.w3.org/',
       wafURL: process.env.WAF_URL
     }
-  },
-  nuxtI18n: {
-    paths: {
-      en: '/about/glossary',
-      fr: '/a-propos/glossaire'
-    }
   }
 }
 </script>

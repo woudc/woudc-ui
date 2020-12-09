@@ -1,6 +1,4 @@
-
-import axios from '~/plugins/axios'
-
+import woudcClient from '~/plugins/woudcClient'
 
 const state = () => ({
   loaded: false,
@@ -24,7 +22,6 @@ const getters = {
   }
 }
 
-
 const mutations = {
   setContributors(state, contributors) {
     const byAcronym = {}
@@ -46,7 +43,6 @@ const mutations = {
   }
 }
 
-
 const actions = {
   async download({ commit, state }, proc) {
     if (state.loaded) {
@@ -56,13 +52,12 @@ const actions = {
     const contributorsURL = '/collections/contributors/items'
     const queryParams = 'sortby=acronym:A&limit=1000'
 
-    const response = await axios.get(contributorsURL + '?' + queryParams)
+    const response = await woudcClient.get(contributorsURL + '?' + queryParams)
 
     commit('setContributors', response.data.features)
     commit('setLoaded', true)
   }
 }
-
 
 export default {
   namespaced: true,

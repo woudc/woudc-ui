@@ -1,15 +1,15 @@
 <template>
   <v-container>
-    <h1> 
-      {{ $t('news.title') }} 
+    <h1>
+      {{ $t('news.title') }}
     </h1>
-    <p> 
-      {{ $t('news.blurb') }} 
+    <p>
+      {{ $t('news.blurb') }}
     </p>
     <div v-if="!loaded">
-      <v-skeleton-loader type="card-avatar, article" elevation="2" class="mt-9" height="400" /> 
-      <v-skeleton-loader type="card-avatar, article" elevation="2" class="my-8" height="400" /> 
-      <v-skeleton-loader type="card-avatar, article" elevation="2" class="my-8" height="400" /> 
+      <v-skeleton-loader type="card-avatar, article" elevation="2" class="mt-9" height="400" />
+      <v-skeleton-loader type="card-avatar, article" elevation="2" class="my-8" height="400" />
+      <v-skeleton-loader type="card-avatar, article" elevation="2" class="my-8" height="400" />
     </div>
     <v-row>
       <v-col v-if="loaded">
@@ -43,8 +43,8 @@ export default {
     woudcLink() {
       return 'https://woudc.org/home.php?lang=' + this.$i18n.locale
     },
-    ...mapState('news', 
-      ['newsItems']),  
+    ...mapState('news',
+      ['newsItems']),
   },
   created() {
     this.loadNewsItems()
@@ -55,12 +55,6 @@ export default {
       this.loaded = true
       return holder
     },
-  },
-  nuxtI18n: {
-    paths: {
-      en: '/news',
-      fr: '/nouvelles'
-    }
   }
 }
 </script>

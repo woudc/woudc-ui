@@ -111,7 +111,7 @@
 </template>
 
 <script>
-import axios from '~/plugins/axios'
+import woudcClient from '~/plugins/woudcClient'
 import { stripProperties, unpackageStation } from '~/plugins/unpackage'
 
 import mapInstructions from '~/components/MapInstructions'
@@ -129,7 +129,7 @@ export default {
     const url = '/collections/stations/items'
 
     let found = true
-    await axios.get(url + '/' + woudcID).catch(() => {
+    await woudcClient.get(url + '/' + woudcID).catch(() => {
       found = false
     })
 
@@ -226,13 +226,13 @@ export default {
       const deploymentsURL = '/collections/deployments/items'
 
       let queryParams = 'station_id=' + woudcID + '&sortby=contributor:A'
-      const deploymentsResponse = await axios.get(deploymentsURL + '?' + queryParams)
+      const deploymentsResponse = await woudcClient.get(deploymentsURL + '?' + queryParams)
 
       this.deployments = deploymentsResponse.data.features.map(stripProperties)
 
       queryParams = 'station_id=' + woudcID + '&sortby=dataset:A,name:A,model:A,serial:A'
       const instrumentsResponse =
-        await axios.get(instrumentsURL + '?' + queryParams)
+        await woudcClient.get(instrumentsURL + '?' + queryParams)
 
       this.instruments = instrumentsResponse.data.features.map(stripProperties)
     }

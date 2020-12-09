@@ -1,12 +1,9 @@
-
-import axios from '~/plugins/axios'
-
+import woudcClient from '~/plugins/woudcClient'
 
 const defaultStationList = () => ({
   orderByID: [],
   orderByName: []
 })
-
 
 function groupStationsByDataset(features, stationsByID) {
   const stationsByDataset = {}
@@ -71,7 +68,6 @@ const state = () => ({
   uvindex: defaultStationList()
 })
 
-
 const getters = {
   all(state) {
     return state.stationsList
@@ -119,7 +115,6 @@ const getters = {
     return state.uvindex
   }
 }
-
 
 const mutations = {
   setStations(state, stations, order) {
@@ -171,7 +166,6 @@ const mutations = {
   }
 }
 
-
 const actions = {
   async download({ commit, state }, proc) {
     if (state.loaded) {
@@ -190,7 +184,7 @@ const actions = {
     ]
     let queryParams = { inputs: stationInputs }
 
-    const stationsResponse = await axios.post(queryURL, queryParams)
+    const stationsResponse = await woudcClient.post(queryURL, queryParams)
     const stationsByOrdering = stationsResponse.data.outputs
 
     // Download all contributions (basically station-dataset pairs) in both orderings.
@@ -204,7 +198,7 @@ const actions = {
     ]
     queryParams = { inputs: contributionInputs }
 
-    const contributionsResponse = await axios.post(queryURL, queryParams)
+    const contributionsResponse = await woudcClient.post(queryURL, queryParams)
     const featuresByOrdering = contributionsResponse.data.outputs
 
     // Use a map to let a station's properties all be available using just the ID.

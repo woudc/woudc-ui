@@ -129,12 +129,6 @@ export default {
     this.instruments = instruments.map(unpackageInstrument)
     this.loadingMap = false
     this.loadingTable = false
-  },
-  nuxtI18n: {
-    paths: {
-      en: '/data/instruments',
-      fr: '/donnees/instruments'
-    }
   }
 }
 </script>
