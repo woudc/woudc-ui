@@ -7,11 +7,5 @@
 
 <script>
 export default {
-  nuxtI18n: {
-    paths: {
-      en: '/contributors/validation',
-      fr: '/contributeurs/validateur'
-    }
-  }
 }
 </script>

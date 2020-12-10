@@ -437,12 +437,6 @@ export default {
         value: year
       }
     }
-  },
-  nuxtI18n: {
-    paths: {
-      en: '/data/products/totalozone',
-      fr: '/donnees/produits/ozonetotal'
-    }
   }
 }
 </script>

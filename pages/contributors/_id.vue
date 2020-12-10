@@ -178,12 +178,6 @@ export default {
       this.contributors = contributors
       this.selectedContributor = contributors[0]
     }
-  },
-  nuxtI18n: {
-    paths: {
-      en: '/contributors/:id',
-      fr: '/contributeurs/:id'
-    }
   }
 }
 </script>

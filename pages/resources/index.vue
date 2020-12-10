@@ -27,12 +27,6 @@ export default {
       localLinks: [ 'sop', 'workinggroups', 'links' ],
       softwareURL: 'https://github.com/woudc/woudc/wiki'
     }
-  },
-  nuxtI18n: {
-    paths: {
-      en: '/resources',
-      fr: '/ressources'
-    }
   }
 }
 </script>

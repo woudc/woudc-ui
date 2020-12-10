@@ -19,12 +19,6 @@ export default {
         'explore', 'products', 'datasetinfo', 'stations', 'instruments'
       ],
     }
-  },
-  nuxtI18n: {
-    paths: {
-      en: '/data',
-      fr: '/donnees'
-    }
   }
 }
 </script>

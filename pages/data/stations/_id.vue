@@ -236,12 +236,6 @@ export default {
 
       this.instruments = instrumentsResponse.data.features.map(stripProperties)
     }
-  },
-  nuxtI18n: {
-    paths: {
-      en: '/data/stations/:id',
-      fr: '/donnees/stations/:id'
-    }
   }
 }
 </script>

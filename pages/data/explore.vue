@@ -887,12 +887,6 @@ export default {
         this.selectedYearRange = [ newStartYear, oldEndYear ]
       })
     }
-  },
-  nuxtI18n: {
-    paths: {
-      en: '/data/explore',
-      fr: '/donnees/rechercher'
-    }
   }
 }
 </script>

@@ -125,12 +125,6 @@ export default {
         }
       })
     }
-  },
-  nuxtI18n: {
-    paths: {
-      en: '/about/standards',
-      fr: '/a-propos/normes'
-    }
   }
 }
 </script>
