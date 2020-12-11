@@ -83,12 +83,6 @@ export default {
         }
       })
     }
-  },
-  nuxtI18n: {
-    paths: {
-      en: '/about/formats',
-      fr: '/a-propos/formats'
-    }
   }
 }
 </script>

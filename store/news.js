@@ -1,5 +1,5 @@
 /* vuex file with the purpose of extracting and storing news data */
-import axios from '~/plugins/axios'
+import woudcClient from '~/plugins/woudcClient'
 
 const URL = process.env.PYGEOAPI_HOSTNAME + '/collections/notifications/items?f=json'
 
@@ -22,7 +22,7 @@ const mutations = {
 const actions = {
   async loadNews({commit,getters}) {
     try{
-      const response = await axios.get(URL)
+      const response = await woudcClient.get(URL)
       commit('setNewsItems', {
         json: response.data
       })
@@ -31,13 +31,6 @@ const actions = {
     }
   }
 }
-
-     
-    
-    
-
-
-
 
 export default {
   namespaced: true,

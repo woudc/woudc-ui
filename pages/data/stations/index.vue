@@ -134,12 +134,6 @@ export default {
     this.stations = stations.map(unpackageStation)
     this.loadingMap = false
     this.loadingTable = false
-  },
-  nuxtI18n: {
-    paths: {
-      en: '/data/stations',
-      fr: '/donnees/stations'
-    }
   }
 }
 </script>

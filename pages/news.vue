@@ -1,15 +1,15 @@
 <template>
   <v-container>
-    <h1> 
-      {{ $t('news.title') }} 
+    <h1>
+      {{ $t('news.title') }}
     </h1>
-    <p> 
-      {{ $t('news.blurb') }} 
+    <p>
+      {{ $t('news.blurb') }}
     </p>
     <div v-if="!loaded">
-      <v-skeleton-loader type="card-avatar, article" elevation="2" class="mt-9" height="400" /> 
-      <v-skeleton-loader type="card-avatar, article" elevation="2" class="my-8" height="400" /> 
-      <v-skeleton-loader type="card-avatar, article" elevation="2" class="my-8" height="400" /> 
+      <v-skeleton-loader type="card-avatar, article" elevation="2" class="mt-9" height="400" />
+      <v-skeleton-loader type="card-avatar, article" elevation="2" class="my-8" height="400" />
+      <v-skeleton-loader type="card-avatar, article" elevation="2" class="my-8" height="400" />
     </div>
     <v-row>
       <v-col v-if="loaded">
@@ -44,8 +44,7 @@ export default {
       return 'https://woudc.org/home.php?lang=' + this.$i18n.locale
     },
     ...mapState('news', 
-      ['newsItems']),
-    
+      ['newsItems']),    
     sortedItems(){
       return this.newsItems.json.features.slice(0).sort((a, b) => a.properties.published_date.slice(0,10) < b.properties.published_date.slice(0,10) ? 1 : -1)
     }
@@ -59,12 +58,6 @@ export default {
       this.loaded = true
       return holder
     },
-  },
-  nuxtI18n: {
-    paths: {
-      en: '/news',
-      fr: '/nouvelles'
-    }
   }
 }
 </script>

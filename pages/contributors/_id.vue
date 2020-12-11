@@ -81,7 +81,7 @@
 </template>
 
 <script>
-import axios from '~/plugins/axios'
+import woudcClient from '~/plugins/woudcClient'
 import { unpackageContributor, unpackageDeployment } from '~/plugins/unpackage'
 
 import mapInstructions from '~/components/MapInstructions'
@@ -100,7 +100,7 @@ export default {
 
     const queryParams = 'acronym=' + acronym
     let found = true
-    await axios.get(url + '?' + queryParams).catch(() => {
+    await woudcClient.get(url + '?' + queryParams).catch(() => {
       found = false
     })
 
@@ -172,17 +172,11 @@ export default {
       const deploymentsURL = '/collections/deployments/items'
       const queryParams = 'contributor=' + acronym + '&sortby=station_id:A'
 
-      const deploymentsResponse = await axios.get(deploymentsURL + '?' + queryParams)
+      const deploymentsResponse = await woudcClient.get(deploymentsURL + '?' + queryParams)
 
       this.deployments =  deploymentsResponse.data.features.map(unpackageDeployment)
       this.contributors = contributors
       this.selectedContributor = contributors[0]
-    }
-  },
-  nuxtI18n: {
-    paths: {
-      en: '/contributors/:id',
-      fr: '/contributeurs/:id'
     }
   }
 }

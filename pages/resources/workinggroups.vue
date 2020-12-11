@@ -25,12 +25,6 @@ export default {
         umkehr: process.env.WAF_URL + '/Publications/Meeting_Reports/Umkehr_Sub-Committee/'
       }
     }
-  },
-  nuxtI18n: {
-    paths: {
-      en: '/resources/working-groups',
-      fr: '/ressources/groupes-travail'
-    }
   }
 }
 </script>

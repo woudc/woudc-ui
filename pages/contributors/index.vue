@@ -120,12 +120,6 @@ export default {
     this.contributors = contributors.map(unpackageContributor)
     this.loadingMap = false
     this.loadingTable = false
-  },
-  nuxtI18n: {
-    paths: {
-      en: '/contributors',
-      fr: '/contributeurs'
-    }
   }
 }
 </script>

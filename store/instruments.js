@@ -1,5 +1,5 @@
 
-import axios from '~/plugins/axios'
+import woudcClient from '~/plugins/woudcClient'
 
 
 function instrumentModelID(instrumentModelObj) {
@@ -62,7 +62,7 @@ const actions = {
     ]
 
     const queryParams = { inputs }
-    const response = await axios.post(queryURL, queryParams)
+    const response = await woudcClient.post(queryURL, queryParams)
     const instruments = response.data.outputs
 
     for (const instrumentName of instruments.nameResolution) {
