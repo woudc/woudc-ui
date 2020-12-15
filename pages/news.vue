@@ -13,13 +13,13 @@
     </div>
     <v-row>
       <v-col v-if="loaded">
-        <v-card v-for="(newsItem, i) in newsItems.json.features" :key="i" class="mb-6">
+        <v-card v-for="(newsItem, i) in sortedItems" :key="i" class="mb-6">
           <v-card-title class="info">
             {{ newsItem.properties[`title_${$i18n.locale}`] }}
           </v-card-title>
           <v-card-subtitle class="info">
-            <span class="blue--text text--darken-3">{{ newsItem.properties.published.slice(0,11) }}</span>
-            <v-chip v-for="(keyword, j) in newsItem.properties[`tags_${$i18n.locale}`].split(',')" :key="j" class="ma-2" small>
+            <span class="blue--text text--darken-3">{{ newsItem.properties.published_date.slice(0,10) }}</span>
+            <v-chip v-for="(keyword, j) in newsItem.properties[`keywords_${$i18n.locale}`]" :key="j" class="ma-2" small>
               {{ keyword }}
             </v-chip>
           </v-card-subtitle>
@@ -43,8 +43,11 @@ export default {
     woudcLink() {
       return 'https://woudc.org/home.php?lang=' + this.$i18n.locale
     },
-    ...mapState('news',
-      ['newsItems']),
+    ...mapState('news', 
+      ['newsItems']),    
+    sortedItems(){
+      return this.newsItems.json.features.slice(0).sort((a, b) => a.properties.published_date.slice(0,10) < b.properties.published_date.slice(0,10) ? 1 : -1)
+    }
   },
   created() {
     this.loadNewsItems()

@@ -1,7 +1,7 @@
 /* vuex file with the purpose of extracting and storing news data */
 import woudcClient from '~/plugins/woudcClient'
 
-const URL = 'https://geo.woudc.org/ows?service=WFS&version=1.1.0&request=GetFeature&outputformat=geojson&typename=notifications'
+const URL = process.env.PYGEOAPI_HOSTNAME + '/collections/notifications/items?f=json'
 
 const state = () => ({
   newsItems: []
