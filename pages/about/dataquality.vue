@@ -81,6 +81,12 @@ export default {
         return defn
       })
     }
+  },
+  nuxtI18n: {
+    paths: {
+      en: '/about/data-quality',
+      fr: '/a-propos/qualite-donnees'
+    }
   }
 }
 </script>

@@ -122,13 +122,19 @@ export default {
       }
     }
   },
-  async created() {
+  async mounted() {
     await this.$store.dispatch('instruments/download')
 
     const instruments = this.$store.getters['instruments/modelResolution']
     this.instruments = instruments.map(unpackageInstrument)
     this.loadingMap = false
     this.loadingTable = false
+  },
+  nuxtI18n: {
+    paths: {
+      en: '/data/instruments',
+      fr: '/donnees/instruments'
+    }
   }
 }
 </script>

@@ -52,6 +52,12 @@ export default {
         shadoz: 'https://croc.gsfc.nasa.gov/shadoz/'
       }
     }
+  },
+  nuxtI18n: {
+    paths: {
+      en: '/resources/links',
+      fr: '/ressources/liens'
+    }
   }
 }
 </script>

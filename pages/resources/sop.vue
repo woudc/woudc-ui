@@ -63,6 +63,12 @@ export default {
         return definition
       })
     }
+  },
+  nuxtI18n: {
+    paths: {
+      en: '/resources/sop',
+      fr: '/ressources/pun'
+    }
   }
 }
 </script>

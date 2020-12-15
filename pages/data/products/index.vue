@@ -84,6 +84,12 @@ export default {
         'uv-index': 'data-products-uvindex'
       }
     }
+  },
+  nuxtI18n: {
+    paths: {
+      en: '/data/products',
+      fr: '/donnees/produits'
+    }
   }
 }
 </script>

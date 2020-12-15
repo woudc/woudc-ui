@@ -157,7 +157,7 @@ export default {
       this.populate()
     }
   },
-  async created() {
+  async mounted() {
     await this.$store.dispatch('contributors/download')
     await this.populate()
     this.loadingMap = false
@@ -177,6 +177,12 @@ export default {
       this.deployments =  deploymentsResponse.data.features.map(unpackageDeployment)
       this.contributors = contributors
       this.selectedContributor = contributors[0]
+    }
+  },
+  nuxtI18n: {
+    paths: {
+      en: '/contributors/:id',
+      fr: '/contributeurs/:id'
     }
   }
 }

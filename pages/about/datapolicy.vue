@@ -125,6 +125,12 @@ export default {
       resolution40: 'https://www.wmo.int/pages/prog/hwrp/documents/wmo_827_enCG-XII-Res40.pdf',
       wmoURL: 'https://www.wmo.int/pages/about/exchangingdata_en.html'
     }
+  },
+  nuxtI18n: {
+    paths: {
+      en: '/about/data-policy',
+      fr: '/a-propos/politique-donnees'
+    }
   }
 }
 </script>

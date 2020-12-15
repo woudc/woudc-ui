@@ -64,6 +64,12 @@ export default {
       gawHomeURL: 'https://gawsis.meteoswiss.ch/',
       wmoGAWUrl: 'https://public.wmo.int/en/programmes/global-atmosphere-watch-programme'
     }
+  },
+  nuxtI18n: {
+    paths: {
+      en: '/contributors/registration',
+      fr: '/contributeurs/inscription'
+    }
   }
 }
 </script>

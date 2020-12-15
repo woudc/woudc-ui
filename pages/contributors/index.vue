@@ -113,13 +113,19 @@ export default {
       }
     }
   },
-  async created() {
+  async mounted() {
     await this.$store.dispatch('contributors/download')
 
     const contributors = this.$store.getters['contributors/all']
     this.contributors = contributors.map(unpackageContributor)
     this.loadingMap = false
     this.loadingTable = false
+  },
+  nuxtI18n: {
+    paths: {
+      en: '/contributors',
+      fr: '/contributeurs'
+    }
   }
 }
 </script>

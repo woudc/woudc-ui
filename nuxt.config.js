@@ -125,7 +125,7 @@ export default {
         name: 'Français'
       }
     ],
-    strategy: 'prefix_except_default',
+    strategy: 'prefix',
     defaultLocale: 'en',
     vueI18n: {
       fallbackLocale: 'en',
@@ -134,10 +134,9 @@ export default {
         fr: require('./locales/fr.json')
       }
     },
-    vueI18nLoader: true,
     detectBrowserLanguage: {
       useCookie: true,
-      cookieKey: 'woudc_i18n_redirected'
+      cookieKey: 'woudc_default_language'
     },
     baseUrl: process.env.BASE_URL || 'http://localhost:3000',
     seo: true

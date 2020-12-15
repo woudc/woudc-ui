@@ -85,6 +85,12 @@ export default {
       selectedSubject: null,
       selectedMessage: null
     }
+  },
+  nuxtI18n: {
+    paths: {
+      en: '/contact',
+      fr: '/contact-in-french'
+    }
   }
 }
 </script>

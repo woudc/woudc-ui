@@ -481,7 +481,7 @@ export default {
       return !(datasetOk && countryOk && stationOk && instrumentOk && startYearOk && endYearOk)
     },
   },
-  async created() {
+  async mounted() {
     await Promise.all([
       this.$store.dispatch('countries/download'),
       this.$store.dispatch('stations/download'),
@@ -886,6 +886,12 @@ export default {
         // Set the actual intended value for the start year.
         this.selectedYearRange = [ newStartYear, oldEndYear ]
       })
+    }
+  },
+  nuxtI18n: {
+    paths: {
+      en: '/data/explore',
+      fr: '/donnees/rechercher'
     }
   }
 }

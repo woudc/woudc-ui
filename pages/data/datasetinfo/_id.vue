@@ -163,6 +163,12 @@ export default {
         return station.name + ' (' + station.gaw_id + ')'
       }
     }
+  },
+  nuxtI18n: {
+    paths: {
+      en: '/data/info/:id',
+      fr: '/donnees/information/:id'
+    }
   }
 }
 </script>

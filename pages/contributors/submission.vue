@@ -58,6 +58,12 @@ export default {
     return {
       ftpPath: 'ftp://ftp.woudc.org/'
     }
+  },
+  nuxtI18n: {
+    paths: {
+      en: '/contributors/submission',
+      fr: '/contributeurs/soumission'
+    }
   }
 }
 </script>

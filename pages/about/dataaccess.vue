@@ -399,6 +399,12 @@ export default {
         subsections: null
       }
     }
+  },
+  nuxtI18n: {
+    paths: {
+      en: '/about/data-access',
+      fr: '/a-propos/accessibilite-donnees'
+    }
   }
 }
 </script>

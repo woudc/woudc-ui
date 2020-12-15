@@ -72,6 +72,12 @@ export default {
       usabilityURL: 'https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=24227',
       w3cURL: 'https://www.w3.org/WAI/intro/wcag'
     }
+  },
+  nuxtI18n: {
+    paths: {
+      en: '/about/faq',
+      fr: '/a-propos/faq'
+    }
   }
 }
 </script>

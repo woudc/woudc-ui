@@ -451,6 +451,12 @@ export default {
         value: year
       }
     }
+  },
+  nuxtI18n: {
+    paths: {
+      en: '/data/products/uvindex',
+      fr: '/donnees/produits/indiceuv'
+    }
   }
 }
 </script>

@@ -207,7 +207,7 @@ export default {
       this.populate()
     }
   },
-  async created() {
+  async mounted() {
     await this.$store.dispatch('stations/download')
     await this.populate()
     this.loadingMap = false
@@ -235,6 +235,12 @@ export default {
         await woudcClient.get(instrumentsURL + '?' + queryParams)
 
       this.instruments = instrumentsResponse.data.features.map(stripProperties)
+    }
+  },
+  nuxtI18n: {
+    paths: {
+      en: '/data/stations/:id',
+      fr: '/donnees/stations/:id'
     }
   }
 }

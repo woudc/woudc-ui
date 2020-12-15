@@ -47,6 +47,12 @@ export default {
       },
       sectionOrder: [ 'totalozone', 'vertical-ozone', 'uv-irradiance' ]
     }
+  },
+  nuxtI18n: {
+    paths: {
+      en: '/data/info',
+      fr: '/donnees/information'
+    }
   }
 }
 </script>
