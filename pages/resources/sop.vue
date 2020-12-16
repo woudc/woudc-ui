@@ -66,8 +66,8 @@ export default {
   },
   nuxtI18n: {
     paths: {
-      en: '/resources/sop',
-      fr: '/ressources/pun'
+      en: '/resources/standard-operating-procedures',
+      fr: '/ressources/procédures-d\'utilisation-normalisées'
     }
   }
 }

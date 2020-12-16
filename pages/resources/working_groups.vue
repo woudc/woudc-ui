@@ -29,7 +29,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/resources/working-groups',
-      fr: '/ressources/groupes-travail'
+      fr: '/ressources/groupes-de-travail'
     }
   }
 }

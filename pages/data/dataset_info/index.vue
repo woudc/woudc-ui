@@ -50,8 +50,8 @@ export default {
   },
   nuxtI18n: {
     paths: {
-      en: '/data/info',
-      fr: '/donnees/information'
+      en: '/data/dataset-information',
+      fr: '/données/information-sur-les-jeux-de-données'
     }
   }
 }

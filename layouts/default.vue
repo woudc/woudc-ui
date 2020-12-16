@@ -83,9 +83,9 @@ export default {
         data: {
           icon: 'mdi-database',
           sections: {
-            'data-explore': { link: 'data-explore' },
+            'data-explore': { link: 'data-search_and_download' },
             'data-products': { link: 'data-products' },
-            'data-info': { link: 'data-datasetinfo' },
+            'data-info': { link: 'data-dataset_info' },
             'data-stations': { link: 'data-stations' },
             'data-instruments': { link: 'data-instruments' }
           }
@@ -107,7 +107,7 @@ export default {
           icon: 'mdi-book-open-variant',
           sections: {
             'resources-sop': { link: 'resources-sop' },
-            'resources-groups': { link: 'resources-workinggroups' },
+            'resources-groups': { link: 'resources-working_groups' },
             'resources-links': { link: 'resources-links' },
             'resources-software': {
               type: 'external',
@@ -123,10 +123,10 @@ export default {
           icon: 'mdi-information',
           sections: {
             'about-home': { link: 'about' },
-            'about-quality': { link: 'about-dataquality' },
-            'about-policy': { link: 'about-datapolicy' },
+            'about-quality': { link: 'about-data_quality' },
+            'about-policy': { link: 'about-data_policy' },
             'about-standards': { link: 'about-standards' },
-            'about-access': { link: 'about-dataaccess' },
+            'about-access': { link: 'about-data_access' },
             'about-formats': { link: 'about-formats' },
             'about-glossary': { link: 'about-glossary' },
             'about-faq': { link: 'about-faq' }

@@ -455,7 +455,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/data/products/uvindex',
-      fr: '/donnees/produits/indiceuv'
+      fr: '/données/produits/indiceuv'
     }
   }
 }

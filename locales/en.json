@@ -155,7 +155,9 @@
           "body-standards": "The WOUDC web services adhere to open standards ratified by the {ogc} (OGC), and the {iso} (ISO) which enable interoperability and thus make data easy to discover, access, visualize and integrate. OGC and ISO standards play an important role in {interoperability} as part of the {wis} and are supported by numerous off the shelf open source or commercial tools."
         },
         "table": {
-          "links": [ "???" ],
+          "links": [
+            "???"
+          ],
           "title": "The following OGC web services are made available for standards-based, dynamic data access:"
         },
         "title": "Web Services"
@@ -216,7 +218,7 @@
           "text": "How frequently is data updated?"
         },
         {
-          "answer": "WOUDC uses information provided by contributors who submit data. The WOUDC is responsible for ensuring that the most recent information provided by the contributors is available to all users.","text": "Who is responsible for keeping WOUDC information up-to-date?",
+          "answer": "WOUDC uses information provided by contributors who submit data. The WOUDC is responsible for ensuring that the most recent information provided by the contributors is available to all users.",
           "text": "Who is responsible for keeping WOUDC information up-to-date?"
         },
         {
@@ -961,7 +963,7 @@
         "processed-datetime": "Processed Datetime",
         "actions": "Actions"
       },
-      "title": "Data Search / Download"
+      "title": "Data Search and Download"
     },
     "info": {
       "blurb": "The WOUDC data archive can provide high level information about each dataset. Select a dataset of interest to see its ISO discovery metadata and a contextual map of the stations.",

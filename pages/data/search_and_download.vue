@@ -890,8 +890,8 @@ export default {
   },
   nuxtI18n: {
     paths: {
-      en: '/data/explore',
-      fr: '/donnees/rechercher'
+      en: '/data/data-search-and-download',
+      fr: '/données/rechercher-et-télécharger-de-données'
     }
   }
 }

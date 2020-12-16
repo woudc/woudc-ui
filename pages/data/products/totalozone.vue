@@ -441,7 +441,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/data/products/totalozone',
-      fr: '/donnees/produits/ozonetotal'
+      fr: '/données/produits/ozonetotal'
     }
   }
 }

@@ -15,7 +15,7 @@ export default {
   generate: {
     exclude: [
       /^\/data\/stations\/[\d]+/,
-      /^\/contributors/,
+      /^\/contributors$/,
     ],
     routes: [
       '/contributors/registration',
@@ -69,17 +69,11 @@ export default {
    ** Nuxt.js modules
    */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     'nuxt-i18n',
     'nuxt-leaflet'
   ],
-  /*
-   ** Axios module configuration
-   ** See https://axios.nuxtjs.org/options
-   */
-  axios: {},
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
@@ -138,7 +132,7 @@ export default {
       useCookie: true,
       cookieKey: 'woudc_default_language'
     },
-    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+    baseUrl: process.env.BASE_URL,
     seo: true
   },
   /*

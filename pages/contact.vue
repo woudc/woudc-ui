@@ -89,7 +89,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/contact',
-      fr: '/contact-in-french'
+      fr: '/contacter'
     }
   }
 }

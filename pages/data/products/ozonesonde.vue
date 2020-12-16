@@ -360,7 +360,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/data/products/ozonesonde',
-      fr: '/donnees/produits/sondeozone'
+      fr: '/données/produits/sondeozone'
     }
   }
 }
