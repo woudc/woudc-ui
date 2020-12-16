@@ -17,7 +17,7 @@
         </i18n>
         <i18n path="contact.blurb.body-alternatives" tag="p">
           <template v-slot:contact-channels>
-            <nuxt-link to="#other-contacts">
+            <nuxt-link :to="{hash: '#other-contacts'}">
               {{ $t('contact.contact-channels') }}
             </nuxt-link>
           </template>
