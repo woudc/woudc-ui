@@ -127,7 +127,7 @@ export default {
       }
     }
   },
-  async created() {
+  async mounted() {
     await this.$store.dispatch('stations/download')
 
     const stations = this.$store.getters['stations/all'].orderByID
@@ -138,7 +138,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/data/stations',
-      fr: '/donnees/stations'
+      fr: '/données/stations'
     }
   }
 }

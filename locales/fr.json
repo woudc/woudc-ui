@@ -143,7 +143,8 @@
       "waf": {
         "blurb": {
           "body-files": "Les {summary} statiques sont également disponibles dans le WAF au format CSV avec compression ZIP. Ces archives sont mis à jour hebdomadairement et offrent aux usagers une méthode pour télécharger le jeu de données entier au format CSV.",
-          "body-howto": "Veuillez consulter les {how-to} pour plus de détails.","how-to": "instructions de WAF",
+          "body-howto": "Veuillez consulter les {how-to} pour plus de détails.",
+          "how-to": "instructions de WAF",
           "body-intro": "Toutes les archives de fichiers de données qui ont été envoyées par les contributeurs en format CSV étendu sont disponibles sur {waf} les utilisateurs peuvent les parcourir, les télécharger ou les intégrer à leurs flux de travaux."
         },
         "how-to": "instructions de WAF",
@@ -156,7 +157,9 @@
           "body-standards": "Les services web du WOUDC se conforment aux normes ouvertes ratifiées par l’{ogc} (OGC) et l’{iso} (ISO) qui assurent l’interopérabilité des données, en facilitant ainsi la découverte, l’accessibilité, la visualisation et l’intégration. Les normes de l’OGC et de l’Organisation internationale de normalisation (ISO) jouent un rôle prépondérant dans l’{interoperability} où elles font partie intégrante du {wis} et sont prises en charge par de nombreuses sources libres grand public ou outils commerciaux."
         },
         "table": {
-          "links": [ "???" ],
+          "links": [
+            "???"
+          ],
           "title": "Ces services web de l’OGC sont mis à la disposition des utilisateurs afin d’assurer une accessibilité des données rapideet conforme aux normes :"
         },
         "title": "Services web"
@@ -962,7 +965,7 @@
         "processed-datetime": "Date et heure de traitement",
         "actions": "Actions"
       },
-      "title": "Rechercher des données / Télécharger"
+      "title": "Rechercher et télécharger de données"
     },
     "info": {
       "blurb": "L'archive de données WOUDC peut fournir des informations de haut niveau sur chaque ensemble de données. Sélectionnez un ensemble de données d'intérêt pour voir ses métadonnées de découverte de l'ISO et une carte contextuelle des stations.",
@@ -1031,7 +1034,9 @@
         "station": "station",
         "Station": "Station",
         "year": "Année",
-        "years": "années"
+        "years": "années",
+        "graph": "Graphique",
+        "viewing-label": "Visionnement * sur *"
       },
       "maps": {
         "blurb": "Des cartes de l’ozone total en temps quasi réel, mises à jour quotidiennement à environ 14:00 (UTC).",

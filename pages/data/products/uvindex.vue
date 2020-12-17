@@ -71,7 +71,6 @@
             </v-radio-group>
           </v-col>
         </v-row>
-        </div>
         <div class="requiredHead mb-2">
           <h3>{{ $t('data.products.common.instrument') }}</h3>
           <v-chip small label class="ml-2 mt-1" color="primary">
@@ -172,7 +171,7 @@
 </template>
 
 <script>
-import axios from '~/plugins/axios'
+import woudcClient from '~/plugins/woudcClient'
 import { unpackageStation } from '~/plugins/unpackage'
 
 import GraphCarousel from '~/components/GraphCarousel'
@@ -317,10 +316,10 @@ export default {
       }
 
       const broadbandParams = queryParams + '&content_category=Broad-band'
-      const broadbandResponse = await axios.get(dataRecordsURL + '?' + broadbandParams)
+      const broadbandResponse = await woudcClient.get(dataRecordsURL + '?' + broadbandParams)
 
       const spectralParams = queryParams + '&content_category=Spectral'
-      const spectralResponse = await axios.get(dataRecordsURL + '?' + spectralParams)
+      const spectralResponse = await woudcClient.get(dataRecordsURL + '?' + spectralParams)
 
       const observationTools = {}
       const observationKeys = []
@@ -383,10 +382,10 @@ export default {
       this.loadingInstruments = true
 
       const broadbandParams = queryParams + '&dataset=Broad-band'
-      const broadbandResponse = await axios.get(instrumentsURL + '?' + broadbandParams)
+      const broadbandResponse = await woudcClient.get(instrumentsURL + '?' + broadbandParams)
 
       const spectralParams = queryParams + '&dataset=Spectral'
-      const spectralResponse = await axios.get(instrumentsURL + '?' + spectralParams)
+      const spectralResponse = await woudcClient.get(instrumentsURL + '?' + spectralParams)
 
       const instrumentKeys = []
       const instruments = []
@@ -456,7 +455,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/data/products/uvindex',
-      fr: '/donnees/produits/indiceuv'
+      fr: '/données/produits/indiceuv'
     }
   }
 }

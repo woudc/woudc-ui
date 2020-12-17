@@ -23,7 +23,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/data',
-      fr: '/donnees'
+      fr: '/données'
     }
   }
 }

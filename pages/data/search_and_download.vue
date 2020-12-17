@@ -270,7 +270,7 @@
 </template>
 
 <script>
-import axios from '~/plugins/axios'
+import woudcClient from '~/plugins/woudcClient'
 import { stripProperties, unpackageBareStation } from '~/plugins/unpackage'
 
 import MapInstructions from '~/components/MapInstructions'
@@ -481,7 +481,7 @@ export default {
       return !(datasetOk && countryOk && stationOk && instrumentOk && startYearOk && endYearOk)
     },
   },
-  async created() {
+  async mounted() {
     await Promise.all([
       this.$store.dispatch('countries/download'),
       this.$store.dispatch('stations/download'),
@@ -727,7 +727,7 @@ export default {
         }
       }
 
-      const response = await axios.get(dataRecordsURL + '?' + queryParams)
+      const response = await woudcClient.get(dataRecordsURL + '?' + queryParams)
 
       this.dataRecords = response.data.features.map(stripProperties)
       this.oldSearchParams = {
@@ -801,7 +801,7 @@ export default {
       const metricsURL = 'processes/woudc-data-registry-metrics/jobs'
       const queryParams = { inputs }
 
-      const response = await axios.post(metricsURL, queryParams)
+      const response = await woudcClient.post(metricsURL, queryParams)
 
       const newMetrics = {}
       response.data.outputs.metrics.forEach((metric) => {
@@ -835,7 +835,7 @@ export default {
       }
 
       const queryParams = { inputs }
-      const response = await axios.post(dropdownsURL, queryParams)
+      const response = await woudcClient.post(dropdownsURL, queryParams)
 
       const countries = {
         orderByCode: response.data.outputs.countries.sortby_country_id,
@@ -890,8 +890,8 @@ export default {
   },
   nuxtI18n: {
     paths: {
-      en: '/data/explore',
-      fr: '/donnees/rechercher'
+      en: '/data/data-search-and-download',
+      fr: '/données/rechercher-et-télécharger-de-données'
     }
   }
 }

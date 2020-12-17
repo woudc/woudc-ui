@@ -85,7 +85,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/about/data-quality',
-      fr: '/a-propos/qualite-donnees'
+      fr: '/a-propos/qualité-données'
     }
   }
 }

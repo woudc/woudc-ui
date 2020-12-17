@@ -128,8 +128,8 @@ export default {
   },
   nuxtI18n: {
     paths: {
-      en: '/about/data-policy',
-      fr: '/a-propos/politique-donnees'
+      en: '/about/data-use-policy',
+      fr: '/a-propos/politique-d\'utilisation-des-données'
     }
   }
 }

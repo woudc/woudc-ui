@@ -113,7 +113,7 @@ export default {
       }
     }
   },
-  async created() {
+  async mounted() {
     await this.$store.dispatch('contributors/download')
 
     const contributors = this.$store.getters['contributors/all']

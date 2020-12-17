@@ -71,7 +71,6 @@
             </v-radio-group>
           </v-col>
         </v-row>
-        </div>
         <h3>{{ $t('data.products.common.instrument') }}</h3>
         <v-select
           v-model="selectedInstrument"
@@ -167,7 +166,7 @@
 </template>
 
 <script>
-import axios from '~/plugins/axios'
+import woudcClient from '~/plugins/woudcClient'
 import { unpackageStation } from '~/plugins/unpackage'
 
 import GraphCarousel from '~/components/GraphCarousel'
@@ -321,7 +320,7 @@ export default {
         queryParams += '&instrument_number=' + this.selectedInstrument.element.properties.serial
       }
 
-      const dataRecordsResponse = await axios.get(dataRecordsURL + '?' + queryParams)
+      const dataRecordsResponse = await woudcClient.get(dataRecordsURL + '?' + queryParams)
 
       const observationTools = {}
       for (const feature of dataRecordsResponse.data.features) {
@@ -362,7 +361,7 @@ export default {
       queryParams += '&station_id=' + this.selectedStationID
 
       this.loadingInstruments = true
-      const instrumentsResponse = await axios.get(instrumentsURL + '?' + queryParams)
+      const instrumentsResponse = await woudcClient.get(instrumentsURL + '?' + queryParams)
 
       const instrumentKeys = []
       const instruments = []
@@ -442,7 +441,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/data/products/totalozone',
-      fr: '/donnees/produits/ozonetotal'
+      fr: '/données/produits/ozonetotal'
     }
   }
 }

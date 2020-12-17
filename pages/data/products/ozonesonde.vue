@@ -159,7 +159,7 @@
 </template>
 
 <script>
-import axios from '~/plugins/axios'
+import woudcClient from '~/plugins/woudcClient'
 import { unpackageStation } from '~/plugins/unpackage'
 
 import GraphCarousel from '~/components/GraphCarousel'
@@ -295,7 +295,7 @@ export default {
       let queryParams = 'sortby=timestamp_date&content_category=OzoneSonde'
       queryParams += '&platform_id=' + this.selectedStationID
 
-      const dataRecordsResponse = await axios.get(dataRecordsURL + '?' + queryParams)
+      const dataRecordsResponse = await woudcClient.get(dataRecordsURL + '?' + queryParams)
 
       const observationDates = {}
       for (const feature of dataRecordsResponse.data.features) {
@@ -360,7 +360,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/data/products/ozonesonde',
-      fr: '/donnees/produits/sondeozone'
+      fr: '/données/produits/sondeozone'
     }
   }
 }

@@ -1,6 +1,5 @@
 import Vue from 'vue'
 
-
 Vue.prototype.$i18nToArray = (i18n) => {
   if (typeof i18n === 'string') {
     return i18n

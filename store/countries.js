@@ -1,5 +1,5 @@
 
-import axios from '~/plugins/axios'
+import woudcClient from '~/plugins/woudcClient'
 
 import bounds from '~/static/countries.json'
 
@@ -70,7 +70,7 @@ const actions = {
     const queryURL = '/processes/woudc-data-registry-select-distinct/jobs'
     const queryParams = { inputs }
 
-    const countriesResponse = await axios.post(queryURL, queryParams)
+    const countriesResponse = await woudcClient.post(queryURL, queryParams)
     const countries = countriesResponse.data.outputs
 
     commit('setCountries', countries)

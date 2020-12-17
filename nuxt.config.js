@@ -5,7 +5,7 @@ require('dotenv').config()
 const PORT = process.env.npm_config_port || '3000'
 
 export default {
-  mode: 'spa',
+  ssr: false,
   env: {
     baseUrl: process.env.BASE_URL || 'http://localhost:' + PORT
   },
@@ -15,7 +15,7 @@ export default {
   generate: {
     exclude: [
       /^\/data\/stations\/[\d]+/,
-      /^\/contributors/,
+      /^\/contributors$/,
     ],
     routes: [
       '/contributors/registration',
@@ -53,7 +53,9 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/util.js', '~/plugins/axios.js'],
+  plugins: [
+    '~/plugins/util.js'
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -67,17 +69,11 @@ export default {
    ** Nuxt.js modules
    */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     'nuxt-i18n',
     'nuxt-leaflet'
   ],
-  /*
-   ** Axios module configuration
-   ** See https://axios.nuxtjs.org/options
-   */
-  axios: {},
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
@@ -123,7 +119,7 @@ export default {
         name: 'Français'
       }
     ],
-    strategy: 'prefix_except_default',
+    strategy: 'prefix',
     defaultLocale: 'en',
     vueI18n: {
       fallbackLocale: 'en',
@@ -132,12 +128,11 @@ export default {
         fr: require('./locales/fr.json')
       }
     },
-    vueI18nLoader: true,
     detectBrowserLanguage: {
       useCookie: true,
-      cookieKey: 'woudc_i18n_redirected'
+      cookieKey: 'woudc_default_language'
     },
-    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+    baseUrl: process.env.BASE_URL,
     seo: true
   },
   /*
@@ -152,7 +147,7 @@ export default {
       config.module.rules.push({
         resourceQuery: /blockType=i18n/,
         type: 'javascript/auto',
-        loader: ['@kazupon/vue-i18n-loader']
+        loader: ['@intlify/vue-i18n-loader']
       })
 
       // Run ESLint on save
