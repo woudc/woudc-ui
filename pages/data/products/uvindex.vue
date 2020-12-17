@@ -47,26 +47,14 @@
               menu-props="auto"
               placeholder="..."
               return-object
-              solo
-              dense
               @input="changeStation"
             >
-              <template v-slot:selection="selection">
-                <div class="my-3" color="auto">
-                  {{ selection.item.text }}
-                </div>
-              </template>
-              <template v-slot:item="element">
-                <div>
-                  {{ element.item.text }}
-                </div>
-              </template>
             </v-select>
           </v-col>
           <v-col class="mt-1" align-self="center">
             <span class="pt-0">{{ $t('common.sort-by') }}</span>
             <v-radio-group v-model="stationOrder" class="mt-1 pt-0">
-              <v-radio class="mb-0" :label="$t('common.station-id')" value="orderByID" />
+              <v-radio :label="$t('common.station-id')" value="orderByID" />
               <v-radio :label="$t('common.station-name')" value="orderByName" />
             </v-radio-group>
           </v-col>
@@ -83,20 +71,8 @@
           :loading="loadingInstruments"
           :disabled="selectedStation === null || loadingInstruments"
           placeholder="..."
-          solo
-          dense
           @input="changeInstrument"
         >
-          <template v-slot:selection="selection">
-            <div class="my-3" color="auto">
-              {{ selection.item.text }}
-            </div>
-          </template>
-          <template v-slot:item="element">
-            <div>
-              {{ element.item.text }}
-            </div>
-          </template>
         </v-select>
         <h3>{{ $t('data.products.common.year') }}</h3>
         <v-select
@@ -104,19 +80,7 @@
           :items="yearOptions"
           :loading="loadingYears"
           :disabled="selectedStation === null || selectedInstrument === null || loadingYears"
-          solo
-          dense
         >
-          <template v-slot:selection="selection">
-            <div class="my-3" color="auto">
-              {{ selection.item.text }}
-            </div>
-          </template>
-          <template v-slot:item="element">
-            <div>
-              {{ element.item.text }}
-            </div>
-          </template>
         </v-select>
       </v-col>
       <v-col>
@@ -455,7 +419,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/data/products/uvindex',
-      fr: '/données/produits/indiceuv'
+      fr: '/donnees/produits/indiceuv'
     }
   }
 }

@@ -61,8 +61,8 @@ export default {
   },
   nuxtI18n: {
     paths: {
-      en: '/contributors/submission',
-      fr: '/contributeurs/soumission'
+      en: '/contributors/data-submission',
+      fr: '/contributeurs/soumission-de-donnees'
     }
   }
 }

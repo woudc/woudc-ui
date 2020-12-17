@@ -138,7 +138,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/data/stations',
-      fr: '/données/stations'
+      fr: '/donnees/stations'
     }
   }
 }

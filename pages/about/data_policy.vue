@@ -43,7 +43,7 @@
           </template>
         </i18n>
         <v-card>
-          <v-card-title class="card">
+          <v-card-title>
             {{ $t('about.policy.doi.note1.title') }}
           </v-card-title>
           <v-card-text>
@@ -55,7 +55,7 @@
           </v-card-text>
         </v-card>
         <v-card>
-          <v-card-title class="card">
+          <v-card-title>
             {{ $t('about.policy.doi.note2.title') }}
           </v-card-title>
           <v-card-text>
@@ -69,7 +69,7 @@
         <h2>{{ $t('about.policy.publishing.title') }}</h2>
         <p>{{ $t('about.policy.publishing.blurb-citations') }}</p>
         <v-card>
-          <v-card-title class="card">
+          <v-card-title>
             {{ $t('about.policy.publishing.note1.title') }}
           </v-card-title>
           <v-card-text>
@@ -77,7 +77,7 @@
           </v-card-text>
         </v-card>
         <v-card>
-          <v-card-title class="card">
+          <v-card-title>
             {{ $t('about.policy.publishing.note2.title') }}
           </v-card-title>
           <v-card-text>
@@ -98,7 +98,7 @@
         <h2>{{ $t('about.policy.products.title') }}</h2>
         <p>{{ $t('about.policy.products.blurb') }}</p>
         <v-card>
-          <v-card-title class="card">
+          <v-card-title>
             {{ $t('about.policy.products.note.title') }}
           </v-card-title>
           <v-card-text>
@@ -129,17 +129,13 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/about/data-use-policy',
-      fr: '/a-propos/politique-d\'utilisation-des-données'
+      fr: '/a-propos/politique-d\'utilisation-des-donnees'
     }
   }
 }
 </script>
 
 <style scoped>
-.card {
-  background-color: #cef;
-  color: steelblue;
-}
 
 ol {
   counter-reset: list;

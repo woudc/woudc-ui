@@ -783,7 +783,6 @@
     "contributors-submission": "Soumission de données",
     "contributors-validation": "Validateur de données",
     "data": "Données",
-    "data-explore": "Rechercher des données / Télécharger",
     "data-info": "Information sur les jeux de données",
     "data-instruments": "Liste des instruments",
     "data-products": "Produits de données",
@@ -794,7 +793,8 @@
     "resources-links": "Liens de données connexes",
     "resources-software": "Logiciel",
     "resources-sop": "Procédures d'utilisation normalisées",
-    "news": "Nouvelles"
+    "news": "Nouvelles",
+    "data-search": "Rechercher et télécharger de données"
   },
   "contact": {
     "blurb": {
@@ -1151,7 +1151,8 @@
     "adTitle": "Découvrez, visualisez ou accédez aux archives mondiales des données terrestres sur l’ozone et le rayonnement UV",
     "gawLogo": "Logo : @.gawFull",
     "learnMore": "En savoir plus",
-    "wmoLogo": "Logo : @.wmoFull"
+    "wmoLogo": "Logo : @.wmoFull",
+    "blurb": "Un centre de données de l'Organisation métérologique mondiale ({wmo}) qui supporte le programme de Veille de l’atmosphère du globe ({gaw}) opéré par Environnement et Changement climatique Canada."
   },
   "news": {
     "title": "Nouvelles et mises à jour",

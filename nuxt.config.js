@@ -109,20 +109,20 @@ export default {
   i18n: {
     locales: [
       {
+        code: 'fr',
+        iso: 'fr-CA',
+        name: 'Français'
+      },
+      {
         code: 'en',
         iso: 'en-CA',
         name: 'English'
       },
-      {
-        code: 'fr',
-        iso: 'fr-CA',
-        name: 'Français'
-      }
     ],
     strategy: 'prefix',
     defaultLocale: 'en',
     vueI18n: {
-      fallbackLocale: 'en',
+      fallbackLocale: ['en', 'fr'],
       messages: {
         en: require('./locales/en.json'),
         fr: require('./locales/fr.json')
