@@ -30,7 +30,7 @@ module.exports = {
     'vue/max-attributes-per-line': 'off',
     "vue/html-self-closing": ["warn", {
       "html": {
-        "component": "never"
+        "component": "any"
       }
     }]
   }
