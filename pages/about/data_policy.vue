@@ -26,8 +26,8 @@
         </i18n>
         <h2>{{ $t('about.policy.gaw.title') }}</h2>
         <p>{{ $t('about.policy.gaw.blurb') }}</p>
-        <v-card class="mt-1 mb-4" color="info">
-          <v-card-title class="pt-3 pb-0">
+        <v-card>
+          <v-card-title class="info">
             {{ $t('about.policy.gaw.note.title') }}
           </v-card-title>
           <v-card-text>
@@ -43,7 +43,7 @@
           </template>
         </i18n>
         <v-card>
-          <v-card-title>
+          <v-card-title class="accent">
             {{ $t('about.policy.doi.note1.title') }}
           </v-card-title>
           <v-card-text>
@@ -55,7 +55,7 @@
           </v-card-text>
         </v-card>
         <v-card>
-          <v-card-title>
+          <v-card-title class="accent">
             {{ $t('about.policy.doi.note2.title') }}
           </v-card-title>
           <v-card-text>
@@ -69,7 +69,7 @@
         <h2>{{ $t('about.policy.publishing.title') }}</h2>
         <p>{{ $t('about.policy.publishing.blurb-citations') }}</p>
         <v-card>
-          <v-card-title>
+          <v-card-title class="accent">
             {{ $t('about.policy.publishing.note1.title') }}
           </v-card-title>
           <v-card-text>
@@ -77,7 +77,7 @@
           </v-card-text>
         </v-card>
         <v-card>
-          <v-card-title>
+          <v-card-title class="info">
             {{ $t('about.policy.publishing.note2.title') }}
           </v-card-title>
           <v-card-text>
@@ -98,7 +98,7 @@
         <h2>{{ $t('about.policy.products.title') }}</h2>
         <p>{{ $t('about.policy.products.blurb') }}</p>
         <v-card>
-          <v-card-title>
+          <v-card-title class="info">
             {{ $t('about.policy.products.note.title') }}
           </v-card-title>
           <v-card-text>
@@ -136,7 +136,6 @@ export default {
 </script>
 
 <style scoped>
-
 ol {
   counter-reset: list;
   padding-left: 0;
