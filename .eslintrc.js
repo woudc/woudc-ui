@@ -27,6 +27,11 @@ module.exports = {
     'no-console': ['error', { allow: ['warn', 'error'] }],
     'no-alert': 'error',
     'arrow-spacing': 'error',
-    'vue/max-attributes-per-line': 'off'
+    'vue/max-attributes-per-line': 'off',
+    "vue/html-self-closing": ["warn", {
+      "html": {
+        "component": "never"
+      }
+    }]
   }
 }

@@ -38,7 +38,7 @@
         >
           <template v-slot:row="row">
             <td>
-              <nuxt-link :to="'/contributors/' + row.item.acronym">
+              <nuxt-link :to="localePath('contributors') + '/' + row.item.acronym">
                 {{ row.item.acronym }}
               </nuxt-link>
             </td>
