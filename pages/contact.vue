@@ -15,26 +15,6 @@
             <strong>{{ $t('common.woudc') }}</strong>
           </template>
         </i18n>
-        <i18n path="contact.blurb.body-alternatives" tag="p">
-          <template v-slot:contact-channels>
-            <nuxt-link :to="{hash: '#other-contacts'}">
-              {{ $t('contact.contact-channels') }}
-            </nuxt-link>
-          </template>
-        </i18n>
-        <hr>
-        <span class="headline">{{ $t('contact.contact-info') }}</span>
-        <p>{{ $t('contact.prompt') }}</p>
-        <h4>
-          <span class="red--text">*</span>
-          {{ $t('contact.name') }} <span class="red--text">({{ $t('contact.required') }})</span>
-        </h4>
-        <v-text-field v-model="selectedName" :label="$t('contact.name')" solo />
-        <h4>
-          <span class="red--text">*</span>
-          {{ $t('contact.email') }} <span class="red--text">({{ $t('contact.required') }})</span>
-        </h4>
-        <v-text-field v-model="selectedEmail" :label="$t('contact.email')" solo />
         <v-card class="mt-1 mb-4" color="info">
           <v-card-title class="pt-3 pb-0">
             {{ $t('contact.note.title') }}
@@ -49,20 +29,12 @@
             </i18n>
           </v-card-text>
         </v-card>
-        <h4>
-          <span class="red--text">*</span>
-          {{ $t('contact.subject') }}
-          <span class="red--text">({{ $t('contact.required') }})</span>
-        </h4>
-        <v-text-field v-model="selectedSubject" :label="$t('contact.subject')" solo />
-        <h4>
-          <span class="red--text">*</span>
-          {{ $t('contact.message') }}
-          <span class="red--text">({{ $t('contact.required') }})</span>
-        </h4>
-        <v-textarea v-model="selectedMessage" :label="$t('contact.message')" solo />
         <div id="other-contacts">
           <h2>{{ $t('contact.other-channels') }}</h2>
+          <h4>{{ $t('contact.by-email') }}</h4>
+          <a href="mailto:email.address@canada.ca">
+            {{ $t(woudcEmail) }}
+          </a>
           <div v-for="(lines, header) in $t('contact.contact-methods')" :key="header">
             <h4>{{ header }}:</h4>
             <div v-for="(line, index) in lines" :key="index">
@@ -80,10 +52,7 @@ export default {
   data() {
     return {
       privacyActURL: 'https://laws-lois.justice.gc.ca/eng/acts/P-21/index.html',
-      selectedName: null,
-      selectedEmail: null,
-      selectedSubject: null,
-      selectedMessage: null
+      woudcEmail: process.env.EMAIL_ADDRESS 
     }
   },
   nuxtI18n: {

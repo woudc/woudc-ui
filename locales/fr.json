@@ -799,9 +799,10 @@
   "contact": {
     "blurb": {
       "body-alternatives": "Si vous avez des problèmes avec le formulaire suivant, vous pouvez utiliser une des {contact-channels} pour communiquer avec nous.",
-      "body-contact": "Si vous ne trouvez pas de réponse à vos questions, ou si vous désirez nous faire part de vos commentaires, suggestions ou idées à propos du {woudc}, veuillez remplir le formulaire ci-dessous.",
+      "body-contact": "Si vous ne trouvez pas de réponse à vos questions, ou si vous désirez nous faire part de vos commentaires, suggestions ou idées à propos du {woudc}, nous pouvons répondre personnellement à vos enquête via les voies de service ci-dessous.",
       "body-faq": "Pour les questions techniques, consultez la {faq}."
     },
+    "by-email": "Par Courriel:",
     "contact-channels": "autres voies de service",
     "contact-info": "Vos Coordonnées",
     "contact-methods": {
@@ -821,7 +822,7 @@
       "body": "Tous les renseignements personnels créés, recueillis ou conservés par le ministère sont protégés par la {privacy-act}. Cela signifie qu'on vous informera des fins auxquelles ces renseignements sont recueillis et de la façon dont vous pouvez exercer votre droit d'accès à ces renseignements. Le cas échéant, on vous demandera d'exprimer votre consentement par rapport à ces renseignements.",
       "title": "Énoncé de collecte de renseignements personnels"
     },
-    "other-channels": "Autres voies de service",
+    "other-channels": "Voies de Service",
     "prompt": "S'il vous plaît fournir des informations que nous pourrions utiliser pour communiquer avec vous.",
     "required": "obligatoire",
     "subject": "Sujet",

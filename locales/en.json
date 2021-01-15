@@ -797,9 +797,10 @@
   "contact": {
     "blurb": {
       "body-alternatives": "If you have difficulty with the following form, you can use any of our {contact-channels} to contact us.",
-      "body-contact": "If you do not find answers to your questions or to submit your comments, suggestions, and ideas about {woudc}, please fill out the form below.",
+      "body-contact": "If you do not find answers to your questions or to submit your comments, suggestions, and ideas about {woudc}, we can personally respond to your inquiries through the service channels below.",
       "body-faq": "For answers to technical questions, please consult the {faq} section."
     },
+    "by-email": "By Email:",
     "contact-channels": "other service channels",
     "contact-info": "Your Contact Information",
     "contact-methods": {
@@ -819,7 +820,7 @@
       "body": "All personal information created, held or collected by this department is protected under the {privacy-act}. This means that you will be informed of the purpose for which it is being collected and how to exercise your right of access to that information. You will be asked for your consent where appropriate.",
       "title": "Personal Information Collection Statement"
     },
-    "other-channels": "Other Service Channels",
+    "other-channels": "Service Channels",
     "prompt": "Please provide information that we could use to contact you.",
     "required": "required",
     "subject": "Subject",
