@@ -799,7 +799,7 @@
   "contact": {
     "blurb": {
       "body-alternatives": "Si vous avez des problèmes avec le formulaire suivant, vous pouvez utiliser une des {contact-channels} pour communiquer avec nous.",
-      "body-contact": "Si vous ne trouvez pas de réponse à vos questions, ou si vous désirez nous faire part de vos commentaires, suggestions ou idées à propos du {woudc}, nous pouvons répondre personnellement à vos enquête via les voies de service ci-dessous.",
+      "body-contact": "Si vous ne trouvez pas de réponse à vos questions, ou si vous désirez nous faire part de vos commentaires, suggestions ou idées à propos du {woudc}, nous pouvons répondre à vos enquête via les voies de service ci-dessous.",
       "body-faq": "Pour les questions techniques, consultez la {faq}."
     },
     "by-email": "Par Courriel:",
