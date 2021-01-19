@@ -32,7 +32,7 @@
         <div id="other-contacts">
           <h2>{{ $t('contact.other-channels') }}</h2>
           <h4>{{ $t('contact.by-email') }}</h4>
-          <a href="mailto:email.address@canada.ca">
+          <a :href="`mailto:${woudcEmail}`">
             {{ $t(woudcEmail) }}
           </a>
           <div v-for="(lines, header) in $t('contact.contact-methods')" :key="header">
