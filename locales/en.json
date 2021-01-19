@@ -797,7 +797,7 @@
   "contact": {
     "blurb": {
       "body-alternatives": "If you have difficulty with the following form, you can use any of our {contact-channels} to contact us.",
-      "body-contact": "If you do not find answers to your questions or to submit your comments, suggestions, and ideas about {woudc}, we can personally respond to your inquiries through the service channels below.",
+      "body-contact": "If you do not find answers to your questions or to submit your comments, suggestions, and ideas about {woudc}, we can respond to your inquiries through the service channels below.",
       "body-faq": "For answers to technical questions, please consult the {faq} section."
     },
     "by-email": "By Email:",
