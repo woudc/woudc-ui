@@ -1,80 +1,65 @@
 <template>
   <v-app>
-    <v-row v-if="error.statusCode === 404">
-      <v-col class="mx-16">
-        <h2>
-          <v-icon color="red" class="mb-1"> 
-            mdi-alert 
-          </v-icon>
-          {{ pageNotFoundEn }}
-        </h2>
-        <p>
-          {{ error404TxtEn }}
-        </p>
-        <li class="mx-10">
-          Return to the
-          <a :href="baseURL">
-            home page
-          </a>
-        </li>
-      </v-col>
-      <v-col class="mx-16">
-        <h2>
-          <v-icon color="red" class="mb-1"> 
-            mdi-alert 
-          </v-icon>
-          {{ pageNotFoundFr }}
-        </h2>
-        <p>
-          {{ error404TxtFr }}
-        </p>
-        <li class="mx-10">
-          Retournez à la
-          <a :href="baseURL">
-            page d'accueil		            
-          </a>
-        </li>
-      </v-col>
-    </v-row>
-    <v-row v-else>
-      <v-col class="mx-16">
-        <h2>
-          <v-icon color="red" class="mb-1">
-            mdi-alert-circle
-          </v-icon>
-          {{ otherErrorEn }}
-        </h2>
-        <p>
-          {{ otherErrorTxtEn }} 
-        </p>
-        <li class="mx-10">
-          Return to the
-          <a :href="baseURL">
-            home page
-          </a>
-        </li>
-      </v-col>
-      <v-col class="mx-16">
-        <h2>
-          <v-icon color="red" class="mb-1">
-            mdi-alert-circle
-          </v-icon>
-          {{ otherErrorFr }}
-        </h2>
-        <p>
-          {{ otherErrorTxtFr }}
-        </p>
-        <li class="mx-10">
-          Retournez à la
-          <a :href="baseURL">
-            page d'accueil 
-          </a>
-        </li>
-      </v-col>
-    </v-row>
-    <NuxtLink to="/">
-      Home page
-    </NuxtLink>
+    <v-container v-if="error.statusCode === 404" class="mt-3">
+      <v-row class="d-flex justify-center">
+        <v-col cols="12" md="6" xs="3" xl="3" lg="4">
+          <div style="display: flex">        
+            <v-icon color="red" class="d-flex align-start mt-1"> 
+              mdi-alert 
+            </v-icon>
+            <h2 v-t="{path: 'error.not-found', locale: 'en'}" class="mx-1" />
+          </div>
+          <p v-t="{path: 'error.error-text.not-found-text', locale: 'en'}" />
+          <div style="display: flex">
+            <li v-t="{path: 'error.error-link-start', locale: 'en'}" class="ml-10" />
+            <a v-t="{path: 'error.error-link-end', locale: 'en'}" :href="baseURL" class="ml-1" />
+          </div>
+        </v-col>
+        <v-col cols="12" md="6" sm="12" xl="3" lg="4" justify="center">
+          <div style="display: flex">
+            <v-icon color="red" class="d-flex align-start mt-1">
+              mdi-alert
+            </v-icon>
+            <h2 v-t="{path: 'error.not-found', locale: 'fr'}" class="mx-1" />
+          </div>
+          <p v-t="{path: 'error.error-text.not-found-text', locale: 'fr'}" />
+          <div style="display: flex">
+            <li v-t="{path: 'error.error-link-start', locale: 'fr'}" class="ml-10" />
+            <a v-t="{path: 'error.error-link-end', locale: 'fr'}" :href="baseURL" class="ml-1" />
+          </div>
+        </v-col>
+      </v-row>
+    </v-container>
+    <v-container v-else class="mt-3">
+      <v-row class="d-flex justify-center">
+        <v-col cols="12" md="6" sm="12" xl="3" lg="4">
+          <div style="display: flex">
+            <v-icon color="red" class="d-flex align-start mt-1">
+              mdi-alert-circle
+            </v-icon>
+            <h2 v-t="{path: 'error.other-error', locale: 'en'}" class="mx-1" />
+          </div>
+          <p v-t="{path: 'error.error-text.other-error-text', locale: 'en'}" /> 
+          <div style="display: flex">
+            <li v-t="{path: 'error.error-link-start', locale: 'en'}" class="ml-10" />
+            <a v-t="{path: 'error.error-link-end', locale: 'en'}" :href="baseURL" class="ml-1" />
+          </div>
+        </v-col>
+        <v-col cols="12" md="6" sm="12" xl="3" lg="4">
+          <div style="display: flex">
+            <v-icon color="red" class="d-flex align-start mt-1">
+              mdi-alert-circle
+            </v-icon>
+            <h2 v-t="{path: 'error.other-error', locale: 'fr'}" class="mx-1" />
+          </div>
+          <p v-t="{path: 'error.error-text.other-error-text', locale: 'fr'}" />
+          <div style="display: flex">
+            <li v-t="{path: 'error.error-link-start', locale: 'fr'}" class="ml-10" />
+            <a v-t="{path: 'error.error-link-end', locale: 'fr'}" :href="baseURL" class="ml-1" />
+          </div>
+        </v-col>
+      </v-row>
+    </v-container>
   </v-app>
 </template>
 
@@ -89,14 +74,6 @@ export default {
   },
   data() {
     return {
-      pageNotFoundEn: 'We were unable to find that web page (Error 404)',
-      pageNotFoundFr: 'Nous ne pouvons trouver cette page Web (Erreur 404)',
-      error404TxtEn: 'We\'re sorry you ended up here. The page you are looking for may have been moved or deleted.',
-      error404TxtFr: 'Nous sommes désolés que vous ayez abouti ici. La page que vous recherchez peut avoir déménagé ou été supprimé.',
-      otherErrorEn: 'An error has occurred',
-      otherErrorFr: 'Une erreur s\'est produite',
-      otherErrorTxtEn: 'Something went wrong and we were unable to display this page.',
-      otherErrorTxtFr: 'Une erreur s’est produite et il n’est pas possible d’afficher cette page.',
       baseURL: process.env.BASE_URL
     }
   },
@@ -105,6 +82,12 @@ export default {
       this.error.statusCode === 404 ? this.pageNotFoundEn : this.otherErrorEn
     return {
       title
+    }
+  },
+  nuxtI18n: {
+    paths: {
+      en: '/error',
+      fr: 'erreur'
     }
   }
 }
