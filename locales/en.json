@@ -1248,5 +1248,15 @@
       },
       "title": "Working Groups"
     }
+  },
+  "error": {
+    "other-error": "An error has occurred",
+    "not-found": "We were unable to find that web page (Error 404)",
+    "error-text": {
+      "not-found-text": "We're sorry you ended up here. The page you are looking for may have been moved or deleted.",
+      "other-error-text": "Something went wrong and we were unable to display this page."
+    },
+    "error-link-start": "Return to the",
+    "error-link-end": "home page"
   }
 }

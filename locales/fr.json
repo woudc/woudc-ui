@@ -1241,5 +1241,15 @@
       },
       "title": "Groupes de travail"
     }
+  },
+  "error": {
+    "other-error": "Une erreur s'est produite",
+    "not-found": "Nous ne pouvons trouver cette page Web (Erreur 404)",
+    "error-text": {
+      "not-found-text": "Nous sommes désolés que vous ayez abouti ici. La page que vous recherchez peut avoir déménagé ou été supprimé.",
+      "other-error-text": "Une erreur s’est produite et il n’est pas possible d’afficher cette page."
+    },
+    "error-link-start": "Retournez à la",
+    "error-link-end": "page d'accueil"
   }
 }
