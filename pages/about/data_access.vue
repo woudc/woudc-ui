@@ -403,7 +403,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/about/data-access',
-      fr: '/a-propos/accessibilité-des-données'
+      fr: '/a-propos/accessibilite-des-donnees'
     }
   }
 }

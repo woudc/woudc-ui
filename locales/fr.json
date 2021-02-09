@@ -783,7 +783,6 @@
     "contributors-submission": "Soumission de données",
     "contributors-validation": "Validateur de données",
     "data": "Données",
-    "data-explore": "Rechercher des données / Télécharger",
     "data-info": "Information sur les jeux de données",
     "data-instruments": "Liste des instruments",
     "data-products": "Produits de données",
@@ -794,12 +793,13 @@
     "resources-links": "Liens de données connexes",
     "resources-software": "Logiciel",
     "resources-sop": "Procédures d'utilisation normalisées",
-    "news": "Nouvelles"
+    "news": "Nouvelles",
+    "data-search": "Rechercher et télécharger de données"
   },
   "contact": {
     "blurb": {
       "body-alternatives": "Si vous avez des problèmes avec le formulaire suivant, vous pouvez utiliser une des {contact-channels} pour communiquer avec nous.",
-      "body-contact": "Si vous ne trouvez pas de réponse à vos questions, ou si vous désirez nous faire part de vos commentaires, suggestions ou idées à propos du {woudc}, nous pouvons répondre personnellement à vos enquête via les voies de service ci-dessous.",
+      "body-contact": "Si vous ne trouvez pas de réponse à vos questions, ou si vous désirez nous faire part de vos commentaires, suggestions ou idées à propos du {woudc}, nous pouvons répondre à vos enquête via les voies de service ci-dessous.",
       "body-faq": "Pour les questions techniques, consultez la {faq}."
     },
     "by-email": "Par Courriel:",
@@ -822,7 +822,7 @@
       "body": "Tous les renseignements personnels créés, recueillis ou conservés par le ministère sont protégés par la {privacy-act}. Cela signifie qu'on vous informera des fins auxquelles ces renseignements sont recueillis et de la façon dont vous pouvez exercer votre droit d'accès à ces renseignements. Le cas échéant, on vous demandera d'exprimer votre consentement par rapport à ces renseignements.",
       "title": "Énoncé de collecte de renseignements personnels"
     },
-    "other-channels": "Voies de Service",
+    "other-channels": "Voies de service",
     "prompt": "S'il vous plaît fournir des informations que nous pourrions utiliser pour communiquer avec vous.",
     "required": "obligatoire",
     "subject": "Sujet",
@@ -1152,7 +1152,8 @@
     "adTitle": "Découvrez, visualisez ou accédez aux archives mondiales des données terrestres sur l’ozone et le rayonnement UV",
     "gawLogo": "Logo : @.gawFull",
     "learnMore": "En savoir plus",
-    "wmoLogo": "Logo : @.wmoFull"
+    "wmoLogo": "Logo : @.wmoFull",
+    "blurb": "Un centre de données de l'Organisation métérologique mondiale ({wmo}) qui supporte le programme de Veille de l’atmosphère du globe ({gaw}) opéré par Environnement et Changement climatique Canada."
   },
   "news": {
     "title": "Nouvelles et mises à jour",

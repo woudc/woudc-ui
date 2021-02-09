@@ -240,7 +240,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/data/stations/:id',
-      fr: '/données/stations/:id'
+      fr: '/donnees/stations/:id'
     }
   }
 }

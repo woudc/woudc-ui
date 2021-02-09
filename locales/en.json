@@ -64,7 +64,8 @@
     "wms": "OGC Web Map Service",
     "wps": "OGC Web Processing Service",
     "woudc": "WOUDC",
-    "woudcFull": "World Ozone and Ultraviolet Radiation Data Centre"
+    "woudcFull": "World Ozone and Ultraviolet Radiation Data Centre",
+    "contacting": "contacting WOUDC"
   },
   "about": {
     "access": {
@@ -781,7 +782,6 @@
     "contributors-submission": "Data Submission",
     "contributors-validation": "Data Validation",
     "data": "Data",
-    "data-explore": "Data Search",
     "data-info": "Dataset Information",
     "data-instruments": "Instrument List",
     "data-products": "Products",
@@ -792,12 +792,13 @@
     "resources-links": "Related Data Links",
     "resources-software": "Software",
     "resources-sop": "Standard Operating Procedures",
-    "news": "News"
+    "news": "News",
+    "data-search": "Data Search and Download"
   },
   "contact": {
     "blurb": {
       "body-alternatives": "If you have difficulty with the following form, you can use any of our {contact-channels} to contact us.",
-      "body-contact": "If you do not find answers to your questions or to submit your comments, suggestions, and ideas about {woudc}, we can personally respond to your inquiries through the service channels below.",
+      "body-contact": "If you do not find answers to your questions or to submit your comments, suggestions, and ideas about {woudc}, we can respond to your inquiries through the service channels below.",
       "body-faq": "For answers to technical questions, please consult the {faq} section."
     },
     "by-email": "By Email:",

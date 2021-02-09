@@ -83,7 +83,7 @@ export default {
         data: {
           icon: 'mdi-database',
           sections: {
-            'data-explore': { link: 'data-search_and_download' },
+            'data-search': { link: 'data-search' },
             'data-products': { link: 'data-products' },
             'data-info': { link: 'data-dataset_info' },
             'data-stations': { link: 'data-stations' },

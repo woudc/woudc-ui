@@ -10,7 +10,7 @@
             <span>{{ $t('data.info.sections.' + section) }}</span>
             <ul>
               <li v-for="dataset in links[section]" :key="dataset">
-                <nuxt-link :to="localePath('data-datasetinfo') + '/' + dataset">
+                <nuxt-link :to="localePath('data-dataset_info') + '/' + dataset">
                   {{ $t('data.info.links.' + dataset) }}
                 </nuxt-link>
               </li>
@@ -51,7 +51,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/data/dataset-information',
-      fr: '/données/information-sur-les-jeux-de-données'
+      fr: '/donnees/information-sur-les-jeux-de-donnees'
     }
   }
 }

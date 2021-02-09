@@ -88,7 +88,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/data/products',
-      fr: '/données/produits'
+      fr: '/donnees/produits'
     }
   }
 }

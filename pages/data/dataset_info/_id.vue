@@ -167,7 +167,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/data/dataset-information/:id',
-      fr: '/données/information-sur-les-jeux-de-données/:id'
+      fr: '/donnees/information-sur-les-jeux-de-donnees/:id'
     }
   }
 }

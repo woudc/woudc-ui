@@ -46,7 +46,7 @@
         >
           <template v-slot:row="row">
             <td>
-              <nuxt-link :to="'/data/stations/' + row.item.woudc_id">
+              <nuxt-link :to="localePath('data-stations') + '/' + row.item.woudc_id">
                 {{ row.item.woudc_id }}
               </nuxt-link>
             </td>
@@ -138,7 +138,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/data/stations',
-      fr: '/données/stations'
+      fr: '/donnees/stations'
     }
   }
 }
