@@ -5,8 +5,9 @@
 ## Build Setup
 
 - Install NodeJS
-
 - Create a **copy** of the `.env.sample` file and **rename** to `.env`
+  - `BASE_URL` should be the domain + path to your root app
+  - `ROUTER_BASE` should be the path to your root application
 
 ``` bash
 # install dependencies
@@ -27,18 +28,30 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
 
 ## SPA fallback in deployment
 
-Since not all pages in WOUDC will be pre-generated, a fallback is required to `index.html` or `200.html` to handle pages with dynamic data.
+Since not all pages in WOUDC will be pre-generated, a fallback is required to redirect to `200.html` to handle pages with dynamic data.
 
-Apache server mod-rewrite example (deployed to subfolder `/woudc-ui` as the base route):
+Apache server mod-rewrite example (deployed to subfolder `/subfolder-name` as the base route):
 ```xml
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteBase /woudc-ui
-RewriteRule ^woudc-ui/index\.html$ - [L]
+RewriteBase /subfolder-name/
+RewriteRule ^subfolder-name/200\.html$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /woudc-ui/index.html [L]
+RewriteRule . /subfolder-name/200.html [L]
 </IfModule>
+```
+
+After building your files (`npm run build`), you can copy the `.htaccess` sample to your `/dist` for convenience and modify it to according to your server settings.
+``` bash
+# modify to your web server specs
+vi .htaccess
+
+# build
+npm run build
+
+# copy to /dist
+cp .htaccess ./dist
 ```
 
 ## Environment variables (.env)
