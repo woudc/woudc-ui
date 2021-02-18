@@ -44,14 +44,14 @@
       </v-list>
     </v-navigation-drawer>
     <v-app-bar fixed app>
-      <div class="text-center" v-if="$vuetify.breakpoint.mdAndUp">
-        <v-menu offset-y open-on-hover transition="slide-y-transition" v-for="(group, groupTag) in links" :key="groupTag">
+      <div v-if="$vuetify.breakpoint.mdAndUp" class="text-center">
+        <v-menu v-for="(group, groupTag) in links" :key="groupTag" offset-y open-on-hover transition="slide-y-transition">
           <template v-slot:activator="{ on, attrs }">
-            <v-btn elevation="0" v-bind="attrs" v-on="on" v-if="group.sections" :to="localePath(group.link)" nuxt>
+            <v-btn v-if="group.sections" elevation="0" v-bind="attrs" :to="localePath(group.link)" nuxt v-on="on">
               <v-icon>{{ group.icon }}</v-icon>
               {{ $t('banner.' + groupTag) }}
             </v-btn>
-            <v-btn elevation="0" v-else :to="localePath(group.link)" nuxt>
+            <v-btn v-else elevation="0" :to="localePath(group.link)" nuxt>
               <v-icon>{{ group.icon }}</v-icon>
               {{ $t('banner.' + groupTag) }}
             </v-btn>
@@ -89,7 +89,7 @@
       <h5 :class="`text-md-h6`" class="ml-3" style="font-weight:normal">
         <a :href="baseURL" class="no-underline underline-on-hover black--text" hover="underline">
           {{ $t('common.woudcFull') }}
-	</a>
+        </a>
       </h5>
       <v-spacer />
       <nuxt-link class="mr-10 no-underline" :to="localePath('contact')">
