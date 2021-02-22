@@ -86,10 +86,10 @@
     </v-main>
     <v-footer app>
       <span>&copy; 2020</span>
-      <h5 :class="`text-md-h6`" class="ml-3" style="font-weight:normal">
-        <a :href="baseURL" class="no-underline underline-on-hover black--text" hover="underline">
+      <h5 class="text-md-h6 ml-3" style="font-weight:normal">
+        <nuxt-link class="no-underline underline-on-hover black--text" :to="localePath('/')">
           {{ $t('common.woudcFull') }}
-        </a>
+        </nuxt-link>
       </h5>
       <v-spacer />
       <nuxt-link class="mr-10 no-underline" :to="localePath('contact')">
