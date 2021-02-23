@@ -1,10 +1,10 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="drawerOpen" temporary fixed app>
+    <v-navigation-drawer v-if="$vuetify.breakpoint.smAndDown" v-model="drawerOpen" temporary fixed app>
       <v-list>
         <div v-for="(group, groupTag) in links" :key="groupTag">
           <v-list-item
-            v-if="group.link !== undefined"
+            v-if="group.sections == undefined"
             :to="localePath(group.link)"
             nuxt
           >
@@ -44,8 +44,35 @@
       </v-list>
     </v-navigation-drawer>
     <v-app-bar fixed app>
-      <v-app-bar-nav-icon @click.stop="drawerOpen = !drawerOpen" />
-      <v-toolbar-title v-text="$t('common.woudcFull')" />
+      <div v-if="$vuetify.breakpoint.mdAndUp" class="text-center">
+        <v-menu v-for="(group, groupTag) in links" :key="groupTag" offset-y open-on-hover transition="slide-y-transition">
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn v-if="group.sections" elevation="0" v-bind="attrs" :to="localePath(group.link)" nuxt v-on="on">
+              <v-icon>{{ group.icon }}</v-icon>
+              {{ $t('banner.' + groupTag) }}
+            </v-btn>
+            <v-btn v-else elevation="0" :to="localePath(group.link)" nuxt>
+              <v-icon>{{ group.icon }}</v-icon>
+              {{ $t('banner.' + groupTag) }}
+            </v-btn>
+          </template>
+          <v-list v-if="group.sections">
+            <div v-for="(section, textTag) in group.sections" :key="textTag">
+              <v-list-item v-if="section.type === 'external'">
+                <v-list-item-content>
+                  <a :href="section.link">{{ $t('banner.' + textTag) }}</a>
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item v-else :to="localePath(section.link)" nuxt>
+                <v-list-item-content>
+                  <v-list-item-title v-text="$t('banner.' + textTag)" />
+                </v-list-item-content>
+              </v-list-item>
+            </div>
+          </v-list>
+        </v-menu>
+      </div>
+      <v-app-bar-nav-icon v-if="$vuetify.breakpoint.smAndDown" @click.stop="drawerOpen = !drawerOpen" />
       <v-spacer />
       <nuxt-link v-if="locale === 'fr'" :to="switchLocalePath('en')">
         English
@@ -59,6 +86,11 @@
     </v-main>
     <v-footer app>
       <span>&copy; 2020</span>
+      <h5 class="text-md-h6 ml-3" style="font-weight:normal">
+        <nuxt-link class="no-underline underline-on-hover black--text" :to="localePath('/')">
+          {{ $t('common.woudcFull') }}
+        </nuxt-link>
+      </h5>
       <v-spacer />
       <nuxt-link class="mr-10 no-underline" :to="localePath('contact')">
         <v-icon class="mr-1 pb-1">
@@ -75,13 +107,11 @@ export default {
   data() {
     return {
       drawerOpen: false,
+      baseURL: process.env.BASE_URL,
       links: {
-        home: {
-          icon: 'mdi-apps',
-          link: 'index'
-        },
         data: {
           icon: 'mdi-database',
+          link: 'data',
           sections: {
             'data-search': { link: 'data-search' },
             'data-products': { link: 'data-products' },
@@ -92,6 +122,7 @@ export default {
         },
         contributors: {
           icon: 'mdi-account-group',
+          link: 'contributors',
           sections: {
             'contributors-guide': {
               type: 'external',
@@ -105,6 +136,7 @@ export default {
         },
         resources: {
           icon: 'mdi-book-open-variant',
+          link: 'resources',
           sections: {
             'resources-sop': { link: 'resources-sop' },
             'resources-groups': { link: 'resources-working_groups' },
@@ -121,6 +153,7 @@ export default {
         },
         about: {
           icon: 'mdi-information',
+          link: 'about',
           sections: {
             'about-home': { link: 'about' },
             'about-quality': { link: 'about-data_quality' },
@@ -144,6 +177,9 @@ export default {
 </script>
 
 <style>
+.underline-on-hover:hover {
+  text-decoration: underline;
+}
 .no-underline {
   text-decoration: none;
 }
