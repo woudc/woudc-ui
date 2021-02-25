@@ -50,6 +50,7 @@
             <v-btn v-if="group.sections" elevation="0" v-bind="attrs" :to="localePath(group.link)" nuxt v-on="on">
               <v-icon>{{ group.icon }}</v-icon>
               {{ $t('banner.' + groupTag) }}
+              <v-icon>mdi-chevron-down</v-icon>
             </v-btn>
             <v-btn v-else elevation="0" :to="localePath(group.link)" nuxt>
               <v-icon>{{ group.icon }}</v-icon>
