@@ -23,19 +23,13 @@
             </template>
             <div v-for="(section, textTag) in group.sections" :key="textTag">
               <v-list-item v-if="section.type === 'external'">
-                <v-list-item-action>
-                  <v-icon>{{ group.icon }}</v-icon>
-                </v-list-item-action>
                 <v-list-item-content>
-                  <a :href="section.link">{{ $t('banner.' + textTag) }}</a>
+                  <a :href="section.link" class="ml-2">{{ $t('banner.' + textTag) }}</a>
                 </v-list-item-content>
               </v-list-item>
               <v-list-item v-else :to="localePath(section.link)" nuxt>
-                <v-list-item-action>
-                  <v-icon>{{ group.icon }}</v-icon>
-                </v-list-item-action>
                 <v-list-item-content>
-                  <v-list-item-title v-text="$t('banner.' + textTag)" />
+                  <v-list-item-title class="ml-2" v-text="$t('banner.' + textTag)" />
                 </v-list-item-content>
               </v-list-item>
             </div>
@@ -50,11 +44,11 @@
             <v-btn v-if="group.sections" elevation="0" v-bind="attrs" :to="localePath(group.link)" nuxt v-on="on">
               <v-icon>{{ group.icon }}</v-icon>
               {{ $t('banner.' + groupTag) }}
-              <v-icon>mdi-chevron-down</v-icon>
             </v-btn>
             <v-btn v-else elevation="0" :to="localePath(group.link)" nuxt>
               <v-icon>{{ group.icon }}</v-icon>
               {{ $t('banner.' + groupTag) }}
+              <v-icon>mdi-chevron-down</v-icon>
             </v-btn>
           </template>
           <v-list v-if="group.sections">
