@@ -43,7 +43,7 @@ export default {
     woudcLink() {
       return 'https://woudc.org/home.php?lang=' + this.$i18n.locale
     },
-    ...mapState('news', 
+    ...mapState('news',
       ['newsItems']),
     sortedItems(){
       return this.newsItems.json.features.slice(0).sort((a, b) => a.properties.published_date.slice(0,10) < b.properties.published_date.slice(0,10) ? 1 : -1)
