@@ -53,8 +53,8 @@ done
 echo "Setting up npm environment"
 mkdir -p $BASEDIR/.npm-global
 npm config set prefix "$BASEDIR/.npm-global"
-export N_PREFIX=$BASEDIR/.n
-export PATH=$N_PREFIX/bin:$PATH 
+export N_PREFIX=$BASEDIR/.npm-global
+export PATH=$N_PREFIX/bin:$PATH
 npm install -g n
 $BASEDIR/.npm-global/lib/node_modules/n/bin/n lts
 #$N_PREFIX/n lts
