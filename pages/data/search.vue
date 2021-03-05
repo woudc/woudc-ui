@@ -712,7 +712,7 @@ export default {
       this.loadingDataRecords = true
 
       const dataRecordsURL = '/collections/data_records/items'
-      let queryParams = 'sortby=timestamp_date:D,platform_id:A,content_category:A'
+      let queryParams = 'sortby=-timestamp_date,platform_id,content_category'
 
       const selected = {
         'content_category': this.selectedDatasetID,

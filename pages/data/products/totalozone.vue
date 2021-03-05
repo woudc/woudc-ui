@@ -321,7 +321,7 @@ export default {
     },
     async refreshInstruments() {
       const instrumentsURL = '/collections/instruments/items'
-      let queryParams = 'sortby=name:A,serial:A&dataset=TotalOzone'
+      let queryParams = 'sortby=name,serial&dataset=TotalOzone'
       queryParams += '&station_id=' + this.selectedStationID
 
       this.loadingInstruments = true

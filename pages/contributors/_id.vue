@@ -170,7 +170,7 @@ export default {
       const contributors = contributorMapFunc(acronym).map(unpackageContributor)
 
       const deploymentsURL = '/collections/deployments/items'
-      const queryParams = 'contributor=' + acronym + '&sortby=station_id:A'
+      const queryParams = 'contributor=' + acronym + '&sortby=station_id'
 
       const deploymentsResponse = await woudcClient.get(deploymentsURL + '?' + queryParams)
 

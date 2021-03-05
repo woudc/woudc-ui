@@ -50,7 +50,7 @@ const actions = {
     }
 
     const contributorsURL = '/collections/contributors/items'
-    const queryParams = 'sortby=acronym:A&limit=1000'
+    const queryParams = 'sortby=acronym&limit=1000'
 
     const response = await woudcClient.get(contributorsURL + '?' + queryParams)
 

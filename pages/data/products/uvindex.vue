@@ -340,7 +340,7 @@ export default {
     },
     async refreshInstruments() {
       const instrumentsURL = '/collections/instruments/items'
-      let queryParams = 'sortby=name:A,serial:A'
+      let queryParams = 'sortby=name,serial'
       queryParams += '&station_id=' + this.selectedStationID
 
       this.loadingInstruments = true

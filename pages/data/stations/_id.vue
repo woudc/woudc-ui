@@ -225,12 +225,12 @@ export default {
       const instrumentsURL = '/collections/instruments/items'
       const deploymentsURL = '/collections/deployments/items'
 
-      let queryParams = 'station_id=' + woudcID + '&sortby=contributor:A'
+      let queryParams = 'station_id=' + woudcID + '&sortby=contributor'
       const deploymentsResponse = await woudcClient.get(deploymentsURL + '?' + queryParams)
 
       this.deployments = deploymentsResponse.data.features.map(stripProperties)
 
-      queryParams = 'station_id=' + woudcID + '&sortby=dataset:A,name:A,model:A,serial:A'
+      queryParams = 'station_id=' + woudcID + '&sortby=dataset,name,model,serial'
       const instrumentsResponse =
         await woudcClient.get(instrumentsURL + '?' + queryParams)
 
