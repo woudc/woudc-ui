@@ -66,5 +66,8 @@ git clone $GITREPO .
 cp deploy/nightly/.env .
 npm install
 npm run build
+cp deploy/nightly/htaccess dist/.htaccess
+cp deploy/default/woudc-ui.conf dist/
+sed -i 's#/data/web/woudc#/data/web/gods/htdocs/woudc-2.0/nightly/latest#g' dist/woudc-ui.confmsc-pygeoapi/deploy/nightly/msc-pygeoapi-config.yml
 cd ..
 ln -s $NIGHTLYDIR/dist latest
