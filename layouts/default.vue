@@ -38,36 +38,48 @@
       </v-list>
     </v-navigation-drawer>
     <v-app-bar fixed app>
-      <div v-if="$vuetify.breakpoint.mdAndUp" class="text-center">
-        <v-menu v-for="(group, groupTag) in links" :key="groupTag" offset-y open-on-hover transition="slide-y-transition">
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn v-if="group.sections" elevation="0" v-bind="attrs" :to="localePath(group.link)" nuxt v-on="on">
-              <v-icon>{{ group.icon }}</v-icon>
-              {{ $t('banner.' + groupTag) }}
-              <v-icon>mdi-chevron-down</v-icon>
-            </v-btn>
-            <v-btn v-else elevation="0" :to="localePath(group.link)" nuxt>
-              <v-icon>{{ group.icon }}</v-icon>
-              {{ $t('banner.' + groupTag) }}
-            </v-btn>
-          </template>
-          <v-list v-if="group.sections">
-            <div v-for="(section, textTag) in group.sections" :key="textTag">
-              <v-list-item v-if="section.type === 'external'">
-                <v-list-item-content>
-                  <a :href="section.link">{{ $t('banner.' + textTag) }}</a>
-                </v-list-item-content>
-              </v-list-item>
-              <v-list-item v-else :to="localePath(section.link)" nuxt>
-                <v-list-item-content>
-                  <v-list-item-title v-text="$t('banner.' + textTag)" />
-                </v-list-item-content>
-              </v-list-item>
-            </div>
-          </v-list>
-        </v-menu>
-      </div>
+      <h5 v-if="$vuetify.breakpoint.mdAndUp" class="text-md-h6 ml-5" style="font-weight:normal">
+        <nuxt-link class="no-underline underline-on-hover black--text" :to="localePath('/')">
+          {{ $t('common.woudcFull') }}
+        </nuxt-link>
+      </h5>
+      <template v-if="$vuetify.breakpoint.mdAndUp" v-slot:extension>
+        <div v-if="$vuetify.breakpoint.mdAndUp" class="text-center">
+          <v-menu v-for="(group, groupTag) in links" :key="groupTag" offset-y open-on-hover transition="slide-y-transition">
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn v-if="group.sections" class="menu--text" elevation="0" v-bind="attrs" :to="localePath(group.link)" nuxt v-on="on">
+                <v-icon>{{ group.icon }}</v-icon>
+                {{ $t('banner.' + groupTag) }}
+                <v-icon>mdi-chevron-down</v-icon>
+              </v-btn>
+              <v-btn v-else elevation="0" class="menu--text" :to="localePath(group.link)" nuxt>
+                <v-icon>{{ group.icon }}</v-icon>
+                {{ $t('banner.' + groupTag) }}
+              </v-btn>
+            </template>
+            <v-list v-if="group.sections">
+              <div v-for="(section, textTag) in group.sections" :key="textTag">
+                <v-list-item v-if="section.type === 'external'">
+                  <v-list-item-content>
+                    <a :href="section.link">{{ $t('banner.' + textTag) }}</a>
+                  </v-list-item-content>
+                </v-list-item>
+                <v-list-item v-else :to="localePath(section.link)" nuxt>
+                  <v-list-item-content>
+                    <v-list-item-title class="menu--text" v-text="$t('banner.' + textTag)" />
+                  </v-list-item-content>
+                </v-list-item>
+              </div>
+            </v-list>
+          </v-menu>
+        </div>
+      </template>
       <v-app-bar-nav-icon v-if="$vuetify.breakpoint.smAndDown" @click.stop="drawerOpen = !drawerOpen" />
+      <h5 v-if="$vuetify.breakpoint.smAndDown" class="text-md-h6 ml-5" style="font-weight:normal">
+        <nuxt-link class="no-underline underline-on-hover black--text" :to="localePath('/')">
+          {{ $t('common.woudcFull') }}
+        </nuxt-link>
+      </h5>
       <v-spacer />
       <nuxt-link v-if="locale === 'fr'" :to="switchLocalePath('en')">
         English
@@ -81,11 +93,6 @@
     </v-main>
     <v-footer app>
       <span>&copy; 2020</span>
-      <h5 class="text-md-h6 ml-3" style="font-weight:normal">
-        <nuxt-link class="no-underline underline-on-hover black--text" :to="localePath('/')">
-          {{ $t('common.woudcFull') }}
-        </nuxt-link>
-      </h5>
       <v-spacer />
       <nuxt-link class="mr-10 no-underline" :to="localePath('contact')">
         <v-icon class="mr-1 pb-1">
@@ -125,8 +132,7 @@ export default {
             },
             'contributors-registration': { link: 'contributors-registration' },
             'contributors-list': { link: 'contributors' },
-            'contributors-submission': { link: 'contributors-submission' },
-            'contributors-validation': { link: 'contributors-validation' }
+            'contributors-submission': { link: 'contributors-submission' }
           }
         },
         resources: {

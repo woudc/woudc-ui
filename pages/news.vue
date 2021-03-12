@@ -14,10 +14,10 @@
     <v-row>
       <v-col v-if="loaded">
         <v-card v-for="(newsItem, i) in sortedItems" :key="i" class="mb-6">
-          <v-card-title class="info">
+          <v-card-title class="header">
             {{ newsItem.properties[`title_${$i18n.locale}`] }}
           </v-card-title>
-          <v-card-subtitle class="info">
+          <v-card-subtitle class="header">
             <span class="blue--text text--darken-3">{{ newsItem.properties.published_date.slice(0,10) }}</span>
             <v-chip v-for="(keyword, j) in newsItem.properties[`keywords_${$i18n.locale}`]" :key="j" class="ma-2" small>
               {{ keyword }}

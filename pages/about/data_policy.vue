@@ -43,7 +43,7 @@
           </template>
         </i18n>
         <v-card>
-          <v-card-title class="accent">
+          <v-card-title class="info">
             {{ $t('about.policy.doi.note1.title') }}
           </v-card-title>
           <v-card-text>
@@ -55,7 +55,7 @@
           </v-card-text>
         </v-card>
         <v-card>
-          <v-card-title class="accent">
+          <v-card-title class="info">
             {{ $t('about.policy.doi.note2.title') }}
           </v-card-title>
           <v-card-text>
@@ -69,7 +69,7 @@
         <h2>{{ $t('about.policy.publishing.title') }}</h2>
         <p>{{ $t('about.policy.publishing.blurb-citations') }}</p>
         <v-card>
-          <v-card-title class="accent">
+          <v-card-title class="info">
             {{ $t('about.policy.publishing.note1.title') }}
           </v-card-title>
           <v-card-text>
