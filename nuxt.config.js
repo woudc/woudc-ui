@@ -90,8 +90,6 @@ export default {
           warning: '#FFF59D',
           error: '#EF9A9A',
           accent: '#faa52e',
-          header: '#BDBDBD',
-          menu: '#424242'
         },
         dark: {
           primary: colors.blue.darken2,
