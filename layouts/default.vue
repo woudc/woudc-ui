@@ -15,7 +15,7 @@
               <v-list-item-title v-text="$t('banner.' + groupTag)" />
             </v-list-item-content>
           </v-list-item>
-          <v-list-group v-else color="black" :prepend-icon="group.icon">
+          <v-list-group v-else color="grey darken-4" :prepend-icon="group.icon">
             <template v-slot:activator>
               <v-list-item-content>
                 <v-list-item-title v-text="$t('banner.' + groupTag)" />
