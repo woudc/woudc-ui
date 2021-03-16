@@ -89,7 +89,7 @@ export default {
           info: '#B3E5FC',
           warning: '#FFF59D',
           error: '#EF9A9A',
-          accent: '#faa52e',
+          accent: '#faa52e'
         },
         dark: {
           primary: colors.blue.darken2,
