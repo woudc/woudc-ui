@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-if="$vuetify.breakpoint.smAndDown" v-model="drawerOpen" color="secondary" temporary fixed app>
-      <v-list color="secondary">
+    <v-navigation-drawer v-if="$vuetify.breakpoint.smAndDown" v-model="drawerOpen" color="accent" temporary fixed app>
+      <v-list color="accent">
         <div v-for="(group, groupTag) in links" :key="groupTag">
           <v-list-item
             v-if="group.sections == undefined"
@@ -24,12 +24,12 @@
             <div v-for="(section, textTag) in group.sections" :key="textTag">
               <v-list-item v-if="section.type === 'external'">
                 <v-list-item-content>
-                  <a :href="section.link" class="ml-2 black--text">{{ $t('banner.' + textTag) }}</a>
+                  <a :href="section.link" class="ml-2 grey--text text--darken-4">{{ $t('banner.' + textTag) }}</a>
                 </v-list-item-content>
               </v-list-item>
               <v-list-item v-else :to="localePath(section.link)" nuxt>
                 <v-list-item-content>
-                  <v-list-item-title class="ml-2 black--text" v-text="$t('banner.' + textTag)" />
+                  <v-list-item-title class="ml-2 grey--text text--darken-4" v-text="$t('banner.' + textTag)" />
                 </v-list-item-content>
               </v-list-item>
             </div>
@@ -47,26 +47,26 @@
         <div v-if="$vuetify.breakpoint.mdAndUp" class="text-center">
           <v-menu v-for="(group, groupTag) in links" :key="groupTag" offset-y open-on-hover transition="slide-y-transition">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn v-if="group.sections" color="secondary" class="mr-2 black--text" elevation="0" v-bind="attrs" :to="localePath(group.link)" nuxt v-on="on">
+              <v-btn v-if="group.sections" color="accent" class="mr-2 grey--text text--darken-4" elevation="0" v-bind="attrs" :to="localePath(group.link)" nuxt v-on="on">
                 <v-icon>{{ group.icon }}</v-icon>
                 {{ $t('banner.' + groupTag) }}
                 <v-icon>mdi-chevron-down</v-icon>
               </v-btn>
-              <v-btn v-else color="secondary" elevation="0" class="mr-2 black--text" :to="localePath(group.link)" nuxt>
+              <v-btn v-else color="accent" elevation="0" class="mr-2 grey--text text--darken-4" :to="localePath(group.link)" nuxt>
                 <v-icon>{{ group.icon }}</v-icon>
                 {{ $t('banner.' + groupTag) }}
               </v-btn>
             </template>
-            <v-list v-if="group.sections" color="secondary">
+            <v-list v-if="group.sections" color="accent">
               <div v-for="(section, textTag) in group.sections" :key="textTag">
                 <v-list-item v-if="section.type === 'external'">
                   <v-list-item-content>
-                    <a :href="section.link" class="black--text">{{ $t('banner.' + textTag) }}</a>
+                    <a :href="section.link" class="grey--text text--darken-4">{{ $t('banner.' + textTag) }}</a>
                   </v-list-item-content>
                 </v-list-item>
                 <v-list-item v-else :to="localePath(section.link)" nuxt>
                   <v-list-item-content>
-                    <v-list-item-title class="black--text" v-text="$t('banner.' + textTag)" />
+                    <v-list-item-title class="grey--text text--darken-4" v-text="$t('banner.' + textTag)" />
                   </v-list-item-content>
                 </v-list-item>
               </div>
