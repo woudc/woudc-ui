@@ -46,7 +46,7 @@
           :items="[station]"
           :loading="loadingTables"
           hide-default-footer
-          class="elevation-1"
+          class="elevation-1 mb-4"
         >
           <template v-slot:item.woudc_id="stn">
             <nuxt-link :to="'/data/stations/' + stn.item.woudc_id">
@@ -71,7 +71,7 @@
           :items="deployments"
           :loading="loadingTables"
           hide-default-footer
-          class="elevation-1"
+          class="elevation-1 mb-4"
         >
           <template v-slot:item="deployment">
             <tr>

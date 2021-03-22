@@ -26,8 +26,8 @@
         </i18n>
         <h2>{{ $t('about.policy.gaw.title') }}</h2>
         <p>{{ $t('about.policy.gaw.blurb') }}</p>
-        <v-card>
-          <v-card-title class="info">
+        <v-card color="info">
+          <v-card-title>
             {{ $t('about.policy.gaw.note.title') }}
           </v-card-title>
           <v-card-text>
@@ -42,8 +42,8 @@
             </a>
           </template>
         </i18n>
-        <v-card>
-          <v-card-title class="accent">
+        <v-card color="info" class="mb-4">
+          <v-card-title>
             {{ $t('about.policy.doi.note1.title') }}
           </v-card-title>
           <v-card-text>
@@ -54,8 +54,8 @@
             </ul>
           </v-card-text>
         </v-card>
-        <v-card>
-          <v-card-title class="accent">
+        <v-card color="info">
+          <v-card-title class="info">
             {{ $t('about.policy.doi.note2.title') }}
           </v-card-title>
           <v-card-text>
@@ -68,16 +68,16 @@
         </v-card>
         <h2>{{ $t('about.policy.publishing.title') }}</h2>
         <p>{{ $t('about.policy.publishing.blurb-citations') }}</p>
-        <v-card>
-          <v-card-title class="accent">
+        <v-card color="info" class="mb-4">
+          <v-card-title>
             {{ $t('about.policy.publishing.note1.title') }}
           </v-card-title>
           <v-card-text>
             {{ $t('about.policy.publishing.note1.body') }}
           </v-card-text>
         </v-card>
-        <v-card>
-          <v-card-title class="info">
+        <v-card color="info">
+          <v-card-title>
             {{ $t('about.policy.publishing.note2.title') }}
           </v-card-title>
           <v-card-text>
@@ -97,8 +97,8 @@
         </i18n>
         <h2>{{ $t('about.policy.products.title') }}</h2>
         <p>{{ $t('about.policy.products.blurb') }}</p>
-        <v-card>
-          <v-card-title class="info">
+        <v-card color="info">
+          <v-card-title>
             {{ $t('about.policy.products.note.title') }}
           </v-card-title>
           <v-card-text>
