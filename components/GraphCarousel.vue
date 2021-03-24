@@ -13,12 +13,26 @@
             :elevation="hover ? 12 : 2"
           >
             <v-img
-              :src="url"
+              :src="!imageLoaded[((rowIndex * graphsPerRow) + columnIndex)] ? url : require('~/assets/404_error.png')"
               :alt="caption"
               aspect-ratio="1.5"
               contain
+              @error="setImageError((rowIndex * graphsPerRow) + columnIndex)"
               @click="selectImage((rowIndex * graphsPerRow) + columnIndex)"
-            />
+            >
+              <template v-slot:placeholder>
+                <v-row
+                  class="fill-height ma-0"
+                  align="center"
+                  justify="center"
+                >
+                  <v-progress-circular
+                    indeterminate
+                    color="grey-darken-4"
+                  ></v-progress-circular>
+                </v-row>
+              </template>
+            </v-img>              
             <v-card-text>{{ caption }}</v-card-text>
           </v-card>
         </v-hover>
@@ -95,7 +109,8 @@ export default {
     return {
       graphsPerRow: 4,
       imagePreviewActive: false,
-      imagePreviewIndex: 0
+      imagePreviewIndex: 0,
+      imageLoaded: []
     }
   },
   computed: {
@@ -117,6 +132,13 @@ export default {
       const filledTemplate2 = filledTemplate1.replace('*', `${this.graphs.length}`)
       return filledTemplate2
     }
+  },
+  beforeMount() {
+    let index = 0
+    this.graphs.forEach((graph) => {
+      this.$set(this.imageLoaded, index, false)
+      index ++
+    })
   },
   methods: {
     exitPreview(event) {
@@ -141,6 +163,9 @@ export default {
     selectImage(index) {
       this.imagePreviewIndex = index
       this.imagePreviewActive = true
+    },
+    setImageError(index) {
+      this.$set(this.imageLoaded, index, true)
     }
   }
 }
