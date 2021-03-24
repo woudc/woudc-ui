@@ -13,7 +13,7 @@
             :elevation="hover ? 12 : 2"
           >
             <v-img
-              :src="!imageLoaded[((rowIndex * graphsPerRow) + columnIndex)] ? url : require('~/assets/404_error.png')"
+              :src="!imageError[((rowIndex * graphsPerRow) + columnIndex)] ? url : require('~/assets/404_error.png')"
               :alt="caption"
               aspect-ratio="1.5"
               contain
@@ -110,7 +110,7 @@ export default {
       graphsPerRow: 4,
       imagePreviewActive: false,
       imagePreviewIndex: 0,
-      imageLoaded: []
+      imageError: []
     }
   },
   computed: {
@@ -136,7 +136,7 @@ export default {
   beforeMount() {
     let index = 0
     this.graphs.forEach((graph) => {
-      this.$set(this.imageLoaded, index, false)
+      this.$set(this.imageError, index, false)
       index ++
     })
   },
@@ -165,7 +165,7 @@ export default {
       this.imagePreviewActive = true
     },
     setImageError(index) {
-      this.$set(this.imageLoaded, index, true)
+      this.$set(this.imageError, index, true)
     }
   }
 }
