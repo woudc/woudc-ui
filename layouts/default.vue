@@ -75,7 +75,7 @@
         </div>
       </template>
       <v-app-bar-nav-icon v-if="$vuetify.breakpoint.smAndDown" color="white" @click.stop="drawerOpen = !drawerOpen" />
-       <h5 v-if="$vuetify.breakpoint.smAndDown" class="text-md-h6 ml-5 font-weight-regular">
+      <h5 v-if="$vuetify.breakpoint.smAndDown" class="text-md-h6 ml-5 font-weight-regular">
         <nuxt-link class="no-underline underline-on-hover white--text" :to="localePath('/')">
           {{ $t('common.woudcFull') }}
         </nuxt-link>
