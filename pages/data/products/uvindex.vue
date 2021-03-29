@@ -252,7 +252,9 @@ export default {
       this.graphURLs = {}
       for (const year of yearsInRange) {
         const instrumentCaps = this.instrumentKeyToCaps(this.selectedInstrument)
-        const components = [ 'dailyuv', stationID, instrumentCaps, year ]
+        const instrumentCapsPadded = this.instrumentKeySerialPad(instrumentCaps)
+
+        const components = [ 'dailyuv', stationID, instrumentCapsPadded, year ]
         const filename = components.join('-') + '.png'
 
         const instrumentName = this.selectedInstrument.replace('_', ' #')
@@ -279,10 +281,10 @@ export default {
         queryParams += '&instrument_number=' + serial
       }
 
-      const broadbandParams = queryParams + '&content_category=Broad-band'
+      const broadbandParams = queryParams + '&content_category=Broad-band&limit=5000'
       const broadbandResponse = await woudcClient.get(dataRecordsURL + '?' + broadbandParams)
 
-      const spectralParams = queryParams + '&content_category=Spectral'
+      const spectralParams = queryParams + '&content_category=Spectral&limit=5000'
       const spectralResponse = await woudcClient.get(dataRecordsURL + '?' + spectralParams)
 
       const observationTools = {}
@@ -297,11 +299,13 @@ export default {
             feature.properties.instrument_number
           ].join('_')
 
+          if (!(year in observationTools)) {
+            observationTools[year] = []
+          }
+
+          observationTools[year].push(key)
+          
           if (!(observationKeys.includes(key))) {
-            if (!(year in observationTools)) {
-              observationTools[year] = []
-            }
-            observationTools[year].push(key)
             observationKeys.push(key)
           }
         }
@@ -327,6 +331,12 @@ export default {
       const nameCaps = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()
 
       return [ nameCaps, model, serial ].join('_')
+    },
+    instrumentKeySerialPad(instrumentKey) {
+      const [ name, model, serial ] = instrumentKey.split('_')
+      const serialPadded = serial.padStart(3, '0')
+
+      return [ name, model, serialPadded ].join('_')
     },
     instrumentToSelectOption(instrument) {
       const name = instrument.properties.name
