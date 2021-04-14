@@ -92,7 +92,7 @@
       <nuxt />
     </v-main>
     <v-footer color="primary" class="white--text" app>
-      <span>&copy; 2021</span>
+      <span>&copy; {{ buildYYYY }} {{ appName }} {{ version }}</span>
       <v-spacer />
       <nuxt-link class="white--text mr-10 no-underline" :to="localePath('contact')">
         <v-icon class="mr-1 pb-1" color="white">
@@ -110,6 +110,9 @@ export default {
     return {
       drawerOpen: false,
       baseURL: process.env.BASE_URL,
+      version: process.env.version,
+      appName: process.env.appName,
+      buildYYYY: process.env.buildYYYY,
       links: {
         data: {
           icon: 'mdi-database',

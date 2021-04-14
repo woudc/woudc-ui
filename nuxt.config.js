@@ -7,7 +7,10 @@ const PORT = process.env.npm_config_port || '3000'
 export default {
   ssr: false,
   env: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:' + PORT
+    baseUrl: process.env.BASE_URL || 'http://localhost:' + PORT,
+    version: process.env.npm_package_version,
+    appName: process.env.npm_package_name,
+    buildYYYY: new Date().getFullYear()
   },
   router: {
     base: process.env.ROUTER_BASE || '/woudc-ui/'
