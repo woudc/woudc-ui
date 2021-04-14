@@ -92,7 +92,7 @@
       <nuxt />
     </v-main>
     <v-footer color="primary" class="white--text" app>
-      <span>&copy; 2020</span>
+      <span>&copy; 2021</span>
       <v-spacer />
       <nuxt-link class="white--text mr-10 no-underline" :to="localePath('contact')">
         <v-icon class="mr-1 pb-1" color="white">
