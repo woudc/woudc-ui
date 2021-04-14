@@ -8,9 +8,10 @@ export default {
   ssr: false,
   env: {
     baseUrl: process.env.BASE_URL || 'http://localhost:' + PORT,
-    version: process.env.npm_package_version,
+    appBuildYYYY: new Date().getFullYear(),
+    appVersion: process.env.npm_package_version,
     appName: process.env.npm_package_name,
-    buildYYYY: new Date().getFullYear()
+    appHomepage: process.env.npm_package_homepage
   },
   router: {
     base: process.env.ROUTER_BASE || '/woudc-ui/'
