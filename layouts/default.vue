@@ -37,7 +37,7 @@
         </div>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar color="primary" fixed app>
+    <v-app-bar color="primary" app hide-on-scroll>
       <h5 v-if="$vuetify.breakpoint.mdAndUp" class="text-md-h6 ml-5 font-weight-regular">
         <nuxt-link class="no-underline underline-on-hover white--text" :to="localePath('/')">
           {{ $t('common.woudcFull') }}
@@ -91,7 +91,7 @@
     <v-main>
       <nuxt />
     </v-main>
-    <v-footer color="primary" class="white--text" app>
+    <v-footer color="primary" class="white--text" app absolute>
       <span>&copy; {{ appBuildYYYY }} <a :href="appHomepage" target="_blank" rel="noreferrer" class="accent--text">{{ appName }}</a> {{ appVersion }}</span>
       <v-spacer />
       <nuxt-link class="white--text mr-10 no-underline" :to="localePath('contact')">
