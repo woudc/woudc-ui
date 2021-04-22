@@ -27,8 +27,8 @@
                   <v-list-item-title class="ml-2 grey--text text--darken-4" v-text="$t('banner.' + textTag)"></v-list-item-title>
                 </v-list-item-content>
                 <v-list-item-icon>
-                    <v-icon>mdi-open-in-new</v-icon>
-                  </v-list-item-icon>
+                  <v-icon>mdi-open-in-new</v-icon>
+                </v-list-item-icon>
               </v-list-item>
               <v-list-item v-else :to="localePath(section.link)" nuxt>
                 <v-list-item-content>
@@ -56,7 +56,9 @@
                 <v-icon>mdi-chevron-down</v-icon>
               </v-tab>
               <v-tab v-else :to="localePath(group.link)" class="accent--text" nuxt>
-                <v-icon color="accent">{{ group.icon }}</v-icon>
+                <v-icon color="accent">
+                  {{ group.icon }}
+                </v-icon>
                 <span class="pl-1">{{ $t('banner.' + groupTag) }}</span>
               </v-tab>
             </v-tabs>
