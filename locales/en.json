@@ -669,7 +669,7 @@
         "title": "Publishing Products"
       },
       "publishing": {
-        "blurb-citation": "When publishing data retrieved from the WOUDC you are expected to acknowledge the contributors who author these data as the data source and the WOUDC, using the appropriate citation as per the example provided.",
+        "blurb-citations": "When publishing data retrieved from the WOUDC you are expected to acknowledge the contributors who author these data as the data source and the WOUDC, using the appropriate citation as per the example provided.",
         "blurb-contributors": "For a complete list of all contributors refer to the {contributors-page}.",
         "note1": {
           "body": "JMA, & NASA-WFF. World Meteorological Organization-Global Atmosphere Watch Program (WMO-GAW)/World Ozone and Ultraviolet Radiation Data Centre (WOUDC) [Data]. Retrieved October 24, 2013, from https://woudc.org. doi:10.14287/10000001",
