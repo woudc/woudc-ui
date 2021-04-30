@@ -101,7 +101,7 @@
         >
           <template v-slot:item.waf_url="instrument">
             <a :href="instrument.item.waf_url" target="_blank">
-              TODO
+              {{ instrument.item.waf_url }}
             </a>
           </template>
         </v-data-table>
