@@ -24,7 +24,7 @@
             </nuxt-link>
             <br>
             <strong>{{ $t('data.instruments.contributor-name') }}</strong>
-            <span> TODO</span>
+            <span> {{ element.item.contributor_name }}</span>
           </template>
         </selectable-map>
       </v-col>
