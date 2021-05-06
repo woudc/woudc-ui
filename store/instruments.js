@@ -57,7 +57,7 @@ const actions = {
       } },
       { id: 'source', type: 'application/json', value: [
         'station_name', 'data_class', 'country_name_en', 'country_name_fr',
-        'waf_url', 'start_date', 'end_date'
+        'contributor_name', 'waf_url', 'start_date', 'end_date'
       ] }
     ]
 
