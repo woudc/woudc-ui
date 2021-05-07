@@ -5,7 +5,7 @@ const defaultStationList = () => ({
   orderByName: []
 })
 
-function groupStationsByDataset(features, stationsByID) {
+const groupStationsByDataset = (features, stationsByID) => {
   const stationsByDataset = {}
   const uvIndexDatasets = [ 'Broad-band', 'Spectral' ]
 
@@ -167,7 +167,7 @@ const mutations = {
 }
 
 const actions = {
-  async download({ commit, state }, proc) {
+  async download({ commit, state }) {
     if (state.loaded) {
       return false
     }
@@ -187,6 +187,13 @@ const actions = {
     const stationsResponse = await woudcClient.post(queryURL, queryParams)
     const stationsByOrdering = stationsResponse.data.outputs
 
+    // Use a map to let a station's properties all be available using just the ID.
+    const stationsByID = {}
+    stationsByOrdering.orderByID.forEach((station) => {
+      const stationID = station.properties.woudc_id
+      stationsByID[stationID] = station
+    })
+
     // Download all contributions (basically station-dataset pairs) in both orderings.
     const contributionInputs = [
       { id: 'index', type: 'text/plain', value: 'contribution' },
@@ -201,17 +208,8 @@ const actions = {
     const contributionsResponse = await woudcClient.post(queryURL, queryParams)
     const featuresByOrdering = contributionsResponse.data.outputs
 
-    // Use a map to let a station's properties all be available using just the ID.
-    const stationsByID = {}
-    stationsByOrdering.orderByID.forEach((station) => {
-      const stationID = station.properties.woudc_id
-      stationsByID[stationID] = station
-    })
-
-    const groupsOrderedByID = groupStationsByDataset(
-      featuresByOrdering.orderByID, stationsByID)
-    const groupsOrderedByName = groupStationsByDataset(
-      featuresByOrdering.orderByName, stationsByID)
+    const groupsOrderedByID = groupStationsByDataset(featuresByOrdering.orderByID, stationsByID)
+    const groupsOrderedByName = groupStationsByDataset(featuresByOrdering.orderByName, stationsByID)
 
     const allDatasets = Object.keys(groupsOrderedByID)
     const stationsByDataset = {}
