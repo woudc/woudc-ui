@@ -39,7 +39,7 @@
         </v-data-table>
         <i18n path="about.standards.blurb-howto" tag="p">
           <template v-slot:access>
-            <nuxt-link :to="localePath('about-dataaccess')">
+            <nuxt-link :to="localePath('about-data_access')">
               {{ $t('common.access') }}
             </nuxt-link>
           </template>
