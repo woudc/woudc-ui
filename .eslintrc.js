@@ -24,7 +24,7 @@ module.exports = {
   rules: {
     'indent': ['error', 2],
     'semi': ['error', 'never'],
-    'no-console': ['error', { allow: ['warn', 'error'] }],
+    'no-console': ['error', { allow: ['warn', 'error', 'log'] }], // allow logs for now
     'no-alert': 'error',
     'arrow-spacing': 'error',
     'vue/max-attributes-per-line': 'off',

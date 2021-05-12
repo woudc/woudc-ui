@@ -127,13 +127,14 @@ export default {
       }
     }
   },
-  async mounted() {
-    await this.$store.dispatch('stations/download')
-
-    const stations = this.$store.getters['stations/all'].orderByID
-    this.stations = stations.map(unpackageStation)
-    this.loadingMap = false
-    this.loadingTable = false
+  mounted() {
+    this.$store.dispatch('stations/downloadStations')
+      .then(() => {
+        const stations = this.$store.getters['stations/all']
+        this.stations = stations.map(unpackageStation)
+        this.loadingMap = false
+        this.loadingTable = false
+      })
   },
   nuxtI18n: {
     paths: {

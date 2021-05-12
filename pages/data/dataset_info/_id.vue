@@ -148,10 +148,10 @@ export default {
       this.dateFrom = '1924-08-18'
       this.dateTo = 'now'
 
-      await this.$store.dispatch('stations/download')
+      await this.$store.dispatch('stations/downloadStationsByDataset')
 
       const getterName = `stations/${this.$route.params.id}`
-      const stations = this.$store.getters[getterName].orderByID
+      const stations = this.$store.getters[getterName]
 
       this.stations = stations.map(unpackageStation)
       this.loadingMap = false
