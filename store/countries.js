@@ -1,5 +1,5 @@
 
-import woudcClient from '~/plugins/woudcClient'
+import { getDistinct } from '~/plugins/api/wdr.api.processes'
 
 import bounds from '~/static/countries.json'
 
@@ -23,10 +23,7 @@ Object.keys(bounds).forEach((countryCode) => {
 const state = () => ({
   loaded: false,
   boundaries: bounds,
-  countriesList: {
-    orderByCode: [],
-    orderByName: []
-  }
+  countriesList: []
 })
 
 
@@ -51,7 +48,7 @@ const mutations = {
 
 
 const actions = {
-  async download({ commit, state }, proc) {
+  async download({ commit, state }) {
     if (state.loaded) {
       return false
     }
@@ -59,19 +56,17 @@ const actions = {
     const inputs = [
       { id: 'index', type: 'text/plain', value: 'contribution' },
       { id: 'distinct', type: 'application/json', value: {
-        orderByCode: [ 'country_id' ],
-        orderByName: [ 'country_name_en' ]
+        orderByCode: [ 'country_id' ]
       } },
       { id: 'source', type: 'application/json', value: [
         'country_id', 'country_name_en', 'country_name_fr'
       ] }
     ]
 
-    const queryURL = '/processes/woudc-data-registry-select-distinct/jobs'
     const queryParams = { inputs }
 
-    const countriesResponse = await woudcClient.post(queryURL, queryParams)
-    const countries = countriesResponse.data.outputs
+    const countriesResponse = await getDistinct(queryParams)
+    const countries = countriesResponse.data.outputs.orderByCode
 
     commit('setCountries', countries)
     commit('setLoaded')
