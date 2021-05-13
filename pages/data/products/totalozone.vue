@@ -54,8 +54,8 @@
           <v-col class="mt-1" align-self="center">
             <span class="pt-0">{{ $t('common.sort-by') }}</span>
             <v-radio-group v-model="stationOrder" class="mt-1 pt-0">
-              <v-radio :label="$t('common.station-id')" value="orderByID" />
-              <v-radio :label="$t('common.station-name')" value="orderByName" />
+              <v-radio :label="$t('common.station-id')" value="woudc_id" />
+              <v-radio :label="$t('common.station-name')" value="name" />
             </v-radio-group>
           </v-col>
         </v-row>
@@ -80,7 +80,7 @@
       </v-col>
       <v-col>
         <selectable-map
-          :elements="stations.orderByID"
+          :elements="stations"
           :selected="selectedStation"
           :loading="loadingMap"
           @select="changeStation"
@@ -156,11 +156,8 @@ export default {
       selectedStation: null,
       selectedStationID: null,
       selectedYear: null,
-      stations: {
-        orderByID: [],
-        orderByName: []
-      },
-      stationOrder: 'orderByName',
+      stations: [],
+      stationOrder: 'name',
       years: []
     }
   },
@@ -175,12 +172,26 @@ export default {
       return [ nullOption ].concat(instrumentOptions)
     },
     stationOptions() {
-      const orderedStations = this.stations[this.stationOrder]
+      // built-in station compare function for sorting
+      const compareStnOnKey = function (key) {
+        return function (a, b) {
+          // compare
+          if (a[key] < b[key]) {
+            return -1
+          }
+          if (a[key] > b[key]) {
+            return 1
+          }
+          // a === b
+          return 0
+        }
+      }
+      const stationOptions = this.stations
 
       if (this.boundingBox === null) {
-        return orderedStations.map(this.stationToSelectOption)
+        return stationOptions.sort(compareStnOnKey(this.stationOrder)).map(this.stationToSelectOption)
       } else {
-        const visibleOptions = orderedStations.filter((station) => {
+        const visibleOptions = stationOptions.filter((station) => {
           const selected = station.identifier === this.selectedStationID
           const coords = this.$L.latLng(station.geometry.coordinates)
           const visible = this.boundingBox.contains(coords)
@@ -188,7 +199,7 @@ export default {
           return selected || visible
         })
 
-        return visibleOptions.map(this.stationToSelectOption)
+        return visibleOptions.sort(compareStnOnKey(this.stationOrder)).map(this.stationToSelectOption)
       }
     },
     yearOptions() {
@@ -201,16 +212,14 @@ export default {
       return [ nullOption ].concat(yearOptions)
     }
   },
-  async mounted() {
-    await this.$store.dispatch('stations/download')
-
-    const stationsRaw = this.$store.getters['stations/totalozone']
-    this.stations = {
-      orderByID: stationsRaw.orderByID.map(unpackageStation),
-      orderByName: stationsRaw.orderByName.map(unpackageStation)
-    }
-    this.loadingStations = false
-    this.loadingMap = false
+  mounted() {
+    this.$store.dispatch('stations/downloadStationsByDataset')
+      .then(() => {
+        const stationsRaw = this.$store.getters['stations/totalozone']
+        this.stations = stationsRaw.map(unpackageStation)
+        this.loadingStations = false
+        this.loadingMap = false
+      })
   },
   methods: {
     changeInstrument(instrument) {
@@ -388,9 +397,17 @@ export default {
     stationToSelectOption(station) {
       const stationName = station.name
       const stationID = station.woudc_id
+      let textDisplay = stationName
+
+      // change text display by sort type
+      if (this.stationOrder === 'name') {
+        textDisplay += ' (' + stationID + ')'
+      } else {
+        textDisplay = '(' + stationID + ') ' + textDisplay
+      }
 
       return {
-        text: stationName + ' (' + stationID + ')',
+        text: textDisplay,
         value: stationID,
         element: station
       }

@@ -422,6 +422,8 @@ export default {
       const stationName = station.name
       const stationID = station.woudc_id
       let textDisplay = stationName
+
+      // change text display by sort type
       if (this.stationOrder === 'name') {
         textDisplay += ' (' + stationID + ')'
       } else {
