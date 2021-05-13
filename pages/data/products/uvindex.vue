@@ -136,7 +136,7 @@
 
 <script>
 import woudcClient from '~/plugins/woudcClient'
-import { unpackageStation } from '~/plugins/unpackage'
+import { unpackageStation, compareOnKey } from '~/plugins/unpackage'
 
 import GraphCarousel from '~/components/GraphCarousel'
 import SelectableMap from '~/components/SelectableMap'
@@ -170,24 +170,10 @@ export default {
       return this.instruments.map(this.instrumentToSelectOption)
     },
     stationOptions() {
-      // built-in station compare function for sorting
-      const compareStnOnKey = function (key) {
-        return function (a, b) {
-          // compare
-          if (a[key] < b[key]) {
-            return -1
-          }
-          if (a[key] > b[key]) {
-            return 1
-          }
-          // a === b
-          return 0
-        }
-      }
       const stationOptions = this.stations
 
       if (this.boundingBox === null) {
-        return stationOptions.sort(compareStnOnKey(this.stationOrder)).map(this.stationToSelectOption)
+        return stationOptions.sort(compareOnKey(this.stationOrder)).map(this.stationToSelectOption)
       } else {
         const visibleOptions = stationOptions.filter((station) => {
           const selected = station.identifier === this.selectedStationID
@@ -197,7 +183,7 @@ export default {
           return selected || visible
         })
 
-        return visibleOptions.sort(compareStnOnKey(this.stationOrder)).map(this.stationToSelectOption)
+        return visibleOptions.sort(compareOnKey(this.stationOrder)).map(this.stationToSelectOption)
       }
     },
     yearOptions() {

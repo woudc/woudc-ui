@@ -272,7 +272,7 @@
 <script>
 import woudcClient from '~/plugins/woudcClient'
 import { getExplore, getMetrics } from '~/plugins/api/wdr.api.processes'
-import { stripProperties, unpackageBareStation } from '~/plugins/unpackage'
+import { stripProperties, unpackageBareStation, compareOnKey } from '~/plugins/unpackage'
 
 import MapInstructions from '~/components/MapInstructions'
 import MetricsChart from '~/components/MetricsChart'
@@ -324,7 +324,7 @@ export default {
       ]
     },
     countryOptions() {
-      const nullOption = {
+      const nullOption = { // All countries option
         text: this.$t('common.all'),
         value: null,
         element: null
@@ -333,7 +333,7 @@ export default {
       const orderedCountries = this.countries
 
       if (this.mapBoundingBox === null) {
-        const countryOptions = orderedCountries.map(this.countryToSelectOption)
+        const countryOptions = orderedCountries.sort(compareOnKey(this.countryOrder)).map(this.countryToSelectOption)
         return [ nullOption ].concat(countryOptions)
       } else {
         const boundaries = this.$store.getters['countries/boundaries']
@@ -350,8 +350,7 @@ export default {
 
           return selected || visible
         })
-
-        const countryOptions = visibleOptions.map(this.countryToSelectOption)
+        const countryOptions = visibleOptions.sort(compareOnKey(this.countryOrder)).map(this.countryToSelectOption)
         return [ nullOption ].concat(countryOptions)
       }
     },
@@ -455,7 +454,7 @@ export default {
       const orderedStations = this.stations
 
       if (this.mapBoundingBox === null) {
-        const stationOptions = orderedStations.map(this.stationToSelectOption)
+        const stationOptions = orderedStations.sort(compareOnKey(this.stationOrder)).map(this.stationToSelectOption)
         return [ nullOption ].concat(stationOptions)
       } else {
         const visibleOptions = orderedStations.filter((station) => {
@@ -466,7 +465,7 @@ export default {
           return selected || visible
         })
 
-        const stationOptions = visibleOptions.map(this.stationToSelectOption)
+        const stationOptions = visibleOptions.sort(compareOnKey(this.stationOrder)).map(this.stationToSelectOption)
         return [ nullOption ].concat(stationOptions)
       }
     },
@@ -640,7 +639,11 @@ export default {
         fr: country.country_name_fr
       }
 
-      return countryName[this.$i18n.locale] + ' (' + countryID + ')'
+      if (this.countryOrder === 'country_id') {
+        return '(' + countryID + ') ' + countryName[this.$i18n.locale]
+      } else { // country name
+        return countryName[this.$i18n.locale] + ' (' + countryID + ')'
+      }
     },
     countryToSelectOption(country) {
       return {
@@ -663,7 +666,11 @@ export default {
       const stationID = station.woudc_id || station.station_id
       const stationName = station.name || station.station_name
 
-      return stationName + ' (' + stationID + ')'
+      if (this.stationOrder === 'woudc_id') {
+        return '(' + stationID + ') ' + stationName
+      } else { // name
+        return stationName + ' (' + stationID + ')'
+      }
     },
     stationToSelectOption(station) {
       return {

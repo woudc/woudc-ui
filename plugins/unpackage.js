@@ -68,11 +68,27 @@ function unpackageDeployment(geoJSON) {
   return deployment
 }
 
+// compare function for sorting by obj[key]
+const compareOnKey = function (key) {
+  return function (a, b) {
+    // compare
+    if (a[key] < b[key]) {
+      return -1
+    }
+    if (a[key] > b[key]) {
+      return 1
+    }
+    // a === b
+    return 0
+  }
+}
+
 export {
   stripProperties,
   unpackageStation,
   unpackageBareStation,
   unpackageContributor,
   unpackageInstrument,
-  unpackageDeployment
+  unpackageDeployment,
+  compareOnKey
 }
