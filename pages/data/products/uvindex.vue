@@ -54,8 +54,8 @@
           <v-col class="mt-1" align-self="center">
             <span class="pt-0">{{ $t('common.sort-by') }}</span>
             <v-radio-group v-model="stationOrder" class="mt-1 pt-0">
-              <v-radio :label="$t('common.station-id')" value="orderByID" />
-              <v-radio :label="$t('common.station-name')" value="orderByName" />
+              <v-radio :label="$t('common.station-id')" value="woudc_id" />
+              <v-radio :label="$t('common.station-name')" value="name" />
             </v-radio-group>
           </v-col>
         </v-row>
@@ -85,7 +85,7 @@
       </v-col>
       <v-col>
         <selectable-map
-          :elements="stations.orderByID"
+          :elements="stations"
           :selected="selectedStation"
           :loading="loadingMap"
           @select="changeStation"
@@ -136,7 +136,7 @@
 
 <script>
 import woudcClient from '~/plugins/woudcClient'
-import { unpackageStation } from '~/plugins/unpackage'
+import { unpackageStation, compareOnKey } from '~/plugins/unpackage'
 
 import GraphCarousel from '~/components/GraphCarousel'
 import SelectableMap from '~/components/SelectableMap'
@@ -160,11 +160,8 @@ export default {
       selectedStation: null,
       selectedStationID: null,
       selectedYear: null,
-      stations: {
-        orderByID: [],
-        orderByName: []
-      },
-      stationOrder: 'orderByName',
+      stations: [],
+      stationOrder: 'name',
       years: []
     }
   },
@@ -173,12 +170,12 @@ export default {
       return this.instruments.map(this.instrumentToSelectOption)
     },
     stationOptions() {
-      const orderedStations = this.stations[this.stationOrder]
+      const stationOptions = this.stations
 
       if (this.boundingBox === null) {
-        return orderedStations.map(this.stationToSelectOption)
+        return stationOptions.sort(compareOnKey(this.stationOrder)).map(this.stationToSelectOption)
       } else {
-        const visibleOptions = orderedStations.filter((station) => {
+        const visibleOptions = stationOptions.filter((station) => {
           const selected = station.identifier === this.selectedStationID
           const coords = this.$L.latLng(station.geometry.coordinates)
           const visible = this.boundingBox.contains(coords)
@@ -186,7 +183,7 @@ export default {
           return selected || visible
         })
 
-        return visibleOptions.map(this.stationToSelectOption)
+        return visibleOptions.sort(compareOnKey(this.stationOrder)).map(this.stationToSelectOption)
       }
     },
     yearOptions() {
@@ -199,16 +196,14 @@ export default {
       return [ nullOption ].concat(yearOptions)
     }
   },
-  async mounted() {
-    await this.$store.dispatch('stations/download')
-
-    const stationsRaw = this.$store.getters['stations/uvindex']
-    this.stations = {
-      orderByID: stationsRaw.orderByID.map(unpackageStation),
-      orderByName: stationsRaw.orderByName.map(unpackageStation)
-    }
-    this.loadingStations = false
-    this.loadingMap = false
+  mounted() {
+    this.$store.dispatch('stations/downloadStationsByDataset')
+      .then(() => {
+        const stationsRaw = this.$store.getters['stations/uvindex']
+        this.stations = stationsRaw.map(unpackageStation)
+        this.loadingStations = false
+        this.loadingMap = false
+      })
   },
   methods: {
     changeInstrument(instrument) {
@@ -304,7 +299,7 @@ export default {
           }
 
           observationTools[year].push(key)
-          
+
           if (!(observationKeys.includes(key))) {
             observationKeys.push(key)
           }
@@ -412,9 +407,17 @@ export default {
     stationToSelectOption(station) {
       const stationName = station.name
       const stationID = station.woudc_id
+      let textDisplay = stationName
+
+      // change text display by sort type
+      if (this.stationOrder === 'name') {
+        textDisplay += ' (' + stationID + ')'
+      } else {
+        textDisplay = '(' + stationID + ') ' + textDisplay
+      }
 
       return {
-        text: stationName + ' (' + stationID + ')',
+        text: textDisplay,
         value: stationID,
         element: station
       }

@@ -7,7 +7,7 @@
         <p>{{ $t('data.explore.blurb.body-search') }}</p>
         <i18n path="data.explore.blurb.body-howto" tag="p">
           <template v-slot:how-to>
-            <nuxt-link :to="localePath('about-dataaccess')">
+            <nuxt-link :to="localePath('about-data_access')">
               {{ $t('data.explore.how-to') }}
             </nuxt-link>
           </template>
@@ -56,8 +56,8 @@
           <v-col align-self="center">
             <span class="pt-0">{{ $t('common.sort-by') }}</span>
             <v-radio-group v-model="countryOrder" class="mt-1 pt-0">
-              <v-radio class="mb-0" :label="$t('data.explore.country.id')" value="orderByCode" />
-              <v-radio :label="$t('data.explore.country.name')" value="orderByName" />
+              <v-radio class="mb-0" :label="$t('data.explore.country.id')" value="country_id" />
+              <v-radio :label="$t('data.explore.country.name')" :value="`country_name_${$i18n.locale}`" />
             </v-radio-group>
           </v-col>
         </v-row>
@@ -85,8 +85,8 @@
           <v-col align-self="center">
             <span class="pt-0">{{ $t('common.sort-by') }}</span>
             <v-radio-group v-model="stationOrder" class="mt-1 pt-0">
-              <v-radio class="mb-0" :label="$t('common.station-id')" value="orderByID" />
-              <v-radio :label="$t('common.station-name')" value="orderByName" />
+              <v-radio class="mb-0" :label="$t('common.station-id')" value="woudc_id" />
+              <v-radio :label="$t('common.station-name')" value="name" />
             </v-radio-group>
           </v-col>
         </v-row>
@@ -161,7 +161,7 @@
       <v-col>
         <map-instructions />
         <selectable-map
-          :elements="stations.orderByID"
+          :elements="stations"
           :selected="selectedStation"
           :country="mapFocusCountry"
           :loading="loadingMap"
@@ -271,7 +271,8 @@
 
 <script>
 import woudcClient from '~/plugins/woudcClient'
-import { stripProperties, unpackageBareStation } from '~/plugins/unpackage'
+import { getExplore, getMetrics } from '~/plugins/api/wdr.api.processes'
+import { stripProperties, unpackageBareStation, compareOnKey } from '~/plugins/unpackage'
 
 import MapInstructions from '~/components/MapInstructions'
 import MetricsChart from '~/components/MetricsChart'
@@ -285,8 +286,8 @@ export default {
   },
   data() {
     return {
-      countries: { orderByID: [], orderByName: [] },
-      countryOrder: 'orderByName',
+      countries: [],
+      countryOrder: `country_name_${this.$i18n.locale}`,
       dataRecords: [],
       instruments: [],
       loadingCountries: true,
@@ -309,8 +310,8 @@ export default {
       selectedStation: null,
       selectedStationID: null,
       selectedYearRange: [null, null],
-      stations: { orderByID: [], orderByName: [] },
-      stationOrder: 'orderByName'
+      stations: [],
+      stationOrder: 'name'
     }
   },
   computed: {
@@ -323,16 +324,16 @@ export default {
       ]
     },
     countryOptions() {
-      const nullOption = {
+      const nullOption = { // All countries option
         text: this.$t('common.all'),
         value: null,
         element: null
       }
 
-      const orderedCountries = this.countries[this.countryOrder]
+      const orderedCountries = this.countries
 
       if (this.mapBoundingBox === null) {
-        const countryOptions = orderedCountries.map(this.countryToSelectOption)
+        const countryOptions = orderedCountries.sort(compareOnKey(this.countryOrder)).map(this.countryToSelectOption)
         return [ nullOption ].concat(countryOptions)
       } else {
         const boundaries = this.$store.getters['countries/boundaries']
@@ -349,8 +350,7 @@ export default {
 
           return selected || visible
         })
-
-        const countryOptions = visibleOptions.map(this.countryToSelectOption)
+        const countryOptions = visibleOptions.sort(compareOnKey(this.countryOrder)).map(this.countryToSelectOption)
         return [ nullOption ].concat(countryOptions)
       }
     },
@@ -451,10 +451,10 @@ export default {
         element: null
       }
 
-      const orderedStations = this.stations[this.stationOrder]
+      const orderedStations = this.stations
 
       if (this.mapBoundingBox === null) {
-        const stationOptions = orderedStations.map(this.stationToSelectOption)
+        const stationOptions = orderedStations.sort(compareOnKey(this.stationOrder)).map(this.stationToSelectOption)
         return [ nullOption ].concat(stationOptions)
       } else {
         const visibleOptions = orderedStations.filter((station) => {
@@ -465,7 +465,7 @@ export default {
           return selected || visible
         })
 
-        const stationOptions = visibleOptions.map(this.stationToSelectOption)
+        const stationOptions = visibleOptions.sort(compareOnKey(this.stationOrder)).map(this.stationToSelectOption)
         return [ nullOption ].concat(stationOptions)
       }
     },
@@ -481,38 +481,32 @@ export default {
       return !(datasetOk && countryOk && stationOk && instrumentOk && startYearOk && endYearOk)
     },
   },
-  async mounted() {
-    await Promise.all([
+  mounted() {
+    Promise.all([
       this.$store.dispatch('countries/download'),
-      this.$store.dispatch('stations/download'),
+      this.$store.dispatch('stations/downloadStationsByDataset'),
       this.$store.dispatch('instruments/download')
-    ])
+    ]).then(() => {
+      const countries = this.$store.getters['countries/all']
+      const stations = this.$store.getters['stations/all']
+      const instruments = this.$store.getters['instruments/nameResolution']
 
-    const countries = this.$store.getters['countries/all']
-    const stations = this.$store.getters['stations/all']
-    const instruments = this.$store.getters['instruments/nameResolution']
+      this.countries = countries.map(stripProperties)
+      this.stations = stations.map(unpackageBareStation)
+      this.instruments = instruments.map(stripProperties)
 
-    this.countries = {
-      orderByCode: countries.orderByCode.map(stripProperties),
-      orderByName: countries.orderByName.map(stripProperties)
-    }
-    this.stations = {
-      orderByID: stations.orderByID.map(unpackageBareStation),
-      orderByName: stations.orderByName.map(unpackageBareStation)
-    }
-    this.instruments = instruments.map(stripProperties)
+      this.loadingCountries = false
+      this.loadingStations = false
+      this.loadingInstruments = false
+      this.loadingMap = false
 
-    this.loadingCountries = false
-    this.loadingStations = false
-    this.loadingInstruments = false
-    this.loadingMap = false
+      this.selectedDataset = this.$t('common.all')
+      this.selectedYearRange = [
+        this.minSelectableYear, this.maxSelectableYear
+      ]
 
-    this.selectedDataset = this.$t('common.all')
-    this.selectedYearRange = [
-      this.minSelectableYear, this.maxSelectableYear
-    ]
-
-    this.refreshMetrics()
+      this.refreshMetrics()
+    })
   },
   methods: {
     addToStartYear(amount) {
@@ -533,8 +527,8 @@ export default {
         await this.sendDropdownRequest(dataset.value, null, null)
 
       const dependencies = [
-        { field: 'selectedCountryID', key: 'country_id', elements: countries.orderByName },
-        { field: 'selectedStationID', key: 'station_id', elements: stations.orderByID },
+        { field: 'selectedCountryID', key: 'country_id', elements: countries },
+        { field: 'selectedStationID', key: 'station_id', elements: stations },
         { field: 'selectedInstrumentID', key: 'instrument_name', elements: instruments }
       ]
 
@@ -579,7 +573,7 @@ export default {
         await this.sendDropdownRequest(this.selectedDatasetID, country.value, null)
 
       const dependencies = [
-        { field: 'selectedStationID', key: 'station_id', elements: stations.orderByID },
+        { field: 'selectedStationID', key: 'station_id', elements: stations },
         { field: 'selectedInstrumentID', key: 'instrument_name', elements: instruments }
       ]
 
@@ -645,7 +639,11 @@ export default {
         fr: country.country_name_fr
       }
 
-      return countryName[this.$i18n.locale] + ' (' + countryID + ')'
+      if (this.countryOrder === 'country_id') {
+        return '(' + countryID + ') ' + countryName[this.$i18n.locale]
+      } else { // country name
+        return countryName[this.$i18n.locale] + ' (' + countryID + ')'
+      }
     },
     countryToSelectOption(country) {
       return {
@@ -668,7 +666,11 @@ export default {
       const stationID = station.woudc_id || station.station_id
       const stationName = station.name || station.station_name
 
-      return stationName + ' (' + stationID + ')'
+      if (this.stationOrder === 'woudc_id') {
+        return '(' + stationID + ') ' + stationName
+      } else { // name
+        return stationName + ' (' + stationID + ')'
+      }
     },
     stationToSelectOption(station) {
       return {
@@ -746,14 +748,8 @@ export default {
         this.selectedDatasetID, this.selectedCountryID, this.selectedStationID
       )
 
-      this.countries = {
-        orderByCode: countries.orderByCode.map(stripProperties),
-        orderByName: countries.orderByName.map(stripProperties)
-      }
-      this.stations = {
-        orderByID: stations.orderByID.map(unpackageBareStation),
-        orderByName: stations.orderByName.map(unpackageBareStation)
-      }
+      this.countries = countries.map(stripProperties)
+      this.stations = stations.map(unpackageBareStation)
       this.instruments = instruments.map(stripProperties)
 
     },
@@ -798,10 +794,8 @@ export default {
         }
       }
 
-      const metricsURL = 'processes/woudc-data-registry-metrics/jobs'
       const queryParams = { inputs }
-
-      const response = await woudcClient.post(metricsURL, queryParams)
+      const response = await getMetrics(queryParams)
 
       const newMetrics = {}
       response.data.outputs.metrics.forEach((metric) => {
@@ -814,7 +808,6 @@ export default {
       this.metricsByYear = newMetrics
     },
     async sendDropdownRequest(dataset, country, station) {
-      const dropdownsURL = '/processes/woudc-data-registry-explore/jobs'
       const inputs = []
 
       const selections = { dataset, country, station }
@@ -835,16 +828,10 @@ export default {
       }
 
       const queryParams = { inputs }
-      const response = await woudcClient.post(dropdownsURL, queryParams)
+      const response = await getExplore(queryParams)
 
-      const countries = {
-        orderByCode: response.data.outputs.countries.sortby_country_id,
-        orderByName: response.data.outputs.countries.sortby_country_name_en
-      }
-      const stations = {
-        orderByID: response.data.outputs.stations.sortby_station_id,
-        orderByName: response.data.outputs.stations.sortby_station_name
-      }
+      const countries = response.data.outputs.countries.sortby_country_id
+      const stations = response.data.outputs.stations.sortby_station_id
       const instruments = response.data.outputs.instruments.sortby_instrument_name
 
       return { countries, stations, instruments }

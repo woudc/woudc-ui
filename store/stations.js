@@ -1,20 +1,20 @@
-import woudcClient from '~/plugins/woudcClient'
+import { getDistinct } from '~/plugins/api/wdr.api.processes'
 
 const defaultStationList = () => ({
   orderByID: [],
   orderByName: []
 })
 
-function groupStationsByDataset(features, stationsByID) {
+const groupStationsByDataset = (stnDataPairs, stationsByID) => {
   const stationsByDataset = {}
   const uvIndexDatasets = [ 'Broad-band', 'Spectral' ]
 
-  for (const feature of features) {
-    const dataset = feature.properties.dataset_id
-    const stationID = feature.properties.station_id
+  for (const stnDataPair of stnDataPairs) {
+    const dataset = stnDataPair.properties.dataset_id
+    const stationID = stnDataPair.properties.station_id
     const station = stationsByID[stationID]
 
-    // Instead of using the straight dataset, use a shorter lowercase name.
+    // Instead of using the straight dataset key name, use a shorter lowercase name.
     const datasetKeys = []
     if (dataset === 'UmkehrN14') {
       const level = 1
@@ -31,7 +31,7 @@ function groupStationsByDataset(features, stationsByID) {
 
     // Add a station to its group (unless that station is already tracked).
     for (const datasetKey of datasetKeys) {
-      if (!(datasetKey in stationsByDataset)) {
+      if (Object.prototype.hasOwnProperty.call(stationsByDataset, datasetKey) === false) {
         stationsByDataset[datasetKey] = [ station ]
       } else {
         const duplicate = stationsByDataset[datasetKey].some((oldStation) => {
@@ -53,8 +53,11 @@ function groupStationsByDataset(features, stationsByID) {
 
 const state = () => ({
   loaded: false,
+  loadedStations: false,
+  loadedStnDataPairs: false,
   stationsList: defaultStationList(),
   stationsByID: {},
+  stnDataPairs: [],
   ozonesonde: defaultStationList(),
   totalozone: defaultStationList(),
   totalozoneobs: defaultStationList(),
@@ -73,9 +76,9 @@ const getters = {
     return state.stationsList
   },
   getWithID(state) {
-    return (station) => {
-      if (station in state.stationsByID) {
-        return state.stationsByID[station]
+    return (stationID) => {
+      if (Object.prototype.hasOwnProperty.call(state.stationsByID, stationID)) { // check if exist
+        return state.stationsByID[stationID]
       } else {
         return null
       }
@@ -117,7 +120,7 @@ const getters = {
 }
 
 const mutations = {
-  setStations(state, stations, order) {
+  setStations(state, stations) {
     const mappedByID = {}
 
     stations.orderByID.forEach((station) => {
@@ -127,6 +130,15 @@ const mutations = {
 
     state.stationsList = stations
     state.stationsByID = mappedByID
+  },
+  setStationsList(state, stationsList) {
+    state.stationsList = stationsList
+  },
+  setStationsById(state, stationsByID) {
+    state.stationsByID = stationsByID
+  },
+  setStnDataPairs(state, stnDataPairs) {
+    state.stnDataPairs = stnDataPairs
   },
   setStationsOzoneSonde(state, stations) {
     state.ozonesonde = stations
@@ -163,65 +175,78 @@ const mutations = {
   },
   setLoaded(state, loaded) {
     state.loaded = loaded
+  },
+  setLoadedStationsById(state, loaded) {
+    state.loadedStationsById = loaded
+  },
+  setLoadedStnDataPairs(state, loaded) {
+    state.loadedStnDataPairs = loaded
   }
 }
 
 const actions = {
-  async download({ commit, state }, proc) {
-    if (state.loaded) {
+  async downloadStations({ commit, state }) {
+    if (state.loadedStations) { // prevent duplicate XHR
       return false
     }
-
-    const queryURL = '/processes/woudc-data-registry-select-distinct/jobs'
 
     // Collect arrays of all stations in both ID and name order.
     const stationInputs = [
       { id: 'index', type: 'text/plain', value: 'station' },
-      { id: 'distinct', type: 'application/json', value: {
-        orderByID: [ 'woudc_id' ],
-        orderByName: [ 'name' ]
-      } }
+      { id: 'distinct', type: 'application/json',
+        value: {
+          orderByID: [ 'woudc_id' ]
+        }
+      }
     ]
-    let queryParams = { inputs: stationInputs }
+    const queryParams = { inputs: stationInputs }
 
-    const stationsResponse = await woudcClient.post(queryURL, queryParams)
-    const stationsByOrdering = stationsResponse.data.outputs
-
-    // Download all contributions (basically station-dataset pairs) in both orderings.
-    const contributionInputs = [
-      { id: 'index', type: 'text/plain', value: 'contribution' },
-      { id: 'distinct', type: 'application/json', value: {
-        orderByID: [ 'station_id', 'dataset_id' ],
-        orderByName: [ 'station_name', 'dataset_id' ]
-      } },
-      { id: 'source', type: 'application/json', value: [ 'station_id' ] }
-    ]
-    queryParams = { inputs: contributionInputs }
-
-    const contributionsResponse = await woudcClient.post(queryURL, queryParams)
-    const featuresByOrdering = contributionsResponse.data.outputs
+    const stationsResponse = await getDistinct(queryParams)
+    const stationsList = stationsResponse.data.outputs.orderByID
 
     // Use a map to let a station's properties all be available using just the ID.
     const stationsByID = {}
-    stationsByOrdering.orderByID.forEach((station) => {
+    stationsList.forEach((station) => {
       const stationID = station.properties.woudc_id
       stationsByID[stationID] = station
     })
 
-    const groupsOrderedByID = groupStationsByDataset(
-      featuresByOrdering.orderByID, stationsByID)
-    const groupsOrderedByName = groupStationsByDataset(
-      featuresByOrdering.orderByName, stationsByID)
+    commit('setStationsById', stationsByID)
+    commit('setStationsList', stationsList)
+    commit('setLoadedStationsById', true)
+  },
+  async downloadStnDataPairs({ commit, state }) {
+    if (state.loadedStnDataPairs) { // prevent duplicate XHR
+      return false
+    }
 
-    const allDatasets = Object.keys(groupsOrderedByID)
-    const stationsByDataset = {}
+    // Download all contributions (basically station-dataset pairs)
+    const contributionInputs = [
+      { id: 'index', type: 'text/plain', value: 'contribution' },
+      { id: 'distinct', type: 'application/json', value: {
+        orderByID: [ 'station_id', 'dataset_id' ]
+      } },
+      { id: 'source', type: 'application/json', value: [ 'station_id' ] }
+    ]
+    const queryParams = { inputs: contributionInputs }
 
-    allDatasets.forEach((datasetKey) => {
-      stationsByDataset[datasetKey] = {
-        orderByID: groupsOrderedByID[datasetKey],
-        orderByName: groupsOrderedByName[datasetKey]
-      }
-    })
+    const contributionsResponse = await getDistinct(queryParams)
+    const stnDataPairs = contributionsResponse.data.outputs.orderByID
+
+    commit('setStnDataPairs', stnDataPairs)
+    commit('setLoadedStnDataPairs', true)
+  },
+  async downloadStationsByDataset({ dispatch, commit, state }) {
+    if (state.loaded) { // prevent duplicate XHR
+      return false
+    }
+
+    // Get the data
+    await dispatch('downloadStations')
+    await dispatch('downloadStnDataPairs')
+
+    // Group station data by dataset
+    const stationsByDataset = groupStationsByDataset(state.stnDataPairs, state.stationsByID)
 
     commit('setStationsOzoneSonde', stationsByDataset.ozonesonde)
     commit('setStationsTotalOzone', stationsByDataset.totalozone)
@@ -234,8 +259,6 @@ const actions = {
     commit('setStationsRocketSonde', stationsByDataset.rocketsonde)
     commit('setStationsLidar', stationsByDataset.lidar)
     commit('setStationsUVIndex', stationsByDataset.uvindex)
-
-    commit('setStations', stationsByOrdering)
     commit('setLoaded', true)
   }
 }

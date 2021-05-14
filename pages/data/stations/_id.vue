@@ -207,11 +207,13 @@ export default {
       this.populate()
     }
   },
-  async mounted() {
-    await this.$store.dispatch('stations/download')
-    await this.populate()
+  mounted() {
     this.loadingMap = false
     this.loadingTables = false
+    this.$store.dispatch('stations/downloadStations')
+      .then(() => {
+        this.populate()
+      })
   },
   methods: {
     async populate() {
