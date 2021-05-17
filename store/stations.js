@@ -52,7 +52,6 @@ const groupStationsByDataset = (stnDataPairs, stationsByID) => {
 }
 
 const state = () => ({
-  loaded: false,
   loadedStations: false,
   loadedStnDataPairs: false,
   stationsList: defaultStationList(),
@@ -173,9 +172,6 @@ const mutations = {
   setStationsUVIndex(state, stations) {
     state.uvindex = stations
   },
-  setLoaded(state, loaded) {
-    state.loaded = loaded
-  },
   setLoadedStationsById(state, loaded) {
     state.loadedStationsById = loaded
   },
@@ -237,13 +233,13 @@ const actions = {
     commit('setLoadedStnDataPairs', true)
   },
   async downloadStationsByDataset({ dispatch, commit, state }) {
-    if (state.loaded) { // prevent duplicate XHR
-      return false
+    if (!state.loadedStnDataPairs) { // prevent duplicate XHR
+      await dispatch('downloadStnDataPairs')
+    }
+    if (!state.loadedStations) { // prevent duplicate XHR
+      await dispatch('downloadStations')
     }
 
-    // Get the data
-    await dispatch('downloadStations')
-    await dispatch('downloadStnDataPairs')
 
     // Group station data by dataset
     const stationsByDataset = groupStationsByDataset(state.stnDataPairs, state.stationsByID)
@@ -259,7 +255,6 @@ const actions = {
     commit('setStationsRocketSonde', stationsByDataset.rocketsonde)
     commit('setStationsLidar', stationsByDataset.lidar)
     commit('setStationsUVIndex', stationsByDataset.uvindex)
-    commit('setLoaded', true)
   }
 }
 
