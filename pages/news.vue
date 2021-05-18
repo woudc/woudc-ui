@@ -13,7 +13,7 @@
     </div>
     <v-row>
       <v-col v-if="loaded">
-        <v-card v-for="(newsItem, i) in sortedItems" :key="i" class="mb-6">
+        <v-card v-for="(newsItem, i) in sortedItems" :id="newsItem.properties.published_date.slice(0,10)" :key="i" class="mb-6">
           <v-card-title>
             {{ newsItem.properties[`title_${$i18n.locale}`] }}
           </v-card-title>
@@ -51,6 +51,14 @@ export default {
   },
   created() {
     this.loadNewsItems()
+  },
+  updated(){
+    if (this.$route.hash) {
+      const stringHash = this.$route.hash.toString()
+      const id = '#\\32 ' + stringHash.slice(2, stringHash.length)
+      const el = document.querySelector(id)
+      el && window.scrollTo(0, el.offsetTop - 5)
+    }
   },
   methods: {
     async loadNewsItems() {
