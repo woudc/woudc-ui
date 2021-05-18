@@ -276,7 +276,7 @@ export default {
 
       if (this.selectedInstrumentID !== null) {
         queryParams += '&instrument_name=' + this.selectedInstrument.element.properties.name
-        queryParams += '&instrument_number=' + this.selectedInstrument.element.properties.serial
+        queryParams += '&instrument_number=' + this.selectedInstrument.element.properties.serial + '&limit=5000'
       }
 
       const dataRecordsResponse = await woudcClient.get(dataRecordsURL + '?' + queryParams)
