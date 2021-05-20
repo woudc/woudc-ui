@@ -243,7 +243,7 @@ export default {
         yearsInRange = [ this.selectedYear ]
       }
 
-      const root = this.$config.WAF_URL + '/products/ozone/total-column-ozone/totalozone/1.0/'
+      const root = this.$config.wafURL + '/products/ozone/total-column-ozone/totalozone/1.0/'
 
       const stationID = this.selectedStationID
       const stationKey = this.selectedStation.name + ' (' + stationID + ')'
