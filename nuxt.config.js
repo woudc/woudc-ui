@@ -1,21 +1,8 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
-  ssr: false, // SPA mode
-  target: 'static', // static hosting
   router: {
     base: process.env.ROUTER_BASE || '/woudc-ui/'
-  },
-  generate: {
-    exclude: [
-      /^\/data\/stations\/[\d]+/,
-      /^\/contributors$/,
-    ],
-    routes: [
-      '/contributors/registration',
-      '/contributors/submission',
-      '/contributors/validation'
-    ]
   },
   /*
    ** Global headers of the page
@@ -132,6 +119,9 @@ export default {
   /*
    ** Build configuration
    */
+  ssr: true, // false for SPA mode, true for full static mode
+  target: 'static', // static hosting
+  buildDir: 'dist',
   build: {
     /*
      ** You can extend webpack config here
@@ -153,8 +143,17 @@ export default {
           exclude: /(node_modules)/
         })
       }
+    },
+    filenames: {
+      app: '[name].js'
     }
   },
+  // generate: {
+  //   exclude: [
+  //     /\/data\/stations\/[\d]+$/,
+  //     /\/contributors$/,
+  //   ]
+  // },
   publicRuntimeConfig: {
     baseURL: process.env.BASE_URL,
     woudcAPI: process.env.WOUDC_API,

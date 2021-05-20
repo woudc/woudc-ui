@@ -5,7 +5,7 @@
         <h2>{{ $t('common.welcome') }}</h2>
         <v-card itemscope itemtype="http://schema.org/GovernmentOrganization">
           <v-card-title itemprop="name">
-            WOUDC | Email is: {{ $config.emailAddress }} | baseURL is: {{ $config.baseURL }}
+            WOUDC
           </v-card-title>
           <v-card-subtitle itemprop="description">
             {{ $t('home.adTitle') }}
