@@ -795,7 +795,7 @@ export default {
       }
 
       const queryParams = { inputs }
-      const response = await getMetrics(queryParams)
+      const response = await getMetrics(this.$config.woudcAPI, queryParams)
 
       const newMetrics = {}
       response.data.outputs.metrics.forEach((metric) => {
