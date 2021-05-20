@@ -39,7 +39,7 @@ const mutations = {
 }
 
 const actions = {
-  async download({ commit, state }, proc) {
+  async download({ commit, state }) {
     if (state.loaded) {
       return false
     }
