@@ -98,7 +98,7 @@ export default {
         code: 'en',
         iso: 'en-CA',
         name: 'English'
-      },
+      }
     ],
     strategy: 'prefix',
     defaultLocale: 'en',
@@ -113,15 +113,13 @@ export default {
       useCookie: true,
       cookieKey: 'woudc_default_language'
     },
-    baseUrl: process.env.BASE_URL,
-    seo: true
+    baseUrl: process.env.BASE_URL
   },
   /*
    ** Build configuration
    */
   ssr: true, // false for SPA mode, true for full static mode
   target: 'static', // static hosting
-  buildDir: 'dist',
   build: {
     /*
      ** You can extend webpack config here
