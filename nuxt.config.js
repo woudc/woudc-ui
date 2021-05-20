@@ -85,7 +85,7 @@ export default {
     }
   },
   /*
-   ** i18n global options
+   ** nuxt-i18n module global options
    */
   i18n: {
     locales: [
@@ -113,7 +113,7 @@ export default {
       useCookie: true,
       cookieKey: 'woudc_default_language'
     },
-    baseUrl: process.env.BASE_URL
+    baseUrl: process.env.BASE_URL || 'https://woudc.org'
   },
   /*
    ** Build configuration
