@@ -1,7 +1,7 @@
 /* vuex file with the purpose of extracting and storing news data */
 import woudcClient from '~/plugins/woudcClient'
 
-const URL = process.env.PYGEOAPI_HOSTNAME + '/collections/notifications/items?f=json'
+const URL = process.env.WOUDC_API + '/collections/notifications/items?f=json'
 
 const state = () => ({
   newsItems: []

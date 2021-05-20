@@ -63,12 +63,12 @@ export default {
         individual: 'http://exp-studies.tor.ec.gc.ca/cgi-bin/dailyMaps'
       },
       relatedLinks: {
-        'totalozone-daily-monthly': process.env.WAF_URL + '/Summaries/TotalOzone',
-        'totalozone-satellite-ground': process.env.WAF_URL + '/Projects-Campaigns/Ground-Sat_Plots/',
-        umkehr: process.env.WAF_URL + '/Summaries/Umkehr',
-        spectral: process.env.WAF_URL + '/Summaries/Spectral_UV',
-        'ozone-zonal': process.env.WAF_URL + '/Projects-Campaigns/ZonalMeans',
-        tost: process.env.WAF_URL + '/products/ozone/vertical-ozone-profile/ozonesonde/1.0/tost'
+        'totalozone-daily-monthly': this.$config.WAF_URL + '/Summaries/TotalOzone',
+        'totalozone-satellite-ground': this.$config.WAF_URL + '/Projects-Campaigns/Ground-Sat_Plots/',
+        umkehr: this.$config.WAF_URL + '/Summaries/Umkehr',
+        spectral: this.$config.WAF_URL + '/Summaries/Spectral_UV',
+        'ozone-zonal': this.$config.WAF_URL + '/Projects-Campaigns/ZonalMeans',
+        tost: this.$config.WAF_URL + '/products/ozone/vertical-ozone-profile/ozonesonde/1.0/tost'
       },
       summariesLinks: {
         'polar-bulletins': 'https://community.wmo.int/activity-areas/gaw/science/stratospheric-ozone-and-uv-radiation',

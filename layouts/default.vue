@@ -89,10 +89,10 @@
         </nuxt-link>
       </h5>
       <v-spacer />
-      <nuxt-link v-if="locale === 'fr'" class="white--text" :to="switchLocalePath('en')">
+      <nuxt-link v-if="$i18n.locale === 'fr'" class="white--text" :to="switchLocalePath('en')">
         English
       </nuxt-link>
-      <nuxt-link v-if="locale === 'en'" class="white--text" :to="switchLocalePath('fr')">
+      <nuxt-link v-if="$i18n.locale === 'en'" class="white--text" :to="switchLocalePath('fr')">
         Français
       </nuxt-link>
     </v-app-bar>
@@ -100,7 +100,7 @@
       <nuxt />
     </v-main>
     <v-footer color="primary" class="white--text" app absolute>
-      <span>&copy; {{ appBuildYYYY }} <a :href="appHomepage" target="_blank" rel="noreferrer" class="accent--text">{{ appName }}</a> {{ appVersion }}</span>
+      <span>&copy; {{ $config.appBuildYYYY }} <a :href="$config.appHomepage" target="_blank" rel="noreferrer" class="accent--text">{{ $config.appName }}</a> {{ $config.appVersion }}</span>
       <v-spacer />
       <nuxt-link class="white--text mr-10 no-underline" :to="localePath('contact')">
         <v-icon class="mr-1 pb-1" color="white">
@@ -117,11 +117,6 @@ export default {
   data() {
     return {
       drawerOpen: false,
-      baseURL: process.env.BASE_URL,
-      appVersion: process.env.appVersion,
-      appName: process.env.appName,
-      appBuildYYYY: process.env.appBuildYYYY,
-      appHomepage: process.env.appHomepage,
       links: {
         data: {
           icon: 'mdi-database',
@@ -179,11 +174,6 @@ export default {
           }
         }
       }
-    }
-  },
-  computed: {
-    locale() {
-      return this.$i18n.locale
     }
   }
 }

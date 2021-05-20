@@ -350,7 +350,7 @@ export default {
       ogcStandardsURL: 'https://opengeospatial.org/standards/cat',
       ogcURL: 'https://opengeospatial.org/',
       searchHelpURL: 'https://github.com/woudc/woudc/wiki/DataSearchDownloadHowto',
-      wafURL: process.env.WAF_URL,
+      wafURL: this.$config.WAF_URL,
       wafGuideURL: 'https://github.com/woudc/woudc/wiki/WAFHowto',
       wafSummaryURL: 'https://woudc.org/archive/Summaries/dataset-snapshots',
       wfsAPIURL: 'https://geo.woudc.org/ows?service=WFS&version=1.1.0&request=GetCapabilities',

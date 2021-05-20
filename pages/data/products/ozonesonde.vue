@@ -223,7 +223,7 @@ export default {
         yearsInRange = [ this.selectedYear ]
       }
 
-      const rootURL = process.env.WAF_URL + '/products/ozone/vertical-ozone-profile/ozonesonde/1.0/'
+      const rootURL = this.$config.WAF_URL + '/products/ozone/vertical-ozone-profile/ozonesonde/1.0/'
 
       const stationID = this.selectedStationID
       const stationKey = this.selectedStation.name + ' (' + stationID + ')'

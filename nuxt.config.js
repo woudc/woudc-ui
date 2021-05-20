@@ -1,18 +1,8 @@
 import colors from 'vuetify/es5/util/colors'
 
-require('dotenv').config()
-
-const PORT = process.env.npm_config_port || '3000'
-
 export default {
-  ssr: false,
-  env: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:' + PORT,
-    appBuildYYYY: new Date().getFullYear(),
-    appVersion: process.env.npm_package_version,
-    appName: process.env.npm_package_name,
-    appHomepage: process.env.npm_package_homepage
-  },
+  ssr: false, // SPA mode
+  target: 'static', // static hosting
   router: {
     base: process.env.ROUTER_BASE || '/woudc-ui/'
   },
@@ -164,5 +154,16 @@ export default {
         })
       }
     }
+  },
+  publicRuntimeConfig: {
+    baseURL: process.env.BASE_URL,
+    woudcAPI: process.env.WOUDC_API,
+    emailAddress: process.env.EMAIL_ADDRESS,
+    wafURL: process.env.WAF_URL,
+    wmoRegionsURL: process.env.WMO_REGIONS_URL,
+    appBuildYYYY: new Date().getFullYear(),
+    appVersion: process.env.npm_package_version,
+    appName: process.env.npm_package_name,
+    appHomepage: process.env.npm_package_homepage
   }
 }

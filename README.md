@@ -7,21 +7,30 @@
 - Install NodeJS
 - Create a **copy** of the `.env.sample` file and **rename** to `.env`
   - `BASE_URL` should be the domain + path to your root app
-  - `ROUTER_BASE` should be the path to your root application
+  - `ROUTER_BASE` The base URL of the app. For example, if the entire single page application is served under `/app/`, then base should use the value `'/app/'`
 
 ``` bash
 # install dependencies
 $ npm install
 
-# serve with hot reload at localhost:3000
+# serve with hot reload at localhost:3000, dotenv reference to .env file
 $ npm run dev
 
-# build for production and launch server
+# OR serve with hot reload at localhost:3000, dotenv reference to .env.sample file
+$ npx nuxt dev --dotenv .env.sample
+
+# build for production, optional reference to --dotenv to .env.ops file
+$ npx nuxt build --dotenv .env.ops
+
+# build for production and launch server for SSR
 $ npm run build
 $ npm run start
 
 # generate static project: https://nuxtjs.org/guide#static-generated-pre-rendering-
 $ npm run generate
+
+# OR with optional reference to --dotenv file
+$ npx nuxt generate --dotenv .env.ops
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

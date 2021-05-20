@@ -40,7 +40,7 @@ export default {
     return {
       carcinogensURL: 'https://www.wmo.int/pages/prog/dra/etrp/documents/926E.pdf',
       w3URL: 'https://www.w3.org/',
-      wafURL: process.env.WAF_URL
+      wafURL: this.$config.WAF_URL
     }
   },
   nuxtI18n: {

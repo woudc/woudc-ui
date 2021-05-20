@@ -112,8 +112,8 @@ export default {
       return `http://dx.doi.org/${this.doi}`
     },
     wafURL() {
-      const baseURL = 'https://woudc.org/archive/Archive-NewFormat'
-      return `${baseURL}/${this.dataset}_${this.level}.0_1`
+      const archivePath = '/Archive-NewFormat'
+      return `${this.$config.baseURL}${archivePath}/${this.dataset}_${this.level}.0_1`
     },
     wfsURL() {
       return 'TODO'
