@@ -262,7 +262,7 @@ export default {
       }
     },
     async getObservationDates() {
-      const dataRecordsURL = '/collections/data_records/items'
+      const dataRecordsURL = this.$config.woudcAPI + '/collections/data_records/items'
       let queryParams = 'sortby=timestamp_date&content_category=OzoneSonde'
       queryParams += '&platform_id=' + this.selectedStationID + '&limit=5000'
 

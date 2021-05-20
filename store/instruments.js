@@ -48,7 +48,7 @@ const actions = {
       return false
     }
 
-    const queryURL = '/processes/woudc-data-registry-select-distinct/jobs'
+    const queryURL = this.$config.woudcAPI + '/processes/woudc-data-registry-select-distinct/jobs'
     const inputs = [
       { id: 'index', type: 'text/plain', value: 'instrument' },
       { id: 'distinct', type: 'application/json', value: {

@@ -126,7 +126,7 @@ export default {
   },
   async validate({ params }) {
     const woudcID = params.id
-    const url = '/collections/stations/items'
+    const url = this.$config.woudcAPI + '/collections/stations/items'
 
     let found = true
     await woudcClient.get(url + '/' + woudcID).catch(() => {
@@ -224,8 +224,8 @@ export default {
       this.station = station
       this.selectedStation = station
 
-      const instrumentsURL = '/collections/instruments/items'
-      const deploymentsURL = '/collections/deployments/items'
+      const instrumentsURL = this.$config.woudcAPI + '/collections/instruments/items'
+      const deploymentsURL = this.$config.woudcAPI + '/collections/deployments/items'
 
       let queryParams = 'station_id=' + woudcID + '&sortby=contributor'
       const deploymentsResponse = await woudcClient.get(deploymentsURL + '?' + queryParams)

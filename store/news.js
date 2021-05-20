@@ -12,7 +12,7 @@ const getters = {
 }
 
 const mutations = {
-  setNewsItems(state, json){
+  setNewsItems(state, json) {
     state.newsItems = json
   }
 }

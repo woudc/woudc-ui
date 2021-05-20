@@ -44,15 +44,14 @@ const mutations = {
 }
 
 const actions = {
-  async download({ commit, state }, proc) {
+  async download({ commit, state }) {
     if (state.loaded) {
       return false
     }
 
     const contributorsURL = '/collections/contributors/items'
     const queryParams = 'sortby=acronym&limit=1000'
-
-    const response = await woudcClient.get(contributorsURL + '?' + queryParams)
+    const response = await woudcClient.get(this.$config.woudcAPI + contributorsURL + '?' + queryParams)
 
     commit('setContributors', response.data.features)
     commit('setLoaded', true)

@@ -5,7 +5,6 @@ import axios from 'axios'
 // Try utilizing ./api/*.js or create an appropriate API call
 
 const woudcClient = axios.create({
-  baseURL: process.env.WOUDC_API,
   timeout: 9000,
   headers: {
     'content-Type': 'application/json'

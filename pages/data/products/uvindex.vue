@@ -264,7 +264,7 @@ export default {
       }
     },
     async getObservationTools() {
-      const dataRecordsURL = '/collections/data_records/items'
+      const dataRecordsURL = this.$config.woudcAPI + '/collections/data_records/items'
       let queryParams = 'sortby=timestamp_date'
       queryParams += '&platform_id=' + this.selectedStationID
 
@@ -344,7 +344,7 @@ export default {
       }
     },
     async refreshInstruments() {
-      const instrumentsURL = '/collections/instruments/items'
+      const instrumentsURL = this.$config.woudcAPI + '/collections/instruments/items'
       let queryParams = 'sortby=name,serial'
       queryParams += '&station_id=' + this.selectedStationID
 
