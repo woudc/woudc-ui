@@ -115,7 +115,14 @@ export default {
   },
   head() {
     return {
-      title: 'Home'
+      title: 'Home',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('home.adTitle')
+        }
+      ]
     }
   }
 }

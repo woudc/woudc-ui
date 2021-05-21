@@ -73,10 +73,16 @@ export default {
     }
   },
   head() {
-    const title =
-      this.error.statusCode === 404 ? this.pageNotFoundEn : this.otherErrorEn
+    const errorTitle = this.error.statusCode === 404 ? this.$t('error.not-found') : this.$t('error.other-error')
     return {
-      title
+      title: errorTitle,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('error.not-found')
+        }
+      ]
     }
   },
   nuxtI18n: {

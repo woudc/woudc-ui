@@ -65,7 +65,7 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: 'The World Ozone and Ultraviolet Radiation Data Centre (WOUDC) is one of six World Data Centres which are part of the Global Atmosphere Watch programme of the World Meteorological Organization. The WOUDC data centre is operated by the Meteorological Service of Canada, a branch of Environment and Climate Change Canada.'
+          content: this.$t('about.home.blurb.body-intro')
         }
       ]
     }
