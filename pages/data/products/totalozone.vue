@@ -243,7 +243,7 @@ export default {
         yearsInRange = [ this.selectedYear ]
       }
 
-      const root = process.env.WAF_URL + '/products/ozone/total-column-ozone/totalozone/1.0/'
+      const root = this.$config.wafURL + '/products/ozone/total-column-ozone/totalozone/1.0/'
 
       const stationID = this.selectedStationID
       const stationKey = this.selectedStation.name + ' (' + stationID + ')'
@@ -270,7 +270,7 @@ export default {
       }
     },
     async getObservationTools() {
-      const dataRecordsURL = '/collections/data_records/items'
+      const dataRecordsURL = this.$config.woudcAPI + '/collections/data_records/items'
       let queryParams = 'sortby=timestamp_date&content_category=TotalOzone'
       queryParams += '&platform_id=' + this.selectedStationID
 
@@ -315,7 +315,7 @@ export default {
       }
     },
     async refreshInstruments() {
-      const instrumentsURL = '/collections/instruments/items'
+      const instrumentsURL = this.$config.woudcAPI + '/collections/instruments/items'
       let queryParams = 'sortby=name,serial&dataset=TotalOzone'
       queryParams += '&station_id=' + this.selectedStationID
 

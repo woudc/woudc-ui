@@ -112,8 +112,8 @@ export default {
       return `http://dx.doi.org/${this.doi}`
     },
     wafURL() {
-      const baseURL = 'https://woudc.org/archive/Archive-NewFormat'
-      return `${baseURL}/${this.dataset}_${this.level}.0_1`
+      const archivePath = '/Archive-NewFormat'
+      return `${this.$config.baseURL}${archivePath}/${this.dataset}_${this.level}.0_1`
     },
     wfsURL() {
       return 'TODO'
@@ -125,8 +125,16 @@ export default {
   created() {
     this.init()
   },
+  mounted() {
+    this.$store.dispatch('stations/downloadStationsByDataset')
+      .then(() => {
+        const stations = this.$store.getters[`stations/${this.$route.params.id}`]
+        this.stations = stations.map(unpackageStation)
+        this.loadingMap = false
+      })
+  },
   methods: {
-    async init() {
+    init() {
       // Future: make an HTTP call to gather dataset info.
       // For now, add some dummy information as an example of the format.
       this.dataset = 'TotalOzone'
@@ -147,14 +155,6 @@ export default {
 
       this.dateFrom = '1924-08-18'
       this.dateTo = 'now'
-
-      await this.$store.dispatch('stations/downloadStationsByDataset')
-
-      const getterName = `stations/${this.$route.params.id}`
-      const stations = this.$store.getters[getterName]
-
-      this.stations = stations.map(unpackageStation)
-      this.loadingMap = false
     },
     stationText(station) {
       if (station.gaw_id === null) {

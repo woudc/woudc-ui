@@ -39,12 +39,12 @@ const mutations = {
 }
 
 const actions = {
-  async download({ commit, state }, proc) {
+  async download({ commit, state }) {
     if (state.loaded) {
       return false
     }
 
-    const response = await axios.get(process.env.WMO_REGIONS_URL)
+    const response = await axios.get(this.$config.wmoRegionsURL)
     const regionShapes = {}
 
     for (const region of response.data.features) {

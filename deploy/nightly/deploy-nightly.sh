@@ -50,12 +50,14 @@ do
     fi
 done
 
-echo "Setting up npm environment"
+echo "Setting up npm environment with n version manager"
 mkdir -p $BASEDIR/.npm-global
 npm config set prefix "$BASEDIR/.npm-global"
 export N_PREFIX=$BASEDIR/.npm-global
 export PATH=$N_PREFIX/bin:$PATH
+echo "Installing NodeJS version manager"
 npm install -g n
+echo "Switching to use NodeJS version Long Term Support (LTS)"
 $BASEDIR/.npm-global/lib/node_modules/n/bin/n lts
 #$N_PREFIX/n lts
 
@@ -64,8 +66,10 @@ rm -fr latest
 mkdir $NIGHTLYDIR && cd $NIGHTLYDIR
 git clone $GITREPO .
 cp deploy/nightly/.env .
+echo "Installing npm dependencies"
 npm install
-npm run build
+echo "Building application files"
+npx nuxt generate --dotenv .env
 cp deploy/nightly/htaccess dist/.htaccess
 cp deploy/default/woudc-ui.conf dist/
 sed -i 's#/data/web/woudc#/data/web/gods/htdocs/woudc-2.0/nightly/latest#g' dist/woudc-ui.conf

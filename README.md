@@ -6,22 +6,31 @@
 
 - Install NodeJS
 - Create a **copy** of the `.env.sample` file and **rename** to `.env`
-  - `BASE_URL` should be the domain + path to your root app
-  - `ROUTER_BASE` should be the path to your root application
+  - `BASE_URL` should be the domain name of your app
+  - `ROUTER_BASE` The base URL of the app. For example, if the entire single page application is served under `/app/`, then base should use the value `'/app/'`
 
 ``` bash
 # install dependencies
 $ npm install
 
-# serve with hot reload at localhost:3000
+# serve with hot reload at localhost:3000, dotenv reference to .env file
 $ npm run dev
 
-# build for production and launch server
+# OR serve with hot reload at localhost:3000, dotenv reference to .env.sample file
+$ npx nuxt dev --dotenv .env.sample
+
+# build for production, optional reference to --dotenv to .env.ops file
+$ npx nuxt build --dotenv .env.ops
+
+# build for production and launch server for SSR (requires NodeJS server)
 $ npm run build
 $ npm run start
 
-# generate static project: https://nuxtjs.org/guide#static-generated-pre-rendering-
+# generate static deployment: https://nuxtjs.org/guide#static-generated-pre-rendering-
 $ npm run generate
+
+# OR with optional reference to --dotenv file
+$ npx nuxt generate --dotenv .env.ops
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
@@ -43,7 +52,7 @@ RewriteRule . /subfolder-name/200.html [L]
 ```
 
 After building your files (`npm run build`), you can copy the `.htaccess` sample to your `/dist` for convenience and modify it to according to your server settings.
-``` bash
+```bash
 # modify to your web server specs
 vi .htaccess
 
@@ -56,7 +65,15 @@ cp .htaccess ./dist
 
 ## Environment variables (.env)
 
-This project includes a `.env.sample` file. **You must rename the file to `.env` and fill in your environment variables so that Nuxt will load it in by default.** If you don't rename or you want to have multiple `.env` files, you must [configure the options of the `dotenv-module`](https://github.com/nuxt-community/dotenv-module#options) module within the `nuxt.config.js` file to match the correct `.env` file accordingly.
+This project includes a `.env.sample` file. **You must copy the file and rename as `.env` and edit with your environment variables so that Nuxt will load it in by default.** You can have multiple `.env` files and reference it directly on build or dev.
+
+```bash
+# Development
+$ npx nuxt dev --dotenv .env.sample
+
+# Build
+$ npx nuxt generate --dotenv .env.ops
+```
 
 ## Linting
 

@@ -197,7 +197,7 @@ const actions = {
     ]
     const queryParams = { inputs: stationInputs }
 
-    const stationsResponse = await getDistinct(queryParams)
+    const stationsResponse = await getDistinct(this.$config.woudcAPI, queryParams)
     const stationsList = stationsResponse.data.outputs.orderByID
 
     // Use a map to let a station's properties all be available using just the ID.
@@ -226,7 +226,7 @@ const actions = {
     ]
     const queryParams = { inputs: contributionInputs }
 
-    const contributionsResponse = await getDistinct(queryParams)
+    const contributionsResponse = await getDistinct(this.$config.woudcAPI, queryParams)
     const stnDataPairs = contributionsResponse.data.outputs.orderByID
 
     commit('setStnDataPairs', stnDataPairs)

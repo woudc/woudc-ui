@@ -20,9 +20,9 @@ export default {
   data() {
     return {
       urls: {
-        brewer: process.env.WAF_URL + '/Documentation/www/bdms/meetings/',
+        brewer: this.$config.wafURL + '/Documentation/www/bdms/meetings/',
         dobson: 'http://www.o3soft.eu/dobsonweb/committee.html',
-        umkehr: process.env.WAF_URL + '/Publications/Meeting_Reports/Umkehr_Sub-Committee/'
+        umkehr: this.$config.wafURL + '/Publications/Meeting_Reports/Umkehr_Sub-Committee/'
       }
     }
   },

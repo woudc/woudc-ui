@@ -1,8 +1,6 @@
 /* vuex file with the purpose of extracting and storing news data */
 import woudcClient from '~/plugins/woudcClient'
 
-const URL = process.env.PYGEOAPI_HOSTNAME + '/collections/notifications/items?f=json'
-
 const state = () => ({
   newsItems: []
 })
@@ -14,13 +12,14 @@ const getters = {
 }
 
 const mutations = {
-  setNewsItems(state, json){
+  setNewsItems(state, json) {
     state.newsItems = json
   }
 }
 
 const actions = {
-  async loadNews({commit,getters}) {
+  async loadNews({ commit }) {
+    const URL = this.$config.woudcAPI + '/collections/notifications/items?f=json'
     try{
       const response = await woudcClient.get(URL)
       commit('setNewsItems', {

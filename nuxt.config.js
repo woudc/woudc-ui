@@ -1,31 +1,8 @@
 import colors from 'vuetify/es5/util/colors'
 
-require('dotenv').config()
-
-const PORT = process.env.npm_config_port || '3000'
-
 export default {
-  ssr: false,
-  env: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:' + PORT,
-    appBuildYYYY: new Date().getFullYear(),
-    appVersion: process.env.npm_package_version,
-    appName: process.env.npm_package_name,
-    appHomepage: process.env.npm_package_homepage
-  },
   router: {
     base: process.env.ROUTER_BASE || '/woudc-ui/'
-  },
-  generate: {
-    exclude: [
-      /^\/data\/stations\/[\d]+/,
-      /^\/contributors$/,
-    ],
-    routes: [
-      '/contributors/registration',
-      '/contributors/submission',
-      '/contributors/validation'
-    ]
   },
   /*
    ** Global headers of the page
@@ -108,7 +85,7 @@ export default {
     }
   },
   /*
-   ** i18n global options
+   ** nuxt-i18n module global options
    */
   i18n: {
     locales: [
@@ -121,7 +98,7 @@ export default {
         code: 'en',
         iso: 'en-CA',
         name: 'English'
-      },
+      }
     ],
     strategy: 'prefix',
     defaultLocale: 'en',
@@ -136,12 +113,13 @@ export default {
       useCookie: true,
       cookieKey: 'woudc_default_language'
     },
-    baseUrl: process.env.BASE_URL,
-    seo: true
+    baseUrl: process.env.BASE_URL || 'https://woudc.org'
   },
   /*
    ** Build configuration
    */
+  ssr: true, // false for SPA mode, true for full static mode
+  target: 'static', // static hosting
   build: {
     /*
      ** You can extend webpack config here
@@ -163,6 +141,26 @@ export default {
           exclude: /(node_modules)/
         })
       }
+    },
+    filenames: {
+      app: '[name].js'
     }
+  },
+  // generate: {
+  //   exclude: [
+  //     /\/data\/stations\/[\d]+$/,
+  //     /\/contributors$/,
+  //   ]
+  // },
+  publicRuntimeConfig: {
+    baseURL: process.env.BASE_URL,
+    woudcAPI: process.env.WOUDC_API,
+    emailAddress: process.env.EMAIL_ADDRESS,
+    wafURL: process.env.WAF_URL,
+    wmoRegionsURL: process.env.WMO_REGIONS_URL,
+    appBuildYYYY: new Date().getFullYear(),
+    appVersion: process.env.npm_package_version,
+    appName: process.env.npm_package_name,
+    appHomepage: process.env.npm_package_homepage
   }
 }

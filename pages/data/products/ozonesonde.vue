@@ -223,7 +223,7 @@ export default {
         yearsInRange = [ this.selectedYear ]
       }
 
-      const rootURL = process.env.WAF_URL + '/products/ozone/vertical-ozone-profile/ozonesonde/1.0/'
+      const rootURL = this.$config.wafURL + '/products/ozone/vertical-ozone-profile/ozonesonde/1.0/'
 
       const stationID = this.selectedStationID
       const stationKey = this.selectedStation.name + ' (' + stationID + ')'
@@ -262,7 +262,7 @@ export default {
       }
     },
     async getObservationDates() {
-      const dataRecordsURL = '/collections/data_records/items'
+      const dataRecordsURL = this.$config.woudcAPI + '/collections/data_records/items'
       let queryParams = 'sortby=timestamp_date&content_category=OzoneSonde'
       queryParams += '&platform_id=' + this.selectedStationID + '&limit=5000'
 
