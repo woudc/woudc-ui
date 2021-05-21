@@ -88,7 +88,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/error',
-      fr: 'erreur'
+      fr: '/erreur'
     }
   }
 }
