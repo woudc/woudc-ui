@@ -94,9 +94,9 @@ export default {
     'selectable-map': SelectableMap,
     'table-instructions': tableInstructions
   },
-  async validate({ params }) {
+  async validate({ params, $config }) {
     const acronym = params.id
-    const url = this.$config.woudcAPI + '/collections/contributors/items'
+    const url = $config.woudcAPI + '/collections/contributors/items'
 
     const queryParams = 'acronym=' + acronym
     let found = true

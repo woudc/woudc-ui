@@ -124,9 +124,9 @@ export default {
     'selectable-map': SelectableMap,
     'table-instructions': tableInstructions
   },
-  async validate({ params }) {
+  async validate({ params, $config }) {
     const woudcID = params.id
-    const url = this.$config.woudcAPI + '/collections/stations/items'
+    const url = $config.woudcAPI + '/collections/stations/items'
 
     let found = true
     await woudcClient.get(url + '/' + woudcID).catch(() => {
