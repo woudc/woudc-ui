@@ -90,7 +90,7 @@
           <h2>{{ $t('about.access.search.title') }}</h2>
           <i18n path="about.access.search.blurb.body-intro" tag="p">
             <template v-slot:search>
-              <nuxt-link :to="localePath('data-explore')">
+              <nuxt-link :to="localePath('data-search')">
                 {{ $t('common.search') }}
               </nuxt-link>
             </template>

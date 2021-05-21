@@ -53,7 +53,7 @@
               <a :href="wmsURL" target="_blank">{{ $t('data.info.links.wms') }}</a>
             </li>
             <li>
-              <nuxt-link :to="localePath('data-explore')">
+              <nuxt-link :to="localePath('data-search')">
                 {{ $t('data.info.links.search-page') }}
               </nuxt-link>
             </li>

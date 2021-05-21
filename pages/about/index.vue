@@ -18,7 +18,7 @@
     <p>{{ $t('about.home.blurb.body-products') }}</p>
     <i18n path="about.home.blurb.body-access" tag="p">
       <template v-slot:search>
-        <nuxt-link :to="localePath('data-explore')">
+        <nuxt-link :to="localePath('data-search')">
           {{ $t('common.search') }}
         </nuxt-link>
       </template>
