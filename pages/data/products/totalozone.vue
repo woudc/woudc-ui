@@ -253,12 +253,17 @@ export default {
         const instruments = this.observationTools[year]
 
         this.graphURLs[year] = []
+        const duplicateInstruments = []
         for (const instrument of instruments) {
-          const instrumentKey = instrument.name + '_' + instrument.serial
+          const instrumentKey = instrument.name + '_' + instrument.serial.padStart(3, '0')
           const filename = 'dailytotO3-' + stationID + '-' + instrumentKey + '-' + year + '.png'
 
           const instrumentName = instrument.name + ' #' + instrument.serial.padStart(3, '0')
           const plotURL = root + 'stn' + stationID + '/' + filename
+
+          if (duplicateInstruments.includes(instrumentKey)){
+            continue
+          }
 
           this.graphURLs[year].push({
             url: plotURL,
@@ -266,6 +271,7 @@ export default {
             station: stationKey,
             instrument: instrumentName
           })
+          duplicateInstruments.push(instrumentKey)
         }
       }
     },
