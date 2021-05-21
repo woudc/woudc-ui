@@ -21,8 +21,8 @@ export default {
         name: 'description',
         content: pkg.description || 'A World Meteorological Organization (WMO) data centre supporting the Global Atmosphere Watch (GAW) program operated by Environment and Climate Change Canada.'
       }
-    ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    ]
+    // link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
   /*
    ** Customize the progress-bar color
@@ -151,7 +151,7 @@ export default {
   },
   generate: {
     fallback: '200.html',
-    exclude: [
+    exclude: [ // dynamically generated pages to use SPA fallback
       /\/data\/stations\/[\d]+$/,
       /\/donnees\/stations\/[\d]+$/,
       /\/contributors\/[\d\w-_]{1,8}$/,
