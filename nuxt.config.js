@@ -1,4 +1,7 @@
 import colors from 'vuetify/es5/util/colors'
+// import config from "./base.config";
+
+import pkg from './package.json'
 
 export default {
   router: {
@@ -8,15 +11,15 @@ export default {
    ** Global headers of the page
    */
   head: {
-    titleTemplate: '%s - ' + process.env.npm_package_name,
-    title: process.env.npm_package_name || 'WOUDC',
+    titleTemplate: '%s - ' + pkg.name,
+    title: pkg.name || 'WOUDC',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
+        content: pkg.description || 'A World Meteorological Organization (WMO) data centre supporting the Global Atmosphere Watch (GAW) program operated by Environment and Climate Change Canada.'
       }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
@@ -143,15 +146,20 @@ export default {
       }
     },
     filenames: {
-      app: '[name].js'
+      // app: '[name].js'
     }
   },
-  // generate: {
-  //   exclude: [
-  //     /\/data\/stations\/[\d]+$/,
-  //     /\/contributors$/,
-  //   ]
-  // },
+  generate: {
+    fallback: '200.html',
+    exclude: [
+      /\/data\/stations\/[\d]+$/,
+      /\/donnees\/stations\/[\d]+$/,
+      /\/contributors\/[\d\w-_]{1,8}$/,
+      /\/contributeurs\/[\d\w-_]{1,8}$/,
+      /\/data\/dataset-information/,
+      /\/donnees\/information-sur-les-jeux-de-donnees/
+    ]
+  },
   publicRuntimeConfig: {
     baseURL: process.env.BASE_URL,
     woudcAPI: process.env.WOUDC_API,
@@ -159,8 +167,8 @@ export default {
     wafURL: process.env.WAF_URL,
     wmoRegionsURL: process.env.WMO_REGIONS_URL,
     appBuildYYYY: new Date().getFullYear(),
-    appVersion: process.env.npm_package_version,
-    appName: process.env.npm_package_name,
-    appHomepage: process.env.npm_package_homepage
+    appVersion: pkg.version,
+    appName: pkg.name,
+    appHomepage: pkg.homepage
   }
 }

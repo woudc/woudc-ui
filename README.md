@@ -28,8 +28,10 @@ $ npm run start
 
 # generate static deployment: https://nuxtjs.org/guide#static-generated-pre-rendering-
 $ npm run generate
+# Optional: preview deployment in localhost from /dist
+$ npm run start
 
-# OR with optional reference to --dotenv file
+# OR generate static deployment with optional reference to --dotenv file
 $ npx nuxt generate --dotenv .env.ops
 ```
 
