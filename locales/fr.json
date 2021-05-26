@@ -833,12 +833,13 @@
       "blurb": "La liste des contributeurs contient le nom et l’abréviation de l’institut ou de l’organisation,l’adresse, les coordonnées et l’information sur le fichier local.",
       "contributor-headers": {
         "acronym": "Acronyme",
-        "country": "Pays",
         "end_date": "Jusqu’à cette date",
         "name": "Nom du contributeur",
         "project": "Projet",
         "start_date": "À partir de cette date",
-        "wmo_region_id": "Région de l'OMM"
+        "wmo_region_id": "Région de l'OMM",
+        "country_name_en": "Pays",
+        "country_name_fr": "Pays"
       },
       "contributor-name": "Nom du contributeur :",
       "country-name": "Nom du pays :",
@@ -1137,10 +1138,11 @@
         "start_date": "À partir de cette date",
         "end_date": "Jusqu’à cette date",
         "name": "Nom de la station",
-        "country": "Pays de la station",
         "last_validated_datetime": "Date de révision",
         "type": "Type de station",
-        "wmo_region_id": "Région de l'OMM"
+        "wmo_region_id": "Région de l'OMM",
+        "country_name_en": "Pays de la station",
+        "country_name_fr": "Pays de la station"
       },
       "station-id": "Identification de la station du WOUDC :",
       "station-name": "Nom de la station :",

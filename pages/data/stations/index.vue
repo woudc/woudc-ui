@@ -103,7 +103,7 @@ export default {
         'start_date',
         'end_date',
         'name',
-        'country',
+        `country_name_${this.$i18n.locale}`,
         'last_validated_datetime',
         'type',
         'wmo_region_id'
