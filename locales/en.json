@@ -832,12 +832,13 @@
       "blurb": "The contributor list provides the institute or organization name and abbreviation, address, contact information and local file information.",
       "contributor-headers": {
         "acronym": "Acronym",
-        "country": "Country",
         "end_date": "Date To",
         "name": "Contributor Name",
         "project": "Project",
         "start_date": "Date From",
-        "wmo_region_id": "WMO Region"
+        "wmo_region_id": "WMO Region",
+        "country_name_en": "Country",
+        "country_name_fr": "Country"
       },
       "contributor-name": "Contributor Name:",
       "country-name": "Country:",
@@ -1144,10 +1145,11 @@
         "start_date": "Date From",
         "end_date": "Date To",
         "name": "Station Name",
-        "country": "Station Country",
         "last_validated_datetime": "Revision Date",
         "type": "Station Type",
-        "wmo_region_id": "WMO Region"
+        "wmo_region_id": "WMO Region",
+        "country_name_en": "Station Country",
+        "country_name_fr": "Station Country"
       },
       "station-id": "WOUDC Station ID:",
       "station-name": "Station Name:",

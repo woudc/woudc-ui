@@ -89,7 +89,7 @@ export default {
         'acronym',
         'project',
         'name',
-        'country',
+        `country_name_${this.$i18n.locale}`,
         'start_date',
         'end_date',
         'wmo_region_id'
