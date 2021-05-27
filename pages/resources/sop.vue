@@ -64,6 +64,18 @@ export default {
       })
     }
   },
+  head() {
+    return {
+      title: this.$t('resources.procedures.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('resources.procedures.blurb')
+        }
+      ]
+    }
+  },
   nuxtI18n: {
     paths: {
       en: '/resources/standard-operating-procedures',

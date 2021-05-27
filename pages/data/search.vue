@@ -875,6 +875,18 @@ export default {
       })
     }
   },
+  head() {
+    return {
+      title: this.$t('data.explore.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('data.explore.blurb.body-datasets')
+        }
+      ]
+    }
+  },
   nuxtI18n: {
     paths: {
       en: '/data/data-search-and-download',

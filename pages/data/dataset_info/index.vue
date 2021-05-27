@@ -48,6 +48,18 @@ export default {
       sectionOrder: [ 'totalozone', 'vertical-ozone', 'uv-irradiance' ]
     }
   },
+  head() {
+    return {
+      title: this.$t('data.info.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('data.info.blurb')
+        }
+      ]
+    }
+  },
   nuxtI18n: {
     paths: {
       en: '/data/dataset-information',

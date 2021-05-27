@@ -73,6 +73,18 @@ export default {
       w3cURL: 'https://www.w3.org/WAI/intro/wcag'
     }
   },
+  head() {
+    return {
+      title: this.$t('about.faq.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('about.faq.blurb')
+        }
+      ]
+    }
+  },
   nuxtI18n: {
     paths: {
       en: '/about/frequently-asked-questions',
