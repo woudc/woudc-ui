@@ -20,6 +20,17 @@ export default {
       ],
     }
   },
+  head() {
+    return {
+      title: this.$t('data.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+        }
+      ]
+    }
+  },
   nuxtI18n: {
     paths: {
       en: '/data',

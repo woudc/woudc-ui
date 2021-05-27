@@ -130,6 +130,18 @@ export default {
     this.loadingMap = false
     this.loadingTable = false
   },
+  head() {
+    return {
+      title: this.$t('data.instruments.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('data.instruments.blurb')
+        }
+      ]
+    }
+  },
   nuxtI18n: {
     paths: {
       en: '/data/instruments',
