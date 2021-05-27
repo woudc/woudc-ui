@@ -429,6 +429,17 @@ export default {
       }
     }
   },
+  head() {
+    return {
+      title: this.$t('data.products.uv-index.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+        }
+      ]
+    }
+  },
   nuxtI18n: {
     paths: {
       en: '/data/products/uvindex',

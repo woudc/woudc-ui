@@ -400,6 +400,18 @@ export default {
       }
     }
   },
+  head() {
+    return {
+      title: this.$t('about.access.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('about.access.blurb.body-intro')
+        }
+      ]
+    }
+  },
   nuxtI18n: {
     paths: {
       en: '/about/data-access',

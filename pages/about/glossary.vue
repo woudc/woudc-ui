@@ -43,6 +43,18 @@ export default {
       wafURL: this.$config.wafURL
     }
   },
+  head() {
+    return {
+      title: this.$t('about.glossary.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('about.glossary.blurb')
+        }
+      ]
+    }
+  },
   nuxtI18n: {
     paths: {
       en: '/about/glossary',

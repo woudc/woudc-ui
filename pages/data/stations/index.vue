@@ -136,6 +136,18 @@ export default {
         this.loadingTable = false
       })
   },
+  head() {
+    return {
+      title: this.$t('data.stations.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('data.stations.blurb')
+        }
+      ]
+    }
+  },
   nuxtI18n: {
     paths: {
       en: '/data/stations',

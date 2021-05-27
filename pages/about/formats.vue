@@ -84,6 +84,18 @@ export default {
       })
     }
   },
+  head() {
+    return {
+      title: this.$t('about.formats.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('about.formats.examples.blurb')
+        }
+      ]
+    }
+  },
   nuxtI18n: {
     paths: {
       en: '/about/formats',

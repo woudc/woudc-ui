@@ -121,6 +121,18 @@ export default {
     this.loadingMap = false
     this.loadingTable = false
   },
+  head() {
+    return {
+      title: this.$t('contributors.list.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('contributors.list.blurb')
+        }
+      ]
+    }
+  },
   nuxtI18n: {
     paths: {
       en: '/contributors',

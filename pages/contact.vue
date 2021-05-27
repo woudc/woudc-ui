@@ -55,6 +55,18 @@ export default {
       woudcEmail: this.$config.emailAddress
     }
   },
+  head() {
+    return {
+      title: this.$t('contact.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('contact.blurb.body-contact')
+        }
+      ]
+    }
+  },
   nuxtI18n: {
     paths: {
       en: '/contact',

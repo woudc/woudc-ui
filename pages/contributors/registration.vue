@@ -65,6 +65,18 @@ export default {
       wmoGAWUrl: 'https://public.wmo.int/en/programmes/global-atmosphere-watch-programme'
     }
   },
+  head() {
+    return {
+      title: this.$t('contributors.registration.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('contributors.registration.blurb.body-accounts')
+        }
+      ]
+    }
+  },
   nuxtI18n: {
     paths: {
       en: '/contributors/registration',
