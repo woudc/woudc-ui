@@ -436,6 +436,7 @@ export default {
         {
           hid: 'description',
           name: 'description',
+          content: this.$t('data.products.uv-index.title')
         }
       ]
     }
