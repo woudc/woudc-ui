@@ -30,11 +30,12 @@ export default {
   },
   head() {
     return {
-      title: this.$t('resources.links.links'),
+      title: this.$t('resources.title'),
       meta: [
         {
           hid: 'description',
-          name: 'description'
+          name: 'description',
+          content: this.$t('resources.links.links')
         }
       ]
     }
