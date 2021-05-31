@@ -55,11 +55,12 @@ export default {
   },
   head() {
     return {
-      title: this.$t('related-links.links.title'),
+      title: this.$t('resources.related-links.links.title'),
       meta: [
         {
           hid: 'description',
-          name: 'description'
+          name: 'description',
+          content: this.$t('resources.related-links.links.other-title')
         }
       ]
     }
