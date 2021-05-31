@@ -343,6 +343,7 @@ export default {
         {
           hid: 'description',
           name: 'description',
+          content: this.$t('data.products.ozonesonde.title')
         }
       ]
     }
