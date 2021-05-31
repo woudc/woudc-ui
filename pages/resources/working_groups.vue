@@ -26,6 +26,18 @@ export default {
       }
     }
   },
+  head() {
+    return {
+      title: this.$t('resources.working-groups.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('resources.working-groups.title')
+        }
+      ]
+    }
+  },
   nuxtI18n: {
     paths: {
       en: '/resources/working-groups',
