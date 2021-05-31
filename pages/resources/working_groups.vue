@@ -28,11 +28,12 @@ export default {
   },
   head() {
     return {
-      title: this.$t('resopurces.working-groups.title'),
+      title: this.$t('resources.working-groups.title'),
       meta: [
         {
           hid: 'description',
-          name: 'description'
+          name: 'description',
+          content: this.$t('resources.working-groups.title')
         }
       ]
     }
