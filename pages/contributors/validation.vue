@@ -7,6 +7,18 @@
 
 <script>
 export default {
+  head() {
+    return {
+      title: this.$t('contributors.validation.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('contributors.validation.blurb')
+        }
+      ]
+    }
+  },
   nuxtI18n: {
     paths: {
       en: '/contributors/validation',

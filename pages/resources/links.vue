@@ -53,6 +53,18 @@ export default {
       }
     }
   },
+  head() {
+    return {
+      title: this.$t('resources.related-links.links.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('resources.related-links.links.other-title')
+        }
+      ]
+    }
+  },
   nuxtI18n: {
     paths: {
       en: '/resources/links',

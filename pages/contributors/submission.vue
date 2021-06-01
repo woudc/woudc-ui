@@ -59,6 +59,18 @@ export default {
       ftpPath: 'ftp://ftp.woudc.org/'
     }
   },
+  head() {
+    return {
+      title: this.$t('contributors.submission.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('contributors.submission.blurb-intro')
+        }
+      ]
+    }
+  },
   nuxtI18n: {
     paths: {
       en: '/contributors/data-submission',

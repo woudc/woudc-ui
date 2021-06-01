@@ -126,6 +126,18 @@ export default {
       wmoURL: 'https://www.wmo.int/pages/about/exchangingdata_en.html'
     }
   },
+  head() {
+    return {
+      title: this.$t('about.policy.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('about.policy.blurb')
+        }
+      ]
+    }
+  },
   nuxtI18n: {
     paths: {
       en: '/about/data-use-policy',

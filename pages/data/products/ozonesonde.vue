@@ -336,6 +336,18 @@ export default {
       }
     }
   },
+  head() {
+    return {
+      title: this.$t('data.products.ozonesonde.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('data.products.ozonesonde.title')
+        }
+      ]
+    }
+  },
   nuxtI18n: {
     paths: {
       en: '/data/products/ozonesonde',

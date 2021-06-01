@@ -101,6 +101,18 @@ export default {
       }
     }
   },
+  head() {
+    return {
+      title: this.$t('news.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('news.blurb')
+        }
+      ]
+    }
+  },
   nuxtI18n: {
     paths: {
       en: '/news',

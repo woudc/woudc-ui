@@ -28,6 +28,18 @@ export default {
       softwareURL: 'https://github.com/woudc/woudc/wiki'
     }
   },
+  head() {
+    return {
+      title: this.$t('resources.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('resources.links.links')
+        }
+      ]
+    }
+  },
   nuxtI18n: {
     paths: {
       en: '/resources',

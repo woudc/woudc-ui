@@ -126,6 +126,18 @@ export default {
       })
     }
   },
+  head() {
+    return {
+      title: this.$t('about.standards.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('about.standards.blurb-intro')
+        }
+      ]
+    }
+  },
   nuxtI18n: {
     paths: {
       en: '/about/standards',
