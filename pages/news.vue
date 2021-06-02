@@ -13,13 +13,16 @@
     </div>
     <v-row>
       <v-col v-if="loaded">
+        <v-btn class="ma-2" medium rounded @click="tagSelection('reset')">
+          Reset filters
+        </v-btn>
         <v-card v-for="(newsItem, i) in sortedItems" :id="newsItem.properties.published_date.slice(0,10)" :key="i" class="mb-6">
           <v-card-title>
             {{ newsItem.properties[`title_${$i18n.locale}`] }}
           </v-card-title>
           <v-card-subtitle>
             <span class="blue--text text--darken-3">{{ newsItem.properties.published_date.slice(0,10) }}</span>
-            <v-chip v-for="(keyword, j) in newsItem.properties[`keywords_${$i18n.locale}`]" :key="j" class="ma-2" small>
+            <v-chip v-for="(keyword, j) in newsItem.properties[`keywords_${$i18n.locale}`]" :key="j" :input-value="selectedTags.includes(keyword)" filter class="ma-2" rounded small @click="tagSelection(keyword)">
               {{ keyword }}
             </v-chip>
           </v-card-subtitle>
@@ -37,6 +40,7 @@ export default {
   data(){
     return{
       loaded: false,
+      selectedTags: [],
     }
   },
   computed: {
@@ -46,7 +50,24 @@ export default {
     ...mapState('news',
       ['newsItems']),
     sortedItems(){
-      return this.newsItems.json.features.slice(0).sort((a, b) => a.properties.published_date.slice(0,10) < b.properties.published_date.slice(0,10) ? 1 : -1)
+      // let currNewsItem, currTag
+      const allNewsItems = this.newsItems.json.features.slice(0).sort((a, b) => a.properties.published_date.slice(0,10) < b.properties.published_date.slice(0,10) ? 1 : -1)
+      let sortedItems = []
+      if (this.selectedTags.length===0){ 
+        sortedItems = allNewsItems
+      }
+      else if (this.selectedTags.length>0){
+        for (const currNewsItem of allNewsItems) {
+          sortedItems.push(currNewsItem)
+          for (const currTag of this.selectedTags) {
+            if (currNewsItem.properties.keywords_en.includes(currTag) === false) {
+              sortedItems.pop()
+              break
+            }
+          }
+        }
+      }
+      return sortedItems
     }
   },
   created() {
@@ -66,6 +87,18 @@ export default {
       this.loaded = true
       return holder
     },
+    tagSelection(inputSelectedTag) {
+      if (inputSelectedTag === "reset") {
+        inputSelectedTag = ""
+        this.$data.selectedTags= [] 
+      }
+      if (this.$data.selectedTags.includes(inputSelectedTag) === true) { 
+        this.$data.selectedTags = this.$data.selectedTags.filter(function(Elem){ return Elem !== inputSelectedTag })
+      }
+      else if (inputSelectedTag !== "") { 
+        this.$data.selectedTags.push(inputSelectedTag) 
+      }
+    }
   },
   head() {
     return {
