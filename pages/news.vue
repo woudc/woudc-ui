@@ -22,9 +22,9 @@
           </v-card-title>
           <v-card-subtitle>
             <span class="blue--text text--darken-3">{{ newsItem.properties.published_date.slice(0,10) }}</span>
-            <v-btn v-for="(keyword, j) in newsItem.properties[`keywords_${$i18n.locale}`]" :key="j" :class="{ active: selectedElems.includes(keyword), inactive: !selectedElems.includes(keyword) }" rounded small @click="tagSelection(keyword)">
+            <v-chip v-for="(keyword, j) in newsItem.properties[`keywords_${$i18n.locale}`]" :key="j" :input-value="selectedTags.includes(keyword)" filter class="ma-2" rounded small @click="tagSelection(keyword)">
               {{ keyword }}
-            </v-btn>
+            </v-chip>
           </v-card-subtitle>
           <!-- eslint-disable-next-line vue/no-v-html -->
           <v-card-text class="pt-3" v-html="newsItem.properties[`description_${$i18n.locale}`]" />
@@ -40,7 +40,7 @@ export default {
   data(){
     return{
       loaded: false,
-      selectedElems: [],
+      selectedTags: [],
     }
   },
   computed: {
@@ -50,20 +50,19 @@ export default {
     ...mapState('news',
       ['newsItems']),
     sortedItems(){
-      let h, i
-      const temp = this.newsItems.json.features.slice(0).sort((a, b) => a.properties.published_date.slice(0,10) < b.properties.published_date.slice(0,10) ? 1 : -1)
+      // let currNewsItem, currTag
+      const allNewsItems = this.newsItems.json.features.slice(0).sort((a, b) => a.properties.published_date.slice(0,10) < b.properties.published_date.slice(0,10) ? 1 : -1)
       let sortedItems = []
-      if (this.selectedElems.length===0){ 
-        sortedItems = temp
+      if (this.selectedTags.length===0){ 
+        sortedItems = allNewsItems
       }
-      else if (this.selectedElems.length>0){
-        for (i = 0; i < temp.length; i++) {
-          for (h = 0; h < this.selectedElems.length; h++){
-            if (temp[i].properties.keywords_en.includes(this.selectedElems[h]) === false) {
+      else if (this.selectedTags.length>0){
+        for (const currNewsItem of allNewsItems) {
+          sortedItems.push(currNewsItem)
+          for (const currTag of this.selectedTags) {
+            if (currNewsItem.properties.keywords_en.includes(currTag) === false) {
+              sortedItems.pop()
               break
-            }
-            if (temp[i].properties.keywords_en.includes(this.selectedElems[h]) === true && h === this.selectedElems.length-1) {
-              sortedItems.push(temp[i])
             }
           }
         }
@@ -88,16 +87,16 @@ export default {
       this.loaded = true
       return holder
     },
-    tagSelection(c) {
-      if (c === "reset") {
-        c = ""
-        this.$data.selectedElems = [] 
+    tagSelection(inputSelectedTag) {
+      if (inputSelectedTag === "reset") {
+        inputSelectedTag = ""
+        this.$data.selectedTags= [] 
       }
-      if (this.$data.selectedElems.includes(c) === true) { 
-        this.$data.selectedElems = this.$data.selectedElems.filter(function(Elem){ return Elem !== c })
+      if (this.$data.selectedTags.includes(inputSelectedTag) === true) { 
+        this.$data.selectedTags = this.$data.selectedTags.filter(function(Elem){ return Elem !== inputSelectedTag })
       }
-      else if (c !== "") { 
-        this.$data.selectedElems.push(c) 
+      else if (inputSelectedTag !== "") { 
+        this.$data.selectedTags.push(inputSelectedTag) 
       }
     }
   },
@@ -121,13 +120,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.active {
-  color: rgb(157, 157, 157);
-  margin: 8px 8px;
-}
-.inactive {
-  margin: 8px 8px;
-}
-</style>
