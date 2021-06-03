@@ -283,18 +283,8 @@ export default {
     this.$store.dispatch('stations/downloadStations')
       .then(() => {
         this.populate()
-        // this.refreshMetrics()
+        this.refreshMetrics()
       })
-    Promise.all([
-      this.$store.dispatch('stations/downloadStationsByDataset'),
-    ]).then(() => {
-      this.loadingStations = false
-      this.loadingMap = false
-      this.selectedYearRange = [
-        this.minSelectableYear, this.maxSelectableYear
-      ]
-      this.refreshMetrics()
-    })
   },
   methods: {
     addToStartYear(amount) {
@@ -354,7 +344,6 @@ export default {
     },
     async refreshMetrics() {
       if (this.station === null) {
-        console.log('station is null')
         return {}
       }
       const inputs = [ 
