@@ -1,108 +1,108 @@
 <template>
   <v-container>
-    <h1>{{ $t('about.policy.title') }}</h1>
-    <i18n path="about.policy.blurb" tag="p">
+    <h1>{{ $t('data.policy.title') }}</h1>
+    <i18n path="data.policy.blurb" tag="p">
       <template v-slot:wmo-policy>
         <a :href="wmoURL" target="_blank">
-          {{ $t('about.policy.wmo-policy') }}
+          {{ $t('data.policy.wmo-policy') }}
         </a>
       </template>
       <template v-slot:gaw-policy>
         <a :href="gawURL" target="_blank">
-          {{ $t('about.policy.gaw-policy') }}
+          {{ $t('data.policy.gaw-policy') }}
         </a>
       </template>
     </i18n>
     <v-row>
       <v-col>
-        <h2>{{ $t('about.policy.wmo.title') }}</h2>
-        <p>{{ $t('about.policy.wmo.blurb.body-intro') }}</p>
-        <i18n path="about.policy.wmo.blurb.body-resolution40" tag="p">
+        <h2>{{ $t('data.policy.wmo.title') }}</h2>
+        <p>{{ $t('data.policy.wmo.blurb.body-intro') }}</p>
+        <i18n path="data.policy.wmo.blurb.body-resolution40" tag="p">
           <template v-slot:link>
             <a :href="resolution40" target="_blank">
-              {{ $t('about.policy.wmo.link') }}
+              {{ $t('data.policy.wmo.link') }}
             </a>
           </template>
         </i18n>
-        <h2>{{ $t('about.policy.gaw.title') }}</h2>
-        <p>{{ $t('about.policy.gaw.blurb') }}</p>
+        <h2>{{ $t('data.policy.gaw.title') }}</h2>
+        <p>{{ $t('data.policy.gaw.blurb') }}</p>
         <v-card color="info">
           <v-card-title>
-            {{ $t('about.policy.gaw.note.title') }}
+            {{ $t('data.policy.gaw.note.title') }}
           </v-card-title>
           <v-card-text>
-            {{ $t('about.policy.gaw.note.body') }}
+            {{ $t('data.policy.gaw.note.body') }}
           </v-card-text>
         </v-card>
-        <h2>{{ $t('about.policy.doi.title') }}</h2>
-        <i18n path="about.policy.doi.blurb" tag="p">
+        <h2>{{ $t('data.policy.doi.title') }}</h2>
+        <i18n path="data.policy.doi.blurb" tag="p">
           <template v-slot:dois>
             <a :href="doisURL" target="_blank">
-              {{ $t('about.policy.doi.dois') }}
+              {{ $t('data.policy.doi.dois') }}
             </a>
           </template>
         </i18n>
         <v-card color="info" class="mb-4">
           <v-card-title>
-            {{ $t('about.policy.doi.note1.title') }}
+            {{ $t('data.policy.doi.note1.title') }}
           </v-card-title>
           <v-card-text>
             <ul>
               <li v-for="dataClass in classOrder" :key="dataClass">
-                {{ $t('about.policy.doi.note1.items.' + dataClass) }}
+                {{ $t('data.policy.doi.note1.items.' + dataClass) }}
               </li>
             </ul>
           </v-card-text>
         </v-card>
         <v-card color="info">
           <v-card-title class="info">
-            {{ $t('about.policy.doi.note2.title') }}
+            {{ $t('data.policy.doi.note2.title') }}
           </v-card-title>
           <v-card-text>
             <ul>
               <li v-for="dataset in datasetOrder" :key="dataset">
-                {{ $t('about.policy.doi.note2.items.' + dataset) }}
+                {{ $t('data.policy.doi.note2.items.' + dataset) }}
               </li>
             </ul>
           </v-card-text>
         </v-card>
-        <h2>{{ $t('about.policy.publishing.title') }}</h2>
-        <p>{{ $t('about.policy.publishing.blurb-citations') }}</p>
+        <h2>{{ $t('data.policy.publishing.title') }}</h2>
+        <p>{{ $t('data.policy.publishing.blurb-citations') }}</p>
         <v-card color="info" class="mb-4">
           <v-card-title>
-            {{ $t('about.policy.publishing.note1.title') }}
+            {{ $t('data.policy.publishing.note1.title') }}
           </v-card-title>
           <v-card-text>
-            {{ $t('about.policy.publishing.note1.body') }}
+            {{ $t('data.policy.publishing.note1.body') }}
           </v-card-text>
         </v-card>
         <v-card color="info">
           <v-card-title>
-            {{ $t('about.policy.publishing.note2.title') }}
+            {{ $t('data.policy.publishing.note2.title') }}
           </v-card-title>
           <v-card-text>
             <ol>
               <li v-for="dataClass in classOrder" :key="dataClass">
-                {{ $t('about.policy.publishing.note2.items.' + dataClass) }}
+                {{ $t('data.policy.publishing.note2.items.' + dataClass) }}
               </li>
             </ol>
           </v-card-text>
         </v-card>
-        <i18n path="about.policy.publishing.blurb-contributors" tag="p">
+        <i18n path="data.policy.publishing.blurb-contributors" tag="p">
           <template v-slot:contributors-page>
             <nuxt-link :to="localePath('contributors')">
               {{ $t('common.contributors-page') }}
             </nuxt-link>
           </template>
         </i18n>
-        <h2>{{ $t('about.policy.products.title') }}</h2>
-        <p>{{ $t('about.policy.products.blurb') }}</p>
+        <h2>{{ $t('data.policy.products.title') }}</h2>
+        <p>{{ $t('data.policy.products.blurb') }}</p>
         <v-card color="info">
           <v-card-title>
-            {{ $t('about.policy.products.note.title') }}
+            {{ $t('data.policy.products.note.title') }}
           </v-card-title>
           <v-card-text>
-            {{ $t('about.policy.products.note.body') }}
+            {{ $t('data.policy.products.note.body') }}
           </v-card-text>
         </v-card>
       </v-col>
@@ -128,20 +128,20 @@ export default {
   },
   head() {
     return {
-      title: this.$t('about.policy.title'),
+      title: this.$t('data.policy.title'),
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('about.policy.blurb')
+          content: this.$t('data.policy.blurb')
         }
       ]
     }
   },
   nuxtI18n: {
     paths: {
-      en: '/about/data-use-policy',
-      fr: '/a-propos/politique-d\'utilisation-des-donnees'
+      en: '/data/data-use-policy',
+      fr: '/donnees/politique-d\'utilisation-des-donnees'
     }
   }
 }

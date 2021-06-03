@@ -123,10 +123,13 @@ export default {
           link: 'data',
           sections: {
             'data-search': { link: 'data-search' },
+            'data-access': { link: 'data-data_access' },
+            'data-quality': { link: 'data-data_quality' },
+            'data-policy': { link: 'data-data_policy' },
             'data-products': { link: 'data-products' },
             'data-info': { link: 'data-dataset_info' },
             'data-stations': { link: 'data-stations' },
-            'data-instruments': { link: 'data-instruments' }
+            'data-instruments': { link: 'data-instruments' },
           }
         },
         contributors: {
@@ -164,10 +167,7 @@ export default {
           link: 'about',
           sections: {
             'about-home': { link: 'about' },
-            'about-quality': { link: 'about-data_quality' },
-            'about-policy': { link: 'about-data_policy' },
             'about-standards': { link: 'about-standards' },
-            'about-access': { link: 'about-data_access' },
             'about-formats': { link: 'about-formats' },
             'about-glossary': { link: 'about-glossary' },
             'about-faq': { link: 'about-faq' }

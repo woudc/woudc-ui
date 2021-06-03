@@ -1,26 +1,26 @@
 <template>
   <v-container>
-    <h1>{{ $t('about.quality.title') }}</h1>
-    <p>{{ $t('about.quality.blurb') }}</p>
+    <h1>{{ $t('data.quality.title') }}</h1>
+    <p>{{ $t('data.quality.blurb') }}</p>
     <v-row>
       <v-col>
         <h2>{{ $t('common.gawFull') }}</h2>
-        <i18n path="about.quality.gaw-blurb" tag="p">
+        <i18n path="data.quality.gaw-blurb" tag="p">
           <template v-slot:gaw-qa>
             <a :href="gawURL" target="_blank">
-              {{ $t('about.quality.gaw-qa') }}
+              {{ $t('data.quality.gaw-qa') }}
             </a>
           </template>
         </i18n>
-        <h2>{{ $t('about.quality.sag.title') }}</h2>
-        <i18n path="about.quality.sag.blurb.body-intro" tag="p">
+        <h2>{{ $t('data.quality.sag.title') }}</h2>
+        <i18n path="data.quality.sag.blurb.body-intro" tag="p">
           <template v-slot:sop>
             <nuxt-link :to="localePath('resources-sop')">
               {{ $t('common.sop') }}
             </nuxt-link>
           </template>
         </i18n>
-        <p>{{ $t('about.quality.sag.blurb.body-standards') }}</p>
+        <p>{{ $t('data.quality.sag.blurb.body-standards') }}</p>
         <ul>
           <li v-for="link in sagLinks" :key="link.to">
             <a :href="link.to" target="_blank">
@@ -28,26 +28,26 @@
             </a> ({{ link.note }})
           </li>
         </ul>
-        <h2>{{ $t('about.quality.eccc.title') }}</h2>
-        <p>{{ $t('about.quality.eccc.blurb') }}</p>
+        <h2>{{ $t('data.quality.eccc.title') }}</h2>
+        <p>{{ $t('data.quality.eccc.blurb') }}</p>
         <ul>
           <li>
-            <i18n path="about.quality.eccc.item1" tag="span">
+            <i18n path="data.quality.eccc.item1" tag="span">
               <template v-slot:guidelines>
-                <nuxt-link :to="localePath('about-formats')">
+                <nuxt-link :to="localePath('data-formats')">
                   {{ $t('common.guidelines') }}
                 </nuxt-link>
               </template>
             </i18n>
           </li>
-          <li>{{ $t('about.quality.eccc.item2') }}</li>
-          <li>{{ $t('about.quality.eccc.item3') }}</li>
-          <li>{{ $t('about.quality.eccc.item4') }}</li>
-          <li>{{ $t('about.quality.eccc.item5') }}</li>
+          <li>{{ $t('data.quality.eccc.item2') }}</li>
+          <li>{{ $t('data.quality.eccc.item3') }}</li>
+          <li>{{ $t('data.quality.eccc.item4') }}</li>
+          <li>{{ $t('data.quality.eccc.item5') }}</li>
           <li>
-            <i18n path="about.quality.eccc.item6" tag="span">
+            <i18n path="data.quality.eccc.item6" tag="span">
               <template v-slot:access>
-                <nuxt-link :to="localePath('about-data_access')">
+                <nuxt-link :to="localePath('data-data_access')">
                   {{ $t('common.access') }}
                 </nuxt-link>
               </template>
@@ -76,7 +76,7 @@ export default {
       const linkOrder = [ 'dobson', 'brewer', 'ozonesonde' ]
 
       return linkOrder.map((key) => {
-        const defn = this.$t('about.quality.sag.links.' + key)
+        const defn = this.$t('data.quality.sag.links.' + key)
         defn.to = this.sagURLs[key]
         return defn
       })
@@ -84,20 +84,20 @@ export default {
   },
   head() {
     return {
-      title: this.$t('about.quality.title'),
+      title: this.$t('data.quality.title'),
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('about.quality.blurb')
+          content: this.$t('data.quality.blurb')
         }
       ]
     }
   },
   nuxtI18n: {
     paths: {
-      en: '/about/data-quality',
-      fr: '/a-propos/qualite-donnees'
+      en: '/data/data-quality',
+      fr: '/donnees/qualite-donnees'
     }
   }
 }
