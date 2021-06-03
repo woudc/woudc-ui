@@ -33,10 +33,68 @@
           </template>
         </selectable-map>
       </v-col>
-      <v-col>
+      <v-col justify="center">
         <map-instructions id="map-instructions" />
         <table-instructions id="table-instructions" />
+        <v-row>
+          <v-col cols="12" md="6">
+            <v-text-field
+              type="number"
+              :value="selectedYearRange[0]"
+              :label="$t('data.explore.start')"
+              @keyup.enter="setStartYear($event.target.value)"
+              @keyup.up="setStartYear(parseInt($event.target.value))"
+              @keyup.down="setStartYear(parseInt($event.target.value))"
+            >
+              <template v-slot:append>
+                <div class="mt-2">
+                  <v-btn icon small @click="addToStartYear(-1)">
+                    <v-icon>mdi-minus-circle-outline</v-icon>
+                  </v-btn>
+                  <v-btn icon small @click="addToStartYear(1)">
+                    <v-icon>mdi-plus-circle-outline</v-icon>
+                  </v-btn>
+                </div>
+              </template>
+            </v-text-field>
+          </v-col>
+          <v-col cols="12" md="6">
+            <v-text-field
+              type="number"
+              :value="selectedYearRange[1]"
+              :label="$t('data.explore.end')"
+              @keyup.enter="setEndYear($event.target.value)"
+              @keyup.up="setEndYear(parseInt($event.target.value))"
+              @keyup.down="setEndYear(parseInt($event.target.value))"
+            >
+              <template v-slot:append>
+                <div class="mt-2">
+                  <v-btn icon small @click="addToEndYear(-1)">
+                    <v-icon>mdi-minus-circle-outline</v-icon>
+                  </v-btn>
+                  <v-btn icon small @click="addToEndYear(1)">
+                    <v-icon>mdi-plus-circle-outline</v-icon>
+                  </v-btn>
+                </div>
+              </template>
+            </v-text-field>
+          </v-col>
+        </v-row>
+        <v-range-slider
+          v-model="selectedYearRange"
+          :min="minSelectableYear"
+          :max="maxSelectableYear"
+        />
+        <span>{{ $t('data.explore.file-count') }} {{ filesInRange }}</span>
+        <metrics-chart
+          :startdate="selectedYearRange[0]"
+          :enddate="selectedYearRange[1]"
+          :metrics="metricsByYear"
+          :style="{ 'max-height': '260px', 'min-height': '200px' }"
+        />
       </v-col>
+    </v-row>
+    <v-row>
     </v-row>
     <v-row>
       <v-col>
@@ -112,17 +170,20 @@
 
 <script>
 import woudcClient from '~/plugins/woudcClient'
+import { getMetrics } from '~/plugins/api/wdr.api.processes'
 import { stripProperties, unpackageStation } from '~/plugins/unpackage'
 
 import mapInstructions from '~/components/MapInstructions'
 import tableInstructions from '~/components/TableInstructions'
 import SelectableMap from '~/components/SelectableMap'
+import MetricsChart from '~/components/MetricsChart'
 
 export default {
   components: {
     'map-instructions': mapInstructions,
     'selectable-map': SelectableMap,
-    'table-instructions': tableInstructions
+    'table-instructions': tableInstructions,
+    'metrics-chart': MetricsChart
   },
   async validate({ params, $config }) {
     const woudcID = params.id
@@ -141,8 +202,14 @@ export default {
       instruments: [],
       loadingMap: true,
       loadingTables: true,
+      loadingStations: true,
+      mapBoundingBox: null,
       selectedStation: null,
-      station: null
+      station: null,
+      metricsByYear: {},
+      filesInRange: 0,
+      minSelectableYear: 1924,
+      selectedYearRange: [1924, (new Date()).getFullYear()], // defaults to total span of years in all data sets
     }
   },
   computed: {
@@ -188,7 +255,7 @@ export default {
         'start_date',
         'end_date',
         'name',
-        'country',
+        `country_name_${this.$i18n.locale}`,
         'last_validated_datetime',
         'type',
         'wmo_region_id'
@@ -200,7 +267,10 @@ export default {
           value: key
         }
       })
-    }
+    },
+    maxSelectableYear() {
+      return (new Date()).getFullYear()
+    },
   },
   watch: {
     $route() {
@@ -213,9 +283,136 @@ export default {
     this.$store.dispatch('stations/downloadStations')
       .then(() => {
         this.populate()
+        // this.refreshMetrics()
       })
+    Promise.all([
+      this.$store.dispatch('stations/downloadStationsByDataset'),
+    ]).then(() => {
+      this.loadingStations = false
+      this.loadingMap = false
+      this.selectedYearRange = [
+        this.minSelectableYear, this.maxSelectableYear
+      ]
+      this.refreshMetrics()
+    })
   },
   methods: {
+    addToStartYear(amount) {
+      const newStartYear = this.selectedYearRange[0] + amount
+      this.setStartYear(newStartYear)
+    },
+    addToEndYear(amount) {
+      const newEndYear = this.selectedYearRange[1] + amount
+      this.setEndYear(newEndYear)
+    },
+    setEndYear(newEndYear) {
+      const oldStartYear = this.selectedYearRange[0]
+      let tempEndYear = this.maxSelectableYear
+
+      if (newEndYear >= this.maxSelectableYear) {
+        newEndYear = this.maxSelectableYear
+        tempEndYear = oldStartYear
+      } else if (newEndYear < oldStartYear) {
+        newEndYear = oldStartYear
+      }
+
+      // Set a temporary value, different from the current value, to force
+      // certain components to update.
+      this.selectedYearRange = [ oldStartYear, tempEndYear ]
+      this.$nextTick(() => {
+        // Set the actual intended value for the end year.
+        this.selectedYearRange = [ oldStartYear, newEndYear ]
+      })
+    },
+    setStartYear(newStartYear) {
+      const oldEndYear = this.selectedYearRange[1]
+      let tempStartYear = this.minSelectableYear
+
+      if (newStartYear <= this.minSelectableYear) {
+        newStartYear = this.minSelectableYear
+        tempStartYear = oldEndYear
+      } else if (newStartYear > oldEndYear) {
+        newStartYear = oldEndYear
+      }
+      // Set a temporary value, different from the current value, to force
+      // certain components to update.
+      this.selectedYearRange = [ tempStartYear, oldEndYear ]
+      this.$nextTick(() => {
+        // Set the actual intended value for the start year.
+        this.selectedYearRange = [ newStartYear, oldEndYear ]
+      })
+    },
+    stationText(station) {
+      const stationID = station.woudc_id || station.station_id
+      const stationName = station.name || station.station_name
+
+      if (this.stationOrder === 'woudc_id') {
+        return '(' + stationID + ') ' + stationName
+      } else { // name
+        return stationName + ' (' + stationID + ')'
+      }
+    },
+    async refreshMetrics() {
+      if (this.station === null) {
+        console.log('station is null')
+        return {}
+      }
+      const inputs = [ 
+        {
+          id: 'domain',
+          type: 'text/plain',
+          value: 'contributor'
+        },
+        {
+          id: 'timescale',
+          type: 'text/plain',
+          value: 'year'
+        }
+      ]
+      const paramNames = {
+        dataset: null, 
+        country: null,
+        station: this.selectedStation.woudc_id,
+        network: null 
+      }
+      if (this.mapBoundingBox !== null) {
+        const components = [
+          Math.max(-180, this.mapBoundingBox.getWest()),
+          Math.max(-90, this.mapBoundingBox.getSouth()),
+          Math.min(180, this.mapBoundingBox.getEast()),
+          Math.min(90, this.mapBoundingBox.getNorth())
+        ]
+        paramNames.bbox = components.join(',')
+      }
+      for (const [ name, paramValue ] of Object.entries(paramNames)) {
+        if (paramValue !== null) {
+          inputs.push({
+            id: name,
+            type: 'text/plain',
+            value: paramValue
+          })
+        }
+      }
+      const queryParams = { inputs }
+      const response = await getMetrics(this.$config.woudcAPI, queryParams)
+
+      const newMetrics = {}
+      response.data.outputs.metrics.forEach((metric) => {
+        newMetrics[metric.year] = {
+          totalFiles: metric.total_files,
+          totalObs: metric.total_obs
+        }
+      })
+      this.metricsByYear = newMetrics
+
+      this.filesInRange = 0
+      for (let year = this.selectedYearRange[0]; year <= this.selectedYearRange[1]; year++) {
+        if (year in this.metricsByYear) {
+          this.filesInRange += this.metricsByYear[year].totalFiles
+        }
+      }
+
+    },
     async populate() {
       const woudcID = this.$route.params.id
       const stationMapFunc = this.$store.getters['stations/getWithID']
@@ -235,9 +432,8 @@ export default {
       queryParams = 'station_id=' + woudcID + '&sortby=dataset,name,model,serial'
       const instrumentsResponse =
         await woudcClient.get(instrumentsURL + '?' + queryParams)
-
       this.instruments = instrumentsResponse.data.features.map(stripProperties)
-    }
+    },
   },
   head() {
     return {
