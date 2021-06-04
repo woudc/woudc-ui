@@ -13,26 +13,26 @@
             :elevation="hover ? 12 : 2"
           >
             <v-img
-              :src="!imageError[((rowIndex * graphsPerRow) + columnIndex)] ? url : require('~/assets/404_error.png')"
+              :src="
+                !imageError[rowIndex * graphsPerRow + columnIndex]
+                  ? url
+                  : require('~/assets/404_error.png')
+              "
               :alt="caption"
               aspect-ratio="1.5"
               contain
-              @error="setImageError((rowIndex * graphsPerRow) + columnIndex)"
-              @click="selectImage((rowIndex * graphsPerRow) + columnIndex)"
+              @error="setImageError(rowIndex * graphsPerRow + columnIndex)"
+              @click="selectImage(rowIndex * graphsPerRow + columnIndex)"
             >
               <template v-slot:placeholder>
-                <v-row
-                  class="fill-height ma-0"
-                  align="center"
-                  justify="center"
-                >
+                <v-row class="fill-height ma-0" align="center" justify="center">
                   <v-progress-circular
                     indeterminate
                     color="grey-darken-4"
                   ></v-progress-circular>
                 </v-row>
               </template>
-            </v-img>              
+            </v-img>
             <v-card-text>{{ caption }}</v-card-text>
           </v-card>
         </v-hover>
@@ -48,9 +48,7 @@
               align-self="center"
             >
               <v-btn icon class="float-right white--text" @click="step(-1)">
-                <v-icon x-large>
-                  mdi-menu-left
-                </v-icon>
+                <v-icon x-large> mdi-menu-left </v-icon>
               </v-btn>
             </v-col>
             <v-col class="mx-6 full-height">
@@ -72,9 +70,12 @@
                     class="full-height"
                     alt="graphs[imagePreviewIndex].caption"
                     :src="graphs[imagePreviewIndex].url"
-                  >
+                  />
                   <div class="text-left">
-                    <slot name="preview-caption" :item="graphs[imagePreviewIndex]">
+                    <slot
+                      name="preview-caption"
+                      :item="graphs[imagePreviewIndex]"
+                    >
                       {{ graphs[imagePreviewIndex].caption }}
                     </slot>
                   </div>
@@ -87,9 +88,7 @@
               align-self="center"
             >
               <v-btn icon class="float-left white--text" @click="step(1)">
-                <v-icon x-large>
-                  mdi-menu-right
-                </v-icon>
+                <v-icon x-large> mdi-menu-right </v-icon>
               </v-btn>
             </v-col>
           </v-row>
@@ -116,7 +115,11 @@ export default {
   computed: {
     graphRows() {
       const rows = []
-      for (let index = 0; index <  this.graphs.length; index += this.graphsPerRow) {
+      for (
+        let index = 0;
+        index < this.graphs.length;
+        index += this.graphsPerRow
+      ) {
         const row = this.graphs.slice(index, index + this.graphsPerRow)
         rows.push(row)
       }
@@ -124,20 +127,23 @@ export default {
       return rows
     },
     imagePreviewLabel() {
-      const index = this.imagePreviewIndex + 1  // Switch from zero-based to one-based.
+      const index = this.imagePreviewIndex + 1 // Switch from zero-based to one-based.
       const template = this.$t('data.products.common.viewing-label')
 
       // Replace '*' characters in the template with integers.
       const filledTemplate1 = template.replace('*', `${index}`)
-      const filledTemplate2 = filledTemplate1.replace('*', `${this.graphs.length}`)
+      const filledTemplate2 = filledTemplate1.replace(
+        '*',
+        `${this.graphs.length}`
+      )
       return filledTemplate2
     }
   },
   beforeMount() {
     let index = 0
-    this.graphs.forEach((graph) => {
+    this.graphs.forEach(() => {
       this.$set(this.imageError, index, false)
-      index ++
+      index++
     })
   },
   methods: {

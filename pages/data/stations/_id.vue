@@ -19,15 +19,15 @@
             <a :href="element.item.gaw_url" target="_blank">
               <span> {{ element.item.gaw_id }}</span>
             </a>
-            <br>
+            <br />
             <strong>{{ $t('data.stations.station-id') }}</strong>
             <nuxt-link :to="'/data/stations/' + element.item.woudc_id">
               <span> {{ element.item.woudc_id }}</span>
             </nuxt-link>
-            <br>
+            <br />
             <strong>{{ $t('data.stations.station-name') }}</strong>
             <span> {{ element.item.name }}</span>
-            <br>
+            <br />
             <strong>{{ $t('data.stations.country-name') }}</strong>
             <span> {{ element.item.country_name[$i18n.locale] }}</span>
           </template>
@@ -94,8 +94,7 @@
         />
       </v-col>
     </v-row>
-    <v-row>
-    </v-row>
+    <v-row> </v-row>
     <v-row>
       <v-col>
         <v-data-table
@@ -209,7 +208,7 @@ export default {
       metricsByYear: {},
       filesInRange: 0,
       minSelectableYear: 1924,
-      selectedYearRange: [1924, (new Date()).getFullYear()], // defaults to total span of years in all data sets
+      selectedYearRange: [1924, new Date().getFullYear()] // defaults to total span of years in all data sets
     }
   },
   computed: {
@@ -269,8 +268,8 @@ export default {
       })
     },
     maxSelectableYear() {
-      return (new Date()).getFullYear()
-    },
+      return new Date().getFullYear()
+    }
   },
   watch: {
     $route() {
@@ -280,11 +279,10 @@ export default {
   mounted() {
     this.loadingMap = false
     this.loadingTables = false
-    this.$store.dispatch('stations/downloadStations')
-      .then(() => {
-        this.populate()
-        this.refreshMetrics()
-      })
+    this.$store.dispatch('stations/downloadStations').then(() => {
+      this.populate()
+      this.refreshMetrics()
+    })
   },
   methods: {
     addToStartYear(amount) {
@@ -308,10 +306,10 @@ export default {
 
       // Set a temporary value, different from the current value, to force
       // certain components to update.
-      this.selectedYearRange = [ oldStartYear, tempEndYear ]
+      this.selectedYearRange = [oldStartYear, tempEndYear]
       this.$nextTick(() => {
         // Set the actual intended value for the end year.
-        this.selectedYearRange = [ oldStartYear, newEndYear ]
+        this.selectedYearRange = [oldStartYear, newEndYear]
       })
     },
     setStartYear(newStartYear) {
@@ -326,10 +324,10 @@ export default {
       }
       // Set a temporary value, different from the current value, to force
       // certain components to update.
-      this.selectedYearRange = [ tempStartYear, oldEndYear ]
+      this.selectedYearRange = [tempStartYear, oldEndYear]
       this.$nextTick(() => {
         // Set the actual intended value for the start year.
-        this.selectedYearRange = [ newStartYear, oldEndYear ]
+        this.selectedYearRange = [newStartYear, oldEndYear]
       })
     },
     stationText(station) {
@@ -338,7 +336,8 @@ export default {
 
       if (this.stationOrder === 'woudc_id') {
         return '(' + stationID + ') ' + stationName
-      } else { // name
+      } else {
+        // name
         return stationName + ' (' + stationID + ')'
       }
     },
@@ -346,7 +345,7 @@ export default {
       if (this.station === null) {
         return {}
       }
-      const inputs = [ 
+      const inputs = [
         {
           id: 'domain',
           type: 'text/plain',
@@ -359,10 +358,10 @@ export default {
         }
       ]
       const paramNames = {
-        dataset: null, 
+        dataset: null,
         country: null,
         station: this.selectedStation.woudc_id,
-        network: null 
+        network: null
       }
       if (this.mapBoundingBox !== null) {
         const components = [
@@ -373,7 +372,7 @@ export default {
         ]
         paramNames.bbox = components.join(',')
       }
-      for (const [ name, paramValue ] of Object.entries(paramNames)) {
+      for (const [name, paramValue] of Object.entries(paramNames)) {
         if (paramValue !== null) {
           inputs.push({
             id: name,
@@ -395,12 +394,15 @@ export default {
       this.metricsByYear = newMetrics
 
       this.filesInRange = 0
-      for (let year = this.selectedYearRange[0]; year <= this.selectedYearRange[1]; year++) {
+      for (
+        let year = this.selectedYearRange[0];
+        year <= this.selectedYearRange[1];
+        year++
+      ) {
         if (year in this.metricsByYear) {
           this.filesInRange += this.metricsByYear[year].totalFiles
         }
       }
-
     },
     async populate() {
       const woudcID = this.$route.params.id
@@ -410,19 +412,25 @@ export default {
       this.station = station
       this.selectedStation = station
 
-      const instrumentsURL = this.$config.woudcAPI + '/collections/instruments/items'
-      const deploymentsURL = this.$config.woudcAPI + '/collections/deployments/items'
+      const instrumentsURL =
+        this.$config.woudcAPI + '/collections/instruments/items'
+      const deploymentsURL =
+        this.$config.woudcAPI + '/collections/deployments/items'
 
       let queryParams = 'station_id=' + woudcID + '&sortby=contributor'
-      const deploymentsResponse = await woudcClient.get(deploymentsURL + '?' + queryParams)
+      const deploymentsResponse = await woudcClient.get(
+        deploymentsURL + '?' + queryParams
+      )
 
       this.deployments = deploymentsResponse.data.features.map(stripProperties)
 
-      queryParams = 'station_id=' + woudcID + '&sortby=dataset,name,model,serial'
-      const instrumentsResponse =
-        await woudcClient.get(instrumentsURL + '?' + queryParams)
+      queryParams =
+        'station_id=' + woudcID + '&sortby=dataset,name,model,serial'
+      const instrumentsResponse = await woudcClient.get(
+        instrumentsURL + '?' + queryParams
+      )
       this.instruments = instrumentsResponse.data.features.map(stripProperties)
-    },
+    }
   },
   head() {
     return {

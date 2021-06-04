@@ -7,7 +7,10 @@
     :page="selectedPage"
     :loading="loading"
     class="elevation-1"
-    @update:items-per-page="rowsPerPage = $event; jumpToSelection()"
+    @update:items-per-page="
+      rowsPerPage = $event
+      jumpToSelection()
+    "
   >
     <template v-slot:item="row">
       <tr
@@ -36,16 +39,19 @@ export default {
     }
   },
   watch: {
-    elements(newList, oldList) {
+    elements() {
       this.jumpToSelection()
     },
-    selected(newSelection, oldSelection) {
+    selected() {
       this.jumpToSelection()
     }
   },
   methods: {
     emitSelection(element) {
-      if (this.selected !== null && element.identifier === this.selected.identifier) {
+      if (
+        this.selected !== null &&
+        element.identifier === this.selected.identifier
+      ) {
         // Deselect if clicking on an already selected element.
         this.$emit('select', null)
       } else {
@@ -54,7 +60,10 @@ export default {
       }
     },
     isSelected(element) {
-      return this.selected !== null && element.identifier === this.selected.identifier
+      return (
+        this.selected !== null &&
+        element.identifier === this.selected.identifier
+      )
     },
     jumpToSelection() {
       const index = this.elements.indexOf(this.selected)

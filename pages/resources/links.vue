@@ -48,7 +48,8 @@ export default {
         mozaic: 'http://www.iagos-data.fr/',
         ndacc: 'http://www.ndacc.org/',
         polar: 'http://uv.biospherical.com/',
-        uvi: 'https://spacephysics.msfc.nasa.gov/projects/uvi/data_archives.shtml',
+        uvi:
+          'https://spacephysics.msfc.nasa.gov/projects/uvi/data_archives.shtml',
         shadoz: 'https://croc.gsfc.nasa.gov/shadoz/'
       }
     }

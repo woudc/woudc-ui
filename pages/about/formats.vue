@@ -23,7 +23,7 @@
             {{ $t('about.formats.note') }}
           </v-card-text>
         </v-card>
-        <h2> {{ $t('about.formats.contributor-guide.title') }}</h2>
+        <h2>{{ $t('about.formats.contributor-guide.title') }}</h2>
         <ul>
           <li>
             <a :href="contributorsURL" target="_blank">
@@ -60,18 +60,37 @@ export default {
     return {
       contributorsURL: 'https://guide.woudc.org/en/',
       exampleURLs: {
-        broadband: this.$config.wafURL + '/Documentation/Examples-extCSV/Broad-band.csv',
+        broadband:
+          this.$config.wafURL + '/Documentation/Examples-extCSV/Broad-band.csv',
         lidar: this.$config.wafURL + '/Documentation/Examples-extCSV/Lidar.csv',
-        multiband: this.$config.wafURL + '/Documentation/Examples-extCSV/Multi-band.csv',
-        ozonesonde: this.$config.wafURL + '/Documentation/Examples-extCSV/Ozonesonde.csv',
-        spectral: this.$config.wafURL + '/Documentation/Examples-extCSV/Spectral.csv',
-        totalozone: this.$config.wafURL + '/Documentation/Examples-extCSV/TotalOzone-Brewer.csv',
-        totalozoneobs: this.$config.wafURL + '/Documentation/Examples-extCSV/TotalOzoneObs.csv',
-        umkehr1: this.$config.wafURL + '/Documentation/Examples-extCSV/Umkehr-N_values-Dobson.csv',
-        umkehr2: this.$config.wafURL + '/Documentation/Examples-extCSV/Umkehr_UMK92Retrieval-Dobson.csv'
+        multiband:
+          this.$config.wafURL + '/Documentation/Examples-extCSV/Multi-band.csv',
+        ozonesonde:
+          this.$config.wafURL + '/Documentation/Examples-extCSV/Ozonesonde.csv',
+        spectral:
+          this.$config.wafURL + '/Documentation/Examples-extCSV/Spectral.csv',
+        totalozone:
+          this.$config.wafURL +
+          '/Documentation/Examples-extCSV/TotalOzone-Brewer.csv',
+        totalozoneobs:
+          this.$config.wafURL +
+          '/Documentation/Examples-extCSV/TotalOzoneObs.csv',
+        umkehr1:
+          this.$config.wafURL +
+          '/Documentation/Examples-extCSV/Umkehr-N_values-Dobson.csv',
+        umkehr2:
+          this.$config.wafURL +
+          '/Documentation/Examples-extCSV/Umkehr_UMK92Retrieval-Dobson.csv'
       },
-      ozoneDatasets: [ 'lidar', 'ozonesonde', 'totalozone', 'totalozoneobs', 'umkehr1', 'umkehr2' ],
-      uvDatasets: [ 'broadband', 'multiband', 'spectral' ]
+      ozoneDatasets: [
+        'lidar',
+        'ozonesonde',
+        'totalozone',
+        'totalozoneobs',
+        'umkehr1',
+        'umkehr2'
+      ],
+      uvDatasets: ['broadband', 'multiband', 'spectral']
     }
   },
   methods: {

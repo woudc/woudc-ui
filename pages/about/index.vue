@@ -39,7 +39,11 @@
           <v-card-title itemprop="name">
             {{ $t('about.home.history.title') }}
           </v-card-title>
-          <v-list itemprop="about" itemscope itemtype="http://schema.org/ItemList">
+          <v-list
+            itemprop="about"
+            itemscope
+            itemtype="http://schema.org/ItemList"
+          >
             <v-list-item
               v-for="(event, year, i) in $t('about.home.history.milestones')"
               :key="i"

@@ -29,17 +29,22 @@ export default {
     return {
       linkURLs: {
         brewer: this.$config.wafURL + '/Documentation/SOP_Documents',
-        dobson: 'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW183-Dobson-WEB.pdf',
-        'ozone-quality': 'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW_201.pdf',
-        'uv-quality': 'https://www.wmo.int/pages/prog/arep/gaw/documents/Final_GAW198_18_June.pdf',
-        'uv-instruments': 'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW191_TD_No_1538_web.pdf',
-        'uv-study': 'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW190_TD_No_1537_web.pdf'
+        dobson:
+          'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW183-Dobson-WEB.pdf',
+        'ozone-quality':
+          'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW_201.pdf',
+        'uv-quality':
+          'https://www.wmo.int/pages/prog/arep/gaw/documents/Final_GAW198_18_June.pdf',
+        'uv-instruments':
+          'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW191_TD_No_1538_web.pdf',
+        'uv-study':
+          'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW190_TD_No_1537_web.pdf'
       }
     }
   },
   computed: {
     headers() {
-      const headerKeys = [ 'category', 'link', 'source' ]
+      const headerKeys = ['category', 'link', 'source']
 
       return headerKeys.map((column) => {
         return {
@@ -52,8 +57,12 @@ export default {
     },
     rows() {
       const categoryOrder = [
-        'brewer', 'dobson', 'ozone-quality',
-        'uv-quality', 'uv-instruments', 'uv-study'
+        'brewer',
+        'dobson',
+        'ozone-quality',
+        'uv-quality',
+        'uv-instruments',
+        'uv-study'
       ]
 
       return categoryOrder.map((category) => {
@@ -79,7 +88,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/resources/standard-operating-procedures',
-      fr: '/ressources/procedures-d\'utilisation-normalisees'
+      fr: "/ressources/procedures-d'utilisation-normalisees"
     }
   }
 }

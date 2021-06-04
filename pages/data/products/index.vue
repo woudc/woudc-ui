@@ -63,17 +63,23 @@ export default {
         individual: 'http://exp-studies.tor.ec.gc.ca/cgi-bin/dailyMaps'
       },
       relatedLinks: {
-        'totalozone-daily-monthly': this.$config.wafURL + '/Summaries/TotalOzone',
-        'totalozone-satellite-ground': this.$config.wafURL + '/Projects-Campaigns/Ground-Sat_Plots/',
+        'totalozone-daily-monthly':
+          this.$config.wafURL + '/Summaries/TotalOzone',
+        'totalozone-satellite-ground':
+          this.$config.wafURL + '/Projects-Campaigns/Ground-Sat_Plots/',
         umkehr: this.$config.wafURL + '/Summaries/Umkehr',
         spectral: this.$config.wafURL + '/Summaries/Spectral_UV',
         'ozone-zonal': this.$config.wafURL + '/Projects-Campaigns/ZonalMeans',
-        tost: this.$config.wafURL + '/products/ozone/vertical-ozone-profile/ozonesonde/1.0/tost'
+        tost:
+          this.$config.wafURL +
+          '/products/ozone/vertical-ozone-profile/ozonesonde/1.0/tost'
       },
       summariesLinks: {
-        'polar-bulletins': 'https://community.wmo.int/activity-areas/gaw/science/stratospheric-ozone-and-uv-radiation',
+        'polar-bulletins':
+          'https://community.wmo.int/activity-areas/gaw/science/stratospheric-ozone-and-uv-radiation',
         'gaw-reports': 'https://community.wmo.int/gaw-reports',
-        'ozone-reports': 'https://community.wmo.int/wmo-global-ozone-research-and-monitoring-project-reports',
+        'ozone-reports':
+          'https://community.wmo.int/wmo-global-ozone-research-and-monitoring-project-reports',
         'ozone-hole': 'https://ozonewatch.gsfc.nasa.gov/SH.html',
         sampo: 'https://sampo.fmi.fi/',
         temis: 'http://www.temis.nl/index.php'

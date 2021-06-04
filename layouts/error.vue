@@ -7,12 +7,19 @@
             <v-icon color="red" class="d-flex align-start mt-1">
               mdi-alert
             </v-icon>
-            <h2 v-t="{path: 'error.not-found', locale: 'en'}" class="mx-1" />
+            <h2 v-t="{ path: 'error.not-found', locale: 'en' }" class="mx-1" />
           </div>
-          <p v-t="{path: 'error.error-text.not-found-text', locale: 'en'}" />
+          <p v-t="{ path: 'error.error-text.not-found-text', locale: 'en' }" />
           <div style="display: flex">
-            <li v-t="{path: 'error.error-link-start', locale: 'en'}" class="ml-10" />
-            <a v-t="{path: 'error.error-link-end', locale: 'en'}" :href="$config.baseURL" class="ml-1" />
+            <li
+              v-t="{ path: 'error.error-link-start', locale: 'en' }"
+              class="ml-10"
+            />
+            <a
+              v-t="{ path: 'error.error-link-end', locale: 'en' }"
+              :href="$config.baseURL"
+              class="ml-1"
+            />
           </div>
         </v-col>
         <v-col cols="12" md="6" sm="12" xl="3" lg="4" justify="center">
@@ -20,12 +27,19 @@
             <v-icon color="red" class="d-flex align-start mt-1">
               mdi-alert
             </v-icon>
-            <h2 v-t="{path: 'error.not-found', locale: 'fr'}" class="mx-1" />
+            <h2 v-t="{ path: 'error.not-found', locale: 'fr' }" class="mx-1" />
           </div>
-          <p v-t="{path: 'error.error-text.not-found-text', locale: 'fr'}" />
+          <p v-t="{ path: 'error.error-text.not-found-text', locale: 'fr' }" />
           <div style="display: flex">
-            <li v-t="{path: 'error.error-link-start', locale: 'fr'}" class="ml-10" />
-            <a v-t="{path: 'error.error-link-end', locale: 'fr'}" :href="$config.baseURL" class="ml-1" />
+            <li
+              v-t="{ path: 'error.error-link-start', locale: 'fr' }"
+              class="ml-10"
+            />
+            <a
+              v-t="{ path: 'error.error-link-end', locale: 'fr' }"
+              :href="$config.baseURL"
+              class="ml-1"
+            />
           </div>
         </v-col>
       </v-row>
@@ -37,12 +51,24 @@
             <v-icon color="red" class="d-flex align-start mt-1">
               mdi-alert-circle
             </v-icon>
-            <h2 v-t="{path: 'error.other-error', locale: 'en'}" class="mx-1" />
+            <h2
+              v-t="{ path: 'error.other-error', locale: 'en' }"
+              class="mx-1"
+            />
           </div>
-          <p v-t="{path: 'error.error-text.other-error-text', locale: 'en'}" />
+          <p
+            v-t="{ path: 'error.error-text.other-error-text', locale: 'en' }"
+          />
           <div style="display: flex">
-            <li v-t="{path: 'error.error-link-start', locale: 'en'}" class="ml-10" />
-            <a v-t="{path: 'error.error-link-end', locale: 'en'}" :href="$config.baseURL" class="ml-1" />
+            <li
+              v-t="{ path: 'error.error-link-start', locale: 'en' }"
+              class="ml-10"
+            />
+            <a
+              v-t="{ path: 'error.error-link-end', locale: 'en' }"
+              :href="$config.baseURL"
+              class="ml-1"
+            />
           </div>
         </v-col>
         <v-col cols="12" md="6" sm="12" xl="3" lg="4">
@@ -50,12 +76,24 @@
             <v-icon color="red" class="d-flex align-start mt-1">
               mdi-alert-circle
             </v-icon>
-            <h2 v-t="{path: 'error.other-error', locale: 'fr'}" class="mx-1" />
+            <h2
+              v-t="{ path: 'error.other-error', locale: 'fr' }"
+              class="mx-1"
+            />
           </div>
-          <p v-t="{path: 'error.error-text.other-error-text', locale: 'fr'}" />
+          <p
+            v-t="{ path: 'error.error-text.other-error-text', locale: 'fr' }"
+          />
           <div style="display: flex">
-            <li v-t="{path: 'error.error-link-start', locale: 'fr'}" class="ml-10" />
-            <a v-t="{path: 'error.error-link-end', locale: 'fr'}" :href="$config.baseURL" class="ml-1" />
+            <li
+              v-t="{ path: 'error.error-link-start', locale: 'fr' }"
+              class="ml-10"
+            />
+            <a
+              v-t="{ path: 'error.error-link-end', locale: 'fr' }"
+              :href="$config.baseURL"
+              class="ml-1"
+            />
           </div>
         </v-col>
       </v-row>
@@ -73,7 +111,10 @@ export default {
     }
   },
   head() {
-    const errorTitle = this.error.statusCode === 404 ? this.$t('error.not-found') : this.$t('error.other-error')
+    const errorTitle =
+      this.error.statusCode === 404
+        ? this.$t('error.not-found')
+        : this.$t('error.other-error')
     return {
       title: errorTitle,
       meta: [

@@ -16,15 +16,15 @@
             <a :href="element.item.gaw_url" target="_blank">
               <span> {{ element.item.gaw_id }}</span>
             </a>
-            <br>
+            <br />
             <strong>{{ $t('data.stations.station-id') }}</strong>
             <nuxt-link :to="'/data/stations/' + element.item.woudc_id">
               <span> {{ element.item.woudc_id }}</span>
             </nuxt-link>
-            <br>
+            <br />
             <strong>{{ $t('data.stations.station-name') }}</strong>
             <span> {{ element.item.name }}</span>
-            <br>
+            <br />
             <strong>{{ $t('data.stations.country-name') }}</strong>
             <span> {{ element.item.country_name[$i18n.locale] }}</span>
           </template>
@@ -46,7 +46,9 @@
         >
           <template v-slot:row="row">
             <td>
-              <nuxt-link :to="localePath('data-stations') + '/' + row.item.woudc_id">
+              <nuxt-link
+                :to="localePath('data-stations') + '/' + row.item.woudc_id"
+              >
                 {{ row.item.woudc_id }}
               </nuxt-link>
             </td>
@@ -128,13 +130,12 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch('stations/downloadStations')
-      .then(() => {
-        const stations = this.$store.getters['stations/all']
-        this.stations = stations.map(unpackageStation)
-        this.loadingMap = false
-        this.loadingTable = false
-      })
+    this.$store.dispatch('stations/downloadStations').then(() => {
+      const stations = this.$store.getters['stations/all']
+      this.stations = stations.map(unpackageStation)
+      this.loadingMap = false
+      this.loadingTable = false
+    })
   },
   head() {
     return {

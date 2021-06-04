@@ -10,7 +10,10 @@
               <strong>{{ $t('common.instructions') }}</strong>
             </v-expansion-panel-header>
             <v-expansion-panel-content>
-              <i18n path="data.products.uv-index.instructions.body-selections" tag="p">
+              <i18n
+                path="data.products.uv-index.instructions.body-selections"
+                tag="p"
+              >
                 <template v-slot:station>
                   <strong>{{ $t('data.products.common.station') }}</strong>
                 </template>
@@ -21,8 +24,12 @@
                   <strong>{{ $t('data.products.common.years') }}</strong>
                 </template>
               </i18n>
-              <p>{{ $t('data.products.uv-index.instructions.body-searching') }}</p>
-              <p>{{ $t('data.products.uv-index.instructions.body-grouping') }}</p>
+              <p>
+                {{ $t('data.products.uv-index.instructions.body-searching') }}
+              </p>
+              <p>
+                {{ $t('data.products.uv-index.instructions.body-grouping') }}
+              </p>
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
@@ -79,7 +86,11 @@
           v-model="selectedYear"
           :items="yearOptions"
           :loading="loadingYears"
-          :disabled="selectedStation === null || selectedInstrument === null || loadingYears"
+          :disabled="
+            selectedStation === null ||
+              selectedInstrument === null ||
+              loadingYears
+          "
         >
         </v-select>
       </v-col>
@@ -173,7 +184,9 @@ export default {
       const stationOptions = this.stations
 
       if (this.boundingBox === null) {
-        return stationOptions.sort(compareOnKey(this.stationOrder)).map(this.stationToSelectOption)
+        return stationOptions
+          .sort(compareOnKey(this.stationOrder))
+          .map(this.stationToSelectOption)
       } else {
         const visibleOptions = stationOptions.filter((station) => {
           const selected = station.identifier === this.selectedStationID
@@ -183,7 +196,9 @@ export default {
           return selected || visible
         })
 
-        return visibleOptions.sort(compareOnKey(this.stationOrder)).map(this.stationToSelectOption)
+        return visibleOptions
+          .sort(compareOnKey(this.stationOrder))
+          .map(this.stationToSelectOption)
       }
     },
     yearOptions() {
@@ -193,17 +208,16 @@ export default {
       }
 
       const yearOptions = this.years.map(this.yearToSelectOption)
-      return [ nullOption ].concat(yearOptions)
+      return [nullOption].concat(yearOptions)
     }
   },
   mounted() {
-    this.$store.dispatch('stations/downloadStationsByDataset')
-      .then(() => {
-        const stationsRaw = this.$store.getters['stations/uvindex']
-        this.stations = stationsRaw.map(unpackageStation)
-        this.loadingStations = false
-        this.loadingMap = false
-      })
+    this.$store.dispatch('stations/downloadStationsByDataset').then(() => {
+      const stationsRaw = this.$store.getters['stations/uvindex']
+      this.stations = stationsRaw.map(unpackageStation)
+      this.loadingStations = false
+      this.loadingMap = false
+    })
   },
   methods: {
     changeInstrument(instrument) {
@@ -236,10 +250,12 @@ export default {
       if (this.selectedYear === null) {
         yearsInRange = this.years
       } else {
-        yearsInRange = [ this.selectedYear ]
+        yearsInRange = [this.selectedYear]
       }
 
-      const root = this.$config.wafURL + '/products/uv-radiation/uv-irradiance/uv_index_hourly/2.0/'
+      const root =
+        this.$config.wafURL +
+        '/products/uv-radiation/uv-irradiance/uv_index_hourly/2.0/'
 
       const stationID = this.selectedStationID
       const stationKey = this.selectedStation.name + ' (' + stationID + ')'
@@ -249,42 +265,51 @@ export default {
         const instrumentCaps = this.instrumentKeyToCaps(this.selectedInstrument)
         const instrumentCapsPadded = this.instrumentKeySerialPad(instrumentCaps)
 
-        const components = [ 'dailyuv', stationID, instrumentCapsPadded, year ]
+        const components = ['dailyuv', stationID, instrumentCapsPadded, year]
         const filename = components.join('-') + '.png'
 
         const instrumentName = this.selectedInstrument.replace('_', ' #')
         const plotURL = root + 'stn' + stationID + '/' + filename
 
-        this.graphURLs[year] = [{
-          url: plotURL,
-          caption: instrumentName,
-          station: stationKey,
-          instrument: instrumentName
-        }]
+        this.graphURLs[year] = [
+          {
+            url: plotURL,
+            caption: instrumentName,
+            station: stationKey,
+            instrument: instrumentName
+          }
+        ]
       }
     },
     async getObservationTools() {
-      const dataRecordsURL = this.$config.woudcAPI + '/collections/data_records/items'
+      const dataRecordsURL =
+        this.$config.woudcAPI + '/collections/data_records/items'
       let queryParams = 'sortby=timestamp_date'
       queryParams += '&platform_id=' + this.selectedStationID
 
       if (this.selectedInstrument !== null) {
-        const [ name, model, serial ] = this.selectedInstrument.split('_')
+        const [name, model, serial] = this.selectedInstrument.split('_')
 
         queryParams += '&instrument_name=' + name
         queryParams += '&instrument_model=' + model
         queryParams += '&instrument_number=' + serial
       }
 
-      const broadbandParams = queryParams + '&content_category=Broad-band&limit=5000'
-      const broadbandResponse = await woudcClient.get(dataRecordsURL + '?' + broadbandParams)
+      const broadbandParams =
+        queryParams + '&content_category=Broad-band&limit=5000'
+      const broadbandResponse = await woudcClient.get(
+        dataRecordsURL + '?' + broadbandParams
+      )
 
-      const spectralParams = queryParams + '&content_category=Spectral&limit=5000'
-      const spectralResponse = await woudcClient.get(dataRecordsURL + '?' + spectralParams)
+      const spectralParams =
+        queryParams + '&content_category=Spectral&limit=5000'
+      const spectralResponse = await woudcClient.get(
+        dataRecordsURL + '?' + spectralParams
+      )
 
       const observationTools = {}
       const observationKeys = []
-      for (const featureList of [ broadbandResponse, spectralResponse ]) {
+      for (const featureList of [broadbandResponse, spectralResponse]) {
         for (const feature of featureList.data.features) {
           const timestamp = feature.properties.timestamp_date
           const year = timestamp.substring(0, 4)
@@ -300,7 +325,7 @@ export default {
 
           observationTools[year].push(key)
 
-          if (!(observationKeys.includes(key))) {
+          if (!observationKeys.includes(key)) {
             observationKeys.push(key)
           }
         }
@@ -312,26 +337,35 @@ export default {
       const colon = this.$t('common.colon-style')
       const graphWord = this.$t('data.products.common.graph')
 
-      const stationName = this.$t('common.station-name') + colon + ' ' + graph.station
-      const instrument = this.$t('data.products.common.instrument') + colon + ' ' + graph.instrument
+      const stationName =
+        this.$t('common.station-name') + colon + ' ' + graph.station
+      const instrument =
+        this.$t('data.products.common.instrument') +
+        colon +
+        ' ' +
+        graph.instrument
       const year = this.$t('data.products.common.year') + colon + ' ' + key
 
       return `${graphWord} - ${stationName}. ${instrument}. ${year}`
     },
     instrumentToKey(instrument) {
-      return instrument.id.split(':').slice(0, 3).join('_')
+      return instrument.id
+        .split(':')
+        .slice(0, 3)
+        .join('_')
     },
     instrumentKeyToCaps(instrumentKey) {
-      const [ name, model, serial ] = instrumentKey.split('_')
-      const nameCaps = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()
+      const [name, model, serial] = instrumentKey.split('_')
+      const nameCaps =
+        name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()
 
-      return [ nameCaps, model, serial ].join('_')
+      return [nameCaps, model, serial].join('_')
     },
     instrumentKeySerialPad(instrumentKey) {
-      const [ name, model, serial ] = instrumentKey.split('_')
+      const [name, model, serial] = instrumentKey.split('_')
       const serialPadded = serial.padStart(3, '0')
 
-      return [ name, model, serialPadded ].join('_')
+      return [name, model, serialPadded].join('_')
     },
     instrumentToSelectOption(instrument) {
       const name = instrument.properties.name
@@ -344,22 +378,27 @@ export default {
       }
     },
     async refreshInstruments() {
-      const instrumentsURL = this.$config.woudcAPI + '/collections/instruments/items'
+      const instrumentsURL =
+        this.$config.woudcAPI + '/collections/instruments/items'
       let queryParams = 'sortby=name,serial'
       queryParams += '&station_id=' + this.selectedStationID
 
       this.loadingInstruments = true
 
       const broadbandParams = queryParams + '&dataset=Broad-band'
-      const broadbandResponse = await woudcClient.get(instrumentsURL + '?' + broadbandParams)
+      const broadbandResponse = await woudcClient.get(
+        instrumentsURL + '?' + broadbandParams
+      )
 
       const spectralParams = queryParams + '&dataset=Spectral'
-      const spectralResponse = await woudcClient.get(instrumentsURL + '?' + spectralParams)
+      const spectralResponse = await woudcClient.get(
+        instrumentsURL + '?' + spectralParams
+      )
 
       const instrumentKeys = []
       const instruments = []
       // Collect unique instrument name/serial numbers from multiple datasets.
-      for (const featureList of [ broadbandResponse, spectralResponse ]) {
+      for (const featureList of [broadbandResponse, spectralResponse]) {
         for (const feature of featureList.data.features) {
           const key = this.instrumentToKey(feature)
 

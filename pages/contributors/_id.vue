@@ -16,10 +16,12 @@
         >
           <template v-slot:popup="element">
             <strong>{{ $t('contributors.list.contributor-name') }}</strong>
-            <nuxt-link :to="localePath('contributors') + '/' + element.item.acronym">
+            <nuxt-link
+              :to="localePath('contributors') + '/' + element.item.acronym"
+            >
               {{ element.item.name }}
             </nuxt-link>
-            <br>
+            <br />
             <strong>{{ $t('contributors.list.country-name') }}</strong>
             <span> {{ element.item.country_name[$i18n.locale] }}</span>
           </template>
@@ -166,15 +168,22 @@ export default {
   methods: {
     async populate() {
       const acronym = this.$route.params.id
-      const contributorMapFunc = this.$store.getters['contributors/getWithAcronym']
+      const contributorMapFunc = this.$store.getters[
+        'contributors/getWithAcronym'
+      ]
       const contributors = contributorMapFunc(acronym).map(unpackageContributor)
 
-      const deploymentsURL = this.$config.woudcAPI + '/collections/deployments/items'
+      const deploymentsURL =
+        this.$config.woudcAPI + '/collections/deployments/items'
       const queryParams = 'contributor=' + acronym + '&sortby=station_id'
 
-      const deploymentsResponse = await woudcClient.get(deploymentsURL + '?' + queryParams)
+      const deploymentsResponse = await woudcClient.get(
+        deploymentsURL + '?' + queryParams
+      )
 
-      this.deployments =  deploymentsResponse.data.features.map(unpackageDeployment)
+      this.deployments = deploymentsResponse.data.features.map(
+        unpackageDeployment
+      )
       this.contributors = contributors
       this.selectedContributor = contributors[0]
     }

@@ -6,7 +6,6 @@ const state = () => ({
   contributorsByAcronym: {}
 })
 
-
 const getters = {
   all(state) {
     return state.contributorsList
@@ -29,7 +28,7 @@ const mutations = {
     contributors.forEach((contributor) => {
       const acronym = contributor.properties.acronym
       if (!(acronym in byAcronym)) {
-        byAcronym[acronym] = [ contributor ]
+        byAcronym[acronym] = [contributor]
       } else {
         byAcronym[acronym].push(contributor)
       }
@@ -51,7 +50,9 @@ const actions = {
 
     const contributorsURL = '/collections/contributors/items'
     const queryParams = 'sortby=acronym&limit=1000'
-    const response = await woudcClient.get(this.$config.woudcAPI + contributorsURL + '?' + queryParams)
+    const response = await woudcClient.get(
+      this.$config.woudcAPI + contributorsURL + '?' + queryParams
+    )
 
     commit('setContributors', response.data.features)
     commit('setLoaded', true)

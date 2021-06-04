@@ -14,15 +14,15 @@
           <template v-slot:popup="element">
             <strong>{{ $t('data.instruments.instrument-type') }}</strong>
             <span> {{ element.item.name }}</span>
-            <br>
+            <br />
             <strong>{{ $t('data.instruments.instrument-model') }}</strong>
             <span> {{ element.item.model }}</span>
-            <br>
+            <br />
             <strong>{{ $t('data.instruments.station-name') }}</strong>
             <nuxt-link :to="'/data/stations/' + element.item.station_id">
               {{ element.item.station_name }}
             </nuxt-link>
-            <br>
+            <br />
             <strong>{{ $t('data.instruments.contributor-name') }}</strong>
             <span> {{ element.item.contributor_name }}</span>
           </template>

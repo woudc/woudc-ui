@@ -22,9 +22,11 @@
           <v-card-text>
             <i18n path="contact.note.body" tag="span">
               <template v-slot:privacy-act>
-                <i><a :href="privacyActURL" target="_blank">
-                  {{ $t('common.privacy-act') }}
-                </a></i>
+                <i
+                  ><a :href="privacyActURL" target="_blank">
+                    {{ $t('common.privacy-act') }}
+                  </a></i
+                >
               </template>
             </i18n>
           </v-card-text>
@@ -35,7 +37,10 @@
           <a :href="`mailto:${woudcEmail}`">
             {{ $t(woudcEmail) }}
           </a>
-          <div v-for="(lines, header) in $t('contact.contact-methods')" :key="header">
+          <div
+            v-for="(lines, header) in $t('contact.contact-methods')"
+            :key="header"
+          >
             <h4>{{ header }}:</h4>
             <div v-for="(line, index) in lines" :key="index">
               {{ line }}

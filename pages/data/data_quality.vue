@@ -25,7 +25,8 @@
           <li v-for="link in sagLinks" :key="link.to">
             <a :href="link.to" target="_blank">
               {{ link.text }}
-            </a> ({{ link.note }})
+            </a>
+            ({{ link.note }})
           </li>
         </ul>
         <h2>{{ $t('data.quality.eccc.title') }}</h2>
@@ -66,14 +67,16 @@ export default {
       gawURL: 'https://community.wmo.int/quality-assurance',
       sagURLs: {
         brewer: 'http://exp-studies.tor.ec.gc.ca/e/ozone/ozone.htm',
-        dobson: 'https://www.esrl.noaa.gov/gmd/ozwv/dobson/troubleshooting.html',
-        ozonesonde: 'https://www.fz-juelich.de/iek/iek-8/EN/Expertise/Infrastructure/WCCOS/WCCOS_node.html'
+        dobson:
+          'https://www.esrl.noaa.gov/gmd/ozwv/dobson/troubleshooting.html',
+        ozonesonde:
+          'https://www.fz-juelich.de/iek/iek-8/EN/Expertise/Infrastructure/WCCOS/WCCOS_node.html'
       }
     }
   },
   computed: {
     sagLinks() {
-      const linkOrder = [ 'dobson', 'brewer', 'ozonesonde' ]
+      const linkOrder = ['dobson', 'brewer', 'ozonesonde']
 
       return linkOrder.map((key) => {
         const defn = this.$t('data.quality.sag.links.' + key)

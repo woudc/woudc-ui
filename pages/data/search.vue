@@ -56,8 +56,15 @@
           <v-col align-self="center">
             <span class="pt-0">{{ $t('common.sort-by') }}</span>
             <v-radio-group v-model="countryOrder" class="mt-1 pt-0">
-              <v-radio class="mb-0" :label="$t('data.explore.country.id')" value="country_id" />
-              <v-radio :label="$t('data.explore.country.name')" :value="`country_name_${$i18n.locale}`" />
+              <v-radio
+                class="mb-0"
+                :label="$t('data.explore.country.id')"
+                value="country_id"
+              />
+              <v-radio
+                :label="$t('data.explore.country.name')"
+                :value="`country_name_${$i18n.locale}`"
+              />
             </v-radio-group>
           </v-col>
         </v-row>
@@ -85,7 +92,11 @@
           <v-col align-self="center">
             <span class="pt-0">{{ $t('common.sort-by') }}</span>
             <v-radio-group v-model="stationOrder" class="mt-1 pt-0">
-              <v-radio class="mb-0" :label="$t('common.station-id')" value="woudc_id" />
+              <v-radio
+                class="mb-0"
+                :label="$t('common.station-id')"
+                value="woudc_id"
+              />
               <v-radio :label="$t('common.station-name')" value="name" />
             </v-radio-group>
           </v-col>
@@ -195,7 +206,8 @@
             {{ stationText(selectedStation) }}
           </v-chip>
           <v-chip v-if="selectedInstrument !== null" label small class="ml-1">
-            {{ $t('data.explore.instrument.title') }}{{ $t('common.colon-style') }}
+            {{ $t('data.explore.instrument.title')
+            }}{{ $t('common.colon-style') }}
             {{ instrumentText(selectedInstrument) }}
           </v-chip>
           <metrics-chart
@@ -220,7 +232,13 @@
         </v-btn>
         <v-btn
           class="btn-right"
-          :disabled="loadingStations || loadingCountries || loadingInstruments || loadingMap || loadingDataRecords"
+          :disabled="
+            loadingStations ||
+              loadingCountries ||
+              loadingInstruments ||
+              loadingMap ||
+              loadingDataRecords
+          "
           @click="reset()"
         >
           {{ $t('common.reset') }}
@@ -253,7 +271,9 @@
             :items="dataRecords"
           >
             <template v-slot:item.platform_id="row">
-              <nuxt-link :to="localePath('data-stations') + '/' + row.item.platform_id">
+              <nuxt-link
+                :to="localePath('data-stations') + '/' + row.item.platform_id"
+              >
                 {{ row.item.platform_id }}
               </nuxt-link>
             </template>
@@ -272,7 +292,11 @@
 <script>
 import woudcClient from '~/plugins/woudcClient'
 import { getExplore, getMetrics } from '~/plugins/api/wdr.api.processes'
-import { stripProperties, unpackageBareStation, compareOnKey } from '~/plugins/unpackage'
+import {
+  stripProperties,
+  unpackageBareStation,
+  compareOnKey
+} from '~/plugins/unpackage'
 
 import MapInstructions from '~/components/MapInstructions'
 import MetricsChart from '~/components/MetricsChart'
@@ -324,7 +348,8 @@ export default {
       ]
     },
     countryOptions() {
-      const nullOption = { // All countries option
+      const nullOption = {
+        // All countries option
         text: this.$t('common.all'),
         value: null,
         element: null
@@ -333,8 +358,10 @@ export default {
       const orderedCountries = this.countries
 
       if (this.mapBoundingBox === null) {
-        const countryOptions = orderedCountries.sort(compareOnKey(this.countryOrder)).map(this.countryToSelectOption)
-        return [ nullOption ].concat(countryOptions)
+        const countryOptions = orderedCountries
+          .sort(compareOnKey(this.countryOrder))
+          .map(this.countryToSelectOption)
+        return [nullOption].concat(countryOptions)
       } else {
         const boundaries = this.$store.getters['countries/boundaries']
         const visibleOptions = orderedCountries.filter((country) => {
@@ -350,8 +377,10 @@ export default {
 
           return selected || visible
         })
-        const countryOptions = visibleOptions.sort(compareOnKey(this.countryOrder)).map(this.countryToSelectOption)
-        return [ nullOption ].concat(countryOptions)
+        const countryOptions = visibleOptions
+          .sort(compareOnKey(this.countryOrder))
+          .map(this.countryToSelectOption)
+        return [nullOption].concat(countryOptions)
       }
     },
     dataRecordHeaders() {
@@ -401,7 +430,7 @@ export default {
       const datasetOptions = []
       datasetOptions.push({
         text: this.$t('common.all'),
-        value: null,
+        value: null
       })
 
       for (const [section, children] of Object.entries(datasetSections)) {
@@ -438,11 +467,13 @@ export default {
         element: null
       }
 
-      const instrumentOptions = this.instruments.map(this.instrumentToSelectOption)
-      return [ nullOption ].concat(instrumentOptions)
+      const instrumentOptions = this.instruments.map(
+        this.instrumentToSelectOption
+      )
+      return [nullOption].concat(instrumentOptions)
     },
     maxSelectableYear() {
-      return (new Date()).getFullYear()
+      return new Date().getFullYear()
     },
     stationOptions() {
       const nullOption = {
@@ -454,8 +485,10 @@ export default {
       const orderedStations = this.stations
 
       if (this.mapBoundingBox === null) {
-        const stationOptions = orderedStations.sort(compareOnKey(this.stationOrder)).map(this.stationToSelectOption)
-        return [ nullOption ].concat(stationOptions)
+        const stationOptions = orderedStations
+          .sort(compareOnKey(this.stationOrder))
+          .map(this.stationToSelectOption)
+        return [nullOption].concat(stationOptions)
       } else {
         const visibleOptions = orderedStations.filter((station) => {
           const selected = station.identifier === this.selectedStationID
@@ -465,21 +498,33 @@ export default {
           return selected || visible
         })
 
-        const stationOptions = visibleOptions.sort(compareOnKey(this.stationOrder)).map(this.stationToSelectOption)
-        return [ nullOption ].concat(stationOptions)
+        const stationOptions = visibleOptions
+          .sort(compareOnKey(this.stationOrder))
+          .map(this.stationToSelectOption)
+        return [nullOption].concat(stationOptions)
       }
     },
     searchOutOfDate() {
       const datasetOk = this.oldSearchParams.dataset === this.selectedDatasetID
       const countryOk = this.oldSearchParams.country === this.selectedCountryID
       const stationOk = this.oldSearchParams.station === this.selectedStationID
-      const instrumentOk = this.oldSearchParams.instrument === this.selectedInstrumentID
+      const instrumentOk =
+        this.oldSearchParams.instrument === this.selectedInstrumentID
 
-      const startYearOk = this.oldSearchParams['start-year'] === this.selectedYearRange[0]
-      const endYearOk = this.oldSearchParams['end-year'] === this.selectedYearRange[1]
+      const startYearOk =
+        this.oldSearchParams['start-year'] === this.selectedYearRange[0]
+      const endYearOk =
+        this.oldSearchParams['end-year'] === this.selectedYearRange[1]
 
-      return !(datasetOk && countryOk && stationOk && instrumentOk && startYearOk && endYearOk)
-    },
+      return !(
+        datasetOk &&
+        countryOk &&
+        stationOk &&
+        instrumentOk &&
+        startYearOk &&
+        endYearOk
+      )
+    }
   },
   mounted() {
     Promise.all([
@@ -501,9 +546,7 @@ export default {
       this.loadingMap = false
 
       this.selectedDataset = this.$t('common.all')
-      this.selectedYearRange = [
-        this.minSelectableYear, this.maxSelectableYear
-      ]
+      this.selectedYearRange = [this.minSelectableYear, this.maxSelectableYear]
 
       this.refreshMetrics()
     })
@@ -523,13 +566,20 @@ export default {
       this.loadingInstruments = true
       this.loadingMap = true
 
-      const { countries, stations, instruments } =
-        await this.sendDropdownRequest(dataset.value, null, null)
+      const {
+        countries,
+        stations,
+        instruments
+      } = await this.sendDropdownRequest(dataset.value, null, null)
 
       const dependencies = [
         { field: 'selectedCountryID', key: 'country_id', elements: countries },
         { field: 'selectedStationID', key: 'station_id', elements: stations },
-        { field: 'selectedInstrumentID', key: 'instrument_name', elements: instruments }
+        {
+          field: 'selectedInstrumentID',
+          key: 'instrument_name',
+          elements: instruments
+        }
       ]
 
       const retain = {}
@@ -569,12 +619,19 @@ export default {
       this.loadingInstruments = true
       this.loadingMap = true
 
-      const { stations, instruments } =
-        await this.sendDropdownRequest(this.selectedDatasetID, country.value, null)
+      const { stations, instruments } = await this.sendDropdownRequest(
+        this.selectedDatasetID,
+        country.value,
+        null
+      )
 
       const dependencies = [
         { field: 'selectedStationID', key: 'station_id', elements: stations },
-        { field: 'selectedInstrumentID', key: 'instrument_name', elements: instruments }
+        {
+          field: 'selectedInstrumentID',
+          key: 'instrument_name',
+          elements: instruments
+        }
       ]
 
       const retain = {}
@@ -641,7 +698,8 @@ export default {
 
       if (this.countryOrder === 'country_id') {
         return '(' + countryID + ') ' + countryName[this.$i18n.locale]
-      } else { // country name
+      } else {
+        // country name
         return countryName[this.$i18n.locale] + ' (' + countryID + ')'
       }
     },
@@ -668,7 +726,8 @@ export default {
 
       if (this.stationOrder === 'woudc_id') {
         return '(' + stationID + ') ' + stationName
-      } else { // name
+      } else {
+        // name
         return stationName + ' (' + stationID + ')'
       }
     },
@@ -689,10 +748,7 @@ export default {
       this.selectedInstrument = null
       this.selectedInstrumentID = null
 
-      this.selectedYearRange = [
-        this.minSelectableYear,
-        this.maxSelectableYear
-      ]
+      this.selectedYearRange = [this.minSelectableYear, this.maxSelectableYear]
 
       this.dataRecords = []
       this.oldSearchExists = false
@@ -713,14 +769,15 @@ export default {
     async refreshDataRecords() {
       this.loadingDataRecords = true
 
-      const dataRecordsURL = this.$config.woudcAPI + '/collections/data_records/items'
+      const dataRecordsURL =
+        this.$config.woudcAPI + '/collections/data_records/items'
       let queryParams = 'sortby=-timestamp_date,platform_id,content_category'
 
       const selected = {
-        'content_category': this.selectedDatasetID,
-        'platform_country': this.selectedCountryID,
-        'platform_id': this.selectedStationID,
-        'instrument_name': this.selectedInstrumentID
+        content_category: this.selectedDatasetID,
+        platform_country: this.selectedCountryID,
+        platform_id: this.selectedStationID,
+        instrument_name: this.selectedInstrumentID
       }
 
       for (const [field, value] of Object.entries(selected)) {
@@ -744,14 +801,19 @@ export default {
       this.loadingDataRecords = false
     },
     async refreshDropdowns() {
-      const { countries, stations, instruments } = await this.sendDropdownRequest(
-        this.selectedDatasetID, this.selectedCountryID, this.selectedStationID
+      const {
+        countries,
+        stations,
+        instruments
+      } = await this.sendDropdownRequest(
+        this.selectedDatasetID,
+        this.selectedCountryID,
+        this.selectedStationID
       )
 
       this.countries = countries.map(stripProperties)
       this.stations = stations.map(unpackageBareStation)
       this.instruments = instruments.map(stripProperties)
-
     },
     async refreshMetrics() {
       const inputs = [
@@ -784,7 +846,7 @@ export default {
         paramNames.bbox = components.join(',')
       }
 
-      for (const [ name, paramValue ] of Object.entries(paramNames)) {
+      for (const [name, paramValue] of Object.entries(paramNames)) {
         if (paramValue !== null) {
           inputs.push({
             id: name,
@@ -816,7 +878,7 @@ export default {
           inputs.push({
             id: domain,
             type: 'application/json',
-            value: [ 'Broad-band', 'Spectral' ]
+            value: ['Broad-band', 'Spectral']
           })
         } else if (selected !== null) {
           inputs.push({
@@ -832,7 +894,8 @@ export default {
 
       const countries = response.data.outputs.countries.sortby_country_id
       const stations = response.data.outputs.stations.sortby_station_id
-      const instruments = response.data.outputs.instruments.sortby_instrument_name
+      const instruments =
+        response.data.outputs.instruments.sortby_instrument_name
 
       return { countries, stations, instruments }
     },
@@ -849,10 +912,10 @@ export default {
 
       // Set a temporary value, different from the current value, to force
       // certain components to update.
-      this.selectedYearRange = [ oldStartYear, tempEndYear ]
+      this.selectedYearRange = [oldStartYear, tempEndYear]
       this.$nextTick(() => {
         // Set the actual intended value for the end year.
-        this.selectedYearRange = [ oldStartYear, newEndYear ]
+        this.selectedYearRange = [oldStartYear, newEndYear]
       })
     },
     setStartYear(newStartYear) {
@@ -868,10 +931,10 @@ export default {
 
       // Set a temporary value, different from the current value, to force
       // certain components to update.
-      this.selectedYearRange = [ tempStartYear, oldEndYear ]
+      this.selectedYearRange = [tempStartYear, oldEndYear]
       this.$nextTick(() => {
         // Set the actual intended value for the start year.
-        this.selectedYearRange = [ newStartYear, oldEndYear ]
+        this.selectedYearRange = [newStartYear, oldEndYear]
       })
     }
   },
@@ -908,7 +971,7 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   display: none;
 }
-input[type="number"] {
+input[type='number'] {
   -moz-appearance: textfield; /* Firefox */
 }
 
