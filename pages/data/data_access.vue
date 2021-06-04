@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <h1>{{ $t('data.access.title') }}</h1>
-    <v-row> 
+    <v-row>
       <v-col cols="8">
         <p>{{ $t('data.access.blurb.body-intro') }}</p>
         <i18n path="data.access.blurb.body-accessibility" tag="p">
@@ -18,7 +18,7 @@
           <v-card-text>
             <i18n class="mb-0" path="data.access.note1.body" tag="p">
               <template v-slot:policy>
-                <nuxt-link :to="localePath('data-datapolicy')">
+                <nuxt-link :to="localePath('data-data_policy')">
                   {{ $t('common.policy') }}
                 </nuxt-link>
               </template>

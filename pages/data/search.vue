@@ -7,7 +7,7 @@
         <p>{{ $t('data.explore.blurb.body-search') }}</p>
         <i18n path="data.explore.blurb.body-howto" tag="p">
           <template v-slot:how-to>
-            <nuxt-link :to="localePath('about-data_access')">
+            <nuxt-link :to="localePath('data-data_access')">
               {{ $t('data.explore.how-to') }}
             </nuxt-link>
           </template>

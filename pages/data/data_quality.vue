@@ -34,7 +34,7 @@
           <li>
             <i18n path="data.quality.eccc.item1" tag="span">
               <template v-slot:guidelines>
-                <nuxt-link :to="localePath('data-formats')">
+                <nuxt-link :to="localePath('about-formats')">
                   {{ $t('common.guidelines') }}
                 </nuxt-link>
               </template>
