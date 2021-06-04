@@ -4,7 +4,10 @@
     <p>{{ $t('about.faq.blurb') }}</p>
     <v-row>
       <v-col>
-        <div v-for="(question, index) in $t('about.faq.questions')" :key="index">
+        <div
+          v-for="(question, index) in $t('about.faq.questions')"
+          :key="index"
+        >
           <h4>{{ question.text }}</h4>
           <i18n :path="'about.faq.questions[' + index + '].answer'" tag="p">
             <template v-slot:policy>

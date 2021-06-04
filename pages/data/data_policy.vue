@@ -114,15 +114,24 @@
 export default {
   data() {
     return {
-      classOrder: [ 'ozone', 'uv' ],
+      classOrder: ['ozone', 'uv'],
       datasetOrder: [
-        'totalozone', 'totalozoneobs', 'lidar', 'ozonesonde',
-        'umkehr1', 'umkehr2', 'rocketsonde', 'broadband',
-        'multiband', 'spectral', 'uv-index'
+        'totalozone',
+        'totalozoneobs',
+        'lidar',
+        'ozonesonde',
+        'umkehr1',
+        'umkehr2',
+        'rocketsonde',
+        'broadband',
+        'multiband',
+        'spectral',
+        'uv-index'
       ],
       doisURL: 'https://en.wikipedia.org/wiki/Digital_object_identifier',
       gawURL: 'https://gawsis.meteoswiss.ch/GAWSIS/index.html#/faq/',
-      resolution40: 'https://www.wmo.int/pages/prog/hwrp/documents/wmo_827_enCG-XII-Res40.pdf',
+      resolution40:
+        'https://www.wmo.int/pages/prog/hwrp/documents/wmo_827_enCG-XII-Res40.pdf',
       wmoURL: 'https://www.wmo.int/pages/about/exchangingdata_en.html'
     }
   },
@@ -141,7 +150,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/data/data-use-policy',
-      fr: '/donnees/politique-d\'utilisation-des-donnees'
+      fr: "/donnees/politique-d'utilisation-des-donnees"
     }
   }
 }

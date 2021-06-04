@@ -17,7 +17,6 @@ function standardizedGeometry(geoJSON) {
   }
 }
 
-
 function stripProperties(geoJSON) {
   const properties = Object.assign({}, geoJSON.properties)
 
@@ -28,18 +27,18 @@ function stripProperties(geoJSON) {
   return properties
 }
 
-
 function unpackageStation(geoJSON) {
   const station = stripProperties(geoJSON)
   station.country_name = standardizedCountryName(geoJSON)
 
   station.identifier = station.woudc_id
-  station.last_validated_datetime =
-    station.last_validated_datetime.substring(0, 10)
+  station.last_validated_datetime = station.last_validated_datetime.substring(
+    0,
+    10
+  )
 
   return station
 }
-
 
 function unpackageBareStation(geoJSON) {
   const station = stripProperties(geoJSON)
@@ -70,8 +69,8 @@ function unpackageDeployment(geoJSON) {
 }
 
 // compare function for sorting by obj[key]
-const compareOnKey = function (key) {
-  return function (a, b) {
+const compareOnKey = function(key) {
+  return function(a, b) {
     // compare
     if (a[key] < b[key]) {
       return -1

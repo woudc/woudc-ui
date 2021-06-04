@@ -10,7 +10,10 @@
               <strong>{{ $t('common.instructions') }}</strong>
             </v-expansion-panel-header>
             <v-expansion-panel-content>
-              <i18n path="data.products.totalozone.instructions.body-selections" tag="p">
+              <i18n
+                path="data.products.totalozone.instructions.body-selections"
+                tag="p"
+              >
                 <template v-slot:station>
                   <strong>{{ $t('data.products.common.station') }}</strong>
                 </template>
@@ -21,8 +24,12 @@
                   <strong>{{ $t('data.products.common.years') }}</strong>
                 </template>
               </i18n>
-              <p>{{ $t('data.products.totalozone.instructions.body-searching') }}</p>
-              <p>{{ $t('data.products.totalozone.instructions.body-grouping') }}</p>
+              <p>
+                {{ $t('data.products.totalozone.instructions.body-searching') }}
+              </p>
+              <p>
+                {{ $t('data.products.totalozone.instructions.body-grouping') }}
+              </p>
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
@@ -168,14 +175,18 @@ export default {
         value: null
       }
 
-      const instrumentOptions = this.instruments.map(this.instrumentToSelectOption)
-      return [ nullOption ].concat(instrumentOptions)
+      const instrumentOptions = this.instruments.map(
+        this.instrumentToSelectOption
+      )
+      return [nullOption].concat(instrumentOptions)
     },
     stationOptions() {
       const stationOptions = this.stations
 
       if (this.boundingBox === null) {
-        return stationOptions.sort(compareOnKey(this.stationOrder)).map(this.stationToSelectOption)
+        return stationOptions
+          .sort(compareOnKey(this.stationOrder))
+          .map(this.stationToSelectOption)
       } else {
         const visibleOptions = stationOptions.filter((station) => {
           const selected = station.identifier === this.selectedStationID
@@ -185,7 +196,9 @@ export default {
           return selected || visible
         })
 
-        return visibleOptions.sort(compareOnKey(this.stationOrder)).map(this.stationToSelectOption)
+        return visibleOptions
+          .sort(compareOnKey(this.stationOrder))
+          .map(this.stationToSelectOption)
       }
     },
     yearOptions() {
@@ -195,17 +208,16 @@ export default {
       }
 
       const yearOptions = this.years.map(this.yearToSelectOption)
-      return [ nullOption ].concat(yearOptions)
+      return [nullOption].concat(yearOptions)
     }
   },
   mounted() {
-    this.$store.dispatch('stations/downloadStationsByDataset')
-      .then(() => {
-        const stationsRaw = this.$store.getters['stations/totalozone']
-        this.stations = stationsRaw.map(unpackageStation)
-        this.loadingStations = false
-        this.loadingMap = false
-      })
+    this.$store.dispatch('stations/downloadStationsByDataset').then(() => {
+      const stationsRaw = this.$store.getters['stations/totalozone']
+      this.stations = stationsRaw.map(unpackageStation)
+      this.loadingStations = false
+      this.loadingMap = false
+    })
   },
   methods: {
     changeInstrument(instrument) {
@@ -240,10 +252,12 @@ export default {
       if (this.selectedYear === null) {
         yearsInRange = this.years
       } else {
-        yearsInRange = [ this.selectedYear ]
+        yearsInRange = [this.selectedYear]
       }
 
-      const root = this.$config.wafURL + '/products/ozone/total-column-ozone/totalozone/1.0/'
+      const root =
+        this.$config.wafURL +
+        '/products/ozone/total-column-ozone/totalozone/1.0/'
 
       const stationID = this.selectedStationID
       const stationKey = this.selectedStation.name + ' (' + stationID + ')'
@@ -255,13 +269,22 @@ export default {
         this.graphURLs[year] = []
         const duplicateInstruments = []
         for (const instrument of instruments) {
-          const instrumentKey = instrument.name + '_' + instrument.serial.padStart(3, '0')
-          const filename = 'dailytotO3-' + stationID + '-' + instrumentKey + '-' + year + '.png'
+          const instrumentKey =
+            instrument.name + '_' + instrument.serial.padStart(3, '0')
+          const filename =
+            'dailytotO3-' +
+            stationID +
+            '-' +
+            instrumentKey +
+            '-' +
+            year +
+            '.png'
 
-          const instrumentName = instrument.name + ' #' + instrument.serial.padStart(3, '0')
+          const instrumentName =
+            instrument.name + ' #' + instrument.serial.padStart(3, '0')
           const plotURL = root + 'stn' + stationID + '/' + filename
 
-          if (duplicateInstruments.includes(instrumentKey)){
+          if (duplicateInstruments.includes(instrumentKey)) {
             continue
           }
 
@@ -276,16 +299,23 @@ export default {
       }
     },
     async getObservationTools() {
-      const dataRecordsURL = this.$config.woudcAPI + '/collections/data_records/items'
+      const dataRecordsURL =
+        this.$config.woudcAPI + '/collections/data_records/items'
       let queryParams = 'sortby=timestamp_date&content_category=TotalOzone'
       queryParams += '&platform_id=' + this.selectedStationID
 
       if (this.selectedInstrumentID !== null) {
-        queryParams += '&instrument_name=' + this.selectedInstrument.element.properties.name
-        queryParams += '&instrument_number=' + this.selectedInstrument.element.properties.serial + '&limit=5000'
+        queryParams +=
+          '&instrument_name=' + this.selectedInstrument.element.properties.name
+        queryParams +=
+          '&instrument_number=' +
+          this.selectedInstrument.element.properties.serial +
+          '&limit=5000'
       }
 
-      const dataRecordsResponse = await woudcClient.get(dataRecordsURL + '?' + queryParams)
+      const dataRecordsResponse = await woudcClient.get(
+        dataRecordsURL + '?' + queryParams
+      )
 
       const observationTools = {}
       for (const feature of dataRecordsResponse.data.features) {
@@ -307,8 +337,13 @@ export default {
       const colon = this.$t('common.colon-style')
       const graphWord = this.$t('data.products.common.graph')
 
-      const stationName = this.$t('common.station-name') + colon + ' ' + graph.station
-      const instrument = this.$t('data.products.common.instrument') + colon + ' ' + graph.instrument
+      const stationName =
+        this.$t('common.station-name') + colon + ' ' + graph.station
+      const instrument =
+        this.$t('data.products.common.instrument') +
+        colon +
+        ' ' +
+        graph.instrument
       const year = this.$t('data.products.common.year') + colon + ' ' + key
 
       return `${graphWord} - ${stationName}. ${instrument}. ${year}`
@@ -321,12 +356,15 @@ export default {
       }
     },
     async refreshInstruments() {
-      const instrumentsURL = this.$config.woudcAPI + '/collections/instruments/items'
+      const instrumentsURL =
+        this.$config.woudcAPI + '/collections/instruments/items'
       let queryParams = 'sortby=name,serial&dataset=TotalOzone'
       queryParams += '&station_id=' + this.selectedStationID
 
       this.loadingInstruments = true
-      const instrumentsResponse = await woudcClient.get(instrumentsURL + '?' + queryParams)
+      const instrumentsResponse = await woudcClient.get(
+        instrumentsURL + '?' + queryParams
+      )
 
       const instrumentKeys = []
       const instruments = []

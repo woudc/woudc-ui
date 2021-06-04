@@ -13,10 +13,12 @@
         >
           <template v-slot:popup="element">
             <strong>{{ $t('contributors.list.contributor-name') }}</strong>
-            <nuxt-link :to="localePath('contributors') + '/' + element.item.acronym">
+            <nuxt-link
+              :to="localePath('contributors') + '/' + element.item.acronym"
+            >
               {{ element.item.name }}
             </nuxt-link>
-            <br>
+            <br />
             <strong>{{ $t('contributors.list.country-name') }}</strong>
             <span> {{ element.item.country_name[$i18n.locale] }}</span>
           </template>
@@ -38,7 +40,9 @@
         >
           <template v-slot:row="row">
             <td>
-              <nuxt-link :to="localePath('contributors') + '/' + row.item.acronym">
+              <nuxt-link
+                :to="localePath('contributors') + '/' + row.item.acronym"
+              >
                 {{ row.item.acronym }}
               </nuxt-link>
             </td>

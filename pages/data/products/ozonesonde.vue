@@ -10,7 +10,10 @@
               <strong>{{ $t('common.instructions') }}</strong>
             </v-expansion-panel-header>
             <v-expansion-panel-content>
-              <i18n path="data.products.ozonesonde.instructions.body-selections" tag="p">
+              <i18n
+                path="data.products.ozonesonde.instructions.body-selections"
+                tag="p"
+              >
                 <template v-slot:station>
                   <strong>{{ $t('data.products.common.station') }}</strong>
                 </template>
@@ -18,26 +21,47 @@
                   <strong>{{ $t('data.products.common.years') }}</strong>
                 </template>
               </i18n>
-              <p>{{ $t('data.products.ozonesonde.instructions.body-searching') }}</p>
+              <p>
+                {{ $t('data.products.ozonesonde.instructions.body-searching') }}
+              </p>
               <ul>
-                <i18n path="data.products.ozonesonde.instructions.body-pressure" tag="li">
+                <i18n
+                  path="data.products.ozonesonde.instructions.body-pressure"
+                  tag="li"
+                >
                   <template v-slot:pressure-plots>
-                    <strong>{{ $t('data.products.ozonesonde.instructions.pressure-plots') }}</strong>
+                    <strong>{{
+                      $t('data.products.ozonesonde.instructions.pressure-plots')
+                    }}</strong>
                   </template>
                 </i18n>
-                <i18n path="data.products.ozonesonde.instructions.body-temperature" tag="li">
+                <i18n
+                  path="data.products.ozonesonde.instructions.body-temperature"
+                  tag="li"
+                >
                   <template v-slot:temperature-plots>
-                    <strong>{{ $t('data.products.ozonesonde.instructions.temperature-plots') }}</strong>
+                    <strong>{{
+                      $t(
+                        'data.products.ozonesonde.instructions.temperature-plots'
+                      )
+                    }}</strong>
                   </template>
                 </i18n>
-                <i18n path="data.products.ozonesonde.instructions.body-flights" tag="li">
+                <i18n
+                  path="data.products.ozonesonde.instructions.body-flights"
+                  tag="li"
+                >
                   <template v-slot:flight-plots>
-                    <strong>{{ $t('data.products.ozonesonde.instructions.flight-plots') }}</strong>
+                    <strong>{{
+                      $t('data.products.ozonesonde.instructions.flight-plots')
+                    }}</strong>
                   </template>
                 </i18n>
               </ul>
-              <br>
-              <p>{{ $t('data.products.ozonesonde.instructions.body-grouping') }}</p>
+              <br />
+              <p>
+                {{ $t('data.products.ozonesonde.instructions.body-grouping') }}
+              </p>
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
@@ -167,7 +191,9 @@ export default {
       const stationOptions = this.stations
 
       if (this.boundingBox === null) {
-        return stationOptions.sort(compareOnKey(this.stationOrder)).map(this.stationToSelectOption)
+        return stationOptions
+          .sort(compareOnKey(this.stationOrder))
+          .map(this.stationToSelectOption)
       } else {
         const visibleOptions = stationOptions.filter((station) => {
           const selected = station.identifier === this.selectedStationID
@@ -177,7 +203,9 @@ export default {
           return selected || visible
         })
 
-        return visibleOptions.sort(compareOnKey(this.stationOrder)).map(this.stationToSelectOption)
+        return visibleOptions
+          .sort(compareOnKey(this.stationOrder))
+          .map(this.stationToSelectOption)
       }
     },
     yearOptions() {
@@ -187,17 +215,16 @@ export default {
       }
 
       const yearOptions = this.years.map(this.yearToSelectOption)
-      return [ nullOption ].concat(yearOptions)
+      return [nullOption].concat(yearOptions)
     }
   },
   mounted() {
-    this.$store.dispatch('stations/downloadStationsByDataset')
-      .then(() => {
-        const stationsRaw = this.$store.getters['stations/ozonesonde']
-        this.stations = stationsRaw.map(unpackageStation)
-        this.loadingStations = false
-        this.loadingMap = false
-      })
+    this.$store.dispatch('stations/downloadStationsByDataset').then(() => {
+      const stationsRaw = this.$store.getters['stations/ozonesonde']
+      this.stations = stationsRaw.map(unpackageStation)
+      this.loadingStations = false
+      this.loadingMap = false
+    })
   },
   methods: {
     changeStation(station) {
@@ -220,22 +247,40 @@ export default {
       if (this.selectedYear === null) {
         yearsInRange = this.years
       } else {
-        yearsInRange = [ this.selectedYear ]
+        yearsInRange = [this.selectedYear]
       }
 
-      const rootURL = this.$config.wafURL + '/products/ozone/vertical-ozone-profile/ozonesonde/1.0/'
+      const rootURL =
+        this.$config.wafURL +
+        '/products/ozone/vertical-ozone-profile/ozonesonde/1.0/'
 
       const stationID = this.selectedStationID
       const stationKey = this.selectedStation.name + ' (' + stationID + ')'
 
-      const pressureCaption = this.$t('data.products.ozonesonde.image-captions.pressure')
-      const temperatureCaption = this.$t('data.products.ozonesonde.image-captions.temperature')
+      const pressureCaption = this.$t(
+        'data.products.ozonesonde.image-captions.pressure'
+      )
+      const temperatureCaption = this.$t(
+        'data.products.ozonesonde.image-captions.temperature'
+      )
 
       this.graphURLs = {}
       for (const year of yearsInRange) {
         const annualPlotName = 'ytdo3sonde-' + stationID + '-' + year
-        const pressurePlot = rootURL + 'annual/stn' + stationID + '/' + annualPlotName + '-o3pp.png'
-        const temperaturePlot = rootURL + 'annual/stn' + stationID + '/' + annualPlotName + '-temp.png'
+        const pressurePlot =
+          rootURL +
+          'annual/stn' +
+          stationID +
+          '/' +
+          annualPlotName +
+          '-o3pp.png'
+        const temperaturePlot =
+          rootURL +
+          'annual/stn' +
+          stationID +
+          '/' +
+          annualPlotName +
+          '-temp.png'
 
         this.graphURLs[year] = []
         this.graphURLs[year].push({
@@ -250,8 +295,19 @@ export default {
         })
 
         for (const date of this.observationDates[year]) {
-          const plotURL = rootURL + 'flights/stn' + stationID + '/' + stationID + '-' + date + '-0.png'
-          const flightCaption = this.$t('data.products.ozonesonde.image-captions.flights') + ' ' + date
+          const plotURL =
+            rootURL +
+            'flights/stn' +
+            stationID +
+            '/' +
+            stationID +
+            '-' +
+            date +
+            '-0.png'
+          const flightCaption =
+            this.$t('data.products.ozonesonde.image-captions.flights') +
+            ' ' +
+            date
 
           this.graphURLs[year].push({
             url: plotURL,
@@ -262,11 +318,14 @@ export default {
       }
     },
     async getObservationDates() {
-      const dataRecordsURL = this.$config.woudcAPI + '/collections/data_records/items'
+      const dataRecordsURL =
+        this.$config.woudcAPI + '/collections/data_records/items'
       let queryParams = 'sortby=timestamp_date&content_category=OzoneSonde'
       queryParams += '&platform_id=' + this.selectedStationID + '&limit=5000'
 
-      const dataRecordsResponse = await woudcClient.get(dataRecordsURL + '?' + queryParams)
+      const dataRecordsResponse = await woudcClient.get(
+        dataRecordsURL + '?' + queryParams
+      )
 
       const observationDates = {}
       for (const feature of dataRecordsResponse.data.features) {
@@ -286,7 +345,8 @@ export default {
       const colon = this.$t('common.colon-style')
       const graphWord = this.$t('data.products.common.graph')
 
-      const stationName = this.$t('common.station-name') + colon + ' ' + graph.station
+      const stationName =
+        this.$t('common.station-name') + colon + ' ' + graph.station
       const year = this.$t('data.products.common.year') + colon + ' ' + key
 
       return `${graphWord} - ${graph.caption} - ${stationName}. ${year}`

@@ -6,7 +6,10 @@
       <v-col>
         <div v-for="(item, index) in $t('about.glossary.terms')" :key="index">
           <h4>{{ item.term }}</h4>
-          <i18n :path="'about.glossary.terms[' + index + '].definition'" tag="p">
+          <i18n
+            :path="'about.glossary.terms[' + index + '].definition'"
+            tag="p"
+          >
             <template v-slot:carcinogenesis>
               <a :href="carcinogensURL" target="_blank">
                 {{ $t('about.glossary.carcinogenesis') }}
@@ -38,7 +41,8 @@
 export default {
   data() {
     return {
-      carcinogensURL: 'https://www.wmo.int/pages/prog/dra/etrp/documents/926E.pdf',
+      carcinogensURL:
+        'https://www.wmo.int/pages/prog/dra/etrp/documents/926E.pdf',
       w3URL: 'https://www.w3.org/',
       wafURL: this.$config.wafURL
     }

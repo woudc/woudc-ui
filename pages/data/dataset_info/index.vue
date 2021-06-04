@@ -10,7 +10,9 @@
             <span>{{ $t('data.info.sections.' + section) }}</span>
             <ul>
               <li v-for="dataset in links[section]" :key="dataset">
-                <nuxt-link :to="localePath('data-dataset_info') + '/' + dataset">
+                <nuxt-link
+                  :to="localePath('data-dataset_info') + '/' + dataset"
+                >
                   {{ $t('data.info.links.' + dataset) }}
                 </nuxt-link>
               </li>
@@ -27,16 +29,8 @@ export default {
   data() {
     return {
       links: {
-        totalozone: [
-          'totalozone',
-          'totalozoneobs'
-        ],
-        'uv-irradiance': [
-          'broadband',
-          'multiband',
-          'spectral',
-          'uvindex'
-        ],
+        totalozone: ['totalozone', 'totalozoneobs'],
+        'uv-irradiance': ['broadband', 'multiband', 'spectral', 'uvindex'],
         'vertical-ozone': [
           'lidar',
           'ozonesonde',
@@ -45,7 +39,7 @@ export default {
           'umkehr2'
         ]
       },
-      sectionOrder: [ 'totalozone', 'vertical-ozone', 'uv-irradiance' ]
+      sectionOrder: ['totalozone', 'vertical-ozone', 'uv-irradiance']
     }
   },
   head() {

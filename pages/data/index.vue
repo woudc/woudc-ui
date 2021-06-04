@@ -16,8 +16,12 @@ export default {
   data() {
     return {
       localLinks: [
-        'explore', 'products', 'datasetinfo', 'stations', 'instruments'
-      ],
+        'explore',
+        'products',
+        'datasetinfo',
+        'stations',
+        'instruments'
+      ]
     }
   },
   head() {

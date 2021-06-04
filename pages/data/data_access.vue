@@ -46,7 +46,10 @@
             {{ $t('data.access.contents.title') }}
           </v-card-title>
           <v-list id="contents-body" class="pa-0">
-            <div v-for="(section, i) in tableOfContents" :key="section.selector">
+            <div
+              v-for="(section, i) in tableOfContents"
+              :key="section.selector"
+            >
               <v-divider v-if="i !== 0" />
               <template v-if="section.subsections === null">
                 <v-list-item>
@@ -271,7 +274,11 @@
               {{ $t('data.access.definitions.note.title') }}
             </v-card-title>
             <v-card-text>
-              <i18n class="mb-0" path="data.access.definitions.note.body" tag="p">
+              <i18n
+                class="mb-0"
+                path="data.access.definitions.note.body"
+                tag="p"
+              >
                 <template v-slot:link>
                   <a :href="definitionsURL" target="_blank">
                     {{ definitionsURL }}
@@ -320,13 +327,15 @@
               <v-list-item>
                 <a :href="examples.pywoudc" target="_blank">
                   pywoudc
-                </a> : {{ $t('data.access.examples.links.pywoudc') }}
+                </a>
+                : {{ $t('data.access.examples.links.pywoudc') }}
               </v-list-item>
               <v-divider />
               <v-list-item>
                 <a :href="examples.notebooks" target="_blank">
                   notebooks
-                </a> : {{ $t('data.access.examples.links.notebooks') }}
+                </a>
+                : {{ $t('data.access.examples.links.notebooks') }}
               </v-list-item>
             </v-list>
           </v-card>
@@ -340,25 +349,31 @@
 export default {
   data() {
     return {
-      cswURL: 'https://geo.woudc.org/csw?service=CSW&version=2.0.2&request=GetCapabilities',
+      cswURL:
+        'https://geo.woudc.org/csw?service=CSW&version=2.0.2&request=GetCapabilities',
       definitionsURL: 'https://geo.woudc.org/def',
       githubURL: 'https://github.com/woudc',
-      interoperabilityURL: 'https://www.wmo.int/pages/prog/www/WIS/documents/MOAWMO_OGC.pdf',
+      interoperabilityURL:
+        'https://www.wmo.int/pages/prog/www/WIS/documents/MOAWMO_OGC.pdf',
       isoAPIURL: 'https://geo.woudc.org/codelists.xml',
       isoURL: 'https://www.isotc211.org/',
       isoServicesURL: 'https://github.com/woudc/woudc/wiki/WebServicesHowto',
       ogcStandardsURL: 'https://opengeospatial.org/standards/cat',
       ogcURL: 'https://opengeospatial.org/',
-      searchHelpURL: 'https://github.com/woudc/woudc/wiki/DataSearchDownloadHowto',
+      searchHelpURL:
+        'https://github.com/woudc/woudc/wiki/DataSearchDownloadHowto',
       wafURL: this.$config.wafURL,
       wafGuideURL: 'https://github.com/woudc/woudc/wiki/WAFHowto',
       wafSummaryURL: 'https://woudc.org/archive/Summaries/dataset-snapshots',
-      wfsAPIURL: 'https://geo.woudc.org/ows?service=WFS&version=1.1.0&request=GetCapabilities',
+      wfsAPIURL:
+        'https://geo.woudc.org/ows?service=WFS&version=1.1.0&request=GetCapabilities',
       wfsURL: 'https://www.opengeospatial.org/standards/wfs',
       wisURL: 'https://www.wmo.int/pages/prog/www/WIS/',
-      wmsAPIURL: 'https://geo.woudc.org/ows?service=WMS&version=1.3.0&request=GetCapabilities',
+      wmsAPIURL:
+        'https://geo.woudc.org/ows?service=WMS&version=1.3.0&request=GetCapabilities',
       wmsURL: 'https://www.opengeospatial.org/standards/wms',
-      wpsAPIURL: 'https://geo.woudc.org/wps?service=WPS&version=1.0.0&request=GetCapabilities',
+      wpsAPIURL:
+        'https://geo.woudc.org/wps?service=WPS&version=1.0.0&request=GetCapabilities',
       wpsURL: 'https://www.opengeospatial.org/standards/wps',
       contentsSelectors: {
         csw: 'csw-subsection',
@@ -381,14 +396,19 @@ export default {
   computed: {
     tableOfContents() {
       const sections = [
-        'search', 'waf', 'web', 'definitions', 'iso', 'examples'
+        'search',
+        'waf',
+        'web',
+        'definitions',
+        'iso',
+        'examples'
       ].map(this.prepareContentsLink)
 
       sections[2].subsections = this.webContentsSubsections
       return sections
     },
     webContentsSubsections() {
-      return [ 'csw', 'wms', 'wfs', 'wps' ].map(this.prepareContentsLink)
+      return ['csw', 'wms', 'wfs', 'wps'].map(this.prepareContentsLink)
     }
   },
   methods: {
@@ -422,7 +442,8 @@ export default {
 </script>
 
 <style scoped>
-#contents-body, #example-list {
+#contents-body,
+#example-list {
   font-size: 14px;
 }
 </style>

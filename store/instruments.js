@@ -1,22 +1,20 @@
-
 import woudcClient from '~/plugins/woudcClient'
-
 
 function instrumentModelID(instrumentModelObj) {
   const components = [
-    instrumentModelObj.properties.name, instrumentModelObj.properties.model,
-    instrumentModelObj.properties.station_id, instrumentModelObj.properties.dataset
+    instrumentModelObj.properties.name,
+    instrumentModelObj.properties.model,
+    instrumentModelObj.properties.station_id,
+    instrumentModelObj.properties.dataset
   ]
   return components.join(':')
 }
 
-
 const state = () => ({
   loaded: false,
-  instrumentModels: [],  // List of unique instrument name/model combinations.
-  instrumentNames: []  // List of unique instrument names.
+  instrumentModels: [], // List of unique instrument name/model combinations.
+  instrumentNames: [] // List of unique instrument names.
 })
-
 
 const getters = {
   // Returns a list of unique instrument name/model combinations.
@@ -27,7 +25,6 @@ const getters = {
     return state.instrumentNames
   }
 }
-
 
 const mutations = {
   setInstrumentsNameResolution(state, instruments) {
@@ -41,24 +38,39 @@ const mutations = {
   }
 }
 
-
 const actions = {
-  async download({ commit, state }, proc) {
+  async download({ commit, state }) {
     if (state.loaded) {
       return false
     }
 
-    const queryURL = this.$config.woudcAPI + '/processes/woudc-data-registry-select-distinct/jobs'
+    const queryURL =
+      this.$config.woudcAPI +
+      '/processes/woudc-data-registry-select-distinct/jobs'
     const inputs = [
       { id: 'index', type: 'text/plain', value: 'instrument' },
-      { id: 'distinct', type: 'application/json', value: {
-        nameResolution: [ 'name' ],
-        modelResolution: [ 'name', 'model', 'station_id', 'dataset' ]
-      } },
-      { id: 'source', type: 'application/json', value: [
-        'station_name', 'data_class', 'country_name_en', 'country_name_fr',
-        'contributor_name', 'waf_url', 'start_date', 'end_date'
-      ] }
+      {
+        id: 'distinct',
+        type: 'application/json',
+        value: {
+          nameResolution: ['name'],
+          modelResolution: ['name', 'model', 'station_id', 'dataset']
+        }
+      },
+      {
+        id: 'source',
+        type: 'application/json',
+        value: [
+          'station_name',
+          'data_class',
+          'country_name_en',
+          'country_name_fr',
+          'contributor_name',
+          'waf_url',
+          'start_date',
+          'end_date'
+        ]
+      }
     ]
 
     const queryParams = { inputs }
@@ -80,7 +92,6 @@ const actions = {
     commit('setLoaded', true)
   }
 }
-
 
 export default {
   namespaced: true,

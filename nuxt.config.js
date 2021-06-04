@@ -19,7 +19,9 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: pkg.description || 'A World Meteorological Organization (WMO) data centre supporting the Global Atmosphere Watch (GAW) program operated by Environment and Climate Change Canada.'
+        content:
+          pkg.description ||
+          'A World Meteorological Organization (WMO) data centre supporting the Global Atmosphere Watch (GAW) program operated by Environment and Climate Change Canada.'
       }
     ]
     // link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
@@ -31,15 +33,11 @@ export default {
   /*
    ** Global CSS
    */
-  css: [
-    '~/css/globals.css'
-  ],
+  css: ['~/css/globals.css'],
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-
-  ],
+  plugins: [],
   /*
    ** Nuxt.js dev-modules
    */
@@ -52,12 +50,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [
-    '@nuxtjs/axios',
-    '@nuxtjs/pwa',
-    'nuxt-i18n',
-    'nuxt-leaflet'
-  ],
+  modules: ['@nuxtjs/axios', '@nuxtjs/pwa', 'nuxt-i18n', 'nuxt-leaflet'],
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
@@ -151,7 +144,8 @@ export default {
   },
   generate: {
     fallback: '200.html',
-    exclude: [ // dynamically generated pages to use SPA fallback
+    exclude: [
+      // dynamically generated pages to use SPA fallback
       /\/data\/stations\/[\d]+$/,
       /\/donnees\/stations\/[\d]+$/,
       /\/contributors\/[\d\w-_]{1,8}$/,

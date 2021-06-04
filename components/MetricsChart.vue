@@ -4,7 +4,7 @@ import { Bar, mixins } from 'vue-chartjs'
 export default {
   name: 'MetricsChart',
   extends: Bar,
-  mixins: [ mixins.reactiveData ],
+  mixins: [mixins.reactiveData],
   props: {
     startdate: { type: Number, required: true },
     enddate: { type: Number, required: true },
@@ -21,10 +21,7 @@ export default {
         maintainAspectRatio: false,
         responsive: true,
         scales: {
-          yAxes: [
-            { id: 'observations' },
-            { id: 'files' }
-          ]
+          yAxes: [{ id: 'observations' }, { id: 'files' }]
         }
       }
     }

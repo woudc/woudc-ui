@@ -59,7 +59,7 @@ export default {
         weight: 0.8
       },
       eventLock: false,
-      startCenter: [ 0, 0 ],
+      startCenter: [0, 0],
       startZoom: 1,
       tileURLTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
     }
@@ -71,7 +71,7 @@ export default {
     }
   },
   watch: {
-    country(newSelection, oldSelection) {
+    country(newSelection) {
       if (newSelection !== null) {
         this.autoZoomToCountry(newSelection)
       }
@@ -153,10 +153,10 @@ export default {
     setIconSize() {
       const iconOptions = this.$L.Icon.Default.prototype.options
 
-      iconOptions.iconSize = [ 12.5, 20.5 ]
-      iconOptions.shadowSize = [ 20.5, 20.5 ]
-      iconOptions.iconAnchor = [ 6.25, 20.5 ]
-      iconOptions.popupAnchor = [ 0, -20 ]
+      iconOptions.iconSize = [12.5, 20.5]
+      iconOptions.shadowSize = [20.5, 20.5]
+      iconOptions.iconAnchor = [6.25, 20.5]
+      iconOptions.popupAnchor = [0, -20]
     },
     zoomToGlobe() {
       const map = this.$refs['woudc-map']
