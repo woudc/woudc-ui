@@ -1,10 +1,10 @@
 <template>
   <v-container>
-    <h1>{{ $t('about.access.title') }}</h1>
-    <v-row>
+    <h1>{{ $t('data.access.title') }}</h1>
+    <v-row> 
       <v-col cols="8">
-        <p>{{ $t('about.access.blurb.body-intro') }}</p>
-        <i18n path="about.access.blurb.body-accessibility" tag="p">
+        <p>{{ $t('data.access.blurb.body-intro') }}</p>
+        <i18n path="data.access.blurb.body-accessibility" tag="p">
           <template v-slot:contact-us>
             <nuxt-link :to="localePath('contact')">
               {{ $t('common.contact-us') }}
@@ -13,12 +13,12 @@
         </i18n>
         <v-card class="mt-1 mb-4" color="info">
           <v-card-title class="pt-3 pb-0">
-            {{ $t('about.access.note1.title') }}
+            {{ $t('data.access.note1.title') }}
           </v-card-title>
           <v-card-text>
-            <i18n class="mb-0" path="about.access.note1.body" tag="p">
+            <i18n class="mb-0" path="data.access.note1.body" tag="p">
               <template v-slot:policy>
-                <nuxt-link :to="localePath('about-datapolicy')">
+                <nuxt-link :to="localePath('data-datapolicy')">
                   {{ $t('common.policy') }}
                 </nuxt-link>
               </template>
@@ -27,10 +27,10 @@
         </v-card>
         <v-card class="mt-1 mb-4" color="info">
           <v-card-title class="pt-3 pb-0">
-            {{ $t('about.access.note2.title') }}
+            {{ $t('data.access.note2.title') }}
           </v-card-title>
           <v-card-text>
-            <i18n class="mb-0" path="about.access.note2.body" tag="p">
+            <i18n class="mb-0" path="data.access.note2.body" tag="p">
               <template v-slot:stations-page>
                 <nuxt-link :to="localePath('data-stations')">
                   {{ $t('common.stations-page') }}
@@ -43,7 +43,7 @@
       <v-col cols="4">
         <v-card id="contents-table">
           <v-card-title class="primary white--text">
-            {{ $t('about.access.contents.title') }}
+            {{ $t('data.access.contents.title') }}
           </v-card-title>
           <v-list id="contents-body" class="pa-0">
             <div v-for="(section, i) in tableOfContents" :key="section.selector">
@@ -87,55 +87,55 @@
     <v-row>
       <v-col>
         <div id="data-search-section">
-          <h2>{{ $t('about.access.search.title') }}</h2>
-          <i18n path="about.access.search.blurb.body-intro" tag="p">
+          <h2>{{ $t('data.access.search.title') }}</h2>
+          <i18n path="data.access.search.blurb.body-intro" tag="p">
             <template v-slot:search>
               <nuxt-link :to="localePath('data-search')">
                 {{ $t('common.search') }}
               </nuxt-link>
             </template>
           </i18n>
-          <i18n path="about.access.search.blurb.body-howto" tag="p">
+          <i18n path="data.access.search.blurb.body-howto" tag="p">
             <template v-slot:how-to>
               <a :href="searchHelpURL" target="_blank">
-                {{ $t('about.access.search.how-to') }}
+                {{ $t('data.access.search.how-to') }}
               </a>
             </template>
           </i18n>
           <v-card class="mt-1 mb-4" color="info">
             <v-card-text>
-              {{ $t('about.access.search.note') }}
+              {{ $t('data.access.search.note') }}
             </v-card-text>
           </v-card>
         </div>
         <div id="waf-section">
-          <h2>{{ $t('about.access.waf.title') }}</h2>
-          <i18n path="about.access.waf.blurb.body-intro" tag="p">
+          <h2>{{ $t('data.access.waf.title') }}</h2>
+          <i18n path="data.access.waf.blurb.body-intro" tag="p">
             <template v-slot:waf>
               <a :href="wafURL" target="_blank">
                 {{ $t('common.wafFull') }}
               </a>
             </template>
           </i18n>
-          <i18n path="about.access.waf.blurb.body-files" tag="p">
+          <i18n path="data.access.waf.blurb.body-files" tag="p">
             <template v-slot:summary>
               <a :href="wafSummaryURL" target="_blank">
-                {{ $t('about.access.waf.summary') }}
+                {{ $t('data.access.waf.summary') }}
               </a>
             </template>
           </i18n>
-          <i18n path="about.access.waf.blurb.body-howto" tag="p">
+          <i18n path="data.access.waf.blurb.body-howto" tag="p">
             <template v-slot:how-to>
               <a :href="wafGuideURL" target="_blank">
-                {{ $t('about.access.waf.how-to') }}
+                {{ $t('data.access.waf.how-to') }}
               </a>
             </template>
           </i18n>
         </div>
         <div id="web-services-section">
-          <h2>{{ $t('about.access.web.title') }}</h2>
-          <p>{{ $t('about.access.web.blurb.body-intro') }}</p>
-          <i18n path="about.access.web.blurb.body-standards" tag="p">
+          <h2>{{ $t('data.access.web.title') }}</h2>
+          <p>{{ $t('data.access.web.blurb.body-intro') }}</p>
+          <i18n path="data.access.web.blurb.body-standards" tag="p">
             <template v-slot:ogc>
               <a :href="ogcURL" target="_blank">
                 {{ $t('common.ogc') }}
@@ -159,15 +159,15 @@
           </i18n>
           <v-card class="mt-1 mb-4" color="info">
             <v-card-title class="pt-3 pb-0">
-              {{ $t('about.access.web.table.title') }}
+              {{ $t('data.access.web.table.title') }}
             </v-card-title>
             <v-card-text>
               <span>That font size is too big. Also the colour is wrong.</span>
             </v-card-text>
           </v-card>
           <div id="csw-subsection">
-            <h3>{{ $t('about.access.csw.title') }}</h3>
-            <i18n class="mb-0" path="about.access.csw.blurb" tag="p">
+            <h3>{{ $t('data.access.csw.title') }}</h3>
+            <i18n class="mb-0" path="data.access.csw.blurb" tag="p">
               <template v-slot:ogc-cs>
                 <a :href="ogcStandardsURL" target="_blank">
                   {{ $t('common.ogc-cs') }}
@@ -176,10 +176,10 @@
             </i18n>
             <v-card class="mt-1 mb-4" color="info">
               <v-card-title class="pt-3 pb-0">
-                {{ $t('about.access.csw.note.title') }}
+                {{ $t('data.access.csw.note.title') }}
               </v-card-title>
               <v-card-text>
-                <i18n class="mb-0" path="about.access.csw.note.body" tag="p">
+                <i18n class="mb-0" path="data.access.csw.note.body" tag="p">
                   <template v-slot:link>
                     <a :href="cswURL" target="_blank">
                       {{ cswURL }}
@@ -190,8 +190,8 @@
             </v-card>
           </div>
           <div id="wms-subsection">
-            <h3>{{ $t('about.access.wms.title') }}</h3>
-            <i18n path="about.access.wms.blurb" tag="p">
+            <h3>{{ $t('data.access.wms.title') }}</h3>
+            <i18n path="data.access.wms.blurb" tag="p">
               <template v-slot:wms>
                 <a :href="wmsURL" target="_blank">
                   {{ $t('common.wms') }}
@@ -200,10 +200,10 @@
             </i18n>
             <v-card class="mt-1 mb-4" color="info">
               <v-card-title class="pt-3 pb-0">
-                {{ $t('about.access.wms.note.title') }}
+                {{ $t('data.access.wms.note.title') }}
               </v-card-title>
               <v-card-text>
-                <i18n class="mb-0" path="about.access.wms.note.body" tag="p">
+                <i18n class="mb-0" path="data.access.wms.note.body" tag="p">
                   <template v-slot:link>
                     <a :href="wmsAPIURL" target="_blank">
                       {{ wmsAPIURL }}
@@ -214,21 +214,21 @@
             </v-card>
           </div>
           <div id="wfs-subsection">
-            <h3>{{ $t('about.access.wfs.title') }}</h3>
-            <i18n path="about.access.wfs.blurb.body-intro" tag="p">
+            <h3>{{ $t('data.access.wfs.title') }}</h3>
+            <i18n path="data.access.wfs.blurb.body-intro" tag="p">
               <template v-slot:wfs>
                 <a :href="wfsURL" target="_blank">
                   {{ $t('common.wfs') }}
                 </a>
               </template>
             </i18n>
-            <p>{{ $t('about.access.wfs.blurb.body-limits') }}</p>
+            <p>{{ $t('data.access.wfs.blurb.body-limits') }}</p>
             <v-card class="mt-1 mb-4" color="info">
               <v-card-title class="pt-3 pb-0">
-                {{ $t('about.access.wfs.note.title') }}
+                {{ $t('data.access.wfs.note.title') }}
               </v-card-title>
               <v-card-text>
-                <i18n class="mb-0" path="about.access.wfs.note.body" tag="p">
+                <i18n class="mb-0" path="data.access.wfs.note.body" tag="p">
                   <template v-slot:link>
                     <a :href="wfsAPIURL" target="_blank">
                       {{ wfsAPIURL }}
@@ -239,8 +239,8 @@
             </v-card>
           </div>
           <div id="wps-subsection">
-            <h3>{{ $t('about.access.wps.title') }}</h3>
-            <i18n path="about.access.wps.blurb" tag="p">
+            <h3>{{ $t('data.access.wps.title') }}</h3>
+            <i18n path="data.access.wps.blurb" tag="p">
               <template v-slot:wps>
                 <a :href="wpsURL" target="_blank">
                   {{ $t('common.wps') }}
@@ -249,10 +249,10 @@
             </i18n>
             <v-card class="mt-1 mb-4" color="info">
               <v-card-title class="pt-3 pb-0">
-                {{ $t('about.access.wps.note.title') }}
+                {{ $t('data.access.wps.note.title') }}
               </v-card-title>
               <v-card-text>
-                <i18n class="mb-0" path="about.access.wps.note.body" tag="p">
+                <i18n class="mb-0" path="data.access.wps.note.body" tag="p">
                   <template v-slot:link>
                     <a :href="wpsAPIURL" target="_blank">
                       {{ wpsAPIURL }}
@@ -264,14 +264,14 @@
           </div>
         </div>
         <div id="definitions-service-section">
-          <h2>{{ $t('about.access.definitions.title') }}</h2>
-          <p>{{ $t('about.access.definitions.blurb') }}</p>
+          <h2>{{ $t('data.access.definitions.title') }}</h2>
+          <p>{{ $t('data.access.definitions.blurb') }}</p>
           <v-card class="mt-1 mb-4" color="info">
             <v-card-title class="pt-3 pb-0">
-              {{ $t('about.access.definitions.note.title') }}
+              {{ $t('data.access.definitions.note.title') }}
             </v-card-title>
             <v-card-text>
-              <i18n class="mb-0" path="about.access.definitions.note.body" tag="p">
+              <i18n class="mb-0" path="data.access.definitions.note.body" tag="p">
                 <template v-slot:link>
                   <a :href="definitionsURL" target="_blank">
                     {{ definitionsURL }}
@@ -282,14 +282,14 @@
           </v-card>
         </div>
         <div id="iso-catalogue-section">
-          <h2>{{ $t('about.access.iso.title') }}</h2>
-          <p>{{ $t('about.access.iso.blurb-intro') }}</p>
+          <h2>{{ $t('data.access.iso.title') }}</h2>
+          <p>{{ $t('data.access.iso.blurb-intro') }}</p>
           <v-card class="mt-1 mb-4" color="info">
             <v-card-title class="pt-3 pb-0">
-              {{ $t('about.access.iso.note.title') }}
+              {{ $t('data.access.iso.note.title') }}
             </v-card-title>
             <v-card-text>
-              <i18n class="mb-0" path="about.access.iso.note.body" tag="p">
+              <i18n class="mb-0" path="data.access.iso.note.body" tag="p">
                 <template v-slot:link>
                   <a :href="isoAPIURL" target="_blank">
                     {{ isoAPIURL }}
@@ -298,17 +298,17 @@
               </i18n>
             </v-card-text>
           </v-card>
-          <i18n path="about.access.iso.blurb-howto" tag="p">
+          <i18n path="data.access.iso.blurb-howto" tag="p">
             <template v-slot:how-to>
               <a :href="isoServicesURL" target="_blank">
-                {{ $t('about.access.iso.how-to') }}
+                {{ $t('data.access.iso.how-to') }}
               </a>
             </template>
           </i18n>
         </div>
         <div id="examples-section">
-          <h2>{{ $t('about.access.examples.title') }}</h2>
-          <i18n path="about.access.examples.blurb" tag="p">
+          <h2>{{ $t('data.access.examples.title') }}</h2>
+          <i18n path="data.access.examples.blurb" tag="p">
             <template v-slot:github>
               <a :href="githubURL" target="_blank">
                 {{ $t('common.github') }}
@@ -320,13 +320,13 @@
               <v-list-item>
                 <a :href="examples.pywoudc" target="_blank">
                   pywoudc
-                </a> : {{ $t('about.access.examples.links.pywoudc') }}
+                </a> : {{ $t('data.access.examples.links.pywoudc') }}
               </v-list-item>
               <v-divider />
               <v-list-item>
                 <a :href="examples.notebooks" target="_blank">
                   notebooks
-                </a> : {{ $t('about.access.examples.links.notebooks') }}
+                </a> : {{ $t('data.access.examples.links.notebooks') }}
               </v-list-item>
             </v-list>
           </v-card>
@@ -394,7 +394,7 @@ export default {
   methods: {
     prepareContentsLink(key) {
       return {
-        text: this.$t('about.access.contents.links.' + key),
+        text: this.$t('data.access.contents.links.' + key),
         selector: this.contentsSelectors[key],
         subsections: null
       }
@@ -402,20 +402,20 @@ export default {
   },
   head() {
     return {
-      title: this.$t('about.access.title'),
+      title: this.$t('data.access.title'),
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('about.access.blurb.body-intro')
+          content: this.$t('data.access.blurb.body-intro')
         }
       ]
     }
   },
   nuxtI18n: {
     paths: {
-      en: '/about/data-access',
-      fr: '/a-propos/accessibilite-des-donnees'
+      en: '/data/data-access',
+      fr: '/donnees/accessibilite-des-donnees'
     }
   }
 }
