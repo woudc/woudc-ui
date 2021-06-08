@@ -82,6 +82,7 @@ export default {
     return {
       boundingBox: null,
       contributors: [],
+      contributorsTable: [],
       loadingMap: true,
       loadingTable: true,
       selectedContributor: null
@@ -108,9 +109,9 @@ export default {
     },
     visibleContributors() {
       if (this.boundingBox === null) {
-        return this.contributors
+        return this.contributorsTable
       } else {
-        return this.contributors.filter((contributor) => {
+        return this.contributorsTable.filter((contributor) => {
           const coords = this.$L.latLng(contributor.geometry.coordinates)
           return this.boundingBox.contains(coords)
         })
@@ -122,6 +123,22 @@ export default {
 
     const contributors = this.$store.getters['contributors/all']
     this.contributors = contributors.map(unpackageContributor)
+    this.contributorsTable = contributors.map(unpackageContributor)
+    for (const index in this.contributorsTable) {
+      for (const key in this.contributorsTable[index]) {
+        let lower = ''
+        let stringKey = ''
+        if (this.contributorsTable[index][key]) {
+          stringKey = this.contributorsTable[index][key].toString()
+          lower = stringKey.toLowerCase()
+        }
+        if (lower === 'unknown') {
+          delete this.contributorsTable[index]
+          break
+        }
+      }
+    }
+    console.log(this.contributorsTable)
     this.loadingMap = false
     this.loadingTable = false
   },
