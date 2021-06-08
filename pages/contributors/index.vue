@@ -138,7 +138,6 @@ export default {
         }
       }
     }
-    console.log(this.contributorsTable)
     this.loadingMap = false
     this.loadingTable = false
   },
