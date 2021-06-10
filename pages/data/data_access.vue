@@ -161,11 +161,8 @@
             </template>
           </i18n>
           <v-card class="mt-1 mb-4" color="info">
-            <v-card-title class="pt-3 pb-0">
+            <v-card-text class="mt-1 mb-4" color="info">
               {{ $t('data.access.web.table.title') }}
-            </v-card-title>
-            <v-card-text>
-              <span>That font size is too big. Also the colour is wrong.</span>
             </v-card-text>
           </v-card>
           <div id="csw-subsection">
