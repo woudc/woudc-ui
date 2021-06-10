@@ -100,42 +100,32 @@
           </v-card-actions>
         </v-card>
       </v-col>
-      <v-simple-table v-if="loaded" class="d-flex justify-start">
-        <thead>
-          <tr class="news-header">
-            <th font-size="large">
-              <v-card-title itemprop="name">
-                {{ $t('home.news.title') }}
-              </v-card-title>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(newsItem, i) in recentNewsItems" :key="i">
-            <td>
-              <nuxt-link
-                :to="
-                  localePath('news') +
-                    '#' +
-                    newsItem.properties.published_date.slice(0, 10)
-                "
-              >
-                {{ newsItem.properties[`title_${$i18n.locale}`] }}
-              </nuxt-link>
-              <p>
-                {{ newsItem.properties.published_date.slice(0, 10) }}
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <nuxt-link :to="localePath('news')">
-                {{ $t('home.news.more') }}
-              </nuxt-link>
-            </td>
-          </tr>
-        </tbody>
-      </v-simple-table>
+      <v-col cols="12" md="4">
+        <ul v-if="loaded" style="list-style-type:none">
+          <li>
+            <h3 class="h2 mt-2 mb-2">{{ $t('home.news.title') }}</h3>
+          </li>
+          <li v-for="(newsItem, i) in recentNewsItems" :key="i">
+            <nuxt-link
+              :to="
+                localePath('news') +
+                  '#' +
+                  newsItem.properties.published_date.slice(0, 10)
+              "
+            >
+              {{ newsItem.properties[`title_${$i18n.locale}`] }}
+            </nuxt-link>
+            <p>
+              {{ newsItem.properties.published_date.slice(0, 10) }}
+            </p>
+          </li>
+          <li>
+            <nuxt-link :to="localePath('news')">
+              {{ $t('home.news.more') }}
+            </nuxt-link>
+          </li>
+        </ul>
+      </v-col>
     </v-row>
   </v-container>
 </template>
