@@ -100,17 +100,94 @@
           </v-card-actions>
         </v-card>
       </v-col>
+      <v-simple-table v-if="loaded" class="d-flex justify-start">
+        <thead>
+          <tr class="news-header">
+            <th font-size="large">
+              <v-card-title itemprop="name">
+                {{ $t('home.news.title') }}
+              </v-card-title>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(newsItem, i) in recentNewsItems" :key="i">
+            <td>
+              <nuxt-link
+                :to="
+                  localePath('news') +
+                    '#' +
+                    newsItem.properties.published_date.slice(0, 10)
+                "
+              >
+                {{ newsItem.properties[`title_${$i18n.locale}`] }}
+              </nuxt-link>
+              <p>
+                {{ newsItem.properties.published_date.slice(0, 10) }}
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a :href="localePath('news')" target="_blank" itemprop="name">
+                {{ $t('home.news.more') }}
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </v-simple-table>
     </v-row>
   </v-container>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'Home',
   data() {
     return {
+      loaded: false,
       gawURL: 'http://www.wmo.int/gaw',
       wmoURL: 'http://www.wmo.int'
+    }
+  },
+  computed: {
+    woudcLink() {
+      return (
+        'https://woudc.org/home.php?lang=' +
+        this.$i18n.locale +
+        '/' +
+        this.$t('news.title')
+      )
+    },
+    ...mapState('news', ['newsItems']),
+    recentNewsItems() {
+      const recentNewsItems = this.newsItems.json.features
+        .slice(0)
+        .sort((a, b) =>
+          a.properties.published_date.slice(0, 10) <
+          b.properties.published_date.slice(0, 10)
+            ? 1
+            : -1
+        )
+      return recentNewsItems.slice(0, 3)
+    }
+  },
+  created() {
+    this.loadNewsItems()
+  },
+  methods: {
+    async loadNewsItems() {
+      const holder = await this.$store.dispatch('news/loadNews')
+      this.loaded = true
+      return holder
+    },
+    prepareContentsLink(key) {
+      return {
+        text: this.$t('data.access.contents.links.' + key),
+        selector: this.contentsSelectors[key],
+        subsections: null
+      }
     }
   },
   head() {
