@@ -129,9 +129,9 @@
           </tr>
           <tr>
             <td>
-              <a :href="localePath('news')" target="_blank" itemprop="name">
+              <nuxt-link :to="localePath('news')">
                 {{ $t('home.news.more') }}
-              </a>
+              </nuxt-link>
             </td>
           </tr>
         </tbody>
