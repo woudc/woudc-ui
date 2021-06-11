@@ -101,11 +101,9 @@
         </v-card>
       </v-col>
       <v-col cols="12" md="4">
-        <ul v-if="loaded" style="list-style-type:none">
-          <li>
-            <h3 class="h2 mt-2 mb-2">{{ $t('home.news.title') }}</h3>
-          </li>
-          <li v-for="(newsItem, i) in recentNewsItems" :key="i">
+        <h3 class="h2 mt-2 mb-2">{{ $t('home.news.title') }}</h3>
+        <span v-if="loaded">
+          <span v-for="(newsItem, i) in recentNewsItems" :key="i">
             <nuxt-link
               :to="
                 localePath('news') +
@@ -118,13 +116,11 @@
             <p>
               {{ newsItem.properties.published_date.slice(0, 10) }}
             </p>
-          </li>
-          <li>
-            <nuxt-link :to="localePath('news')">
-              {{ $t('home.news.more') }}
-            </nuxt-link>
-          </li>
-        </ul>
+          </span>
+        </span>
+        <nuxt-link :to="localePath('news')">
+          {{ $t('home.news.more') }}
+        </nuxt-link>
       </v-col>
     </v-row>
   </v-container>
@@ -168,9 +164,9 @@ export default {
   },
   methods: {
     async loadNewsItems() {
-      const holder = await this.$store.dispatch('news/loadNews')
-      this.loaded = true
-      return holder
+      this.$store.dispatch('news/loadNews').then(() => {
+        this.loaded = true
+      })
     },
     prepareContentsLink(key) {
       return {
