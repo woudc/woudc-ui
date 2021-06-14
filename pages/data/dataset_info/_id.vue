@@ -97,6 +97,7 @@
 </template>
 
 <script>
+import woudcClient from '~/plugins/woudcClient'
 import { unpackageStation } from '~/plugins/unpackage'
 
 import MapInstructions from '~/components/MapInstructions'
@@ -112,6 +113,7 @@ export default {
       abstract: null,
       category: null,
       dataset: null,
+      datasetDoc: null,
       dateFrom: null,
       dateTo: null,
       doi: null,
@@ -152,40 +154,103 @@ export default {
     init() {
       // Future: make an HTTP call to gather dataset info.
       // For now, add some dummy information as an example of the format.
-      this.dataset = 'TotalOzone'
-      this.level = 1
+      const cond = 1
+      if (cond) {
+        this.dataset = this.$route.params.id
+        console.log(this.dataset)
+        this.getUri()
+      } else {
+        this.dataset = 'TotalOzone'
+        this.level = 1
+        this.getDatasetInfo()
+        this.title = 'TotalOzone - Daily Observations'
+        this.abstract =
+          'A measurement of the total amount of atmospheric ozone in a given column from the surface to the edge of the atmosphere. Ground based instruments such as spectrophotometers and ozonemeters are used to measure results daily.'
+        this.uri =
+          'https://geo.woudc.org/def/data/ozone/total-column-ozone/totalozone'
+        this.doi = '10.14287/10000004'
 
-      this.title = 'TotalOzone - Daily Observations'
-      this.abstract =
-        'A measurement of the total amount of atmospheric ozone in a given column from the surface to the edge of the atmosphere. Ground based instruments such as spectrophotometers and ozonemeters are used to measure results daily.'
-      this.uri =
-        'https://geo.woudc.org/def/data/ozone/total-column-ozone/totalozone'
-      this.doi = '10.14287/10000004'
+        this.category = 'climatologyMeteorologyAtmosphere'
+        this.keywords = [
+          'total',
+          'ozone',
+          'level 1.0',
+          'level 2.0',
+          'column',
+          'dobson',
+          'brewer',
+          'saoz',
+          'vassey',
+          'pion',
+          'microtops',
+          'spectral',
+          'hoelper',
+          'filter',
+          'atmosphericComposition',
+          'pollution',
+          'observationPlatform',
+          'rocketSounding'
+        ]
 
-      this.category = 'climatologyMeteorologyAtmosphere'
-      this.keywords = [
-        'total',
-        'ozone',
-        'level 1.0',
-        'level 2.0',
-        'column',
-        'dobson',
-        'brewer',
-        'saoz',
-        'vassey',
-        'pion',
-        'microtops',
-        'spectral',
-        'hoelper',
-        'filter',
-        'atmosphericComposition',
-        'pollution',
-        'observationPlatform',
-        'rocketSounding'
-      ]
-
-      this.dateFrom = '1924-08-18'
-      this.dateTo = 'now'
+        this.dateFrom = '1924-08-18'
+        this.dateTo = 'now'
+      }
+    },
+    setUri() {
+      switch (this.dataset) {
+      case 'totalozone':
+        this.uri =
+            'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/ozone/total-column-ozone/totalozone'
+        break
+      case 'ozonesonde':
+        this.uri =
+            'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/ozone/vertical-ozone-profile/ozonesonde'
+        break
+      case 'Lidar':
+        this.uri =
+            'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/ozone/vertical-ozone-profile/lidar'
+        break
+      case 'Rocketsonde':
+        this.uri =
+            'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/ozone/vertical-ozone-profile/rocketsonde'
+        break
+      case 'Umkehr1':
+        this.uri = 'h'
+        break
+      case 'Umkehr2':
+        this.uri = 'g'
+        break
+      case 'Broadband':
+        this.uri =
+            'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/uv-radiation/uv-irradiance/broadband'
+        break
+      case 'Multiband':
+        this.uri =
+            'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/uv-radiation/uv-irradiance/multiband'
+        break
+      case 'Spectral':
+        this.uri =
+            'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/uv-radiation/uv-irradiance/spectral'
+        break
+      }
+    },
+    async getDatasetInfo() {
+      const response = await woudcClient.get(
+        'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/ozone/vertical-ozone-profile/ozonesonde',
+        {
+          headers: {
+            'Accept-Encoding': 'gzip'
+          }
+        }
+      )
+      this.datasetDoc = new DOMParser().parseFromString(
+        response.data,
+        'text/xml'
+      )
+      console.log(this.datasetDoc)
+      const abstract = this.datasetDoc.all[8].firstChild.data
+      console.log(abstract)
+      this.abstract = abstract
     },
     stationText(station) {
       if (station.gaw_id === null) {
