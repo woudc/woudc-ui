@@ -5,19 +5,19 @@ const PROCESS_DISTINCT = '/woudc-data-registry-select-distinct'
 const PROCESS_METRICS = '/woudc-data-registry-metrics'
 const PROCESS_EXPLORE = '/woudc-data-registry-explore'
 
-const getDistinct = (baseURL, queryParams) =>
+const getDistinct = (WOUDC_UI_BASE_URL, queryParams) =>
   woudcClient.post(
-    baseURL + END_POINT_PROCESSES + PROCESS_DISTINCT + '/jobs',
+    WOUDC_UI_BASE_URL + END_POINT_PROCESSES + PROCESS_DISTINCT + '/jobs',
     queryParams
   )
-const getMetrics = (baseURL, queryParams) =>
+const getMetrics = (WOUDC_UI_BASE_URL, queryParams) =>
   woudcClient.post(
-    baseURL + END_POINT_PROCESSES + PROCESS_METRICS + '/jobs',
+    WOUDC_UI_BASE_URL + END_POINT_PROCESSES + PROCESS_METRICS + '/jobs',
     queryParams
   )
-const getExplore = (baseURL, queryParams) =>
+const getExplore = (WOUDC_UI_BASE_URL, queryParams) =>
   woudcClient.post(
-    baseURL + END_POINT_PROCESSES + PROCESS_EXPLORE + '/jobs',
+    WOUDC_UI_BASE_URL + END_POINT_PROCESSES + PROCESS_EXPLORE + '/jobs',
     queryParams
   )
 

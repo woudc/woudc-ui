@@ -31,7 +31,7 @@ export default {
       wmoURLs: {
         gawsis: 'https://gawsis.meteoswiss.ch/',
         oscar: 'https://www.wmo-sat.info/oscar/',
-        projects: this.$config.wafURL + '/Projects-Campaigns',
+        projects: this.$config.WOUDC_UI_WAF_URL + '/Projects-Campaigns',
         'wdc-aerosol': 'https://www.gaw-wdca.org/',
         'wdc-ghg': 'https://gaw.kishou.go.jp/',
         'wdc-precip': 'http://wdcpc.org/',

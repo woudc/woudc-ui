@@ -57,7 +57,7 @@ export default {
   data() {
     return {
       privacyActURL: 'https://laws-lois.justice.gc.ca/eng/acts/P-21/index.html',
-      woudcEmail: this.$config.emailAddress
+      woudcEmail: this.$config.WOUDC_UI_EMAIL_ADDRESS
     }
   },
   head() {

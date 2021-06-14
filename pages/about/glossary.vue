@@ -26,8 +26,8 @@
               </a>
             </template>
             <template v-slot:waf>
-              <a :href="wafURL" target="_blank">
-                {{ wafURL }}
+              <a :href="WOUDC_UI_WAF_URL" target="_blank">
+                {{ WOUDC_UI_WAF_URL }}
               </a>
             </template>
           </i18n>
@@ -44,7 +44,7 @@ export default {
       carcinogensURL:
         'https://www.wmo.int/pages/prog/dra/etrp/documents/926E.pdf',
       w3URL: 'https://www.w3.org/',
-      wafURL: this.$config.wafURL
+      WOUDC_UI_WAF_URL: this.$config.WOUDC_UI_WAF_URL
     }
   },
   head() {

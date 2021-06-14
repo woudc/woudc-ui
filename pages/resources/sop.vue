@@ -28,7 +28,7 @@ export default {
   data() {
     return {
       linkURLs: {
-        brewer: this.$config.wafURL + '/Documentation/SOP_Documents',
+        brewer: this.$config.WOUDC_UI_WAF_URL + '/Documentation/SOP_Documents',
         dobson:
           'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW183-Dobson-WEB.pdf',
         'ozone-quality':

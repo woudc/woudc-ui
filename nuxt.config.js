@@ -155,11 +155,11 @@ export default {
     ]
   },
   publicRuntimeConfig: {
-    baseURL: process.env.WOUDC_UI_BASE_URL,
-    woudcAPI: process.env.WOUDC_UI_API,
-    emailAddress: process.env.WOUDC_UI_EMAIL_ADDRESS,
-    wafURL: process.env.WOUDC_UI_WAF_URL,
-    wmoRegionsURL: process.env.WOUDC_UI_WMO_REGIONS_URL,
+    WOUDC_UI_BASE_URL: process.env.WOUDC_UI_BASE_URL,
+    WOUDC_UI_API: process.env.WOUDC_UI_API,
+    WOUDC_UI_EMAIL_ADDRESS: process.env.WOUDC_UI_EMAIL_ADDRESS,
+    WOUDC_UI_WAF_URL: process.env.WOUDC_UI_WAF_URL,
+    WOUDC_UI_WMO_REGIONS_URL: process.env.WOUDC_UI_WMO_REGIONS_URL,
     appBuildYYYY: new Date().getFullYear(),
     appVersion: pkg.version,
     appName: pkg.name,

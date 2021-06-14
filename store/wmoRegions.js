@@ -44,7 +44,7 @@ const actions = {
       return false
     }
 
-    const response = await axios.get(this.$config.wmoRegionsURL)
+    const response = await axios.get(this.$config.WOUDC_UI_WMO_REGIONS_URL)
     const regionShapes = {}
 
     for (const region of response.data.features) {

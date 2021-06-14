@@ -17,7 +17,7 @@
             />
             <a
               v-t="{ path: 'error.error-link-end', locale: 'en' }"
-              :href="$config.baseURL"
+              :href="$config.WOUDC_UI_BASE_URL"
               class="ml-1"
             />
           </div>
@@ -37,7 +37,7 @@
             />
             <a
               v-t="{ path: 'error.error-link-end', locale: 'fr' }"
-              :href="$config.baseURL"
+              :href="$config.WOUDC_UI_BASE_URL"
               class="ml-1"
             />
           </div>
@@ -66,7 +66,7 @@
             />
             <a
               v-t="{ path: 'error.error-link-end', locale: 'en' }"
-              :href="$config.baseURL"
+              :href="$config.WOUDC_UI_BASE_URL"
               class="ml-1"
             />
           </div>
@@ -91,7 +91,7 @@
             />
             <a
               v-t="{ path: 'error.error-link-end', locale: 'fr' }"
-              :href="$config.baseURL"
+              :href="$config.WOUDC_UI_BASE_URL"
               class="ml-1"
             />
           </div>

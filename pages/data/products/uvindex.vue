@@ -254,7 +254,7 @@ export default {
       }
 
       const root =
-        this.$config.wafURL +
+        this.$config.WOUDC_UI_WAF_URL +
         '/products/uv-radiation/uv-irradiance/uv_index_hourly/2.0/'
 
       const stationID = this.selectedStationID
@@ -283,7 +283,7 @@ export default {
     },
     async getObservationTools() {
       const dataRecordsURL =
-        this.$config.woudcAPI + '/collections/data_records/items'
+        this.$config.WOUDC_UI_API + '/collections/data_records/items'
       let queryParams = 'sortby=timestamp_date'
       queryParams += '&platform_id=' + this.selectedStationID
 
@@ -379,7 +379,7 @@ export default {
     },
     async refreshInstruments() {
       const instrumentsURL =
-        this.$config.woudcAPI + '/collections/instruments/items'
+        this.$config.WOUDC_UI_API + '/collections/instruments/items'
       let queryParams = 'sortby=name,serial'
       queryParams += '&station_id=' + this.selectedStationID
 

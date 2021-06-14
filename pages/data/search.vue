@@ -770,7 +770,7 @@ export default {
       this.loadingDataRecords = true
 
       const dataRecordsURL =
-        this.$config.woudcAPI + '/collections/data_records/items'
+        this.$config.WOUDC_UI_API + '/collections/data_records/items'
       let queryParams = 'sortby=-timestamp_date,platform_id,content_category'
 
       const selected = {
@@ -857,7 +857,7 @@ export default {
       }
 
       const queryParams = { inputs }
-      const response = await getMetrics(this.$config.woudcAPI, queryParams)
+      const response = await getMetrics(this.$config.WOUDC_UI_API, queryParams)
 
       const newMetrics = {}
       response.data.outputs.metrics.forEach((metric) => {
@@ -890,7 +890,7 @@ export default {
       }
 
       const queryParams = { inputs }
-      const response = await getExplore(this.$config.woudcAPI, queryParams)
+      const response = await getExplore(this.$config.WOUDC_UI_API, queryParams)
 
       const countries = response.data.outputs.countries.sortby_country_id
       const stations = response.data.outputs.stations.sortby_station_id

@@ -64,14 +64,16 @@ export default {
       },
       relatedLinks: {
         'totalozone-daily-monthly':
-          this.$config.wafURL + '/Summaries/TotalOzone',
+          this.$config.WOUDC_UI_WAF_URL + '/Summaries/TotalOzone',
         'totalozone-satellite-ground':
-          this.$config.wafURL + '/Projects-Campaigns/Ground-Sat_Plots/',
-        umkehr: this.$config.wafURL + '/Summaries/Umkehr',
-        spectral: this.$config.wafURL + '/Summaries/Spectral_UV',
-        'ozone-zonal': this.$config.wafURL + '/Projects-Campaigns/ZonalMeans',
+          this.$config.WOUDC_UI_WAF_URL +
+          '/Projects-Campaigns/Ground-Sat_Plots/',
+        umkehr: this.$config.WOUDC_UI_WAF_URL + '/Summaries/Umkehr',
+        spectral: this.$config.WOUDC_UI_WAF_URL + '/Summaries/Spectral_UV',
+        'ozone-zonal':
+          this.$config.WOUDC_UI_WAF_URL + '/Projects-Campaigns/ZonalMeans',
         tost:
-          this.$config.wafURL +
+          this.$config.WOUDC_UI_WAF_URL +
           '/products/ozone/vertical-ozone-profile/ozonesonde/1.0/tost'
       },
       summariesLinks: {

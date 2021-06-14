@@ -186,7 +186,7 @@ export default {
   },
   async validate({ params, $config }) {
     const woudcID = params.id
-    const url = $config.woudcAPI + '/collections/stations/items'
+    const url = $config.WOUDC_UI_API + '/collections/stations/items'
 
     let found = true
     await woudcClient.get(url + '/' + woudcID).catch(() => {
@@ -382,7 +382,7 @@ export default {
         }
       }
       const queryParams = { inputs }
-      const response = await getMetrics(this.$config.woudcAPI, queryParams)
+      const response = await getMetrics(this.$config.WOUDC_UI_API, queryParams)
 
       const newMetrics = {}
       response.data.outputs.metrics.forEach((metric) => {
@@ -413,9 +413,9 @@ export default {
       this.selectedStation = station
 
       const instrumentsURL =
-        this.$config.woudcAPI + '/collections/instruments/items'
+        this.$config.WOUDC_UI_API + '/collections/instruments/items'
       const deploymentsURL =
-        this.$config.woudcAPI + '/collections/deployments/items'
+        this.$config.WOUDC_UI_API + '/collections/deployments/items'
 
       let queryParams = 'station_id=' + woudcID + '&sortby=contributor'
       const deploymentsResponse = await woudcClient.get(

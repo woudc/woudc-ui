@@ -98,7 +98,7 @@ export default {
   },
   async validate({ params, $config }) {
     const acronym = params.id
-    const url = $config.woudcAPI + '/collections/contributors/items'
+    const url = $config.WOUDC_UI_API + '/collections/contributors/items'
 
     const queryParams = 'acronym=' + acronym
     let found = true
@@ -174,7 +174,7 @@ export default {
       const contributors = contributorMapFunc(acronym).map(unpackageContributor)
 
       const deploymentsURL =
-        this.$config.woudcAPI + '/collections/deployments/items'
+        this.$config.WOUDC_UI_API + '/collections/deployments/items'
       const queryParams = 'contributor=' + acronym + '&sortby=station_id'
 
       const deploymentsResponse = await woudcClient.get(

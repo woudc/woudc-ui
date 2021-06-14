@@ -57,7 +57,7 @@
           <strong>{{ $t('data.info.descriptors.links') }}</strong>
           <ul>
             <li>
-              <a :href="wafURL" target="_blank">{{
+              <a :href="WOUDC_UI_WAF_URL" target="_blank">{{
                 $t('data.info.links.waf')
               }}</a>
             </li>
@@ -127,9 +127,9 @@ export default {
     doiURL() {
       return `http://dx.doi.org/${this.doi}`
     },
-    wafURL() {
+    WOUDC_UI_WAF_URL() {
       const archivePath = '/Archive-NewFormat'
-      return `${this.$config.baseURL}${archivePath}/${this.dataset}_${this.level}.0_1`
+      return `${this.$config.WOUDC_UI_BASE_URL}${archivePath}/${this.dataset}_${this.level}.0_1`
     },
     wfsURL() {
       return 'TODO'
