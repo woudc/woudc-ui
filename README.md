@@ -6,8 +6,8 @@
 
 - Install NodeJS
 - Create a **copy** of the `.env.sample` file and **rename** to `.env`
-  - `BASE_URL` should be the domain name of your app
-  - `ROUTER_BASE` The base URL of the app. For example, if the entire single page application is served under `/app/`, then base should use the value `'/app/'`
+  - `WOUDC_UI_BASE_URL` should be the domain name of your app
+  - `WOUDC_UI_ROUTER_BASE` The base URL of the app. For example, if the entire single page application is served under `/app/`, then base should use the value `'/app/'`
 
 ``` bash
 # install dependencies

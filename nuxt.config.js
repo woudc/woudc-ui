@@ -5,7 +5,7 @@ import pkg from './package.json'
 
 export default {
   router: {
-    base: process.env.ROUTER_BASE || '/woudc-ui/'
+    base: process.env.WOUDC_UI_ROUTER_BASE || '/woudc-ui/'
   },
   /*
    ** Global headers of the page
@@ -109,7 +109,7 @@ export default {
       useCookie: true,
       cookieKey: 'woudc_default_language'
     },
-    baseUrl: process.env.BASE_URL || 'https://woudc.org'
+    baseUrl: process.env.WOUDC_UI_BASE_URL || 'https://woudc.org'
   },
   /*
    ** Build configuration
@@ -155,11 +155,11 @@ export default {
     ]
   },
   publicRuntimeConfig: {
-    baseURL: process.env.BASE_URL,
-    woudcAPI: process.env.WOUDC_API,
-    emailAddress: process.env.EMAIL_ADDRESS,
-    wafURL: process.env.WAF_URL,
-    wmoRegionsURL: process.env.WMO_REGIONS_URL,
+    baseURL: process.env.WOUDC_UI_BASE_URL,
+    woudcAPI: process.env.WOUDC_UI_API,
+    emailAddress: process.env.WOUDC_UI_EMAIL_ADDRESS,
+    wafURL: process.env.WOUDC_UI_WAF_URL,
+    wmoRegionsURL: process.env.WOUDC_UI_WMO_REGIONS_URL,
     appBuildYYYY: new Date().getFullYear(),
     appVersion: pkg.version,
     appName: pkg.name,
