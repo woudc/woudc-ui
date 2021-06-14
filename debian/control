@@ -4,12 +4,10 @@ Priority: optional
 Maintainer: Kevin Ngai <kevin.ngai@canada.ca>
 Build-Depends: debhelper (>= 9), nodejs (>= 10.13)
 Standards-Version: 3.9.5
-X-Python-Version: >= 3.6
 Vcs-Git: https://github.com/woudc/woudc-ui.git
 
 Package: woudc-ui
 Architecture: all
-#Depends: TODO
 Homepage: https://woudc.org
 Description: woudc.org website 
  WOUDC web application which powers https://woudc.org as part of the WMO
