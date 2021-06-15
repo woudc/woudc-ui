@@ -102,8 +102,8 @@
       </v-col>
       <v-col cols="12" md="4">
         <h3 class="h2 mt-2 mb-2">{{ $t('home.news.title') }}</h3>
-        <span v-if="loaded">
-          <span v-for="(newsItem, i) in recentNewsItems" :key="i">
+        <div v-if="loaded">
+          <div v-for="(newsItem, i) in recentNewsItems" :key="i">
             <nuxt-link
               :to="
                 localePath('news') +
@@ -116,11 +116,11 @@
             <p>
               {{ newsItem.properties.published_date.slice(0, 10) }}
             </p>
-          </span>
-        </span>
-        <nuxt-link :to="localePath('news')">
-          {{ $t('home.news.more') }}
-        </nuxt-link>
+          </div>
+          <nuxt-link :to="localePath('news')">
+            {{ $t('home.news.more') }}
+          </nuxt-link>
+        </div>
       </v-col>
     </v-row>
   </v-container>
