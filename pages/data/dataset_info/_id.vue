@@ -56,7 +56,7 @@
         <div>
           <strong>{{ $t('data.info.descriptors.links') }}</strong>
           <ul>
-            <li>
+            <li v-if="wafDataset">
               <a :href="WOUDC_UI_WAF_URL" target="_blank">{{
                 $t('data.info.links.waf')
               }}</a>
@@ -122,7 +122,8 @@ export default {
       loadingMap: true,
       stations: [],
       title: null,
-      uri: null
+      uri: null,
+      wafDataset: null
     }
   },
   computed: {
@@ -130,14 +131,14 @@ export default {
       return `http://dx.doi.org/${this.doi}`
     },
     WOUDC_UI_WAF_URL() {
-      const archivePath = '/Archive-NewFormat'
-      return `${this.$config.WOUDC_UI_BASE_URL}${archivePath}/${this.dataset}_${this.level}.0_1`
+      const archivePath = 'https://woudc.org/archive/Archive-NewFormat'
+      return `${archivePath}/${this.wafDataset}_${this.level}.0_1`
     },
     wfsURL() {
-      return 'TODO'
+      return 'https://www.ogc.org/standards/wfs'
     },
     wmsURL() {
-      return 'TODO'
+      return 'https://www.ogc.org/standards/wms'
     }
   },
   created() {
@@ -151,18 +152,35 @@ export default {
     })
   },
   methods: {
-    init() {
+    async init() {
       // Future: make an HTTP call to gather dataset info.
       // For now, add some dummy information as an example of the format.
       const cond = 1
       if (cond) {
         this.dataset = this.$route.params.id
-        console.log(this.dataset)
-        this.getUri()
+        this.setUri()
+        await this.getDatasetInfo()
+        if (this.$i18n.locale === 'en') {
+          this.title = this.datasetDoc.all[6].firstChild.data
+          this.abstract = this.datasetDoc.all[8].firstChild.data
+          for (let i = 10; i < this.datasetDoc.all.length - 6; i = i + 2) {
+            this.keywords.push(this.datasetDoc.all[i].firstChild.data)
+          }
+        } else {
+          this.title = this.datasetDoc.all[7].firstChild.data
+          this.abstract = this.datasetDoc.all[9].firstChild.data
+          for (let i = 11; i < this.datasetDoc.all.length - 5; i = i + 2) {
+            this.keywords.push(this.datasetDoc.all[i].firstChild.data)
+          }
+        }
+        this.doi = this.datasetDoc.all[3].attributes[1].nodeValue.substr(18)
+        this.level = 1
+        this.category = 'climatologyMeteorologyAtmosphere'
+        this.dateFrom = '1924-08-18'
+        this.dateTo = 'now'
       } else {
         this.dataset = 'TotalOzone'
         this.level = 1
-        this.getDatasetInfo()
         this.title = 'TotalOzone - Daily Observations'
         this.abstract =
           'A measurement of the total amount of atmospheric ozone in a given column from the surface to the edge of the atmosphere. Ground based instruments such as spectrophotometers and ozonemeters are used to measure results daily.'
@@ -197,60 +215,63 @@ export default {
       }
     },
     setUri() {
-      switch (this.dataset) {
-      case 'totalozone':
+      if (this.dataset === 'totalozone') {
+        this.wafDataset = 'TotalOzone'
         this.uri =
-            'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/ozone/total-column-ozone/totalozone'
-        break
-      case 'ozonesonde':
+          'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/ozone/total-column-ozone/totalozone'
+      } else if (this.dataset === 'totalozoneobs') {
+        this.wafDataset = 'TotalOzoneObs'
         this.uri =
-            'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/ozone/vertical-ozone-profile/ozonesonde'
-        break
-      case 'Lidar':
+          'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/ozone/total-column-ozone/totalozoneobs'
+      } else if (this.dataset === 'ozonesonde') {
+        this.wafDataset = 'OzoneSonde'
         this.uri =
-            'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/ozone/vertical-ozone-profile/lidar'
-        break
-      case 'Rocketsonde':
+          'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/ozone/vertical-ozone-profile/ozonesonde'
+      } else if (this.dataset === 'lidar') {
+        this.wafDataset = 'Lidar'
         this.uri =
-            'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/ozone/vertical-ozone-profile/rocketsonde'
-        break
-      case 'Umkehr1':
-        this.uri = 'h'
-        break
-      case 'Umkehr2':
-        this.uri = 'g'
-        break
-      case 'Broadband':
+          'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/ozone/vertical-ozone-profile/lidar'
+      } else if (this.dataset === 'rocketsonde') {
+        this.wafDataset = 'RocketSonde'
         this.uri =
-            'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/uv-radiation/uv-irradiance/broadband'
-        break
-      case 'Multiband':
+          'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/ozone/vertical-ozone-profile/rocketsonde'
+      } else if (this.dataset === 'umkehr1') {
+        this.wafDataset = 'UmkehrN14'
         this.uri =
-            'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/uv-radiation/uv-irradiance/multiband'
-        break
-      case 'Spectral':
+          'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/ozone/vertical-ozone-profile/umkehrn14'
+      } else if (this.dataset === 'umkehr2') {
+        this.wafDataset = 'UmkehrN14'
         this.uri =
-            'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/uv-radiation/uv-irradiance/spectral'
-        break
+          'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/ozone/vertical-ozone-profile/umkehrn14'
+      } else if (this.dataset === 'broadband') {
+        this.wafDataset = 'Broad-band'
+        this.uri =
+          'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/uv-radiation/uv-irradiance/broadband'
+      } else if (this.dataset === 'multiband') {
+        this.wafDataset = 'Multi-band'
+        this.uri =
+          'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/uv-radiation/uv-irradiance/multiband'
+      } else if (this.dataset === 'spectral') {
+        this.wafDataset = 'Spectral'
+        this.uri =
+          'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/uv-radiation/uv-irradiance/spectral'
+      } else if (this.dataset === 'uvindex') {
+        this.wafDataset = null
+        this.uri =
+          'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/uv-radiation/uv-irradiance/uv_index_hourly'
       }
     },
     async getDatasetInfo() {
-      const response = await woudcClient.get(
-        'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/ozone/vertical-ozone-profile/ozonesonde',
-        {
-          headers: {
-            'Accept-Encoding': 'gzip'
-          }
+      const response = await woudcClient.get(this.uri, {
+        headers: {
+          'Accept-Encoding': 'gzip'
         }
-      )
+      })
       this.datasetDoc = new DOMParser().parseFromString(
         response.data,
         'text/xml'
       )
       console.log(this.datasetDoc)
-      const abstract = this.datasetDoc.all[8].firstChild.data
-      console.log(abstract)
-      this.abstract = abstract
     },
     stationText(station) {
       if (station.gaw_id === null) {
