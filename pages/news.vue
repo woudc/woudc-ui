@@ -59,12 +59,13 @@
               {{ keyword }}
             </v-chip>
           </v-card-subtitle>
-          <!-- eslint-disable-next-line vue/no-v-html -->
+          <!-- eslint-disable vue/no-v-html -->
           <v-card-text
             class="pt-3"
             v-html="newsItem.properties[`description_${$i18n.locale}`]"
           >
           </v-card-text>
+          <!-- eslint-enable -->
         </v-card>
       </v-col>
     </v-row>
