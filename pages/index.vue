@@ -100,17 +100,80 @@
           </v-card-actions>
         </v-card>
       </v-col>
+      <v-col cols="12" md="4">
+        <h3 class="h2 mt-2 mb-2">{{ $t('home.news.title') }}</h3>
+        <div v-if="loaded">
+          <div v-for="(newsItem, i) in recentNewsItems" :key="i">
+            <nuxt-link
+              :to="
+                localePath('news') +
+                  '#' +
+                  newsItem.properties.published_date.slice(0, 10)
+              "
+            >
+              {{ newsItem.properties[`title_${$i18n.locale}`] }}
+            </nuxt-link>
+            <p>
+              {{ newsItem.properties.published_date.slice(0, 10) }}
+            </p>
+          </div>
+          <nuxt-link :to="localePath('news')">
+            {{ $t('home.news.more') }}
+          </nuxt-link>
+        </div>
+      </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'Home',
   data() {
     return {
+      loaded: false,
       gawURL: 'http://www.wmo.int/gaw',
       wmoURL: 'http://www.wmo.int'
+    }
+  },
+  computed: {
+    woudcLink() {
+      return (
+        'https://woudc.org/home.php?lang=' +
+        this.$i18n.locale +
+        '/' +
+        this.$t('news.title')
+      )
+    },
+    ...mapState('news', ['newsItems']),
+    recentNewsItems() {
+      const recentNewsItems = this.newsItems.json.features
+        .slice(0)
+        .sort((a, b) =>
+          a.properties.published_date.slice(0, 10) <
+          b.properties.published_date.slice(0, 10)
+            ? 1
+            : -1
+        )
+      return recentNewsItems.slice(0, 3)
+    }
+  },
+  created() {
+    this.loadNewsItems()
+  },
+  methods: {
+    async loadNewsItems() {
+      this.$store.dispatch('news/loadNews').then(() => {
+        this.loaded = true
+      })
+    },
+    prepareContentsLink(key) {
+      return {
+        text: this.$t('data.access.contents.links.' + key),
+        selector: this.contentsSelectors[key],
+        subsections: null
+      }
     }
   },
   head() {
