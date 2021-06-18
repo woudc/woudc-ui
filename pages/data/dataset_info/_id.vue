@@ -97,6 +97,7 @@
 </template>
 
 <script>
+import x2js from 'x2js'
 import woudcClient from '~/plugins/woudcClient'
 import { unpackageStation } from '~/plugins/unpackage'
 
@@ -161,19 +162,18 @@ export default {
         this.setUri()
         await this.getDatasetInfo()
         if (this.$i18n.locale === 'en') {
-          this.title = this.datasetDoc.all[6].firstChild.data
-          this.abstract = this.datasetDoc.all[8].firstChild.data
-          for (let i = 10; i < this.datasetDoc.all.length - 6; i = i + 2) {
-            this.keywords.push(this.datasetDoc.all[i].firstChild.data)
+          this.title = this.datasetDoc.label[0].toString()
+          this.abstract = this.datasetDoc.comment[0].toString()
+          for (let i = 0; i < this.datasetDoc.subject.length; i = i + 2) {
+            this.keywords.push(this.datasetDoc.subject[i].toString())
           }
         } else {
-          this.title = this.datasetDoc.all[7].firstChild.data
-          this.abstract = this.datasetDoc.all[9].firstChild.data
-          for (let i = 11; i < this.datasetDoc.all.length - 5; i = i + 2) {
-            this.keywords.push(this.datasetDoc.all[i].firstChild.data)
+          this.title = this.datasetDoc.label[1].toString()
+          this.abstract = this.datasetDoc.comment[1].toString()
+          for (let i = 1; i < this.datasetDoc.subject.length; i = i + 2) {
+            this.keywords.push(this.datasetDoc.subject[i].toString())
           }
         }
-        this.doi = this.datasetDoc.all[3].attributes[1].nodeValue.substr(18)
         this.level = 1
         this.category = 'climatologyMeteorologyAtmosphere'
         this.dateFrom = '1924-08-18'
@@ -267,11 +267,12 @@ export default {
           'Accept-Encoding': 'gzip'
         }
       })
-      this.datasetDoc = new DOMParser().parseFromString(
-        response.data,
-        'text/xml'
+      const converter = new x2js()
+      const doc = converter.xml2js(response.data)
+      this.datasetDoc = doc.RDF.Page.primaryTopic.Description.sameAs.Description
+      this.doi = doc.RDF.Page.primaryTopic.Description['_rdf:resource'].substr(
+        18
       )
-      console.log(this.datasetDoc)
     },
     stationText(station) {
       if (station.gaw_id === null) {
