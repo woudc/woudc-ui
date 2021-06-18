@@ -154,65 +154,26 @@ export default {
   },
   methods: {
     async init() {
-      // Future: make an HTTP call to gather dataset info.
-      // For now, add some dummy information as an example of the format.
-      const cond = 1
-      if (cond) {
-        this.dataset = this.$route.params.id
-        this.setUri()
-        await this.getDatasetInfo()
-        if (this.$i18n.locale === 'en') {
-          this.title = this.datasetDoc.label[0].toString()
-          this.abstract = this.datasetDoc.comment[0].toString()
-          for (let i = 0; i < this.datasetDoc.subject.length; i = i + 2) {
-            this.keywords.push(this.datasetDoc.subject[i].toString())
-          }
-        } else {
-          this.title = this.datasetDoc.label[1].toString()
-          this.abstract = this.datasetDoc.comment[1].toString()
-          for (let i = 1; i < this.datasetDoc.subject.length; i = i + 2) {
-            this.keywords.push(this.datasetDoc.subject[i].toString())
-          }
+      this.dataset = this.$route.params.id
+      this.setUri()
+      await this.getDatasetInfo()
+      if (this.$i18n.locale === 'en') {
+        this.title = this.datasetDoc.label[0].toString()
+        this.abstract = this.datasetDoc.comment[0].toString()
+        for (let i = 0; i < this.datasetDoc.subject.length; i = i + 2) {
+          this.keywords.push(this.datasetDoc.subject[i].toString())
         }
-        this.level = 1
-        this.category = 'climatologyMeteorologyAtmosphere'
-        this.dateFrom = '1924-08-18'
-        this.dateTo = 'now'
       } else {
-        this.dataset = 'TotalOzone'
-        this.level = 1
-        this.title = 'TotalOzone - Daily Observations'
-        this.abstract =
-          'A measurement of the total amount of atmospheric ozone in a given column from the surface to the edge of the atmosphere. Ground based instruments such as spectrophotometers and ozonemeters are used to measure results daily.'
-        this.uri =
-          'https://geo.woudc.org/def/data/ozone/total-column-ozone/totalozone'
-        this.doi = '10.14287/10000004'
-
-        this.category = 'climatologyMeteorologyAtmosphere'
-        this.keywords = [
-          'total',
-          'ozone',
-          'level 1.0',
-          'level 2.0',
-          'column',
-          'dobson',
-          'brewer',
-          'saoz',
-          'vassey',
-          'pion',
-          'microtops',
-          'spectral',
-          'hoelper',
-          'filter',
-          'atmosphericComposition',
-          'pollution',
-          'observationPlatform',
-          'rocketSounding'
-        ]
-
-        this.dateFrom = '1924-08-18'
-        this.dateTo = 'now'
+        this.title = this.datasetDoc.label[1].toString()
+        this.abstract = this.datasetDoc.comment[1].toString()
+        for (let i = 1; i < this.datasetDoc.subject.length; i = i + 2) {
+          this.keywords.push(this.datasetDoc.subject[i].toString())
+        }
       }
+      this.level = 1
+      this.category = 'climatologyMeteorologyAtmosphere'
+      this.dateFrom = '1924-08-18'
+      this.dateTo = 'now'
     },
     setUri() {
       if (this.dataset === 'totalozone') {
