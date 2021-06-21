@@ -15,7 +15,7 @@
 override_dh_auto_build:
 	cp deploy/default/.env .
 	npm install
-	npm run build
+	npx nuxt generate --dotenv .env
 
 override_dh_install:
 	mkdir -p debian/tmp/web/woudc-ui
