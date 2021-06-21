@@ -528,7 +528,8 @@ export default {
   },
   mounted() {
     Promise.all([
-      this.$store.dispatch('countries/download'),
+      this.$store.dispatch('countries/downloadCountries'),
+      this.$store.dispatch('countries/downloadBounds'),
       this.$store.dispatch('stations/downloadStationsByDataset'),
       this.$store.dispatch('instruments/download')
     ]).then(() => {

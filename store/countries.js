@@ -1,26 +1,10 @@
 import { getDistinct } from '~/plugins/api/wdr.api.processes'
-
-import bounds from '~/static/countries.json'
-
-// Change International Waters country code from XZ to XY
-bounds.XY = bounds.XZ
-delete bounds.XZ
-
-Object.keys(bounds).forEach((countryCode) => {
-  if (bounds[countryCode][1] === null) {
-    bounds[countryCode] = null
-  } else {
-    const [west, south, east, north] = bounds[countryCode][1]
-    bounds[countryCode] = [
-      [south, west],
-      [north, east]
-    ]
-  }
-})
+import axios from 'axios'
 
 const state = () => ({
-  loaded: false,
-  boundaries: bounds,
+  loadedCountries: false,
+  boundaries: {},
+  loadedBoundaries: false,
   countriesList: []
 })
 
@@ -38,13 +22,47 @@ const mutations = {
     state.countriesList = countries
   },
   setLoaded(state) {
-    state.loaded = true
+    state.loadedCountries = true
+  },
+  setLoadedboundaries(state) {
+    state.loadedBoundaries = true
+  },
+  setBoundaries(state, boundaries) {
+    state.boundaries = boundaries
   }
 }
 
 const actions = {
-  async download({ commit, state }) {
-    if (state.loaded) {
+  async downloadBounds({ commit, state }) {
+    if (state.loadedBoundaries) {
+      return false
+    }
+
+    // /static/countries.json
+    const response = await axios.get('/countries.json')
+    let bounds = response.data
+
+    // Change International Waters country code from XZ to XY
+    bounds.XY = bounds.XZ
+    delete bounds.XZ
+
+    Object.keys(bounds).forEach((countryCode) => {
+      if (bounds[countryCode][1] === null) {
+        bounds[countryCode] = null
+      } else {
+        const [west, south, east, north] = bounds[countryCode][1]
+        bounds[countryCode] = [
+          [south, west],
+          [north, east]
+        ]
+      }
+    })
+
+    commit('setBoundaries', bounds)
+    commit('setLoadedboundaries')
+  },
+  async downloadCountries({ commit, state }) {
+    if (state.loadedCountries) {
       return false
     }
 
