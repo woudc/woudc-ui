@@ -56,7 +56,7 @@
         <div>
           <strong>{{ $t('data.info.descriptors.links') }}</strong>
           <ul>
-            <li>
+            <li v-if="wafDataset">
               <a :href="WOUDC_UI_WAF_URL" target="_blank">{{
                 $t('data.info.links.waf')
               }}</a>
@@ -97,6 +97,8 @@
 </template>
 
 <script>
+import x2js from 'x2js'
+import woudcClient from '~/plugins/woudcClient'
 import { unpackageStation } from '~/plugins/unpackage'
 
 import MapInstructions from '~/components/MapInstructions'
@@ -112,6 +114,7 @@ export default {
       abstract: null,
       category: null,
       dataset: null,
+      datasetDoc: null,
       dateFrom: null,
       dateTo: null,
       doi: null,
@@ -120,7 +123,8 @@ export default {
       loadingMap: true,
       stations: [],
       title: null,
-      uri: null
+      uri: null,
+      wafDataset: null
     }
   },
   computed: {
@@ -128,14 +132,20 @@ export default {
       return `http://dx.doi.org/${this.doi}`
     },
     WOUDC_UI_WAF_URL() {
-      const archivePath = '/Archive-NewFormat'
-      return `${this.$config.WOUDC_UI_BASE_URL}${archivePath}/${this.dataset}_${this.level}.0_1`
+      const archivePath = this.$config.WOUDC_UI_WAF_URL + '/Archive-NewFormat'
+      return `${archivePath}/${this.wafDataset}_${this.level}.0_1`
     },
     wfsURL() {
-      return 'TODO'
+      return (
+        this.$config.WOUDC_UI_OWS +
+        '?service=WFS&version=1.1.0&request=GetCapabilities'
+      )
     },
     wmsURL() {
-      return 'TODO'
+      return (
+        this.$config.WOUDC_UI_OWS +
+        '?service=WMS&version=1.3.0&request=GetCapabilities'
+      )
     }
   },
   created() {
@@ -149,43 +159,87 @@ export default {
     })
   },
   methods: {
-    init() {
-      // Future: make an HTTP call to gather dataset info.
-      // For now, add some dummy information as an example of the format.
-      this.dataset = 'TotalOzone'
+    async init() {
+      this.dataset = this.$route.params.id
+      this.setUri()
+      await this.getDatasetInfo()
+      if (this.$i18n.locale === 'en') {
+        this.title = this.datasetDoc.label[0].toString()
+        this.abstract = this.datasetDoc.comment[0].toString()
+        for (let i = 0; i < this.datasetDoc.subject.length; i = i + 2) {
+          this.keywords.push(this.datasetDoc.subject[i].toString())
+        }
+      } else {
+        this.title = this.datasetDoc.label[1].toString()
+        this.abstract = this.datasetDoc.comment[1].toString()
+        for (let i = 1; i < this.datasetDoc.subject.length; i = i + 2) {
+          this.keywords.push(this.datasetDoc.subject[i].toString())
+        }
+      }
       this.level = 1
-
-      this.title = 'TotalOzone - Daily Observations'
-      this.abstract =
-        'A measurement of the total amount of atmospheric ozone in a given column from the surface to the edge of the atmosphere. Ground based instruments such as spectrophotometers and ozonemeters are used to measure results daily.'
-      this.uri =
-        'https://geo.woudc.org/def/data/ozone/total-column-ozone/totalozone'
-      this.doi = '10.14287/10000004'
-
       this.category = 'climatologyMeteorologyAtmosphere'
-      this.keywords = [
-        'total',
-        'ozone',
-        'level 1.0',
-        'level 2.0',
-        'column',
-        'dobson',
-        'brewer',
-        'saoz',
-        'vassey',
-        'pion',
-        'microtops',
-        'spectral',
-        'hoelper',
-        'filter',
-        'atmosphericComposition',
-        'pollution',
-        'observationPlatform',
-        'rocketSounding'
-      ]
-
       this.dateFrom = '1924-08-18'
       this.dateTo = 'now'
+    },
+    setUri() {
+      if (this.dataset === 'totalozone') {
+        this.wafDataset = 'TotalOzone'
+        this.uri =
+          'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/ozone/total-column-ozone/totalozone'
+      } else if (this.dataset === 'totalozoneobs') {
+        this.wafDataset = 'TotalOzoneObs'
+        this.uri =
+          'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/ozone/total-column-ozone/totalozoneobs'
+      } else if (this.dataset === 'ozonesonde') {
+        this.wafDataset = 'OzoneSonde'
+        this.uri =
+          'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/ozone/vertical-ozone-profile/ozonesonde'
+      } else if (this.dataset === 'lidar') {
+        this.wafDataset = 'Lidar'
+        this.uri =
+          'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/ozone/vertical-ozone-profile/lidar'
+      } else if (this.dataset === 'rocketsonde') {
+        this.wafDataset = 'RocketSonde'
+        this.uri =
+          'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/ozone/vertical-ozone-profile/rocketsonde'
+      } else if (this.dataset === 'umkehr1') {
+        this.wafDataset = 'UmkehrN14'
+        this.uri =
+          'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/ozone/vertical-ozone-profile/umkehrn14'
+      } else if (this.dataset === 'umkehr2') {
+        this.wafDataset = 'UmkehrN14'
+        this.uri =
+          'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/ozone/vertical-ozone-profile/umkehrn14'
+      } else if (this.dataset === 'broadband') {
+        this.wafDataset = 'Broad-band'
+        this.uri =
+          'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/uv-radiation/uv-irradiance/broadband'
+      } else if (this.dataset === 'multiband') {
+        this.wafDataset = 'Multi-band'
+        this.uri =
+          'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/uv-radiation/uv-irradiance/multiband'
+      } else if (this.dataset === 'spectral') {
+        this.wafDataset = 'Spectral'
+        this.uri =
+          'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/uv-radiation/uv-irradiance/spectral'
+      } else if (this.dataset === 'uvindex') {
+        this.wafDataset = null
+        this.uri =
+          'https://geo.woudc-dev.cmc.ec.gc.ca/def/data/uv-radiation/uv-irradiance/uv_index_hourly'
+      }
+    },
+    async getDatasetInfo() {
+      const response = await woudcClient.get(this.uri, {
+        headers: {
+          'Accept-Encoding': 'gzip'
+        }
+      })
+      const converter = new x2js()
+      const doc = converter.xml2js(response.data)
+      this.datasetDoc = doc.RDF.Page.primaryTopic.Description.sameAs.Description
+      this.doi = doc.RDF.Page.primaryTopic.Description['_rdf:resource'].substr(
+        18
+      )
     },
     stationText(station) {
       if (station.gaw_id === null) {
