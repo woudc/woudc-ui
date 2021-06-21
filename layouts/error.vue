@@ -103,7 +103,7 @@
 
 <script>
 export default {
-  layout: 'empty',
+  layout: 'error',
   props: {
     error: {
       type: Object,
@@ -124,12 +124,6 @@ export default {
           content: this.$t('error.not-found')
         }
       ]
-    }
-  },
-  nuxtI18n: {
-    paths: {
-      en: '/error',
-      fr: '/erreur'
     }
   }
 }
