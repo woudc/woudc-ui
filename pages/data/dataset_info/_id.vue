@@ -132,14 +132,20 @@ export default {
       return `http://dx.doi.org/${this.doi}`
     },
     WOUDC_UI_WAF_URL() {
-      const archivePath = 'https://woudc.org/archive/Archive-NewFormat'
+      const archivePath = this.$config.WOUDC_UI_WAF_URL + '/Archive-NewFormat'
       return `${archivePath}/${this.wafDataset}_${this.level}.0_1`
     },
     wfsURL() {
-      return 'https://www.ogc.org/standards/wfs'
+      return (
+        this.$config.WOUDC_UI_OWS +
+        '?service=WFS&version=1.1.0&request=GetCapabilities'
+      )
     },
     wmsURL() {
-      return 'https://www.ogc.org/standards/wms'
+      return (
+        this.$config.WOUDC_UI_OWS +
+        '?service=WMS&version=1.3.0&request=GetCapabilities'
+      )
     }
   },
   created() {
