@@ -32,6 +32,7 @@
     "axios": "^0.21.1",
     "chart.js": "^2.9.3",
     "leaflet": "^1.6.0",
+    "material-design-icons-iconfont": "^6.1.0",
     "nuxt": "^2.15.6",
     "nuxt-i18n": "^6.27.0",
     "nuxt-leaflet": "0.0.21",

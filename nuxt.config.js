@@ -32,7 +32,9 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: [
+    './node_modules/material-design-icons-iconfont/dist/material-design-icons.css'
+  ],
   /*
    ** Plugins to load before mounting the App
    */
@@ -56,7 +58,10 @@ export default {
    ** https://github.com/nuxt-community/vuetify-module
    */
   vuetify: {
-    // customVariables: ['~/assets/variables.scss'],
+    defaultAssets: {
+      font: false,
+      icons: 'md'
+    },
     theme: {
       themes: {
         light: {
