@@ -1,7 +1,6 @@
 import colors from 'vuetify/es5/util/colors'
-// import config from "./base.config";
-
 import pkg from './package.json'
+import runtimeConfigs from './static/runtimeConfigs'
 
 export default {
   router: {
@@ -33,7 +32,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['~/css/globals.css'],
+  css: [],
   /*
    ** Plugins to load before mounting the App
    */
@@ -155,12 +154,7 @@ export default {
     ]
   },
   publicRuntimeConfig: {
-    WOUDC_UI_BASE_URL: process.env.WOUDC_UI_BASE_URL,
-    WOUDC_UI_API: process.env.WOUDC_UI_API,
-    WOUDC_UI_EMAIL_ADDRESS: process.env.WOUDC_UI_EMAIL_ADDRESS,
-    WOUDC_UI_WAF_URL: process.env.WOUDC_UI_WAF_URL,
-    WOUDC_UI_WMO_REGIONS_URL: process.env.WOUDC_UI_WMO_REGIONS_URL,
-    WOUDC_UI_OWS_URL: process.env.WOUDC_UI_OWS_URL,
+    ...runtimeConfigs,
     appBuildYYYY: new Date().getFullYear(),
     appVersion: pkg.version,
     appName: pkg.name,
