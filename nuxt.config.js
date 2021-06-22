@@ -44,6 +44,7 @@ export default {
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
     '@nuxtjs/vuetify',
+    '@nuxtjs/google-fonts',
     ['@nuxtjs/dotenv', { filename: '.env' }]
   ],
   /*
@@ -115,6 +116,9 @@ export default {
    */
   ssr: true, // false for SPA mode, true for full static mode
   target: 'static', // static hosting
+  googleFonts: {
+    download: true
+  },
   build: {
     /*
      ** You can extend webpack config here
