@@ -121,7 +121,7 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('error.not-found')
+          content: errorTitle
         }
       ]
     }
@@ -129,8 +129,4 @@ export default {
 }
 </script>
 
-<style scoped>
-h1 {
-  font-size: 20px;
-}
-</style>
+<style scoped></style>
