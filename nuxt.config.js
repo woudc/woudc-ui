@@ -3,7 +3,7 @@ import pkg from './package.json'
 
 export default {
   router: {
-    base: process.env.WOUDC_UI_ROUTER_BASE || '/woudc-ui/'
+    base: process.env.WOUDC_UI_ROUTER_BASE || '/'
   },
   /*
    ** Global headers of the page
