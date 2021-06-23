@@ -81,22 +81,4 @@ export default {
 }
 </script>
 
-<style>
-.v-text-field .v-input__slot {
-  min-height: 0px;
-}
-
-.v-text-field input {
-  margin-top: 8px;
-  margin-bottom: 8px;
-}
-
-.v-text-field .v-text-field__details,
-.v-text-field .v-messages {
-  min-height: 0px;
-}
-
-.v-textarea textarea {
-  padding-top: 4px;
-}
-</style>
+<style></style>
