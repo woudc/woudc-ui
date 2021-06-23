@@ -1,3 +1,9 @@
+woudc-ui (2.0.0-beta2) bionic; urgency=medium
+
+  * Update installation
+
+ -- Tom Kralidis <tom.kralidis@canada.ca>  Wed, 23 Jun 2021 19:26:37 +0000
+
 woudc-ui (2.0.0-beta1) bionic; urgency=medium
 
   * Initial renewal implementation
