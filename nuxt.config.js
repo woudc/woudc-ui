@@ -31,9 +31,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: [
-    './node_modules/material-design-icons-iconfont/dist/material-design-icons.css'
-  ],
+  css: ['@mdi/font/css/materialdesignicons.min.css'],
   /*
    ** Plugins to load before mounting the App
    */
@@ -57,10 +55,7 @@ export default {
    ** https://github.com/nuxt-community/vuetify-module
    */
   vuetify: {
-    defaultAssets: {
-      font: false,
-      icons: 'md'
-    },
+    defaultAssets: false, // defaults to local mdi icons and font
     theme: {
       themes: {
         light: {
@@ -121,7 +116,14 @@ export default {
   ssr: true, // false for SPA mode, true for full static mode
   target: 'static', // static hosting
   googleFonts: {
-    download: true
+    // Vuetify default font:
+    // https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap
+    families: {
+      Roboto: [100, 300, 400, 500, 700, 900]
+    },
+    display: 'swap',
+    download: true,
+    overwriting: true
   },
   build: {
     /*

@@ -92,3 +92,7 @@ sw.*
 # VS Code files
 /*.code-workspace
 /.vscode
+
+# assets build output
+assets/css/*
+assets/fonts/*
