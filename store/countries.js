@@ -39,7 +39,7 @@ const actions = {
     }
 
     // /static/countries.json
-    const response = await axios.get('/countries.json')
+    const response = await axios.get('countries.json')
     let bounds = response.data
 
     // Change International Waters country code from XZ to XY
