@@ -97,7 +97,8 @@
 </template>
 
 <script>
-import x2js from 'x2js'
+import xpath from 'xpath'
+import xmldom from 'xmldom'
 import woudcClient from '~/plugins/woudcClient'
 import { unpackageStation } from '~/plugins/unpackage'
 
@@ -115,10 +116,26 @@ export default {
       category: null,
       dataset: null,
       datasetDoc: null,
+      dataset_id_to_chunk: {
+        ozonesonde: 'ozone/vertical-ozone-profile/ozonesonde',
+        totalozone: 'ozone/total-column-ozone/totalozone',
+        totalozoneobs: 'ozone/total-column-ozone/totalozoneobs',
+        lidar: 'ozone/vertical-ozone-profile/lidar',
+        'umkehrn14-1': 'ozone/vertical-ozone-profile/umkehrn14/1.0',
+        'umkehrn14-2': 'ozone/vertical-ozone-profile/umkehrn14/2.0',
+        broadband: 'uv-radiation/uv-irradiance/broadband',
+        multiband: 'uv-radiation/uv-irradiance/multiband',
+        spectral: 'uv-radiation/uv-irradiance/spectral',
+        uv_index_hourly: 'uv-radiation/uv-irradiance/uv_index_hourly',
+        rocketsonde: 'ozone/vertical-ozone-profile/rocketsonde'
+      },
       dateFrom: null,
       dateTo: null,
       doi: null,
+      downloadContent: '',
+      infoContent: '',
       keywords: [],
+      lay_err: 0,
       level: null,
       loadingMap: true,
       stations: [],
@@ -160,27 +177,34 @@ export default {
   },
   methods: {
     async init() {
-      this.dataset = this.$route.params.id
-      this.setUri()
-      this.getDatasetInfo().then(() => {
-        if (this.$i18n.locale === 'en') {
-          this.title = this.datasetDoc.label[0].toString()
-          this.abstract = this.datasetDoc.comment[0].toString()
-          for (let i = 0; i < this.datasetDoc.subject.length; i = i + 2) {
-            this.keywords.push(this.datasetDoc.subject[i].toString())
-          }
-        } else {
-          this.title = this.datasetDoc.label[1].toString()
-          this.abstract = this.datasetDoc.comment[1].toString()
-          for (let i = 1; i < this.datasetDoc.subject.length; i = i + 2) {
-            this.keywords.push(this.datasetDoc.subject[i].toString())
-          }
+      if (
+        this.dataset === '' ||
+        this.dataset === null ||
+        !this.array_key_exists()
+      ) {
+        this.getDatasetInfo()
+        this.lay_err++
+      } else {
+        const parsed_response = this.getDatasetInfo()
+        this.keywords = ''
+        const datasetCSWUrl = parsed_response['csw_url']
+        this.uriDatasetDef = parsed_response['uri'][0]
+        this.title = parsed_response['title'][0]
+        const datasetTitleLink = this.title + datasetCSWUrl
+        console.log(datasetTitleLink)
+        this.abstract = parsed_response['abstract'][0]
+        let kw = ''
+        for (kw in parsed_response['keywords']) {
+          this.keywords.push(kw)
         }
+        this.doi = parsed_response['doi_id'][0]
+        const datasetDOIURL = parsed_response['doi_url'][0]
+        console.log(datasetDOIURL)
+        this.dateFrom = parsed_response['temporal_begin'][0]
+        this.category = parsed_response['topic_category'][0]
         this.level = 1
-        this.category = 'climatologyMeteorologyAtmosphere'
-        this.dateFrom = '1924-08-18'
-        this.dateTo = 'now'
-      })
+        this.dateTo = parsed_response['temporal_end'][0]
+      }
     },
     setUri() {
       if (this.dataset === 'totalozone') {
@@ -241,17 +265,17 @@ export default {
       }
     },
     async getDatasetInfo() {
+      console.log('q')
       const response = await woudcClient.get(this.uriDatasetDef, {
         headers: {
           'Accept-Encoding': 'gzip'
         }
       })
-      const converter = new x2js()
-      const doc = converter.xml2js(response.data)
-      this.datasetDoc = doc.RDF.Page.primaryTopic.Description.sameAs.Description
-      this.doi = doc.RDF.Page.primaryTopic.Description['_rdf:resource'].substr(
-        18
-      )
+      console.log(response)
+      const r = []
+      const doc = new xmldom().parseFromString(response)
+      r['doi_id'] = xpath.select('//gmd:MD_Identifier//gmx:Anchor', doc)
+      console.log(r)
     },
     stationText(station) {
       if (station.gaw_id === null) {

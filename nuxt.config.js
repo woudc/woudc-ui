@@ -170,6 +170,7 @@ export default {
     WOUDC_UI_WAF_URL: process.env.WOUDC_UI_WAF_URL,
     WOUDC_UI_WMO_REGIONS_URL: process.env.WOUDC_UI_WMO_REGIONS_URL,
     WOUDC_UI_OWS_URL: process.env.WOUDC_UI_OWS_URL,
+    WOUDC_UI_CSW_URL: process.env.WOUDC_UI_CSW_URL,
     appBuildYYYY: new Date().getFullYear(),
     appVersion: pkg.version,
     appName: pkg.name,
