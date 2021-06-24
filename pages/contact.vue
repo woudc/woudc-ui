@@ -25,6 +25,7 @@
                 <i
                   ><a :href="privacyActURL" target="_blank">
                     {{ $t('common.privacy-act') }}
+                    <v-icon small>mdi-open-in-new</v-icon>
                   </a></i
                 >
               </template>
@@ -33,18 +34,20 @@
         </v-card>
         <div id="other-contacts">
           <h2>{{ $t('contact.other-channels') }}</h2>
-          <h4>{{ $t('contact.by-email') }}</h4>
-          <a :href="`mailto:${woudcEmail}`">
-            {{ woudcEmail }}
-          </a>
-          <div
-            v-for="(lines, header) in $t('contact.contact-methods')"
-            :key="header"
-          >
-            <h4>{{ header }}:</h4>
-            <div v-for="(line, index) in lines" :key="index">
-              {{ line }}
-            </div>
+          <div>
+            <h3>{{ $t('contact.by-email') }}</h3>
+            <a :href="`mailto:${$config.WOUDC_UI_EMAIL_ADDRESS}`">
+              {{ $config.WOUDC_UI_EMAIL_ADDRESS }}
+            </a>
+          </div>
+          <div>
+            <h3>{{ $t('contact.by-mail') }}</h3>
+            <div v-text="$t('common.woudcFull')"></div>
+            <div v-text="$t('contact.mail-address.msc')"></div>
+            <div v-text="$t('contact.mail-address.eccc')"></div>
+            <div v-text="$t('contact.mail-address.street')"></div>
+            <div v-text="$t('contact.mail-address.city-prov-postcode')"></div>
+            <div v-text="$t('contact.mail-address.country')"></div>
           </div>
         </div>
       </v-col>
@@ -56,8 +59,7 @@
 export default {
   data() {
     return {
-      privacyActURL: 'https://laws-lois.justice.gc.ca/eng/acts/P-21/index.html',
-      woudcEmail: this.$config.WOUDC_UI_EMAIL_ADDRESS
+      privacyActURL: 'https://laws-lois.justice.gc.ca/eng/acts/P-21/index.html'
     }
   },
   head() {
