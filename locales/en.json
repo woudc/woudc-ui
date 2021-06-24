@@ -12,7 +12,6 @@
 					"examples": "Examples",
 					"iso": "ISO Codelist Catalogue",
 					"search": "Data Search / Download",
-					"waf": "Web Accessible Folder (WAF)",
 					"web": "Web Services",
 					"wfs": "Web Feature Service (WFS)",
 					"wms": "Web Map Service (WMS)",
@@ -72,17 +71,6 @@
 				"title": "Data Search / Download"
 			},
 			"title": "Data Access",
-			"waf": {
-				"blurb": {
-					"body-files": "Static dataset {summary} are also available on the WAF in CSV format with ZIP compression. These archive files are updated on a daily basis and provide users the option to download an entire dataset in CSV format.",
-					"body-howto": "Please consult the {how-to} for detailed information.",
-					"body-intro": "The entire archive of contributed data files in Extended CSV format is made available at {waf} for users to browse, download or integrate into their workflows.",
-					"how-to": ""
-				},
-				"how-to": "WAF How To",
-				"summary": "archive files",
-				"title": "Web Accessible Folder (WAF)"
-			},
 			"web": {
 				"blurb": {
 					"body-intro": "In addition to traditional data access mechanisms, WOUDC has made the archive available using geospatial web services adhering to publically available international standards. Web services are systems designed to support machine to machine interaction over a network, and are typically utilized in a client/server computing environment made available through programmatic access, associated tools and applications.",
@@ -670,8 +658,7 @@
 			"blurb-intro": "WOUDC adheres to open standards which enable interoperability (discovery, access, visualization). Standards play an important role in {interoperability} as part of the {wis} and are supported by numerous off the shelf open source or commercial tools.",
 			"headers": {
 				"formats": "Format/Encoding",
-				"resource": "Resources",
-				"resources": "",
+				"resource": "Resource",
 				"services": "Service/API"
 			},
 			"links": {
@@ -964,8 +951,7 @@
 				"blurb": {
 					"body-files": "Static dataset {summary} are also available on the WAF in CSV format with ZIP compression. These archive files are updated on a daily basis and provide users the option to download an entire dataset in CSV format.",
 					"body-howto": "Please consult the {how-to} for detailed information.",
-					"body-intro": "The entire archive of contributed data files in Extended CSV format is made available at {waf} for users to browse, download or integrate into their workflows.",
-					"how-to": ""
+					"body-intro": "The entire archive of contributed data files in Extended CSV format is made available at {waf} for users to browse, download or integrate into their workflows."
 				},
 				"how-to": "WAF How To",
 				"summary": "archive files",

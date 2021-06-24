@@ -115,7 +115,7 @@
           <h2>{{ $t('data.access.waf.title') }}</h2>
           <i18n path="data.access.waf.blurb.body-intro" tag="p">
             <template v-slot:waf>
-              <a :href="WOUDC_UI_WAF_URL" target="_blank">
+              <a :href="$config.WOUDC_UI_WAF_URL" target="_blank">
                 {{ $t('common.wafFull') }}
               </a>
             </template>
@@ -346,31 +346,26 @@
 export default {
   data() {
     return {
-      cswURL:
-        'https://geo.woudc.org/csw?service=CSW&version=2.0.2&request=GetCapabilities',
-      definitionsURL: 'https://geo.woudc.org/def',
+      cswURL: `${this.$config.WOUDC_UI_OWS_URL}/csw?service=CSW&version=2.0.2&request=GetCapabilities`,
+      definitionsURL: `${this.$config.WOUDC_UI_OWS_URL}/def`,
       githubURL: 'https://github.com/woudc',
       interoperabilityURL:
         'https://www.wmo.int/pages/prog/www/WIS/documents/MOAWMO_OGC.pdf',
-      isoAPIURL: 'https://geo.woudc.org/codelists.xml',
+      isoAPIURL: `${this.$config.WOUDC_UI_OWS_URL}/codelists.xml`,
       isoURL: 'https://www.isotc211.org/',
       isoServicesURL: 'https://github.com/woudc/woudc/wiki/WebServicesHowto',
       ogcStandardsURL: 'https://opengeospatial.org/standards/cat',
       ogcURL: 'https://opengeospatial.org/',
       searchHelpURL:
         'https://github.com/woudc/woudc/wiki/DataSearchDownloadHowto',
-      WOUDC_UI_WAF_URL: this.$config.WOUDC_UI_WAF_URL,
       wafGuideURL: 'https://github.com/woudc/woudc/wiki/WAFHowto',
-      wafSummaryURL: 'https://woudc.org/archive/Summaries/dataset-snapshots',
-      wfsAPIURL:
-        'https://geo.woudc.org/ows?service=WFS&version=1.1.0&request=GetCapabilities',
+      wafSummaryURL: `${this.$config.WOUDC_UI_WAF_URL}/Summaries/dataset-snapshots`,
+      wfsAPIURL: `${this.$config.WOUDC_UI_OWS_URL}/ows?service=WFS&version=1.1.0&request=GetCapabilities`,
       wfsURL: 'https://www.opengeospatial.org/standards/wfs',
       wisURL: 'https://www.wmo.int/pages/prog/www/WIS/',
-      wmsAPIURL:
-        'https://geo.woudc.org/ows?service=WMS&version=1.3.0&request=GetCapabilities',
+      wmsAPIURL: `${this.$config.WOUDC_UI_OWS_URL}/ows?service=WMS&version=1.3.0&request=GetCapabilities`,
       wmsURL: 'https://www.opengeospatial.org/standards/wms',
-      wpsAPIURL:
-        'https://geo.woudc.org/wps?service=WPS&version=1.0.0&request=GetCapabilities',
+      wpsAPIURL: `${this.$config.WOUDC_UI_OWS_URL}/wps?service=WPS&version=1.0.0&request=GetCapabilities`,
       wpsURL: 'https://www.opengeospatial.org/standards/wps',
       contentsSelectors: {
         csw: 'csw-subsection',

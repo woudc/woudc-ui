@@ -153,23 +153,6 @@
                                                 </translations>
                                             </concept_node>
                                             <concept_node>
-                                                <name>waf</name>
-                                                <definition_loaded>false</definition_loaded>
-                                                <description/>
-                                                <comment/>
-                                                <default_text/>
-                                                <translations>
-                                                    <translation>
-                                                        <language>fr-CA</language>
-                                                        <approved>false</approved>
-                                                    </translation>
-                                                    <translation>
-                                                        <language>en-CA</language>
-                                                        <approved>false</approved>
-                                                    </translation>
-                                                </translations>
-                                            </concept_node>
-                                            <concept_node>
                                                 <name>web</name>
                                                 <definition_loaded>false</definition_loaded>
                                                 <description/>
@@ -794,135 +777,6 @@
                                     </translation>
                                 </translations>
                             </concept_node>
-                            <folder_node>
-                                <name>waf</name>
-                                <children>
-                                    <folder_node>
-                                        <name>blurb</name>
-                                        <children>
-                                            <concept_node>
-                                                <name>body-files</name>
-                                                <definition_loaded>false</definition_loaded>
-                                                <description/>
-                                                <comment/>
-                                                <default_text/>
-                                                <translations>
-                                                    <translation>
-                                                        <language>fr-CA</language>
-                                                        <approved>false</approved>
-                                                    </translation>
-                                                    <translation>
-                                                        <language>en-CA</language>
-                                                        <approved>false</approved>
-                                                    </translation>
-                                                </translations>
-                                            </concept_node>
-                                            <concept_node>
-                                                <name>body-howto</name>
-                                                <definition_loaded>false</definition_loaded>
-                                                <description/>
-                                                <comment/>
-                                                <default_text/>
-                                                <translations>
-                                                    <translation>
-                                                        <language>fr-CA</language>
-                                                        <approved>false</approved>
-                                                    </translation>
-                                                    <translation>
-                                                        <language>en-CA</language>
-                                                        <approved>false</approved>
-                                                    </translation>
-                                                </translations>
-                                            </concept_node>
-                                            <concept_node>
-                                                <name>body-intro</name>
-                                                <definition_loaded>false</definition_loaded>
-                                                <description/>
-                                                <comment/>
-                                                <default_text/>
-                                                <translations>
-                                                    <translation>
-                                                        <language>fr-CA</language>
-                                                        <approved>false</approved>
-                                                    </translation>
-                                                    <translation>
-                                                        <language>en-CA</language>
-                                                        <approved>false</approved>
-                                                    </translation>
-                                                </translations>
-                                            </concept_node>
-                                            <concept_node>
-                                                <name>how-to</name>
-                                                <definition_loaded>false</definition_loaded>
-                                                <description/>
-                                                <comment/>
-                                                <default_text/>
-                                                <translations>
-                                                    <translation>
-                                                        <language>fr-CA</language>
-                                                        <approved>false</approved>
-                                                    </translation>
-                                                    <translation>
-                                                        <language>en-CA</language>
-                                                        <approved>false</approved>
-                                                    </translation>
-                                                </translations>
-                                            </concept_node>
-                                        </children>
-                                    </folder_node>
-                                    <concept_node>
-                                        <name>how-to</name>
-                                        <definition_loaded>false</definition_loaded>
-                                        <description/>
-                                        <comment/>
-                                        <default_text/>
-                                        <translations>
-                                            <translation>
-                                                <language>fr-CA</language>
-                                                <approved>false</approved>
-                                            </translation>
-                                            <translation>
-                                                <language>en-CA</language>
-                                                <approved>false</approved>
-                                            </translation>
-                                        </translations>
-                                    </concept_node>
-                                    <concept_node>
-                                        <name>summary</name>
-                                        <definition_loaded>false</definition_loaded>
-                                        <description/>
-                                        <comment/>
-                                        <default_text/>
-                                        <translations>
-                                            <translation>
-                                                <language>fr-CA</language>
-                                                <approved>false</approved>
-                                            </translation>
-                                            <translation>
-                                                <language>en-CA</language>
-                                                <approved>false</approved>
-                                            </translation>
-                                        </translations>
-                                    </concept_node>
-                                    <concept_node>
-                                        <name>title</name>
-                                        <definition_loaded>false</definition_loaded>
-                                        <description/>
-                                        <comment/>
-                                        <default_text/>
-                                        <translations>
-                                            <translation>
-                                                <language>fr-CA</language>
-                                                <approved>false</approved>
-                                            </translation>
-                                            <translation>
-                                                <language>en-CA</language>
-                                                <approved>false</approved>
-                                            </translation>
-                                        </translations>
-                                    </concept_node>
-                                </children>
-                            </folder_node>
                             <folder_node>
                                 <name>web</name>
                                 <children>
@@ -6846,23 +6700,6 @@
                                         </translations>
                                     </concept_node>
                                     <concept_node>
-                                        <name>resources</name>
-                                        <definition_loaded>false</definition_loaded>
-                                        <description/>
-                                        <comment/>
-                                        <default_text/>
-                                        <translations>
-                                            <translation>
-                                                <language>fr-CA</language>
-                                                <approved>false</approved>
-                                            </translation>
-                                            <translation>
-                                                <language>en-CA</language>
-                                                <approved>false</approved>
-                                            </translation>
-                                        </translations>
-                                    </concept_node>
-                                    <concept_node>
                                         <name>services</name>
                                         <definition_loaded>false</definition_loaded>
                                         <description/>
@@ -10727,30 +10564,13 @@
                                                     </translation>
                                                 </translations>
                                             </concept_node>
-                                            <concept_node>
-                                                <name>how-to</name>
-                                                <definition_loaded>false</definition_loaded>
-                                                <description/>
-                                                <comment/>
-                                                <default_text/>
-                                                <translations>
-                                                    <translation>
-                                                        <language>en-CA</language>
-                                                        <approved>false</approved>
-                                                    </translation>
-                                                    <translation>
-                                                        <language>fr-CA</language>
-                                                        <approved>false</approved>
-                                                    </translation>
-                                                </translations>
-                                            </concept_node>
                                         </children>
                                     </folder_node>
                                     <concept_node>
                                         <name>how-to</name>
                                         <definition_loaded>false</definition_loaded>
                                         <description/>
-                                        <comment/>
+                                        <comment>Template for data.access.waf.blurb.body-howto</comment>
                                         <default_text/>
                                         <translations>
                                             <translation>

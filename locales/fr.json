@@ -12,7 +12,6 @@
 					"examples": "Exemples",
 					"iso": "Catalogue des listes de codes ISO",
 					"search": "Rechercher des données / Télécharger",
-					"waf": "Dossier accessible sur le web (WAF)",
 					"web": "Services web",
 					"wfs": "Service de caractéristiques web (WFS)",
 					"wms": "Service de cartes web (WMS)",
@@ -72,17 +71,6 @@
 				"title": "Rechercher des données / Télécharger"
 			},
 			"title": "Accessibilité des données",
-			"waf": {
-				"blurb": {
-					"body-files": "Les {summary} statiques sont également disponibles dans le WAF au format CSV avec compression ZIP. Ces archives sont mis à jour hebdomadairement et offrent aux usagers une méthode pour télécharger le jeu de données entier au format CSV.",
-					"body-howto": "Veuillez consulter les {how-to} pour plus de détails.",
-					"body-intro": "Toutes les archives de fichiers de données qui ont été envoyées par les contributeurs en format CSV étendu sont disponibles sur {waf} les utilisateurs peuvent les parcourir, les télécharger ou les intégrer à leurs flux de travaux.",
-					"how-to": "instructions de WAF"
-				},
-				"how-to": "instructions de WAF",
-				"summary": "données d'archives",
-				"title": "Dossier accessible sur le web (WAF)"
-			},
 			"web": {
 				"blurb": {
 					"body-intro": "En plus des mécanismes d’accès aux données traditionnels, le WOUDC rend égalementdisponible ses archives par l’entremise de services web géospatiaux, se conformant ainsi aux normes internationales accessibles au public. Les services web sont des systèmes informatiques conçus pour prendre en charge des interactions machine à machine sur un réseau. Ils sont normalement utilisés dans un environnement informatique de type client/serveur accessible par des accès programmatiques, des outils connexes et des applications.",
@@ -670,8 +658,7 @@
 			"blurb-intro": "Les services web du WOUDC se conforment aux normes ouvertes ratifiées par l’Open Geospatial Consortium (OGC) et l’International Organization for Standardization (ISO) qui assurent l’interopérabilité des données, en facilitant ainsi la découverte, l’accessibilité, la visualisation et l’intégration. Les normes de l’OGC et de l’Organisation internationale de normalisation (ISO) jouent un rôle prépondérant dans {interoperability} où elles font partie {wis} et sont prises en charge par de nombreuses sources libres grand public ou outils commerciaux.",
 			"headers": {
 				"formats": "Format/Codage",
-				"resource": "",
-				"resources": "Ressource",
+				"resource": "Ressource",
 				"services": "Services web"
 			},
 			"links": {
@@ -964,8 +951,7 @@
 				"blurb": {
 					"body-files": "Les {summary} statiques sont également disponibles dans le WAF au format CSV avec compression ZIP. Ces archives sont mis à jour hebdomadairement et offrent aux usagers une méthode pour télécharger le jeu de données entier au format CSV.",
 					"body-howto": "Veuillez consulter les {how-to} pour plus de détails.",
-					"body-intro": "Toutes les archives de fichiers de données qui ont été envoyées par les contributeurs en format CSV étendu sont disponibles sur {waf} les utilisateurs peuvent les parcourir, les télécharger ou les intégrer à leurs flux de travaux.",
-					"how-to": "instructions de WAF"
+					"body-intro": "Toutes les archives de fichiers de données qui ont été envoyées par les contributeurs en format CSV étendu sont disponibles sur {waf} les utilisateurs peuvent les parcourir, les télécharger ou les intégrer à leurs flux de travaux."
 				},
 				"how-to": "instructions de WAF",
 				"summary": "données d'archives",
