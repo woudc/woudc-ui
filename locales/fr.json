@@ -1072,8 +1072,6 @@
 			"title": "Rechercher et télécharger de données"
 		},
 		"info": {
-			"abstract-section-head": "Abstract :",
-			"access-links-section-head": "Liens d'accès :",
 			"blurb": "L'archive de données WOUDC peut fournir des informations de haut niveau sur chaque ensemble de données. Sélectionnez un ensemble de données d'intérêt pour voir ses métadonnées de découverte de l'ISO et une carte contextuelle des stations.",
 			"descriptors": {
 				"abstract": "Abstract :",
@@ -1087,10 +1085,6 @@
 				"title": "Titre :",
 				"uri": "URI de l'ensemble de données :"
 			},
-			"doi-section-head": "DOI :",
-			"extent-section-head": "Étendue temporelle :",
-			"iso-topic-section-head": "Catégorie de sujet ISO :",
-			"keywords-section-head": "Mots-clés :",
 			"links": {
 				"broadband": "Large bande",
 				"lidar": "Lidar",
@@ -1114,9 +1108,7 @@
 				"vertical-ozone": "Courbe de répartition verticale de l’ozone"
 			},
 			"subtitle": "Jeu de données",
-			"title": "Information sur les jeux de données :",
-			"title-section-head": "Titre :",
-			"uri-section-head": "URI de l'ensemble de données :"
+			"title": "Information sur les jeux de données :"
 		},
 		"instruments": {
 			"blurb": "Les archives de données du WOUDC peuvent être classées par instrument. La liste d’instruments comprend le type d’instrument, le nom et le modèle.",

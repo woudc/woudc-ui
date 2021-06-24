@@ -11879,40 +11879,6 @@
                         <name>info</name>
                         <children>
                             <concept_node>
-                                <name>abstract-section-head</name>
-                                <definition_loaded>false</definition_loaded>
-                                <description/>
-                                <comment/>
-                                <default_text/>
-                                <translations>
-                                    <translation>
-                                        <language>en-CA</language>
-                                        <approved>false</approved>
-                                    </translation>
-                                    <translation>
-                                        <language>fr-CA</language>
-                                        <approved>false</approved>
-                                    </translation>
-                                </translations>
-                            </concept_node>
-                            <concept_node>
-                                <name>access-links-section-head</name>
-                                <definition_loaded>false</definition_loaded>
-                                <description/>
-                                <comment/>
-                                <default_text/>
-                                <translations>
-                                    <translation>
-                                        <language>en-CA</language>
-                                        <approved>false</approved>
-                                    </translation>
-                                    <translation>
-                                        <language>fr-CA</language>
-                                        <approved>false</approved>
-                                    </translation>
-                                </translations>
-                            </concept_node>
-                            <concept_node>
                                 <name>blurb</name>
                                 <definition_loaded>false</definition_loaded>
                                 <description/>
@@ -12104,74 +12070,6 @@
                                     </concept_node>
                                 </children>
                             </folder_node>
-                            <concept_node>
-                                <name>doi-section-head</name>
-                                <definition_loaded>false</definition_loaded>
-                                <description/>
-                                <comment/>
-                                <default_text/>
-                                <translations>
-                                    <translation>
-                                        <language>en-CA</language>
-                                        <approved>false</approved>
-                                    </translation>
-                                    <translation>
-                                        <language>fr-CA</language>
-                                        <approved>false</approved>
-                                    </translation>
-                                </translations>
-                            </concept_node>
-                            <concept_node>
-                                <name>extent-section-head</name>
-                                <definition_loaded>false</definition_loaded>
-                                <description/>
-                                <comment/>
-                                <default_text/>
-                                <translations>
-                                    <translation>
-                                        <language>en-CA</language>
-                                        <approved>false</approved>
-                                    </translation>
-                                    <translation>
-                                        <language>fr-CA</language>
-                                        <approved>false</approved>
-                                    </translation>
-                                </translations>
-                            </concept_node>
-                            <concept_node>
-                                <name>iso-topic-section-head</name>
-                                <definition_loaded>false</definition_loaded>
-                                <description/>
-                                <comment/>
-                                <default_text/>
-                                <translations>
-                                    <translation>
-                                        <language>en-CA</language>
-                                        <approved>false</approved>
-                                    </translation>
-                                    <translation>
-                                        <language>fr-CA</language>
-                                        <approved>false</approved>
-                                    </translation>
-                                </translations>
-                            </concept_node>
-                            <concept_node>
-                                <name>keywords-section-head</name>
-                                <definition_loaded>false</definition_loaded>
-                                <description/>
-                                <comment/>
-                                <default_text/>
-                                <translations>
-                                    <translation>
-                                        <language>en-CA</language>
-                                        <approved>false</approved>
-                                    </translation>
-                                    <translation>
-                                        <language>fr-CA</language>
-                                        <approved>false</approved>
-                                    </translation>
-                                </translations>
-                            </concept_node>
                             <folder_node>
                                 <name>links</name>
                                 <children>
@@ -12518,40 +12416,6 @@
                                     </translation>
                                     <translation>
                                         <language>en-CA</language>
-                                        <approved>false</approved>
-                                    </translation>
-                                </translations>
-                            </concept_node>
-                            <concept_node>
-                                <name>title-section-head</name>
-                                <definition_loaded>false</definition_loaded>
-                                <description/>
-                                <comment/>
-                                <default_text/>
-                                <translations>
-                                    <translation>
-                                        <language>en-CA</language>
-                                        <approved>false</approved>
-                                    </translation>
-                                    <translation>
-                                        <language>fr-CA</language>
-                                        <approved>false</approved>
-                                    </translation>
-                                </translations>
-                            </concept_node>
-                            <concept_node>
-                                <name>uri-section-head</name>
-                                <definition_loaded>false</definition_loaded>
-                                <description/>
-                                <comment/>
-                                <default_text/>
-                                <translations>
-                                    <translation>
-                                        <language>en-CA</language>
-                                        <approved>false</approved>
-                                    </translation>
-                                    <translation>
-                                        <language>fr-CA</language>
                                         <approved>false</approved>
                                     </translation>
                                 </translations>
