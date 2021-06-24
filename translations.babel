@@ -12,7 +12,7 @@
     <preset_collections/>
     <framework>vue-json</framework>
     <filename>translations.babel</filename>
-    <source_root_dir/>
+    <source_root_dir>.</source_root_dir>
     <folder_node>
         <name/>
         <children>
@@ -16877,7 +16877,7 @@
     </editor_configuration>
     <primary_language>en-CA</primary_language>
     <configuration>
-        <indent>tab</indent>
+        <indent>space2</indent>
         <format>namespaced-json</format>
         <support_arrays>true</support_arrays>
     </configuration>
