@@ -9,7 +9,7 @@
   - `WOUDC_UI_BASE_URL` should be the domain name of your app
   - `WOUDC_UI_ROUTER_BASE` The base URL of the app. For example, if the entire single page application is served under `/app/`, then base should use the value `'/app/'`
 
-``` bash
+```bash
 # install dependencies
 $ npm install
 
@@ -112,6 +112,12 @@ Please see the [nuxt-i18n routing guide](https://nuxt-community.github.io/nuxt-i
 To translate text, use [BabelEdit](https://www.codeandweb.com/babeledit/download) and load the `.babel` file in the root of the project. If there are new `.vue` components, they need to be added in (by file or by folder). If translation needs to be sent to a 3rd party translator, BabelEdit can export the translation to a `CSV` which can be sent off to the translator. Once completed, import the `CSV` in to BabelEdit to apply the completed translations.
 
 Alternatively, a FOSS program called [i18n Manager](https://github.com/gilmarsquinelato/i18n-manager) is recommended to manage translation text.
+
+You can do a quick check of the `.json` files in `/locales/` folder by running:
+
+```bash
+npm run i18n-check
+```
 
 ## Testing
 
