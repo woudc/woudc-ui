@@ -1072,6 +1072,8 @@
 			"title": "Data Search and Download"
 		},
 		"info": {
+			"abstract-section-head": "Abstract:",
+			"access-links-section-head": "Access Links:",
 			"blurb": "The WOUDC data archive can provide high level information about each dataset. Select a dataset of interest to see its ISO discovery metadata and a contextual map of the stations.",
 			"descriptors": {
 				"abstract": "Abstract:",
@@ -1085,6 +1087,10 @@
 				"title": "Title:",
 				"uri": "Dataset URI:"
 			},
+			"doi-section-head": "DOI:",
+			"extent-section-head": "Temporal Extent:",
+			"iso-topic-section-head": "ISO Topic Category:",
+			"keywords-section-head": "Keywords:",
 			"links": {
 				"broadband": "Broad-band",
 				"lidar": "Lidar",
@@ -1108,7 +1114,9 @@
 				"vertical-ozone": "Vertical Ozone Profile"
 			},
 			"subtitle": "Dataset",
-			"title": "Dataset Information:"
+			"title": "Dataset Information:",
+			"title-section-head": "Title:",
+			"uri-section-head": "Dataset URI:"
 		},
 		"instruments": {
 			"blurb": "The WOUDC data archive can be sorted by instrument. The instrument list includes the instrument type, name and model.",
@@ -1254,7 +1262,6 @@
 				"title": "Ozonesonde Plots"
 			},
 			"related": {
-				"blurb": "",
 				"links": {
 					"ozone-zonal": "Zonal Mean Ozone from Ground-Based Instruments",
 					"spectral": "Spectral UV Monthly Summaries and Plots",
@@ -1266,7 +1273,6 @@
 				"title": "Related Ozone Products"
 			},
 			"summaries": {
-				"blurb": "",
 				"links": {
 					"gaw-reports": "GAW Research and Monitoring Reports - WMO",
 					"ozone-hole": "Ozone Hole Watch - NASA",
