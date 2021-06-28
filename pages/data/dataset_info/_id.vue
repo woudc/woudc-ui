@@ -149,10 +149,8 @@ export default {
       )
     }
   },
-  created() {
-    this.init()
-  },
   mounted() {
+    this.init()
     this.$store.dispatch('stations/downloadStationsByDataset').then(() => {
       const stations = this.$store.getters[`stations/${this.$route.params.id}`]
       this.stations = stations.map(unpackageStation)
@@ -313,7 +311,7 @@ export default {
   },
   head() {
     return {
-      title: this.$t('data.info.title'),
+      title: this.$t('data.info.title') + this.dataset,
       meta: [
         {
           hid: 'description',
