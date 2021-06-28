@@ -16,8 +16,12 @@ const groupStationsByDataset = (stnDataPairs, stationsByID) => {
 
     // Instead of using the straight dataset key name, use a shorter lowercase name.
     const datasetKeys = []
-    if (dataset === 'UmkehrN14') {
+    if (dataset === 'UmkehrN14_1.0') {
       const level = 1
+      const key = 'umkehr' + parseInt(level)
+      datasetKeys.push(key)
+    } else if (dataset === 'UmkehrN14_2.0') {
+      const level = 2
       const key = 'umkehr' + parseInt(level)
       datasetKeys.push(key)
     } else {
@@ -46,10 +50,6 @@ const groupStationsByDataset = (stnDataPairs, stationsByID) => {
       }
     }
   }
-
-  // Adding an empty Umkehr2 list here is temporary until Contributions
-  // can identify level 2 Umkehr.
-  stationsByDataset.umkehr2 = defaultStationList()
 
   return stationsByDataset
 }
