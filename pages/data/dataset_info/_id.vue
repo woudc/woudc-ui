@@ -238,58 +238,58 @@ export default {
       if (this.dataset === 'totalozone') {
         this.wafDataset = 'TotalOzone'
         this.requestUrl =
-          this.$config.WOUDC_UI_CSW_URL +
-          '?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/ozone/total-column-ozone/totalozone'
+          this.$config.WOUDC_UI_OWS_URL +
+          '/csw?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/ozone/total-column-ozone/totalozone'
       } else if (this.dataset === 'totalozoneobs') {
         this.wafDataset = 'TotalOzoneObs'
         this.requestUrl =
-          this.$config.WOUDC_UI_CSW_URL +
-          '?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/ozone/total-column-ozone/totalozoneobs'
+          this.$config.WOUDC_UI_OWS_URL +
+          '/csw?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/ozone/total-column-ozone/totalozoneobs'
       } else if (this.dataset === 'ozonesonde') {
         this.wafDataset = 'OzoneSonde'
         this.requestUrl =
-          this.$config.WOUDC_UI_CSW_URL +
-          '?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/ozone/vertical-ozone-profile/ozonesonde'
+          this.$config.WOUDC_UI_OWS_URL +
+          '/csw?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/ozone/vertical-ozone-profile/ozonesonde'
       } else if (this.dataset === 'lidar') {
         this.wafDataset = 'Lidar'
         this.requestUrl =
-          this.$config.WOUDC_UI_CSW_URL +
-          '?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/ozone/vertical-ozone-profile/lidar'
+          this.$config.WOUDC_UI_OWS_URL +
+          '/csw?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/ozone/vertical-ozone-profile/lidar'
       } else if (this.dataset === 'rocketsonde') {
         this.wafDataset = 'RocketSonde'
         this.requestUrl =
-          this.$config.WOUDC_UI_CSW_URL +
-          '?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/ozone/vertical-ozone-profile/rocketsonde'
+          this.$config.WOUDC_UI_OWS_URL +
+          '/csw?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/ozone/vertical-ozone-profile/rocketsonde'
       } else if (this.dataset === 'umkehr1') {
         this.wafDataset = 'UmkehrN14'
         this.requestUrl =
-          this.$config.WOUDC_UI_CSW_URL +
-          '?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/ozone/vertical-ozone-profile/umkehrn14-1'
+          this.$config.WOUDC_UI_OWS_URL +
+          '/csw?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/ozone/vertical-ozone-profile/umkehrn14-1'
       } else if (this.dataset === 'umkehr2') {
         this.wafDataset = 'UmkehrN14'
         this.requestUrl =
-          this.$config.WOUDC_UI_CSW_URL +
-          '?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/ozone/vertical-ozone-profile/umkehrn14-2'
+          this.$config.WOUDC_UI_OWS_URL +
+          '/csw?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/ozone/vertical-ozone-profile/umkehrn14-2'
       } else if (this.dataset === 'broadband') {
         this.wafDataset = 'Broad-band'
         this.requestUrl =
-          this.$config.WOUDC_UI_CSW_URL +
-          '?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/uv-radiation/uv-irradiance/broadband'
+          this.$config.WOUDC_UI_OWS_URL +
+          '/csw?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/uv-radiation/uv-irradiance/broadband'
       } else if (this.dataset === 'multiband') {
         this.wafDataset = 'Multi-band'
         this.requestUrl =
-          this.$config.WOUDC_UI_CSW_URL +
-          '?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/uv-radiation/uv-irradiance/multiband'
+          this.$config.WOUDC_UI_OWS_URL +
+          '/csw?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/uv-radiation/uv-irradiance/multiband'
       } else if (this.dataset === 'spectral') {
         this.wafDataset = 'Spectral'
         this.requestUrl =
-          this.$config.WOUDC_UI_CSW_URL +
-          '?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/uv-radiation/uv-irradiance/spectral'
+          this.$config.WOUDC_UI_OWS_URL +
+          '/csw?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/uv-radiation/uv-irradiance/spectral'
       } else if (this.dataset === 'uvindex') {
         this.wafDataset = null
         this.requestUrl =
-          this.$config.WOUDC_UI_CSW_URL +
-          '?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/uv-radiation/uv-irradiance/uv_index_hourly'
+          this.$config.WOUDC_UI_OWS_URL +
+          '/csw?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/uv-radiation/uv-irradiance/uv_index_hourly'
       }
     },
     async getDatasetInfo() {
