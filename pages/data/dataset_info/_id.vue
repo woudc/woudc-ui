@@ -311,7 +311,7 @@ export default {
   },
   head() {
     return {
-      title: this.$t('data.info.title') + this.title,
+      title: this.$t('data.info.title') + ' ' + this.title,
       meta: [
         {
           hid: 'description',
