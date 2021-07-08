@@ -419,12 +419,13 @@ export default {
           multiband: 'Multi-band',
           spectral: 'Spectral',
           'uv-index': 'uv_index_hourly'
-        },
+        } /*, // disabled until support for station/metric integration
         'data-centers': {
           totalozone: 'ndacc-total',
           'vertical-ozone': 'ndacc-vertical',
-          'uv-irradiance': 'ndacc-uv'
-        }
+          'uv-irradiance': 'ndacc-uv',
+          eubrewnet: 'peer_data_records'
+        }*/
       }
 
       const datasetOptions = []

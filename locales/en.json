@@ -1013,6 +1013,7 @@
       "dataset": {
         "all": "All WOUDC Datasets",
         "data-centers": {
+          "eubrewnet": "EUBREWNET",
           "label": "Related Data Centers",
           "totalozone": "NDACC: Total Column Ozone",
           "uv-irradiance": "NDACC: UV Irradiance",
