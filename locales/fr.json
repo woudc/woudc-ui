@@ -1064,11 +1064,22 @@
       "table-headers": {
         "actions": "Actions",
         "content-category": "Nom de l’ensemble de données",
+        "contributor-acronym": "Organisme",
+        "country-name_fr": "Pays",
+        "file-path": "Actions",
+        "instrument-model": "Modèle de l’instrument",
         "instrument-name": "Nom de l’instrument",
+        "instrument-serial": "Numéro de l’instrument",
+        "observation-date": "Date de l’observation (UTC)",
+        "observation-time": "Heure d’instance",
         "platform-id": "Identification de la plate-forme",
         "platform-type": "Type de plate-forme",
         "processed-datetime": "Date et heure de traitement",
-        "timestamp-date": "Date de l’observation (UTC)"
+        "station-name": "Nom de la station",
+        "station-gaw_id": "Identifiant VAG",
+        "timestamp-date": "Date de l’observation (UTC)",
+	"uv-index": "Indice UV moyen horaire",
+	"uv-daily_max": "Indice UV jornalier max"
       },
       "title": "Rechercher et télécharger de données"
     },
