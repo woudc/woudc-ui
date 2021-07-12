@@ -1067,11 +1067,11 @@
         "contributor-acronym": "Agency",
         "country-name_en": "Country",
         "file-path": "Actions",
-	"instrument-model": "Instrument Model",
+        "instrument-model": "Instrument Model",
         "instrument-name": "Instrument Name",
-	"instrument-serial": "Instrument Number",
+        "instrument-serial": "Instrument Number",
         "observation-date": "Observation Date (UTC)",
-	"observation-time": "Instance Hour",
+        "observation-time": "Instance Hour",
         "platform-id": "Platform ID",
         "platform-type": "Platform Type",
         "processed-datetime": "Processed Datetime",
@@ -1079,7 +1079,7 @@
         "station-name": "Station Name",
         "timestamp-date": "Observation Date (UTC)",
         "uv-index": "UV Index Hourly Average",
-	"uv-daily_max": "UV Index Daily Max"
+        "uv-daily_max": "UV Index Daily Max"
       },
       "title": "Data Search and Download"
     },

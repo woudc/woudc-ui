@@ -1078,8 +1078,8 @@
         "station-name": "Nom de la station",
         "station-gaw_id": "Identifiant VAG",
         "timestamp-date": "Date de l’observation (UTC)",
-	"uv-index": "Indice UV moyen horaire",
-	"uv-daily_max": "Indice UV jornalier max"
+        "uv-index": "Indice UV moyen horaire",
+        "uv-daily_max": "Indice UV jornalier max"
       },
       "title": "Rechercher et télécharger de données"
     },
