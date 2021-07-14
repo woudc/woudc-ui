@@ -266,7 +266,6 @@
             </i18n>
           </v-card>
           <v-data-table
-            v-else
             class="elevation-1"
             :headers="dataRecordHeaders"
             :items="dataRecords"
@@ -406,10 +405,7 @@ export default {
     },
     dataRecordHeaders() {
       let headerKeys = []
-      if (
-        this.selectedDataset === 'UV Index' ||
-        this.selectedDataset === 'Indice UV'
-      ) {
+      if (this.selectedDatasetID === 'uv_index_hourly') {
         headerKeys = [
           'observation_date',
           'contributor_acronym',
@@ -841,6 +837,7 @@ export default {
           queryParams += '&' + field + '=' + value
         }
       }
+      console.log(queryParams)
       let response = ''
       if (this.selectedDatasetID === 'uv_index_hourly') {
         response = await woudcClient.get(UVIndexURL + '?' + queryParams)
