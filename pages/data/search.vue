@@ -837,7 +837,6 @@ export default {
           queryParams += '&' + field + '=' + value
         }
       }
-      console.log(queryParams)
       let response = ''
       if (this.selectedDatasetID === 'uv_index_hourly') {
         response = await woudcClient.get(UVIndexURL + '?' + queryParams)
