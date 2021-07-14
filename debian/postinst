@@ -7,7 +7,7 @@ BASEDIR=/web/woudc-ui
 for ui_file in `find $BASEDIR/dist -type f -name "state.js" -o -name "200.html"`
 do
     sed -i 's#https://beta-woudc-dev.cmc.ec.gc.ca#$WOUDC_UI_BASE_URL#g' $ui_file
-    sed -i 's#https://geobeta.woudc-dev.cmc.ec.gc.ca/oapi#$WOUDC_UI_API#g' $ui_file
+    sed -i 's#https://geobeta-woudc-dev.cmc.ec.gc.ca/oapi#$WOUDC_UI_API#g' $ui_file
     sed -i 's#https://beta-woudc-dev.cmc.ec.gc.ca#$WOUDC_UI_WAF_URL#g' $ui_file
     sed -i 's#https://geo.woudc-dev.cmc.ec.gc.ca#$WOUDC_UI_OWS_URL#g' $ui_file
 done
