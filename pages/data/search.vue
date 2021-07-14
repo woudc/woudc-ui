@@ -272,10 +272,30 @@
           >
             <template v-slot:item.platform_id="row">
               <nuxt-link
+                v-if="selectedDatasetID === 'uv_index_hourly'"
+                :to="localePath('data-stations') + '/' + row.item.station_id"
+              >
+                {{ row.item.station_id }}
+              </nuxt-link>
+              <nuxt-link
+                v-else
                 :to="localePath('data-stations') + '/' + row.item.platform_id"
               >
                 {{ row.item.platform_id }}
               </nuxt-link>
+            </template>
+            <template v-slot:item.station_gaw_id="row">
+              <a :href="row.item.station_gaw_url" target="_blank">
+                {{ row.item.station_gaw_id }}
+              </a>
+            </template>
+            <template v-slot:item.contributor_acronym="row">
+              <a :href="row.item.contributor_url" target="_blank">
+                {{ row.item.contributor_acronym }}
+              </a>
+            </template>
+            <template v-slot:item.observation_time="row">
+              <p>{{ row.item.observation_time.substring(11, 13) }}</p>
             </template>
             <template v-slot:item.actions="row">
               <a :href="row.item.url" target="_blank">
@@ -384,15 +404,34 @@ export default {
       }
     },
     dataRecordHeaders() {
-      const headerKeys = [
-        'timestamp_date',
-        'content_category',
-        'platform_type',
-        'platform_id',
-        'instrument_name',
-        'processed_datetime',
-        'actions'
-      ]
+      let headerKeys = []
+      if (this.selectedDatasetID === 'uv_index_hourly') {
+        headerKeys = [
+          'observation_date',
+          'contributor_acronym',
+          'platform_id',
+          'station_gaw_id',
+          this.countryOrder,
+          'observation_time',
+          'station_name',
+          'instrument_name',
+          'instrument_model',
+          'instrument_serial',
+          'uv_index',
+          'uv_daily_max',
+          'actions'
+        ]
+      } else {
+        headerKeys = [
+          'timestamp_date',
+          'content_category',
+          'platform_type',
+          'platform_id',
+          'instrument_name',
+          'processed_datetime',
+          'actions'
+        ]
+      }
 
       return headerKeys.map((key) => {
         return {
@@ -773,23 +812,37 @@ export default {
 
       const dataRecordsURL =
         this.$config.WOUDC_UI_API + '/collections/data_records/items'
-      let queryParams = 'sortby=-timestamp_date,platform_id,content_category'
-
-      const selected = {
-        content_category: this.selectedDatasetID,
-        platform_country: this.selectedCountryID,
-        platform_id: this.selectedStationID,
-        instrument_name: this.selectedInstrumentID
+      const UVIndexURL =
+        this.$config.WOUDC_UI_API + '/collections/uv_index_hourly/items'
+      let queryParams = ''
+      let selected = ''
+      if (this.selectedDatasetID === 'uv_index_hourly') {
+        selected = {
+          country_id: this.selectedCountryID,
+          station_id: this.selectedStationID,
+          instrument_name: this.selectedInstrumentID
+        }
+        queryParams = 'sortby=-observation_date,station_id,dataset_id'
+      } else {
+        selected = {
+          content_category: this.selectedDatasetID,
+          platform_country: this.selectedCountryID,
+          platform_id: this.selectedStationID,
+          instrument_name: this.selectedInstrumentID
+        }
+        queryParams = 'sortby=-timestamp_date,platform_id,content_category'
       }
-
       for (const [field, value] of Object.entries(selected)) {
         if (value !== null) {
           queryParams += '&' + field + '=' + value
         }
       }
-
-      const response = await woudcClient.get(dataRecordsURL + '?' + queryParams)
-
+      let response = ''
+      if (this.selectedDatasetID === 'uv_index_hourly') {
+        response = await woudcClient.get(UVIndexURL + '?' + queryParams)
+      } else {
+        response = await woudcClient.get(dataRecordsURL + '?' + queryParams)
+      }
       this.dataRecords = response.data.features.map(stripProperties)
       this.oldSearchParams = {
         country: this.selectedCountryID,
@@ -847,9 +900,15 @@ export default {
         ]
         paramNames.bbox = components.join(',')
       }
-
       for (const [name, paramValue] of Object.entries(paramNames)) {
-        if (paramValue !== null) {
+        if (paramValue === 'uv_index_hourly') {
+          // Use spectral for graph until multi dataset metrics are available
+          inputs.push({
+            id: name,
+            type: 'application/json',
+            value: 'Spectral'
+          })
+        } else if (paramValue !== null) {
           inputs.push({
             id: name,
             type: 'text/plain',
@@ -880,7 +939,7 @@ export default {
           inputs.push({
             id: domain,
             type: 'application/json',
-            value: ['Broad-band', 'Spectral']
+            value: 'Broad-band,Spectral'
           })
         } else if (selected !== null) {
           inputs.push({
