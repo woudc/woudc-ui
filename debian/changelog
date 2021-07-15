@@ -1,3 +1,12 @@
+woudc-ui (2.0.0-beta3) stable; urgency=medium
+
+  * Fix and updated references for deployment
+  * Added UV Index dataset support to data search page
+  * Hide related data centers datasets until data search support is available
+  * Various UI fixes, minor code cleanups and translation fixes
+
+ -- Kevin Ngai <kevin.ngai@canada.ca>  Thu, 15 Jul 2021 15:23:12 +0000
+
 woudc-ui (2.0.0-beta2) bionic; urgency=medium
 
   * Update installation
