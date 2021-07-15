@@ -1,4 +1,4 @@
-woudc-ui (2.0.0-beta3) stable; urgency=medium
+woudc-ui (2.0.0-beta3) bionic; urgency=medium
 
   * Fix and updated references for deployment
   * Added UV Index dataset support to data search page
