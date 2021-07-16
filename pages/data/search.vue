@@ -334,6 +334,7 @@ export default {
       countries: [],
       countryOrder: `country_name_${this.$i18n.locale}`,
       numberMatched: 0,
+      numberMatchedLimit: 10000,
       dataRecords: [],
       instruments: [],
       loadingCountries: true,
@@ -847,41 +848,44 @@ export default {
       } else {
         response = await woudcClient.get(dataRecordsURL + '?' + queryParams)
       }
-
+      this.numberMatched =
+        response.data.numberMatched < this.numberMatchedLimit
+          ? response.data.numberMatched
+          : this.numberMatchedLimit
       this.dataRecords = response.data.features.map(stripProperties)
-      this.numberMatched = response.data.numberMatched
 
-      let AllDataRecords = []
-      for (
-        var currStartIndex = 0;
-        currStartIndex < this.numberMatched;
-        currStartIndex += 500
-      ) {
-        if (this.selectedDatasetID === 'uv_index_hourly') {
-          let response = await woudcClient.get(
-            UVIndexURL +
-              '?startindex=' +
-              currStartIndex +
-              '&limit=500&' +
-              queryParams
-          )
-          AllDataRecords = AllDataRecords.concat(
-            response.data.features.map(stripProperties)
-          )
-        } else {
-          let response = await woudcClient.get(
-            dataRecordsURL +
-              '?startindex=' +
-              currStartIndex +
-              '&limit=500&' +
-              queryParams
-          )
-          AllDataRecords = AllDataRecords.concat(
-            response.data.features.map(stripProperties)
-          )
+      if (this.numberMatched > 500) {
+        for (
+          var currStartIndex = 500;
+          currStartIndex < this.numberMatched;
+          currStartIndex += 500
+        ) {
+          console.log(currStartIndex)
+          if (this.selectedDatasetID === 'uv_index_hourly') {
+            let response = await woudcClient.get(
+              UVIndexURL +
+                '?startindex=' +
+                currStartIndex +
+                '&limit=500&' +
+                queryParams
+            )
+            this.dataRecords = this.dataRecords.concat(
+              response.data.features.map(stripProperties)
+            )
+          } else {
+            let response = await woudcClient.get(
+              dataRecordsURL +
+                '?startindex=' +
+                currStartIndex +
+                '&limit=500&' +
+                queryParams
+            )
+            this.dataRecords = this.dataRecords.concat(
+              response.data.features.map(stripProperties)
+            )
+          }
         }
       }
-      this.dataRecords = AllDataRecords
 
       this.oldSearchParams = {
         country: this.selectedCountryID,
