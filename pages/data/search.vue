@@ -269,6 +269,7 @@
             class="elevation-1"
             :headers="dataRecordHeaders"
             :items="dataRecords"
+            :loading="loadingDataRecords"
           >
             <template v-slot:item.platform_id="row">
               <nuxt-link
@@ -332,6 +333,7 @@ export default {
     return {
       countries: [],
       countryOrder: `country_name_${this.$i18n.locale}`,
+      numberMatched: 0,
       dataRecords: [],
       instruments: [],
       loadingCountries: true,
@@ -792,6 +794,7 @@ export default {
       this.selectedYearRange = [this.minSelectableYear, this.maxSelectableYear]
 
       this.dataRecords = []
+      this.numberMatched = 0
       this.oldSearchExists = false
       this.oldSearchParams = {}
 
@@ -837,13 +840,49 @@ export default {
           queryParams += '&' + field + '=' + value
         }
       }
+
       let response = ''
       if (this.selectedDatasetID === 'uv_index_hourly') {
         response = await woudcClient.get(UVIndexURL + '?' + queryParams)
       } else {
         response = await woudcClient.get(dataRecordsURL + '?' + queryParams)
       }
+
       this.dataRecords = response.data.features.map(stripProperties)
+      this.numberMatched = response.data.numberMatched
+
+      let AllDataRecords = []
+      for (
+        var currStartIndex = 0;
+        currStartIndex < this.numberMatched;
+        currStartIndex += 500
+      ) {
+        if (this.selectedDatasetID === 'uv_index_hourly') {
+          let response = await woudcClient.get(
+            UVIndexURL +
+              '?startindex=' +
+              currStartIndex +
+              '&limit=500&' +
+              queryParams
+          )
+          AllDataRecords = AllDataRecords.concat(
+            response.data.features.map(stripProperties)
+          )
+        } else {
+          let response = await woudcClient.get(
+            dataRecordsURL +
+              '?startindex=' +
+              currStartIndex +
+              '&limit=500&' +
+              queryParams
+          )
+          AllDataRecords = AllDataRecords.concat(
+            response.data.features.map(stripProperties)
+          )
+        }
+      }
+      this.dataRecords = AllDataRecords
+
       this.oldSearchParams = {
         country: this.selectedCountryID,
         dataset: this.selectedDatasetID,
@@ -927,12 +966,10 @@ export default {
           totalObs: metric.total_obs
         }
       })
-
       this.metricsByYear = newMetrics
     },
     async sendDropdownRequest(dataset, country, station) {
       const inputs = []
-
       const selections = { dataset, country, station }
       for (const [domain, selected] of Object.entries(selections)) {
         if (selected === 'uv_index_hourly') {
