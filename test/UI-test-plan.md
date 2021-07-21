@@ -120,6 +120,8 @@ A test plan to test all aspects of the UI. Ensure Developer Tools (F12) are enab
 - Select year: `All` and submit
   - Check that all graphs are loaded correctly
 
+## Data Search and Download
+
 [`/en/data/data-search-and-download`](https://beta-woudc-dev.cmc.ec.gc.ca/en/data/data-search-and-download)
 
 - Ensure all dropdowns shown are loaded and have options other than `All`
