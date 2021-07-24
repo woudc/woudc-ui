@@ -52,7 +52,7 @@ const actions = {
       'distinct': {
         nameResolution: ['name'],
         modelResolution: ['name', 'model', 'station_id', 'dataset']
-      }
+      },
       'source': [
         'station_name',
         'data_class',
