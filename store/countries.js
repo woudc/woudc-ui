@@ -66,17 +66,13 @@ const actions = {
       return false
     }
 
-    const inputs = [
-      { 'index': 'contribution' },
-      {
-        'distinct': {
+    const inputs = {
+      'index': 'contribution',
+      'distinct': {
           orderByCode: ['country_id']
-        }
       },
-      {
-        'source': ['country_id', 'country_name_en', 'country_name_fr']
-      }
-    ]
+      'source': ['country_id', 'country_name_en', 'country_name_fr']
+    }
 
     const queryParams = { inputs }
     const countriesResponse = await getDistinct(

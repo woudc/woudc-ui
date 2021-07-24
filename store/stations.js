@@ -192,14 +192,12 @@ const actions = {
     }
 
     // Collect arrays of all stations in both ID and name order.
-    const stationInputs = [
-      { 'index': 'station' },
-      {
-        'distinct': {
-          orderByID: ['woudc_id']
-        }
+    const stationInputs = {
+      'index': 'station',
+      'distinct': {
+        orderByID: ['woudc_id']
       }
-    ]
+    }
     const queryParams = { inputs: stationInputs }
 
     const stationsResponse = await getDistinct(
@@ -226,15 +224,13 @@ const actions = {
     }
 
     // Download all contributions (basically station-dataset pairs)
-    const contributionInputs = [
-      { 'index': 'contribution' },
-      {
-        'distinct': {
-          orderByID: ['station_id', 'dataset_id']
-        }
+    const contributionInputs = {
+      'index': 'contribution',
+      'distinct': {
+        orderByID: ['station_id', 'dataset_id']
       },
-      { 'source': ['station_id'] }
-    ]
+      'source': ['station_id']
+    }
     const queryParams = { inputs: contributionInputs }
 
     const contributionsResponse = await getDistinct(

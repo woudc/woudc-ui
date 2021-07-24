@@ -345,14 +345,10 @@ export default {
       if (this.station === null) {
         return {}
       }
-      const inputs = [
-        {
-          'domain': 'contributor'
-        },
-        {
-          'timescale': 'year'
-        }
-      ]
+      const inputs = {
+        'domain': 'contributor',
+        'timescale': 'year'
+      }
       const paramNames = {
         dataset: null,
         country: null,

@@ -871,14 +871,10 @@ export default {
       this.instruments = instruments.map(stripProperties)
     },
     async refreshMetrics() {
-      const inputs = [
-        {
-          'domain': 'contributor'
-        },
-        {
-          'timescale': 'year'
-        }
-      ]
+      const inputs = {
+        'domain': 'contributor',
+        'timescale': 'year'
+      }
 
       const paramNames = {
         dataset: this.selectedDatasetID,

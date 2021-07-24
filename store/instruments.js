@@ -47,27 +47,23 @@ const actions = {
     const queryURL =
       this.$config.WOUDC_UI_API +
       '/processes/woudc-data-registry-select-distinct/execution'
-    const inputs = [
-      { 'index': 'instrument' },
-      {
-        'distinct': {
-          nameResolution: ['name'],
-          modelResolution: ['name', 'model', 'station_id', 'dataset']
-        }
-      },
-      {
-        'source': [
-          'station_name',
-          'data_class',
-          'country_name_en',
-          'country_name_fr',
-          'contributor_name',
-          'waf_url',
-          'start_date',
-          'end_date'
-        ]
+    const inputs = {
+      'index': 'instrument',
+      'distinct': {
+        nameResolution: ['name'],
+        modelResolution: ['name', 'model', 'station_id', 'dataset']
       }
-    ]
+      'source': [
+        'station_name',
+        'data_class',
+        'country_name_en',
+        'country_name_fr',
+        'contributor_name',
+        'waf_url',
+        'start_date',
+        'end_date'
+      ]
+    }
 
     const queryParams = { inputs }
     const response = await woudcClient.post(queryURL, queryParams)
