@@ -347,14 +347,10 @@ export default {
       }
       const inputs = [
         {
-          id: 'domain',
-          type: 'text/plain',
-          value: 'contributor'
+          'domain': 'contributor'
         },
         {
-          id: 'timescale',
-          type: 'text/plain',
-          value: 'year'
+          'timescale': 'year'
         }
       ]
       const paramNames = {
@@ -375,9 +371,7 @@ export default {
       for (const [name, paramValue] of Object.entries(paramNames)) {
         if (paramValue !== null) {
           inputs.push({
-            id: name,
-            type: 'text/plain',
-            value: paramValue
+            name: paramValue
           })
         }
       }

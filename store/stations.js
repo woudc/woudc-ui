@@ -193,11 +193,9 @@ const actions = {
 
     // Collect arrays of all stations in both ID and name order.
     const stationInputs = [
-      { id: 'index', type: 'text/plain', value: 'station' },
+      { 'index': 'station' },
       {
-        id: 'distinct',
-        type: 'application/json',
-        value: {
+        'distinct': {
           orderByID: ['woudc_id']
         }
       }
@@ -229,15 +227,13 @@ const actions = {
 
     // Download all contributions (basically station-dataset pairs)
     const contributionInputs = [
-      { id: 'index', type: 'text/plain', value: 'contribution' },
+      { 'index': 'contribution' },
       {
-        id: 'distinct',
-        type: 'application/json',
-        value: {
+        'distinct': {
           orderByID: ['station_id', 'dataset_id']
         }
       },
-      { id: 'source', type: 'application/json', value: ['station_id'] }
+      { 'source': ['station_id'] }
     ]
     const queryParams = { inputs: contributionInputs }
 

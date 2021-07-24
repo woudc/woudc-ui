@@ -17,7 +17,7 @@ A test plan to test all aspects of the UI. Ensure Developer Tools (F12) are enab
 [`/en/data/stations`](https://beta-woudc-dev.cmc.ec.gc.ca/en/data/stations)
 
 - Ensure page loads
-  - Check XHR POST loads `https://geobeta-woudc-dev.cmc.ec.gc.ca/oapi/processes/woudc-data-registry-select-distinct/jobs`
+  - Check XHR POST loads `https://geobeta-woudc-dev.cmc.ec.gc.ca/oapi/processes/woudc-data-registry-select-distinct/execution`
 - Check to see if all columns sort properly
 - Click on GAW ID `KAG` and ensure it opens an external link on a new tab/page of station Kagoshima
 - Click on the row with WOUDC Station ID `007` and ensure row is highlighted and map shows popup of station
@@ -39,7 +39,7 @@ A test plan to test all aspects of the UI. Ensure Developer Tools (F12) are enab
 - Ensure page loads
   - Table view of instruments
   - Map view of instruments
-  - Check XHR POST loads `https://geobeta-woudc-dev.cmc.ec.gc.ca/oapi/processes/woudc-data-registry-select-distinct/jobs`
+  - Check XHR POST loads `https://geobeta-woudc-dev.cmc.ec.gc.ca/oapi/processes/woudc-data-registry-select-distinct/execution`
 - Click on a row and ensure row highlights and map displays a popup of corresponding instrument
 - Check to see if all columns sort properly
 - Click on a Station Name link and ensure it loads the single station page
@@ -68,9 +68,9 @@ A test plan to test all aspects of the UI. Ensure Developer Tools (F12) are enab
 [`/en/data/products/ozonesonde`](https://beta-woudc-dev.cmc.ec.gc.ca/en/data/products/ozonesonde)
 
 - Ensure list of stations are loaded
-  - Check for 2 XHR POST that loads `https://geobeta-woudc-dev.cmc.ec.gc.ca/oapi/processes/woudc-data-registry-select-distinct/jobs`
-    - Request input for station: `{"inputs":[{"id":"index","type":"text/plain","value":"station"},{"id":"distinct","type":"application/json","value":{"orderByID":["woudc_id"]}}]}`
-    - Request input for contribution: `{"inputs":[{"id":"index","type":"text/plain","value":"contribution"},{"id":"distinct","type":"application/json","value":{"orderByID":["station_id","dataset_id"]}},{"id":"source","type":"application/json","value":["station_id"]}]}`
+  - Check for 2 XHR POST that loads `https://geobeta-woudc-dev.cmc.ec.gc.ca/oapi/processes/woudc-data-registry-select-distinct/execution`
+    - Request input for station: `{"inputs":{"index":"station","distinct":{"orderByID":["woudc_id"]}}}`
+    - Request input for contribution: `{"inputs":{"index":"contribution","distinct":{"orderByID":["station_id","dataset_id"]},"source":["station_id"]}}`
   - Check for XHR GET that loads `https://cdn.rawgit.com/OGCMetOceanDWG/wmo-ra/master/wmo-ra.geojson`
 - Select station: Alert (018)
   - Ensure year dropdown has options from 1987 to 2020
@@ -86,9 +86,9 @@ A test plan to test all aspects of the UI. Ensure Developer Tools (F12) are enab
 
 - Ensure list of stations are loaded
   - Map view of stations
-  - Check for 2 XHR POST that loads `https://geobeta-woudc-dev.cmc.ec.gc.ca/oapi/processes/woudc-data-registry-select-distinct/jobs`
-    - Request input for contribution: `{"inputs":[{"id":"index","type":"text/plain","value":"contribution"},{"id":"distinct","type":"application/json","value":{"orderByID":["station_id","dataset_id"]}},{"id":"source","type":"application/json","value":["station_id"]}]}`
-    - Request input for station: `{"inputs":[{"id":"index","type":"text/plain","value":"station"},{"id":"distinct","type":"application/json","value":{"orderByID":["woudc_id"]}}]}`
+  - Check for 2 XHR POST that loads `https://geobeta-woudc-dev.cmc.ec.gc.ca/oapi/processes/woudc-data-registry-select-distinct/execution`
+    - Request input for contribution: `{"inputs":{"index":"contribution","distinct":{"orderByID":["station_id","dataset_id"]},"source":["station_id"]}}`
+    - Request input for station: `{"inputs":{"index":"station","distinct":{"orderByID":["woudc_id"]}}}`
   - Check for XHR GET that loads `https://cdn.rawgit.com/OGCMetOceanDWG/wmo-ra/master/wmo-ra.geojson`
 - Select station: `Alert (018)`
   - Ensure instrument dropdown list has 5 Brewer and 1 Dobson option
@@ -103,9 +103,9 @@ A test plan to test all aspects of the UI. Ensure Developer Tools (F12) are enab
 
 - Ensure list of stations are loaded
   - Map view of stations
-  - Check for 2 XHR POST that loads `https://geobeta-woudc-dev.cmc.ec.gc.ca/oapi/processes/woudc-data-registry-select-distinct/jobs`
-    - Request input for contribution: `{"inputs":[{"id":"index","type":"text/plain","value":"contribution"},{"id":"distinct","type":"application/json","value":{"orderByID":["station_id","dataset_id"]}},{"id":"source","type":"application/json","value":["station_id"]}]}`
-    - Request input for station: `{"inputs":[{"id":"index","type":"text/plain","value":"station"},{"id":"distinct","type":"application/json","value":{"orderByID":["woudc_id"]}}]}`
+  - Check for 2 XHR POST that loads `https://geobeta-woudc-dev.cmc.ec.gc.ca/oapi/processes/woudc-data-registry-select-distinct/execution`
+    - Request input for contribution: `{"inputs":{"index":"contribution","distinct":{"orderByID":["station_id","dataset_id"]},"source":["station_id"]}}`
+    - Request input for station: `{"inputs":{"index":"station","distinct":{"orderByID":["woudc_id"]}}}`
   - Check for XHR GET that loads `https://cdn.rawgit.com/OGCMetOceanDWG/wmo-ra/master/wmo-ra.geojson`
 - Select station: `Davos (501)`
   - Ensure instrument dropdown list has the following:

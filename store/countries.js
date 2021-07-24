@@ -67,18 +67,14 @@ const actions = {
     }
 
     const inputs = [
-      { id: 'index', type: 'text/plain', value: 'contribution' },
+      { 'index': 'contribution' },
       {
-        id: 'distinct',
-        type: 'application/json',
-        value: {
+        'distinct': {
           orderByCode: ['country_id']
         }
       },
       {
-        id: 'source',
-        type: 'application/json',
-        value: ['country_id', 'country_name_en', 'country_name_fr']
+        'source': ['country_id', 'country_name_en', 'country_name_fr']
       }
     ]
 

@@ -46,21 +46,17 @@ const actions = {
 
     const queryURL =
       this.$config.WOUDC_UI_API +
-      '/processes/woudc-data-registry-select-distinct/jobs'
+      '/processes/woudc-data-registry-select-distinct/execution'
     const inputs = [
-      { id: 'index', type: 'text/plain', value: 'instrument' },
+      { 'index': 'instrument' },
       {
-        id: 'distinct',
-        type: 'application/json',
-        value: {
+        'distinct': {
           nameResolution: ['name'],
           modelResolution: ['name', 'model', 'station_id', 'dataset']
         }
       },
       {
-        id: 'source',
-        type: 'application/json',
-        value: [
+        'source': [
           'station_name',
           'data_class',
           'country_name_en',

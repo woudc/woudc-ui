@@ -873,14 +873,10 @@ export default {
     async refreshMetrics() {
       const inputs = [
         {
-          id: 'domain',
-          type: 'text/plain',
-          value: 'contributor'
+          'domain': 'contributor'
         },
         {
-          id: 'timescale',
-          type: 'text/plain',
-          value: 'year'
+          'timescale': 'year'
         }
       ]
 
@@ -904,15 +900,11 @@ export default {
         if (paramValue === 'uv_index_hourly') {
           // Use spectral for graph until multi dataset metrics are available
           inputs.push({
-            id: name,
-            type: 'application/json',
-            value: 'Spectral'
+            name: 'Spectral'
           })
         } else if (paramValue !== null) {
           inputs.push({
-            id: name,
-            type: 'text/plain',
-            value: paramValue
+            name: paramValue
           })
         }
       }
@@ -937,15 +929,11 @@ export default {
       for (const [domain, selected] of Object.entries(selections)) {
         if (selected === 'uv_index_hourly') {
           inputs.push({
-            id: domain,
-            type: 'application/json',
-            value: 'Broad-band,Spectral'
+            domain: 'Broad-band,Spectral'
           })
         } else if (selected !== null) {
           inputs.push({
-            id: domain,
-            type: 'text/plain',
-            value: selected
+            domain: selected
           })
         }
       }
