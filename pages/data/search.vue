@@ -919,18 +919,14 @@ export default {
       this.metricsByYear = newMetrics
     },
     async sendDropdownRequest(dataset, country, station) {
-      const inputs = []
+      const inputs = {}
 
       const selections = { dataset, country, station }
       for (const [domain, selected] of Object.entries(selections)) {
         if (selected === 'uv_index_hourly') {
-          inputs.push({
-            domain: 'Broad-band,Spectral'
-          })
+          inputs.domain = 'Broad-band,Spectral'
         } else if (selected !== null) {
-          inputs.push({
-            domain: selected
-          })
+          inputs.domain = selected
         }
       }
 
