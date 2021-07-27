@@ -837,6 +837,13 @@ export default {
           queryParams += '&' + field + '=' + value
         }
       }
+      let datetimeParams =
+        this.selectedYearRange[0] +
+        '-01-01T00:00:00Z/' +
+        this.selectedYearRange[1] +
+        '-12-31T23:59:59Z'
+      queryParams = queryParams + '&' + datetimeParams
+
       let response = ''
       if (this.selectedDatasetID === 'uv_index_hourly') {
         response = await woudcClient.get(UVIndexURL + '?' + queryParams)
