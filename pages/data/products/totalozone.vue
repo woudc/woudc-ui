@@ -305,12 +305,12 @@ export default {
       queryParams += '&platform_id=' + this.selectedStationID
 
       if (this.selectedInstrumentID !== null) {
+        let instrument_number = parseInt(
+          this.selectedInstrument.element.properties.serial
+        )
         queryParams +=
           '&instrument_name=' + this.selectedInstrument.element.properties.name
-        queryParams +=
-          '&instrument_number=' +
-          this.selectedInstrument.element.properties.serial +
-          '&limit=5000'
+        queryParams += '&instrument_number=' + instrument_number + '&limit=5000'
       }
 
       const dataRecordsResponse = await woudcClient.get(
