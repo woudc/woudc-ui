@@ -377,31 +377,10 @@ export default {
 
       const orderedCountries = this.countries
 
-      if (this.mapBoundingBox === null) {
-        const countryOptions = orderedCountries
-          .sort(compareOnKey(this.countryOrder))
-          .map(this.countryToSelectOption)
-        return [nullOption].concat(countryOptions)
-      } else {
-        const boundaries = this.$store.getters['countries/boundaries']
-        const visibleOptions = orderedCountries.filter((country) => {
-          const selected = country.country_id === this.selectedCountryID
-          const countryBoundingBox = boundaries[country.country_id]
-
-          let visible
-          if (countryBoundingBox === null) {
-            visible = this.mapBoundingBox.contains(country.geometry.coordinates)
-          } else {
-            visible = this.mapBoundingBox.intersects(countryBoundingBox)
-          }
-
-          return selected || visible
-        })
-        const countryOptions = visibleOptions
-          .sort(compareOnKey(this.countryOrder))
-          .map(this.countryToSelectOption)
-        return [nullOption].concat(countryOptions)
-      }
+      const countryOptions = orderedCountries
+        .sort(compareOnKey(this.countryOrder))
+        .map(this.countryToSelectOption)
+      return [nullOption].concat(countryOptions)
     },
     dataRecordHeaders() {
       let headerKeys = []
@@ -872,8 +851,8 @@ export default {
     },
     async refreshMetrics() {
       const inputs = {
-        'domain': 'contributor',
-        'timescale': 'year'
+        domain: 'contributor',
+        timescale: 'year'
       }
 
       const paramNames = {
@@ -892,7 +871,8 @@ export default {
         ]
         paramNames.bbox = components.join(',')
       }
-      for (const [name, paramValue] of Object.entries(paramNames)) {
+      for (const currParam of Object.entries(paramNames)) {
+        const paramValue = currParam[1]
         if (paramValue === 'uv_index_hourly') {
           // Use spectral for graph until multi dataset metrics are available
           inputs.push({
@@ -922,7 +902,8 @@ export default {
       const inputs = {}
 
       const selections = { dataset, country, station }
-      for (const [domain, selected] of Object.entries(selections)) {
+      for (const currSelection of Object.entries(selections)) {
+        const selected = currSelection[1]
         if (selected === 'uv_index_hourly') {
           inputs.domain = 'Broad-band,Spectral'
         } else if (selected !== null) {
