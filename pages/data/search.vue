@@ -377,31 +377,10 @@ export default {
 
       const orderedCountries = this.countries
 
-      if (this.mapBoundingBox === null) {
-        const countryOptions = orderedCountries
-          .sort(compareOnKey(this.countryOrder))
-          .map(this.countryToSelectOption)
-        return [nullOption].concat(countryOptions)
-      } else {
-        const boundaries = this.$store.getters['countries/boundaries']
-        const visibleOptions = orderedCountries.filter((country) => {
-          const selected = country.country_id === this.selectedCountryID
-          const countryBoundingBox = boundaries[country.country_id]
-
-          let visible
-          if (countryBoundingBox === null) {
-            visible = this.mapBoundingBox.contains(country.geometry.coordinates)
-          } else {
-            visible = this.mapBoundingBox.intersects(countryBoundingBox)
-          }
-
-          return selected || visible
-        })
-        const countryOptions = visibleOptions
-          .sort(compareOnKey(this.countryOrder))
-          .map(this.countryToSelectOption)
-        return [nullOption].concat(countryOptions)
-      }
+      const countryOptions = orderedCountries
+        .sort(compareOnKey(this.countryOrder))
+        .map(this.countryToSelectOption)
+      return [nullOption].concat(countryOptions)
     },
     dataRecordHeaders() {
       let headerKeys = []
