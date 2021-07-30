@@ -625,8 +625,6 @@ export default {
 
       this.selectedDataset = dataset.text
       this.selectedDatasetID = dataset.value
-
-      this.refreshDropdowns()
       this.loadingCountries = false
       this.loadingStations = false
       this.loadingInstruments = false
@@ -672,8 +670,6 @@ export default {
 
       this.selectedCountry = country.element
       this.selectedCountryID = country.value
-
-      await this.refreshDropdowns()
       this.loadingStations = false
       this.loadingInstruments = false
       this.loadingMap = false
@@ -875,13 +871,9 @@ export default {
         const paramValue = currParam[1]
         if (paramValue === 'uv_index_hourly') {
           // Use spectral for graph until multi dataset metrics are available
-          inputs.push({
-            name: 'Spectral'
-          })
+          inputs.dataset = 'Spectral'
         } else if (paramValue !== null) {
-          inputs.push({
-            name: paramValue
-          })
+          inputs[currParam[0]] = paramValue
         }
       }
 
