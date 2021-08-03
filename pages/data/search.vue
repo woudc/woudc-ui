@@ -625,6 +625,7 @@ export default {
 
       this.selectedDataset = dataset.text
       this.selectedDatasetID = dataset.value
+
       this.refreshDropdowns()
       this.loadingCountries = false
       this.loadingStations = false
@@ -671,6 +672,7 @@ export default {
 
       this.selectedCountry = country.element
       this.selectedCountryID = country.value
+
       await this.refreshDropdowns()
       this.loadingStations = false
       this.loadingInstruments = false
