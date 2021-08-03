@@ -625,6 +625,7 @@ export default {
 
       this.selectedDataset = dataset.text
       this.selectedDatasetID = dataset.value
+      this.refreshDropdowns()
       this.loadingCountries = false
       this.loadingStations = false
       this.loadingInstruments = false
@@ -670,6 +671,7 @@ export default {
 
       this.selectedCountry = country.element
       this.selectedCountryID = country.value
+      await this.refreshDropdowns()
       this.loadingStations = false
       this.loadingInstruments = false
       this.loadingMap = false
@@ -899,7 +901,7 @@ export default {
         if (selected === 'uv_index_hourly') {
           inputs.domain = 'Broad-band,Spectral'
         } else if (selected !== null) {
-          inputs.domain = selected
+          inputs[currSelection[0]] = selected
         }
       }
 
