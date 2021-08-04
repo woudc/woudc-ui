@@ -887,7 +887,6 @@ export default {
         response = await woudcClient.get(dataRecordsURL + '?' + queryParams)
       }
       this.numberMatched = response.data.numberMatched
-      this.dataRecords = response.data.features.map(stripProperties)
       this.oldSearchParams = {
         country: this.selectedCountryID,
         dataset: this.selectedDatasetID,
