@@ -272,7 +272,7 @@
             :options.sync="options"
             :server-items-length="numberMatched"
             :loading="loadingDataRecords"
-            @pagination="updatePage"
+            @pagination="refreshDataRecordsPage"
           >
             <template v-slot:item.platform_id="row">
               <nuxt-link
@@ -838,6 +838,7 @@ export default {
       this.refreshMetrics()
     },
     async refreshDataRecords() {
+      console.log('refreshDataRecords')
       this.loadingDataRecords = true
 
       const dataRecordsURL =
@@ -896,6 +897,70 @@ export default {
         'end-year': this.selectedYearRange[1]
       }
       this.oldSearchExists = true
+    },
+    async refreshDataRecordsPage(pagination) {
+      console.log('refreshDataRecordsPage')
+      const { itemsPerPage: results, page } = pagination
+      this.pagination = pagination
+      this.loadingDataRecords = true
+
+      const dataRecordsURL =
+        this.$config.WOUDC_UI_API + '/collections/data_records/items'
+      const UVIndexURL =
+        this.$config.WOUDC_UI_API + '/collections/uv_index_hourly/items'
+
+      let queryParams = 'sortby=-timestamp_date,platform_id,content_category'
+      let selected = ''
+      if (this.selectedDatasetID === 'uv_index_hourly') {
+        selected = {
+          country_id: this.selectedCountryID,
+          station_id: this.selectedStationID,
+          instrument_name: this.selectedInstrumentID
+        }
+      } else {
+        selected = {
+          content_category: this.selectedDatasetID,
+          platform_country: this.selectedCountryID,
+          platform_id: this.selectedStationID,
+          instrument_name: this.selectedInstrumentID
+        }
+      }
+      for (const [field, value] of Object.entries(selected)) {
+        if (value !== null) {
+          queryParams += '&' + field + '=' + value
+        }
+      }
+
+      try {
+        const currStartIndex = page * results - results
+        const Limit = results
+        if (this.selectedDatasetID === 'uv_index_hourly') {
+          let response = await woudcClient.get(
+            UVIndexURL +
+              '?startindex=' +
+              currStartIndex +
+              '&limit=' +
+              Limit +
+              '&' +
+              queryParams
+          )
+          this.dataRecords = response.data.features.map(stripProperties)
+        } else {
+          let response = await woudcClient.get(
+            dataRecordsURL +
+              '?startindex=' +
+              currStartIndex +
+              '&limit=' +
+              Limit +
+              '&' +
+              queryParams
+          )
+          this.dataRecords = response.data.features.map(stripProperties)
+        }
+        this.loadingDataRecords = false
+      } catch (error) {
+        this.loadingDataRecords = false
+      }
       this.loadingDataRecords = false
     },
     async refreshDropdowns() {
@@ -1022,74 +1087,6 @@ export default {
         // Set the actual intended value for the start year.
         this.selectedYearRange = [newStartYear, oldEndYear]
       })
-    },
-    updatePage(pagination) {
-      const { itemsPerPage: results, page } = pagination
-      this.pagination = pagination
-      this.getDataRecordsPage(page, results)
-    },
-    async getDataRecordsPage(page = 1, results = 10) {
-      this.loadingDataRecords = true
-
-      const dataRecordsURL =
-        this.$config.WOUDC_UI_API + '/collections/data_records/items'
-      const UVIndexURL =
-        this.$config.WOUDC_UI_API + '/collections/uv_index_hourly/items'
-
-      let queryParams = ''
-      let selected = ''
-      if (this.selectedDatasetID === 'uv_index_hourly') {
-        selected = {
-          country_id: this.selectedCountryID,
-          station_id: this.selectedStationID,
-          instrument_name: this.selectedInstrumentID
-        }
-        queryParams = 'sortby=-observation_date,station_id,dataset_id'
-      } else {
-        selected = {
-          content_category: this.selectedDatasetID,
-          platform_country: this.selectedCountryID,
-          platform_id: this.selectedStationID,
-          instrument_name: this.selectedInstrumentID
-        }
-        queryParams = 'sortby=-timestamp_date,platform_id,content_category'
-      }
-      for (const [field, value] of Object.entries(selected)) {
-        if (value !== null) {
-          queryParams += '&' + field + '=' + value
-        }
-      }
-
-      try {
-        const currStartIndex = page * results - results
-        const Limit = results
-        if (this.selectedDatasetID === 'uv_index_hourly') {
-          let response = await woudcClient.get(
-            UVIndexURL +
-              '?startindex=' +
-              currStartIndex +
-              '&limit=' +
-              Limit +
-              '&' +
-              queryParams
-          )
-          this.dataRecords = response.data.features.map(stripProperties)
-        } else {
-          let response = await woudcClient.get(
-            dataRecordsURL +
-              '?startindex=' +
-              currStartIndex +
-              '&limit=' +
-              Limit +
-              '&' +
-              queryParams
-          )
-          this.dataRecords = response.data.features.map(stripProperties)
-        }
-        this.loadingDataRecords = false
-      } catch (error) {
-        this.loadingDataRecords = false
-      }
     }
   },
   head() {
