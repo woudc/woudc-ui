@@ -272,7 +272,10 @@
           >
             <template v-slot:item.platform_id="row">
               <nuxt-link
-                v-if="selectedDatasetID === 'uv_index_hourly'"
+                v-if="
+                  selectedDatasetID === 'uv_index_hourly' ||
+                    selectedDatasetID === 'TotalOzone'
+                "
                 :to="localePath('data-stations') + '/' + row.item.station_id"
               >
                 {{ row.item.station_id }}
@@ -295,7 +298,9 @@
               </a>
             </template>
             <template v-slot:item.observation_time="row">
-              <p>{{ row.item.observation_time.substring(11, 13) }}</p>
+              <p v-if="row.item.observation_time">
+                {{ row.item.observation_time.substring(11, 13) }}
+              </p>
             </template>
             <template v-slot:item.actions="row">
               <a :href="row.item.url" target="_blank">
@@ -398,6 +403,21 @@ export default {
           'instrument_serial',
           'uv_index',
           'uv_daily_max',
+          'actions'
+        ]
+      } else if (this.selectedDatasetID === 'TotalOzone') {
+        headerKeys = [
+          'observation_date',
+          'contributor_acronym',
+          'platform_id',
+          'station_gaw_id',
+          this.countryOrder,
+          'monthly_date',
+          'monthly_npts',
+          'daily_date',
+          'daily_utc_begin',
+          'daily_utc_end',
+          'daily_nobs',
           'actions'
         ]
       } else {
@@ -793,6 +813,8 @@ export default {
         this.$config.WOUDC_UI_API + '/collections/data_records/items'
       const UVIndexURL =
         this.$config.WOUDC_UI_API + '/collections/uv_index_hourly/items'
+      const totalOzoneURL =
+        this.$config.WOUDC_UI_API + '/collections/totalozone/items'
       let queryParams = ''
       let selected = ''
       if (this.selectedDatasetID === 'uv_index_hourly') {
@@ -802,6 +824,13 @@ export default {
           instrument_name: this.selectedInstrumentID
         }
         queryParams = 'sortby=-observation_date,station_id,dataset_id'
+      } else if (this.selectedDatasetID === 'TotalOzone') {
+        selected = {
+          country_id: this.selectedCountryID,
+          station_id: this.selectedStationID,
+          instrument_name: this.selectedInstrumentID
+        }
+        queryParams = 'sortby=-daily_date,station_id'
       } else {
         selected = {
           content_category: this.selectedDatasetID,
@@ -819,6 +848,8 @@ export default {
       let response = ''
       if (this.selectedDatasetID === 'uv_index_hourly') {
         response = await woudcClient.get(UVIndexURL + '?' + queryParams)
+      } else if (this.selectedDatasetID === 'TotalOzone') {
+        response = await woudcClient.get(totalOzoneURL + '?' + queryParams)
       } else {
         response = await woudcClient.get(dataRecordsURL + '?' + queryParams)
       }
