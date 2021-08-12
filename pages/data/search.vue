@@ -837,12 +837,18 @@ export default {
           queryParams += '&' + field + '=' + value
         }
       }
-      let datetimeParams =
-        this.selectedYearRange[0] +
-        '-01-01T00:00:00Z/' +
-        this.selectedYearRange[1] +
-        '-12-31T23:59:59Z'
-      queryParams = queryParams + '&' + datetimeParams
+      if (
+        this.selectedYearRange[0] != this.minSelectableYear ||
+        this.selectedYearRange[1] != this.maxSelectableYear
+      ) {
+        let datetimeParams =
+          'datetime=' +
+          this.selectedYearRange[0] +
+          '-01-01T00:00:00Z/' +
+          this.selectedYearRange[1] +
+          '-12-31T23:59:59Z'
+        queryParams = queryParams + '&' + datetimeParams
+      }
 
       let response = ''
       if (this.selectedDatasetID === 'uv_index_hourly') {
@@ -879,8 +885,8 @@ export default {
     },
     async refreshMetrics() {
       const inputs = {
-        'domain': 'contributor',
-        'timescale': 'year'
+        domain: 'contributor',
+        timescale: 'year'
       }
 
       const paramNames = {
@@ -899,7 +905,8 @@ export default {
         ]
         paramNames.bbox = components.join(',')
       }
-      for (const [name, paramValue] of Object.entries(paramNames)) {
+      for (const currParam of Object.entries(paramNames)) {
+        const paramValue = currParam[1]
         if (paramValue === 'uv_index_hourly') {
           // Use spectral for graph until multi dataset metrics are available
           inputs.push({
@@ -929,7 +936,8 @@ export default {
       const inputs = {}
 
       const selections = { dataset, country, station }
-      for (const [domain, selected] of Object.entries(selections)) {
+      for (const currSelection of Object.entries(selections)) {
+        const selected = currSelection[1]
         if (selected === 'uv_index_hourly') {
           inputs.domain = 'Broad-band,Spectral'
         } else if (selected !== null) {
