@@ -817,7 +817,6 @@ export default {
       this.refreshMetrics()
     },
     async refreshDataRecords() {
-      console.log('refreshDataRecords')
       this.loadingDataRecords = true
 
       const dataRecordsURL =
@@ -878,7 +877,6 @@ export default {
       this.oldSearchExists = true
     },
     async refreshDataRecordsPage(pagination) {
-      console.log('refreshDataRecordsPage')
       const { itemsPerPage: results, page } = pagination
       this.pagination = pagination
       this.loadingDataRecords = true
