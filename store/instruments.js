@@ -48,12 +48,12 @@ const actions = {
       this.$config.WOUDC_UI_API +
       '/processes/woudc-data-registry-select-distinct/execution'
     const inputs = {
-      'index': 'instrument',
-      'distinct': {
+      index: 'instrument',
+      distinct: {
         nameResolution: ['name'],
         modelResolution: ['name', 'model', 'station_id', 'dataset']
       },
-      'source': [
+      source: [
         'station_name',
         'data_class',
         'country_name_en',
