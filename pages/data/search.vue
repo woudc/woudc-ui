@@ -981,13 +981,9 @@ export default {
         const paramValue = currParam[1]
         if (paramValue === 'uv_index_hourly') {
           // Use spectral for graph until multi dataset metrics are available
-          inputs.push({
-            name: 'Spectral'
-          })
+          inputs.dataset = 'Spectral'
         } else if (paramValue !== null) {
-          inputs.push({
-            name: paramValue
-          })
+          inputs[currParam[0]] = paramValue
         }
       }
 
@@ -1013,7 +1009,7 @@ export default {
         if (selected === 'uv_index_hourly') {
           inputs.domain = 'Broad-band,Spectral'
         } else if (selected !== null) {
-          inputs.domain = selected
+          inputs[currSelection[0]] = selected
         }
       }
 
