@@ -269,6 +269,10 @@
             class="elevation-1"
             :headers="dataRecordHeaders"
             :items="dataRecords"
+            :options.sync="options"
+            :server-items-length="numberMatched"
+            :loading="loadingDataRecords"
+            @pagination="refreshDataRecordsPage"
           >
             <template v-slot:item.platform_id="row">
               <nuxt-link
@@ -332,6 +336,7 @@ export default {
     return {
       countries: [],
       countryOrder: `country_name_${this.$i18n.locale}`,
+      numberMatched: 0,
       dataRecords: [],
       instruments: [],
       loadingCountries: true,
@@ -355,7 +360,12 @@ export default {
       selectedStationID: null,
       selectedYearRange: [null, null],
       stations: [],
-      stationOrder: 'name'
+      stationsWithMetadata: [],
+      stationOrder: 'name',
+      options: {
+        page: 1,
+        itemsPerPage: 10
+      }
     }
   },
   computed: {
@@ -377,31 +387,10 @@ export default {
 
       const orderedCountries = this.countries
 
-      if (this.mapBoundingBox === null) {
-        const countryOptions = orderedCountries
-          .sort(compareOnKey(this.countryOrder))
-          .map(this.countryToSelectOption)
-        return [nullOption].concat(countryOptions)
-      } else {
-        const boundaries = this.$store.getters['countries/boundaries']
-        const visibleOptions = orderedCountries.filter((country) => {
-          const selected = country.country_id === this.selectedCountryID
-          const countryBoundingBox = boundaries[country.country_id]
-
-          let visible
-          if (countryBoundingBox === null) {
-            visible = this.mapBoundingBox.contains(country.geometry.coordinates)
-          } else {
-            visible = this.mapBoundingBox.intersects(countryBoundingBox)
-          }
-
-          return selected || visible
-        })
-        const countryOptions = visibleOptions
-          .sort(compareOnKey(this.countryOrder))
-          .map(this.countryToSelectOption)
-        return [nullOption].concat(countryOptions)
-      }
+      const countryOptions = orderedCountries
+        .sort(compareOnKey(this.countryOrder))
+        .map(this.countryToSelectOption)
+      return [nullOption].concat(countryOptions)
     },
     dataRecordHeaders() {
       let headerKeys = []
@@ -579,6 +568,7 @@ export default {
 
       this.countries = countries.map(stripProperties)
       this.stations = stations.map(unpackageBareStation)
+      this.stationsWithMetadata = stations.map(unpackageBareStation)
       this.instruments = instruments.map(stripProperties)
 
       this.loadingCountries = false
@@ -660,6 +650,8 @@ export default {
       this.loadingInstruments = true
       this.loadingMap = true
 
+      this.selectedCountry = country.element
+      this.selectedCountryID = country.value
       const { stations, instruments } = await this.sendDropdownRequest(
         this.selectedDatasetID,
         country.value,
@@ -691,9 +683,6 @@ export default {
         this.selectedInstrumentID = null
       }
 
-      this.selectedCountry = country.element
-      this.selectedCountryID = country.value
-
       await this.refreshDropdowns()
       this.loadingStations = false
       this.loadingInstruments = false
@@ -722,7 +711,26 @@ export default {
         this.selectedInstrument = null
         this.selectedInstrumentID = null
       }
-      this.refreshMetrics()
+      if (station === null) {
+        this.refreshMetrics()
+      } else {
+        const countryNameProp = `country_name_${this.$i18n.locale}`
+        const stationName =
+          station['name'] === undefined
+            ? station['station_name']
+            : station['name']
+        const countryName = this.stationsWithMetadata[
+          this.stationsWithMetadata.findIndex((s) => s['name'] === stationName)
+        ][countryNameProp]
+        const countryOptionsElems = this.countryOptions.slice(1)
+        const country =
+          countryOptionsElems[
+            countryOptionsElems.findIndex(
+              (c) => c['element'][countryNameProp] === countryName
+            )
+          ]
+        this.changeCountry(country)
+      }
     },
     changeInstrument(instrument) {
       this.selectedInstrument = instrument.element
@@ -794,6 +802,7 @@ export default {
       this.dataRecords = []
       this.oldSearchExists = false
       this.oldSearchParams = {}
+      this.numberMatched = 0
 
       this.loadingCountries = true
       this.loadingStations = true
@@ -837,13 +846,26 @@ export default {
           queryParams += '&' + field + '=' + value
         }
       }
+      if (
+        this.selectedYearRange[0] != this.minSelectableYear ||
+        this.selectedYearRange[1] != this.maxSelectableYear
+      ) {
+        let datetimeParams =
+          'datetime=' +
+          this.selectedYearRange[0] +
+          '-01-01T00:00:00Z/' +
+          this.selectedYearRange[1] +
+          '-12-31T23:59:59Z'
+        queryParams = queryParams + '&' + datetimeParams
+      }
+
       let response = ''
       if (this.selectedDatasetID === 'uv_index_hourly') {
         response = await woudcClient.get(UVIndexURL + '?' + queryParams)
       } else {
         response = await woudcClient.get(dataRecordsURL + '?' + queryParams)
       }
-      this.dataRecords = response.data.features.map(stripProperties)
+      this.numberMatched = response.data.numberMatched
       this.oldSearchParams = {
         country: this.selectedCountryID,
         dataset: this.selectedDatasetID,
@@ -853,6 +875,69 @@ export default {
         'end-year': this.selectedYearRange[1]
       }
       this.oldSearchExists = true
+    },
+    async refreshDataRecordsPage(pagination) {
+      const { itemsPerPage: results, page } = pagination
+      this.pagination = pagination
+      this.loadingDataRecords = true
+
+      const dataRecordsURL =
+        this.$config.WOUDC_UI_API + '/collections/data_records/items'
+      const UVIndexURL =
+        this.$config.WOUDC_UI_API + '/collections/uv_index_hourly/items'
+
+      let queryParams = 'sortby=-timestamp_date,platform_id,content_category'
+      let selected = ''
+      if (this.selectedDatasetID === 'uv_index_hourly') {
+        selected = {
+          country_id: this.selectedCountryID,
+          station_id: this.selectedStationID,
+          instrument_name: this.selectedInstrumentID
+        }
+      } else {
+        selected = {
+          content_category: this.selectedDatasetID,
+          platform_country: this.selectedCountryID,
+          platform_id: this.selectedStationID,
+          instrument_name: this.selectedInstrumentID
+        }
+      }
+      for (const [field, value] of Object.entries(selected)) {
+        if (value !== null) {
+          queryParams += '&' + field + '=' + value
+        }
+      }
+
+      try {
+        const currStartIndex = page * results - results
+        const Limit = results
+        if (this.selectedDatasetID === 'uv_index_hourly') {
+          let response = await woudcClient.get(
+            UVIndexURL +
+              '?startindex=' +
+              currStartIndex +
+              '&limit=' +
+              Limit +
+              '&' +
+              queryParams
+          )
+          this.dataRecords = response.data.features.map(stripProperties)
+        } else {
+          let response = await woudcClient.get(
+            dataRecordsURL +
+              '?startindex=' +
+              currStartIndex +
+              '&limit=' +
+              Limit +
+              '&' +
+              queryParams
+          )
+          this.dataRecords = response.data.features.map(stripProperties)
+        }
+        this.loadingDataRecords = false
+      } catch (error) {
+        this.loadingDataRecords = false
+      }
       this.loadingDataRecords = false
     },
     async refreshDropdowns() {
@@ -872,8 +957,8 @@ export default {
     },
     async refreshMetrics() {
       const inputs = {
-        'domain': 'contributor',
-        'timescale': 'year'
+        domain: 'contributor',
+        timescale: 'year'
       }
 
       const paramNames = {
@@ -892,7 +977,8 @@ export default {
         ]
         paramNames.bbox = components.join(',')
       }
-      for (const [name, paramValue] of Object.entries(paramNames)) {
+      for (const currParam of Object.entries(paramNames)) {
+        const paramValue = currParam[1]
         if (paramValue === 'uv_index_hourly') {
           // Use spectral for graph until multi dataset metrics are available
           inputs.push({
@@ -922,7 +1008,8 @@ export default {
       const inputs = {}
 
       const selections = { dataset, country, station }
-      for (const [domain, selected] of Object.entries(selections)) {
+      for (const currSelection of Object.entries(selections)) {
+        const selected = currSelection[1]
         if (selected === 'uv_index_hourly') {
           inputs.domain = 'Broad-band,Spectral'
         } else if (selected !== null) {
