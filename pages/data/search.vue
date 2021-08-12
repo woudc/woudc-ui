@@ -355,6 +355,7 @@ export default {
       selectedStationID: null,
       selectedYearRange: [null, null],
       stations: [],
+      stationsWithMetadata: [],
       stationOrder: 'name'
     }
   },
@@ -579,6 +580,7 @@ export default {
 
       this.countries = countries.map(stripProperties)
       this.stations = stations.map(unpackageBareStation)
+      this.stationsWithMetadata = stations.map(unpackageBareStation)
       this.instruments = instruments.map(stripProperties)
 
       this.loadingCountries = false
@@ -660,6 +662,8 @@ export default {
       this.loadingInstruments = true
       this.loadingMap = true
 
+      this.selectedCountry = country.element
+      this.selectedCountryID = country.value
       const { stations, instruments } = await this.sendDropdownRequest(
         this.selectedDatasetID,
         country.value,
@@ -691,9 +695,6 @@ export default {
         this.selectedInstrumentID = null
       }
 
-      this.selectedCountry = country.element
-      this.selectedCountryID = country.value
-
       await this.refreshDropdowns()
       this.loadingStations = false
       this.loadingInstruments = false
@@ -722,7 +723,26 @@ export default {
         this.selectedInstrument = null
         this.selectedInstrumentID = null
       }
-      this.refreshMetrics()
+      if (station === null) {
+        this.refreshMetrics()
+      } else {
+        const countryNameProp = `country_name_${this.$i18n.locale}`
+        const stationName =
+          station['name'] === undefined
+            ? station['station_name']
+            : station['name']
+        const countryName = this.stationsWithMetadata[
+          this.stationsWithMetadata.findIndex((s) => s['name'] === stationName)
+        ][countryNameProp]
+        const countryOptionsElems = this.countryOptions.slice(1)
+        const country =
+          countryOptionsElems[
+            countryOptionsElems.findIndex(
+              (c) => c['element'][countryNameProp] === countryName
+            )
+          ]
+        this.changeCountry(country)
+      }
     },
     changeInstrument(instrument) {
       this.selectedInstrument = instrument.element

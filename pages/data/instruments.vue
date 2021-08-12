@@ -51,7 +51,7 @@
             <td>{{ row.item.dataset }}</td>
             <td>
               <nuxt-link
-                :to="'/data/station/' + row.item.station_id"
+                :to="localePath('data-stations') + '/' + row.item.station_id"
                 v-text="row.item.station_name"
               />
             </td>
