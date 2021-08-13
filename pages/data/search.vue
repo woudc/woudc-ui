@@ -274,6 +274,11 @@
             :loading="loadingDataRecords"
             @pagination="refreshDataRecordsPage"
           >
+            <template v-slot:item.observation_date="row">
+              <p v-if="row.item.observation_date">
+                {{ row.item.observation_date.substring(0, 10) }}
+              </p>
+            </template>
             <template v-slot:item.platform_id="row">
               <nuxt-link
                 v-if="
