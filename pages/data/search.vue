@@ -467,13 +467,13 @@ export default {
           multiband: 'Multi-band',
           spectral: 'Spectral',
           'uv-index': 'uv_index_hourly'
-        } /*, // disabled until support for station/metric integration
+        },
         'data-centers': {
           totalozone: 'ndacc-total',
           'vertical-ozone': 'ndacc-vertical',
           'uv-irradiance': 'ndacc-uv',
           eubrewnet: 'peer_data_records'
-        }*/
+        }
       }
 
       const datasetOptions = []
@@ -845,6 +845,8 @@ export default {
         this.$config.WOUDC_UI_API + '/collections/uv_index_hourly/items'
       const totalOzoneURL =
         this.$config.WOUDC_UI_API + '/collections/totalozone/items'
+      const peerDataRecordsURL =
+        this.$config.WOUDC_UI_API + '/collections/peer_data_records/items'
       let queryParams = ''
       let selected = ''
       if (this.selectedDatasetID === 'uv_index_hourly') {
@@ -861,6 +863,26 @@ export default {
           instrument_name: this.selectedInstrumentID
         }
         queryParams = 'sortby=-daily_date,station_id'
+      } else if (this.selectedDatasetID === 'peer_data_records') {
+        selected = {
+          source: 'eubrewnet',
+          country_id: this.selectedCountryID,
+          station_id: this.selectedStationID,
+          instrument_name: this.selectedInstrumentID
+        }
+        queryParams = 'sortby=-start_datetime,station_id,measurement'
+      } else if (
+        this.selectedDatasetID === 'ndacc-total' ||
+        this.selectedDatasetID === 'ndacc-vertical' ||
+        this.selectedDatasetID === 'ndacc-uv'
+      ) {
+        selected = {
+          source: 'ndacc',
+          country_id: this.selectedCountryID,
+          station_id: this.selectedStationID,
+          instrument_name: this.selectedInstrumentID
+        }
+        queryParams = 'sortby=-start_datetime,station_id,measurement'
       } else {
         selected = {
           content_category: this.selectedDatasetID,
@@ -893,6 +915,13 @@ export default {
         response = await woudcClient.get(UVIndexURL + '?' + queryParams)
       } else if (this.selectedDatasetID === 'TotalOzone') {
         response = await woudcClient.get(totalOzoneURL + '?' + queryParams)
+      } else if (
+        this.selectedDatasetID === 'peer_data_records' ||
+        this.selectedDatasetID === 'ndacc-total' ||
+        this.selectedDatasetID === 'ndacc-vertical' ||
+        this.selectedDatasetID === 'ndacc-uv'
+      ) {
+        response = await woudcClient.get(peerDataRecordsURL + '?' + queryParams)
       } else {
         response = await woudcClient.get(dataRecordsURL + '?' + queryParams)
       }
@@ -1047,6 +1076,7 @@ export default {
       const queryParams = { inputs }
       const response = await getExplore(this.$config.WOUDC_UI_API, queryParams)
 
+      console.log(response)
       const countries = response.data.outputs.countries.sortby_country_id
       const stations = response.data.outputs.stations.sortby_station_id
       const instruments =
