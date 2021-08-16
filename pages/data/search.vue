@@ -274,6 +274,11 @@
             :loading="loadingDataRecords"
             @pagination="refreshDataRecordsPage"
           >
+            <template v-slot:item.observation_date="row">
+              <p v-if="row.item.observation_date">
+                {{ row.item.observation_date.substring(0, 10) }}
+              </p>
+            </template>
             <template v-slot:item.platform_id="row">
               <nuxt-link
                 v-if="
@@ -433,7 +438,7 @@ export default {
         ]
       } else {
         headerKeys = [
-          'timestamp_date',
+          'timestamp_utc',
           'content_category',
           'platform_type',
           'platform_id',
@@ -921,7 +926,7 @@ export default {
       const UVIndexURL =
         this.$config.WOUDC_UI_API + '/collections/uv_index_hourly/items'
 
-      let queryParams = 'sortby=-timestamp_date,platform_id,content_category'
+      let queryParams = ''
       let selected = ''
       if (this.selectedDatasetID === 'uv_index_hourly') {
         selected = {
@@ -929,6 +934,7 @@ export default {
           station_id: this.selectedStationID,
           instrument_name: this.selectedInstrumentID
         }
+        queryParams = 'sortby=-observation_date,station_id,dataset_id'
       } else {
         selected = {
           content_category: this.selectedDatasetID,
@@ -936,6 +942,7 @@ export default {
           platform_id: this.selectedStationID,
           instrument_name: this.selectedInstrumentID
         }
+        queryParams = 'sortby=-timestamp_date,platform_id,content_category'
       }
       for (const [field, value] of Object.entries(selected)) {
         if (value !== null) {
