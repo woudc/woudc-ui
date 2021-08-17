@@ -74,6 +74,8 @@ export default {
     country(newSelection) {
       if (newSelection !== null) {
         this.autoZoomToCountry(newSelection)
+      } else {
+        this.zoomToGlobe()
       }
     },
     selected(newSelection, oldSelection) {
