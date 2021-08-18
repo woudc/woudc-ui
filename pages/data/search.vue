@@ -358,6 +358,7 @@ export default {
       mapFocusCountry: null,
       metricsByYear: {},
       minSelectableYear: 1924,
+      oldDataRecordHeadersExists: false,
       oldSearchExists: false,
       oldSearchParams: {},
       selectedCountry: null,
@@ -402,7 +403,7 @@ export default {
         .map(this.countryToSelectOption)
       return [nullOption].concat(countryOptions)
     },
-    dataRecordHeaders() {
+    newDataRecordHeaders() {
       let headerKeys = []
       if (this.selectedDatasetID === 'uv_index_hourly') {
         headerKeys = [
@@ -825,6 +826,7 @@ export default {
       this.selectedYearRange = [this.minSelectableYear, this.maxSelectableYear]
 
       this.dataRecords = []
+      this.oldDataRecordHeadersExists = false
       this.oldSearchExists = false
       this.oldSearchParams = {}
       this.numberMatched = 0
@@ -843,6 +845,7 @@ export default {
     },
     async refreshDataRecords() {
       this.loadingDataRecords = true
+      this.dataRecordHeaders = this.newDataRecordHeaders
 
       const dataRecordsURL =
         this.$config.WOUDC_UI_API + '/collections/data_records/items'
@@ -911,6 +914,7 @@ export default {
         'end-year': this.selectedYearRange[1]
       }
       this.oldSearchExists = true
+      this.oldDataRecordHeadersExists = true
     },
     async refreshDataRecordsPage(pagination) {
       const { itemsPerPage: results, page } = pagination
@@ -976,7 +980,6 @@ export default {
       } catch (error) {
         this.loadingDataRecords = false
       }
-      this.loadingDataRecords = false
     },
     async refreshDropdowns() {
       const {
