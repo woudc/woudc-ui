@@ -935,6 +935,13 @@ export default {
           instrument_name: this.selectedInstrumentID
         }
         queryParams = 'sortby=-observation_date,station_id,dataset_id'
+      } else if (this.selectedDatasetID === 'TotalOzone') {
+        selected = {
+          country_id: this.selectedCountryID,
+          station_id: this.selectedStationID,
+          instrument_name: this.selectedInstrumentID
+        }
+        queryParams = 'sortby=-daily_date,station_id'
       } else {
         selected = {
           content_category: this.selectedDatasetID,
