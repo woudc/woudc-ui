@@ -555,6 +555,7 @@ export default {
         const stationOptions = visibleOptions
           .sort(compareOnKey(this.stationOrder))
           .map(this.stationToSelectOption)
+        this.refreshMetrics()
         return [nullOption].concat(stationOptions)
       }
     },
