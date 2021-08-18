@@ -875,6 +875,23 @@ export default {
         }
         queryParams = 'sortby=-timestamp_date,platform_id,content_category'
       }
+
+      if (this.selectedCountry === null && this.selectedStationID === null) {
+        // Select only countries and stations visible on the map
+        let stationIDs = ''
+        for (const station of this.stationOptions) {
+          stationIDs = stationIDs + station['value'] + '|'
+        }
+        if (
+          this.selectedDatasetID === 'uv_index_hourly' ||
+          this.selectedDatasetID === 'TotalOzone'
+        ) {
+          selected['station_id'] = stationIDs
+        } else {
+          selected['platform_id'] = stationIDs
+        }
+      }
+
       for (const [field, value] of Object.entries(selected)) {
         if (value !== null) {
           queryParams += '&' + field + '=' + value
@@ -940,6 +957,22 @@ export default {
         }
         queryParams = 'sortby=-timestamp_date,platform_id,content_category'
       }
+      if (this.selectedCountry === null && this.selectedStationID === null) {
+        // Select only countries and stations visible on the map
+        let stationIDs = ''
+        for (const station of this.stationOptions) {
+          stationIDs = stationIDs + station['value'] + '|'
+        }
+        if (
+          this.selectedDatasetID === 'uv_index_hourly' ||
+          this.selectedDatasetID === 'TotalOzone'
+        ) {
+          selected['station_id'] = stationIDs
+        } else {
+          selected['platform_id'] = stationIDs
+        }
+      }
+
       for (const [field, value] of Object.entries(selected)) {
         if (value !== null) {
           queryParams += '&' + field + '=' + value
