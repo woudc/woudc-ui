@@ -1073,7 +1073,7 @@ export default {
       const response = await getMetrics(this.$config.WOUDC_UI_API, queryParams)
 
       const newMetrics = {}
-      response.data.outputs.metrics.forEach((metric) => {
+      response.data.metrics.forEach((metric) => {
         newMetrics[metric.year] = {
           totalFiles: metric.total_files,
           totalObs: metric.total_obs
@@ -1098,10 +1098,10 @@ export default {
       const queryParams = { inputs }
       const response = await getExplore(this.$config.WOUDC_UI_API, queryParams)
 
-      const countries = response.data.outputs.countries.sortby_country_id
-      const stations = response.data.outputs.stations.sortby_station_id
+      const countries = response.data.countries.sortby_country_id
+      const stations = response.data.stations.sortby_station_id
       const instruments =
-        response.data.outputs.instruments.sortby_instrument_name
+        response.data.instruments.sortby_instrument_name
 
       return { countries, stations, instruments }
     },

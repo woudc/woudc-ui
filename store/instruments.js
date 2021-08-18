@@ -67,7 +67,7 @@ const actions = {
 
     const queryParams = { inputs }
     const response = await woudcClient.post(queryURL, queryParams)
-    const instruments = response.data.outputs
+    const instruments = response.data
 
     for (const instrumentName of instruments.nameResolution) {
       const id = instrumentName.properties.name

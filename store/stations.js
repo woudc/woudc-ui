@@ -204,7 +204,7 @@ const actions = {
       this.$config.WOUDC_UI_API,
       queryParams
     )
-    const stationsList = stationsResponse.data.outputs.orderByID
+    const stationsList = stationsResponse.data.orderByID
 
     // Use a map to let a station's properties all be available using just the ID.
     const stationsByID = {}
@@ -237,7 +237,7 @@ const actions = {
       this.$config.WOUDC_UI_API,
       queryParams
     )
-    const stnDataPairs = contributionsResponse.data.outputs.orderByID
+    const stnDataPairs = contributionsResponse.data.orderByID
 
     commit('setStnDataPairs', stnDataPairs)
     commit('setLoadedStnDataPairs', true)
