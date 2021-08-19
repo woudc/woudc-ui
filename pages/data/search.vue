@@ -283,7 +283,11 @@
               <nuxt-link
                 v-if="
                   selectedDatasetID === 'uv_index_hourly' ||
-                    selectedDatasetID === 'TotalOzone'
+                    selectedDatasetID === 'TotalOzone' ||
+                    selectedDatasetID === 'peer_data_records' ||
+                    selectedDatasetID === 'ndacc-total' ||
+                    selectedDatasetID === 'ndacc-uv' ||
+                    selectedDatasetID === 'ndacc-vertical'
                 "
                 :to="localePath('data-stations') + '/' + row.item.station_id"
               >
@@ -434,6 +438,23 @@ export default {
           'daily_utc_begin',
           'daily_utc_end',
           'daily_nobs',
+          'actions'
+        ]
+      } else if (
+        this.selectedDatasetID === 'peer_data_records' ||
+        this.selectedDatasetID === 'ndacc-total' ||
+        this.selectedDatasetID === 'ndacc-vertical' ||
+        this.selectedDatasetID === 'ndacc-uv'
+      ) {
+        headerKeys = [
+          'observation_date',
+          'agency',
+          'platform_id',
+          'station_gaw_id',
+          'measurement',
+          'instrument_name',
+          'first_observation',
+          'last_observation',
           'actions'
         ]
       } else {

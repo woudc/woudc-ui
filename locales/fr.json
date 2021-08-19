@@ -1071,8 +1071,10 @@
         "daily-utc_end": "Heure en UTC de la dernière observation",
         "daily-nobs": "Nombre d'observations",
         "file-path": "Actions",
+        "gaw-id": "Identifiant VAG",
         "instrument-model": "Modèle de l’instrument",
         "instrument-name": "Nom de l’instrument",
+        "instrument-type": "Type d'instrument",
         "instrument-serial": "Numéro de l’instrument",
         "monthly-date": "Mensuelle Date",
         "monthly-npts": "Mensuelle Nombre d'observations",
@@ -1085,7 +1087,11 @@
         "station-gaw_id": "Identifiant VAG",
         "timestamp-utc": "Date de l’observation (UTC)",
         "uv-index": "Indice UV moyen horaire",
-        "uv-daily_max": "Indice UV jornalier max"
+        "uv-daily_max": "Indice UV jornalier max",
+        "agency": "Organisme",
+        "end-datetime": "Heure en UTC de la dernière observation",
+        "start-datetime": "Heure en UTC de la première observation",
+        "measurement": "Nom de l'ensemble de données"
       },
       "title": "Rechercher et télécharger de données"
     },
