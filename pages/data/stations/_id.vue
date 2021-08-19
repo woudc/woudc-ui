@@ -376,7 +376,7 @@ export default {
       const response = await getMetrics(this.$config.WOUDC_UI_API, queryParams)
 
       const newMetrics = {}
-      response.data.outputs.metrics.forEach((metric) => {
+      response.data.metrics.forEach((metric) => {
         newMetrics[metric.year] = {
           totalFiles: metric.total_files,
           totalObs: metric.total_obs

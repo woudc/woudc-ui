@@ -79,7 +79,7 @@ const actions = {
       this.$config.WOUDC_UI_API,
       queryParams
     )
-    const countries = countriesResponse.data.outputs.orderByCode
+    const countries = countriesResponse.data.orderByCode
 
     commit('setCountries', countries)
     commit('setLoaded')

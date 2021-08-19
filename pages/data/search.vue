@@ -274,6 +274,11 @@
             :loading="loadingDataRecords"
             @pagination="refreshDataRecordsPage"
           >
+            <template v-slot:item.observation_date="row">
+              <p v-if="row.item.observation_date">
+                {{ row.item.observation_date.substring(0, 10) }}
+              </p>
+            </template>
             <template v-slot:item.platform_id="row">
               <nuxt-link
                 v-if="
@@ -357,6 +362,7 @@ export default {
       mapFocusCountry: null,
       metricsByYear: {},
       minSelectableYear: 1924,
+      oldDataRecordHeadersExists: false,
       oldSearchExists: false,
       oldSearchParams: {},
       selectedCountry: null,
@@ -401,7 +407,7 @@ export default {
         .map(this.countryToSelectOption)
       return [nullOption].concat(countryOptions)
     },
-    dataRecordHeaders() {
+    newDataRecordHeaders() {
       let headerKeys = []
       if (this.selectedDatasetID === 'uv_index_hourly') {
         headerKeys = [
@@ -453,7 +459,7 @@ export default {
         ]
       } else {
         headerKeys = [
-          'timestamp_date',
+          'timestamp_utc',
           'content_category',
           'platform_type',
           'platform_id',
@@ -571,6 +577,7 @@ export default {
         const stationOptions = visibleOptions
           .sort(compareOnKey(this.stationOrder))
           .map(this.stationToSelectOption)
+        this.refreshMetrics()
         return [nullOption].concat(stationOptions)
       }
     },
@@ -841,6 +848,7 @@ export default {
       this.selectedYearRange = [this.minSelectableYear, this.maxSelectableYear]
 
       this.dataRecords = []
+      this.oldDataRecordHeadersExists = false
       this.oldSearchExists = false
       this.oldSearchParams = {}
       this.numberMatched = 0
@@ -859,6 +867,7 @@ export default {
     },
     async refreshDataRecords() {
       this.loadingDataRecords = true
+      this.dataRecordHeaders = this.newDataRecordHeaders
 
       const dataRecordsURL =
         this.$config.WOUDC_UI_API + '/collections/data_records/items'
@@ -913,6 +922,23 @@ export default {
         }
         queryParams = 'sortby=-timestamp_date,platform_id,content_category'
       }
+
+      if (this.selectedCountry === null && this.selectedStationID === null) {
+        // Select only countries and stations visible on the map
+        let stationIDs = ''
+        for (const station of this.stationOptions) {
+          stationIDs = stationIDs + station['value'] + '|'
+        }
+        if (
+          this.selectedDatasetID === 'uv_index_hourly' ||
+          this.selectedDatasetID === 'TotalOzone'
+        ) {
+          selected['station_id'] = stationIDs
+        } else {
+          selected['platform_id'] = stationIDs
+        }
+      }
+
       for (const [field, value] of Object.entries(selected)) {
         if (value !== null) {
           queryParams += '&' + field + '=' + value
@@ -956,6 +982,7 @@ export default {
         'end-year': this.selectedYearRange[1]
       }
       this.oldSearchExists = true
+      this.oldDataRecordHeadersExists = true
     },
     async refreshDataRecordsPage(pagination) {
       const { itemsPerPage: results, page } = pagination
@@ -967,7 +994,7 @@ export default {
       const UVIndexURL =
         this.$config.WOUDC_UI_API + '/collections/uv_index_hourly/items'
 
-      let queryParams = 'sortby=-timestamp_date,platform_id,content_category'
+      let queryParams = ''
       let selected = ''
       if (this.selectedDatasetID === 'uv_index_hourly') {
         selected = {
@@ -975,6 +1002,14 @@ export default {
           station_id: this.selectedStationID,
           instrument_name: this.selectedInstrumentID
         }
+        queryParams = 'sortby=-observation_date,station_id,dataset_id'
+      } else if (this.selectedDatasetID === 'TotalOzone') {
+        selected = {
+          country_id: this.selectedCountryID,
+          station_id: this.selectedStationID,
+          instrument_name: this.selectedInstrumentID
+        }
+        queryParams = 'sortby=-daily_date,station_id'
       } else {
         selected = {
           content_category: this.selectedDatasetID,
@@ -982,7 +1017,24 @@ export default {
           platform_id: this.selectedStationID,
           instrument_name: this.selectedInstrumentID
         }
+        queryParams = 'sortby=-timestamp_date,platform_id,content_category'
       }
+      if (this.selectedCountry === null && this.selectedStationID === null) {
+        // Select only countries and stations visible on the map
+        let stationIDs = ''
+        for (const station of this.stationOptions) {
+          stationIDs = stationIDs + station['value'] + '|'
+        }
+        if (
+          this.selectedDatasetID === 'uv_index_hourly' ||
+          this.selectedDatasetID === 'TotalOzone'
+        ) {
+          selected['station_id'] = stationIDs
+        } else {
+          selected['platform_id'] = stationIDs
+        }
+      }
+
       for (const [field, value] of Object.entries(selected)) {
         if (value !== null) {
           queryParams += '&' + field + '=' + value
@@ -1019,7 +1071,6 @@ export default {
       } catch (error) {
         this.loadingDataRecords = false
       }
-      this.loadingDataRecords = false
     },
     async refreshDropdowns() {
       const {
@@ -1072,7 +1123,7 @@ export default {
       const response = await getMetrics(this.$config.WOUDC_UI_API, queryParams)
 
       const newMetrics = {}
-      response.data.outputs.metrics.forEach((metric) => {
+      response.data.metrics.forEach((metric) => {
         newMetrics[metric.year] = {
           totalFiles: metric.total_files,
           totalObs: metric.total_obs
@@ -1097,10 +1148,10 @@ export default {
       const queryParams = { inputs }
       const response = await getExplore(this.$config.WOUDC_UI_API, queryParams)
 
-      const countries = response.data.outputs.countries.sortby_country_id
-      const stations = response.data.outputs.stations.sortby_station_id
+      const countries = response.data.countries.sortby_country_id
+      const stations = response.data.stations.sortby_station_id
       const instruments =
-        response.data.outputs.instruments.sortby_instrument_name
+        response.data.instruments.sortby_instrument_name
 
       return { countries, stations, instruments }
     },
