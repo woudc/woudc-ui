@@ -285,7 +285,7 @@
                   selectedDatasetID === 'uv_index_hourly' ||
                     selectedDatasetID === 'TotalOzone' ||
                     selectedDatasetID === 'peer_data_records' ||
-                    selectedDatastID === 'ndacc-total' ||
+                    selectedDatasetID === 'ndacc-total' ||
                     selectedDatasetID === 'ndacc-uv' ||
                     selectedDatasetID === 'ndacc-vertical'
                 "
