@@ -278,7 +278,11 @@
               <nuxt-link
                 v-if="
                   selectedDatasetID === 'uv_index_hourly' ||
-                    selectedDatasetID === 'TotalOzone'
+                    selectedDatasetID === 'TotalOzone' ||
+                    selectedDatasetID === 'peer_data_records' ||
+                    selectedDatastID === 'ndacc-total' ||
+                    selectedDatasetID === 'ndacc-uv' ||
+                    selectedDatasetID === 'ndacc-vertical'
                 "
                 :to="localePath('data-stations') + '/' + row.item.station_id"
               >
@@ -428,6 +432,23 @@ export default {
           'daily_utc_begin',
           'daily_utc_end',
           'daily_nobs',
+          'actions'
+        ]
+      } else if (
+        this.selectedDatasetID === 'peer_data_records' ||
+        this.selectedDatasetID === 'ndacc-total' ||
+        this.selectedDatasetID === 'ndacc-vertical' ||
+        this.selectedDatasetID === 'ndacc-uv'
+      ) {
+        headerKeys = [
+          'observation_date',
+          'agency',
+          'platform_id',
+          'station_gaw_id',
+          'measurement',
+          'instrument_name',
+          'first_observation',
+          'last_observation',
           'actions'
         ]
       } else {
@@ -1076,7 +1097,6 @@ export default {
       const queryParams = { inputs }
       const response = await getExplore(this.$config.WOUDC_UI_API, queryParams)
 
-      console.log(response)
       const countries = response.data.outputs.countries.sortby_country_id
       const stations = response.data.outputs.stations.sortby_station_id
       const instruments =
