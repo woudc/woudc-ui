@@ -275,7 +275,17 @@
             @pagination="refreshDataRecordsPage"
           >
             <template v-slot:item.observation_date="row">
-              <p v-if="row.item.observation_date">
+              <p
+                v-if="
+                  selectedDatasetID === 'peer_data_records' ||
+                    selectedDatasetID === 'ndacc-total' ||
+                    selectedDatasetID === 'ndacc-uv' ||
+                    selectedDatasetID === 'ndacc-vertical'
+                "
+              >
+                {{ row.item.start_datetime.substring(0, 10) }}
+              </p>
+              <p v-else-if="row.item.observation_date">
                 {{ row.item.observation_date.substring(0, 10) }}
               </p>
             </template>
@@ -450,11 +460,11 @@ export default {
           'observation_date',
           'agency',
           'platform_id',
-          'station_gaw_id',
+          'gaw_id',
           'measurement',
-          'instrument_name',
-          'first_observation',
-          'last_observation',
+          'instrument_type',
+          'start_datetime',
+          'end_datetime',
           'actions'
         ]
       } else {
@@ -663,9 +673,11 @@ export default {
 
       const retain = {}
       for (const { field, key, elements } of dependencies) {
-        retain[field] = elements.some((element) => {
-          return element.properties[key] === this[field]
-        })
+        if (elements !== undefined) {
+          retain[field] = elements.some((element) => {
+            return element.properties[key] === this[field]
+          })
+        }
       }
 
       if (!retain.selectedCountryID) {
@@ -715,20 +727,27 @@ export default {
         }
       ]
 
-      const retain = {}
-      for (const { field, key, elements } of dependencies) {
-        retain[field] = elements.some((element) => {
-          return element.properties[key] === this[field]
-        })
-      }
+      if (
+        this.selectedDatasetID !== 'peer_data_records' &&
+        this.selectedDatasetID !== 'ndacc-total' &&
+        this.selectedDatasetID !== 'ndacc-uv' &&
+        this.selectedDatasetID !== 'ndacc-vertical'
+      ) {
+        const retain = {}
+        for (const { field, key, elements } of dependencies) {
+          retain[field] = elements.some((element) => {
+            return element.properties[key] === this[field]
+          })
+        }
 
-      if (!retain.selectedStationID) {
-        this.selectedStation = null
-        this.selectedStationID = null
-      }
-      if (!retain.selectedInstrumentID) {
-        this.selectedInstrument = null
-        this.selectedInstrumentID = null
+        if (!retain.selectedStationID) {
+          this.selectedStation = null
+          this.selectedStationID = null
+        }
+        if (!retain.selectedInstrumentID) {
+          this.selectedInstrument = null
+          this.selectedInstrumentID = null
+        }
       }
 
       await this.refreshDropdowns()
@@ -990,6 +1009,10 @@ export default {
         this.$config.WOUDC_UI_API + '/collections/data_records/items'
       const UVIndexURL =
         this.$config.WOUDC_UI_API + '/collections/uv_index_hourly/items'
+      const totalOzoneURL =
+        this.$config.WOUDC_UI_API + '/collections/totalozone/items'
+      const peerDataRecordsURL =
+        this.$config.WOUDC_UI_API + '/collections/peer_data_records/items'
 
       let queryParams = ''
       let selected = ''
@@ -1007,6 +1030,26 @@ export default {
           instrument_name: this.selectedInstrumentID
         }
         queryParams = 'sortby=-daily_date,station_id'
+      } else if (this.selectedDatasetID === 'peer_data_records') {
+        selected = {
+          source: 'eubrewnet',
+          country_id: this.selectedCountryID,
+          station_id: this.selectedStationID,
+          instrument_name: this.selectedInstrumentID
+        }
+        queryParams = 'sortby=-start_datetime,station_id,measurement'
+      } else if (
+        this.selectedDatasetID === 'ndacc-total' ||
+        this.selectedDatasetID === 'ndacc-vertical' ||
+        this.selectedDatasetID === 'ndacc-uv'
+      ) {
+        selected = {
+          source: 'ndacc',
+          country_id: this.selectedCountryID,
+          station_id: this.selectedStationID,
+          instrument_name: this.selectedInstrumentID
+        }
+        queryParams = 'sortby=-start_datetime,station_id,measurement'
       } else {
         selected = {
           content_category: this.selectedDatasetID,
@@ -1049,6 +1092,33 @@ export default {
               queryParams
           )
           this.dataRecords = response.data.features.map(stripProperties)
+        } else if (this.selectedDatasetID === 'TotalOzone') {
+          let response = await woudcClient.get(
+            totalOzoneURL +
+              '?startindex=' +
+              currStartIndex +
+              '&limit=' +
+              Limit +
+              '&' +
+              queryParams
+          )
+          this.dataRecords = response.data.features.map(stripProperties)
+        } else if (
+          (this.selectedDatasetID === 'peer_data_records') |
+          (this.selectedDatasetID === 'ndacc-total') |
+          (this.selectedDatasetID === 'ndacc-uv') |
+          (this.selectedDatasetID === 'ndacc-vertical')
+        ) {
+          let response = await woudcClient.get(
+            peerDataRecordsURL +
+              '?startindex=' +
+              currStartIndex +
+              '&limit=' +
+              Limit +
+              '&' +
+              queryParams
+          )
+          this.dataRecords = response.data.features.map(stripProperties)
         } else {
           let response = await woudcClient.get(
             dataRecordsURL +
@@ -1076,10 +1146,20 @@ export default {
         this.selectedCountryID,
         this.selectedStationID
       )
-
-      this.countries = countries.map(stripProperties)
-      this.stations = stations.map(unpackageBareStation)
-      this.instruments = instruments.map(stripProperties)
+      if (
+        (this.selectedDatasetID === 'peer_data_records') |
+        (this.selectedDatasetID === 'ndacc-total') |
+        (this.selectedDatasetID === 'ndacc-uv') |
+        (this.selectedDatasetID === 'ndacc-vertical')
+      ) {
+        this.countries = []
+        this.stations = stations.map(unpackageBareStation)
+        this.instruments = []
+      } else {
+        this.countries = countries.map(stripProperties)
+        this.stations = stations.map(unpackageBareStation)
+        this.instruments = instruments.map(stripProperties)
+      }
     },
     async refreshMetrics() {
       const inputs = {
