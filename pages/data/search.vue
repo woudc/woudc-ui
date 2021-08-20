@@ -880,20 +880,17 @@ export default {
         queryParams = 'sortby=-timestamp_date,platform_id,content_category'
       }
 
-      if (this.selectedCountry === null && this.selectedStationID === null) {
+      if (
+        this.selectedCountry === null &&
+        this.selectedStationID === null &&
+        this.mapBoundingBox !== null
+      ) {
         // Select only countries and stations visible on the map
-        let stationIDs = ''
-        for (const station of this.stationOptions) {
-          stationIDs = stationIDs + station['value'] + '|'
+        let bboxParams = ''
+        for (const coord of this.boundingBoxArray) {
+          bboxParams = bboxParams + ',' + coord
         }
-        if (
-          this.selectedDatasetID === 'uv_index_hourly' ||
-          this.selectedDatasetID === 'TotalOzone'
-        ) {
-          selected['station_id'] = stationIDs
-        } else {
-          selected['platform_id'] = stationIDs
-        }
+        selected['bbox'] = bboxParams.substring(1)
       }
 
       for (const [field, value] of Object.entries(selected)) {
