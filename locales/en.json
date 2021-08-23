@@ -1071,8 +1071,10 @@
         "daily-utc_end": "UTC Time of Last Observation",
         "daily-nobs": "Number of Observations",
         "file-path": "Actions",
+        "gaw-id": "GAW ID",
         "instrument-model": "Instrument Model",
         "instrument-name": "Instrument Name",
+        "instrument-type": "Instrument Type",
         "instrument-serial": "Instrument Number",
         "monthly-date": "Monthly Date",
         "monthly-npts": "Monthly Number of Observations",
@@ -1085,7 +1087,11 @@
         "station-name": "Station Name",
         "timestamp-utc": "Observation Date (UTC)",
         "uv-index": "UV Index Hourly Average",
-        "uv-daily_max": "UV Index Daily Max"
+        "uv-daily_max": "UV Index Daily Max",
+        "agency": "Agency",
+        "end-datetime": "UTC Time of Last Observation",
+        "start-datetime": "UTC Time of First Observation",
+        "measurement": "Dataset Name"
       },
       "title": "Data Search and Download"
     },
