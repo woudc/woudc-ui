@@ -1089,6 +1089,7 @@
         "station-id": "Platform ID",
         "station-name": "Station Name",
         "temperature": "Temperature",
+        "timestamp-date": "Observation Date (UTC)",
         "timestamp-utc": "Observation Date (UTC)",
         "uv-index": "UV Index Hourly Average",
         "uv-daily_max": "UV Index Daily Max",

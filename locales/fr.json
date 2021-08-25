@@ -1089,6 +1089,7 @@
         "station-gaw_id": "Identifiant VAG",
         "station-id": "Identification de la plate-forme",
         "temperature": "Température",
+        "timestamp-date": "Date de l’observation (UTC)",
         "timestamp-utc": "Date de l’observation (UTC)",
         "uv-index": "Indice UV moyen horaire",
         "uv-daily_max": "Indice UV jornalier max",
