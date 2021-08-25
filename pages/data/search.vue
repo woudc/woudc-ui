@@ -289,22 +289,26 @@
                 {{ row.item.observation_date.substring(0, 10) }}
               </p>
             </template>
-            <template v-slot:item.platform_id="row">
+            <template
+              v-if="
+                selectedDatasetID === 'uv_index_hourly' ||
+                  selectedDatasetID === 'TotalOzone' ||
+                  selectedDatasetID === 'OzoneSonde' ||
+                  selectedDatasetID === 'peer_data_records' ||
+                  selectedDatasetID === 'ndacc-total' ||
+                  selectedDatasetID === 'ndacc-uv' ||
+                  selectedDatasetID === 'ndacc-vertical'
+              "
+              v-slot:item.station_id="row"
+            >
               <nuxt-link
-                v-if="
-                  selectedDatasetID === 'uv_index_hourly' ||
-                    selectedDatasetID === 'TotalOzone' ||
-                    selectedDatasetID === 'peer_data_records' ||
-                    selectedDatasetID === 'ndacc-total' ||
-                    selectedDatasetID === 'ndacc-uv' ||
-                    selectedDatasetID === 'ndacc-vertical'
-                "
                 :to="localePath('data-stations') + '/' + row.item.station_id"
               >
                 {{ row.item.station_id }}
               </nuxt-link>
+            </template>
+            <template v-else v-slot:item.platform_id="row">
               <nuxt-link
-                v-else
                 :to="localePath('data-stations') + '/' + row.item.platform_id"
               >
                 {{ row.item.platform_id }}
@@ -465,6 +469,18 @@ export default {
           'instrument_type',
           'start_datetime',
           'end_datetime',
+          'actions'
+        ]
+      } else if (this.selectedDatasetID === 'OzoneSonde') {
+        headerKeys = [
+          'timestamp_date',
+          'contributor_acronym',
+          'station_id',
+          'station_gaw_id',
+          this.countryOrder,
+          'o3partialpressure',
+          'pressure',
+          'temperature',
           'actions'
         ]
       } else {
@@ -896,6 +912,8 @@ export default {
         this.$config.WOUDC_UI_API + '/collections/totalozone/items'
       const peerDataRecordsURL =
         this.$config.WOUDC_UI_API + '/collections/peer_data_records/items'
+      const ozoneSondeURL =
+        this.$config.WOUDC_UI_API + '/collections/ozonesonde/items'
       let queryParams = ''
       let selected = ''
       if (this.selectedDatasetID === 'uv_index_hourly') {
@@ -932,6 +950,13 @@ export default {
           instrument_name: this.selectedInstrumentID
         }
         queryParams = 'sortby=-start_datetime,station_id,measurement'
+      } else if (this.selectedDatasetID === 'OzoneSonde') {
+        selected = {
+          country_id: this.selectedCountryID,
+          station_id: this.selectedStationID,
+          instrument_name: this.selectedInstrumentID
+        }
+        queryParams = 'sortby=-timestamp_date,station_id'
       } else {
         selected = {
           content_category: this.selectedDatasetID,
@@ -985,10 +1010,16 @@ export default {
         this.selectedDatasetID === 'ndacc-uv'
       ) {
         response = await woudcClient.get(peerDataRecordsURL + '?' + queryParams)
+      } else if (this.selectedDatasetID === 'OzoneSonde') {
+        response = await woudcClient.get(
+          ozoneSondeURL + '?' + queryParams + '&limit=1'
+        )
       } else {
         response = await woudcClient.get(dataRecordsURL + '?' + queryParams)
       }
+
       this.numberMatched = response.data.numberMatched
+
       this.oldSearchParams = {
         country: this.selectedCountryID,
         dataset: this.selectedDatasetID,
@@ -1007,6 +1038,8 @@ export default {
 
       const dataRecordsURL =
         this.$config.WOUDC_UI_API + '/collections/data_records/items'
+      const ozoneSondeURL =
+        this.$config.WOUDC_UI_API + '/collections/ozonesonde/items'
       const UVIndexURL =
         this.$config.WOUDC_UI_API + '/collections/uv_index_hourly/items'
       const totalOzoneURL =
@@ -1030,6 +1063,13 @@ export default {
           instrument_name: this.selectedInstrumentID
         }
         queryParams = 'sortby=-daily_date,station_id'
+      } else if (this.selectedDatasetID === 'OzoneSonde') {
+        selected = {
+          country_id: this.selectedCountryID,
+          station_id: this.selectedStationID,
+          instrument_name: this.selectedInstrumentID
+        }
+        queryParams = 'sortby=-timestamp_date,station_id'
       } else if (this.selectedDatasetID === 'peer_data_records') {
         selected = {
           source: 'eubrewnet',
@@ -1119,6 +1159,37 @@ export default {
               queryParams
           )
           this.dataRecords = response.data.features.map(stripProperties)
+        } else if (this.selectedDatasetID === 'OzoneSonde') {
+          let response = await woudcClient.get(
+            ozoneSondeURL +
+              '?startindex=' +
+              page +
+              '&limit=1' +
+              '&' +
+              queryParams
+          )
+          this.numberMatched =
+            response.data.numberMatched * this.options.itemsPerPage
+          let r = []
+          let totalLength = 0
+          // results are first few entries of every file
+          for (let i = 0; i < response.data.features.length; i++) {
+            const length = response.data.features[i].properties.pressure.length
+            for (let j = 0; j < length; j++) {
+              const index = totalLength + j
+              if (index < this.options.itemsPerPage) {
+                r[index] = JSON.parse(JSON.stringify(response.data.features[i]))
+                r[index].properties.o3partialpressure =
+                  response.data.features[i].properties.o3partialpressure[j]
+                r[index].properties.pressure =
+                  response.data.features[i].properties.pressure[j]
+                r[index].properties.temperature =
+                  response.data.features[i].properties.temperature[j]
+              }
+            }
+            totalLength += length
+          }
+          this.dataRecords = r.map(stripProperties)
         } else {
           let response = await woudcClient.get(
             dataRecordsURL +
