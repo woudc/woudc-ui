@@ -293,20 +293,15 @@
               v-if="
                 selectedDatasetID === 'uv_index_hourly' ||
                   selectedDatasetID === 'TotalOzone' ||
-                  selectedDatasetID === 'OzoneSonde'
+                  selectedDatasetID === 'OzoneSonde' ||
+                  selectedDatasetID === 'peer_data_records' ||
+                  selectedDatasetID === 'ndacc-total' ||
+                  selectedDatasetID === 'ndacc-uv' ||
+                  selectedDatasetID === 'ndacc-vertical'
               "
               v-slot:item.station_id="row"
             >
               <nuxt-link
-                v-if="
-                  selectedDatasetID === 'uv_index_hourly' ||
-                    selectedDatasetID === 'TotalOzone' ||
-                    selectedDatasetID === 'OzoneSonde' ||
-                    selectedDatasetID === 'peer_data_records' ||
-                    selectedDatasetID === 'ndacc-total' ||
-                    selectedDatasetID === 'ndacc-uv' ||
-                    selectedDatasetID === 'ndacc-vertical'
-                "
                 :to="localePath('data-stations') + '/' + row.item.station_id"
               >
                 {{ row.item.station_id }}
