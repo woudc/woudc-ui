@@ -1149,8 +1149,8 @@
         "model": "Instrument Model",
         "name": "Instrument Type",
         "start_date": "Date From",
-        "station": "Station Name",
-        "waf_url": "Web Accessible Folder"
+        "waf_url": "Web Accessible Folder",
+        "station_name": "Station Name"
       },
       "instrument-model": "Instrument Model:",
       "instrument-type": "Instrument Type:",
