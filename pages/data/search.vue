@@ -329,6 +329,11 @@
                 {{ row.item.observation_time.substring(11, 13) }}
               </p>
             </template>
+            <template v-slot:item.timestamp_utc="row">
+              <p v-if="row.item.timestamp_utc">
+                {{ row.item.timestamp_utc.substring(0, 10) }}
+              </p>
+            </template>
             <template v-slot:item.actions="row">
               <a :href="row.item.url" target="_blank">
                 <v-icon>mdi-file-download</v-icon>
@@ -427,7 +432,7 @@ export default {
         headerKeys = [
           'observation_date',
           'contributor_acronym',
-          'platform_id',
+          'station_id',
           'station_gaw_id',
           this.countryOrder,
           'observation_time',
@@ -443,7 +448,7 @@ export default {
         headerKeys = [
           'observation_date',
           'contributor_acronym',
-          'platform_id',
+          'station_id',
           'station_gaw_id',
           this.countryOrder,
           'monthly_date',
@@ -463,7 +468,7 @@ export default {
         headerKeys = [
           'observation_date',
           'agency',
-          'platform_id',
+          'station_id',
           'gaw_id',
           'measurement',
           'instrument_type',

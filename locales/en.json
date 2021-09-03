@@ -1063,6 +1063,7 @@
       },
       "table-headers": {
         "actions": "Actions",
+        "agency": "Agency",
         "content-category": "Dataset Name",
         "contributor-acronym": "Agency",
         "country-name_en": "Country",
@@ -1070,12 +1071,14 @@
         "daily-utc_begin": "UTC Time of First Observation",
         "daily-utc_end": "UTC Time of Last Observation",
         "daily-nobs": "Number of Observations",
+        "end-datetime": "UTC Time of Last Observation",
         "file-path": "Actions",
         "gaw-id": "GAW ID",
         "instrument-model": "Instrument Model",
         "instrument-name": "Instrument Name",
         "instrument-type": "Instrument Type",
         "instrument-serial": "Instrument Number",
+        "measurement": "Dataset Name",
         "monthly-date": "Monthly Date",
         "monthly-npts": "Monthly Number of Observations",
         "observation-date": "Observation Date (UTC)",
@@ -1085,6 +1088,7 @@
         "platform-type": "Platform Type",
         "pressure": "Pressure",
         "processed-datetime": "Processed Datetime",
+        "start-datetime": "UTC Time of First Observation",
         "station-gaw_id": "Gaw ID",
         "station-id": "Platform ID",
         "station-name": "Station Name",
@@ -1092,11 +1096,7 @@
         "timestamp-date": "Observation Date (UTC)",
         "timestamp-utc": "Observation Date (UTC)",
         "uv-index": "UV Index Hourly Average",
-        "uv-daily_max": "UV Index Daily Max",
-        "agency": "Agency",
-        "end-datetime": "UTC Time of Last Observation",
-        "start-datetime": "UTC Time of First Observation",
-        "measurement": "Dataset Name"
+        "uv-daily_max": "UV Index Daily Max"
       },
       "title": "Data Search and Download"
     },
