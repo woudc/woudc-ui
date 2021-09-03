@@ -1149,8 +1149,8 @@
         "model": "Modèle de l’instrument",
         "name": "Type d'instrument",
         "start_date": "À partir de cette date",
-        "station": "Nom de la station",
-        "waf_url": "Dossier accessible sur le web"
+        "waf_url": "Dossier accessible sur le web",
+        "station_name": "Nom de la station"
       },
       "instrument-model": "Modèle de l’instrument :",
       "instrument-type": "Type d’instrument :",

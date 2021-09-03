@@ -52,8 +52,9 @@
             <td>
               <nuxt-link
                 :to="localePath('data-stations') + '/' + row.item.station_id"
-                v-text="row.item.station_name"
-              />
+              >
+                {{ row.item.station_name }}
+              </nuxt-link>
             </td>
             <td>
               <a :href="row.item.waf_url" target="_blank">
@@ -100,7 +101,7 @@ export default {
         'start_date',
         'end_date',
         'data_class',
-        'station',
+        'station_name',
         'waf_url'
       ]
 
