@@ -871,14 +871,18 @@ export default {
       }
     },
     async reset() {
+      this.loadingMap = true
       this.selectedDataset = this.$t('common.all')
       this.selectedDatasetID = null
-      this.selectedCountry = null
-      this.selectedCountryID = null
       this.selectedStation = null
       this.selectedStationID = null
       this.selectedInstrument = null
       this.selectedInstrumentID = null
+      this.changeCountry(
+        this.countryOptions[
+          this.countryOptions.findIndex((c) => c['text'] === 'All')
+        ]
+      )
 
       this.selectedYearRange = [this.minSelectableYear, this.maxSelectableYear]
 
