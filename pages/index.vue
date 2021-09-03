@@ -101,6 +101,12 @@
         </v-card>
       </v-col>
       <v-col cols="12" md="4">
+        <h3 class="h2 mt-2 mb-2">{{ $t('home.quickLinks') }}</h3>
+        <div v-for="linkItem in quickLinks" :key="linkItem">
+          <nuxt-link :to="localePath(linkItem.link)">
+            {{ $t(linkItem.title) }}
+          </nuxt-link>
+        </div>
         <h3 class="h2 mt-2 mb-2">{{ $t('home.news.title') }}</h3>
         <div v-if="loaded">
           <div v-for="(newsItem, i) in recentNewsItems" :key="i">
@@ -145,6 +151,26 @@ export default {
         '/' +
         this.$t('news.title')
       )
+    },
+    quickLinks() {
+      return [
+        {
+          title: 'data.explore.title',
+          link: 'data-search'
+        },
+        {
+          title: 'data.stations.title',
+          link: 'data-stations'
+        },
+        {
+          title: 'data.access.web.title',
+          link: 'data-data_access'
+        },
+        {
+          title: 'resources.related-links.title',
+          link: 'resources-links'
+        }
+      ]
     },
     ...mapState('news', ['newsItems']),
     recentNewsItems() {

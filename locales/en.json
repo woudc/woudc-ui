@@ -1425,9 +1425,10 @@
     "learnMore": "Learn more",
     "news": {
       "more": "More...",
-      "title": "News and Updates"
+      "title": "News and Updates:"
     },
-    "wmoLogo": "Logo: @.wmoFull"
+    "wmoLogo": "Logo: @.wmoFull",
+    "quickLinks": "Quick Links:"
   },
   "news": {
     "blurb": "Data centre news, updates and notifications",

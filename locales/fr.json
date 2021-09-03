@@ -1425,9 +1425,10 @@
     "learnMore": "En savoir plus",
     "news": {
       "more": "Plus...",
-      "title": "Nouvelles et mises à jour"
+      "title": "Nouvelles et mises à jour:"
     },
-    "wmoLogo": "Logo : @.wmoFull"
+    "wmoLogo": "Logo : @.wmoFull",
+    "quickLinks": "Liens rapides:"
   },
   "news": {
     "blurb": "Nouvelles pour le Centre de données, mises à jour et des notifications",
