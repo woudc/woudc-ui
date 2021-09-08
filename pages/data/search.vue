@@ -319,6 +319,11 @@
                 {{ row.item.station_gaw_id }}
               </a>
             </template>
+            <template v-slot:item.gaw_id="row">
+              <a :href="row.item.gaw_url" target="_blank">
+                {{ row.item.gaw_id }}
+              </a>
+            </template>
             <template v-slot:item.contributor_acronym="row">
               <a :href="row.item.contributor_url" target="_blank">
                 {{ row.item.contributor_acronym }}
@@ -467,7 +472,7 @@ export default {
       ) {
         headerKeys = [
           'observation_date',
-          'agency',
+          'contributor_acronym',
           'station_id',
           'gaw_id',
           'measurement',
