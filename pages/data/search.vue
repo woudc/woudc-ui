@@ -319,6 +319,11 @@
                 {{ row.item.station_gaw_id }}
               </a>
             </template>
+            <template v-slot:item.gaw_id="row">
+              <a :href="row.item.gaw_url" target="_blank">
+                {{ row.item.gaw_id }}
+              </a>
+            </template>
             <template v-slot:item.contributor_acronym="row">
               <a :href="row.item.contributor_url" target="_blank">
                 {{ row.item.contributor_acronym }}
@@ -327,6 +332,11 @@
             <template v-slot:item.observation_time="row">
               <p v-if="row.item.observation_time">
                 {{ row.item.observation_time.substring(11, 13) }}
+              </p>
+            </template>
+            <template v-slot:item.timestamp_utc="row">
+              <p v-if="row.item.timestamp_utc">
+                {{ row.item.timestamp_utc.substring(0, 10) }}
               </p>
             </template>
             <template v-slot:item.actions="row">
@@ -427,7 +437,7 @@ export default {
         headerKeys = [
           'observation_date',
           'contributor_acronym',
-          'platform_id',
+          'station_id',
           'station_gaw_id',
           this.countryOrder,
           'observation_time',
@@ -443,7 +453,7 @@ export default {
         headerKeys = [
           'observation_date',
           'contributor_acronym',
-          'platform_id',
+          'station_id',
           'station_gaw_id',
           this.countryOrder,
           'monthly_date',
@@ -462,8 +472,8 @@ export default {
       ) {
         headerKeys = [
           'observation_date',
-          'agency',
-          'platform_id',
+          'contributor_acronym',
+          'station_id',
           'gaw_id',
           'measurement',
           'instrument_type',
