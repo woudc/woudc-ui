@@ -272,15 +272,14 @@
             :options.sync="options"
             :server-items-length="numberMatched"
             :loading="loadingDataRecords"
-            @pagination="refreshDataRecordsPage"
           >
             <template v-slot:item.observation_date="row">
               <p
                 v-if="
                   selectedDatasetID === 'peer_data_records' ||
-                    selectedDatasetID === 'ndacc-total' ||
-                    selectedDatasetID === 'ndacc-uv' ||
-                    selectedDatasetID === 'ndacc-vertical'
+                    selectedDatasetID === 'ndacc_total' ||
+                    selectedDatasetID === 'ndacc_uv' ||
+                    selectedDatasetID === 'ndacc_vertical'
                 "
               >
                 {{ row.item.start_datetime.substring(0, 10) }}
@@ -295,9 +294,9 @@
                   selectedDatasetID === 'TotalOzone' ||
                   selectedDatasetID === 'OzoneSonde' ||
                   selectedDatasetID === 'peer_data_records' ||
-                  selectedDatasetID === 'ndacc-total' ||
-                  selectedDatasetID === 'ndacc-uv' ||
-                  selectedDatasetID === 'ndacc-vertical'
+                  selectedDatasetID === 'ndacc_total' ||
+                  selectedDatasetID === 'ndacc_uv' ||
+                  selectedDatasetID === 'ndacc_vertical'
               "
               v-slot:item.station_id="row"
             >
@@ -389,6 +388,12 @@ export default {
       oldDataRecordHeadersExists: false,
       oldSearchExists: false,
       oldSearchParams: {},
+      options: {
+        page: 1,
+        itemsPerPage: 10,
+        sortDesc: [],
+        sortBy: []
+      },
       selectedCountry: null,
       selectedCountryID: null,
       selectedDataset: null,
@@ -400,11 +405,7 @@ export default {
       selectedYearRange: [null, null],
       stations: [],
       stationsWithMetadata: [],
-      stationOrder: 'name',
-      options: {
-        page: 1,
-        itemsPerPage: 10
-      }
+      stationOrder: 'name'
     }
   },
   computed: {
@@ -466,9 +467,9 @@ export default {
         ]
       } else if (
         this.selectedDatasetID === 'peer_data_records' ||
-        this.selectedDatasetID === 'ndacc-total' ||
-        this.selectedDatasetID === 'ndacc-vertical' ||
-        this.selectedDatasetID === 'ndacc-uv'
+        this.selectedDatasetID === 'ndacc_total' ||
+        this.selectedDatasetID === 'ndacc_vertical' ||
+        this.selectedDatasetID === 'ndacc_uv'
       ) {
         headerKeys = [
           'observation_date',
@@ -532,9 +533,9 @@ export default {
           'uv-index': 'uv_index_hourly'
         },
         'data-centers': {
-          totalozone: 'ndacc-total',
-          'vertical-ozone': 'ndacc-vertical',
-          'uv-irradiance': 'ndacc-uv',
+          totalozone: 'ndacc_total',
+          'vertical-ozone': 'ndacc_vertical',
+          'uv-irradiance': 'ndacc_uv',
           eubrewnet: 'peer_data_records'
         }
       }
@@ -637,6 +638,14 @@ export default {
         startYearOk &&
         endYearOk
       )
+    }
+  },
+  watch: {
+    options: {
+      async handler() {
+        this.refreshDataRecordsPage()
+      },
+      deep: true
     }
   },
   mounted() {
@@ -755,9 +764,9 @@ export default {
 
       if (
         this.selectedDatasetID !== 'peer_data_records' &&
-        this.selectedDatasetID !== 'ndacc-total' &&
-        this.selectedDatasetID !== 'ndacc-uv' &&
-        this.selectedDatasetID !== 'ndacc-vertical'
+        this.selectedDatasetID !== 'ndacc_total' &&
+        this.selectedDatasetID !== 'ndacc_uv' &&
+        this.selectedDatasetID !== 'ndacc_vertical'
       ) {
         const retain = {}
         for (const { field, key, elements } of dependencies) {
@@ -900,6 +909,12 @@ export default {
       this.oldDataRecordHeadersExists = false
       this.oldSearchExists = false
       this.oldSearchParams = {}
+      this.options = {
+        page: 1,
+        itemsPerPage: 10,
+        sortDesc: [],
+        sortBy: []
+      }
       this.numberMatched = 0
 
       this.loadingCountries = true
@@ -920,30 +935,52 @@ export default {
 
       const dataRecordsURL =
         this.$config.WOUDC_UI_API + '/collections/data_records/items'
-      const UVIndexURL =
-        this.$config.WOUDC_UI_API + '/collections/uv_index_hourly/items'
-      const totalOzoneURL =
-        this.$config.WOUDC_UI_API + '/collections/totalozone/items'
-      const peerDataRecordsURL =
-        this.$config.WOUDC_UI_API + '/collections/peer_data_records/items'
       const ozoneSondeURL =
         this.$config.WOUDC_UI_API + '/collections/ozonesonde/items'
+      const peerDataRecordsURL =
+        this.$config.WOUDC_UI_API + '/collections/peer_data_records/items'
+      const totalOzoneURL =
+        this.$config.WOUDC_UI_API + '/collections/totalozone/items'
+      const UVIndexURL =
+        this.$config.WOUDC_UI_API + '/collections/uv_index_hourly/items'
+
       let queryParams = ''
-      let selected = ''
+      if (this.options['sortBy'].length === 0) {
+        const sortByParams = {
+          uv_index_hourly: 'observation_date,station_id,dataset_id',
+          TotalOzone: 'daily_date,station_id',
+          peer_data_records: 'start_datetime,station_id,measurement',
+          ndacc_total: 'start_datetime,station_id,measurement',
+          ndacc_vertical: 'start_datetime,station_id,measurement',
+          ndacc_uv: 'start_datetime,station_id,measurement',
+          Ozonesonde: 'timestamp_date,station_id',
+          data_records: 'timestamp_date,platform_id,content_category'
+        }
+        if (sortByParams[this.selectedDatasetID] !== undefined) {
+          queryParams = 'sortby=-' + sortByParams[this.selectedDatasetID]
+        } else {
+          queryParams = 'sortby=-' + sortByParams['data_records']
+        }
+      } else {
+        queryParams =
+          this.options['sortDesc'][0] == true
+            ? 'sortby=-' + this.options['sortBy']
+            : 'sortby=' + this.options['sortBy']
+      }
+
+      let selected = {}
       if (this.selectedDatasetID === 'uv_index_hourly') {
         selected = {
           country_id: this.selectedCountryID,
           station_id: this.selectedStationID,
           instrument_name: this.selectedInstrumentID
         }
-        queryParams = 'sortby=-observation_date,station_id,dataset_id'
       } else if (this.selectedDatasetID === 'TotalOzone') {
         selected = {
           country_id: this.selectedCountryID,
           station_id: this.selectedStationID,
           instrument_name: this.selectedInstrumentID
         }
-        queryParams = 'sortby=-daily_date,station_id'
       } else if (this.selectedDatasetID === 'peer_data_records') {
         selected = {
           source: 'eubrewnet',
@@ -951,11 +988,10 @@ export default {
           station_id: this.selectedStationID,
           instrument_name: this.selectedInstrumentID
         }
-        queryParams = 'sortby=-start_datetime,station_id,measurement'
       } else if (
-        this.selectedDatasetID === 'ndacc-total' ||
-        this.selectedDatasetID === 'ndacc-vertical' ||
-        this.selectedDatasetID === 'ndacc-uv'
+        this.selectedDatasetID === 'ndacc_total' ||
+        this.selectedDatasetID === 'ndacc_vertical' ||
+        this.selectedDatasetID === 'ndacc_uv'
       ) {
         selected = {
           source: 'ndacc',
@@ -963,14 +999,12 @@ export default {
           station_id: this.selectedStationID,
           instrument_name: this.selectedInstrumentID
         }
-        queryParams = 'sortby=-start_datetime,station_id,measurement'
       } else if (this.selectedDatasetID === 'OzoneSonde') {
         selected = {
           country_id: this.selectedCountryID,
           station_id: this.selectedStationID,
           instrument_name: this.selectedInstrumentID
         }
-        queryParams = 'sortby=-timestamp_date,station_id'
       } else {
         selected = {
           content_category: this.selectedDatasetID,
@@ -978,7 +1012,6 @@ export default {
           platform_id: this.selectedStationID,
           instrument_name: this.selectedInstrumentID
         }
-        queryParams = 'sortby=-timestamp_date,platform_id,content_category'
       }
 
       if (
@@ -1019,9 +1052,9 @@ export default {
         response = await woudcClient.get(totalOzoneURL + '?' + queryParams)
       } else if (
         this.selectedDatasetID === 'peer_data_records' ||
-        this.selectedDatasetID === 'ndacc-total' ||
-        this.selectedDatasetID === 'ndacc-vertical' ||
-        this.selectedDatasetID === 'ndacc-uv'
+        this.selectedDatasetID === 'ndacc_total' ||
+        this.selectedDatasetID === 'ndacc_vertical' ||
+        this.selectedDatasetID === 'ndacc_uv'
       ) {
         response = await woudcClient.get(peerDataRecordsURL + '?' + queryParams)
       } else if (this.selectedDatasetID === 'OzoneSonde') {
@@ -1045,9 +1078,9 @@ export default {
       this.oldSearchExists = true
       this.oldDataRecordHeadersExists = true
     },
-    async refreshDataRecordsPage(pagination) {
-      const { itemsPerPage: results, page } = pagination
-      this.pagination = pagination
+    async refreshDataRecordsPage() {
+      let itemsPerPage = this.options['itemsPerPage']
+      let page = this.options['page']
       this.loadingDataRecords = true
 
       const dataRecordsURL =
@@ -1062,6 +1095,29 @@ export default {
         this.$config.WOUDC_UI_API + '/collections/peer_data_records/items'
 
       let queryParams = ''
+      if (this.options['sortBy'].length === 0) {
+        const sortByParams = {
+          uv_index_hourly: 'observation_date,station_id,dataset_id',
+          TotalOzone: 'daily_date,station_id',
+          peer_data_records: 'start_datetime,station_id,measurement',
+          ndacc_total: 'start_datetime,station_id,measurement',
+          ndacc_vertical: 'start_datetime,station_id,measurement',
+          ndacc_uv: 'start_datetime,station_id,measurement',
+          Ozonesonde: 'timestamp_date,station_id',
+          data_records: 'timestamp_date,platform_id,content_category'
+        }
+        if (sortByParams[this.selectedDatasetID] !== undefined) {
+          queryParams = 'sortby=-' + sortByParams[this.selectedDatasetID]
+        } else {
+          queryParams = 'sortby=-' + sortByParams['data_records']
+        }
+      } else {
+        queryParams =
+          this.options['sortDesc'][0] == true
+            ? 'sortby=-' + this.options['sortBy']
+            : 'sortby=' + this.options['sortBy']
+      }
+
       let selected = ''
       if (this.selectedDatasetID === 'uv_index_hourly') {
         selected = {
@@ -1069,21 +1125,18 @@ export default {
           station_id: this.selectedStationID,
           instrument_name: this.selectedInstrumentID
         }
-        queryParams = 'sortby=-observation_date,station_id,dataset_id'
       } else if (this.selectedDatasetID === 'TotalOzone') {
         selected = {
           country_id: this.selectedCountryID,
           station_id: this.selectedStationID,
           instrument_name: this.selectedInstrumentID
         }
-        queryParams = 'sortby=-daily_date,station_id'
       } else if (this.selectedDatasetID === 'OzoneSonde') {
         selected = {
           country_id: this.selectedCountryID,
           station_id: this.selectedStationID,
           instrument_name: this.selectedInstrumentID
         }
-        queryParams = 'sortby=-timestamp_date,station_id'
       } else if (this.selectedDatasetID === 'peer_data_records') {
         selected = {
           source: 'eubrewnet',
@@ -1091,11 +1144,10 @@ export default {
           station_id: this.selectedStationID,
           instrument_name: this.selectedInstrumentID
         }
-        queryParams = 'sortby=-start_datetime,station_id,measurement'
       } else if (
-        this.selectedDatasetID === 'ndacc-total' ||
-        this.selectedDatasetID === 'ndacc-vertical' ||
-        this.selectedDatasetID === 'ndacc-uv'
+        this.selectedDatasetID === 'ndacc_total' ||
+        this.selectedDatasetID === 'ndacc_vertical' ||
+        this.selectedDatasetID === 'ndacc_uv'
       ) {
         selected = {
           source: 'ndacc',
@@ -1103,7 +1155,6 @@ export default {
           station_id: this.selectedStationID,
           instrument_name: this.selectedInstrumentID
         }
-        queryParams = 'sortby=-start_datetime,station_id,measurement'
       } else {
         selected = {
           content_category: this.selectedDatasetID,
@@ -1111,7 +1162,6 @@ export default {
           platform_id: this.selectedStationID,
           instrument_name: this.selectedInstrumentID
         }
-        queryParams = 'sortby=-timestamp_date,platform_id,content_category'
       }
       if (
         this.selectedCountry === null &&
@@ -1133,13 +1183,14 @@ export default {
       }
 
       try {
-        const currStartIndex = page * results - results
-        const Limit = results
+        const startIndex = page * itemsPerPage - itemsPerPage
+        const Limit = itemsPerPage
+
         if (this.selectedDatasetID === 'uv_index_hourly') {
           let response = await woudcClient.get(
             UVIndexURL +
               '?startindex=' +
-              currStartIndex +
+              startIndex +
               '&limit=' +
               Limit +
               '&' +
@@ -1150,7 +1201,7 @@ export default {
           let response = await woudcClient.get(
             totalOzoneURL +
               '?startindex=' +
-              currStartIndex +
+              startIndex +
               '&limit=' +
               Limit +
               '&' +
@@ -1166,7 +1217,7 @@ export default {
           let response = await woudcClient.get(
             peerDataRecordsURL +
               '?startindex=' +
-              currStartIndex +
+              startIndex +
               '&limit=' +
               Limit +
               '&' +
@@ -1208,7 +1259,7 @@ export default {
           let response = await woudcClient.get(
             dataRecordsURL +
               '?startindex=' +
-              currStartIndex +
+              startIndex +
               '&limit=' +
               Limit +
               '&' +
@@ -1233,9 +1284,9 @@ export default {
       )
       if (
         (this.selectedDatasetID === 'peer_data_records') |
-        (this.selectedDatasetID === 'ndacc-total') |
-        (this.selectedDatasetID === 'ndacc-uv') |
-        (this.selectedDatasetID === 'ndacc-vertical')
+        (this.selectedDatasetID === 'ndacc_total') |
+        (this.selectedDatasetID === 'ndacc_uv') |
+        (this.selectedDatasetID === 'ndacc_vertical')
       ) {
         this.countries = []
         this.stations = stations.map(unpackageBareStation)
