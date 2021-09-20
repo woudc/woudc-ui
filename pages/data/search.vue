@@ -410,12 +410,16 @@ export default {
   },
   computed: {
     boundingBoxArray() {
-      return [
-        Math.max(-180, this.mapBoundingBox.getWest()),
-        Math.max(-90, this.mapBoundingBox.getSouth()),
-        Math.min(180, this.mapBoundingBox.getEast()),
-        Math.min(90, this.mapBoundingBox.getNorth())
-      ]
+      if (this.mapBoundingBox !== null) {
+        return [
+          Math.max(-180, this.mapBoundingBox.getWest()),
+          Math.max(-90, this.mapBoundingBox.getSouth()),
+          Math.min(180, this.mapBoundingBox.getEast()),
+          Math.min(90, this.mapBoundingBox.getNorth())
+        ]
+      } else {
+        return null
+      }
     },
     countryOptions() {
       const nullOption = {
@@ -614,7 +618,6 @@ export default {
         const stationOptions = visibleOptions
           .sort(compareOnKey(this.stationOrder))
           .map(this.stationToSelectOption)
-        this.refreshMetrics()
         return [nullOption].concat(stationOptions)
       }
     },
@@ -624,6 +627,7 @@ export default {
       const stationOk = this.oldSearchParams.station === this.selectedStationID
       const instrumentOk =
         this.oldSearchParams.instrument === this.selectedInstrumentID
+      const bboxOk = this.oldSearchParams.bbox === this.boundingBoxArray
 
       const startYearOk =
         this.oldSearchParams['start-year'] === this.selectedYearRange[0]
@@ -631,6 +635,7 @@ export default {
         this.oldSearchParams['end-year'] === this.selectedYearRange[1]
 
       return !(
+        bboxOk &&
         datasetOk &&
         countryOk &&
         stationOk &&
@@ -641,6 +646,12 @@ export default {
     }
   },
   watch: {
+    boundingBoxArray: {
+      async handler() {
+        this.refreshMetrics()
+      },
+      deep: true
+    },
     options: {
       async handler() {
         this.refreshDataRecordsPage()
@@ -1068,6 +1079,7 @@ export default {
       this.numberMatched = response.data.numberMatched
 
       this.oldSearchParams = {
+        bbox: this.boundingBoxArray,
         country: this.selectedCountryID,
         dataset: this.selectedDatasetID,
         instrument: this.selectedInstrumentID,
@@ -1077,6 +1089,7 @@ export default {
       }
       this.oldSearchExists = true
       this.oldDataRecordHeadersExists = true
+      this.loadingDataRecords = false
     },
     async refreshDataRecordsPage() {
       let itemsPerPage = this.options['itemsPerPage']
@@ -1298,27 +1311,20 @@ export default {
       }
     },
     async refreshMetrics() {
+      console.log('refreshMetrics')
       const inputs = {
         domain: 'contributor',
         timescale: 'year'
       }
 
       const paramNames = {
+        bbox: this.boundingBoxArray,
         dataset: this.selectedDatasetID,
         country: this.selectedCountryID,
         station: this.selectedStationID,
         network: this.selectedInstrumentID
       }
 
-      if (this.mapBoundingBox !== null) {
-        const components = [
-          Math.max(-180, this.mapBoundingBox.getWest()),
-          Math.max(-90, this.mapBoundingBox.getSouth()),
-          Math.min(180, this.mapBoundingBox.getEast()),
-          Math.min(90, this.mapBoundingBox.getNorth())
-        ]
-        paramNames.bbox = components.join(',')
-      }
       for (const currParam of Object.entries(paramNames)) {
         const paramValue = currParam[1]
         if (paramValue === 'uv_index_hourly') {
