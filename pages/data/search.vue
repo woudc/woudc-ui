@@ -1311,7 +1311,6 @@ export default {
       }
     },
     async refreshMetrics() {
-      console.log('refreshMetrics')
       const inputs = {
         domain: 'contributor',
         timescale: 'year'
