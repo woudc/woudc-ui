@@ -271,6 +271,9 @@
             :items="dataRecords"
             :options.sync="options"
             :server-items-length="numberMatched"
+            :footer-props="{
+              'items-per-page-options': [10, 25, 50, 100, 500]
+            }"
             :loading="loadingDataRecords"
           >
             <template v-slot:item.observation_date="row">
