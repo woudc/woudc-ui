@@ -1004,6 +1004,15 @@
         "body-howto": "Pour obtenir plus d’information à propos de l’utilisation de cette page, consultez le {how-to}.",
         "body-search": "Pour chercher et télécharger des données, sélectionnez l’ensemble de données et la période d’observation. Vous pouvez également choisir l’étendue géographique de votre recherche et cliquer sur envoyer la requête. Toutes les données disponibles pour cette période seront affichées."
       },
+      "bbox": {
+        "title": "Boîte Englobante",
+        "latitude": {
+          "title": "Latitude"
+        },
+        "longitude": {
+          "title": "Longitude"
+        }
+      },
       "country": {
         "id": "Identifiant du Pays",
         "name": "Nom du Pays",

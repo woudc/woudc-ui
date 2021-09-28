@@ -210,6 +210,16 @@
             }}{{ $t('common.colon-style') }}
             {{ instrumentText(selectedInstrument) }}
           </v-chip>
+          <v-chip v-if="boundingBoxArray !== null" label small class="ml-1">
+            {{ $t('data.explore.bbox.latitude.title')
+            }}{{ $t('common.colon-style') }}
+            {{ latitudeArrayText(boundingBoxArray) }}
+          </v-chip>
+          <v-chip v-if="boundingBoxArray !== null" label small class="ml-1">
+            {{ $t('data.explore.bbox.longitude.title')
+            }}{{ $t('common.colon-style') }}
+            {{ longitudeArrayText(boundingBoxArray) }}
+          </v-chip>
           <metrics-chart
             :startdate="selectedYearRange[0]"
             :enddate="selectedYearRange[1]"
@@ -881,6 +891,24 @@ export default {
         value: instrument.name || instrument.instrument_name,
         element: instrument
       }
+    },
+    latitudeArrayText(boundingBoxArray) {
+      return (
+        '[ ' +
+        parseFloat(boundingBoxArray[1]).toFixed(2) +
+        ', ' +
+        parseFloat(boundingBoxArray[3]).toFixed(2) +
+        ' ]'
+      )
+    },
+    longitudeArrayText(boundingBoxArray) {
+      return (
+        '[ ' +
+        parseFloat(boundingBoxArray[0]).toFixed(2) +
+        ', ' +
+        parseFloat(boundingBoxArray[2]).toFixed(2) +
+        ' ]'
+      )
     },
     stationText(station) {
       const stationID = station.woudc_id || station.station_id
