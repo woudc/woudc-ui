@@ -49,7 +49,8 @@ export default {
     elements: { type: Array, required: true },
     selected: { type: Object, required: false, default: null },
     country: { type: String, required: false, default: null },
-    loading: { type: Boolean, required: false, default: false }
+    loading: { type: Boolean, required: false, default: false },
+    reset: { type: Boolean, required: false, default: false }
   },
   data() {
     return {
@@ -77,6 +78,9 @@ export default {
       } else {
         this.zoomToGlobe()
       }
+    },
+    reset() {
+      this.zoomToGlobe()
     },
     selected(newSelection, oldSelection) {
       if (newSelection === null) {
