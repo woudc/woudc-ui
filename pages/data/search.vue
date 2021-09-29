@@ -180,6 +180,7 @@
           :selected="selectedStation"
           :country="mapFocusCountry"
           :loading="loadingMap"
+          :reset="resettingMap"
           @select="changeStation"
           @move="mapBoundingBox = $event"
         >
@@ -295,6 +296,9 @@
             :items="dataRecords"
             :options.sync="options"
             :server-items-length="numberMatched"
+            :footer-props="{
+              'items-per-page-options': [10, 25, 50, 100, 500]
+            }"
             :loading="loadingDataRecords"
           >
             <template v-slot:item.observation_date="row">
@@ -419,6 +423,7 @@ export default {
         sortDesc: [],
         sortBy: []
       },
+      resettingMap: false,
       selectedCountry: null,
       selectedCountryID: null,
       selectedDataset: null,
@@ -963,17 +968,16 @@ export default {
     async reset() {
       this.loadingMap = true
       this.enableBboxSearch = true
+      this.resettingMap = true
+
       this.selectedDataset = this.$t('common.all')
       this.selectedDatasetID = null
       this.selectedStation = null
       this.selectedStationID = null
       this.selectedInstrument = null
       this.selectedInstrumentID = null
-      this.changeCountry(
-        this.countryOptions[
-          this.countryOptions.findIndex((c) => c['text'] === 'All')
-        ]
-      )
+      this.selectedCountryID = null
+      this.selectedCountry = null
 
       this.selectedYearRange = [this.minSelectableYear, this.maxSelectableYear]
 
@@ -997,6 +1001,7 @@ export default {
       this.loadingCountries = false
       this.loadingStations = false
       this.loadingInstruments = false
+      this.resettingMap = false
       this.loadingMap = false
 
       this.refreshMetrics()

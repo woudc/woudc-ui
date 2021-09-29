@@ -77,6 +77,23 @@ $ npx nuxt dev --dotenv .env.sample
 $ npx nuxt generate --dotenv .env.ops
 ```
 
+## Debian packaging and general release tagging for OPS
+
+- Update `version` in `package.json`
+- Ensure `.env` and `woudc-ui.conf` in `/deploy/default` are set correctly 
+- Update `/debian/changelog` with `dch` command:
+  - `dch -v x.y.z -u medium -D bionic -M` where `x.y.z` is the version (ie. `2.0.0-beta1`)
+- Commit the `changelog` into repo: 
+  - `git commit -m 'update release version' debian/changelog`
+  - `git push upstream master`
+- Create git tag in one of two ways:
+  - https://github.com/woudc/woudc-ui/releases and click on **Draft a new release** button
+  - git command line:
+    - `git tag -a x.y.z -m 'tagging x.y.z'`
+    - `git push --tags`
+- Inform OPS team of URL of `.zip` or `tar.gz` file for install to server
+  - example URL: https://github.com/woudc/woudc-ui/releases/tag/2.0.0-beta4
+
 ## Linting
 
 Linting is incorporated when running `npm run dev` and when you `git commit`.
