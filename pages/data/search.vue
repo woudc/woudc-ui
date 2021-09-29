@@ -794,6 +794,11 @@ export default {
 
       this.selectedCountry = country.element
       this.selectedCountryID = country.value
+
+      if (country.text !== 'All') {
+        this.enableBboxSearch = false
+      }
+
       const { stations, instruments } = await this.sendDropdownRequest(
         this.selectedDatasetID,
         country.value,
@@ -844,6 +849,7 @@ export default {
       if (station === null) {
         this.selectedStation = null
         this.selectedStationID = null
+        this.enableBboxSearch = false
       } else {
         this.selectedStation = station
         this.selectedStationID = station.woudc_id || station.station_id
