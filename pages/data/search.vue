@@ -168,6 +168,10 @@
           :min="minSelectableYear"
           :max="maxSelectableYear"
         />
+        <v-switch
+          v-model="enableBboxSearch"
+          label="Bounding Box Filtering"
+        ></v-switch>
       </v-col>
       <v-col>
         <map-instructions />
@@ -210,12 +214,22 @@
             }}{{ $t('common.colon-style') }}
             {{ instrumentText(selectedInstrument) }}
           </v-chip>
-          <v-chip v-if="boundingBoxArray !== null" label small class="ml-1">
+          <v-chip
+            v-if="boundingBoxArray !== null && enableBboxSearch == true"
+            label
+            small
+            class="ml-1"
+          >
             {{ $t('data.explore.bbox.latitude.title')
             }}{{ $t('common.colon-style') }}
             {{ latitudeArrayText(boundingBoxArray) }}
           </v-chip>
-          <v-chip v-if="boundingBoxArray !== null" label small class="ml-1">
+          <v-chip
+            v-if="boundingBoxArray !== null && enableBboxSearch == true"
+            label
+            small
+            class="ml-1"
+          >
             {{ $t('data.explore.bbox.longitude.title')
             }}{{ $t('common.colon-style') }}
             {{ longitudeArrayText(boundingBoxArray) }}
@@ -383,6 +397,7 @@ export default {
     return {
       countries: [],
       countryOrder: `country_name_${this.$i18n.locale}`,
+      enableBboxSearch: true,
       numberMatched: 0,
       dataRecords: [],
       instruments: [],
@@ -637,7 +652,11 @@ export default {
       const stationOk = this.oldSearchParams.station === this.selectedStationID
       const instrumentOk =
         this.oldSearchParams.instrument === this.selectedInstrumentID
-      const bboxOk = this.oldSearchParams.bbox === this.boundingBoxArray
+      const bboxOk =
+        (this.oldSearchParams.bbox === this.boundingBoxArray &&
+          this.enableBboxSearch === true) ||
+        (this.oldSearchParams.bbox === undefined &&
+          this.enableBboxSearch === false)
 
       const startYearOk =
         this.oldSearchParams['start-year'] === this.selectedYearRange[0]
@@ -658,9 +677,16 @@ export default {
   watch: {
     boundingBoxArray: {
       async handler() {
-        this.refreshMetrics()
+        if (this.enableBboxSearch == true) {
+          this.refreshMetrics()
+        }
       },
       deep: true
+    },
+    enableBboxSearch: {
+      async handler() {
+        this.refreshMetrics()
+      }
     },
     options: {
       async handler() {
@@ -930,6 +956,7 @@ export default {
     },
     async reset() {
       this.loadingMap = true
+      this.enableBboxSearch = true
       this.selectedDataset = this.$t('common.all')
       this.selectedDatasetID = null
       this.selectedStation = null
@@ -1056,6 +1083,7 @@ export default {
       if (
         this.selectedCountry === null &&
         this.selectedStationID === null &&
+        this.enableBboxSearch == true &&
         this.mapBoundingBox !== null
       ) {
         // Select only countries and stations visible on the map
@@ -1107,7 +1135,6 @@ export default {
       this.numberMatched = response.data.numberMatched
 
       this.oldSearchParams = {
-        bbox: this.boundingBoxArray,
         country: this.selectedCountryID,
         dataset: this.selectedDatasetID,
         instrument: this.selectedInstrumentID,
@@ -1115,6 +1142,10 @@ export default {
         'start-year': this.selectedYearRange[0],
         'end-year': this.selectedYearRange[1]
       }
+      if (this.enableBboxSearch == true) {
+        this.oldSearchParams['bbox'] = this.boundingBoxArray
+      }
+
       this.oldSearchExists = true
       this.oldDataRecordHeadersExists = true
       this.loadingDataRecords = false
@@ -1207,6 +1238,7 @@ export default {
       if (
         this.selectedCountry === null &&
         this.selectedStationID === null &&
+        this.enableBboxSearch == true &&
         this.mapBoundingBox !== null
       ) {
         // Select only countries and stations visible on the map
@@ -1344,12 +1376,14 @@ export default {
         timescale: 'year'
       }
 
-      const paramNames = {
-        bbox: this.boundingBoxArray,
+      let paramNames = {
         dataset: this.selectedDatasetID,
         country: this.selectedCountryID,
         station: this.selectedStationID,
         network: this.selectedInstrumentID
+      }
+      if (this.enableBboxSearch == true) {
+        paramNames['bbox'] = this.boundingBoxArray
       }
 
       for (const currParam of Object.entries(paramNames)) {
