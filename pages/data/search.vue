@@ -168,10 +168,6 @@
           :min="minSelectableYear"
           :max="maxSelectableYear"
         />
-        <v-switch
-          v-model="enableBboxSearch"
-          label="Bounding Box Filtering"
-        ></v-switch>
       </v-col>
       <v-col>
         <map-instructions />
@@ -189,6 +185,13 @@
             ({{ element.item.woudc_id || element.item.station_id }})
           </template>
         </selectable-map>
+        <v-row justify="center">
+          <v-switch
+            v-model="enableBboxSearch"
+            justify="end"
+            :label="$t('data.explore.bbox.title')"
+          ></v-switch>
+        </v-row>
       </v-col>
     </v-row>
     <v-row>
@@ -221,19 +224,8 @@
             small
             class="ml-1"
           >
-            {{ $t('data.explore.bbox.latitude.title')
-            }}{{ $t('common.colon-style') }}
-            {{ latitudeArrayText(boundingBoxArray) }}
-          </v-chip>
-          <v-chip
-            v-if="boundingBoxArray !== null && enableBboxSearch == true"
-            label
-            small
-            class="ml-1"
-          >
-            {{ $t('data.explore.bbox.longitude.title')
-            }}{{ $t('common.colon-style') }}
-            {{ longitudeArrayText(boundingBoxArray) }}
+            {{ $t('data.explore.bbox.title') }}{{ $t('common.colon-style') }}
+            {{ boundingBoxArrayText(boundingBoxArray) }}
           </v-chip>
           <metrics-chart
             :startdate="selectedYearRange[0]"
@@ -792,6 +784,19 @@ export default {
 
       this.refreshMetrics()
     },
+    boundingBoxArrayText(boundingBoxArray) {
+      return (
+        '[ ' +
+        parseFloat(boundingBoxArray[0]).toFixed(2) +
+        ', ' +
+        parseFloat(boundingBoxArray[1]).toFixed(2) +
+        ', ' +
+        parseFloat(boundingBoxArray[2]).toFixed(2) +
+        ', ' +
+        parseFloat(boundingBoxArray[3]).toFixed(2) +
+        ' ]'
+      )
+    },
     async changeCountry(country) {
       this.loadingStations = true
       this.loadingInstruments = true
@@ -928,24 +933,6 @@ export default {
         value: instrument.name || instrument.instrument_name,
         element: instrument
       }
-    },
-    latitudeArrayText(boundingBoxArray) {
-      return (
-        '[ ' +
-        parseFloat(boundingBoxArray[1]).toFixed(2) +
-        ', ' +
-        parseFloat(boundingBoxArray[3]).toFixed(2) +
-        ' ]'
-      )
-    },
-    longitudeArrayText(boundingBoxArray) {
-      return (
-        '[ ' +
-        parseFloat(boundingBoxArray[0]).toFixed(2) +
-        ', ' +
-        parseFloat(boundingBoxArray[2]).toFixed(2) +
-        ' ]'
-      )
     },
     stationText(station) {
       const stationID = station.woudc_id || station.station_id
