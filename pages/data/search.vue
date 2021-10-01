@@ -185,13 +185,11 @@
             ({{ element.item.woudc_id || element.item.station_id }})
           </template>
         </selectable-map>
-        <v-row justify="center">
-          <v-switch
-            v-model="enableBboxSearch"
-            justify="end"
-            :label="$t('data.explore.bbox.title')"
-          ></v-switch>
-        </v-row>
+        <v-switch
+          v-model="enableBboxSearch"
+          class="float-right"
+          :label="$t('data.explore.bbox.switch')"
+        ></v-switch>
       </v-col>
     </v-row>
     <v-row>

@@ -175,11 +175,10 @@ export default {
 <style>
 #woudc-map {
   height: 520px;
-  width: 520px;
+  width: 100%;
   min-width: 520px;
 
   margin-right: 20px;
-  margin-bottom: 20px;
   z-index: 0;
 }
 </style>
