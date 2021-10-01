@@ -1,3 +1,10 @@
+woudc-ui (2.0.0-beta5) bionic; urgency=medium
+
+  * Update requests to woudc-api 
+  * Added ozoneonde, totalozone, and peer data centre dataset support to data search page
+
+ -- Victoria Spada <victoria.spada@ec.gc.ca>  Fri, 1 Oct 2021 08:57:00 +0000
+
 woudc-ui (2.0.0-beta4) bionic; urgency=medium
 
   * Fix to postinst
