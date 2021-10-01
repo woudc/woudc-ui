@@ -185,6 +185,11 @@
             ({{ element.item.woudc_id || element.item.station_id }})
           </template>
         </selectable-map>
+        <v-switch
+          v-model="enableBboxSearch"
+          class="float-right"
+          :label="$t('data.explore.bbox.switch')"
+        ></v-switch>
       </v-col>
     </v-row>
     <v-row>
@@ -210,6 +215,15 @@
             {{ $t('data.explore.instrument.title')
             }}{{ $t('common.colon-style') }}
             {{ instrumentText(selectedInstrument) }}
+          </v-chip>
+          <v-chip
+            v-if="boundingBoxArray !== null && enableBboxSearch == true"
+            label
+            small
+            class="ml-1"
+          >
+            {{ $t('data.explore.bbox.title') }}{{ $t('common.colon-style') }}
+            {{ boundingBoxArrayText(boundingBoxArray) }}
           </v-chip>
           <metrics-chart
             :startdate="selectedYearRange[0]"
@@ -377,6 +391,7 @@ export default {
     return {
       countries: [],
       countryOrder: `country_name_${this.$i18n.locale}`,
+      enableBboxSearch: true,
       numberMatched: 0,
       dataRecords: [],
       instruments: [],
@@ -632,7 +647,11 @@ export default {
       const stationOk = this.oldSearchParams.station === this.selectedStationID
       const instrumentOk =
         this.oldSearchParams.instrument === this.selectedInstrumentID
-      const bboxOk = this.oldSearchParams.bbox === this.boundingBoxArray
+      const bboxOk =
+        (this.oldSearchParams.bbox === this.boundingBoxArray &&
+          this.enableBboxSearch === true) ||
+        (this.oldSearchParams.bbox === undefined &&
+          this.enableBboxSearch === false)
 
       const startYearOk =
         this.oldSearchParams['start-year'] === this.selectedYearRange[0]
@@ -653,9 +672,16 @@ export default {
   watch: {
     boundingBoxArray: {
       async handler() {
-        this.refreshMetrics()
+        if (this.enableBboxSearch == true) {
+          this.refreshMetrics()
+        }
       },
       deep: true
+    },
+    enableBboxSearch: {
+      async handler() {
+        this.refreshMetrics()
+      }
     },
     options: {
       async handler() {
@@ -756,6 +782,19 @@ export default {
 
       this.refreshMetrics()
     },
+    boundingBoxArrayText(boundingBoxArray) {
+      return (
+        '[ ' +
+        parseFloat(boundingBoxArray[0]).toFixed(2) +
+        ', ' +
+        parseFloat(boundingBoxArray[1]).toFixed(2) +
+        ', ' +
+        parseFloat(boundingBoxArray[2]).toFixed(2) +
+        ', ' +
+        parseFloat(boundingBoxArray[3]).toFixed(2) +
+        ' ]'
+      )
+    },
     async changeCountry(country) {
       this.loadingStations = true
       this.loadingInstruments = true
@@ -763,6 +802,11 @@ export default {
 
       this.selectedCountry = country.element
       this.selectedCountryID = country.value
+
+      if (country.text !== 'All') {
+        this.enableBboxSearch = false
+      }
+
       const { stations, instruments } = await this.sendDropdownRequest(
         this.selectedDatasetID,
         country.value,
@@ -813,6 +857,7 @@ export default {
       if (station === null) {
         this.selectedStation = null
         this.selectedStationID = null
+        this.enableBboxSearch = false
       } else {
         this.selectedStation = station
         this.selectedStationID = station.woudc_id || station.station_id
@@ -907,6 +952,7 @@ export default {
     },
     async reset() {
       this.loadingMap = true
+      this.enableBboxSearch = true
       this.resettingMap = true
 
       this.selectedDataset = this.$t('common.all')
@@ -1033,6 +1079,7 @@ export default {
       if (
         this.selectedCountry === null &&
         this.selectedStationID === null &&
+        this.enableBboxSearch == true &&
         this.mapBoundingBox !== null
       ) {
         // Select only countries and stations visible on the map
@@ -1084,7 +1131,6 @@ export default {
       this.numberMatched = response.data.numberMatched
 
       this.oldSearchParams = {
-        bbox: this.boundingBoxArray,
         country: this.selectedCountryID,
         dataset: this.selectedDatasetID,
         instrument: this.selectedInstrumentID,
@@ -1092,6 +1138,10 @@ export default {
         'start-year': this.selectedYearRange[0],
         'end-year': this.selectedYearRange[1]
       }
+      if (this.enableBboxSearch == true) {
+        this.oldSearchParams['bbox'] = this.boundingBoxArray
+      }
+
       this.oldSearchExists = true
       this.oldDataRecordHeadersExists = true
       this.loadingDataRecords = false
@@ -1184,6 +1234,7 @@ export default {
       if (
         this.selectedCountry === null &&
         this.selectedStationID === null &&
+        this.enableBboxSearch == true &&
         this.mapBoundingBox !== null
       ) {
         // Select only countries and stations visible on the map
@@ -1321,12 +1372,14 @@ export default {
         timescale: 'year'
       }
 
-      const paramNames = {
-        bbox: this.boundingBoxArray,
+      let paramNames = {
         dataset: this.selectedDatasetID,
         country: this.selectedCountryID,
         station: this.selectedStationID,
         network: this.selectedInstrumentID
+      }
+      if (this.enableBboxSearch == true) {
+        paramNames['bbox'] = this.boundingBoxArray
       }
 
       for (const currParam of Object.entries(paramNames)) {

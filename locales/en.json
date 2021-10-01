@@ -1004,6 +1004,16 @@
         "body-howto": "For more details on how to use this page, please view the {how-to} guide.",
         "body-search": "To search and download data, select the dataset and observation time period. Optionally, draw your map extent of interest and then hit search. All available data for that time period will be displayed."
       },
+      "bbox": {
+        "switch": "Filter by map view",
+        "title": "Map bounds",
+        "latitude": {
+          "title": "Latitude"
+        },
+        "longitude": {
+          "title": "Longitude"
+        }
+      },
       "country": {
         "id": "Country Code",
         "name": "Country Name",
