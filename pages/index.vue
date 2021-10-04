@@ -102,7 +102,7 @@
       </v-col>
       <v-col cols="12" md="4">
         <h3 class="h2 mt-2 mb-2">{{ $t('home.quickLinks') }}</h3>
-        <div v-for="linkItem in quickLinks" :key="linkItem">
+        <div v-for="(linkItem, i) in quickLinks" :key="i">
           <nuxt-link :to="localePath(linkItem.link)">
             {{ $t(linkItem.title) }}
           </nuxt-link>
