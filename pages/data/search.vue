@@ -1145,6 +1145,7 @@ export default {
       this.oldSearchExists = true
       this.oldDataRecordHeadersExists = true
       this.loadingDataRecords = false
+      this.refreshDataRecordsPage()
     },
     async refreshDataRecordsPage() {
       let itemsPerPage = this.options['itemsPerPage']
