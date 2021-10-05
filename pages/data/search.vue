@@ -1279,9 +1279,9 @@ export default {
           this.dataRecords = response.data.features.map(stripProperties)
         } else if (
           (this.selectedDatasetID === 'peer_data_records') |
-          (this.selectedDatasetID === 'ndacc-total') |
-          (this.selectedDatasetID === 'ndacc-uv') |
-          (this.selectedDatasetID === 'ndacc-vertical')
+          (this.selectedDatasetID === 'ndacc_total') |
+          (this.selectedDatasetID === 'ndacc_uv') |
+          (this.selectedDatasetID === 'ndacc_vertical')
         ) {
           let response = await woudcClient.get(
             peerDataRecordsURL +
