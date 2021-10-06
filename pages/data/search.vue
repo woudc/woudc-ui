@@ -1015,7 +1015,7 @@ export default {
           ndacc_total: 'start_datetime,station_id,measurement',
           ndacc_vertical: 'start_datetime,station_id,measurement',
           ndacc_uv: 'start_datetime,station_id,measurement',
-          Ozonesonde: 'timestamp_date,station_id',
+          OzoneSonde: 'timestamp_date,station_id',
           data_records: 'timestamp_date,platform_id,content_category'
         }
         if (sortByParams[this.selectedDatasetID] !== undefined) {
@@ -1172,7 +1172,7 @@ export default {
           ndacc_total: 'start_datetime,station_id,measurement',
           ndacc_vertical: 'start_datetime,station_id,measurement',
           ndacc_uv: 'start_datetime,station_id,measurement',
-          Ozonesonde: 'timestamp_date,station_id',
+          OzoneSonde: 'timestamp_date,station_id',
           data_records: 'timestamp_date,platform_id,content_category'
         }
         if (sortByParams[this.selectedDatasetID] !== undefined) {
