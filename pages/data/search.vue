@@ -294,10 +294,11 @@
             <template v-slot:item.observation_date="row">
               <p
                 v-if="
-                  oldSearchParams['dataset'] === 'peer_data_records' ||
+                  (oldSearchParams['dataset'] === 'peer_data_records' ||
                     oldSearchParams['dataset'] === 'ndacc_total' ||
                     oldSearchParams['dataset'] === 'ndacc_uv' ||
-                    oldSearchParams['dataset'] === 'ndacc_vertical'
+                    oldSearchParams['dataset'] === 'ndacc_vertical') &
+                    (oldSearchParams['dataset'] === setTable)
                 "
               >
                 {{ row.item.start_datetime.substring(0, 10) }}
@@ -423,6 +424,7 @@ export default {
       selectedStation: null,
       selectedStationID: null,
       selectedYearRange: [null, null],
+      setTable: null,
       stations: [],
       stationsWithMetadata: [],
       stationOrder: 'name'
@@ -988,6 +990,7 @@ export default {
       this.loadingInstruments = false
       this.resettingMap = false
       this.loadingMap = false
+      this.setTable = null
 
       this.refreshMetrics()
     },
@@ -1342,6 +1345,7 @@ export default {
       } catch (error) {
         this.loadingDataRecords = false
       }
+      this.setTable = this.oldSearchParams['dataset']
     },
     async refreshDropdowns() {
       const {
