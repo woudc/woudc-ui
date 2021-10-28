@@ -1387,6 +1387,16 @@ export default {
       if (this.enableBboxSearch == true) {
         paramNames['bbox'] = this.boundingBoxArray
       }
+      if (
+        this.selectedDatasetID === 'ndacc_total' ||
+        this.selectedDatasetID === 'ndacc_uv' ||
+        this.selectedDatasetID === 'ndacc_vertical'
+      ) {
+        paramNames['source'] = 'ndacc'
+      }
+      if (this.selectedDatasetID === 'peer_data_records') {
+        paramNames['source'] = 'eubrewnet'
+      }
 
       for (const currParam of Object.entries(paramNames)) {
         const paramValue = currParam[1]
