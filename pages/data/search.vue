@@ -1431,6 +1431,16 @@ export default {
           inputs.domain = 'Broad-band,Spectral'
         } else if (selected !== null) {
           inputs[currSelection[0]] = selected
+          if (selected === 'peer_data_records') {
+            inputs.source = 'eubrewnet'
+          }
+          if (
+            selected === 'ndacc_total' ||
+            selected === 'ndacc_uv' ||
+            selected === 'ndacc_vertical'
+          ) {
+            inputs.source = 'ndacc'
+          }
         }
       }
 
