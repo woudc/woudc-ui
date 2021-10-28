@@ -1387,6 +1387,16 @@ export default {
       if (this.enableBboxSearch == true) {
         paramNames['bbox'] = this.boundingBoxArray
       }
+      if (
+        this.selectedDatasetID === 'ndacc_total' ||
+        this.selectedDatasetID === 'ndacc_uv' ||
+        this.selectedDatasetID === 'ndacc_vertical'
+      ) {
+        paramNames['source'] = 'ndacc'
+      }
+      if (this.selectedDatasetID === 'peer_data_records') {
+        paramNames['source'] = 'eubrewnet'
+      }
 
       for (const currParam of Object.entries(paramNames)) {
         const paramValue = currParam[1]
@@ -1421,6 +1431,16 @@ export default {
           inputs.domain = 'Broad-band,Spectral'
         } else if (selected !== null) {
           inputs[currSelection[0]] = selected
+          if (selected === 'peer_data_records') {
+            inputs.source = 'eubrewnet'
+          }
+          if (
+            selected === 'ndacc_total' ||
+            selected === 'ndacc_uv' ||
+            selected === 'ndacc_vertical'
+          ) {
+            inputs.source = 'ndacc'
+          }
         }
       }
 
