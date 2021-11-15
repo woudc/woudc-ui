@@ -50,16 +50,16 @@ do
     fi
 done
 
-echo "Setting up npm environment with n version manager"
-mkdir -p $BASEDIR/.npm-global
-npm config set prefix "$BASEDIR/.npm-global"
-export N_PREFIX=$BASEDIR/.npm-global
-export PATH=$N_PREFIX/bin:$PATH
-echo "Installing NodeJS version manager"
-npm install -g n
-echo "Switching to use NodeJS version Long Term Support (LTS)"
-$BASEDIR/.npm-global/lib/node_modules/n/bin/n lts
-#$N_PREFIX/n lts
+# echo "Setting up npm environment with n version manager"
+# mkdir -p $BASEDIR/.npm-global
+# npm config set prefix "$BASEDIR/.npm-global"
+# export N_PREFIX=$BASEDIR/.npm-global
+# export PATH=$N_PREFIX/bin:$PATH
+# echo "Installing NodeJS version manager"
+# npm install -g n
+# echo "Switching to use NodeJS version Long Term Support (LTS)"
+# $BASEDIR/.npm-global/lib/node_modules/n/bin/n lts
+# #$N_PREFIX/n lts
 
 echo "Generating nightly build for $TIMESTAMP"
 rm -fr latest
