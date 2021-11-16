@@ -1008,6 +1008,11 @@ export default {
         this.$config.WOUDC_UI_API + '/collections/totalozone/items'
       const UVIndexURL =
         this.$config.WOUDC_UI_API + '/collections/uv_index_hourly/items'
+      const ndacc_datasets = {
+        ndacc_total: 'TOTALCOL',
+        ndacc_uv: 'UV',
+        ndacc_vertical: 'OZONE'
+      }
 
       let queryParams = ''
       if (this.options['sortBy'].length === 0) {
@@ -1060,6 +1065,7 @@ export default {
       ) {
         selected = {
           source: 'ndacc',
+          measurement: ndacc_datasets[this.selectedDatasetID],
           country_id: this.selectedCountryID,
           station_id: this.selectedStationID,
           instrument_name: this.selectedInstrumentID
@@ -1154,7 +1160,11 @@ export default {
       let itemsPerPage = this.options['itemsPerPage']
       let page = this.options['page']
       this.loadingDataRecords = true
-
+      const ndacc_datasets = {
+        ndacc_total: 'TOTALCOL',
+        ndacc_uv: 'UV',
+        ndacc_vertical: 'OZONE'
+      }
       const dataRecordsURL =
         this.$config.WOUDC_UI_API + '/collections/data_records/items'
       const ozoneSondeURL =
@@ -1224,6 +1234,7 @@ export default {
       ) {
         selected = {
           source: 'ndacc',
+          measurement: ndacc_datasets[this.oldSearchParams['dataset']],
           country_id: this.oldSearchParams['country'],
           station_id: this.oldSearchParams['station'],
           instrument_name: this.oldSearchParams['instrument']
