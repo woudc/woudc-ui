@@ -33,9 +33,9 @@
     "axios": "^0.21.4",
     "chart.js": "^2.9.3",
     "leaflet": "^1.6.0",
-    "nuxt": "^2.15.6",
+    "nuxt": "^2.15.8",
     "nuxt-i18n": "^6.27.0",
-    "nuxt-leaflet": "0.0.21",
+    "nuxt-leaflet": "0.0.27",
     "vue-chartjs": "^3.5.0",
     "vue-i18n": "^8.22.2",
     "vue-router": "^3.4.8",
@@ -64,7 +64,7 @@
     "husky": "^2.7.0",
     "i18n-checker": "^2.0.0",
     "jest": "^24.1.0",
-    "lint-staged": "^8.2.1",
+    "lint-staged": "^12.0.2",
     "prettier": "^1.19.1",
     "vue-jest": "^4.0.0-beta.4"
   }
