@@ -876,7 +876,13 @@ export default {
         this.selectedInstrument = null
         this.selectedInstrumentID = null
       }
-      if (station === null) {
+      if (
+        station === null ||
+        this.selectedDatasetID == 'peer_data_records' ||
+        this.selectedDatasetID == 'ndacc_total' ||
+        this.selectedDatasetID == 'ndacc_uv' ||
+        this.selectedDatasetID == 'ndacc_vertical'
+      ) {
         this.refreshMetrics()
       } else {
         const countryNameProp = `country_name_${this.$i18n.locale}`
@@ -1008,6 +1014,11 @@ export default {
         this.$config.WOUDC_UI_API + '/collections/totalozone/items'
       const UVIndexURL =
         this.$config.WOUDC_UI_API + '/collections/uv_index_hourly/items'
+      const ndacc_datasets = {
+        ndacc_total: 'TOTALCOL',
+        ndacc_uv: 'UV',
+        ndacc_vertical: 'OZONE'
+      }
 
       let queryParams = ''
       if (this.options['sortBy'].length === 0) {
@@ -1060,6 +1071,7 @@ export default {
       ) {
         selected = {
           source: 'ndacc',
+          measurement: ndacc_datasets[this.selectedDatasetID],
           country_id: this.selectedCountryID,
           station_id: this.selectedStationID,
           instrument_name: this.selectedInstrumentID
@@ -1154,7 +1166,11 @@ export default {
       let itemsPerPage = this.options['itemsPerPage']
       let page = this.options['page']
       this.loadingDataRecords = true
-
+      const ndacc_datasets = {
+        ndacc_total: 'TOTALCOL',
+        ndacc_uv: 'UV',
+        ndacc_vertical: 'OZONE'
+      }
       const dataRecordsURL =
         this.$config.WOUDC_UI_API + '/collections/data_records/items'
       const ozoneSondeURL =
@@ -1224,6 +1240,7 @@ export default {
       ) {
         selected = {
           source: 'ndacc',
+          measurement: ndacc_datasets[this.oldSearchParams['dataset']],
           country_id: this.oldSearchParams['country'],
           station_id: this.oldSearchParams['station'],
           instrument_name: this.oldSearchParams['instrument']
@@ -1364,12 +1381,20 @@ export default {
         (this.selectedDatasetID === 'ndacc_vertical')
       ) {
         this.countries = []
-        this.stations = stations.map(unpackageBareStation)
         this.instruments = []
       } else {
         this.countries = countries.map(stripProperties)
-        this.stations = stations.map(unpackageBareStation)
         this.instruments = instruments.map(stripProperties)
+      }
+      if (this.selectedStationID === null) {
+        this.stations = stations.map(unpackageBareStation)
+      } else {
+        const dropdowns = await this.sendDropdownRequest(
+          this.selectedDatasetID,
+          this.selectedCountryID,
+          null
+        )
+        this.stations = dropdowns['stations'].map(unpackageBareStation)
       }
     },
     async refreshMetrics() {
