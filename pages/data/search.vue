@@ -876,7 +876,13 @@ export default {
         this.selectedInstrument = null
         this.selectedInstrumentID = null
       }
-      if (station === null) {
+      if (
+        station === null ||
+        this.selectedDatasetID == 'peer_data_records' ||
+        this.selectedDatasetID == 'ndacc_total' ||
+        this.selectedDatasetID == 'ndacc_uv' ||
+        this.selectedDatasetID == 'ndacc_vertical'
+      ) {
         this.refreshMetrics()
       } else {
         const countryNameProp = `country_name_${this.$i18n.locale}`
@@ -1375,12 +1381,20 @@ export default {
         (this.selectedDatasetID === 'ndacc_vertical')
       ) {
         this.countries = []
-        this.stations = stations.map(unpackageBareStation)
         this.instruments = []
       } else {
         this.countries = countries.map(stripProperties)
-        this.stations = stations.map(unpackageBareStation)
         this.instruments = instruments.map(stripProperties)
+      }
+      if (this.selectedStationID === null) {
+        this.stations = stations.map(unpackageBareStation)
+      } else {
+        const dropdowns = await this.sendDropdownRequest(
+          this.selectedDatasetID,
+          this.selectedCountryID,
+          null
+        )
+        this.stations = dropdowns['stations'].map(unpackageBareStation)
       }
     },
     async refreshMetrics() {
