@@ -39,7 +39,7 @@
           :items="contributors"
           :loading="loadingTables"
           hide-default-footer
-          class="elevation-1"
+          class="elevation-1 mb-4"
         >
           <template v-slot:item.acronym="contributor">
             <nuxt-link :to="'/contributors/' + contributor.item.acronym">
