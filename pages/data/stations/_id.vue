@@ -364,11 +364,8 @@ export default {
         paramNames.bbox = components.join(',')
       }
       for (const [name, paramValue] of Object.entries(paramNames)) {
-        console.log(name)
         if (paramValue !== null) {
-          inputs.push({
-            name: paramValue
-          })
+          inputs[name] = paramValue
         }
       }
       const queryParams = { inputs }
