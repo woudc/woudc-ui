@@ -147,7 +147,7 @@
 
 <script>
 import woudcClient from '~/plugins/woudcClient'
-import { unpackageStation, compareOnKey } from '~/plugins/unpackage'
+import { unpackageStation, compareLocaleOnKey } from '~/plugins/unpackage'
 
 import GraphCarousel from '~/components/GraphCarousel'
 import SelectableMap from '~/components/SelectableMap'
@@ -185,7 +185,7 @@ export default {
 
       if (this.boundingBox === null) {
         return stationOptions
-          .sort(compareOnKey(this.stationOrder))
+          .sort(compareLocaleOnKey(this.stationOrder))
           .map(this.stationToSelectOption)
       } else {
         const visibleOptions = stationOptions.filter((station) => {
@@ -197,7 +197,7 @@ export default {
         })
 
         return visibleOptions
-          .sort(compareOnKey(this.stationOrder))
+          .sort(compareLocaleOnKey(this.stationOrder))
           .map(this.stationToSelectOption)
       }
     },

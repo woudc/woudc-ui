@@ -375,7 +375,7 @@ import { getExplore, getMetrics } from '~/plugins/api/wdr.api.processes'
 import {
   stripProperties,
   unpackageBareStation,
-  compareOnKey
+  compareLocaleOnKey
 } from '~/plugins/unpackage'
 
 import MapInstructions from '~/components/MapInstructions'
@@ -454,7 +454,7 @@ export default {
       const orderedCountries = this.countries
 
       const countryOptions = orderedCountries
-        .sort(compareOnKey(this.countryOrder))
+        .sort(compareLocaleOnKey(this.countryOrder))
         .map(this.countryToSelectOption)
       return [nullOption].concat(countryOptions)
     },
@@ -625,7 +625,7 @@ export default {
 
       if (this.mapBoundingBox === null) {
         const stationOptions = orderedStations
-          .sort(compareOnKey(this.stationOrder))
+          .sort(compareLocaleOnKey(this.stationOrder))
           .map(this.stationToSelectOption)
         return [nullOption].concat(stationOptions)
       } else {
@@ -638,7 +638,7 @@ export default {
         })
 
         const stationOptions = visibleOptions
-          .sort(compareOnKey(this.stationOrder))
+          .sort(compareLocaleOnKey(this.stationOrder))
           .map(this.stationToSelectOption)
         return [nullOption].concat(stationOptions)
       }
@@ -832,6 +832,7 @@ export default {
       ) {
         const retain = {}
         for (const { field, key, elements } of dependencies) {
+          console.log(field, key, elements)
           retain[field] = elements.some((element) => {
             return element.properties[key] === this[field]
           })
