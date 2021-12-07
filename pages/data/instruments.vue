@@ -7,7 +7,7 @@
         <selectable-map
           :elements="instruments"
           :selected="selectedInstrument"
-          :loading="loadingMap"
+          :loading="!loadedInstrumentModels"
           @select="selectedInstrument = $event"
           @move="boundingBox = $event"
         >
@@ -39,7 +39,7 @@
           :headers="headers"
           :elements="visibleInstruments"
           :selected="selectedInstrument"
-          :loading="loadingTable"
+          :loading="!loadedInstrumentModels"
           @select="selectedInstrument = $event"
         >
           <template v-slot:row="row">
@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import { unpackageInstrument } from '~/plugins/unpackage'
+import { mapState, mapGetters } from 'vuex'
 
 import mapInstructions from '~/components/MapInstructions'
 import tableInstructions from '~/components/TableInstructions'
@@ -86,13 +86,14 @@ export default {
   data() {
     return {
       boundingBox: null,
-      instruments: [],
-      loadingMap: true,
-      loadingTable: true,
       selectedInstrument: null
     }
   },
   computed: {
+    ...mapState('instruments', ['loadedInstrumentModels']),
+    ...mapGetters('instruments', {
+      instruments: 'modelResolution'
+    }),
     headers() {
       const headerKeys = [
         'name',
@@ -123,13 +124,8 @@ export default {
       }
     }
   },
-  async mounted() {
-    await this.$store.dispatch('instruments/downloadDistinctModels')
-
-    const instruments = this.$store.getters['instruments/modelResolution']
-    this.instruments = instruments.map(unpackageInstrument)
-    this.loadingMap = false
-    this.loadingTable = false
+  mounted() {
+    this.$store.dispatch('instruments/downloadDistinctModels')
   },
   head() {
     return {

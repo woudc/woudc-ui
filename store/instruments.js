@@ -1,4 +1,5 @@
 import woudcClient from '~/plugins/woudcClient'
+import { unpackageInstrument } from '~/plugins/unpackage'
 
 function instrumentModelID(instrumentModelObj) {
   const components = [
@@ -78,7 +79,10 @@ const actions = {
       model.properties.identifier = id
     }
 
-    commit('setInstrumentsModelResolution', instrumentModels)
+    commit(
+      'setInstrumentsModelResolution',
+      instrumentModels.map(unpackageInstrument)
+    )
     commit('setLoadedModels', true)
   },
   async downloadDistinctNames({ commit, state }) {
