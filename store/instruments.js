@@ -11,7 +11,8 @@ function instrumentModelID(instrumentModelObj) {
 }
 
 const state = () => ({
-  loaded: false,
+  loadedInstrumentModels: false,
+  loadedInstrumentNames: false,
   instrumentModels: [], // List of unique instrument name/model combinations.
   instrumentNames: [] // List of unique instrument names.
 })
@@ -35,11 +36,17 @@ const mutations = {
   },
   setLoaded(state) {
     state.loaded = true
+  },
+  setLoadedModels(state) {
+    state.loadedInstrumentModels = true
+  },
+  setLoadedNames(state) {
+    state.loadedInstrumentNames = true
   }
 }
 
 const actions = {
-  async download({ commit, state }) {
+  async downloadDistinctModels({ commit, state }) {
     if (state.loaded) {
       return false
     }
@@ -50,8 +57,42 @@ const actions = {
     const inputs = {
       index: 'instrument',
       distinct: {
-        nameResolution: ['name'],
         modelResolution: ['name', 'model', 'station_id', 'dataset']
+      },
+      source: [
+        'station_name',
+        'data_class',
+        'contributor_name',
+        'waf_url',
+        'start_date',
+        'end_date'
+      ]
+    }
+
+    const queryParams = { inputs }
+    const response = await woudcClient.post(queryURL, queryParams)
+    const instrumentModels = response.data.modelResolution
+
+    for (const model of instrumentModels) {
+      const id = instrumentModelID(model)
+      model.properties.identifier = id
+    }
+
+    commit('setInstrumentsModelResolution', instrumentModels)
+    commit('setLoadedModels', true)
+  },
+  async downloadDistinctNames({ commit, state }) {
+    if (state.loaded) {
+      return false
+    }
+
+    const queryURL =
+      this.$config.WOUDC_UI_API +
+      '/processes/woudc-data-registry-select-distinct/execution'
+    const inputs = {
+      index: 'instrument',
+      distinct: {
+        nameResolution: ['name']
       },
       source: [
         'station_name',
@@ -67,21 +108,15 @@ const actions = {
 
     const queryParams = { inputs }
     const response = await woudcClient.post(queryURL, queryParams)
-    const instruments = response.data
+    const instrumentNames = response.data.nameResolution
 
-    for (const instrumentName of instruments.nameResolution) {
+    for (const instrumentName of instrumentNames) {
       const id = instrumentName.properties.name
       instrumentName.properties.identifier = id
     }
 
-    for (const instrumentModel of instruments.modelResolution) {
-      const id = instrumentModelID(instrumentModel)
-      instrumentModel.properties.identifier = id
-    }
-
-    commit('setInstrumentsNameResolution', instruments.nameResolution)
-    commit('setInstrumentsModelResolution', instruments.modelResolution)
-    commit('setLoaded', true)
+    commit('setInstrumentsNameResolution', instrumentNames)
+    commit('setLoadedNames', true)
   }
 }
 

@@ -124,7 +124,7 @@ export default {
     }
   },
   async mounted() {
-    await this.$store.dispatch('instruments/download')
+    await this.$store.dispatch('instruments/downloadDistinctModels')
 
     const instruments = this.$store.getters['instruments/modelResolution']
     this.instruments = instruments.map(unpackageInstrument)

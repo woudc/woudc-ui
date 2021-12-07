@@ -697,7 +697,7 @@ export default {
       this.$store.dispatch('countries/downloadCountries'),
       this.$store.dispatch('countries/downloadBounds'),
       this.$store.dispatch('stations/downloadStationsByDataset'),
-      this.$store.dispatch('instruments/download')
+      this.$store.dispatch('instruments/downloadDistinctNames')
     ]).then(() => {
       const countries = this.$store.getters['countries/all']
       const stations = this.$store.getters['stations/all']
