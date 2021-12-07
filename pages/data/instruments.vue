@@ -45,10 +45,10 @@
           <template v-slot:row="row">
             <td>{{ row.item.name }}</td>
             <td>{{ row.item.model }}</td>
+            <td>{{ row.item.dataset }}</td>
             <td>{{ row.item.start_date }}</td>
             <td>{{ row.item.end_date }}</td>
             <td>{{ row.item.data_class }}</td>
-            <td>{{ row.item.dataset }}</td>
             <td>
               <nuxt-link
                 :to="localePath('data-stations') + '/' + row.item.station_id"
