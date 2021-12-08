@@ -1,10 +1,5 @@
 import { getDistinct } from '~/plugins/api/wdr.api.processes'
 
-const defaultStationList = () => ({
-  orderByID: [],
-  orderByName: []
-})
-
 const groupStationsByDataset = (stnDataPairs, stationsByID) => {
   const stationsByDataset = {}
   const uvIndexDatasets = ['Broad-band', 'Spectral']
@@ -57,20 +52,20 @@ const groupStationsByDataset = (stnDataPairs, stationsByID) => {
 const state = () => ({
   loadedStations: false,
   loadedStnDataPairs: false,
-  stationsList: defaultStationList(),
+  stationsList: [],
   stationsByID: {},
   stnDataPairs: [],
-  ozonesonde: defaultStationList(),
-  totalozone: defaultStationList(),
-  totalozoneobs: defaultStationList(),
-  broadband: defaultStationList(),
-  multiband: defaultStationList(),
-  spectral: defaultStationList(),
-  umkehr1: defaultStationList(),
-  umkehr2: defaultStationList(),
-  rocketsonde: defaultStationList(),
-  lidar: defaultStationList(),
-  uvindex: defaultStationList()
+  ozonesonde: [],
+  totalozone: [],
+  totalozoneobs: [],
+  broadband: [],
+  multiband: [],
+  spectral: [],
+  umkehr1: [],
+  umkehr2: [],
+  rocketsonde: [],
+  lidar: [],
+  uvindex: []
 })
 
 const getters = {

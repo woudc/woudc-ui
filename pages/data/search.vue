@@ -405,6 +405,8 @@ export default {
       mapFocusCountry: null,
       metricsByYear: {},
       minSelectableYear: 1924,
+      ndaccDatasets: ['ndacc_total', 'ndacc_uv', 'ndacc_vertical'],
+      peerDatasets: ['peer_data_records'],
       oldDataRecordHeadersExists: false,
       oldSearchExists: false,
       oldSearchParams: {},
@@ -491,12 +493,7 @@ export default {
           'daily_nobs',
           'actions'
         ]
-      } else if (
-        this.selectedDatasetID === 'peer_data_records' ||
-        this.selectedDatasetID === 'ndacc_total' ||
-        this.selectedDatasetID === 'ndacc_vertical' ||
-        this.selectedDatasetID === 'ndacc_uv'
-      ) {
+      } else if (this.peerOrNdaccDatasets.includes(this.selectedDatasetID)) {
         headerKeys = [
           'observation_date',
           'contributor_acronym',
@@ -669,6 +666,9 @@ export default {
         startYearOk &&
         endYearOk
       )
+    },
+    peerOrNdaccDatasets() {
+      return this.ndaccDatasets.concat(this.peerDatasets)
     }
   },
   watch: {
@@ -824,15 +824,11 @@ export default {
         }
       ]
 
-      if (
-        this.selectedDatasetID !== 'peer_data_records' &&
-        this.selectedDatasetID !== 'ndacc_total' &&
-        this.selectedDatasetID !== 'ndacc_uv' &&
-        this.selectedDatasetID !== 'ndacc_vertical'
-      ) {
+      // not ndacc or peer records
+      if (!this.peerOrNdaccDatasets.includes(this.selectedDatasetID)) {
         const retain = {}
         for (const { field, key, elements } of dependencies) {
-          console.log(field, key, elements)
+          // console.log('Retaining:', field, key, elements)
           retain[field] = elements.some((element) => {
             return element.properties[key] === this[field]
           })
@@ -879,10 +875,7 @@ export default {
       }
       if (
         station === null ||
-        this.selectedDatasetID == 'peer_data_records' ||
-        this.selectedDatasetID == 'ndacc_total' ||
-        this.selectedDatasetID == 'ndacc_uv' ||
-        this.selectedDatasetID == 'ndacc_vertical'
+        this.peerOrNdaccDatasets.includes(this.selectedDatasetID)
       ) {
         this.refreshMetrics()
       } else {
@@ -892,7 +885,9 @@ export default {
             ? station['station_name']
             : station['name']
         const countryName = this.stationsWithMetadata[
-          this.stationsWithMetadata.findIndex((s) => s['name'] === stationName)
+          this.stationsWithMetadata.findIndex(
+            (stn) => stn['name'] === stationName
+          )
         ][countryNameProp]
         const countryOptionsElems = this.countryOptions.slice(1)
         const country =
@@ -1065,11 +1060,7 @@ export default {
           station_id: this.selectedStationID,
           instrument_name: this.selectedInstrumentID
         }
-      } else if (
-        this.selectedDatasetID === 'ndacc_total' ||
-        this.selectedDatasetID === 'ndacc_vertical' ||
-        this.selectedDatasetID === 'ndacc_uv'
-      ) {
+      } else if (this.ndaccDatasets.includes(this.selectedDatasetID)) {
         selected = {
           source: 'ndacc',
           measurement: ndacc_datasets[this.selectedDatasetID],
@@ -1129,12 +1120,7 @@ export default {
         response = await woudcClient.get(UVIndexURL + '?' + queryParams)
       } else if (this.selectedDatasetID === 'TotalOzone') {
         response = await woudcClient.get(totalOzoneURL + '?' + queryParams)
-      } else if (
-        this.selectedDatasetID === 'peer_data_records' ||
-        this.selectedDatasetID === 'ndacc_total' ||
-        this.selectedDatasetID === 'ndacc_vertical' ||
-        this.selectedDatasetID === 'ndacc_uv'
-      ) {
+      } else if (this.peerOrNdaccDatasets.includes(this.selectedDatasetID)) {
         response = await woudcClient.get(peerDataRecordsURL + '?' + queryParams)
       } else if (this.selectedDatasetID === 'OzoneSonde') {
         response = await woudcClient.get(
@@ -1366,30 +1352,32 @@ export default {
       this.setTable = this.oldSearchParams['dataset']
     },
     async refreshDropdowns() {
+      // retrieve new countries/stations/instruments based on current selection
       const {
-        countries,
-        stations,
-        instruments
+        newCountries,
+        newStations,
+        newInstruments
       } = await this.sendDropdownRequest(
         this.selectedDatasetID,
         this.selectedCountryID,
         this.selectedStationID
       )
-      if (
-        (this.selectedDatasetID === 'peer_data_records') |
-        (this.selectedDatasetID === 'ndacc_total') |
-        (this.selectedDatasetID === 'ndacc_uv') |
-        (this.selectedDatasetID === 'ndacc_vertical')
-      ) {
+
+      // selected dataset handling
+      if (this.peerOrNdaccDatasets.includes(this.selectedDatasetID)) {
+        // empty countries/instruments
         this.countries = []
         this.instruments = []
       } else {
-        this.countries = countries.map(stripProperties)
-        this.instruments = instruments.map(stripProperties)
+        this.countries = newCountries.map(stripProperties)
+        this.instruments = newInstruments.map(stripProperties)
       }
+
+      // selected station handling
       if (this.selectedStationID === null) {
-        this.stations = stations.map(unpackageBareStation)
+        this.stations = newStations.map(unpackageBareStation)
       } else {
+        // TODO: remove this duplicate XHR here
         const dropdowns = await this.sendDropdownRequest(
           this.selectedDatasetID,
           this.selectedCountryID,
@@ -1413,14 +1401,10 @@ export default {
       if (this.enableBboxSearch == true) {
         paramNames['bbox'] = this.boundingBoxArray
       }
-      if (
-        this.selectedDatasetID === 'ndacc_total' ||
-        this.selectedDatasetID === 'ndacc_uv' ||
-        this.selectedDatasetID === 'ndacc_vertical'
-      ) {
+      if (this.ndaccDatasets.includes(this.selectedDatasetID)) {
         paramNames['source'] = 'ndacc'
       }
-      if (this.selectedDatasetID === 'peer_data_records') {
+      if (this.peerDatasets.includes(this.selectedDatasetID)) {
         paramNames['source'] = 'eubrewnet'
       }
 
@@ -1457,14 +1441,10 @@ export default {
           inputs.domain = 'Broad-band,Spectral'
         } else if (selected !== null) {
           inputs[currSelection[0]] = selected
-          if (selected === 'peer_data_records') {
+          if (this.peerDatasets.includes(selected)) {
             inputs.source = 'eubrewnet'
           }
-          if (
-            selected === 'ndacc_total' ||
-            selected === 'ndacc_uv' ||
-            selected === 'ndacc_vertical'
-          ) {
+          if (this.ndaccDatasets.includes(selected)) {
             inputs.source = 'ndacc'
           }
         }
