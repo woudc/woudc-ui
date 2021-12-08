@@ -123,17 +123,6 @@ const getters = {
 }
 
 const mutations = {
-  setStations(state, stations) {
-    const mappedByID = {}
-
-    stations.orderByID.forEach((station) => {
-      const id = station.properties.woudc_id
-      mappedByID[id] = station
-    })
-
-    state.stationsList = stations
-    state.stationsByID = mappedByID
-  },
   setStationsList(state, stationsList) {
     state.stationsList = stationsList
   },
@@ -191,7 +180,7 @@ const actions = {
       return false
     }
 
-    // Collect arrays of all stations in both ID and name order.
+    // Collect arrays of all stations
     const stationInputs = {
       index: 'station',
       distinct: {
