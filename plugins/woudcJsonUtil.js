@@ -1,5 +1,3 @@
-// TODO - convert this to NuxtJS inject
-// https://nuxtjs.org/docs/2.x/directory-structure/plugins#inject-in-root--context
 function standardizedCountryName(geoJSON) {
   return {
     en: geoJSON.properties.country_name_en,

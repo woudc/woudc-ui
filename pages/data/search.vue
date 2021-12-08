@@ -376,7 +376,7 @@ import {
   stripProperties,
   unpackageBareStation,
   compareLocaleOnKey
-} from '~/plugins/unpackage'
+} from '~/plugins/woudcJsonUtil.js'
 
 import MapInstructions from '~/components/MapInstructions'
 import MetricsChart from '~/components/MetricsChart'

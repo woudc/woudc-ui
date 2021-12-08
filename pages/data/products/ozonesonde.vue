@@ -160,7 +160,10 @@
 
 <script>
 import woudcClient from '~/plugins/woudcClient'
-import { unpackageStation, compareLocaleOnKey } from '~/plugins/unpackage'
+import {
+  unpackageStation,
+  compareLocaleOnKey
+} from '~/plugins/woudcJsonUtil.js'
 
 import GraphCarousel from '~/components/GraphCarousel'
 import SelectableMap from '~/components/SelectableMap'

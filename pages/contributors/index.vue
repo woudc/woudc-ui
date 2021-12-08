@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import { unpackageContributor } from '~/plugins/unpackage'
+import { unpackageContributor } from '~/plugins/woudcJsonUtil.js'
 
 import mapInstructions from '~/components/MapInstructions'
 import tableInstructions from '~/components/TableInstructions'

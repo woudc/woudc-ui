@@ -99,7 +99,7 @@
 <script>
 import x2js from 'x2js'
 import woudcClient from '~/plugins/woudcClient'
-import { unpackageStation } from '~/plugins/unpackage'
+import { unpackageStation } from '~/plugins/woudcJsonUtil.js'
 
 import MapInstructions from '~/components/MapInstructions'
 import SelectableMap from '~/components/SelectableMap'

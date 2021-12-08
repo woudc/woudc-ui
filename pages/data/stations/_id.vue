@@ -169,7 +169,7 @@
 <script>
 import woudcClient from '~/plugins/woudcClient'
 import { getMetrics } from '~/plugins/api/wdr.api.processes'
-import { stripProperties, unpackageStation } from '~/plugins/unpackage'
+import { stripProperties, unpackageStation } from '~/plugins/woudcJsonUtil.js'
 
 import mapInstructions from '~/components/MapInstructions'
 import tableInstructions from '~/components/TableInstructions'

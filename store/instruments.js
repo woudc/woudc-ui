@@ -1,5 +1,5 @@
 import woudcClient from '~/plugins/woudcClient'
-import { unpackageInstrument } from '~/plugins/unpackage'
+import { unpackageInstrument } from '~/plugins/woudcJsonUtil.js'
 
 function instrumentModelID(instrumentModelObj) {
   const components = [
