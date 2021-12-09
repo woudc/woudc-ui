@@ -791,7 +791,7 @@ export default {
       this.selectedCountry = country.element
       this.selectedCountryID = country.value
 
-      if (country.text !== 'All') {
+      if (this.selectedCountryID !== null) {
         this.enableBboxSearch = false
       }
 
@@ -837,7 +837,7 @@ export default {
       this.loadingInstruments = true
       const newDropdowns = await this.sendDropdownRequest(
         this.selectedDatasetID,
-        this.selectedStationID == null ? null : this.selectedCountryID,
+        this.selectedStationID !== null ? null : this.selectedCountryID,
         this.selectedStationID
       )
       this.instruments = newDropdowns.instruments.map(stripProperties)
