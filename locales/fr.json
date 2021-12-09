@@ -820,6 +820,7 @@
       "blurb": "La liste des contributeurs contient le nom et l’abréviation de l’institut ou de l’organisation,l’adresse, les coordonnées et l’information sur le fichier local.",
       "contributor-headers": {
         "acronym": "Acronyme",
+        "country": "Pays",
         "country_name_en": "Pays",
         "country_name_fr": "Pays",
         "end_date": "Jusqu’à cette date",
@@ -999,20 +1000,20 @@
       }
     },
     "explore": {
-      "blurb": {
-        "body-datasets": "La recherche dans l’archive de données du WOUDC peut se faire par catégorie de données : il y a six catégories de données sur l’ozone et trois sur le rayonnement ultraviolet (UV). Les jeux de données pour la colonne d’ozone totale comprennent l’ozone total et les observations sur l’ozone total, et la courbe de répartition verticale de l’ozone comprend les valeurs obtenues à l’aide des techniques lidar et des sondages d’ozone, ainsi que les valeurs N obtenues à l’aide de la technique Umkehr et celles établies à l’aide de la technique C-Umkehr. Les jeux de données sur le rayonnement UV comprennent celles à large bande, multibandes, et spectrales.",
-        "body-howto": "Pour obtenir plus d’information à propos de l’utilisation de cette page, consultez le {how-to}.",
-        "body-search": "Pour chercher et télécharger des données, sélectionnez l’ensemble de données et la période d’observation. Vous pouvez également choisir l’étendue géographique de votre recherche et cliquer sur envoyer la requête. Toutes les données disponibles pour cette période seront affichées."
-      },
       "bbox": {
-        "switch": "Filtrer par vue de carte",
-        "title": "Limites de la carte",
         "latitude": {
           "title": "Latitude"
         },
         "longitude": {
           "title": "Longitude"
-        }
+        },
+        "switch": "Filtrer par vue de carte",
+        "title": "Limites de la carte"
+      },
+      "blurb": {
+        "body-datasets": "La recherche dans l’archive de données du WOUDC peut se faire par catégorie de données : il y a six catégories de données sur l’ozone et trois sur le rayonnement ultraviolet (UV). Les jeux de données pour la colonne d’ozone totale comprennent l’ozone total et les observations sur l’ozone total, et la courbe de répartition verticale de l’ozone comprend les valeurs obtenues à l’aide des techniques lidar et des sondages d’ozone, ainsi que les valeurs N obtenues à l’aide de la technique Umkehr et celles établies à l’aide de la technique C-Umkehr. Les jeux de données sur le rayonnement UV comprennent celles à large bande, multibandes, et spectrales.",
+        "body-howto": "Pour obtenir plus d’information à propos de l’utilisation de cette page, consultez le {how-to}.",
+        "body-search": "Pour chercher et télécharger des données, sélectionnez l’ensemble de données et la période d’observation. Vous pouvez également choisir l’étendue géographique de votre recherche et cliquer sur envoyer la requête. Toutes les données disponibles pour cette période seront affichées."
       },
       "country": {
         "id": "Identifiant du Pays",
@@ -1075,37 +1076,38 @@
         "actions": "Actions",
         "content-category": "Nom de l’ensemble de données",
         "contributor-acronym": "Organisme",
+        "country-name_en": "Pays",
         "country-name_fr": "Pays",
         "daily-date": "Date",
+        "daily-nobs": "Nombre d'observations",
         "daily-utc_begin": "Heure en UTC de la première observation",
         "daily-utc_end": "Heure en UTC de la dernière observation",
-        "daily-nobs": "Nombre d'observations",
         "end-datetime": "Heure en UTC de la dernière observation",
         "file-path": "Actions",
         "gaw-id": "Identifiant VAG",
         "instrument-model": "Modèle de l’instrument",
         "instrument-name": "Nom de l’instrument",
-        "instrument-type": "Type d'instrument",
         "instrument-serial": "Numéro de l’instrument",
+        "instrument-type": "Type d'instrument",
         "measurement": "Nom de l'ensemble de données",
         "monthly-date": "Mensuelle Date",
         "monthly-npts": "Mensuelle Nombre d'observations",
+        "o3partialpressure": "Pression Partielle de O3",
         "observation-date": "Date de l’observation (UTC)",
         "observation-time": "Heure d’instance (UTC)",
-        "o3partialpressure": "Pression Partielle de O3",
         "platform-id": "Identification de la plate-forme",
         "platform-type": "Type de plate-forme",
         "pressure": "Pression",
         "processed-datetime": "Date et heure de traitement",
         "start-datetime": "Heure en UTC de la première observation",
-        "station-name": "Nom de la station",
         "station-gaw_id": "Identifiant VAG",
         "station-id": "Identification de la plate-forme",
+        "station-name": "Nom de la station",
         "temperature": "Température",
         "timestamp-date": "Date de l’observation (UTC)",
         "timestamp-utc": "Date de l’observation (UTC)",
-        "uv-index": "Indice UV moyen horaire",
-        "uv-daily_max": "Indice UV jornalier max"
+        "uv-daily_max": "Indice UV jornalier max",
+        "uv-index": "Indice UV moyen horaire"
       },
       "title": "Rechercher et télécharger de données"
     },
@@ -1158,8 +1160,8 @@
         "model": "Modèle de l’instrument",
         "name": "Type d'instrument",
         "start_date": "À partir de cette date",
-        "waf_url": "Dossier accessible sur le web",
-        "station_name": "Nom de la station"
+        "station_name": "Nom de la station",
+        "waf_url": "Dossier accessible sur le web"
       },
       "instrument-model": "Modèle de l’instrument :",
       "instrument-type": "Type d’instrument :",
@@ -1436,8 +1438,8 @@
       "more": "Plus...",
       "title": "Nouvelles et mises à jour:"
     },
-    "wmoLogo": "Logo : @.wmoFull",
-    "quickLinks": "Liens rapides:"
+    "quickLinks": "Liens rapides:",
+    "wmoLogo": "Logo : @.wmoFull"
   },
   "news": {
     "blurb": "Nouvelles pour le Centre de données, mises à jour et des notifications",

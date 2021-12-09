@@ -820,6 +820,7 @@
       "blurb": "The contributor list provides the institute or organization name and abbreviation, address, contact information and local file information.",
       "contributor-headers": {
         "acronym": "Acronym",
+        "country": "Country",
         "country_name_en": "Country",
         "country_name_fr": "Country",
         "end_date": "Date To",
@@ -999,20 +1000,20 @@
       }
     },
     "explore": {
-      "blurb": {
-        "body-datasets": "The WOUDC data archive can be searched by data category: there are six ozone data categories and three ultraviolet (UV) radiation data categories. The ozone datasets for total column ozone include total ozone and total ozone observations and the vertical ozone profile includes lidar, ozonesonde, Umkehr N-value and C-Umkehr. The UV datasets for UV irradiance include broadband, multiband and spectral.",
-        "body-howto": "For more details on how to use this page, please view the {how-to} guide.",
-        "body-search": "To search and download data, select the dataset and observation time period. Optionally, draw your map extent of interest and then hit search. All available data for that time period will be displayed."
-      },
       "bbox": {
-        "switch": "Filter by map view",
-        "title": "Map bounds",
         "latitude": {
           "title": "Latitude"
         },
         "longitude": {
           "title": "Longitude"
-        }
+        },
+        "switch": "Filter by map view",
+        "title": "Map bounds"
+      },
+      "blurb": {
+        "body-datasets": "The WOUDC data archive can be searched by data category: there are six ozone data categories and three ultraviolet (UV) radiation data categories. The ozone datasets for total column ozone include total ozone and total ozone observations and the vertical ozone profile includes lidar, ozonesonde, Umkehr N-value and C-Umkehr. The UV datasets for UV irradiance include broadband, multiband and spectral.",
+        "body-howto": "For more details on how to use this page, please view the {how-to} guide.",
+        "body-search": "To search and download data, select the dataset and observation time period. Optionally, draw your map extent of interest and then hit search. All available data for that time period will be displayed."
       },
       "country": {
         "id": "Country Code",
@@ -1076,23 +1077,24 @@
         "content-category": "Dataset Name",
         "contributor-acronym": "Agency",
         "country-name_en": "Country",
+        "country-name_fr": "Country",
         "daily-date": "Date",
+        "daily-nobs": "Number of Observations",
         "daily-utc_begin": "UTC Time of First Observation",
         "daily-utc_end": "UTC Time of Last Observation",
-        "daily-nobs": "Number of Observations",
         "end-datetime": "UTC Time of Last Observation",
         "file-path": "Actions",
         "gaw-id": "GAW ID",
         "instrument-model": "Instrument Model",
         "instrument-name": "Instrument Name",
-        "instrument-type": "Instrument Type",
         "instrument-serial": "Instrument Number",
+        "instrument-type": "Instrument Type",
         "measurement": "Dataset Name",
         "monthly-date": "Monthly Date",
         "monthly-npts": "Monthly Number of Observations",
+        "o3partialpressure": "O3 Partial Pressure",
         "observation-date": "Observation Date (UTC)",
         "observation-time": "Instance Hour (UTC)",
-        "o3partialpressure": "O3 Partial Pressure",
         "platform-id": "Platform ID",
         "platform-type": "Platform Type",
         "pressure": "Pressure",
@@ -1104,8 +1106,8 @@
         "temperature": "Temperature",
         "timestamp-date": "Observation Date (UTC)",
         "timestamp-utc": "Observation Date (UTC)",
-        "uv-index": "UV Index Hourly Average",
-        "uv-daily_max": "UV Index Daily Max"
+        "uv-daily_max": "UV Index Daily Max",
+        "uv-index": "UV Index Hourly Average"
       },
       "title": "Data Search and Download"
     },
@@ -1158,8 +1160,8 @@
         "model": "Instrument Model",
         "name": "Instrument Type",
         "start_date": "Date From",
-        "waf_url": "Web Accessible Folder",
-        "station_name": "Station Name"
+        "station_name": "Station Name",
+        "waf_url": "Web Accessible Folder"
       },
       "instrument-model": "Instrument Model:",
       "instrument-type": "Instrument Type:",
@@ -1436,8 +1438,8 @@
       "more": "More...",
       "title": "News and Updates:"
     },
-    "wmoLogo": "Logo: @.wmoFull",
-    "quickLinks": "Quick Links:"
+    "quickLinks": "Quick Links:",
+    "wmoLogo": "Logo: @.wmoFull"
   },
   "news": {
     "blurb": "Data centre news, updates and notifications",
