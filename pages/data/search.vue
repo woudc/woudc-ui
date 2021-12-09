@@ -63,7 +63,7 @@
               />
               <v-radio
                 :label="$t('data.explore.country.name')"
-                :value="`country_name_${$i18n.locale}`"
+                :value="countryNameLocale"
               />
             </v-radio-group>
           </v-col>
@@ -245,17 +245,7 @@
         >
           {{ $t('common.submit') }}
         </v-btn>
-        <v-btn
-          class="btn-right"
-          :disabled="
-            loadingStations ||
-              loadingCountries ||
-              loadingInstruments ||
-              loadingMap ||
-              loadingDataRecords
-          "
-          @click="reset()"
-        >
+        <v-btn class="btn-right" :disabled="loadingAll" @click="reset()">
           {{ $t('common.reset') }}
         </v-btn>
       </v-col>
@@ -294,11 +284,8 @@
             <template v-slot:item.observation_date="row">
               <p
                 v-if="
-                  (oldSearchParams['dataset'] === 'peer_data_records' ||
-                    oldSearchParams['dataset'] === 'ndacc_total' ||
-                    oldSearchParams['dataset'] === 'ndacc_uv' ||
-                    oldSearchParams['dataset'] === 'ndacc_vertical') &
-                    (oldSearchParams['dataset'] === setTable)
+                  peerOrNdaccDatasets.includes(oldSearchParams['dataset']) &&
+                    oldSearchParams['dataset'] === setTable
                 "
               >
                 {{ row.item.start_datetime.substring(0, 10) }}
@@ -312,10 +299,7 @@
                 oldSearchParams['dataset'] === 'uv_index_hourly' ||
                   oldSearchParams['dataset'] === 'TotalOzone' ||
                   oldSearchParams['dataset'] === 'OzoneSonde' ||
-                  oldSearchParams['dataset'] === 'peer_data_records' ||
-                  oldSearchParams['dataset'] === 'ndacc_total' ||
-                  oldSearchParams['dataset'] === 'ndacc_uv' ||
-                  oldSearchParams['dataset'] === 'ndacc_vertical'
+                  peerOrNdaccDatasets.includes(oldSearchParams['dataset'])
               "
               v-slot:item.station_id="row"
             >
@@ -444,6 +428,9 @@ export default {
       } else {
         return null
       }
+    },
+    countryNameLocale() {
+      return `country_name_${this.$i18n.locale}`
     },
     countryOptions() {
       const nullOption = {
@@ -619,10 +606,30 @@ export default {
       }
 
       const orderedStations = this.stations
+      if (orderedStations.length === 0) {
+        return [nullOption]
+      }
+
+      // station_name vs name property check
+      let stationOrder = this.stationOrder
+      if (
+        stationOrder === 'name' &&
+        !Object.prototype.hasOwnProperty.call(orderedStations[0], stationOrder)
+      ) {
+        stationOrder = 'station_name'
+      }
+
+      // station_id vs woudc_id property check
+      if (
+        stationOrder === 'woudc_id' &&
+        !Object.prototype.hasOwnProperty.call(orderedStations[0], stationOrder)
+      ) {
+        stationOrder = 'station_id'
+      }
 
       if (this.mapBoundingBox === null) {
         const stationOptions = orderedStations
-          .sort(compareLocaleOnKey(this.stationOrder))
+          .sort(compareLocaleOnKey(stationOrder))
           .map(this.stationToSelectOption)
         return [nullOption].concat(stationOptions)
       } else {
@@ -630,12 +637,11 @@ export default {
           const selected = station.identifier === this.selectedStationID
           const coords = this.$L.latLng(station.geometry.coordinates)
           const visible = this.mapBoundingBox.contains(coords)
-
           return selected || visible
         })
 
         const stationOptions = visibleOptions
-          .sort(compareLocaleOnKey(this.stationOrder))
+          .sort(compareLocaleOnKey(stationOrder))
           .map(this.stationToSelectOption)
         return [nullOption].concat(stationOptions)
       }
@@ -669,6 +675,15 @@ export default {
     },
     peerOrNdaccDatasets() {
       return this.ndaccDatasets.concat(this.peerDatasets)
+    },
+    loadingAll() {
+      return (
+        this.loadingStations ||
+        this.loadingCountries ||
+        this.loadingInstruments ||
+        this.loadingMap ||
+        this.loadingDataRecords
+      )
     }
   },
   watch: {
@@ -734,49 +749,20 @@ export default {
       this.loadingInstruments = true
       this.loadingMap = true
 
-      const {
-        countries,
-        stations,
-        instruments
-      } = await this.sendDropdownRequest(dataset.value, null, null)
-
-      const dependencies = [
-        { field: 'selectedCountryID', key: 'country_id', elements: countries },
-        { field: 'selectedStationID', key: 'station_id', elements: stations },
-        {
-          field: 'selectedInstrumentID',
-          key: 'instrument_name',
-          elements: instruments
-        }
-      ]
-
-      const retain = {}
-      for (const { field, key, elements } of dependencies) {
-        if (elements !== undefined) {
-          retain[field] = elements.some((element) => {
-            return element.properties[key] === this[field]
-          })
-        }
-      }
-
-      if (!retain.selectedCountryID) {
-        this.selectedCountry = null
-        this.selectedCountryID = null
-        this.mapFocusCountry = null
-      }
-      if (!retain.selectedStationID) {
-        this.selectedStation = null
-        this.selectedStationID = null
-      }
-      if (!retain.selectedInstrumentID) {
-        this.selectedInstrument = null
-        this.selectedInstrumentID = null
-      }
-
       this.selectedDataset = dataset.text
       this.selectedDatasetID = dataset.value
 
-      this.refreshDropdowns()
+      // reset selections below (country, station and instrument)
+      this.selectedCountry = null
+      this.selectedCountryID = null
+      this.selectedStation = null
+      this.selectedStationID = null
+      this.selectedInstrument = null
+      this.selectedInstrumentID = null
+
+      // update dropdowns below (country, station, instrument)
+      await this.refreshDropdowns()
+
       this.loadingCountries = false
       this.loadingStations = false
       this.loadingInstruments = false
@@ -809,42 +795,21 @@ export default {
         this.enableBboxSearch = false
       }
 
-      const { stations, instruments } = await this.sendDropdownRequest(
+      // reset below selections (station, instrument)
+      this.selectedStation = null
+      this.selectedStationID = null
+      this.selectedInstrument = null
+      this.selectedInstrumentID = null
+
+      // populate dropdowns below (station, instrument)
+      const newDropdowns = await this.sendDropdownRequest(
         this.selectedDatasetID,
-        country.value,
+        this.selectedCountryID,
         null
       )
+      this.instruments = newDropdowns.instruments.map(stripProperties)
+      this.stations = newDropdowns.stations.map(unpackageBareStation)
 
-      const dependencies = [
-        { field: 'selectedStationID', key: 'station_id', elements: stations },
-        {
-          field: 'selectedInstrumentID',
-          key: 'instrument_name',
-          elements: instruments
-        }
-      ]
-
-      // not ndacc or peer records
-      if (!this.peerOrNdaccDatasets.includes(this.selectedDatasetID)) {
-        const retain = {}
-        for (const { field, key, elements } of dependencies) {
-          // console.log('Retaining:', field, key, elements)
-          retain[field] = elements.some((element) => {
-            return element.properties[key] === this[field]
-          })
-        }
-
-        if (!retain.selectedStationID) {
-          this.selectedStation = null
-          this.selectedStationID = null
-        }
-        if (!retain.selectedInstrumentID) {
-          this.selectedInstrument = null
-          this.selectedInstrumentID = null
-        }
-      }
-
-      await this.refreshDropdowns()
       this.loadingStations = false
       this.loadingInstruments = false
       this.loadingMap = false
@@ -853,50 +818,39 @@ export default {
       this.refreshMetrics()
     },
     async changeStation(station) {
+      // station select handling
       if (station === null) {
         this.selectedStation = null
         this.selectedStationID = null
-        this.enableBboxSearch = false
+        this.enableBboxSearch = true
       } else {
         this.selectedStation = station
         this.selectedStationID = station.woudc_id || station.station_id
+        this.enableBboxSearch = false
       }
 
+      // reset below selections (instrument)
+      this.selectedInstrument = null
+      this.selectedInstrumentID = null
+
+      // update dropdowns below (instrument)
       this.loadingInstruments = true
-      await this.refreshDropdowns()
+      const newDropdowns = await this.sendDropdownRequest(
+        this.selectedDatasetID,
+        this.selectedStationID == null ? null : this.selectedCountryID,
+        this.selectedStationID
+      )
+      this.instruments = newDropdowns.instruments.map(stripProperties)
       this.loadingInstruments = false
 
-      const instrumentRetained = this.instruments.some((instrument) => {
-        return instrument.instrument_name === this.selectedInstrumentID
-      })
-      if (!instrumentRetained) {
-        this.selectedInstrument = null
-        this.selectedInstrumentID = null
-      }
+      // country autoselect that matches station
       if (
         station === null ||
         this.peerOrNdaccDatasets.includes(this.selectedDatasetID)
       ) {
         this.refreshMetrics()
       } else {
-        const countryNameProp = `country_name_${this.$i18n.locale}`
-        const stationName =
-          station['name'] === undefined
-            ? station['station_name']
-            : station['name']
-        const countryName = this.stationsWithMetadata[
-          this.stationsWithMetadata.findIndex(
-            (stn) => stn['name'] === stationName
-          )
-        ][countryNameProp]
-        const countryOptionsElems = this.countryOptions.slice(1)
-        const country =
-          countryOptionsElems[
-            countryOptionsElems.findIndex(
-              (c) => c['element'][countryNameProp] === countryName
-            )
-          ]
-        this.changeCountry(country)
+        this.selectCountryFromStation(station)
       }
     },
     changeInstrument(instrument) {
@@ -907,16 +861,12 @@ export default {
     },
     countryText(country) {
       const countryID = country.country_id || country.country_code
-      const countryName = {
-        en: country.country_name_en,
-        fr: country.country_name_fr
-      }
 
       if (this.countryOrder === 'country_id') {
-        return '(' + countryID + ') ' + countryName[this.$i18n.locale]
+        return '(' + countryID + ') ' + country[this.countryNameLocale]
       } else {
         // country name
-        return countryName[this.$i18n.locale] + ' (' + countryID + ')'
+        return country[this.countryNameLocale] + ' (' + countryID + ')'
       }
     },
     countryToSelectOption(country) {
@@ -925,6 +875,26 @@ export default {
         value: country.country_id || country.country_code,
         element: country
       }
+    },
+    selectCountryFromStation(station) {
+      const stationName =
+        station['name'] === undefined
+          ? station['station_name']
+          : station['name']
+      const countryName = this.stationsWithMetadata[
+        this.stationsWithMetadata.findIndex(
+          (stn) => stn['name'] === stationName
+        )
+      ][this.countryNameLocale]
+      const countryOptionsElems = this.countryOptions.slice(1)
+      const country =
+        countryOptionsElems[
+          countryOptionsElems.findIndex(
+            (c) => c['element'][this.countryNameLocale] === countryName
+          )
+        ]
+      this.selectedCountry = country.element
+      this.selectedCountryID = country.value
     },
     instrumentText(instrument) {
       return instrument.name || instrument.instrument_name
@@ -1352,12 +1322,8 @@ export default {
       this.setTable = this.oldSearchParams['dataset']
     },
     async refreshDropdowns() {
-      // retrieve new countries/stations/instruments based on current selection
-      const {
-        newCountries,
-        newStations,
-        newInstruments
-      } = await this.sendDropdownRequest(
+      // retrieve all new countries/stations/instruments based on current selection
+      const newDropdowns = await this.sendDropdownRequest(
         this.selectedDatasetID,
         this.selectedCountryID,
         this.selectedStationID
@@ -1366,25 +1332,14 @@ export default {
       // selected dataset handling
       if (this.peerOrNdaccDatasets.includes(this.selectedDatasetID)) {
         // empty countries/instruments
-        this.countries = []
         this.instruments = []
+        this.countries = []
       } else {
-        this.countries = newCountries.map(stripProperties)
-        this.instruments = newInstruments.map(stripProperties)
+        this.instruments = newDropdowns.instruments.map(stripProperties)
+        this.countries = newDropdowns.countries.map(stripProperties)
       }
 
-      // selected station handling
-      if (this.selectedStationID === null) {
-        this.stations = newStations.map(unpackageBareStation)
-      } else {
-        // TODO: remove this duplicate XHR here
-        const dropdowns = await this.sendDropdownRequest(
-          this.selectedDatasetID,
-          this.selectedCountryID,
-          null
-        )
-        this.stations = dropdowns['stations'].map(unpackageBareStation)
-      }
+      this.stations = newDropdowns.stations.map(unpackageBareStation)
     },
     async refreshMetrics() {
       const inputs = {
