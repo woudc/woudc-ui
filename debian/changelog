@@ -1,3 +1,13 @@
+woudc-ui (2.0.0-beta7) bionic; urgency=medium
+
+  * Fix to data search page to streamline loading dropdown menus
+  * Sorted names in dropdown options to respect accented characters
+  * Fix individual station page not loading metrics
+  * Fix to missing Date From and Date To data property return
+  * Other minor fixes and improvements
+
+ -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Thu, 9 Dec 2021 18:20:00 +0000
+
 woudc-ui (2.0.0-beta6) bionic; urgency=medium
 
   * Update requests to woudc-api for Explore and Metrics
