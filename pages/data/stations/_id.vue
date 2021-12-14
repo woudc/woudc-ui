@@ -205,7 +205,6 @@ export default {
       selectedStation: null,
       station: null,
       metricsByYear: {},
-      filesInRange: 0,
       minSelectableYear: 1924,
       selectedYearRange: [1924, new Date().getFullYear()] // defaults to total span of years in all data sets
     }
@@ -268,6 +267,18 @@ export default {
     },
     maxSelectableYear() {
       return new Date().getFullYear()
+    },
+    filesInRange() {
+      const startYear = this.selectedYearRange[0]
+      const endYear = this.selectedYearRange[1]
+
+      let fileCount = 0
+      for (let year = startYear; year <= endYear; year++) {
+        if (year in this.metricsByYear) {
+          fileCount += this.metricsByYear[year].totalFiles
+        }
+      }
+      return fileCount
     }
   },
   watch: {
@@ -379,17 +390,6 @@ export default {
         }
       })
       this.metricsByYear = newMetrics
-
-      this.filesInRange = 0
-      for (
-        let year = this.selectedYearRange[0];
-        year <= this.selectedYearRange[1];
-        year++
-      ) {
-        if (year in this.metricsByYear) {
-          this.filesInRange += this.metricsByYear[year].totalFiles
-        }
-      }
     },
     async populate() {
       const woudcID = this.$route.params.id
