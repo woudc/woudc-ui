@@ -141,10 +141,10 @@ export default {
     },
     deploymentHeaders() {
       const deploymentKeys = [
-        'woudc_id',
-        'name',
-        'type',
-        'country',
+        'station_id',
+        'station_name',
+        'station_type',
+        `country_name_${this.$i18n.locale}`,
         'start_date',
         'end_date'
       ]
