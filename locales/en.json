@@ -832,12 +832,13 @@
       "contributor-name": "Contributor Name:",
       "country-name": "Country:",
       "deployment-headers": {
-        "country": "Station Country",
+        "country_name_en": "Station Country",
+        "country_name_fr": "Station Country",
         "end_date": "Date To",
-        "name": "Station Name",
+        "station_name": "Station Name",
         "start_date": "Date From",
-        "type": "Station Type",
-        "woudc_id": "WOUDC Station ID"
+        "station_type": "Station Type",
+        "station_id": "WOUDC Station ID"
       },
       "title": "Contributor List"
     },
