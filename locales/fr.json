@@ -1444,6 +1444,7 @@
   },
   "news": {
     "blurb": "Nouvelles pour le Centre de données, mises à jour et des notifications",
+    "reset": "Réinitialiser les filtres",
     "title": "Nouvelles et mises à jour"
   },
   "resources": {
