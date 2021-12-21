@@ -291,11 +291,21 @@ export default {
       queryParams += '&platform_id=' + this.selectedStationID
 
       if (this.selectedInstrument !== null) {
-        const [name, model, serial] = this.selectedInstrument.split('_')
-
-        queryParams += '&instrument_name=' + name
-        queryParams += '&instrument_model=' + model
-        queryParams += '&instrument_number=' + serial
+        if (this.selectedInstrument.includes('Kipp_Zonen') == true) {
+          const instrument_metadata = this.selectedInstrument.split('_')
+          queryParams +=
+            '&instrument_name=' +
+            instrument_metadata[0] +
+            '_' +
+            instrument_metadata[1]
+          queryParams += '&instrument_model=' + instrument_metadata[2]
+          queryParams += '&instrument_number=' + instrument_metadata[3]
+        } else {
+          const [name, model, serial] = this.selectedInstrument.split('_')
+          queryParams += '&instrument_name=' + name
+          queryParams += '&instrument_model=' + model
+          queryParams += '&instrument_number=' + serial
+        }
       }
 
       const broadbandParams =
