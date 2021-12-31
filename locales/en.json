@@ -1444,6 +1444,7 @@
   },
   "news": {
     "blurb": "Data centre news, updates and notifications",
+    "reset": "Reset filters",
     "title": "News and Updates"
   },
   "resources": {

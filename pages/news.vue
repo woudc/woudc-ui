@@ -29,7 +29,7 @@
     <v-row>
       <v-col v-if="loaded">
         <v-btn class="ma-2" medium rounded @click="tagSelection('reset')">
-          Reset filters
+          {{ $t('news.reset') }}
         </v-btn>
         <v-card
           v-for="(newsItem, i) in sortedItems"
