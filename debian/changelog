@@ -1,3 +1,14 @@
+woudc-ui (2.0.0-beta8) bionic; urgency=medium
+
+  * Fix to metrics year range in station ID page
+  * Fix header column names in contributor list
+  * Fix to UV index products querying
+  * Add OSM map attribution
+  * Add field for locales in News page
+  * Updated package.json to remove dependabot alerts
+
+ -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Tue, 4 Jan 2022 16:04:00 +0000
+
 woudc-ui (2.0.0-beta7) bionic; urgency=medium
 
   * Fix to data search page to streamline loading dropdown menus
