@@ -185,7 +185,7 @@ const actions = {
     const queryParams = { inputs: stationInputs }
 
     const stationsResponse = await getDistinct(
-      this.$config.WOUDC_UI_API,
+      this.$config.WOUDC_UI_API_URL,
       queryParams
     )
     const stationsList = stationsResponse.data.orderByID
@@ -218,7 +218,7 @@ const actions = {
     const queryParams = { inputs: contributionInputs }
 
     const contributionsResponse = await getDistinct(
-      this.$config.WOUDC_UI_API,
+      this.$config.WOUDC_UI_API_URL,
       queryParams
     )
     const stnDataPairs = contributionsResponse.data.orderByID

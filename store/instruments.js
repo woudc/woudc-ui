@@ -53,7 +53,7 @@ const actions = {
     }
 
     const queryURL =
-      this.$config.WOUDC_UI_API +
+      this.$config.WOUDC_UI_API_URL +
       '/processes/woudc-data-registry-select-distinct/execution'
     const inputs = {
       index: 'instrument',
@@ -91,7 +91,7 @@ const actions = {
     }
 
     const queryURL =
-      this.$config.WOUDC_UI_API +
+      this.$config.WOUDC_UI_API_URL +
       '/processes/woudc-data-registry-select-distinct/execution'
     const inputs = {
       index: 'instrument',
