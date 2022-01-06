@@ -76,7 +76,7 @@ const actions = {
 
     const queryParams = { inputs }
     const countriesResponse = await getDistinct(
-      this.$config.WOUDC_UI_API,
+      this.$config.WOUDC_UI_API_URL,
       queryParams
     )
     const countries = countriesResponse.data.orderByCode

@@ -971,15 +971,15 @@ export default {
       this.dataRecordHeaders = this.newDataRecordHeaders
 
       const dataRecordsURL =
-        this.$config.WOUDC_UI_API + '/collections/data_records/items'
+        this.$config.WOUDC_UI_API_URL + '/collections/data_records/items'
       const ozoneSondeURL =
-        this.$config.WOUDC_UI_API + '/collections/ozonesonde/items'
+        this.$config.WOUDC_UI_API_URL + '/collections/ozonesonde/items'
       const peerDataRecordsURL =
-        this.$config.WOUDC_UI_API + '/collections/peer_data_records/items'
+        this.$config.WOUDC_UI_API_URL + '/collections/peer_data_records/items'
       const totalOzoneURL =
-        this.$config.WOUDC_UI_API + '/collections/totalozone/items'
+        this.$config.WOUDC_UI_API_URL + '/collections/totalozone/items'
       const UVIndexURL =
-        this.$config.WOUDC_UI_API + '/collections/uv_index_hourly/items'
+        this.$config.WOUDC_UI_API_URL + '/collections/uv_index_hourly/items'
       const ndacc_datasets = {
         ndacc_total: 'TOTALCOL',
         ndacc_uv: 'UV',
@@ -1129,15 +1129,15 @@ export default {
         ndacc_vertical: 'OZONE'
       }
       const dataRecordsURL =
-        this.$config.WOUDC_UI_API + '/collections/data_records/items'
+        this.$config.WOUDC_UI_API_URL + '/collections/data_records/items'
       const ozoneSondeURL =
-        this.$config.WOUDC_UI_API + '/collections/ozonesonde/items'
+        this.$config.WOUDC_UI_API_URL + '/collections/ozonesonde/items'
       const UVIndexURL =
-        this.$config.WOUDC_UI_API + '/collections/uv_index_hourly/items'
+        this.$config.WOUDC_UI_API_URL + '/collections/uv_index_hourly/items'
       const totalOzoneURL =
-        this.$config.WOUDC_UI_API + '/collections/totalozone/items'
+        this.$config.WOUDC_UI_API_URL + '/collections/totalozone/items'
       const peerDataRecordsURL =
-        this.$config.WOUDC_UI_API + '/collections/peer_data_records/items'
+        this.$config.WOUDC_UI_API_URL + '/collections/peer_data_records/items'
 
       let queryParams = ''
       if (this.options['sortBy'].length === 0) {
@@ -1374,7 +1374,7 @@ export default {
       }
 
       const queryParams = { inputs }
-      const response = await getMetrics(this.$config.WOUDC_UI_API, queryParams)
+      const response = await getMetrics(this.$config.WOUDC_UI_API_URL, queryParams)
 
       const newMetrics = {}
       response.data.metrics.forEach((metric) => {
@@ -1406,7 +1406,7 @@ export default {
       }
 
       const queryParams = { inputs }
-      const response = await getExplore(this.$config.WOUDC_UI_API, queryParams)
+      const response = await getExplore(this.$config.WOUDC_UI_API_URL, queryParams)
 
       const countries = response.data.countries.sortby_country_id
       const stations = response.data.stations.sortby_station_id

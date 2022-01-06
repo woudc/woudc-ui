@@ -303,7 +303,7 @@ export default {
     },
     async getObservationTools() {
       const dataRecordsURL =
-        this.$config.WOUDC_UI_API + '/collections/data_records/items'
+        this.$config.WOUDC_UI_API_URL + '/collections/data_records/items'
       let queryParams = 'sortby=timestamp_date&content_category=TotalOzone'
       queryParams += '&platform_id=' + this.selectedStationID
 
@@ -360,7 +360,7 @@ export default {
     },
     async refreshInstruments() {
       const instrumentsURL =
-        this.$config.WOUDC_UI_API + '/collections/instruments/items'
+        this.$config.WOUDC_UI_API_URL + '/collections/instruments/items'
       let queryParams = 'sortby=name,serial&dataset=TotalOzone'
       queryParams += '&station_id=' + this.selectedStationID
 

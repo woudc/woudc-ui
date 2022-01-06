@@ -51,7 +51,7 @@ const actions = {
     const contributorsURL = '/collections/contributors/items'
     const queryParams = 'sortby=acronym&limit=1000'
     const response = await woudcClient.get(
-      this.$config.WOUDC_UI_API + contributorsURL + '?' + queryParams
+      this.$config.WOUDC_UI_API_URL + contributorsURL + '?' + queryParams
     )
 
     commit('setContributors', response.data.features)
