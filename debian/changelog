@@ -1,8 +1,9 @@
 woudc-ui (2.0.0-beta9) bionic; urgency=medium
 
   * Update var names in .env for consistency
+  * Fix dependabot vulnerability
 
- -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Fri, 7 Jan 2022 16:37:00 +0000
+ -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Fri, 7 Jan 2022 16:46:00 +0000
 
 woudc-ui (2.0.0-beta8) bionic; urgency=medium
 
