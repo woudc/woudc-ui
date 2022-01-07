@@ -1,3 +1,9 @@
+woudc-ui (2.0.0-beta10) bionic; urgency=medium
+
+  * Move debian/postinst to deployment
+
+ -- Tom Kralidis <tom.kralidis@ec.gc.ca>  Fri, 7 Jan 2022 21:46:14 +0000
+
 woudc-ui (2.0.0-beta9) bionic; urgency=medium
 
   * Update var names in .env for consistency
