@@ -19,4 +19,3 @@ do
     sed -i "s#https://geobeta-woudc-dev.cmc.ec.gc.ca/oapi#$WOUDC_UI_API_URL#g" $ui_file
     sed -i "s#https://beta-woudc-dev.cmc.ec.gc.ca/archive#$WOUDC_UI_WAF_URL#g" $ui_file
 done
-
