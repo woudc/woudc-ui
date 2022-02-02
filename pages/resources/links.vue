@@ -44,7 +44,8 @@ export default {
         esrl: 'https://www.esrl.noaa.gov/gmd/dv/data/',
         eubrewnet: 'http://www.eubrewnet.org/cost1207/',
         euvdb: 'https://www1.muk.uni-hannover.de/~seckmeyer/EDUCE/',
-        gozcards: 'https://gozcards.jpl.nasa.gov/',
+        gozcards:
+          'https://mls.jpl.nasa.gov/eos-aura-mls/data-products/gozcards',
         mozaic: 'http://www.iagos-data.fr/',
         ndacc: 'http://www.ndacc.org/',
         polar: 'http://uv.biospherical.com/',
