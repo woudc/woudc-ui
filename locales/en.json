@@ -721,6 +721,10 @@
     "access": "data access",
     "accessibility": "accessibility",
     "all": "All",
+    "bbox": {
+      "switch": "Filter by map view",
+      "title": "Map bounds"
+    },
     "colon-style": ":",
     "contact-us": "contact us",
     "contacting": "contacting WOUDC",
@@ -728,6 +732,10 @@
     "contributors-page": "contributor list",
     "extended": "extended",
     "faq": "Frequently Asked Questions",
+    "filtering": {
+      "title": "Filters",
+      "apply": "Apply" 
+    },
     "formats": "File Formats",
     "ftp": "WOUDC FTP server",
     "gaw": "GAW",
@@ -748,6 +756,10 @@
     "note": "Note",
     "ogc": "Open Geospatial Consortium",
     "ogc-cs": "OGC Catalogue Service",
+    "old-search": {
+      "body": "You have made changes in the search form that do not match with the current search results displayed. Please press the {search} button to update the search results.",
+      "title": "Outdated Search Results"
+    },
     "policy": "data policy",
     "privacy-act": "Privacy Act",
     "products": "data products",

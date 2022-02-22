@@ -14,12 +14,17 @@ function instrumentModelID(instrumentModelObj) {
 const state = () => ({
   loadedInstrumentModels: false,
   loadedInstrumentNames: false,
+  loadedInstrumentFields: false,
+  instrumentDistinctFields: {}, // Object of list of unique values for instrument fields.
   instrumentModels: [], // List of unique instrument name/model combinations.
   instrumentNames: [] // List of unique instrument names.
 })
 
 const getters = {
   // Returns a list of unique instrument name/model combinations.
+  distinctFieldResolution(state) {
+    return state.instrumentDistinctFields
+  },
   modelResolution(state) {
     return state.instrumentModels
   },
@@ -29,6 +34,9 @@ const getters = {
 }
 
 const mutations = {
+  setInstrumentsDistinctFieldResolution(state, instruments) {
+    state.instrumentDistinctFields = instruments
+  },
   setInstrumentsNameResolution(state, instruments) {
     state.instrumentNames = instruments
   },
@@ -37,6 +45,9 @@ const mutations = {
   },
   setLoaded(state) {
     state.loaded = true
+  },
+  setLoadedFields(state) {
+    state.loadedInstrumentFields = true
   },
   setLoadedModels(state) {
     state.loadedInstrumentModels = true
@@ -121,6 +132,45 @@ const actions = {
 
     commit('setInstrumentsNameResolution', instrumentNames)
     commit('setLoadedNames', true)
+  },
+  async downloadDistinctFields({ commit, state }) {
+    if (state.loaded) {
+      return false
+    }
+
+    let distinctFields = {}
+    const instrumentFields = [
+      'name',
+      'model',
+      'dataset',
+      'data_class',
+      'station_name'
+    ]
+    for (const field of instrumentFields) {
+      const queryURL =
+        this.$config.WOUDC_UI_API_URL +
+        '/processes/woudc-data-registry-select-distinct/execution'
+      const inputs = {
+        index: 'instrument',
+        distinct: {
+          modelResolution: [field]
+        },
+        source: [field]
+      }
+      const queryParams = { inputs }
+      const response = await woudcClient.post(queryURL, queryParams)
+      const responseArray = response.data.modelResolution
+
+      distinctFields[`${field}`] = {
+        value: field,
+        array: []
+      }
+      for (const item of responseArray) {
+        distinctFields[`${field}`]['array'].push(item.properties[`${field}`])
+      }
+    }
+    commit('setInstrumentsDistinctFieldResolution', distinctFields)
+    commit('setLoadedFields', true)
   }
 }
 
