@@ -49,7 +49,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/axios', '@nuxtjs/pwa', 'nuxt-i18n', 'nuxt-leaflet'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/pwa', '@nuxtjs/i18n', 'nuxt-leaflet'],
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
@@ -129,23 +129,16 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {
-      // vue-i18n-loader for <i18n> blocks
-      config.module.rules.push({
-        resourceQuery: /blockType=i18n/,
-        type: 'javascript/auto',
-        loader: ['@intlify/vue-i18n-loader']
-      })
-
+    extend (config, ctx) {
       // Run ESLint on save
-      if (ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
-      }
+      // if (ctx.isDev && ctx.isClient) {
+      //   config.module.rules.push({
+      //     enforce: 'pre',
+      //     test: /\.(js|vue)$/,
+      //     loader: 'eslint-loader',
+      //     exclude: /(node_modules)/
+      //   })
+      // }
     },
     filenames: {
       // app: '[name].js'
