@@ -380,7 +380,10 @@ export default {
         }
       }
       const queryParams = { inputs }
-      const response = await getMetrics(this.$config.WOUDC_UI_API_URL, queryParams)
+      const response = await getMetrics(
+        this.$config.WOUDC_UI_API_URL,
+        queryParams
+      )
 
       const newMetrics = {}
       response.data.metrics.forEach((metric) => {

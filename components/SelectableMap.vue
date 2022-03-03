@@ -8,7 +8,7 @@
       @click="emitSelection(null)"
       @moveend="emitBoundaryChange"
     >
-      <l-tile-layer :url="tileURLTemplate" :attribution="attribution"/>
+      <l-tile-layer :url="tileURLTemplate" :attribution="attribution" />
       <l-control class="leaflet-bar" position="topleft">
         <a class="leaflet-touch" role="button" @click="zoomToGlobe">
           <v-icon>mdi-earth</v-icon>
@@ -54,7 +54,8 @@ export default {
   },
   data() {
     return {
-      attribution: '&copy; <a target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      attribution:
+        '&copy; <a target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       borderStyle: {
         color: 'darkblue',
         fillOpacity: 0,
@@ -80,8 +81,10 @@ export default {
         this.zoomToGlobe()
       }
     },
-    reset() {
-      this.zoomToGlobe()
+    reset(resettingMap) {
+      if (resettingMap == true) {
+        this.zoomToGlobe
+      }
     },
     selected(newSelection, oldSelection) {
       if (newSelection === null) {

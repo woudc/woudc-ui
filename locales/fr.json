@@ -721,6 +721,10 @@
     "access": "accès aux données",
     "accessibility": "l’accessibilité",
     "all": "Tous",
+    "bbox": {
+      "switch": "Filtrer par vue de carte",
+      "title": "Limites de la carte"
+    },
     "colon-style": " :",
     "contact-us": "communiquer avec nous",
     "contacting": "contactant WOUDC",
@@ -728,6 +732,10 @@
     "contributors-page": "liste des contributeurs",
     "extended": "étendu",
     "faq": "Foire aux questions",
+    "filtering": {
+      "title": "Filtres",
+      "apply": "Appliquer" 
+    },
     "formats": "Formats de fichiers",
     "ftp": "en utilisant un client FTP",
     "gaw": "VAG",
@@ -748,6 +756,10 @@
     "note": "Remarque",
     "ogc": "Open Geospatial Consortium",
     "ogc-cs": "service de catalogue de l’OGC",
+    "old-search": {
+      "body": "Vous avez apporté des modifications dans le formulaire de recherche qui ne correspondent pas avec les résultats de la recherche affichés actuellement. S'il vous plaît appuyez sur la {search} pour mettre à jour les résultats de la recherche.",
+      "title": "Anciens résultats"
+    },
     "policy": "politique en matière de données",
     "privacy-act": "Loi sur la protection des renseignements personnels",
     "products": "produits de données",

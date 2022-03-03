@@ -8,6 +8,7 @@
           :elements="contributors"
           :selected="selectedContributor"
           :loading="loadingMap"
+          :reset="resettingMap"
           @select="selectedContributor = $event"
           @move="boundingBox = $event"
         >
@@ -23,6 +24,15 @@
             <span> {{ element.item.country_name[$i18n.locale] }}</span>
           </template>
         </selectable-map>
+        <v-switch
+          v-model="enableBboxSearch"
+          class="mr-4 float-left"
+          :label="$t('common.bbox.switch')"
+        ></v-switch>
+        <v-chip v-if="boundingBoxArray !== null" label small class="my-5">
+          {{ $t('common.bbox.title') }}{{ $t('common.colon-style') }}
+          {{ boundingBoxArrayText(boundingBoxArray) }}
+        </v-chip>
       </v-col>
       <v-col>
         <map-instructions id="map-instructions" />
@@ -31,8 +41,84 @@
     </v-row>
     <v-row>
       <v-col>
+        <v-card class="mb-5">
+          <v-card-title class="mx-2 pb-0">
+            {{ $t('common.filtering.title') }}
+          </v-card-title>
+          <v-col class="mr-2 pt-0 d-flex align-content-start flex-wrap">
+            <v-col
+              v-for="field in distinctContributorFields"
+              :key="field"
+              cols="6"
+            >
+              <v-autocomplete
+                v-model="selectedFilters[field.value]"
+                :loading="loadingContributorFields"
+                :items="field.array"
+                :label="field.text"
+                auto-select-first
+                eager
+                chips
+                deletable-chips
+                multiple
+                small-chips
+                @change="changeFilters($event, field.value)"
+              >
+              </v-autocomplete>
+            </v-col>
+          </v-col>
+          <div class="pb-5 px-3">
+            <v-tooltip
+              v-model="toolTipOn"
+              class="mt-1 mb-4 align-content-start"
+              bottom
+            >
+              <template v-slot:activator="{ onBadge }">
+                <v-badge
+                  :value="searchOutOfDate"
+                  class="mx-2"
+                  icon="mdi-refresh"
+                  color="green"
+                  bordered
+                  overlap
+                  v-on="onBadge"
+                >
+                  <v-btn
+                    class="btn-left"
+                    color="primary"
+                    :disabled="loadingContributorFields"
+                    :loading="loadingContributors"
+                    @mouseover="onButton = true"
+                    @mouseleave="onButton = false"
+                    @click="refreshContributors()"
+                  >
+                    {{ $t('common.filtering.apply') }}
+                  </v-btn>
+                </v-badge>
+              </template>
+              <v-card-title class="py-3">
+                <v-icon class="mr-1">
+                  mdi-alert
+                </v-icon>
+                {{ $t('common.old-search.title') }}
+              </v-card-title>
+              <i18n path="common.old-search.body" tag="v-card-text">
+                <template v-slot:search>
+                  <strong>{{ $t('common.filtering.apply') }}</strong>
+                </template>
+              </i18n>
+            </v-tooltip>
+            <v-btn
+              class="btn-right"
+              :disabled="loadingContributors"
+              @click="reset()"
+            >
+              {{ $t('common.reset') }}
+            </v-btn>
+          </div>
+        </v-card>
         <selectable-table
-          :elements="visibleContributors"
+          :elements="displayedContributors"
           :headers="headers"
           :selected="selectedContributor"
           :loading="loadingTable"
@@ -83,12 +169,48 @@ export default {
       boundingBox: null,
       contributors: [],
       contributorsTable: [],
+      displayedContributors: [],
+      distinctContributorFields: {},
+      enableBboxSearch: true,
+      loadingContributors: true,
+      loadingContributorFields: true,
       loadingMap: true,
       loadingTable: true,
+      oldSearchExists: false,
+      oldSearchParams: {
+        bbox: [-180, -90, 180, 90],
+        enableBboxSearch: true,
+        acronym: [],
+        project: [],
+        name: [],
+        country_name: [],
+        wmo_region_id: []
+      },
+      onButton: false,
+      resettingMap: false,
+      selectedFilters: {
+        acronym: [],
+        project: [],
+        name: [],
+        country_name: [],
+        wmo_region_id: []
+      },
       selectedContributor: null
     }
   },
   computed: {
+    boundingBoxArray() {
+      if (this.boundingBox !== null) {
+        return [
+          Math.max(-180, this.boundingBox.getWest()),
+          Math.max(-90, this.boundingBox.getSouth()),
+          Math.min(180, this.boundingBox.getEast()),
+          Math.min(90, this.boundingBox.getNorth())
+        ]
+      } else {
+        return [-180, -90, 180, 90]
+      }
+    },
     headers() {
       const contributorKeys = [
         'acronym',
@@ -107,6 +229,41 @@ export default {
         }
       })
     },
+    searchOutOfDate() {
+      if (this.oldSearchExists === false) {
+        return false
+      } else {
+        const woudcIDOk =
+          this.oldSearchParams['acronym'] == this.selectedFilters['acronym']
+        const gawIDOk =
+          this.oldSearchParams['project'] == this.selectedFilters['project']
+        const nameOk =
+          this.oldSearchParams['name'] == this.selectedFilters['name']
+        const countryNameOk =
+          this.oldSearchParams['country_name'] ==
+          this.selectedFilters['country_name']
+        const wmoRegionIDOk =
+          this.oldSearchParams['wmo_region_id'] ==
+          this.selectedFilters['wmo_region_id']
+        const bboxOk =
+          (this.oldSearchParams['bbox'] === this.boundingBoxArray &&
+            this.oldSearchParams['enableBboxSearch'] == true &&
+            this.enableBboxSearch === true) ||
+          (this.enableBboxSearch === false &&
+            this.oldSearchParams['enableBboxSearch'] == false)
+        return !(
+          bboxOk &&
+          woudcIDOk &&
+          gawIDOk &&
+          nameOk &&
+          countryNameOk &&
+          wmoRegionIDOk
+        )
+      }
+    },
+    toolTipOn() {
+      return this.searchOutOfDate && this.onButton
+    },
     visibleContributors() {
       if (this.boundingBox === null) {
         return this.contributorsTable
@@ -118,28 +275,140 @@ export default {
       }
     }
   },
-  async mounted() {
-    await this.$store.dispatch('contributors/download')
-
-    const contributors = this.$store.getters['contributors/all']
-    this.contributors = contributors.map(unpackageContributor)
-    this.contributorsTable = contributors.map(unpackageContributor)
-    for (const index in this.contributorsTable) {
-      for (const key in this.contributorsTable[index]) {
-        let lower = ''
-        let stringKey = ''
-        if (this.contributorsTable[index][key]) {
-          stringKey = this.contributorsTable[index][key].toString()
-          lower = stringKey.toLowerCase()
-        }
-        if (lower === 'unknown') {
-          delete this.contributorsTable[index]
-          break
+  watch: {
+    boundingBoxArray: {
+      async handler() {
+        if (this.enableBboxSearch == true) {
+          this.oldSearchExists = true
         }
       }
     }
-    this.loadingMap = false
-    this.loadingTable = false
+  },
+  async mounted() {
+    Promise.all([
+      this.$store.dispatch('contributors/download'),
+      this.$store.dispatch('contributors/downloadDistinctFields')
+    ]).then(() => {
+      const contributors = this.$store.getters['contributors/all']
+      this.contributors = contributors.map(unpackageContributor)
+      this.contributorsTable = contributors.map(unpackageContributor)
+      for (const index in this.contributorsTable) {
+        for (const key in this.contributorsTable[index]) {
+          let lower = ''
+          let stringKey = ''
+          if (this.contributorsTable[index][key]) {
+            stringKey = this.contributorsTable[index][key].toString()
+            lower = stringKey.toLowerCase()
+          }
+          if (lower === 'unknown') {
+            delete this.contributorsTable[index]
+            break
+          }
+        }
+      }
+
+      this.distinctContributorFields = this.$store.getters[
+        'contributors/distinctFieldResolution'
+      ]
+      for (const field in this.distinctContributorFields) {
+        for (const header of this.headers) {
+          if (field == header['value']) {
+            this.selectedFilters[field] = []
+            this.distinctContributorFields[field]['text'] = header['text']
+          }
+        }
+      }
+      this.displayedContributors = this.visibleContributors
+      this.loadingContributors = false
+      this.loadingContributorFields = false
+      this.loadingMap = false
+      this.loadingTable = false
+    })
+  },
+  methods: {
+    boundingBoxArrayText(boundingBoxArray) {
+      return (
+        '[ ' +
+        parseFloat(boundingBoxArray[0]).toFixed(2) +
+        ', ' +
+        parseFloat(boundingBoxArray[1]).toFixed(2) +
+        ', ' +
+        parseFloat(boundingBoxArray[2]).toFixed(2) +
+        ', ' +
+        parseFloat(boundingBoxArray[3]).toFixed(2) +
+        ' ]'
+      )
+    },
+    async changeFilters(filters, field) {
+      this.selectedFilters[field] = filters
+      if (field === `country_name_${this.$i18n.locale}`) {
+        this.selectedFilters['country_name'] = filters
+      }
+      this.oldSearchExists = true
+    },
+    async refreshContributors() {
+      this.loadingTable = true
+      if (
+        this.selectedFilters['acronym'].length === 0 &&
+        this.selectedFilters['project'].length === 0 &&
+        this.selectedFilters['name'].length === 0 &&
+        this.selectedFilters['country_name'].length === 0 &&
+        this.selectedFilters['wmo_region_id'].length === 0
+      ) {
+        this.displayedContributors = this.enableBboxSearch
+          ? this.visibleContributors
+          : this.contributorsTable
+      } else {
+        this.displayedContributors = this.visibleContributors
+        const filterContributors = (contributors, filters) => {
+          return contributors.filter(
+            (ctb) =>
+              (filters['acronym'].includes(ctb['acronym']) === true ||
+                filters['acronym'].length === 0) &&
+              (filters['project'].includes(ctb['project']) === true ||
+                filters['project'].length === 0) &&
+              (filters['name'].includes(ctb['name']) === true ||
+                filters['name'].length === 0) &&
+              (filters['country_name'].includes(
+                ctb[`country_name_${this.$i18n.locale}`]
+              ) === true ||
+                filters['country_name'].length === 0) &&
+              (filters['wmo_region_id'].includes(ctb['wmo_region_id']) ===
+                true ||
+                filters['wmo_region_id'].length === 0)
+          )
+        }
+        this.displayedContributors = this.enableBboxSearch
+          ? filterContributors(this.visibleContributors, this.selectedFilters)
+          : filterContributors(this.conributorsTable, this.selectedFilters)
+      }
+      for (const field in this.selectedFilters) {
+        this.oldSearchParams[field] = this.selectedFilters[field]
+      }
+      this.oldSearchParams['bbox'] = this.boundingBoxArray
+      this.oldSearchParams['enableBboxSearch'] = this.enableBboxSearch
+      this.oldSearchExists = true
+      this.loadingTable = false
+    },
+    async reset() {
+      this.loadingTable = true
+      this.loadingMap = true
+      this.resettingMap = true
+
+      this.boundingBox = null
+      this.enableBboxSearch = true
+      this.onButton = false
+      for (const field in this.selectedFilters) {
+        this.selectedFilters[field] = []
+        this.oldSearchParams[field] = []
+      }
+      await this.refreshContributors()
+      this.oldSearchExists = false
+
+      this.resettingMap = false
+      this.loadingMap = false
+      this.loadingTable = false
+    }
   },
   head() {
     return {

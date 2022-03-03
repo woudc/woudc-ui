@@ -1,3 +1,4 @@
+import woudcClient from '~/plugins/woudcClient'
 import { getDistinct } from '~/plugins/api/wdr.api.processes'
 
 const groupStationsByDataset = (stnDataPairs, stationsByID) => {
@@ -51,7 +52,9 @@ const groupStationsByDataset = (stnDataPairs, stationsByID) => {
 
 const state = () => ({
   loadedStations: false,
+  loadedStationFields: false,
   loadedStnDataPairs: false,
+  stationDistinctFields: {},
   stationsList: [],
   stationsByID: {},
   stnDataPairs: [],
@@ -71,6 +74,9 @@ const state = () => ({
 const getters = {
   all(state) {
     return state.stationsList
+  },
+  distinctFieldResolution(state) {
+    return state.stationDistinctFields
   },
   getWithID(state) {
     return (stationID) => {
@@ -160,6 +166,9 @@ const mutations = {
   setStationsUVIndex(state, stations) {
     state.uvindex = stations
   },
+  setStationsDistinctFields(state, stations) {
+    state.stationDistinctFields = stations
+  },
   setLoadedStationsById(state, loaded) {
     state.loadedStationsById = loaded
   },
@@ -169,6 +178,45 @@ const mutations = {
 }
 
 const actions = {
+  async downloadDistinctFields({ commit, state }) {
+    if (state.loaded) {
+      return false
+    }
+
+    let distinctFields = {}
+    const stationFields = [
+      'woudc_id',
+      'gaw_id',
+      'name',
+      `country_name_${this.$i18n.locale}`,
+      'type',
+      'wmo_region_id'
+    ]
+    for (const field of stationFields) {
+      const queryURL =
+        this.$config.WOUDC_UI_API_URL +
+        '/processes/woudc-data-registry-select-distinct/execution'
+      const inputs = {
+        index: 'station',
+        distinct: {
+          modelResolution: [field]
+        },
+        source: [field]
+      }
+      const queryParams = { inputs }
+      const response = await woudcClient.post(queryURL, queryParams)
+      const responseArray = response.data.modelResolution
+
+      distinctFields[`${field}`] = {
+        value: field,
+        array: []
+      }
+      for (const item of responseArray) {
+        distinctFields[`${field}`]['array'].push(item.properties[`${field}`])
+      }
+    }
+    commit('setStationsDistinctFields', distinctFields)
+  },
   async downloadStations({ commit, state }) {
     if (state.loadedStations) {
       // prevent duplicate XHR
