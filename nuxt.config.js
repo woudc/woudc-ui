@@ -3,7 +3,7 @@ import pkg from './package.json'
 
 export default {
   router: {
-    base: process.env.WOUDC_UI_ROUTER_BASE || '/'
+    base: process.env.WOUDC_UI_ROUTER_BASE || '/',
   },
   /*
    ** Global headers of the page
@@ -19,10 +19,10 @@ export default {
         name: 'description',
         content:
           pkg.description ||
-          'A World Meteorological Organization (WMO) data centre supporting the Global Atmosphere Watch (GAW) program operated by Environment and Climate Change Canada.'
-      }
+          'A World Meteorological Organization (WMO) data centre supporting the Global Atmosphere Watch (GAW) program operated by Environment and Climate Change Canada.',
+      },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
   /*
    ** Customize the progress-bar color
@@ -44,7 +44,7 @@ export default {
     '@nuxtjs/eslint-module',
     '@nuxtjs/vuetify',
     '@nuxtjs/google-fonts',
-    ['@nuxtjs/dotenv', { filename: '.env' }]
+    ['@nuxtjs/dotenv', { filename: '.env' }],
   ],
   /*
    ** Nuxt.js modules
@@ -65,7 +65,7 @@ export default {
           info: '#B3E5FC',
           warning: '#FFF59D',
           error: '#EF9A9A',
-          accent: '#faa52e'
+          accent: '#faa52e',
         },
         dark: {
           primary: colors.blue.darken2,
@@ -74,10 +74,10 @@ export default {
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
-          success: colors.green.accent3
-        }
-      }
-    }
+          success: colors.green.accent3,
+        },
+      },
+    },
   },
   /*
    ** nuxt-i18n module global options
@@ -87,13 +87,13 @@ export default {
       {
         code: 'fr',
         iso: 'fr-CA',
-        name: 'Français'
+        name: 'Français',
       },
       {
         code: 'en',
         iso: 'en-CA',
-        name: 'English'
-      }
+        name: 'English',
+      },
     ],
     strategy: 'prefix',
     defaultLocale: 'en',
@@ -101,14 +101,14 @@ export default {
       fallbackLocale: ['en', 'fr'],
       messages: {
         en: require('./locales/en.json'),
-        fr: require('./locales/fr.json')
-      }
+        fr: require('./locales/fr.json'),
+      },
     },
     detectBrowserLanguage: {
       useCookie: true,
-      cookieKey: 'woudc_default_language'
+      cookieKey: 'woudc_default_language',
     },
-    baseUrl: process.env.WOUDC_UI_BASE_URL || 'https://woudc.org'
+    baseUrl: process.env.WOUDC_UI_BASE_URL + process.env.WOUDC_UI_ROUTER_BASE,
   },
   /*
    ** Build configuration
@@ -119,30 +119,16 @@ export default {
     // Vuetify default font:
     // https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap
     families: {
-      Roboto: [100, 300, 400, 500, 700, 900]
+      Roboto: [100, 300, 400, 500, 700, 900],
     },
     display: 'swap',
     download: true,
-    overwriting: true
+    overwriting: true,
   },
   build: {
-    /*
-     ** You can extend webpack config here
-     */
-    extend (config, ctx) {
-      // Run ESLint on save
-      // if (ctx.isDev && ctx.isClient) {
-      //   config.module.rules.push({
-      //     enforce: 'pre',
-      //     test: /\.(js|vue)$/,
-      //     loader: 'eslint-loader',
-      //     exclude: /(node_modules)/
-      //   })
-      // }
-    },
     filenames: {
       // app: '[name].js'
-    }
+    },
   },
   generate: {
     fallback: '200.html',
@@ -153,8 +139,8 @@ export default {
       /\/contributors\/[\d\w-_]{1,8}$/,
       /\/contributeurs\/[\d\w-_]{1,8}$/,
       /\/data\/dataset-information/,
-      /\/donnees\/information-sur-les-jeux-de-donnees/
-    ]
+      /\/donnees\/information-sur-les-jeux-de-donnees/,
+    ],
   },
   publicRuntimeConfig: {
     WOUDC_UI_BASE_URL: process.env.WOUDC_UI_BASE_URL,
@@ -166,6 +152,6 @@ export default {
     appBuildYYYY: new Date().getFullYear(),
     appVersion: pkg.version,
     appName: pkg.name,
-    appHomepage: pkg.homepage
-  }
+    appHomepage: pkg.homepage,
+  },
 }
