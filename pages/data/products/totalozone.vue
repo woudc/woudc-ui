@@ -14,13 +14,13 @@
                 path="data.products.totalozone.instructions.body-selections"
                 tag="p"
               >
-                <template v-slot:station>
+                <template #station>
                   <strong>{{ $t('data.products.common.station') }}</strong>
                 </template>
-                <template v-slot:instruments>
+                <template #instruments>
                   <strong>{{ $t('data.products.common.instruments') }}</strong>
                 </template>
-                <template v-slot:years>
+                <template #years>
                   <strong>{{ $t('data.products.common.years') }}</strong>
                 </template>
               </i18n>
@@ -93,7 +93,7 @@
           @select="changeStation"
           @move="boundingBox = $event"
         >
-          <template v-slot:popup="station">
+          <template #popup="station">
             {{ station.item.name }} ({{ station.item.woudc_id }})
           </template>
         </selectable-map>
@@ -126,7 +126,7 @@
         <div v-for="(graphs, year) in graphURLs" :key="year">
           <h3>{{ $t('data.products.common.year') }}: {{ year }}</h3>
           <graph-carousel :graphs="graphs">
-            <template v-slot:preview-caption="graph">
+            <template #preview-caption="graph">
               {{ imagePreviewCaption(graph.item, year) }}
             </template>
           </graph-carousel>
@@ -140,7 +140,7 @@
 import woudcClient from '~/plugins/woudcClient'
 import {
   unpackageStation,
-  compareLocaleOnKey
+  compareLocaleOnKey,
 } from '~/plugins/woudcJsonUtil.js'
 
 import GraphCarousel from '~/components/GraphCarousel'
@@ -149,7 +149,7 @@ import SelectableMap from '~/components/SelectableMap'
 export default {
   components: {
     'graph-carousel': GraphCarousel,
-    'selectable-map': SelectableMap
+    'selectable-map': SelectableMap,
   },
   data() {
     return {
@@ -168,14 +168,26 @@ export default {
       selectedYear: null,
       stations: [],
       stationOrder: 'name',
-      years: []
+      years: [],
+    }
+  },
+  head() {
+    return {
+      title: this.$t('data.products.totalozone.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('data.products.totalozone.title'),
+        },
+      ],
     }
   },
   computed: {
     instrumentOptions() {
       const nullOption = {
         text: this.$t('common.all'),
-        value: null
+        value: null,
       }
 
       const instrumentOptions = this.instruments.map(
@@ -207,12 +219,12 @@ export default {
     yearOptions() {
       const nullOption = {
         text: this.$t('common.all'),
-        value: null
+        value: null,
       }
 
       const yearOptions = this.years.map(this.yearToSelectOption)
       return [nullOption].concat(yearOptions)
-    }
+    },
   },
   mounted() {
     this.$store.dispatch('stations/downloadStationsByDataset').then(() => {
@@ -295,7 +307,7 @@ export default {
             url: plotURL,
             caption: instrumentName,
             station: stationKey,
-            instrument: instrumentName
+            instrument: instrumentName,
           })
           duplicateInstruments.push(instrumentKey)
         }
@@ -330,7 +342,7 @@ export default {
         }
         observationTools[year].push({
           name: feature.properties.instrument_name,
-          serial: feature.properties.instrument_number
+          serial: feature.properties.instrument_number,
         })
       }
 
@@ -355,7 +367,7 @@ export default {
       return {
         text: instrument.key,
         value: instrument.key,
-        element: instrument
+        element: instrument,
       }
     },
     async refreshInstruments() {
@@ -442,34 +454,22 @@ export default {
       return {
         text: textDisplay,
         value: stationID,
-        element: station
+        element: station,
       }
     },
     yearToSelectOption(year) {
       return {
         text: year,
-        value: year
+        value: year,
       }
-    }
-  },
-  head() {
-    return {
-      title: this.$t('data.products.totalozone.title'),
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('data.products.totalozone.title')
-        }
-      ]
-    }
+    },
   },
   nuxtI18n: {
     paths: {
       en: '/data/products/totalozone',
-      fr: '/donnees/produits/ozonetotal'
-    }
-  }
+      fr: '/donnees/produits/ozonetotal',
+    },
+  },
 }
 </script>
 

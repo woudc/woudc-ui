@@ -2,12 +2,12 @@
   <v-container>
     <h1>{{ $t('data.policy.title') }}</h1>
     <i18n path="data.policy.blurb" tag="p">
-      <template v-slot:wmo-policy>
+      <template #wmo-policy>
         <a :href="wmoURL" target="_blank">
           {{ $t('data.policy.wmo-policy') }}
         </a>
       </template>
-      <template v-slot:gaw-policy>
+      <template #gaw-policy>
         <a :href="gawURL" target="_blank">
           {{ $t('data.policy.gaw-policy') }}
         </a>
@@ -18,7 +18,7 @@
         <h2>{{ $t('data.policy.wmo.title') }}</h2>
         <p>{{ $t('data.policy.wmo.blurb.body-intro') }}</p>
         <i18n path="data.policy.wmo.blurb.body-resolution40" tag="p">
-          <template v-slot:link>
+          <template #link>
             <a :href="resolution40" target="_blank">
               {{ $t('data.policy.wmo.link') }}
             </a>
@@ -36,7 +36,7 @@
         </v-card>
         <h2>{{ $t('data.policy.doi.title') }}</h2>
         <i18n path="data.policy.doi.blurb" tag="p">
-          <template v-slot:dois>
+          <template #dois>
             <a :href="doisURL" target="_blank">
               {{ $t('data.policy.doi.dois') }}
             </a>
@@ -89,7 +89,7 @@
           </v-card-text>
         </v-card>
         <i18n path="data.policy.publishing.blurb-contributors" tag="p">
-          <template v-slot:contributors-page>
+          <template #contributors-page>
             <nuxt-link :to="localePath('contributors')">
               {{ $t('common.contributors-page') }}
             </nuxt-link>
@@ -126,13 +126,13 @@ export default {
         'broadband',
         'multiband',
         'spectral',
-        'uv-index'
+        'uv-index',
       ],
       doisURL: 'https://en.wikipedia.org/wiki/Digital_object_identifier',
       gawURL: 'https://gawsis.meteoswiss.ch/GAWSIS/index.html#/faq/',
       resolution40:
         'https://www.wmo.int/pages/prog/hwrp/documents/wmo_827_enCG-XII-Res40.pdf',
-      wmoURL: 'https://www.wmo.int/pages/about/exchangingdata_en.html'
+      wmoURL: 'https://www.wmo.int/pages/about/exchangingdata_en.html',
     }
   },
   head() {
@@ -142,17 +142,17 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('data.policy.blurb')
-        }
-      ]
+          content: this.$t('data.policy.blurb'),
+        },
+      ],
     }
   },
   nuxtI18n: {
     paths: {
       en: '/data/data-use-policy',
-      fr: "/donnees/politique-d'utilisation-des-donnees"
-    }
-  }
+      fr: "/donnees/politique-d'utilisation-des-donnees",
+    },
+  },
 }
 </script>
 

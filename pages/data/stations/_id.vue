@@ -14,7 +14,7 @@
           :loading="loadingMap"
           @select="selectedStation = $event"
         >
-          <template v-slot:popup="element">
+          <template #popup="element">
             <strong>{{ $t('data.stations.gaw-id') }}</strong>
             <a :href="element.item.gaw_url" target="_blank">
               <span> {{ element.item.gaw_id }}</span>
@@ -46,7 +46,7 @@
               @keyup.up="setStartYear(parseInt($event.target.value))"
               @keyup.down="setStartYear(parseInt($event.target.value))"
             >
-              <template v-slot:append>
+              <template #append>
                 <div class="mt-2">
                   <v-btn icon small @click="addToStartYear(-1)">
                     <v-icon>mdi-minus-circle-outline</v-icon>
@@ -67,7 +67,7 @@
               @keyup.up="setEndYear(parseInt($event.target.value))"
               @keyup.down="setEndYear(parseInt($event.target.value))"
             >
-              <template v-slot:append>
+              <template #append>
                 <div class="mt-2">
                   <v-btn icon small @click="addToEndYear(-1)">
                     <v-icon>mdi-minus-circle-outline</v-icon>
@@ -104,19 +104,19 @@
           hide-default-footer
           class="elevation-1 mb-4"
         >
-          <template v-slot:item.woudc_id="stn">
+          <template #item.woudc_id="stn">
             <nuxt-link :to="'/data/stations/' + stn.item.woudc_id">
               {{ stn.item.woudc_id }}
             </nuxt-link>
           </template>
-          <template v-slot:item.gaw_id="stn">
+          <template #item.gaw_id="stn">
             <span v-if="stn.item.gaw_id !== null">
               <a :href="stn.item.gaw_url" target="_blank">
                 {{ stn.item.gaw_id }}
               </a>
             </span>
           </template>
-          <template v-slot:item.country="stn">
+          <template #item.country="stn">
             {{ stn.item.country_name[$i18n.locale] }}
           </template>
         </v-data-table>
@@ -129,7 +129,7 @@
           hide-default-footer
           class="elevation-1 mb-4"
         >
-          <template v-slot:item="deployment">
+          <template #item="deployment">
             <tr>
               <td>
                 <nuxt-link :to="'/contributors/' + deployment.item.contributor">
@@ -155,7 +155,7 @@
           :loading="loadingTables"
           class="elevation-1"
         >
-          <template v-slot:item.waf_url="instrument">
+          <template #item.waf_url="instrument">
             <a :href="instrument.item.waf_url" target="_blank">
               {{ instrument.item.waf_url }}
             </a>
@@ -181,7 +181,7 @@ export default {
     'map-instructions': mapInstructions,
     'selectable-map': SelectableMap,
     'table-instructions': tableInstructions,
-    'metrics-chart': MetricsChart
+    'metrics-chart': MetricsChart,
   },
   async validate({ params, $config }) {
     const woudcID = params.id
@@ -206,7 +206,19 @@ export default {
       station: null,
       metricsByYear: {},
       minSelectableYear: 1924,
-      selectedYearRange: [1924, new Date().getFullYear()] // defaults to total span of years in all data sets
+      selectedYearRange: [1924, new Date().getFullYear()], // defaults to total span of years in all data sets
+    }
+  },
+  head() {
+    return {
+      title: this.$t('data.stations.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('data.stations.blurb'),
+        },
+      ],
     }
   },
   computed: {
@@ -216,13 +228,13 @@ export default {
         'project',
         'name',
         'start_date',
-        'end_date'
+        'end_date',
       ]
 
       return deploymentKeys.map((key) => {
         return {
           text: this.$t('data.stations.deployment-headers.' + key),
-          value: key
+          value: key,
         }
       })
     },
@@ -235,13 +247,13 @@ export default {
         'end_date',
         'data_class',
         'dataset',
-        'waf_url'
+        'waf_url',
       ]
 
       return instrumentKeys.map((key) => {
         return {
           text: this.$t('data.stations.instrument-headers.' + key),
-          value: key
+          value: key,
         }
       })
     },
@@ -255,13 +267,13 @@ export default {
         `country_name_${this.$i18n.locale}`,
         'last_validated_datetime',
         'type',
-        'wmo_region_id'
+        'wmo_region_id',
       ]
 
       return stationKeys.map((key) => {
         return {
           text: this.$t('data.stations.station-headers.' + key),
-          value: key
+          value: key,
         }
       })
     },
@@ -279,12 +291,12 @@ export default {
         }
       }
       return fileCount
-    }
+    },
   },
   watch: {
     $route() {
       this.populate()
-    }
+    },
   },
   mounted() {
     this.loadingMap = false
@@ -357,20 +369,20 @@ export default {
       }
       const inputs = {
         domain: 'contributor',
-        timescale: 'year'
+        timescale: 'year',
       }
       const paramNames = {
         dataset: null,
         country: null,
         station: this.selectedStation.woudc_id,
-        network: null
+        network: null,
       }
       if (this.mapBoundingBox !== null) {
         const components = [
           Math.max(-180, this.mapBoundingBox.getWest()),
           Math.max(-90, this.mapBoundingBox.getSouth()),
           Math.min(180, this.mapBoundingBox.getEast()),
-          Math.min(90, this.mapBoundingBox.getNorth())
+          Math.min(90, this.mapBoundingBox.getNorth()),
         ]
         paramNames.bbox = components.join(',')
       }
@@ -389,7 +401,7 @@ export default {
       response.data.metrics.forEach((metric) => {
         newMetrics[metric.year] = {
           totalFiles: metric.total_files,
-          totalObs: metric.total_obs
+          totalObs: metric.total_obs,
         }
       })
       this.metricsByYear = newMetrics
@@ -420,25 +432,13 @@ export default {
         instrumentsURL + '?' + queryParams
       )
       this.instruments = instrumentsResponse.data.features.map(stripProperties)
-    }
-  },
-  head() {
-    return {
-      title: this.$t('data.stations.title'),
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('data.stations.blurb')
-        }
-      ]
-    }
+    },
   },
   nuxtI18n: {
     paths: {
       en: '/data/stations/:id',
-      fr: '/donnees/stations/:id'
-    }
-  }
+      fr: '/donnees/stations/:id',
+    },
+  },
 }
 </script>

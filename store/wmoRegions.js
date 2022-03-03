@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const state = () => ({
   regions: {},
-  loaded: false
+  loaded: false,
 })
 
 const getters = {
@@ -26,7 +26,7 @@ const getters = {
   },
   southWestPacific(state) {
     return state.loaded ? state.regions.V : null
-  }
+  },
 }
 
 const mutations = {
@@ -35,7 +35,7 @@ const mutations = {
   },
   setLoaded(state, loaded) {
     state.loaded = loaded
-  }
+  },
 }
 
 const actions = {
@@ -54,7 +54,7 @@ const actions = {
 
     commit('setBoundaryPoints', regionShapes)
     commit('setLoaded', true)
-  }
+  },
 }
 
 export default {
@@ -62,5 +62,5 @@ export default {
   state,
   getters,
   actions,
-  mutations
+  mutations,
 }

@@ -5,7 +5,7 @@ const state = () => ({
   loadedContributorFields: false,
   contributorsByAcronym: {},
   contributorDistinctFields: {},
-  contributorsList: []
+  contributorsList: [],
 })
 
 const getters = {
@@ -23,7 +23,7 @@ const getters = {
         return null
       }
     }
-  }
+  },
 }
 
 const mutations = {
@@ -50,7 +50,7 @@ const mutations = {
   },
   setLoaded(state) {
     state.loaded = true
-  }
+  },
 }
 
 const actions = {
@@ -79,7 +79,7 @@ const actions = {
       'project',
       'name',
       `country_name_${this.$i18n.locale}`,
-      'wmo_region_id'
+      'wmo_region_id',
     ]
     for (const field of contributorFields) {
       const queryURL =
@@ -88,9 +88,9 @@ const actions = {
       const inputs = {
         index: 'contributor',
         distinct: {
-          modelResolution: [field]
+          modelResolution: [field],
         },
-        source: [field]
+        source: [field],
       }
       const queryParams = { inputs }
       const response = await woudcClient.post(queryURL, queryParams)
@@ -98,7 +98,7 @@ const actions = {
 
       distinctFields[`${field}`] = {
         value: field,
-        array: []
+        array: [],
       }
       for (const item of responseArray) {
         distinctFields[`${field}`]['array'].push(item.properties[`${field}`])
@@ -106,7 +106,7 @@ const actions = {
     }
     commit('setContributorsDistinctFields', distinctFields)
     commit('setLoadedFields', true)
-  }
+  },
 }
 
 export default {
@@ -114,5 +114,5 @@ export default {
   state,
   getters,
   actions,
-  mutations
+  mutations,
 }

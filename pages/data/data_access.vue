@@ -5,7 +5,7 @@
       <v-col cols="8">
         <p>{{ $t('data.access.blurb.body-intro') }}</p>
         <i18n path="data.access.blurb.body-accessibility" tag="p">
-          <template v-slot:contact-us>
+          <template #contact-us>
             <nuxt-link :to="localePath('contact')">
               {{ $t('common.contact-us') }}
             </nuxt-link>
@@ -17,7 +17,7 @@
           </v-card-title>
           <v-card-text>
             <i18n class="mb-0" path="data.access.note1.body" tag="p">
-              <template v-slot:policy>
+              <template #policy>
                 <nuxt-link :to="localePath('data-data_policy')">
                   {{ $t('common.policy') }}
                 </nuxt-link>
@@ -31,7 +31,7 @@
           </v-card-title>
           <v-card-text>
             <i18n class="mb-0" path="data.access.note2.body" tag="p">
-              <template v-slot:stations-page>
+              <template #stations-page>
                 <nuxt-link :to="localePath('data-stations')">
                   {{ $t('common.stations-page') }}
                 </nuxt-link>
@@ -62,7 +62,7 @@
               </template>
               <template v-else>
                 <v-list-group>
-                  <template v-slot:activator>
+                  <template #activator>
                     <v-list-item-title>
                       <nuxt-link :to="'#' + section.selector">
                         {{ section.text }}
@@ -92,14 +92,14 @@
         <div id="data-search-section">
           <h2>{{ $t('data.access.search.title') }}</h2>
           <i18n path="data.access.search.blurb.body-intro" tag="p">
-            <template v-slot:search>
+            <template #search>
               <nuxt-link :to="localePath('data-search')">
                 {{ $t('common.search') }}
               </nuxt-link>
             </template>
           </i18n>
           <i18n path="data.access.search.blurb.body-howto" tag="p">
-            <template v-slot:how-to>
+            <template #how-to>
               <a :href="searchHelpURL" target="_blank">
                 {{ $t('data.access.search.how-to') }}
               </a>
@@ -114,21 +114,21 @@
         <div id="waf-section">
           <h2>{{ $t('data.access.waf.title') }}</h2>
           <i18n path="data.access.waf.blurb.body-intro" tag="p">
-            <template v-slot:waf>
+            <template #waf>
               <a :href="$config.WOUDC_UI_WAF_URL" target="_blank">
                 {{ $t('common.wafFull') }}
               </a>
             </template>
           </i18n>
           <i18n path="data.access.waf.blurb.body-files" tag="p">
-            <template v-slot:summary>
+            <template #summary>
               <a :href="wafSummaryURL" target="_blank">
                 {{ $t('data.access.waf.summary') }}
               </a>
             </template>
           </i18n>
           <i18n path="data.access.waf.blurb.body-howto" tag="p">
-            <template v-slot:how-to>
+            <template #how-to>
               <a :href="wafGuideURL" target="_blank">
                 {{ $t('data.access.waf.how-to') }}
               </a>
@@ -139,22 +139,22 @@
           <h2>{{ $t('data.access.web.title') }}</h2>
           <p>{{ $t('data.access.web.blurb.body-intro') }}</p>
           <i18n path="data.access.web.blurb.body-standards" tag="p">
-            <template v-slot:ogc>
+            <template #ogc>
               <a :href="ogcURL" target="_blank">
                 {{ $t('common.ogc') }}
               </a>
             </template>
-            <template v-slot:iso>
+            <template #iso>
               <a :href="isoURL" target="_blank">
                 {{ $t('common.iso') }}
               </a>
             </template>
-            <template v-slot:interoperability>
+            <template #interoperability>
               <a :href="interoperabilityURL" target="_blank">
                 {{ $t('common.interoperability') }}
               </a>
             </template>
-            <template v-slot:wis>
+            <template #wis>
               <a :href="wisURL" target="_blank">
                 {{ $t('common.wis') }}
               </a>
@@ -168,7 +168,7 @@
           <div id="csw-subsection">
             <h3>{{ $t('data.access.csw.title') }}</h3>
             <i18n class="mb-0" path="data.access.csw.blurb" tag="p">
-              <template v-slot:ogc-cs>
+              <template #ogc-cs>
                 <a :href="ogcStandardsURL" target="_blank">
                   {{ $t('common.ogc-cs') }}
                 </a>
@@ -180,7 +180,7 @@
               </v-card-title>
               <v-card-text>
                 <i18n class="mb-0" path="data.access.csw.note.body" tag="p">
-                  <template v-slot:link>
+                  <template #link>
                     <a :href="cswURL" target="_blank">
                       {{ cswURL }}
                     </a>
@@ -192,7 +192,7 @@
           <div id="wms-subsection">
             <h3>{{ $t('data.access.wms.title') }}</h3>
             <i18n path="data.access.wms.blurb" tag="p">
-              <template v-slot:wms>
+              <template #wms>
                 <a :href="wmsURL" target="_blank">
                   {{ $t('common.wms') }}
                 </a>
@@ -204,7 +204,7 @@
               </v-card-title>
               <v-card-text>
                 <i18n class="mb-0" path="data.access.wms.note.body" tag="p">
-                  <template v-slot:link>
+                  <template #link>
                     <a :href="wmsAPIURL" target="_blank">
                       {{ wmsAPIURL }}
                     </a>
@@ -216,7 +216,7 @@
           <div id="wfs-subsection">
             <h3>{{ $t('data.access.wfs.title') }}</h3>
             <i18n path="data.access.wfs.blurb.body-intro" tag="p">
-              <template v-slot:wfs>
+              <template #wfs>
                 <a :href="wfsURL" target="_blank">
                   {{ $t('common.wfs') }}
                 </a>
@@ -229,7 +229,7 @@
               </v-card-title>
               <v-card-text>
                 <i18n class="mb-0" path="data.access.wfs.note.body" tag="p">
-                  <template v-slot:link>
+                  <template #link>
                     <a :href="wfsAPIURL" target="_blank">
                       {{ wfsAPIURL }}
                     </a>
@@ -241,7 +241,7 @@
           <div id="wps-subsection">
             <h3>{{ $t('data.access.wps.title') }}</h3>
             <i18n path="data.access.wps.blurb" tag="p">
-              <template v-slot:wps>
+              <template #wps>
                 <a :href="wpsURL" target="_blank">
                   {{ $t('common.wps') }}
                 </a>
@@ -253,7 +253,7 @@
               </v-card-title>
               <v-card-text>
                 <i18n class="mb-0" path="data.access.wps.note.body" tag="p">
-                  <template v-slot:link>
+                  <template #link>
                     <a :href="wpsAPIURL" target="_blank">
                       {{ wpsAPIURL }}
                     </a>
@@ -276,7 +276,7 @@
                 path="data.access.definitions.note.body"
                 tag="p"
               >
-                <template v-slot:link>
+                <template #link>
                   <a :href="definitionsURL" target="_blank">
                     {{ definitionsURL }}
                   </a>
@@ -294,7 +294,7 @@
             </v-card-title>
             <v-card-text>
               <i18n class="mb-0" path="data.access.iso.note.body" tag="p">
-                <template v-slot:link>
+                <template #link>
                   <a :href="isoAPIURL" target="_blank">
                     {{ isoAPIURL }}
                   </a>
@@ -303,7 +303,7 @@
             </v-card-text>
           </v-card>
           <i18n path="data.access.iso.blurb-howto" tag="p">
-            <template v-slot:how-to>
+            <template #how-to>
               <a :href="isoServicesURL" target="_blank">
                 {{ $t('data.access.iso.how-to') }}
               </a>
@@ -313,7 +313,7 @@
         <div id="examples-section">
           <h2>{{ $t('data.access.examples.title') }}</h2>
           <i18n path="data.access.examples.blurb" tag="p">
-            <template v-slot:github>
+            <template #github>
               <a :href="githubURL" target="_blank">
                 {{ $t('common.github') }}
               </a>
@@ -322,16 +322,12 @@
           <v-card>
             <v-list id="example-list" class="pa-0" dense>
               <v-list-item>
-                <a :href="examples.pywoudc" target="_blank">
-                  pywoudc
-                </a>
+                <a :href="examples.pywoudc" target="_blank"> pywoudc </a>
                 : {{ $t('data.access.examples.links.pywoudc') }}
               </v-list-item>
               <v-divider />
               <v-list-item>
-                <a :href="examples.notebooks" target="_blank">
-                  notebooks
-                </a>
+                <a :href="examples.notebooks" target="_blank"> notebooks </a>
                 : {{ $t('data.access.examples.links.notebooks') }}
               </v-list-item>
             </v-list>
@@ -377,12 +373,24 @@ export default {
         web: 'web-services-section',
         wfs: 'wfs-subsection',
         wms: 'wms-subsection',
-        wps: 'wps-subsection'
+        wps: 'wps-subsection',
       },
       examples: {
         pywoudc: 'https://github.com/woudc/pywoudc',
-        notebooks: 'https://github.com/woudc/woudc/tree/master/notebooks'
-      }
+        notebooks: 'https://github.com/woudc/woudc/tree/master/notebooks',
+      },
+    }
+  },
+  head() {
+    return {
+      title: this.$t('data.access.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('data.access.blurb.body-intro'),
+        },
+      ],
     }
   },
   computed: {
@@ -393,7 +401,7 @@ export default {
         'web',
         'definitions',
         'iso',
-        'examples'
+        'examples',
       ].map(this.prepareContentsLink)
 
       sections[2].subsections = this.webContentsSubsections
@@ -401,35 +409,23 @@ export default {
     },
     webContentsSubsections() {
       return ['csw', 'wms', 'wfs', 'wps'].map(this.prepareContentsLink)
-    }
+    },
   },
   methods: {
     prepareContentsLink(key) {
       return {
         text: this.$t('data.access.contents.links.' + key),
         selector: this.contentsSelectors[key],
-        subsections: null
+        subsections: null,
       }
-    }
-  },
-  head() {
-    return {
-      title: this.$t('data.access.title'),
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('data.access.blurb.body-intro')
-        }
-      ]
-    }
+    },
   },
   nuxtI18n: {
     paths: {
       en: '/data/data-access',
-      fr: '/donnees/accessibilite-des-donnees'
-    }
-  }
+      fr: '/donnees/accessibilite-des-donnees',
+    },
+  },
 }
 </script>
 

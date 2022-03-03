@@ -107,8 +107,8 @@ export default {
   props: {
     error: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
   head() {
     const errorTitle =
@@ -121,11 +121,11 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: errorTitle
-        }
-      ]
+          content: errorTitle,
+        },
+      ],
     }
-  }
+  },
 }
 </script>
 

@@ -14,16 +14,16 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('contributors.validation.blurb')
-        }
-      ]
+          content: this.$t('contributors.validation.blurb'),
+        },
+      ],
     }
   },
   nuxtI18n: {
     paths: {
       en: '/contributors/validation',
-      fr: '/contributeurs/validateur'
-    }
-  }
+      fr: '/contributeurs/validateur',
+    },
+  },
 }
 </script>

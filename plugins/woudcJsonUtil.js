@@ -1,7 +1,7 @@
 function standardizedCountryName(geoJSON) {
   return {
     en: geoJSON.properties.country_name_en,
-    fr: geoJSON.properties.country_name_fr
+    fr: geoJSON.properties.country_name_fr,
   }
 }
 
@@ -10,8 +10,8 @@ function standardizedGeometry(geoJSON) {
     type: geoJSON.geometry.type,
     coordinates: [
       geoJSON.geometry.coordinates[1],
-      geoJSON.geometry.coordinates[0]
-    ]
+      geoJSON.geometry.coordinates[0],
+    ],
   }
 }
 
@@ -67,8 +67,8 @@ function unpackageDeployment(geoJSON) {
 }
 
 // compare function for sorting by obj[key]
-const compareOnKey = function(key) {
-  return function(a, b) {
+const compareOnKey = function (key) {
+  return function (a, b) {
     // compare
     if (a[key] < b[key]) {
       return -1
@@ -82,8 +82,8 @@ const compareOnKey = function(key) {
 }
 
 // compare function for sorting by obj[key] with locale (accented characters)
-const compareLocaleOnKey = function(key) {
-  return function(a, b) {
+const compareLocaleOnKey = function (key) {
+  return function (a, b) {
     return a[key].localeCompare(b[key])
   }
 }
@@ -96,5 +96,5 @@ export {
   unpackageInstrument,
   unpackageDeployment,
   compareOnKey,
-  compareLocaleOnKey
+  compareLocaleOnKey,
 }

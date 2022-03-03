@@ -36,7 +36,7 @@ export default {
         'wdc-ghg': 'https://gaw.kishou.go.jp/',
         'wdc-precip': 'http://wdcpc.org/',
         'wdc-sensing': 'https://wdc.dlr.de/',
-        wrdc: 'http://wrdc.mgo.rssi.ru/'
+        wrdc: 'http://wrdc.mgo.rssi.ru/',
       },
       relatedURLs: {
         avdc: 'https://avdc.gsfc.nasa.gov/',
@@ -49,10 +49,9 @@ export default {
         mozaic: 'http://www.iagos-data.fr/',
         ndacc: 'http://www.ndacc.org/',
         polar: 'http://uv.biospherical.com/',
-        uvi:
-          'https://spacephysics.msfc.nasa.gov/projects/uvi/data_archives.shtml',
-        shadoz: 'https://croc.gsfc.nasa.gov/shadoz/'
-      }
+        uvi: 'https://spacephysics.msfc.nasa.gov/projects/uvi/data_archives.shtml',
+        shadoz: 'https://croc.gsfc.nasa.gov/shadoz/',
+      },
     }
   },
   head() {
@@ -62,16 +61,16 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('resources.related-links.links.other-title')
-        }
-      ]
+          content: this.$t('resources.related-links.links.other-title'),
+        },
+      ],
     }
   },
   nuxtI18n: {
     paths: {
       en: '/resources/links',
-      fr: '/ressources/liens'
-    }
-  }
+      fr: '/ressources/liens',
+    },
+  },
 }
 </script>

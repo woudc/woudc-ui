@@ -6,7 +6,7 @@
         :key="url"
         :cols="12 / graphsPerRow"
       >
-        <v-hover v-slot:default="{ hover }">
+        <v-hover v-slot="{ hover }">
           <v-card
             class="pt-4 px-2"
             :class="{ 'mouse-pointer': hover }"
@@ -24,7 +24,7 @@
               @error="setImageError(rowIndex * graphsPerRow + columnIndex)"
               @click="selectImage(rowIndex * graphsPerRow + columnIndex)"
             >
-              <template v-slot:placeholder>
+              <template #placeholder>
                 <v-row class="fill-height ma-0" align="center" justify="center">
                   <v-progress-circular
                     indeterminate
@@ -102,14 +102,14 @@
 export default {
   name: 'GraphCarousel',
   props: {
-    graphs: { type: Array, required: true }
+    graphs: { type: Array, required: true },
   },
   data() {
     return {
       graphsPerRow: 4,
       imagePreviewActive: false,
       imagePreviewIndex: 0,
-      imageError: []
+      imageError: [],
     }
   },
   computed: {
@@ -137,7 +137,7 @@ export default {
         `${this.graphs.length}`
       )
       return filledTemplate2
-    }
+    },
   },
   beforeMount() {
     let index = 0
@@ -172,8 +172,8 @@ export default {
     },
     setImageError(index) {
       this.$set(this.imageError, index, true)
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -12,7 +12,7 @@
           @select="selectedStation = $event"
           @move="boundingBox = $event"
         >
-          <template v-slot:popup="element">
+          <template #popup="element">
             <strong>{{ $t('data.stations.gaw-id') }}</strong>
             <a :href="element.item.gaw_url" target="_blank">
               <span> {{ element.item.gaw_id }}</span>
@@ -75,7 +75,7 @@
               class="mt-1 mb-4 align-content-start"
               bottom
             >
-              <template v-slot:activator="{ onBadge }">
+              <template #activator="{ onBadge }">
                 <v-badge
                   :value="searchOutOfDate"
                   class="mx-2"
@@ -99,13 +99,11 @@
                 </v-badge>
               </template>
               <v-card-title class="py-3">
-                <v-icon class="mr-1">
-                  mdi-alert
-                </v-icon>
+                <v-icon class="mr-1"> mdi-alert </v-icon>
                 {{ $t('common.old-search.title') }}
               </v-card-title>
               <i18n path="common.old-search.body" tag="v-card-text">
-                <template v-slot:search>
+                <template #search>
                   <strong>{{ $t('common.filtering.apply') }}</strong>
                 </template>
               </i18n>
@@ -126,7 +124,7 @@
           :loading="loadingTable"
           @select="selectedStation = $event"
         >
-          <template v-slot:row="row">
+          <template #row="row">
             <td>
               <nuxt-link
                 :to="localePath('data-stations') + '/' + row.item.woudc_id"
@@ -168,7 +166,7 @@ export default {
     'map-instructions': mapInstructions,
     'selectable-map': SelectableMap,
     'selectable-table': SelectableTable,
-    'table-instructions': tableInstructions
+    'table-instructions': tableInstructions,
   },
   data() {
     return {
@@ -189,7 +187,7 @@ export default {
         name: [],
         country_name: [],
         type: [],
-        wmo_region_id: []
+        wmo_region_id: [],
       },
       onButton: false,
       resettingMap: false,
@@ -200,9 +198,21 @@ export default {
         name: [],
         country_name: [],
         type: [],
-        wmo_region_id: []
+        wmo_region_id: [],
       },
-      stations: []
+      stations: [],
+    }
+  },
+  head() {
+    return {
+      title: this.$t('data.stations.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('data.stations.blurb'),
+        },
+      ],
     }
   },
   computed: {
@@ -212,7 +222,7 @@ export default {
           Math.max(-180, this.boundingBox.getWest()),
           Math.max(-90, this.boundingBox.getSouth()),
           Math.min(180, this.boundingBox.getEast()),
-          Math.min(90, this.boundingBox.getNorth())
+          Math.min(90, this.boundingBox.getNorth()),
         ]
       } else {
         return [-180, -90, 180, 90]
@@ -228,13 +238,13 @@ export default {
         `country_name_${this.$i18n.locale}`,
         'last_validated_datetime',
         'type',
-        'wmo_region_id'
+        'wmo_region_id',
       ]
 
       return headerKeys.map((key) => {
         return {
           text: this.$t('data.stations.station-headers.' + key),
-          value: key
+          value: key,
         }
       })
     },
@@ -285,7 +295,7 @@ export default {
           return this.boundingBox.contains(coords)
         })
       }
-    }
+    },
   },
   watch: {
     boundingBoxArray: {
@@ -293,20 +303,19 @@ export default {
         if (this.enableBboxSearch == true) {
           this.oldSearchExists = true
         }
-      }
-    }
+      },
+    },
   },
   mounted() {
     Promise.all([
       this.$store.dispatch('stations/downloadStations'),
-      this.$store.dispatch('stations/downloadDistinctFields')
+      this.$store.dispatch('stations/downloadDistinctFields'),
     ]).then(() => {
       const stations = this.$store.getters['stations/all']
       this.stations = stations.map(unpackageStation)
 
-      this.distinctStationFields = this.$store.getters[
-        'stations/distinctFieldResolution'
-      ]
+      this.distinctStationFields =
+        this.$store.getters['stations/distinctFieldResolution']
       for (const field in this.distinctStationFields) {
         for (const header of this.headers) {
           if (field == header['value']) {
@@ -410,25 +419,13 @@ export default {
       this.loadingMap = false
       this.loadingTable = false
       this.loadingStations = false
-    }
-  },
-  head() {
-    return {
-      title: this.$t('data.stations.title'),
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('data.stations.blurb')
-        }
-      ]
-    }
+    },
   },
   nuxtI18n: {
     paths: {
       en: '/data/stations',
-      fr: '/donnees/stations'
-    }
-  }
+      fr: '/donnees/stations',
+    },
+  },
 }
 </script>

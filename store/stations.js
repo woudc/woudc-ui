@@ -68,7 +68,7 @@ const state = () => ({
   umkehr2: [],
   rocketsonde: [],
   lidar: [],
-  uvindex: []
+  uvindex: [],
 })
 
 const getters = {
@@ -120,7 +120,7 @@ const getters = {
   },
   uvindex(state) {
     return state.uvindex
-  }
+  },
 }
 
 const mutations = {
@@ -174,7 +174,7 @@ const mutations = {
   },
   setLoadedStnDataPairs(state, loaded) {
     state.loadedStnDataPairs = loaded
-  }
+  },
 }
 
 const actions = {
@@ -190,7 +190,7 @@ const actions = {
       'name',
       `country_name_${this.$i18n.locale}`,
       'type',
-      'wmo_region_id'
+      'wmo_region_id',
     ]
     for (const field of stationFields) {
       const queryURL =
@@ -199,9 +199,9 @@ const actions = {
       const inputs = {
         index: 'station',
         distinct: {
-          modelResolution: [field]
+          modelResolution: [field],
         },
-        source: [field]
+        source: [field],
       }
       const queryParams = { inputs }
       const response = await woudcClient.post(queryURL, queryParams)
@@ -209,7 +209,7 @@ const actions = {
 
       distinctFields[`${field}`] = {
         value: field,
-        array: []
+        array: [],
       }
       for (const item of responseArray) {
         distinctFields[`${field}`]['array'].push(item.properties[`${field}`])
@@ -227,8 +227,8 @@ const actions = {
     const stationInputs = {
       index: 'station',
       distinct: {
-        orderByID: ['woudc_id']
-      }
+        orderByID: ['woudc_id'],
+      },
     }
     const queryParams = { inputs: stationInputs }
 
@@ -259,9 +259,9 @@ const actions = {
     const contributionInputs = {
       index: 'contribution',
       distinct: {
-        orderByID: ['station_id', 'dataset_id']
+        orderByID: ['station_id', 'dataset_id'],
       },
-      source: ['station_id']
+      source: ['station_id'],
     }
     const queryParams = { inputs: contributionInputs }
 
@@ -301,7 +301,7 @@ const actions = {
     commit('setStationsRocketSonde', stationsByDataset.rocketsonde)
     commit('setStationsLidar', stationsByDataset.lidar)
     commit('setStationsUVIndex', stationsByDataset.uvindex)
-  }
+  },
 }
 
 export default {
@@ -309,5 +309,5 @@ export default {
   state,
   getters,
   actions,
-  mutations
+  mutations,
 }

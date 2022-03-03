@@ -10,22 +10,20 @@
             :path="'about.glossary.terms[' + index + '].definition'"
             tag="p"
           >
-            <template v-slot:carcinogenesis>
+            <template #carcinogenesis>
               <a :href="carcinogensURL" target="_blank">
                 {{ $t('about.glossary.carcinogenesis') }}
               </a>
             </template>
-            <template v-slot:registration-page>
+            <template #registration-page>
               <nuxt-link :to="localePath('contributors-registration')">
                 {{ $t('common.registration-page') }}
               </nuxt-link>
             </template>
-            <template v-slot:w3>
-              <a :href="w3URL" target="_blank">
-                www.w3.org
-              </a>
+            <template #w3>
+              <a :href="w3URL" target="_blank"> www.w3.org </a>
             </template>
-            <template v-slot:waf>
+            <template #waf>
               <a :href="WOUDC_UI_WAF_URL" target="_blank">
                 {{ WOUDC_UI_WAF_URL }}
               </a>
@@ -44,7 +42,7 @@ export default {
       carcinogensURL:
         'https://www.wmo.int/pages/prog/dra/etrp/documents/926E.pdf',
       w3URL: 'https://www.w3.org/',
-      WOUDC_UI_WAF_URL: this.$config.WOUDC_UI_WAF_URL
+      WOUDC_UI_WAF_URL: this.$config.WOUDC_UI_WAF_URL,
     }
   },
   head() {
@@ -54,16 +52,16 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('about.glossary.blurb')
-        }
-      ]
+          content: this.$t('about.glossary.blurb'),
+        },
+      ],
     }
   },
   nuxtI18n: {
     paths: {
       en: '/about/glossary',
-      fr: '/a-propos/glossaire'
-    }
-  }
+      fr: '/a-propos/glossaire',
+    },
+  },
 }
 </script>

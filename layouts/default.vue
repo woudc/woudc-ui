@@ -23,7 +23,7 @@
             </v-list-item-content>
           </v-list-item>
           <v-list-group v-else color="grey darken-4" :prepend-icon="group.icon">
-            <template v-slot:activator>
+            <template #activator>
               <v-list-item-content>
                 <v-list-item-title v-text="$t('banner.' + groupTag)" />
               </v-list-item-content>
@@ -69,7 +69,7 @@
           {{ $t('common.woudcFull') }}
         </nuxt-link>
       </h5>
-      <template v-if="$vuetify.breakpoint.mdAndUp" v-slot:extension>
+      <template v-if="$vuetify.breakpoint.mdAndUp" #extension>
         <v-menu
           v-for="(group, groupTag) in links"
           :key="groupTag"
@@ -79,7 +79,7 @@
           transition="slide-y-transition"
           close-delay="100"
         >
-          <template v-slot:activator="{ on, attrs }">
+          <template #activator="{ on, attrs }">
             <v-tabs color="accent" fixed-tabs>
               <v-tab v-if="group.sections" v-bind="attrs" v-on="on">
                 <v-icon>{{ group.icon }}</v-icon>
@@ -180,9 +180,7 @@
         class="white--text mr-10 no-underline"
         :to="localePath('contact')"
       >
-        <v-icon class="mr-1 pb-1" color="white">
-          mdi-email
-        </v-icon>
+        <v-icon class="mr-1 pb-1" color="white"> mdi-email </v-icon>
         {{ $t('banner.contact') }}
       </nuxt-link>
     </v-footer>
@@ -206,8 +204,8 @@ export default {
             'data-products': { link: 'data-products' },
             'data-info': { link: 'data-dataset_info' },
             'data-stations': { link: 'data-stations' },
-            'data-instruments': { link: 'data-instruments' }
-          }
+            'data-instruments': { link: 'data-instruments' },
+          },
         },
         contributors: {
           icon: 'mdi-account-group',
@@ -215,12 +213,12 @@ export default {
           sections: {
             'contributors-guide': {
               type: 'external',
-              link: 'https://guide.woudc.org'
+              link: 'https://guide.woudc.org',
             },
             'contributors-registration': { link: 'contributors-registration' },
             'contributors-list': { link: 'contributors' },
-            'contributors-submission': { link: 'contributors-submission' }
-          }
+            'contributors-submission': { link: 'contributors-submission' },
+          },
         },
         resources: {
           icon: 'mdi-book-open-variant',
@@ -231,13 +229,13 @@ export default {
             'resources-links': { link: 'resources-links' },
             'resources-software': {
               type: 'external',
-              link: 'https://github.com/woudc/woudc/wiki'
-            }
-          }
+              link: 'https://github.com/woudc/woudc/wiki',
+            },
+          },
         },
         news: {
           icon: 'mdi-newspaper',
-          link: 'news'
+          link: 'news',
         },
         about: {
           icon: 'mdi-information',
@@ -247,12 +245,12 @@ export default {
             'about-standards': { link: 'about-standards' },
             'about-formats': { link: 'about-formats' },
             'about-glossary': { link: 'about-glossary' },
-            'about-faq': { link: 'about-faq' }
-          }
-        }
-      }
+            'about-faq': { link: 'about-faq' },
+          },
+        },
+      },
     }
-  }
+  },
 }
 </script>
 

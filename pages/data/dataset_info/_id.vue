@@ -27,10 +27,10 @@
           <strong>{{ $t('data.info.descriptors.range') }}</strong
           >&nbsp;
           <i18n path="data.info.descriptors.range-template" tag="span">
-            <template v-slot:start>
+            <template #start>
               {{ dateFrom }}
             </template>
-            <template v-slot:end>
+            <template #end>
               {{ dateTo }}
             </template>
           </i18n>
@@ -85,7 +85,7 @@
         </div>
         <map-instructions />
         <selectable-map :elements="stations" :loading="loadingMap">
-          <template v-slot:popup="element">
+          <template #popup="element">
             <nuxt-link :to="'/data/stations/' + element.item.woudc_id">
               <span>{{ stationText(element.item) }}</span>
             </nuxt-link>
@@ -107,7 +107,7 @@ import SelectableMap from '~/components/SelectableMap'
 export default {
   components: {
     'map-instructions': MapInstructions,
-    'selectable-map': SelectableMap
+    'selectable-map': SelectableMap,
   },
   data() {
     return {
@@ -125,7 +125,19 @@ export default {
       stations: [],
       title: null,
       uriDatasetDef: null,
-      wafDataset: null
+      wafDataset: null,
+    }
+  },
+  head() {
+    return {
+      title: this.$t('data.info.title') + ' ' + this.title,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('data.info.blurb'),
+        },
+      ],
     }
   },
   computed: {
@@ -147,7 +159,7 @@ export default {
         this.$config.WOUDC_UI_OWS_URL +
         '/ows?service=WMS&version=1.3.0&request=GetCapabilities'
       )
-    }
+    },
   },
   mounted() {
     this.init()
@@ -191,8 +203,10 @@ export default {
           }
         }
       } else {
-        this.title = this.title.PT_FreeText.textGroup.LocalisedCharacterString.toString()
-        this.abstract = this.abstract.PT_FreeText.textGroup.LocalisedCharacterString.toString()
+        this.title =
+          this.title.PT_FreeText.textGroup.LocalisedCharacterString.toString()
+        this.abstract =
+          this.abstract.PT_FreeText.textGroup.LocalisedCharacterString.toString()
         for (let i = 0; i < this.datasetDoc.descriptiveKeywords.length; i++) {
           for (
             let j = 0;
@@ -214,12 +228,15 @@ export default {
         }
       }
       this.keywords = new Set(this.keywords)
-      this.doi = this.datasetDoc.resourceConstraints.MD_LegalConstraints.otherConstraints[2].CharacterString.toString().substr(
-        4
-      )
-      this.dateFrom = this.datasetDoc.extent.EX_Extent.temporalElement.EX_TemporalExtent.extent.TimePeriod.beginPosition.toString()
-      const endPosition = this.datasetDoc.extent.EX_Extent.temporalElement
-        .EX_TemporalExtent.extent.TimePeriod.endPosition
+      this.doi =
+        this.datasetDoc.resourceConstraints.MD_LegalConstraints.otherConstraints[2].CharacterString.toString().substr(
+          4
+        )
+      this.dateFrom =
+        this.datasetDoc.extent.EX_Extent.temporalElement.EX_TemporalExtent.extent.TimePeriod.beginPosition.toString()
+      const endPosition =
+        this.datasetDoc.extent.EX_Extent.temporalElement.EX_TemporalExtent
+          .extent.TimePeriod.endPosition
       if (endPosition._indeterminatePosition) {
         this.dateTo = endPosition._indeterminatePosition
       } else {
@@ -230,7 +247,8 @@ export default {
       } else {
         this.level = 1
       }
-      this.category = this.datasetDoc.topicCategory.MD_TopicCategoryCode.toString()
+      this.category =
+        this.datasetDoc.topicCategory.MD_TopicCategoryCode.toString()
     },
     setUri() {
       if (this.dataset === 'totalozone') {
@@ -293,8 +311,8 @@ export default {
     async getDatasetInfo() {
       const response = await woudcClient.get(this.requestUrl, {
         headers: {
-          'Accept-Encoding': 'gzip'
-        }
+          'Accept-Encoding': 'gzip',
+        },
       })
       const converter = new x2js()
       const doc = converter.xml2js(response.data)
@@ -307,25 +325,13 @@ export default {
       } else {
         return station.name + ' (' + station.gaw_id + ')'
       }
-    }
-  },
-  head() {
-    return {
-      title: this.$t('data.info.title') + ' ' + this.title,
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('data.info.blurb')
-        }
-      ]
-    }
+    },
   },
   nuxtI18n: {
     paths: {
       en: '/data/dataset-information/:id',
-      fr: '/donnees/information-sur-les-jeux-de-donnees/:id'
-    }
-  }
+      fr: '/donnees/information-sur-les-jeux-de-donnees/:id',
+    },
+  },
 }
 </script>

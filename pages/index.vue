@@ -4,9 +4,7 @@
       <v-col>
         <h2>{{ $t('common.welcome') }}</h2>
         <v-card itemscope itemtype="http://schema.org/GovernmentOrganization">
-          <v-card-title itemprop="name">
-            WOUDC
-          </v-card-title>
+          <v-card-title itemprop="name"> WOUDC </v-card-title>
           <v-card-subtitle itemprop="description">
             {{ $t('home.adTitle') }}
           </v-card-subtitle>
@@ -76,12 +74,12 @@
           </v-container>
           <v-card-text itemprop="description">
             <i18n path="home.blurb" tag="span">
-              <template v-slot:wmo>
+              <template #wmo>
                 <a :href="wmoURL" target="_blank">
                   {{ $t('common.wmo') }}
                 </a>
               </template>
-              <template v-slot:gaw>
+              <template #gaw>
                 <a :href="gawURL" target="_blank">
                   {{ $t('common.gaw') }}
                 </a>
@@ -113,8 +111,8 @@
             <nuxt-link
               :to="
                 localePath('news') +
-                  '#' +
-                  newsItem.properties.published_date.slice(0, 10)
+                '#' +
+                newsItem.properties.published_date.slice(0, 10)
               "
             >
               {{ newsItem.properties[`title_${$i18n.locale}`] }}
@@ -140,7 +138,19 @@ export default {
     return {
       loaded: false,
       gawURL: 'http://www.wmo.int/gaw',
-      wmoURL: 'http://www.wmo.int'
+      wmoURL: 'http://www.wmo.int',
+    }
+  },
+  head() {
+    return {
+      title: 'Home',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('home.adTitle'),
+        },
+      ],
     }
   },
   computed: {
@@ -156,20 +166,20 @@ export default {
       return [
         {
           title: 'data.explore.title',
-          link: 'data-search'
+          link: 'data-search',
         },
         {
           title: 'data.stations.title',
-          link: 'data-stations'
+          link: 'data-stations',
         },
         {
           title: 'data.access.web.title',
-          link: 'data-data_access'
+          link: 'data-data_access',
         },
         {
           title: 'resources.related-links.title',
-          link: 'resources-links'
-        }
+          link: 'resources-links',
+        },
       ]
     },
     ...mapState('news', ['newsItems']),
@@ -183,7 +193,7 @@ export default {
             : -1
         )
       return recentNewsItems.slice(0, 3)
-    }
+    },
   },
   created() {
     this.loadNewsItems()
@@ -198,21 +208,9 @@ export default {
       return {
         text: this.$t('data.access.contents.links.' + key),
         selector: this.contentsSelectors[key],
-        subsections: null
+        subsections: null,
       }
-    }
+    },
   },
-  head() {
-    return {
-      title: 'Home',
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('home.adTitle')
-        }
-      ]
-    }
-  }
 }
 </script>

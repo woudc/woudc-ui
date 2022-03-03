@@ -6,7 +6,7 @@
       <v-col>
         <h2>{{ $t('common.gawFull') }}</h2>
         <i18n path="data.quality.gaw-blurb" tag="p">
-          <template v-slot:gaw-qa>
+          <template #gaw-qa>
             <a :href="gawURL" target="_blank">
               {{ $t('data.quality.gaw-qa') }}
             </a>
@@ -14,7 +14,7 @@
         </i18n>
         <h2>{{ $t('data.quality.sag.title') }}</h2>
         <i18n path="data.quality.sag.blurb.body-intro" tag="p">
-          <template v-slot:sop>
+          <template #sop>
             <nuxt-link :to="localePath('resources-sop')">
               {{ $t('common.sop') }}
             </nuxt-link>
@@ -34,7 +34,7 @@
         <ul>
           <li>
             <i18n path="data.quality.eccc.item1" tag="span">
-              <template v-slot:guidelines>
+              <template #guidelines>
                 <nuxt-link :to="localePath('about-formats')">
                   {{ $t('common.guidelines') }}
                 </nuxt-link>
@@ -47,7 +47,7 @@
           <li>{{ $t('data.quality.eccc.item5') }}</li>
           <li>
             <i18n path="data.quality.eccc.item6" tag="span">
-              <template v-slot:access>
+              <template #access>
                 <nuxt-link :to="localePath('data-data_access')">
                   {{ $t('common.access') }}
                 </nuxt-link>
@@ -70,8 +70,20 @@ export default {
         dobson:
           'https://www.esrl.noaa.gov/gmd/ozwv/dobson/troubleshooting.html',
         ozonesonde:
-          'https://www.fz-juelich.de/iek/iek-8/EN/Expertise/Infrastructure/WCCOS/WCCOS_node.html'
-      }
+          'https://www.fz-juelich.de/iek/iek-8/EN/Expertise/Infrastructure/WCCOS/WCCOS_node.html',
+      },
+    }
+  },
+  head() {
+    return {
+      title: this.$t('data.quality.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('data.quality.blurb'),
+        },
+      ],
     }
   },
   computed: {
@@ -83,25 +95,13 @@ export default {
         defn.to = this.sagURLs[key]
         return defn
       })
-    }
-  },
-  head() {
-    return {
-      title: this.$t('data.quality.title'),
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('data.quality.blurb')
-        }
-      ]
-    }
+    },
   },
   nuxtI18n: {
     paths: {
       en: '/data/data-quality',
-      fr: '/donnees/qualite-donnees'
-    }
-  }
+      fr: '/donnees/qualite-donnees',
+    },
+  },
 }
 </script>

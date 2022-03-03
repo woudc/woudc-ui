@@ -6,7 +6,7 @@
         <p>{{ $t('data.explore.blurb.body-datasets') }}</p>
         <p>{{ $t('data.explore.blurb.body-search') }}</p>
         <i18n path="data.explore.blurb.body-howto" tag="p">
-          <template v-slot:how-to>
+          <template #how-to>
             <nuxt-link :to="localePath('data-data_access')">
               {{ $t('data.explore.how-to') }}
             </nuxt-link>
@@ -26,7 +26,7 @@
           dense
           @input="changeDataset"
         >
-          <template v-slot:selection="selection">
+          <template #selection="selection">
             <div class="my-3">
               {{ selection.item.text }}
             </div>
@@ -46,7 +46,7 @@
               dense
               @input="changeCountry"
             >
-              <template v-slot:selection="selection">
+              <template #selection="selection">
                 <div class="my-3">
                   {{ selection.item.text }}
                 </div>
@@ -82,7 +82,7 @@
               dense
               @input="changeStation($event.element)"
             >
-              <template v-slot:selection="selection">
+              <template #selection="selection">
                 <div class="my-3">
                   {{ selection.item.text }}
                 </div>
@@ -113,7 +113,7 @@
           dense
           @input="changeInstrument($event)"
         >
-          <template v-slot:selection="selection">
+          <template #selection="selection">
             <div class="my-3">
               {{ selection.item.text }}
             </div>
@@ -129,7 +129,7 @@
               @keyup.up="setStartYear(parseInt($event.target.value))"
               @keyup.down="setStartYear(parseInt($event.target.value))"
             >
-              <template v-slot:append>
+              <template #append>
                 <div class="mt-2">
                   <v-btn icon small @click="addToStartYear(-1)">
                     <v-icon>mdi-minus-circle-outline</v-icon>
@@ -150,7 +150,7 @@
               @keyup.up="setEndYear(parseInt($event.target.value))"
               @keyup.down="setEndYear(parseInt($event.target.value))"
             >
-              <template v-slot:append>
+              <template #append>
                 <div class="mt-2">
                   <v-btn icon small @click="addToEndYear(-1)">
                     <v-icon>mdi-minus-circle-outline</v-icon>
@@ -180,7 +180,7 @@
           @select="changeStation"
           @move="mapBoundingBox = $event"
         >
-          <template v-slot:popup="element">
+          <template #popup="element">
             {{ element.item.name || element.item.station_name }}
             ({{ element.item.woudc_id || element.item.station_id }})
           </template>
@@ -259,13 +259,11 @@
         <div v-else>
           <v-card v-if="searchOutOfDate" class="mt-1 mb-4" color="warning">
             <v-card-title class="pt-3 pb-0">
-              <v-icon class="mr-1">
-                mdi-alert
-              </v-icon>
+              <v-icon class="mr-1"> mdi-alert </v-icon>
               {{ $t('data.explore.old-search.title') }}
             </v-card-title>
             <i18n path="data.explore.old-search.body" tag="v-card-text">
-              <template v-slot:search>
+              <template #search>
                 <strong>{{ $t('common.submit') }}</strong>
               </template>
             </i18n>
@@ -277,15 +275,15 @@
             :options.sync="options"
             :server-items-length="numberMatched"
             :footer-props="{
-              'items-per-page-options': [10, 25, 50, 100, 500]
+              'items-per-page-options': [10, 25, 50, 100, 500],
             }"
             :loading="loadingDataRecords"
           >
-            <template v-slot:item.observation_date="row">
+            <template #item.observation_date="row">
               <p
                 v-if="
                   peerOrNdaccDatasets.includes(oldSearchParams['dataset']) &&
-                    oldSearchParams['dataset'] === setTable
+                  oldSearchParams['dataset'] === setTable
                 "
               >
                 {{ row.item.start_datetime.substring(0, 10) }}
@@ -297,11 +295,11 @@
             <template
               v-if="
                 oldSearchParams['dataset'] === 'uv_index_hourly' ||
-                  oldSearchParams['dataset'] === 'TotalOzone' ||
-                  oldSearchParams['dataset'] === 'OzoneSonde' ||
-                  peerOrNdaccDatasets.includes(oldSearchParams['dataset'])
+                oldSearchParams['dataset'] === 'TotalOzone' ||
+                oldSearchParams['dataset'] === 'OzoneSonde' ||
+                peerOrNdaccDatasets.includes(oldSearchParams['dataset'])
               "
-              v-slot:item.station_id="row"
+              #item.station_id="row"
             >
               <nuxt-link
                 :to="localePath('data-stations') + '/' + row.item.station_id"
@@ -309,39 +307,39 @@
                 {{ row.item.station_id }}
               </nuxt-link>
             </template>
-            <template v-else v-slot:item.platform_id="row">
+            <template v-else #item.platform_id="row">
               <nuxt-link
                 :to="localePath('data-stations') + '/' + row.item.platform_id"
               >
                 {{ row.item.platform_id }}
               </nuxt-link>
             </template>
-            <template v-slot:item.station_gaw_id="row">
+            <template #item.station_gaw_id="row">
               <a :href="row.item.station_gaw_url" target="_blank">
                 {{ row.item.station_gaw_id }}
               </a>
             </template>
-            <template v-slot:item.gaw_id="row">
+            <template #item.gaw_id="row">
               <a :href="row.item.gaw_url" target="_blank">
                 {{ row.item.gaw_id }}
               </a>
             </template>
-            <template v-slot:item.contributor_acronym="row">
+            <template #item.contributor_acronym="row">
               <a :href="row.item.contributor_url" target="_blank">
                 {{ row.item.contributor_acronym }}
               </a>
             </template>
-            <template v-slot:item.observation_time="row">
+            <template #item.observation_time="row">
               <p v-if="row.item.observation_time">
                 {{ row.item.observation_time.substring(11, 13) }}
               </p>
             </template>
-            <template v-slot:item.timestamp_utc="row">
+            <template #item.timestamp_utc="row">
               <p v-if="row.item.timestamp_utc">
                 {{ row.item.timestamp_utc.substring(0, 10) }}
               </p>
             </template>
-            <template v-slot:item.actions="row">
+            <template #item.actions="row">
               <a :href="row.item.url" target="_blank">
                 <v-icon>mdi-file-download</v-icon>
               </a>
@@ -359,7 +357,7 @@ import { getExplore, getMetrics } from '~/plugins/api/wdr.api.processes'
 import {
   stripProperties,
   unpackageBareStation,
-  compareLocaleOnKey
+  compareLocaleOnKey,
 } from '~/plugins/woudcJsonUtil.js'
 
 import MapInstructions from '~/components/MapInstructions'
@@ -370,7 +368,7 @@ export default {
   components: {
     'map-instructions': MapInstructions,
     'metrics-chart': MetricsChart,
-    'selectable-map': SelectableMap
+    'selectable-map': SelectableMap,
   },
   data() {
     return {
@@ -398,7 +396,7 @@ export default {
         page: 1,
         itemsPerPage: 10,
         sortDesc: [],
-        sortBy: []
+        sortBy: [],
       },
       resettingMap: false,
       selectedCountry: null,
@@ -413,7 +411,19 @@ export default {
       setTable: null,
       stations: [],
       stationsWithMetadata: [],
-      stationOrder: 'name'
+      stationOrder: 'name',
+    }
+  },
+  head() {
+    return {
+      title: this.$t('data.explore.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('data.explore.blurb.body-datasets'),
+        },
+      ],
     }
   },
   computed: {
@@ -423,7 +433,7 @@ export default {
           Math.max(-180, this.mapBoundingBox.getWest()),
           Math.max(-90, this.mapBoundingBox.getSouth()),
           Math.min(180, this.mapBoundingBox.getEast()),
-          Math.min(90, this.mapBoundingBox.getNorth())
+          Math.min(90, this.mapBoundingBox.getNorth()),
         ]
       } else {
         return null
@@ -437,7 +447,7 @@ export default {
         // All countries option
         text: this.$t('common.all'),
         value: null,
-        element: null
+        element: null,
       }
 
       const orderedCountries = this.countries
@@ -463,7 +473,7 @@ export default {
           'instrument_serial',
           'uv_index',
           'uv_daily_max',
-          'actions'
+          'actions',
         ]
       } else if (this.selectedDatasetID === 'TotalOzone') {
         headerKeys = [
@@ -478,7 +488,7 @@ export default {
           'daily_utc_begin',
           'daily_utc_end',
           'daily_nobs',
-          'actions'
+          'actions',
         ]
       } else if (this.peerOrNdaccDatasets.includes(this.selectedDatasetID)) {
         headerKeys = [
@@ -490,7 +500,7 @@ export default {
           'instrument_type',
           'start_datetime',
           'end_datetime',
-          'actions'
+          'actions',
         ]
       } else if (this.selectedDatasetID === 'OzoneSonde') {
         headerKeys = [
@@ -502,7 +512,7 @@ export default {
           'o3partialpressure',
           'pressure',
           'temperature',
-          'actions'
+          'actions',
         ]
       } else {
         headerKeys = [
@@ -512,14 +522,14 @@ export default {
           'platform_id',
           'instrument_name',
           'processed_datetime',
-          'actions'
+          'actions',
         ]
       }
 
       return headerKeys.map((key) => {
         return {
           text: this.$t('data.explore.table-headers.' + key.replace('_', '-')),
-          value: key
+          value: key,
         }
       })
     },
@@ -527,43 +537,43 @@ export default {
       const datasetSections = {
         totalozone: {
           daily: 'TotalOzone',
-          hourly: 'TotalOzoneObs'
+          hourly: 'TotalOzoneObs',
         },
         'vertical-ozone': {
           lidar: 'Lidar',
           ozonesonde: 'OzoneSonde',
           umkehr1: 'UmkehrN14_1.0',
           umkehr2: 'UmkehrN14_2.0',
-          rocketsonde: 'RocketSonde'
+          rocketsonde: 'RocketSonde',
         },
         'uv-irradiance': {
           broadband: 'Broad-band',
           multiband: 'Multi-band',
           spectral: 'Spectral',
-          'uv-index': 'uv_index_hourly'
+          'uv-index': 'uv_index_hourly',
         },
         'data-centers': {
           totalozone: 'ndacc_total',
           'vertical-ozone': 'ndacc_vertical',
           'uv-irradiance': 'ndacc_uv',
-          eubrewnet: 'peer_data_records'
-        }
+          eubrewnet: 'peer_data_records',
+        },
       }
 
       const datasetOptions = []
       datasetOptions.push({
         text: this.$t('common.all'),
-        value: null
+        value: null,
       })
 
       for (const [section, children] of Object.entries(datasetSections)) {
         datasetOptions.push({
-          header: this.$t('data.explore.dataset.' + section + '.label')
+          header: this.$t('data.explore.dataset.' + section + '.label'),
         })
         for (const [subsection, id] of Object.entries(children)) {
           datasetOptions.push({
             text: this.$t('data.explore.dataset.' + section + '.' + subsection),
-            value: id
+            value: id,
           })
         }
       }
@@ -587,7 +597,7 @@ export default {
       const nullOption = {
         text: this.$t('common.all'),
         value: null,
-        element: null
+        element: null,
       }
 
       const instrumentOptions = this.instruments.map(
@@ -602,7 +612,7 @@ export default {
       const nullOption = {
         text: this.$t('common.all'),
         value: null,
-        element: null
+        element: null,
       }
 
       const orderedStations = this.stations
@@ -684,7 +694,7 @@ export default {
         this.loadingMap ||
         this.loadingDataRecords
       )
-    }
+    },
   },
   watch: {
     boundingBoxArray: {
@@ -693,26 +703,26 @@ export default {
           this.refreshMetrics()
         }
       },
-      deep: true
+      deep: true,
     },
     enableBboxSearch: {
       async handler() {
         this.refreshMetrics()
-      }
+      },
     },
     options: {
       async handler() {
         this.refreshDataRecordsPage()
       },
-      deep: true
-    }
+      deep: true,
+    },
   },
   mounted() {
     Promise.all([
       this.$store.dispatch('countries/downloadCountries'),
       this.$store.dispatch('countries/downloadBounds'),
       this.$store.dispatch('stations/downloadStationsByDataset'),
-      this.$store.dispatch('instruments/downloadDistinctNames')
+      this.$store.dispatch('instruments/downloadDistinctNames'),
     ]).then(() => {
       const countries = this.$store.getters['countries/all']
       const stations = this.$store.getters['stations/all']
@@ -873,7 +883,7 @@ export default {
       return {
         text: this.countryText(country),
         value: country.country_id || country.country_code,
-        element: country
+        element: country,
       }
     },
     selectCountryFromStation(station) {
@@ -881,11 +891,12 @@ export default {
         station['name'] === undefined
           ? station['station_name']
           : station['name']
-      const countryName = this.stationsWithMetadata[
-        this.stationsWithMetadata.findIndex(
-          (stn) => stn['name'] === stationName
-        )
-      ][this.countryNameLocale]
+      const countryName =
+        this.stationsWithMetadata[
+          this.stationsWithMetadata.findIndex(
+            (stn) => stn['name'] === stationName
+          )
+        ][this.countryNameLocale]
       const countryOptionsElems = this.countryOptions.slice(1)
       const country =
         countryOptionsElems[
@@ -903,7 +914,7 @@ export default {
       return {
         text: this.instrumentText(instrument),
         value: instrument.name || instrument.instrument_name,
-        element: instrument
+        element: instrument,
       }
     },
     stationText(station) {
@@ -921,7 +932,7 @@ export default {
       return {
         text: this.stationText(station),
         value: station.woudc_id || station.station_id,
-        element: station
+        element: station,
       }
     },
     async reset() {
@@ -948,7 +959,7 @@ export default {
         page: 1,
         itemsPerPage: 10,
         sortDesc: [],
-        sortBy: []
+        sortBy: [],
       }
       this.numberMatched = 0
 
@@ -983,7 +994,7 @@ export default {
       const ndacc_datasets = {
         ndacc_total: 'TOTALCOL',
         ndacc_uv: 'UV',
-        ndacc_vertical: 'OZONE'
+        ndacc_vertical: 'OZONE',
       }
 
       let queryParams = ''
@@ -996,7 +1007,7 @@ export default {
           ndacc_vertical: 'start_datetime,station_id,measurement',
           ndacc_uv: 'start_datetime,station_id,measurement',
           OzoneSonde: 'timestamp_date,station_id',
-          data_records: 'timestamp_date,platform_id,content_category'
+          data_records: 'timestamp_date,platform_id,content_category',
         }
         if (sortByParams[this.selectedDatasetID] !== undefined) {
           queryParams = 'sortby=-' + sortByParams[this.selectedDatasetID]
@@ -1015,20 +1026,20 @@ export default {
         selected = {
           country_id: this.selectedCountryID,
           station_id: this.selectedStationID,
-          instrument_name: this.selectedInstrumentID
+          instrument_name: this.selectedInstrumentID,
         }
       } else if (this.selectedDatasetID === 'TotalOzone') {
         selected = {
           country_id: this.selectedCountryID,
           station_id: this.selectedStationID,
-          instrument_name: this.selectedInstrumentID
+          instrument_name: this.selectedInstrumentID,
         }
       } else if (this.selectedDatasetID === 'peer_data_records') {
         selected = {
           source: 'eubrewnet',
           country_id: this.selectedCountryID,
           station_id: this.selectedStationID,
-          instrument_name: this.selectedInstrumentID
+          instrument_name: this.selectedInstrumentID,
         }
       } else if (this.ndaccDatasets.includes(this.selectedDatasetID)) {
         selected = {
@@ -1036,20 +1047,20 @@ export default {
           measurement: ndacc_datasets[this.selectedDatasetID],
           country_id: this.selectedCountryID,
           station_id: this.selectedStationID,
-          instrument_name: this.selectedInstrumentID
+          instrument_name: this.selectedInstrumentID,
         }
       } else if (this.selectedDatasetID === 'OzoneSonde') {
         selected = {
           country_id: this.selectedCountryID,
           station_id: this.selectedStationID,
-          instrument_name: this.selectedInstrumentID
+          instrument_name: this.selectedInstrumentID,
         }
       } else {
         selected = {
           content_category: this.selectedDatasetID,
           platform_country: this.selectedCountryID,
           platform_id: this.selectedStationID,
-          instrument_name: this.selectedInstrumentID
+          instrument_name: this.selectedInstrumentID,
         }
       }
 
@@ -1108,7 +1119,7 @@ export default {
         instrument: this.selectedInstrumentID,
         station: this.selectedStationID,
         'start-year': this.selectedYearRange[0],
-        'end-year': this.selectedYearRange[1]
+        'end-year': this.selectedYearRange[1],
       }
       if (this.enableBboxSearch == true) {
         this.oldSearchParams['bbox'] = this.boundingBoxArray
@@ -1126,7 +1137,7 @@ export default {
       const ndacc_datasets = {
         ndacc_total: 'TOTALCOL',
         ndacc_uv: 'UV',
-        ndacc_vertical: 'OZONE'
+        ndacc_vertical: 'OZONE',
       }
       const dataRecordsURL =
         this.$config.WOUDC_UI_API_URL + '/collections/data_records/items'
@@ -1149,7 +1160,7 @@ export default {
           ndacc_vertical: 'start_datetime,station_id,measurement',
           ndacc_uv: 'start_datetime,station_id,measurement',
           OzoneSonde: 'timestamp_date,station_id',
-          data_records: 'timestamp_date,platform_id,content_category'
+          data_records: 'timestamp_date,platform_id,content_category',
         }
         if (sortByParams[this.oldSearchParams['dataset']] !== undefined) {
           queryParams =
@@ -1169,26 +1180,26 @@ export default {
         selected = {
           country_id: this.oldSearchParams['country'],
           station_id: this.oldSearchParams['station'],
-          instrument_name: this.oldSearchParams['instrument']
+          instrument_name: this.oldSearchParams['instrument'],
         }
       } else if (this.oldSearchParams['dataset'] === 'TotalOzone') {
         selected = {
           country_id: this.oldSearchParams['country'],
           station_id: this.oldSearchParams['station'],
-          instrument_name: this.oldSearchParams['instrument']
+          instrument_name: this.oldSearchParams['instrument'],
         }
       } else if (this.oldSearchParams['dataset'] === 'OzoneSonde') {
         selected = {
           country_id: this.oldSearchParams['country'],
           station_id: this.oldSearchParams['station'],
-          instrument_name: this.oldSearchParams['instrument']
+          instrument_name: this.oldSearchParams['instrument'],
         }
       } else if (this.oldSearchParams['dataset'] === 'peer_data_records') {
         selected = {
           source: 'eubrewnet',
           country_id: this.oldSearchParams['country'],
           station_id: this.oldSearchParams['station'],
-          instrument_name: this.oldSearchParams['instrument']
+          instrument_name: this.oldSearchParams['instrument'],
         }
       } else if (
         this.oldSearchParams['dataset'] === 'ndacc_total' ||
@@ -1200,14 +1211,14 @@ export default {
           measurement: ndacc_datasets[this.oldSearchParams['dataset']],
           country_id: this.oldSearchParams['country'],
           station_id: this.oldSearchParams['station'],
-          instrument_name: this.oldSearchParams['instrument']
+          instrument_name: this.oldSearchParams['instrument'],
         }
       } else {
         selected = {
           content_category: this.oldSearchParams['dataset'],
           platform_country: this.oldSearchParams['country'],
           platform_id: this.oldSearchParams['station'],
-          instrument_name: this.oldSearchParams['instrument']
+          instrument_name: this.oldSearchParams['instrument'],
         }
       }
       if (
@@ -1344,14 +1355,14 @@ export default {
     async refreshMetrics() {
       const inputs = {
         domain: 'contributor',
-        timescale: 'year'
+        timescale: 'year',
       }
 
       let paramNames = {
         dataset: this.selectedDatasetID,
         country: this.selectedCountryID,
         station: this.selectedStationID,
-        network: this.selectedInstrumentID
+        network: this.selectedInstrumentID,
       }
       if (this.enableBboxSearch == true) {
         paramNames['bbox'] = this.boundingBoxArray
@@ -1383,7 +1394,7 @@ export default {
       response.data.metrics.forEach((metric) => {
         newMetrics[metric.year] = {
           totalFiles: metric.total_files,
-          totalObs: metric.total_obs
+          totalObs: metric.total_obs,
         }
       })
 
@@ -1457,26 +1468,14 @@ export default {
         // Set the actual intended value for the start year.
         this.selectedYearRange = [newStartYear, oldEndYear]
       })
-    }
-  },
-  head() {
-    return {
-      title: this.$t('data.explore.title'),
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('data.explore.blurb.body-datasets')
-        }
-      ]
-    }
+    },
   },
   nuxtI18n: {
     paths: {
       en: '/data/data-search-and-download',
-      fr: '/donnees/rechercher-et-telecharger-de-donnees'
-    }
-  }
+      fr: '/donnees/rechercher-et-telecharger-de-donnees',
+    },
+  },
 }
 </script>
 

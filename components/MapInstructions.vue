@@ -6,24 +6,24 @@
       </v-expansion-panel-header>
       <v-expansion-panel-content>
         <i18n path="common.map-instructions.body-panning" tag="p">
-          <template v-slot:panning>
+          <template #panning>
             <strong>{{ $t('common.map-instructions.panning') }}</strong>
           </template>
-          <template v-slot:tab>
+          <template #tab>
             <kbd>{{ $t('common.map-instructions.tab') }}</kbd>
           </template>
         </i18n>
         <i18n path="common.map-instructions.body-zooming" tag="p">
-          <template v-slot:zooming>
+          <template #zooming>
             <strong>{{ $t('common.map-instructions.zooming') }}</strong>
           </template>
-          <template v-slot:tab>
+          <template #tab>
             <kbd>{{ $t('common.map-instructions.tab') }}</kbd>
           </template>
-          <template v-slot:plus>
+          <template #plus>
             <kbd>+</kbd>
           </template>
-          <template v-slot:minus>
+          <template #minus>
             <kbd>-</kbd>
           </template>
         </i18n>
@@ -34,6 +34,6 @@
 
 <script>
 export default {
-  name: 'MapInstructions'
+  name: 'MapInstructions',
 }
 </script>

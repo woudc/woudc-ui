@@ -12,7 +12,7 @@
       jumpToSelection()
     "
   >
-    <template v-slot:item="row">
+    <template #item="row">
       <tr
         :class="{ 'selected-row': isSelected(row.item) }"
         @click="emitSelection(row.item)"
@@ -30,12 +30,12 @@ export default {
     elements: { type: Array, required: true },
     headers: { type: Array, required: true },
     selected: { type: Object, required: false, default: null },
-    loading: { type: Boolean, required: false, default: false }
+    loading: { type: Boolean, required: false, default: false },
   },
   data() {
     return {
       rowsPerPage: 10,
-      selectedPage: 1
+      selectedPage: 1,
     }
   },
   watch: {
@@ -44,7 +44,7 @@ export default {
     },
     selected() {
       this.jumpToSelection()
-    }
+    },
   },
   methods: {
     emitSelection(element) {
@@ -75,8 +75,8 @@ export default {
         const page = Math.ceil((index + 1) / this.rowsPerPage)
         this.selectedPage = page
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

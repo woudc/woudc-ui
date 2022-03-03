@@ -4,14 +4,14 @@
       <v-col>
         <h1>{{ $t('contact.title') }}</h1>
         <i18n path="contact.blurb.body-faq" tag="p">
-          <template v-slot:faq>
+          <template #faq>
             <nuxt-link :to="localePath('about-faq')">
               {{ $t('common.faq') }}
             </nuxt-link>
           </template>
         </i18n>
         <i18n path="contact.blurb.body-contact" tag="p">
-          <template v-slot:woudc>
+          <template #woudc>
             <strong>{{ $t('common.woudc') }}</strong>
           </template>
         </i18n>
@@ -21,7 +21,7 @@
           </v-card-title>
           <v-card-text>
             <i18n path="contact.note.body" tag="span">
-              <template v-slot:privacy-act>
+              <template #privacy-act>
                 <i
                   ><a :href="privacyActURL" target="_blank">
                     {{ $t('common.privacy-act') }}
@@ -59,7 +59,7 @@
 export default {
   data() {
     return {
-      privacyActURL: 'https://laws-lois.justice.gc.ca/eng/acts/P-21/index.html'
+      privacyActURL: 'https://laws-lois.justice.gc.ca/eng/acts/P-21/index.html',
     }
   },
   head() {
@@ -69,17 +69,17 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('contact.blurb.body-contact')
-        }
-      ]
+          content: this.$t('contact.blurb.body-contact'),
+        },
+      ],
     }
   },
   nuxtI18n: {
     paths: {
       en: '/contact',
-      fr: '/contacter'
-    }
-  }
+      fr: '/contacter',
+    },
+  },
 }
 </script>
 

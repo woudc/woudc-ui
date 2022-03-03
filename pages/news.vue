@@ -78,7 +78,19 @@ export default {
   data() {
     return {
       loaded: false,
-      selectedTags: []
+      selectedTags: [],
+    }
+  },
+  head() {
+    return {
+      title: this.$t('news.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('news.blurb'),
+        },
+      ],
     }
   },
   computed: {
@@ -113,7 +125,7 @@ export default {
         }
       }
       return sortedItems
-    }
+    },
   },
   created() {
     this.loadNewsItems()
@@ -138,7 +150,7 @@ export default {
         this.$data.selectedTags = []
       }
       if (this.$data.selectedTags.includes(inputSelectedTag) === true) {
-        this.$data.selectedTags = this.$data.selectedTags.filter(function(
+        this.$data.selectedTags = this.$data.selectedTags.filter(function (
           Elem
         ) {
           return Elem !== inputSelectedTag
@@ -146,25 +158,13 @@ export default {
       } else if (inputSelectedTag !== '') {
         this.$data.selectedTags.push(inputSelectedTag)
       }
-    }
-  },
-  head() {
-    return {
-      title: this.$t('news.title'),
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('news.blurb')
-        }
-      ]
-    }
+    },
   },
   nuxtI18n: {
     paths: {
       en: '/news',
-      fr: '/nouvelles'
-    }
-  }
+      fr: '/nouvelles',
+    },
+  },
 }
 </script>

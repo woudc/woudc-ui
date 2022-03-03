@@ -4,12 +4,12 @@
     <p>{{ $t('about.home.blurb.body-intro') }}</p>
     <p>{{ $t('about.home.blurb.body-datasets') }}</p>
     <i18n path="about.home.blurb.body-contributors" tag="p">
-      <template v-slot:stations>
+      <template #stations>
         <nuxt-link :to="localePath('data-stations')">
           {{ $t('common.stations') }}
         </nuxt-link>
       </template>
-      <template v-slot:contributors>
+      <template #contributors>
         <nuxt-link :to="localePath('contributors')">
           {{ $t('common.contributors') }}
         </nuxt-link>
@@ -17,12 +17,12 @@
     </i18n>
     <p>{{ $t('about.home.blurb.body-products') }}</p>
     <i18n path="about.home.blurb.body-access" tag="p">
-      <template v-slot:search>
+      <template #search>
         <nuxt-link :to="localePath('data-search')">
           {{ $t('common.search') }}
         </nuxt-link>
       </template>
-      <template v-slot:access>
+      <template #access>
         <nuxt-link :to="localePath('about-data_access')">
           {{ $t('common.access') }}
         </nuxt-link>
@@ -69,16 +69,16 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('about.home.blurb.body-intro')
-        }
-      ]
+          content: this.$t('about.home.blurb.body-intro'),
+        },
+      ],
     }
   },
   nuxtI18n: {
     paths: {
       en: '/about',
-      fr: '/a-propos'
-    }
-  }
+      fr: '/a-propos',
+    },
+  },
 }
 </script>
