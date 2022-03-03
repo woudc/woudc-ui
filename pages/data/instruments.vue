@@ -51,8 +51,8 @@
           </v-card-title>
           <v-col class="mr-2 pt-0 d-flex align-content-start flex-wrap">
             <v-col
-              v-for="field in distinctInstrumentFields"
-              :key="field"
+              v-for="(field, key) in distinctInstrumentFields"
+              :key="key"
               cols="6"
             >
               <v-autocomplete
@@ -167,18 +167,6 @@ export default {
     'selectable-table': SelectableTable,
     'table-instructions': tableInstructions,
   },
-  head() {
-    return {
-      title: this.$t('data.instruments.title'),
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('data.instruments.blurb'),
-        },
-      ],
-    }
-  },
   data() {
     return {
       boundingBox: null,
@@ -207,6 +195,18 @@ export default {
         name: [],
         station_name: [],
       },
+    }
+  },
+  head() {
+    return {
+      title: this.$t('data.instruments.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('data.instruments.blurb'),
+        },
+      ],
     }
   },
   computed: {

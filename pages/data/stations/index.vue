@@ -52,7 +52,11 @@
             {{ $t('common.filtering.title') }}
           </v-card-title>
           <v-col class="mr-2 pt-0 d-flex align-content-start flex-wrap">
-            <v-col v-for="field in distinctStationFields" :key="field" cols="6">
+            <v-col
+              v-for="(field, key) in distinctStationFields"
+              :key="key"
+              cols="6"
+            >
               <v-autocomplete
                 v-model="selectedFilters[field.value]"
                 :loading="loadingStationFields"

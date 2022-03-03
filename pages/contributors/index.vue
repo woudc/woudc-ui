@@ -47,8 +47,8 @@
           </v-card-title>
           <v-col class="mr-2 pt-0 d-flex align-content-start flex-wrap">
             <v-col
-              v-for="field in distinctContributorFields"
-              :key="field"
+              v-for="(field, key) in distinctContributorFields"
+              :key="key"
               cols="6"
             >
               <v-autocomplete
