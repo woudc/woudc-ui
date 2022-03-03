@@ -14,7 +14,7 @@
         <ol>
           <li>
             <i18n path="contributors.submission.step1" tag="span">
-              <template v-slot:formats>
+              <template #formats>
                 <nuxt-link :to="localePath('about-formats')">
                   {{ $t('common.formats') }}
                 </nuxt-link>
@@ -23,7 +23,7 @@
           </li>
           <li>
             <i18n path="contributors.submission.step2" tag="span">
-              <template v-slot:ftp>
+              <template #ftp>
                 <a :href="ftpPath" target="_blank">
                   {{ $t('common.ftp') }}
                 </a>
@@ -41,7 +41,7 @@
           </v-card-text>
         </v-card>
         <i18n path="contributors.submission.blurb-contact" tag="p">
-          <template v-slot:contact-us>
+          <template #contact-us>
             <nuxt-link :to="localePath('contact')">
               {{ $t('common.contact-us') }}
             </nuxt-link>
@@ -56,7 +56,7 @@
 export default {
   data() {
     return {
-      ftpPath: 'ftp://ftp.woudc.org/'
+      ftpPath: 'ftp://ftp.woudc.org/',
     }
   },
   head() {
@@ -66,16 +66,16 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('contributors.submission.blurb-intro')
-        }
-      ]
+          content: this.$t('contributors.submission.blurb-intro'),
+        },
+      ],
     }
   },
   nuxtI18n: {
     paths: {
       en: '/contributors/data-submission',
-      fr: '/contributeurs/soumission-de-donnees'
-    }
-  }
+      fr: '/contributeurs/soumission-de-donnees',
+    },
+  },
 }
 </script>

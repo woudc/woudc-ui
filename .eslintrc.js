@@ -2,27 +2,26 @@ module.exports = {
   root: true,
   env: {
     browser: true,
-    node: true
+    node: true,
   },
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: '@babel/eslint-parser',
   },
   extends: [
-    'plugin:jest/recommended',
     'plugin:vue/recommended',
+    'plugin:nuxt/recommended',
+    'plugin:prettier/recommended',
     'eslint:recommended',
-    'prettier/vue',
-    'plugin:prettier/recommended'
   ],
   // add your custom rules here
   rules: {
-    indent: ['error', 2],
-    semi: ['error', 'never'],
     'vue/component-name-in-template-casing': ['error', 'PascalCase'],
+    'vue/multi-word-component-names': 'off',
+    'vue/valid-v-slot': ['error', { allowModifiers: true }],
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
   },
   globals: {
-    $nuxt: true // prevent "no-undefined variables" when accessing $nuxt
-  }
+    $nuxt: true, // prevent "no-undefined variables" when accessing $nuxt
+  },
 }

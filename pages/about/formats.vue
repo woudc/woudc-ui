@@ -2,15 +2,15 @@
   <v-container>
     <h1>{{ $t('about.formats.title') }}</h1>
     <i18n path="about.formats.blurb.body-intro" tag="p">
-      <template v-slot:extended>
+      <template #extended>
         <strong>{{ $t('common.extended') }}</strong>
       </template>
     </i18n>
     <i18n path="about.formats.blurb.body-extcsv" tag="p">
-      <template v-slot:extended>
+      <template #extended>
         <strong>{{ $t('common.extended') }}</strong>
       </template>
-      <template v-slot:access>
+      <template #access>
         <nuxt-link :to="localePath('about-data_access')">
           {{ $t('common.access') }}
         </nuxt-link>
@@ -86,7 +86,7 @@ export default {
           '/Documentation/Examples-extCSV/Umkehr-N_values-Dobson.csv',
         umkehr2:
           this.$config.WOUDC_UI_WAF_URL +
-          '/Documentation/Examples-extCSV/Umkehr_UMK92Retrieval-Dobson.csv'
+          '/Documentation/Examples-extCSV/Umkehr_UMK92Retrieval-Dobson.csv',
       },
       ozoneDatasets: [
         'lidar',
@@ -94,19 +94,9 @@ export default {
         'totalozone',
         'totalozoneobs',
         'umkehr1',
-        'umkehr2'
+        'umkehr2',
       ],
-      uvDatasets: ['broadband', 'multiband', 'spectral']
-    }
-  },
-  methods: {
-    prepareLinks(datasets) {
-      return datasets.map((dataset) => {
-        return {
-          text: this.$t('about.formats.examples.links.' + dataset),
-          url: this.exampleURLs[dataset]
-        }
-      })
+      uvDatasets: ['broadband', 'multiband', 'spectral'],
     }
   },
   head() {
@@ -116,16 +106,26 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('about.formats.examples.blurb')
-        }
-      ]
+          content: this.$t('about.formats.examples.blurb'),
+        },
+      ],
     }
+  },
+  methods: {
+    prepareLinks(datasets) {
+      return datasets.map((dataset) => {
+        return {
+          text: this.$t('about.formats.examples.links.' + dataset),
+          url: this.exampleURLs[dataset],
+        }
+      })
+    },
   },
   nuxtI18n: {
     paths: {
       en: '/about/formats',
-      fr: '/a-propos/formats'
-    }
-  }
+      fr: '/a-propos/formats',
+    },
+  },
 }
 </script>

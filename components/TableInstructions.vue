@@ -6,17 +6,17 @@
       </v-expansion-panel-header>
       <v-expansion-panel-content>
         <i18n path="common.table-instructions.body-filtering" tag="p">
-          <template v-slot:filtering>
+          <template #filtering>
             <strong>{{ $t('common.table-instructions.filtering') }}</strong>
           </template>
         </i18n>
         <i18n path="common.table-instructions.body-sorting" tag="p">
-          <template v-slot:sorting>
+          <template #sorting>
             <strong>{{ $t('common.table-instructions.sorting') }}</strong>
           </template>
         </i18n>
         <i18n path="common.table-instructions.body-paging" tag="p">
-          <template v-slot:paging>
+          <template #paging>
             <strong>{{ $t('common.table-instructions.paging') }}</strong>
           </template>
         </i18n>
@@ -27,6 +27,6 @@
 
 <script>
 export default {
-  name: 'TableInstructions'
+  name: 'TableInstructions',
 }
 </script>

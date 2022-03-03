@@ -2,19 +2,19 @@
 import woudcClient from '~/plugins/woudcClient'
 
 const state = () => ({
-  newsItems: []
+  newsItems: [],
 })
 
 const getters = {
   newsItems: (state) => {
     return state.newsItems
-  }
+  },
 }
 
 const mutations = {
   setNewsItems(state, json) {
     state.newsItems = json
-  }
+  },
 }
 
 const actions = {
@@ -24,12 +24,12 @@ const actions = {
     try {
       const response = await woudcClient.get(URL)
       commit('setNewsItems', {
-        json: response.data
+        json: response.data,
       })
     } catch (error) {
       console.error(error)
     }
-  }
+  },
 }
 
 export default {
@@ -37,5 +37,5 @@ export default {
   state,
   getters,
   actions,
-  mutations
+  mutations,
 }

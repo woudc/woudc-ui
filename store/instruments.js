@@ -6,7 +6,7 @@ function instrumentModelID(instrumentModelObj) {
     instrumentModelObj.properties.name,
     instrumentModelObj.properties.model,
     instrumentModelObj.properties.station_id,
-    instrumentModelObj.properties.dataset
+    instrumentModelObj.properties.dataset,
   ]
   return components.join(':')
 }
@@ -17,7 +17,7 @@ const state = () => ({
   loadedInstrumentFields: false,
   instrumentDistinctFields: {}, // Object of list of unique values for instrument fields.
   instrumentModels: [], // List of unique instrument name/model combinations.
-  instrumentNames: [] // List of unique instrument names.
+  instrumentNames: [], // List of unique instrument names.
 })
 
 const getters = {
@@ -30,7 +30,7 @@ const getters = {
   },
   nameResolution(state) {
     return state.instrumentNames
-  }
+  },
 }
 
 const mutations = {
@@ -54,7 +54,7 @@ const mutations = {
   },
   setLoadedNames(state) {
     state.loadedInstrumentNames = true
-  }
+  },
 }
 
 const actions = {
@@ -69,7 +69,7 @@ const actions = {
     const inputs = {
       index: 'instrument',
       distinct: {
-        modelResolution: ['name', 'model', 'station_id', 'dataset']
+        modelResolution: ['name', 'model', 'station_id', 'dataset'],
       },
       source: [
         'station_name',
@@ -77,8 +77,8 @@ const actions = {
         'contributor_name',
         'waf_url',
         'start_date',
-        'end_date'
-      ]
+        'end_date',
+      ],
     }
 
     const queryParams = { inputs }
@@ -107,7 +107,7 @@ const actions = {
     const inputs = {
       index: 'instrument',
       distinct: {
-        nameResolution: ['name']
+        nameResolution: ['name'],
       },
       source: [
         'station_name',
@@ -117,8 +117,8 @@ const actions = {
         'contributor_name',
         'waf_url',
         'start_date',
-        'end_date'
-      ]
+        'end_date',
+      ],
     }
 
     const queryParams = { inputs }
@@ -144,7 +144,7 @@ const actions = {
       'model',
       'dataset',
       'data_class',
-      'station_name'
+      'station_name',
     ]
     for (const field of instrumentFields) {
       const queryURL =
@@ -153,9 +153,9 @@ const actions = {
       const inputs = {
         index: 'instrument',
         distinct: {
-          modelResolution: [field]
+          modelResolution: [field],
         },
-        source: [field]
+        source: [field],
       }
       const queryParams = { inputs }
       const response = await woudcClient.post(queryURL, queryParams)
@@ -163,7 +163,7 @@ const actions = {
 
       distinctFields[`${field}`] = {
         value: field,
-        array: []
+        array: [],
       }
       for (const item of responseArray) {
         distinctFields[`${field}`]['array'].push(item.properties[`${field}`])
@@ -171,7 +171,7 @@ const actions = {
     }
     commit('setInstrumentsDistinctFieldResolution', distinctFields)
     commit('setLoadedFields', true)
-  }
+  },
 }
 
 export default {
@@ -179,5 +179,5 @@ export default {
   state,
   getters,
   actions,
-  mutations
+  mutations,
 }

@@ -8,7 +8,7 @@ export default {
   props: {
     startdate: { type: Number, required: true },
     enddate: { type: Number, required: true },
-    metrics: { type: Object, required: true }
+    metrics: { type: Object, required: true },
   },
   data() {
     return {
@@ -16,14 +16,14 @@ export default {
         barValueSpacing: 20,
         legend: {
           position: 'top',
-          align: 'end'
+          align: 'end',
         },
         maintainAspectRatio: false,
         responsive: true,
         scales: {
-          yAxes: [{ id: 'observations' }, { id: 'files' }]
-        }
-      }
+          yAxes: [{ id: 'observations' }, { id: 'files' }],
+        },
+      },
     }
   },
   computed: {
@@ -35,20 +35,20 @@ export default {
             label: 'Total Files',
             backgroundColor: this.$vuetify.theme.currentTheme.accent,
             data: this.createMetricsSummary('totalFiles'),
-            yAxisID: 'files'
+            yAxisID: 'files',
           },
           {
             label: 'Total Observations',
             backgroundColor: this.$vuetify.theme.currentTheme.primary,
             data: this.createMetricsSummary('totalObs'),
-            yAxisID: 'observations'
-          }
-        ]
+            yAxisID: 'observations',
+          },
+        ],
       }
     },
     yearRange() {
       return this.range(this.startdate, this.enddate)
-    }
+    },
   },
   watch: {
     startdate() {
@@ -59,7 +59,7 @@ export default {
     },
     metrics() {
       this.renderChart(this.barChartDefinition, this.barChartOptions)
-    }
+    },
   },
   mounted() {
     this.renderChart(this.barChartDefinition, this.barChartOptions)
@@ -83,7 +83,7 @@ export default {
           return 0
         }
       })
-    }
-  }
+    },
+  },
 }
 </script>

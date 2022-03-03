@@ -50,7 +50,7 @@ export default {
     selected: { type: Object, required: false, default: null },
     country: { type: String, required: false, default: null },
     loading: { type: Boolean, required: false, default: false },
-    reset: { type: Boolean, required: false, default: false }
+    reset: { type: Boolean, required: false, default: false },
   },
   data() {
     return {
@@ -59,19 +59,19 @@ export default {
       borderStyle: {
         color: 'darkblue',
         fillOpacity: 0,
-        weight: 0.8
+        weight: 0.8,
       },
       eventLock: false,
       startCenter: [0, 0],
       startZoom: 1,
-      tileURLTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+      tileURLTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
     }
   },
   computed: {
     wmoRegions() {
       const regions = this.$store.getters['wmoRegions/all']
       return Object.values(regions)
-    }
+    },
   },
   watch: {
     country(newSelection) {
@@ -112,7 +112,7 @@ export default {
           this.$refs[newMarkerID][0].mapObject.openPopup()
         })
       }
-    }
+    },
   },
   mounted() {
     this.setIconSize()
@@ -171,8 +171,8 @@ export default {
     zoomToGlobe() {
       const map = this.$refs['woudc-map']
       map.mapObject.setView({ lat: 0, lon: 0 }, 1)
-    }
-  }
+    },
+  },
 }
 </script>
 

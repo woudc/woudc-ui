@@ -5,7 +5,7 @@ const state = () => ({
   loadedCountries: false,
   boundaries: {},
   loadedBoundaries: false,
-  countriesList: []
+  countriesList: [],
 })
 
 const getters = {
@@ -14,7 +14,7 @@ const getters = {
   },
   boundaries(state) {
     return state.boundaries
-  }
+  },
 }
 
 const mutations = {
@@ -29,7 +29,7 @@ const mutations = {
   },
   setBoundaries(state, boundaries) {
     state.boundaries = boundaries
-  }
+  },
 }
 
 const actions = {
@@ -53,7 +53,7 @@ const actions = {
         const [west, south, east, north] = bounds[countryCode][1]
         bounds[countryCode] = [
           [south, west],
-          [north, east]
+          [north, east],
         ]
       }
     })
@@ -69,9 +69,9 @@ const actions = {
     const inputs = {
       index: 'contribution',
       distinct: {
-        orderByCode: ['country_id']
+        orderByCode: ['country_id'],
       },
-      source: ['country_id', 'country_name_en', 'country_name_fr']
+      source: ['country_id', 'country_name_en', 'country_name_fr'],
     }
 
     const queryParams = { inputs }
@@ -83,7 +83,7 @@ const actions = {
 
     commit('setCountries', countries)
     commit('setLoaded')
-  }
+  },
 }
 
 export default {
@@ -91,5 +91,5 @@ export default {
   state,
   getters,
   mutations,
-  actions
+  actions,
 }

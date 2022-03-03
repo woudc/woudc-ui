@@ -10,7 +10,7 @@
           hide-default-footer
           class="elevation-1"
         >
-          <template v-slot:item.link="link">
+          <template #item.link="link">
             <td>
               <a :href="link.item.to" target="_blank">
                 {{ link.item.text }}
@@ -38,8 +38,20 @@ export default {
         'uv-instruments':
           'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW191_TD_No_1538_web.pdf',
         'uv-study':
-          'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW190_TD_No_1537_web.pdf'
-      }
+          'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW190_TD_No_1537_web.pdf',
+      },
+    }
+  },
+  head() {
+    return {
+      title: this.$t('resources.procedures.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('resources.procedures.blurb'),
+        },
+      ],
     }
   },
   computed: {
@@ -51,7 +63,7 @@ export default {
           align: 'left',
           sortable: false,
           value: column,
-          text: this.$t('resources.procedures.headers.' + column)
+          text: this.$t('resources.procedures.headers.' + column),
         }
       })
     },
@@ -62,7 +74,7 @@ export default {
         'ozone-quality',
         'uv-quality',
         'uv-instruments',
-        'uv-study'
+        'uv-study',
       ]
 
       return categoryOrder.map((category) => {
@@ -71,25 +83,13 @@ export default {
 
         return definition
       })
-    }
-  },
-  head() {
-    return {
-      title: this.$t('resources.procedures.title'),
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('resources.procedures.blurb')
-        }
-      ]
-    }
+    },
   },
   nuxtI18n: {
     paths: {
       en: '/resources/standard-operating-procedures',
-      fr: "/ressources/procedures-d'utilisation-normalisees"
-    }
-  }
+      fr: "/ressources/procedures-d'utilisation-normalisees",
+    },
+  },
 }
 </script>

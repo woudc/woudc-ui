@@ -25,8 +25,8 @@ export default {
         dobson: 'http://www.o3soft.eu/dobsonweb/committee.html',
         umkehr:
           this.$config.WOUDC_UI_WAF_URL +
-          '/Publications/Meeting_Reports/Umkehr_Sub-Committee/'
-      }
+          '/Publications/Meeting_Reports/Umkehr_Sub-Committee/',
+      },
     }
   },
   head() {
@@ -36,16 +36,16 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('resources.working-groups.title')
-        }
-      ]
+          content: this.$t('resources.working-groups.title'),
+        },
+      ],
     }
   },
   nuxtI18n: {
     paths: {
       en: '/resources/working-groups',
-      fr: '/ressources/groupes-de-travail'
-    }
-  }
+      fr: '/ressources/groupes-de-travail',
+    },
+  },
 }
 </script>

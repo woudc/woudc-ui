@@ -14,7 +14,7 @@
           :loading="loadingMap"
           @select="selectedContributor = $event"
         >
-          <template v-slot:popup="element">
+          <template #popup="element">
             <strong>{{ $t('contributors.list.contributor-name') }}</strong>
             <nuxt-link
               :to="localePath('contributors') + '/' + element.item.acronym"
@@ -41,17 +41,17 @@
           hide-default-footer
           class="elevation-1 mb-4"
         >
-          <template v-slot:item.acronym="contributor">
+          <template #item.acronym="contributor">
             <nuxt-link :to="'/contributors/' + contributor.item.acronym">
               {{ contributor.item.acronym }}
             </nuxt-link>
           </template>
-          <template v-slot:item.name="contributor">
+          <template #item.name="contributor">
             <a :href="contributor.item.url">
               {{ contributor.item.name }}
             </a>
           </template>
-          <template v-slot:item.country="contributor">
+          <template #item.country="contributor">
             {{ contributor.item.country_name[$i18n.locale] }}
           </template>
         </v-data-table>
@@ -62,7 +62,7 @@
           :loading="loadingTables"
           class="elevation-1"
         >
-          <template v-slot:item="deployment">
+          <template #item="deployment">
             <tr>
               <td>
                 <nuxt-link :to="'/data/stations/' + deployment.item.station_id">
@@ -86,7 +86,7 @@
 import woudcClient from '~/plugins/woudcClient'
 import {
   unpackageContributor,
-  unpackageDeployment
+  unpackageDeployment,
 } from '~/plugins/woudcJsonUtil.js'
 
 import mapInstructions from '~/components/MapInstructions'
@@ -97,7 +97,7 @@ export default {
   components: {
     'map-instructions': mapInstructions,
     'selectable-map': SelectableMap,
-    'table-instructions': tableInstructions
+    'table-instructions': tableInstructions,
   },
   async validate({ params, $config }) {
     const acronym = params.id
@@ -117,7 +117,19 @@ export default {
       deployments: [],
       loadingMap: true,
       loadingTables: true,
-      selectedContributor: null
+      selectedContributor: null,
+    }
+  },
+  head() {
+    return {
+      title: this.$t('contributors.list.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('contributors.list.blurb'),
+        },
+      ],
     }
   },
   computed: {
@@ -129,13 +141,13 @@ export default {
         'country',
         'start_date',
         'end_date',
-        'wmo_region_id'
+        'wmo_region_id',
       ]
 
       return contributorKeys.map((key) => {
         return {
           text: this.$t('contributors.list.contributor-headers.' + key),
-          value: key
+          value: key,
         }
       })
     },
@@ -146,21 +158,21 @@ export default {
         'station_type',
         `country_name_${this.$i18n.locale}`,
         'start_date',
-        'end_date'
+        'end_date',
       ]
 
       return deploymentKeys.map((key) => {
         return {
           text: this.$t('contributors.list.deployment-headers.' + key),
-          value: key
+          value: key,
         }
       })
-    }
+    },
   },
   watch: {
     $route() {
       this.populate()
-    }
+    },
   },
   async mounted() {
     await this.$store.dispatch('contributors/download')
@@ -171,9 +183,8 @@ export default {
   methods: {
     async populate() {
       const acronym = this.$route.params.id
-      const contributorMapFunc = this.$store.getters[
-        'contributors/getWithAcronym'
-      ]
+      const contributorMapFunc =
+        this.$store.getters['contributors/getWithAcronym']
       const contributors = contributorMapFunc(acronym).map(unpackageContributor)
 
       const deploymentsURL =
@@ -184,30 +195,17 @@ export default {
         deploymentsURL + '?' + queryParams
       )
 
-      this.deployments = deploymentsResponse.data.features.map(
-        unpackageDeployment
-      )
+      this.deployments =
+        deploymentsResponse.data.features.map(unpackageDeployment)
       this.contributors = contributors
       this.selectedContributor = contributors[0]
-    }
-  },
-  head() {
-    return {
-      title: this.$t('contributors.list.title'),
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('contributors.list.blurb')
-        }
-      ]
-    }
+    },
   },
   nuxtI18n: {
     paths: {
       en: '/contributors/:id',
-      fr: '/contributeurs/:id'
-    }
-  }
+      fr: '/contributeurs/:id',
+    },
+  },
 }
 </script>

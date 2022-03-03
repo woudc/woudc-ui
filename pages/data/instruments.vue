@@ -12,7 +12,7 @@
           @select="selectedInstrument = $event"
           @move="boundingBox = $event"
         >
-          <template v-slot:popup="element">
+          <template #popup="element">
             <strong>{{ $t('data.instruments.instrument-type') }}</strong>
             <span> {{ element.item.name }}</span>
             <br />
@@ -77,7 +77,7 @@
               class="mt-1 mb-4 align-content-start"
               bottom
             >
-              <template v-slot:activator="{ onBadge }">
+              <template #activator="{ onBadge }">
                 <v-badge
                   :value="searchOutOfDate"
                   class="mx-2"
@@ -101,13 +101,11 @@
                 </v-badge>
               </template>
               <v-card-title class="py-3">
-                <v-icon class="mr-1">
-                  mdi-alert
-                </v-icon>
+                <v-icon class="mr-1"> mdi-alert </v-icon>
                 {{ $t('common.old-search.title') }}
               </v-card-title>
               <i18n path="common.old-search.body" tag="v-card-text">
-                <template v-slot:search>
+                <template #search>
                   <strong>{{ $t('common.filtering.apply') }}</strong>
                 </template>
               </i18n>
@@ -128,7 +126,7 @@
           :loading="loadingInstruments"
           @select="selectedInstrument = $event"
         >
-          <template v-slot:row="row">
+          <template #row="row">
             <td>{{ row.item.name }}</td>
             <td>{{ row.item.model }}</td>
             <td>{{ row.item.dataset }}</td>
@@ -167,7 +165,19 @@ export default {
     'map-instructions': mapInstructions,
     'selectable-map': SelectableMap,
     'selectable-table': SelectableTable,
-    'table-instructions': tableInstructions
+    'table-instructions': tableInstructions,
+  },
+  head() {
+    return {
+      title: this.$t('data.instruments.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('data.instruments.blurb'),
+        },
+      ],
+    }
   },
   data() {
     return {
@@ -185,7 +195,7 @@ export default {
         enableBboxSearch: true,
         model: [],
         name: [],
-        station_name: []
+        station_name: [],
       },
       onButton: false,
       resettingMap: false,
@@ -195,15 +205,15 @@ export default {
         dataset: [],
         model: [],
         name: [],
-        station_name: []
-      }
+        station_name: [],
+      },
     }
   },
   computed: {
     ...mapState('instruments', ['loadingInstrumentFields']),
     ...mapState('instruments', ['loadedInstrumentModels']),
     ...mapGetters('instruments', {
-      instruments: 'modelResolution'
+      instruments: 'modelResolution',
     }),
     boundingBoxArray() {
       if (this.boundingBox !== null) {
@@ -211,7 +221,7 @@ export default {
           Math.max(-180, this.boundingBox.getWest()),
           Math.max(-90, this.boundingBox.getSouth()),
           Math.min(180, this.boundingBox.getEast()),
-          Math.min(90, this.boundingBox.getNorth())
+          Math.min(90, this.boundingBox.getNorth()),
         ]
       } else {
         return [-180, -90, 180, 90]
@@ -226,13 +236,13 @@ export default {
         'end_date',
         'data_class',
         'station_name',
-        'waf_url'
+        'waf_url',
       ]
 
       return headerKeys.map((key) => {
         return {
           text: this.$t('data.instruments.headers.' + key),
-          value: key
+          value: key,
         }
       })
     },
@@ -280,7 +290,7 @@ export default {
           return this.boundingBox.contains(coords)
         })
       }
-    }
+    },
   },
   watch: {
     boundingBoxArray: {
@@ -288,17 +298,16 @@ export default {
         if (this.enableBboxSearch == true) {
           this.oldSearchExists = true
         }
-      }
-    }
+      },
+    },
   },
   mounted() {
     Promise.all([
       this.$store.dispatch('instruments/downloadDistinctModels'),
-      this.$store.dispatch('instruments/downloadDistinctFields')
+      this.$store.dispatch('instruments/downloadDistinctFields'),
     ]).then(() => {
-      this.distinctInstrumentFields = this.$store.getters[
-        'instruments/distinctFieldResolution'
-      ]
+      this.distinctInstrumentFields =
+        this.$store.getters['instruments/distinctFieldResolution']
       for (const field in this.distinctInstrumentFields) {
         for (const header of this.headers) {
           if (field == header['value']) {
@@ -384,25 +393,13 @@ export default {
       this.resettingMap = false
       this.loadingMap = false
       this.loadingInstruments = false
-    }
-  },
-  head() {
-    return {
-      title: this.$t('data.instruments.title'),
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('data.instruments.blurb')
-        }
-      ]
-    }
+    },
   },
   nuxtI18n: {
     paths: {
       en: '/data/instruments',
-      fr: '/donnees/instruments'
-    }
-  }
+      fr: '/donnees/instruments',
+    },
+  },
 }
 </script>

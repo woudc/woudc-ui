@@ -14,13 +14,13 @@
                 path="data.products.uv-index.instructions.body-selections"
                 tag="p"
               >
-                <template v-slot:station>
+                <template #station>
                   <strong>{{ $t('data.products.common.station') }}</strong>
                 </template>
-                <template v-slot:instruments>
+                <template #instruments>
                   <strong>{{ $t('data.products.common.instruments') }}</strong>
                 </template>
-                <template v-slot:years>
+                <template #years>
                   <strong>{{ $t('data.products.common.years') }}</strong>
                 </template>
               </i18n>
@@ -88,8 +88,8 @@
           :loading="loadingYears"
           :disabled="
             selectedStation === null ||
-              selectedInstrument === null ||
-              loadingYears
+            selectedInstrument === null ||
+            loadingYears
           "
         >
         </v-select>
@@ -102,7 +102,7 @@
           @select="changeStation"
           @move="boundingBox = $event"
         >
-          <template v-slot:popup="station">
+          <template #popup="station">
             {{ station.item.name }} ({{ station.item.woudc_id }})
           </template>
         </selectable-map>
@@ -135,7 +135,7 @@
         <div v-for="(graphs, year) in graphURLs" :key="year">
           <h3>{{ $t('data.products.common.year') }}: {{ year }}</h3>
           <graph-carousel :graphs="graphs">
-            <template v-slot:preview-caption="graph">
+            <template #preview-caption="graph">
               {{ imagePreviewCaption(graph.item, year) }}
             </template>
           </graph-carousel>
@@ -149,7 +149,7 @@
 import woudcClient from '~/plugins/woudcClient'
 import {
   unpackageStation,
-  compareLocaleOnKey
+  compareLocaleOnKey,
 } from '~/plugins/woudcJsonUtil.js'
 
 import GraphCarousel from '~/components/GraphCarousel'
@@ -158,7 +158,7 @@ import SelectableMap from '~/components/SelectableMap'
 export default {
   components: {
     'graph-carousel': GraphCarousel,
-    'selectable-map': SelectableMap
+    'selectable-map': SelectableMap,
   },
   data() {
     return {
@@ -176,7 +176,19 @@ export default {
       selectedYear: null,
       stations: [],
       stationOrder: 'name',
-      years: []
+      years: [],
+    }
+  },
+  head() {
+    return {
+      title: this.$t('data.products.uv-index.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('data.products.uv-index.title'),
+        },
+      ],
     }
   },
   computed: {
@@ -207,12 +219,12 @@ export default {
     yearOptions() {
       const nullOption = {
         text: this.$t('common.all'),
-        value: null
+        value: null,
       }
 
       const yearOptions = this.years.map(this.yearToSelectOption)
       return [nullOption].concat(yearOptions)
-    }
+    },
   },
   mounted() {
     this.$store.dispatch('stations/downloadStationsByDataset').then(() => {
@@ -279,8 +291,8 @@ export default {
             url: plotURL,
             caption: instrumentName,
             station: stationKey,
-            instrument: instrumentName
-          }
+            instrument: instrumentName,
+          },
         ]
       }
     },
@@ -329,7 +341,7 @@ export default {
           const key = [
             feature.properties.instrument_name,
             feature.properties.instrument_model,
-            feature.properties.instrument_number
+            feature.properties.instrument_number,
           ].join('_')
 
           if (!(year in observationTools)) {
@@ -362,10 +374,7 @@ export default {
       return `${graphWord} - ${stationName}. ${instrument}. ${year}`
     },
     instrumentToKey(instrument) {
-      return instrument.id
-        .split(':')
-        .slice(0, 3)
-        .join('_')
+      return instrument.id.split(':').slice(0, 3).join('_')
     },
     instrumentKeyToCaps(instrumentKey) {
       const [name, model, serial] = instrumentKey.split('_')
@@ -387,7 +396,7 @@ export default {
 
       return {
         text: name + ' ' + model + ' #' + serial.padStart(3, '0'),
-        value: this.instrumentToKey(instrument)
+        value: this.instrumentToKey(instrument),
       }
     },
     async refreshInstruments() {
@@ -471,34 +480,22 @@ export default {
       return {
         text: textDisplay,
         value: stationID,
-        element: station
+        element: station,
       }
     },
     yearToSelectOption(year) {
       return {
         text: year,
-        value: year
+        value: year,
       }
-    }
-  },
-  head() {
-    return {
-      title: this.$t('data.products.uv-index.title'),
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('data.products.uv-index.title')
-        }
-      ]
-    }
+    },
   },
   nuxtI18n: {
     paths: {
       en: '/data/products/uvindex',
-      fr: '/donnees/produits/indiceuv'
-    }
-  }
+      fr: '/donnees/produits/indiceuv',
+    },
+  },
 }
 </script>
 

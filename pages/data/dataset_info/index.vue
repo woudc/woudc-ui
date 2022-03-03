@@ -36,10 +36,10 @@ export default {
           'ozonesonde',
           'rocketsonde',
           'umkehr1',
-          'umkehr2'
-        ]
+          'umkehr2',
+        ],
       },
-      sectionOrder: ['totalozone', 'vertical-ozone', 'uv-irradiance']
+      sectionOrder: ['totalozone', 'vertical-ozone', 'uv-irradiance'],
     }
   },
   head() {
@@ -49,16 +49,16 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('data.info.blurb')
-        }
-      ]
+          content: this.$t('data.info.blurb'),
+        },
+      ],
     }
   },
   nuxtI18n: {
     paths: {
       en: '/data/dataset-information',
-      fr: '/donnees/information-sur-les-jeux-de-donnees'
-    }
-  }
+      fr: '/donnees/information-sur-les-jeux-de-donnees',
+    },
+  },
 }
 </script>

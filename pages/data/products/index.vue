@@ -60,7 +60,7 @@ export default {
         north: 'http://exp-studies.tor.ec.gc.ca/e/ozone/Curr_allmap.htm',
         south: 'http://exp-studies.tor.ec.gc.ca/e/ozone/Curr_allmap_s.htm',
         archive: 'http://exp-studies.tor.ec.gc.ca/cgi-bin/selectMap',
-        individual: 'http://exp-studies.tor.ec.gc.ca/cgi-bin/dailyMaps'
+        individual: 'http://exp-studies.tor.ec.gc.ca/cgi-bin/dailyMaps',
       },
       relatedLinks: {
         'totalozone-daily-monthly':
@@ -74,7 +74,7 @@ export default {
           this.$config.WOUDC_UI_WAF_URL + '/Projects-Campaigns/ZonalMeans',
         tost:
           this.$config.WOUDC_UI_WAF_URL +
-          '/products/ozone/vertical-ozone-profile/ozonesonde/1.0/tost'
+          '/products/ozone/vertical-ozone-profile/ozonesonde/1.0/tost',
       },
       summariesLinks: {
         'polar-bulletins':
@@ -84,13 +84,13 @@ export default {
           'https://community.wmo.int/wmo-global-ozone-research-and-monitoring-project-reports',
         'ozone-hole': 'https://ozonewatch.gsfc.nasa.gov/SH.html',
         sampo: 'https://sampo.fmi.fi/',
-        temis: 'http://www.temis.nl/index.php'
+        temis: 'http://www.temis.nl/index.php',
       },
       timeSeriesLinks: {
         ozonesonde: 'data-products-ozonesonde',
         totalozone: 'data-products-totalozone',
-        'uv-index': 'data-products-uvindex'
-      }
+        'uv-index': 'data-products-uvindex',
+      },
     }
   },
   head() {
@@ -100,16 +100,16 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('data.products.blurb')
-        }
-      ]
+          content: this.$t('data.products.blurb'),
+        },
+      ],
     }
   },
   nuxtI18n: {
     paths: {
       en: '/data/products',
-      fr: '/donnees/produits'
-    }
-  }
+      fr: '/donnees/produits',
+    },
+  },
 }
 </script>

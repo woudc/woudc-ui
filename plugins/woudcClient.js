@@ -7,8 +7,8 @@ import axios from 'axios'
 const woudcClient = axios.create({
   timeout: 9000,
   headers: {
-    'content-Type': 'application/json'
-  }
+    'content-Type': 'application/json',
+  },
 })
 
 export default woudcClient

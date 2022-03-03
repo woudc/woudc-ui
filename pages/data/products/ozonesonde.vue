@@ -14,10 +14,10 @@
                 path="data.products.ozonesonde.instructions.body-selections"
                 tag="p"
               >
-                <template v-slot:station>
+                <template #station>
                   <strong>{{ $t('data.products.common.station') }}</strong>
                 </template>
-                <template v-slot:years>
+                <template #years>
                   <strong>{{ $t('data.products.common.years') }}</strong>
                 </template>
               </i18n>
@@ -29,7 +29,7 @@
                   path="data.products.ozonesonde.instructions.body-pressure"
                   tag="li"
                 >
-                  <template v-slot:pressure-plots>
+                  <template #pressure-plots>
                     <strong>{{
                       $t('data.products.ozonesonde.instructions.pressure-plots')
                     }}</strong>
@@ -39,7 +39,7 @@
                   path="data.products.ozonesonde.instructions.body-temperature"
                   tag="li"
                 >
-                  <template v-slot:temperature-plots>
+                  <template #temperature-plots>
                     <strong>{{
                       $t(
                         'data.products.ozonesonde.instructions.temperature-plots'
@@ -51,7 +51,7 @@
                   path="data.products.ozonesonde.instructions.body-flights"
                   tag="li"
                 >
-                  <template v-slot:flight-plots>
+                  <template #flight-plots>
                     <strong>{{
                       $t('data.products.ozonesonde.instructions.flight-plots')
                     }}</strong>
@@ -115,7 +115,7 @@
           @select="changeStation"
           @move="boundingBox = $event"
         >
-          <template v-slot:popup="station">
+          <template #popup="station">
             {{ station.item.name }} ({{ station.item.woudc_id }})
           </template>
         </selectable-map>
@@ -148,7 +148,7 @@
         <div v-for="(graphs, year) in graphURLs" :key="year">
           <h3>{{ $t('data.products.common.year') }}: {{ year }}</h3>
           <graph-carousel :graphs="graphs">
-            <template v-slot:preview-caption="graph">
+            <template #preview-caption="graph">
               {{ imagePreviewCaption(graph.item, year) }}
             </template>
           </graph-carousel>
@@ -162,7 +162,7 @@
 import woudcClient from '~/plugins/woudcClient'
 import {
   unpackageStation,
-  compareLocaleOnKey
+  compareLocaleOnKey,
 } from '~/plugins/woudcJsonUtil.js'
 
 import GraphCarousel from '~/components/GraphCarousel'
@@ -171,7 +171,7 @@ import SelectableMap from '~/components/SelectableMap'
 export default {
   components: {
     'graph-carousel': GraphCarousel,
-    'selectable-map': SelectableMap
+    'selectable-map': SelectableMap,
   },
   data() {
     return {
@@ -186,7 +186,19 @@ export default {
       selectedYear: null,
       stations: [],
       stationOrder: 'name',
-      years: []
+      years: [],
+    }
+  },
+  head() {
+    return {
+      title: this.$t('data.products.ozonesonde.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('data.products.ozonesonde.title'),
+        },
+      ],
     }
   },
   computed: {
@@ -214,12 +226,12 @@ export default {
     yearOptions() {
       const nullOption = {
         text: this.$t('common.all'),
-        value: null
+        value: null,
       }
 
       const yearOptions = this.years.map(this.yearToSelectOption)
       return [nullOption].concat(yearOptions)
-    }
+    },
   },
   mounted() {
     this.$store.dispatch('stations/downloadStationsByDataset').then(() => {
@@ -289,12 +301,12 @@ export default {
         this.graphURLs[year].push({
           url: pressurePlot,
           caption: pressureCaption,
-          station: stationKey
+          station: stationKey,
         })
         this.graphURLs[year].push({
           url: temperaturePlot,
           caption: temperatureCaption,
-          station: stationKey
+          station: stationKey,
         })
 
         for (const date of this.observationDates[year]) {
@@ -315,7 +327,7 @@ export default {
           this.graphURLs[year].push({
             url: plotURL,
             caption: flightCaption,
-            station: stationKey
+            station: stationKey,
           })
         }
       }
@@ -389,34 +401,22 @@ export default {
       return {
         text: textDisplay,
         value: stationID,
-        element: station
+        element: station,
       }
     },
     yearToSelectOption(year) {
       return {
         text: year,
-        value: year
+        value: year,
       }
-    }
-  },
-  head() {
-    return {
-      title: this.$t('data.products.ozonesonde.title'),
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('data.products.ozonesonde.title')
-        }
-      ]
-    }
+    },
   },
   nuxtI18n: {
     paths: {
       en: '/data/products/ozonesonde',
-      fr: '/donnees/produits/sondeozone'
-    }
-  }
+      fr: '/donnees/produits/sondeozone',
+    },
+  },
 }
 </script>
 

@@ -20,8 +20,8 @@ export default {
         'products',
         'datasetinfo',
         'stations',
-        'instruments'
-      ]
+        'instruments',
+      ],
     }
   },
   head() {
@@ -31,16 +31,16 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('data.info.blurb')
-        }
-      ]
+          content: this.$t('data.info.blurb'),
+        },
+      ],
     }
   },
   nuxtI18n: {
     paths: {
       en: '/data',
-      fr: '/donnees'
-    }
-  }
+      fr: '/donnees',
+    },
+  },
 }
 </script>

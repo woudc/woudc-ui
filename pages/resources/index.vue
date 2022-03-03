@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       localLinks: ['sop', 'workinggroups', 'links'],
-      softwareURL: 'https://github.com/woudc/woudc/wiki'
+      softwareURL: 'https://github.com/woudc/woudc/wiki',
     }
   },
   head() {
@@ -35,16 +35,16 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('resources.links.links')
-        }
-      ]
+          content: this.$t('resources.links.links'),
+        },
+      ],
     }
   },
   nuxtI18n: {
     paths: {
       en: '/resources',
-      fr: '/ressources'
-    }
-  }
+      fr: '/ressources',
+    },
+  },
 }
 </script>
