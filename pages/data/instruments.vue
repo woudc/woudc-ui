@@ -45,80 +45,18 @@
     </v-row>
     <v-row>
       <v-col>
-        <v-card class="mb-5">
-          <v-card-title class="mx-2 pb-0">
-            {{ $t('common.filtering.title') }}
-          </v-card-title>
-          <v-col class="mr-2 pt-0 d-flex align-content-start flex-wrap">
-            <v-col
-              v-for="(field, key) in distinctInstrumentFields"
-              :key="key"
-              cols="6"
-            >
-              <v-autocomplete
-                v-model="selectedFilters[field.value]"
-                :loading="loadingInstrumentFields"
-                :items="field.array"
-                :label="field.text"
-                auto-select-first
-                eager
-                chips
-                deletable-chips
-                multiple
-                small-chips
-                @change="oldSearchExists = true"
-              >
-              </v-autocomplete>
-            </v-col>
-          </v-col>
-          <div class="pb-5 px-3">
-            <v-tooltip
-              v-model="toolTipOn"
-              class="mt-1 mb-4 align-content-start"
-              bottom
-            >
-              <template #activator="{ onBadge }">
-                <v-badge
-                  :value="searchOutOfDate"
-                  class="mx-2"
-                  icon="mdi-refresh"
-                  color="green"
-                  bordered
-                  overlap
-                  v-on="onBadge"
-                >
-                  <v-btn
-                    class="btn-left"
-                    color="primary"
-                    :disabled="!loadedInstrumentModels"
-                    :loading="loadingInstruments"
-                    @mouseover="onButton = true"
-                    @mouseleave="onButton = false"
-                    @click="refreshInstruments()"
-                  >
-                    {{ $t('common.filtering.apply') }}
-                  </v-btn>
-                </v-badge>
-              </template>
-              <v-card-title class="py-3">
-                <v-icon class="mr-1"> mdi-alert </v-icon>
-                {{ $t('common.old-search.title') }}
-              </v-card-title>
-              <i18n path="common.old-search.body" tag="v-card-text">
-                <template #search>
-                  <strong>{{ $t('common.filtering.apply') }}</strong>
-                </template>
-              </i18n>
-            </v-tooltip>
-            <v-btn
-              class="btn-right"
-              :disabled="loadingInstruments"
-              @click="reset()"
-            >
-              {{ $t('common.reset') }}
-            </v-btn>
-          </div>
-        </v-card>
+        <autocomplete-card
+          :bboxarray="boundingBoxArray"
+          :distinctfields="distinctInstrumentFields"
+          :enablebboxsearch="enableBboxSearch"
+          :selectedfilters="selectedFilters"
+          :loadingfields="loadingInstrumentFields"
+          :oldsearchparams="oldSearchParams"
+          :refresh="refreshInstruments"
+          :reset="reset"
+          :resettingfilters="resettingFilters"
+        >
+        </autocomplete-card>
         <selectable-table
           :headers="headers"
           :elements="displayedInstruments"
@@ -159,9 +97,11 @@ import mapInstructions from '~/components/MapInstructions'
 import tableInstructions from '~/components/TableInstructions'
 import SelectableMap from '~/components/SelectableMap'
 import SelectableTable from '~/components/SelectableTable'
+import AutocompleteCard from '~/components/AutocompleteCard'
 
 export default {
   components: {
+    'autocomplete-card': AutocompleteCard,
     'map-instructions': mapInstructions,
     'selectable-map': SelectableMap,
     'selectable-table': SelectableTable,
@@ -185,7 +125,7 @@ export default {
         name: [],
         station_name: [],
       },
-      onButton: false,
+      resettingFilters: false,
       resettingMap: false,
       selectedInstrument: null,
       selectedFilters: {
@@ -246,41 +186,6 @@ export default {
         }
       })
     },
-    searchOutOfDate() {
-      if (this.oldSearchExists === false) {
-        return false
-      } else {
-        const dataclassOk =
-          this.oldSearchParams['data_class'] ==
-          this.selectedFilters['data_class']
-        const datasetOk =
-          this.oldSearchParams['dataset'] == this.selectedFilters['dataset']
-        const modelOk =
-          this.oldSearchParams['model'] == this.selectedFilters['model']
-        const nameOk =
-          this.oldSearchParams['name'] == this.selectedFilters['name']
-        const stationnameOk =
-          this.oldSearchParams['station_name'] ==
-          this.selectedFilters['station_name']
-        const bboxOk =
-          (this.oldSearchParams['bbox'] === this.boundingBoxArray &&
-            this.oldSearchParams['enableBboxSearch'] == true &&
-            this.enableBboxSearch === true) ||
-          (this.enableBboxSearch === false &&
-            this.oldSearchParams['enableBboxSearch'] == false)
-        return !(
-          bboxOk &&
-          dataclassOk &&
-          datasetOk &&
-          modelOk &&
-          nameOk &&
-          stationnameOk
-        )
-      }
-    },
-    toolTipOn() {
-      return this.searchOutOfDate && this.onButton
-    },
     visibleInstruments() {
       if (this.boundingBox === null) {
         return this.instruments
@@ -290,15 +195,6 @@ export default {
           return this.boundingBox.contains(coords)
         })
       }
-    },
-  },
-  watch: {
-    boundingBoxArray: {
-      async handler() {
-        if (this.enableBboxSearch == true) {
-          this.oldSearchExists = true
-        }
-      },
     },
   },
   mounted() {
@@ -337,11 +233,11 @@ export default {
     async refreshInstruments() {
       this.loadingInstruments = true
       if (
-        this.selectedFilters['data_class'].length === 0 &&
-        this.selectedFilters['dataset'].length === 0 &&
-        this.selectedFilters['model'].length === 0 &&
-        this.selectedFilters['name'].length === 0 &&
-        this.selectedFilters['station_name'].length === 0
+        this.selectedFilters['data_class'].length == 0 &&
+        this.selectedFilters['dataset'].length == 0 &&
+        this.selectedFilters['model'].length == 0 &&
+        this.selectedFilters['name'].length == 0 &&
+        this.selectedFilters['station_name'].length == 0
       ) {
         this.displayedInstruments = this.enableBboxSearch
           ? this.visibleInstruments
@@ -351,16 +247,16 @@ export default {
         const filterInstruments = (instruments, filters) => {
           return instruments.filter(
             (ins) =>
-              (filters['data_class'].includes(ins['data_class']) === true ||
-                filters['data_class'].length === 0) &&
-              (filters['dataset'].includes(ins['dataset']) === true ||
-                filters['dataset'].length === 0) &&
-              (filters['model'].includes(ins['model']) === true ||
-                filters['model'].length === 0) &&
-              (filters['name'].includes(ins['name']) === true ||
-                filters['name'].length === 0) &&
-              (filters['station_name'].includes(ins['station_name']) === true ||
-                filters['station_name'].length === 0)
+              (filters['data_class'].includes(ins['data_class']) == true ||
+                filters['data_class'].length == 0) &&
+              (filters['dataset'].includes(ins['dataset']) == true ||
+                filters['dataset'].length == 0) &&
+              (filters['model'].includes(ins['model']) == true ||
+                filters['model'].length == 0) &&
+              (filters['name'].includes(ins['name']) == true ||
+                filters['name'].length == 0) &&
+              (filters['station_name'].includes(ins['station_name']) == true ||
+                filters['station_name'].length == 0)
           )
         }
         this.displayedInstruments = this.enableBboxSearch
@@ -372,24 +268,25 @@ export default {
       }
       this.oldSearchParams['bbox'] = this.boundingBoxArray
       this.oldSearchParams['enableBboxSearch'] = this.enableBboxSearch
-      this.oldSearchExists = true
       this.loadingInstruments = false
     },
     async reset() {
       this.loadingInstruments = true
       this.loadingMap = true
       this.resettingMap = true
+      this.resettingFilters = true
 
       this.boundingBox = null
       this.enableBboxSearch = true
-      this.onButton = false
       for (const field in this.selectedFilters) {
         this.selectedFilters[field] = []
         this.oldSearchParams[field] = []
       }
+      this.oldSearchParams['enableBboxSearch'] = true
       await this.refreshInstruments()
-      this.oldSearchExists = false
+      this.oldSearchParams['bbox'] = this.boundingBoxArray
 
+      this.resettingFilters = false
       this.resettingMap = false
       this.loadingMap = false
       this.loadingInstruments = false

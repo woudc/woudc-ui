@@ -83,7 +83,7 @@ export default {
     },
     reset(resettingMap) {
       if (resettingMap == true) {
-        this.zoomToGlobe
+        this.zoomToGlobe()
       }
     },
     selected(newSelection, oldSelection) {
