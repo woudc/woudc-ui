@@ -42,7 +42,9 @@
           class="elevation-1 mb-4"
         >
           <template #item.acronym="contributor">
-            <nuxt-link :to="'/contributors/' + contributor.item.acronym">
+            <nuxt-link
+              :to="localePath('contributors') + '/' + contributor.item.acronym"
+            >
               {{ contributor.item.acronym }}
             </nuxt-link>
           </template>
@@ -65,7 +67,13 @@
           <template #item="deployment">
             <tr>
               <td>
-                <nuxt-link :to="'/data/stations/' + deployment.item.station_id">
+                <nuxt-link
+                  :to="
+                    localePath('data-stations') +
+                    '/' +
+                    deployment.item.station_id
+                  "
+                >
                   {{ deployment.item.station_id }}
                 </nuxt-link>
               </td>
