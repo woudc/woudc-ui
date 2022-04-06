@@ -105,7 +105,9 @@
           class="elevation-1 mb-4"
         >
           <template #item.woudc_id="stn">
-            <nuxt-link :to="'/data/stations/' + stn.item.woudc_id">
+            <nuxt-link
+              :to="localePath('data-stations') + '/' + stn.item.woudc_id"
+            >
               {{ stn.item.woudc_id }}
             </nuxt-link>
           </template>
@@ -132,7 +134,13 @@
           <template #item="deployment">
             <tr>
               <td>
-                <nuxt-link :to="'/contributors/' + deployment.item.contributor">
+                <nuxt-link
+                  :to="
+                    localePath('contributors') +
+                    '/' +
+                    deployment.item.contributor
+                  "
+                >
                   {{ deployment.item.contributor }}
                 </nuxt-link>
               </td>
@@ -157,7 +165,7 @@
         >
           <template #item.waf_url="instrument">
             <a :href="instrument.item.waf_url" target="_blank">
-              {{ instrument.item.waf_url }}
+              <v-icon>mdi-file-download</v-icon>
             </a>
           </template>
         </v-data-table>
