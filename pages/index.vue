@@ -137,8 +137,8 @@ export default {
   data() {
     return {
       loaded: false,
-      gawURL: 'http://www.wmo.int/gaw',
-      wmoURL: 'http://www.wmo.int',
+      gawURL: 'https://community.wmo.int/activity-areas/gaw',
+      wmoURL: 'https://wmo.int',
     }
   },
   head() {
