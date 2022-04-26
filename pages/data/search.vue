@@ -397,6 +397,10 @@ export default {
         itemsPerPage: 10,
         sortDesc: [],
         sortBy: [],
+        multiSort: false,
+        mustSort: false,
+        groupBy: [],
+        groupDesc: [],
       },
       resettingMap: false,
       selectedCountry: null,
@@ -712,9 +716,12 @@ export default {
     },
     options: {
       async handler() {
-        this.refreshDataRecordsPage()
+        if (this.oldSearchExists == true && this.loadedTable == true) {
+          this.refreshDataRecords(true)
+        }
+        this.loadedTable = true
       },
-      deep: true,
+      // deep: true,
     },
   },
   mounted() {
@@ -968,6 +975,7 @@ export default {
       this.loadingInstruments = true
       this.loadingMap = true
       await this.refreshDropdowns()
+      this.loadedTable = false
       this.loadingCountries = false
       this.loadingStations = false
       this.loadingInstruments = false
@@ -977,7 +985,7 @@ export default {
 
       this.refreshMetrics()
     },
-    async refreshDataRecords() {
+    async refreshDataRecords(paginate = false) {
       this.loadingDataRecords = true
       this.dataRecordHeaders = this.newDataRecordHeaders
 
@@ -1096,22 +1104,97 @@ export default {
         queryParams = queryParams + '&' + datetimeParams
       }
 
-      let response = ''
-      if (this.selectedDatasetID === 'uv_index_hourly') {
-        response = await woudcClient.get(UVIndexURL + '?' + queryParams)
-      } else if (this.selectedDatasetID === 'TotalOzone') {
-        response = await woudcClient.get(totalOzoneURL + '?' + queryParams)
-      } else if (this.peerOrNdaccDatasets.includes(this.selectedDatasetID)) {
-        response = await woudcClient.get(peerDataRecordsURL + '?' + queryParams)
-      } else if (this.selectedDatasetID === 'OzoneSonde') {
-        response = await woudcClient.get(
-          ozoneSondeURL + '?' + queryParams + '&limit=1'
-        )
-      } else {
-        response = await woudcClient.get(dataRecordsURL + '?' + queryParams)
+      if (paginate == false) {
+        this.options['itemsPerPage'] = 10
+        this.options['page'] = 1
+        this.loadedTable = false
       }
+      let itemsPerPage = this.options['itemsPerPage']
+      let page = this.options['page']
 
-      this.numberMatched = response.data.numberMatched
+      const startIndex = page * itemsPerPage - itemsPerPage
+      const Limit = itemsPerPage
+
+      if (this.selectedDatasetID === 'uv_index_hourly') {
+        let response = await woudcClient.get(
+          UVIndexURL +
+            '?offset=' +
+            startIndex +
+            '&limit=' +
+            Limit +
+            '&' +
+            queryParams
+        )
+        this.numberMatched = response.data.numberMatched
+        this.dataRecords = response.data.features.map(stripProperties)
+      } else if (this.selectedDatasetID === 'TotalOzone') {
+        let response = await woudcClient.get(
+          totalOzoneURL +
+            '?offset=' +
+            startIndex +
+            '&limit=' +
+            Limit +
+            '&' +
+            queryParams
+        )
+        this.numberMatched = response.data.numberMatched
+        this.dataRecords = response.data.features.map(stripProperties)
+      } else if (
+        (this.selectedDatasetID === 'peer_data_records') |
+        (this.selectedDatasetID === 'ndacc_total') |
+        (this.selectedDatasetID === 'ndacc_uv') |
+        (this.selectedDatasetID === 'ndacc_vertical')
+      ) {
+        let response = await woudcClient.get(
+          peerDataRecordsURL +
+            '?offset=' +
+            startIndex +
+            '&limit=' +
+            Limit +
+            '&' +
+            queryParams
+        )
+        this.numberMatched = response.data.numberMatched
+        this.dataRecords = response.data.features.map(stripProperties)
+      } else if (this.selectedDatasetID === 'OzoneSonde') {
+        let response = await woudcClient.get(
+          ozoneSondeURL + '?offset=' + page + '&limit=1' + '&' + queryParams
+        )
+        this.numberMatched =
+          response.data.numberMatched * this.options.itemsPerPage
+        let r = []
+        let totalLength = 0
+        // results are first few entries of every file
+        for (let i = 0; i < response.data.features.length; i++) {
+          const length = response.data.features[i].properties.pressure.length
+          for (let j = 0; j < length; j++) {
+            const index = totalLength + j
+            if (index < this.options.itemsPerPage) {
+              r[index] = JSON.parse(JSON.stringify(response.data.features[i]))
+              r[index].properties.o3partialpressure =
+                response.data.features[i].properties.o3partialpressure[j]
+              r[index].properties.pressure =
+                response.data.features[i].properties.pressure[j]
+              r[index].properties.temperature =
+                response.data.features[i].properties.temperature[j]
+            }
+          }
+          totalLength += length
+        }
+        this.dataRecords = r.map(stripProperties)
+      } else {
+        let response = await woudcClient.get(
+          dataRecordsURL +
+            '?offset=' +
+            startIndex +
+            '&limit=' +
+            Limit +
+            '&' +
+            queryParams
+        )
+        this.numberMatched = response.data.numberMatched
+        this.dataRecords = response.data.features.map(stripProperties)
+      }
 
       this.oldSearchParams = {
         country: this.selectedCountryID,
@@ -1124,213 +1207,10 @@ export default {
       if (this.enableBboxSearch == true) {
         this.oldSearchParams['bbox'] = this.boundingBoxArray
       }
-
+      this.setTable = this.oldSearchParams['dataset']
       this.oldSearchExists = true
       this.oldDataRecordHeadersExists = true
       this.loadingDataRecords = false
-      this.refreshDataRecordsPage()
-    },
-    async refreshDataRecordsPage() {
-      let itemsPerPage = this.options['itemsPerPage']
-      let page = this.options['page']
-      this.loadingDataRecords = true
-      const ndacc_datasets = {
-        ndacc_total: 'TOTALCOL',
-        ndacc_uv: 'UV',
-        ndacc_vertical: 'OZONE',
-      }
-      const dataRecordsURL =
-        this.$config.WOUDC_UI_API_URL + '/collections/data_records/items'
-      const ozoneSondeURL =
-        this.$config.WOUDC_UI_API_URL + '/collections/ozonesonde/items'
-      const UVIndexURL =
-        this.$config.WOUDC_UI_API_URL + '/collections/uv_index_hourly/items'
-      const totalOzoneURL =
-        this.$config.WOUDC_UI_API_URL + '/collections/totalozone/items'
-      const peerDataRecordsURL =
-        this.$config.WOUDC_UI_API_URL + '/collections/peer_data_records/items'
-
-      let queryParams = ''
-      if (this.options['sortBy'].length === 0) {
-        const sortByParams = {
-          uv_index_hourly: 'observation_date,station_id,dataset_id',
-          TotalOzone: 'daily_date,station_id',
-          peer_data_records: 'start_datetime,station_id,measurement',
-          ndacc_total: 'start_datetime,station_id,measurement',
-          ndacc_vertical: 'start_datetime,station_id,measurement',
-          ndacc_uv: 'start_datetime,station_id,measurement',
-          OzoneSonde: 'timestamp_date,station_id',
-          data_records: 'timestamp_date,platform_id,content_category',
-        }
-        if (sortByParams[this.oldSearchParams['dataset']] !== undefined) {
-          queryParams =
-            'sortby=-' + sortByParams[this.oldSearchParams['dataset']]
-        } else {
-          queryParams = 'sortby=-' + sortByParams['data_records']
-        }
-      } else {
-        queryParams =
-          this.options['sortDesc'][0] == true
-            ? 'sortby=-' + this.options['sortBy']
-            : 'sortby=' + this.options['sortBy']
-      }
-
-      let selected = ''
-      if (this.oldSearchParams['dataset'] === 'uv_index_hourly') {
-        selected = {
-          country_id: this.oldSearchParams['country'],
-          station_id: this.oldSearchParams['station'],
-          instrument_name: this.oldSearchParams['instrument'],
-        }
-      } else if (this.oldSearchParams['dataset'] === 'TotalOzone') {
-        selected = {
-          country_id: this.oldSearchParams['country'],
-          station_id: this.oldSearchParams['station'],
-          instrument_name: this.oldSearchParams['instrument'],
-        }
-      } else if (this.oldSearchParams['dataset'] === 'OzoneSonde') {
-        selected = {
-          country_id: this.oldSearchParams['country'],
-          station_id: this.oldSearchParams['station'],
-          instrument_name: this.oldSearchParams['instrument'],
-        }
-      } else if (this.oldSearchParams['dataset'] === 'peer_data_records') {
-        selected = {
-          source: 'eubrewnet',
-          country_id: this.oldSearchParams['country'],
-          station_id: this.oldSearchParams['station'],
-          instrument_name: this.oldSearchParams['instrument'],
-        }
-      } else if (
-        this.oldSearchParams['dataset'] === 'ndacc_total' ||
-        this.oldSearchParams['dataset'] === 'ndacc_vertical' ||
-        this.oldSearchParams['dataset'] === 'ndacc_uv'
-      ) {
-        selected = {
-          source: 'ndacc',
-          measurement: ndacc_datasets[this.oldSearchParams['dataset']],
-          country_id: this.oldSearchParams['country'],
-          station_id: this.oldSearchParams['station'],
-          instrument_name: this.oldSearchParams['instrument'],
-        }
-      } else {
-        selected = {
-          content_category: this.oldSearchParams['dataset'],
-          platform_country: this.oldSearchParams['country'],
-          platform_id: this.oldSearchParams['station'],
-          instrument_name: this.oldSearchParams['instrument'],
-        }
-      }
-      if (
-        this.oldSearchParams['country'] === null &&
-        this.oldSearchParams['station'] === null &&
-        this.enableBboxSearch == true &&
-        this.mapBoundingBox !== null
-      ) {
-        // Select only countries and stations visible on the map
-        let bboxParams = ''
-        for (const coord of this.boundingBoxArray) {
-          bboxParams = bboxParams + ',' + coord
-        }
-        selected['bbox'] = bboxParams.substring(1)
-      }
-
-      for (const [field, value] of Object.entries(selected)) {
-        if (value !== null) {
-          queryParams += '&' + field + '=' + value
-        }
-      }
-
-      try {
-        const startIndex = page * itemsPerPage - itemsPerPage
-        const Limit = itemsPerPage
-
-        if (this.oldSearchParams['dataset'] === 'uv_index_hourly') {
-          let response = await woudcClient.get(
-            UVIndexURL +
-              '?startindex=' +
-              startIndex +
-              '&limit=' +
-              Limit +
-              '&' +
-              queryParams
-          )
-          this.dataRecords = response.data.features.map(stripProperties)
-        } else if (this.oldSearchParams['dataset'] === 'TotalOzone') {
-          let response = await woudcClient.get(
-            totalOzoneURL +
-              '?startindex=' +
-              startIndex +
-              '&limit=' +
-              Limit +
-              '&' +
-              queryParams
-          )
-          this.dataRecords = response.data.features.map(stripProperties)
-        } else if (
-          (this.oldSearchParams['dataset'] === 'peer_data_records') |
-          (this.oldSearchParams['dataset'] === 'ndacc_total') |
-          (this.oldSearchParams['dataset'] === 'ndacc_uv') |
-          (this.oldSearchParams['dataset'] === 'ndacc_vertical')
-        ) {
-          let response = await woudcClient.get(
-            peerDataRecordsURL +
-              '?startindex=' +
-              startIndex +
-              '&limit=' +
-              Limit +
-              '&' +
-              queryParams
-          )
-          this.dataRecords = response.data.features.map(stripProperties)
-        } else if (this.oldSearchParams['dataset'] === 'OzoneSonde') {
-          let response = await woudcClient.get(
-            ozoneSondeURL +
-              '?startindex=' +
-              page +
-              '&limit=1' +
-              '&' +
-              queryParams
-          )
-          this.numberMatched =
-            response.data.numberMatched * this.options.itemsPerPage
-          let r = []
-          let totalLength = 0
-          // results are first few entries of every file
-          for (let i = 0; i < response.data.features.length; i++) {
-            const length = response.data.features[i].properties.pressure.length
-            for (let j = 0; j < length; j++) {
-              const index = totalLength + j
-              if (index < this.options.itemsPerPage) {
-                r[index] = JSON.parse(JSON.stringify(response.data.features[i]))
-                r[index].properties.o3partialpressure =
-                  response.data.features[i].properties.o3partialpressure[j]
-                r[index].properties.pressure =
-                  response.data.features[i].properties.pressure[j]
-                r[index].properties.temperature =
-                  response.data.features[i].properties.temperature[j]
-              }
-            }
-            totalLength += length
-          }
-          this.dataRecords = r.map(stripProperties)
-        } else {
-          let response = await woudcClient.get(
-            dataRecordsURL +
-              '?startindex=' +
-              startIndex +
-              '&limit=' +
-              Limit +
-              '&' +
-              queryParams
-          )
-          this.dataRecords = response.data.features.map(stripProperties)
-        }
-        this.loadingDataRecords = false
-      } catch (error) {
-        this.loadingDataRecords = false
-      }
-      this.setTable = this.oldSearchParams['dataset']
     },
     async refreshDropdowns() {
       // retrieve all new countries/stations/instruments based on current selection
