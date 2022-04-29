@@ -711,7 +711,9 @@ export default {
     },
     enableBboxSearch: {
       async handler() {
-        this.refreshMetrics()
+        if (this.loadingStations == false && this.loadingInstruments == false) {
+          this.refreshMetrics()
+        }
       },
     },
     options: {
@@ -824,8 +826,10 @@ export default {
         this.selectedCountryID,
         null
       )
-      this.instruments = newDropdowns.instruments.map(stripProperties)
-      this.stations = newDropdowns.stations.map(unpackageBareStation)
+      if (!this.peerOrNdaccDatasets.includes(this.selectedDatasetID)) {
+        this.instruments = newDropdowns.instruments.map(stripProperties)
+        this.stations = newDropdowns.stations.map(unpackageBareStation)
+      }
 
       this.loadingStations = false
       this.loadingInstruments = false
@@ -835,6 +839,7 @@ export default {
       this.refreshMetrics()
     },
     async changeStation(station) {
+      this.loadingInstruments = true
       // station select handling
       if (station === null) {
         this.selectedStation = null
@@ -851,22 +856,24 @@ export default {
       this.selectedInstrumentID = null
 
       // update dropdowns below (instrument)
-      this.loadingInstruments = true
       const newDropdowns = await this.sendDropdownRequest(
         this.selectedDatasetID,
         this.selectedStationID !== null ? null : this.selectedCountryID,
         this.selectedStationID
       )
-      this.instruments = newDropdowns.instruments.map(stripProperties)
+      if (!this.peerOrNdaccDatasets.includes(this.selectedDatasetID)) {
+        this.instruments = newDropdowns.instruments.map(stripProperties)
+      }
       this.loadingInstruments = false
 
+      await this.refreshMetrics()
       // country autoselect that matches station
       if (
-        station === null ||
-        this.peerOrNdaccDatasets.includes(this.selectedDatasetID)
+        !(
+          station === null ||
+          this.peerOrNdaccDatasets.includes(this.selectedDatasetID)
+        )
       ) {
-        this.refreshMetrics()
-      } else {
         this.selectCountryFromStation(station)
       }
     },
@@ -893,7 +900,7 @@ export default {
         element: country,
       }
     },
-    selectCountryFromStation(station) {
+    async selectCountryFromStation(station) {
       const stationName =
         station['name'] === undefined
           ? station['station_name']
@@ -913,6 +920,12 @@ export default {
         ]
       this.selectedCountry = country.element
       this.selectedCountryID = country.value
+      const newDropdowns = await this.sendDropdownRequest(
+        this.selectedDatasetID,
+        this.selectedCountryID,
+        null
+      )
+      this.stations = newDropdowns.stations.map(unpackageBareStation)
     },
     instrumentText(instrument) {
       return instrument.name || instrument.instrument_name
