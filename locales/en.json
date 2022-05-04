@@ -1182,8 +1182,8 @@
       "title": "Instrument List"
     },
     "links": {
-      "datasetinfo": "Dataset Information",
-      "explore": "Data Search / Download",
+      "dataset_info": "Dataset Information",
+      "search": "Data Search / Download",
       "instruments": "Instrument List",
       "products": "Data Products",
       "stations": "Station List"
@@ -1464,7 +1464,7 @@
       "links": "Related Data Links",
       "software": "Software",
       "sop": "Standard Operating Procedures",
-      "workinggroups": "Working Groups"
+      "working_groups": "Working Groups"
     },
     "procedures": {
       "blurb": "Links to Standard Operating Procedures (SOP) related to Ozone and UV Radiation data.",
