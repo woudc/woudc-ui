@@ -15,7 +15,7 @@
           <li>
             <i18n path="contributors.registration.step1" tag="span">
               <template #policy>
-                <nuxt-link :to="localePath('about-datapolicy')">
+                <nuxt-link :to="localePath('data-data_policy')">
                   {{ $t('common.policy') }}
                 </nuxt-link>
               </template>

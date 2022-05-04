@@ -24,7 +24,7 @@
 export default {
   data() {
     return {
-      localLinks: ['sop', 'workinggroups', 'links'],
+      localLinks: ['sop', 'working_groups', 'links'],
       softwareURL: 'https://github.com/woudc/woudc/wiki',
     }
   },

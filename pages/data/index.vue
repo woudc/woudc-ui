@@ -16,9 +16,9 @@ export default {
   data() {
     return {
       localLinks: [
-        'explore',
+        'search',
         'products',
-        'datasetinfo',
+        'dataset_info',
         'stations',
         'instruments',
       ],

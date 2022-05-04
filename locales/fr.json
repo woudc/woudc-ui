@@ -1182,8 +1182,8 @@
       "title": "Liste des instruments"
     },
     "links": {
-      "datasetinfo": "Information sur les jeux de données",
-      "explore": "Rechercher des données / Télécharger",
+      "dataset_info": "Information sur les jeux de données",
+      "search": "Rechercher des données / Télécharger",
       "instruments": "Liste des instruments",
       "products": "Produits de données",
       "stations": "Liste des stations"
@@ -1464,7 +1464,7 @@
       "links": "Liens de données connexes",
       "software": "Logiciel",
       "sop": "Procédures d'utilisation normalisées",
-      "workinggroups": "Groupes de travail"
+      "working_groups": "Groupes de travail"
     },
     "procedures": {
       "blurb": "Liens vers les Procédures d'utilisation normalisées (PUN) sur l’ozone et les rayons UV Données sur le rayonnement.",

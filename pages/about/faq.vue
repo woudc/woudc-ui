@@ -11,7 +11,7 @@
           <h4>{{ question.text }}</h4>
           <i18n :path="'about.faq.questions[' + index + '].answer'" tag="p">
             <template #policy>
-              <nuxt-link :to="localePath('about-datapolicy')">
+              <nuxt-link :to="localePath('data-data_policy')">
                 {{ $t('common.policy') }}
               </nuxt-link>
             </template>
@@ -26,7 +26,7 @@
               </nuxt-link>
             </template>
             <template #access>
-              <nuxt-link :to="localePath('about-data_access')">
+              <nuxt-link :to="localePath('data-data_access')">
                 {{ $t('common.access') }}
               </nuxt-link>
             </template>

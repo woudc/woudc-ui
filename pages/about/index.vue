@@ -23,7 +23,7 @@
         </nuxt-link>
       </template>
       <template #access>
-        <nuxt-link :to="localePath('about-data_access')">
+        <nuxt-link :to="localePath('data-data_access')">
           {{ $t('common.access') }}
         </nuxt-link>
       </template>
