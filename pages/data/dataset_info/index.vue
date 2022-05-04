@@ -30,13 +30,18 @@ export default {
     return {
       links: {
         totalozone: ['totalozone', 'totalozoneobs'],
-        'uv-irradiance': ['broadband', 'multiband', 'spectral', 'uvindex'],
+        'uv-irradiance': [
+          'broadband',
+          'multiband',
+          'spectral',
+          'uv_index_hourly',
+        ],
         'vertical-ozone': [
           'lidar',
           'ozonesonde',
           'rocketsonde',
-          'umkehr1',
-          'umkehr2',
+          'umkehrn14_1',
+          'umkehrn14_2',
         ],
       },
       sectionOrder: ['totalozone', 'vertical-ozone', 'uv-irradiance'],

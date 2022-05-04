@@ -1148,9 +1148,9 @@
         "spectral": "Spectrale",
         "totalozone": "Ozone total - observations quotidiennes",
         "totalozoneobs": "Ozone total - Observations horaires",
-        "umkehr1": "UmkehrN14 (Niveau 1.0)",
-        "umkehr2": "UmkehrN14 (Niveau 2.0)",
-        "uvindex": "Indice UV",
+        "umkehrn14_1": "UmkehrN14 (Niveau 1.0)",
+        "umkehrn14_2": "UmkehrN14 (Niveau 2.0)",
+        "uv_index_hourly": "Indice UV",
         "waf": "Dossier accessible sur le web (WAF)",
         "wfs": "OGC Web Feature Service (WFS)",
         "wms": "OGC Web Map Service (WMS)"
