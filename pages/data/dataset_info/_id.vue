@@ -97,7 +97,6 @@
 </template>
 
 <script>
-import x2js from 'x2js'
 import woudcClient from '~/plugins/woudcClient'
 import { unpackageStation } from '~/plugins/woudcJsonUtil.js'
 
@@ -112,9 +111,15 @@ export default {
   data() {
     return {
       abstract: null,
+      aliases: {
+        broadband: 'broad-band',
+        multiband: 'multi-band',
+        umkehrn14_1: 'umkehrn14_1.0',
+        umkehrn14_2: 'umkehrn14_2.0',
+      },
       category: null,
+      collectionItem: null,
       dataset: null,
-      datasetDoc: null,
       dateFrom: null,
       dateTo: null,
       doi: null,
@@ -146,7 +151,7 @@ export default {
     },
     datasetWafURL() {
       const archivePath = this.$config.WOUDC_UI_WAF_URL + '/Archive-NewFormat'
-      return `${archivePath}/${this.wafDataset}_${this.level}.0_1`
+      return `${archivePath}/${this.wafDataset}`
     },
     wfsURL() {
       return (
@@ -171,153 +176,29 @@ export default {
   },
   methods: {
     async init() {
-      this.dataset = this.$route.params.id
-      this.setUri()
-      await this.getDatasetInfo()
-      this.title = this.datasetDoc.citation.CI_Citation.title
-      this.abstract = this.datasetDoc.abstract
-      if (this.$i18n.locale === 'en') {
-        this.title = this.title.CharacterString.toString()
-        this.abstract = this.abstract.CharacterString.toString()
-        for (let i = 0; i < this.datasetDoc.descriptiveKeywords.length; i++) {
-          if (
-            !this.datasetDoc.descriptiveKeywords[i].MD_Keywords.keyword.length
-          ) {
-            this.keywords.push(
-              this.datasetDoc.descriptiveKeywords[
-                i
-              ].MD_Keywords.keyword.CharacterString.toString()
-            )
-          }
-          for (
-            let j = 0;
-            j <
-            this.datasetDoc.descriptiveKeywords[i].MD_Keywords.keyword.length;
-            j++
-          ) {
-            this.keywords.push(
-              this.datasetDoc.descriptiveKeywords[i].MD_Keywords.keyword[
-                j
-              ].CharacterString.toString()
-            )
-          }
-        }
+      if (this.$route.params.id in this.aliases) {
+        this.dataset = this.aliases[this.$route.params.id]
       } else {
-        this.title =
-          this.title.PT_FreeText.textGroup.LocalisedCharacterString.toString()
-        this.abstract =
-          this.abstract.PT_FreeText.textGroup.LocalisedCharacterString.toString()
-        for (let i = 0; i < this.datasetDoc.descriptiveKeywords.length; i++) {
-          for (
-            let j = 0;
-            j <
-            this.datasetDoc.descriptiveKeywords[i].MD_Keywords.keyword.length;
-            j++
-          ) {
-            if (
-              this.datasetDoc.descriptiveKeywords[i].MD_Keywords.keyword[j]
-                .PT_FreeText
-            ) {
-              this.keywords.push(
-                this.datasetDoc.descriptiveKeywords[i].MD_Keywords.keyword[
-                  j
-                ].PT_FreeText.textGroup.LocalisedCharacterString.toString()
-              )
-            }
-          }
-        }
+        this.dataset = this.$route.params.id
       }
-      this.keywords = new Set(this.keywords)
-      this.doi =
-        this.datasetDoc.resourceConstraints.MD_LegalConstraints.otherConstraints[2].CharacterString.toString().substr(
-          4
-        )
-      this.dateFrom =
-        this.datasetDoc.extent.EX_Extent.temporalElement.EX_TemporalExtent.extent.TimePeriod.beginPosition.toString()
-      const endPosition =
-        this.datasetDoc.extent.EX_Extent.temporalElement.EX_TemporalExtent
-          .extent.TimePeriod.endPosition
-      if (endPosition._indeterminatePosition) {
-        this.dateTo = endPosition._indeterminatePosition
-      } else {
-        this.dateTo = endPosition.toString()
-      }
-      if (this.dataset === 'umkehr2') {
-        this.level = 2
-      } else {
-        this.level = 1
-      }
-      this.category =
-        this.datasetDoc.topicCategory.MD_TopicCategoryCode.toString()
-    },
-    setUri() {
-      if (this.dataset === 'totalozone') {
-        this.wafDataset = 'TotalOzone'
-        this.requestUrl =
-          this.$config.WOUDC_UI_OWS_URL +
-          '/csw?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/ozone/total-column-ozone/totalozone'
-      } else if (this.dataset === 'totalozoneobs') {
-        this.wafDataset = 'TotalOzoneObs'
-        this.requestUrl =
-          this.$config.WOUDC_UI_OWS_URL +
-          '/csw?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/ozone/total-column-ozone/totalozoneobs'
-      } else if (this.dataset === 'ozonesonde') {
-        this.wafDataset = 'OzoneSonde'
-        this.requestUrl =
-          this.$config.WOUDC_UI_OWS_URL +
-          '/csw?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/ozone/vertical-ozone-profile/ozonesonde'
-      } else if (this.dataset === 'lidar') {
-        this.wafDataset = 'Lidar'
-        this.requestUrl =
-          this.$config.WOUDC_UI_OWS_URL +
-          '/csw?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/ozone/vertical-ozone-profile/lidar'
-      } else if (this.dataset === 'rocketsonde') {
-        this.wafDataset = 'RocketSonde'
-        this.requestUrl =
-          this.$config.WOUDC_UI_OWS_URL +
-          '/csw?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/ozone/vertical-ozone-profile/rocketsonde'
-      } else if (this.dataset === 'umkehr1') {
-        this.wafDataset = 'UmkehrN14'
-        this.requestUrl =
-          this.$config.WOUDC_UI_OWS_URL +
-          '/csw?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/ozone/vertical-ozone-profile/umkehrn14-1'
-      } else if (this.dataset === 'umkehr2') {
-        this.wafDataset = 'UmkehrN14'
-        this.requestUrl =
-          this.$config.WOUDC_UI_OWS_URL +
-          '/csw?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/ozone/vertical-ozone-profile/umkehrn14-2'
-      } else if (this.dataset === 'broadband') {
-        this.wafDataset = 'Broad-band'
-        this.requestUrl =
-          this.$config.WOUDC_UI_OWS_URL +
-          '/csw?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/uv-radiation/uv-irradiance/broadband'
-      } else if (this.dataset === 'multiband') {
-        this.wafDataset = 'Multi-band'
-        this.requestUrl =
-          this.$config.WOUDC_UI_OWS_URL +
-          '/csw?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/uv-radiation/uv-irradiance/multiband'
-      } else if (this.dataset === 'spectral') {
-        this.wafDataset = 'Spectral'
-        this.requestUrl =
-          this.$config.WOUDC_UI_OWS_URL +
-          '/csw?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/uv-radiation/uv-irradiance/spectral'
-      } else if (this.dataset === 'uvindex') {
+      const discoveryMetadataURL =
+        this.$config.WOUDC_UI_API_URL + '/collections/discovery_metadata/items'
+      this.uriDatasetDef = discoveryMetadataURL + '?identifier=' + this.dataset
+      const response = await woudcClient.get(this.uriDatasetDef)
+      this.collectionItem = response.data.features[0].properties
+
+      this.title = this.collectionItem[`title_${this.$i18n.locale}`]
+      this.abstract = this.collectionItem[`abstract_${this.$i18n.locale}`]
+      this.doi = this.collectionItem.doi
+      this.dateFrom = this.collectionItem.temporal_begin
+      this.dateTo = this.collectionItem.temporal_end
+      this.category = this.collectionItem.topic_category
+      this.keywords = this.collectionItem[`keywords_${this.$i18n.locale}`]
+      if (this.dataset === 'uvindex') {
         this.wafDataset = null
-        this.requestUrl =
-          this.$config.WOUDC_UI_OWS_URL +
-          '/csw?service=CSW&version=2.0.2&request=GetRepositoryItem&id=urn:x-wmo:md:int.wmo.wis::https://geo.woudc.org/def/data/uv-radiation/uv-irradiance/uv_index_hourly'
+      } else {
+        this.wafDataset = this.collectionItem.waf[`label_${this.$i18n.locale}`]
       }
-    },
-    async getDatasetInfo() {
-      const response = await woudcClient.get(this.requestUrl, {
-        headers: {
-          'Accept-Encoding': 'gzip',
-        },
-      })
-      const converter = new x2js()
-      const doc = converter.xml2js(response.data)
-      this.uriDatasetDef = doc.MD_Metadata.dataSetURI.CharacterString.toString()
-      this.datasetDoc = doc.MD_Metadata.identificationInfo.MD_DataIdentification
     },
     stationText(station) {
       if (station.gaw_id === null) {

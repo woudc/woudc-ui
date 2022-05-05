@@ -14,11 +14,11 @@ const groupStationsByDataset = (stnDataPairs, stationsByID) => {
     const datasetKeys = []
     if (dataset === 'UmkehrN14_1.0') {
       const level = 1
-      const key = 'umkehr' + parseInt(level)
+      const key = 'umkehrn14_' + parseInt(level)
       datasetKeys.push(key)
     } else if (dataset === 'UmkehrN14_2.0') {
       const level = 2
-      const key = 'umkehr' + parseInt(level)
+      const key = 'umkehrn14_' + parseInt(level)
       datasetKeys.push(key)
     } else {
       const key = dataset.replace('-', '').toLowerCase()
@@ -26,7 +26,7 @@ const groupStationsByDataset = (stnDataPairs, stationsByID) => {
     }
 
     if (uvIndexDatasets.includes(dataset)) {
-      datasetKeys.push('uvindex')
+      datasetKeys.push('uv_index_hourly')
     }
 
     // Add a station to its group (unless that station is already tracked).
@@ -64,11 +64,11 @@ const state = () => ({
   broadband: [],
   multiband: [],
   spectral: [],
-  umkehr1: [],
-  umkehr2: [],
+  umkehrn14_1: [],
+  umkehrn14_2: [],
   rocketsonde: [],
   lidar: [],
-  uvindex: [],
+  uv_index_hourly: [],
 })
 
 const getters = {
@@ -106,11 +106,11 @@ const getters = {
   spectral(state) {
     return state.spectral
   },
-  umkehr1(state) {
-    return state.umkehr1
+  umkehrn14_1(state) {
+    return state.umkehrn14_1
   },
-  umkehr2(state) {
-    return state.umkehr2
+  umkehrn14_2(state) {
+    return state.umkehrn14_2
   },
   rocketsonde(state) {
     return state.rocketsonde
@@ -118,8 +118,8 @@ const getters = {
   lidar(state) {
     return state.lidar
   },
-  uvindex(state) {
-    return state.uvindex
+  uv_index_hourly(state) {
+    return state.uv_index_hourly
   },
 }
 
@@ -152,10 +152,10 @@ const mutations = {
     state.spectral = stations
   },
   setStationsUmkehr1(state, stations) {
-    state.umkehr1 = stations
+    state.umkehrn14_1 = stations
   },
   setStationsUmkehr2(state, stations) {
-    state.umkehr2 = stations
+    state.umkehrn14_2 = stations
   },
   setStationsRocketSonde(state, stations) {
     state.rocketsonde = stations
@@ -164,7 +164,7 @@ const mutations = {
     state.lidar = stations
   },
   setStationsUVIndex(state, stations) {
-    state.uvindex = stations
+    state.uv_index_hourly = stations
   },
   setStationsDistinctFields(state, stations) {
     state.stationDistinctFields = stations
@@ -296,8 +296,8 @@ const actions = {
     commit('setStationsBroadband', stationsByDataset.broadband)
     commit('setStationsMultiband', stationsByDataset.multiband)
     commit('setStationsSpectral', stationsByDataset.spectral)
-    commit('setStationsUmkehr1', stationsByDataset.umkehr1)
-    commit('setStationsUmkehr2', stationsByDataset.umkehr2)
+    commit('setStationsUmkehr1', stationsByDataset.umkehrn14_1)
+    commit('setStationsUmkehr2', stationsByDataset.umkehrn14_2)
     commit('setStationsRocketSonde', stationsByDataset.rocketsonde)
     commit('setStationsLidar', stationsByDataset.lidar)
     commit('setStationsUVIndex', stationsByDataset.uvindex)
