@@ -72,7 +72,9 @@
               }}</a>
             </li>
             <li>
-              <nuxt-link :to="localePath('data-search')">
+              <nuxt-link
+                :to="localePath('data-search') + '?dataset=' + dataset_id"
+              >
                 {{ $t('data.info.links.search-page') }}
               </nuxt-link>
             </li>
@@ -120,6 +122,7 @@ export default {
       category: null,
       collectionItem: null,
       dataset: null,
+      dataset_id: null,
       dateFrom: null,
       dateTo: null,
       doi: null,
@@ -187,6 +190,7 @@ export default {
       const response = await woudcClient.get(this.uriDatasetDef)
       this.collectionItem = response.data.features[0].properties
 
+      this.dataset_id = this.collectionItem.identifier
       this.title = this.collectionItem[`title_${this.$i18n.locale}`]
       this.abstract = this.collectionItem[`abstract_${this.$i18n.locale}`]
       this.doi = this.collectionItem.doi
@@ -194,9 +198,7 @@ export default {
       this.dateTo = this.collectionItem.temporal_end
       this.category = this.collectionItem.topic_category
       this.keywords = this.collectionItem[`keywords_${this.$i18n.locale}`]
-      if (this.dataset === 'uvindex') {
-        this.wafDataset = null
-      } else {
+      if (this.dataset !== 'uv_index_hourly') {
         this.wafDataset = this.collectionItem.waf[`label_${this.$i18n.locale}`]
       }
     },

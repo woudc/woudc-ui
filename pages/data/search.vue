@@ -750,7 +750,7 @@ export default {
       this.selectedDataset = this.$t('common.all')
       this.selectedYearRange = [this.minSelectableYear, this.maxSelectableYear]
 
-      this.refreshMetrics()
+      this.routingParams()
     })
   },
   methods: {
@@ -872,7 +872,8 @@ export default {
         !(
           station === null ||
           this.peerOrNdaccDatasets.includes(this.selectedDatasetID)
-        )
+        ) &&
+        this.selectedCountry === null
       ) {
         this.selectCountryFromStation(station)
       }
@@ -1292,6 +1293,37 @@ export default {
       })
 
       this.metricsByYear = newMetrics
+    },
+    async routingParams() {
+      if ('dataset' in this.$route.query) {
+        for (const dataset of this.datasetOptions) {
+          if (dataset.value == this.$route.query.dataset) {
+            await this.changeDataset(dataset)
+          }
+        }
+      }
+      if ('country' in this.$route.query) {
+        for (const country of this.countryOptions) {
+          if (country.value == this.$route.query.country) {
+            await this.changeCountry(country)
+          }
+        }
+      }
+      if ('station' in this.$route.query) {
+        for (const station of this.stationOptions) {
+          if (station.value == this.$route.query.station) {
+            await this.changeStation(station.element)
+          }
+        }
+      }
+      if ('instrument' in this.$route.query) {
+        for (const instrument of this.instrumentOptions) {
+          if (instrument.value == this.$route.query.instrument) {
+            await this.changeInstrument(instrument)
+          }
+        }
+      }
+      this.refreshMetrics()
     },
     async sendDropdownRequest(dataset, country, station) {
       const inputs = {}
