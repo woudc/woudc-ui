@@ -1,3 +1,14 @@
+woudc-ui (2.0.0-beta13) bionic; urgency=medium
+
+  * Add autocomplete column filters contributor, station and instrument pages
+  * Update WMO URLs
+  * Fix duplicate XHR in data search page
+  * Fix to broken links
+  * Incorporate Discovery Metadata into Data info pages
+  * Add query params to data search page for preselection
+
+ -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Tue, 10 May 2022 15:48:00 +0000
+
 woudc-ui (2.0.0-beta12) bionic; urgency=medium
 
   * Update and change dependencies for NodeJS 16.14.0
