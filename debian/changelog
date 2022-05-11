@@ -1,3 +1,9 @@
+woudc-ui (2.0.0-beta14) bionic; urgency=medium
+
+  * Revert change of startindex to offset query param
+
+ -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Wed, 11 May 2022 14:46:00 +0000
+
 woudc-ui (2.0.0-beta13) bionic; urgency=medium
 
   * Add autocomplete column filters contributor, station and instrument pages
