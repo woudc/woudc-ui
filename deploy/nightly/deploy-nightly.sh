@@ -77,3 +77,5 @@ sed -i 's#/data/web/woudc-ui#/data/web/gods/htdocs/woudc-2.0/nightly/latest#g' d
 sed -i 's/DocumentRoot/#DocumentRoot/' dist/woudc-ui.conf
 cd ..
 ln -s $NIGHTLYDIR/dist latest
+# ensure usergroup is dmsec
+chgrp dmsec -R $NIGHTLYDIR
