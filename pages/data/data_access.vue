@@ -41,48 +41,43 @@
         </v-card>
       </v-col>
       <v-col cols="4">
-        <v-card id="contents-table">
+        <v-card id="table-of-contents">
           <v-card-title class="primary white--text">
             {{ $t('data.access.contents.title') }}
           </v-card-title>
           <v-list id="contents-body" class="pa-0">
-            <div
-              v-for="(section, i) in tableOfContents"
-              :key="section.selector"
-            >
-              <v-divider v-if="i !== 0" />
-              <template v-if="section.subsections === null">
-                <v-list-item>
-                  <v-list-item-title>
-                    <nuxt-link :to="'#' + section.selector">
-                      {{ section.text }}
-                    </nuxt-link>
-                  </v-list-item-title>
-                </v-list-item>
-              </template>
-              <template v-else>
-                <v-list-group>
-                  <template #activator>
-                    <v-list-item-title>
-                      <nuxt-link :to="'#' + section.selector">
-                        {{ section.text }}
-                      </nuxt-link>
-                    </v-list-item-title>
-                  </template>
-                  <v-list-item
-                    v-for="subsection in section.subsections"
-                    :key="subsection.selector"
-                  >
-                    <v-list-item-title>
-                      &nbsp;&nbsp;&nbsp;&nbsp;
-                      <nuxt-link :to="'#' + subsection.selector">
-                        {{ subsection.text }}
-                      </nuxt-link>
-                    </v-list-item-title>
-                  </v-list-item>
-                </v-list-group>
-              </template>
-            </div>
+            <v-list-item>
+              <v-list-item-title>
+                <nuxt-link to="#data-search-section">
+                  {{ $t('data.access.contents.links.search') }}
+                </nuxt-link>
+              </v-list-item-title>
+            </v-list-item>
+            <v-divider />
+            <v-list-item>
+              <v-list-item-title>
+                <nuxt-link to="#waf-section">
+                  {{ $t('data.access.contents.links.waf') }}
+                </nuxt-link>
+              </v-list-item-title>
+            </v-list-item>
+            <v-divider />
+            <v-list-item>
+              <v-list-item-title>
+                <nuxt-link to="#web-services-section">
+                  {{ $t('data.access.ogcapi.title') }}
+                </nuxt-link>
+              </v-list-item-title>
+            </v-list-item>
+            <v-divider />
+            <v-list-item>
+              <v-list-item-title>
+                <nuxt-link to="#examples-section">
+                  {{ $t('data.access.contents.links.examples') }}
+                </nuxt-link>
+              </v-list-item-title>
+            </v-list-item>
+            <v-divider />
           </v-list>
         </v-card>
       </v-col>
@@ -136,202 +131,51 @@
           </i18n>
         </div>
         <div id="web-services-section">
-          <h2>{{ $t('data.access.web.title') }}</h2>
-          <p>{{ $t('data.access.web.blurb.body-intro') }}</p>
-          <i18n path="data.access.web.blurb.body-standards" tag="p">
+          <h2>{{ $t('data.access.ogcapi.title') }}</h2>
+          <p>{{ $t('data.access.ogcapi.intro-api') }}</p>
+          <i18n path="data.access.ogcapi.intro-ogc" tag="p">
             <template #ogc>
-              <a :href="ogcURL" target="_blank">
-                {{ $t('common.ogc') }}
-              </a>
+              <a :href="ogcURL" target="_blank">{{ $t('common.ogc') }}</a>
             </template>
-            <template #iso>
-              <a :href="isoURL" target="_blank">
-                {{ $t('common.iso') }}
-              </a>
-            </template>
-            <template #interoperability>
-              <a :href="interoperabilityURL" target="_blank">
-                {{ $t('common.interoperability') }}
-              </a>
-            </template>
-            <template #wis>
-              <a :href="wisURL" target="_blank">
-                {{ $t('common.wis') }}
+          </i18n>
+          <i18n path="data.access.ogcapi.intro-endpoint" tag="p">
+            <template #url>
+              <a :href="$config.WOUDC_UI_API_URL" target="_blank">
+                {{ $config.WOUDC_UI_API_URL }}
               </a>
             </template>
           </i18n>
-          <v-card class="mt-1 mb-4" color="info">
-            <v-card-text class="mt-1 mb-4" color="info">
-              {{ $t('data.access.web.table.title') }}
-            </v-card-text>
-          </v-card>
-          <div id="csw-subsection">
-            <h3>{{ $t('data.access.csw.title') }}</h3>
-            <i18n class="mb-0" path="data.access.csw.blurb" tag="p">
-              <template #ogc-cs>
-                <a :href="ogcStandardsURL" target="_blank">
-                  {{ $t('common.ogc-cs') }}
-                </a>
-              </template>
-            </i18n>
-            <v-card class="mt-1 mb-4" color="info">
-              <v-card-title class="pt-3 pb-0">
-                {{ $t('data.access.csw.note.title') }}
-              </v-card-title>
-              <v-card-text>
-                <i18n class="mb-0" path="data.access.csw.note.body" tag="p">
-                  <template #link>
-                    <a :href="cswURL" target="_blank">
-                      {{ cswURL }}
-                    </a>
-                  </template>
-                </i18n>
-              </v-card-text>
-            </v-card>
-          </div>
-          <div id="wms-subsection">
-            <h3>{{ $t('data.access.wms.title') }}</h3>
-            <i18n path="data.access.wms.blurb" tag="p">
-              <template #wms>
-                <a :href="wmsURL" target="_blank">
-                  {{ $t('common.wms') }}
-                </a>
-              </template>
-            </i18n>
-            <v-card class="mt-1 mb-4" color="info">
-              <v-card-title class="pt-3 pb-0">
-                {{ $t('data.access.wms.note.title') }}
-              </v-card-title>
-              <v-card-text>
-                <i18n class="mb-0" path="data.access.wms.note.body" tag="p">
-                  <template #link>
-                    <a :href="wmsAPIURL" target="_blank">
-                      {{ wmsAPIURL }}
-                    </a>
-                  </template>
-                </i18n>
-              </v-card-text>
-            </v-card>
-          </div>
-          <div id="wfs-subsection">
-            <h3>{{ $t('data.access.wfs.title') }}</h3>
-            <i18n path="data.access.wfs.blurb.body-intro" tag="p">
-              <template #wfs>
-                <a :href="wfsURL" target="_blank">
-                  {{ $t('common.wfs') }}
-                </a>
-              </template>
-            </i18n>
-            <p>{{ $t('data.access.wfs.blurb.body-limits') }}</p>
-            <v-card class="mt-1 mb-4" color="info">
-              <v-card-title class="pt-3 pb-0">
-                {{ $t('data.access.wfs.note.title') }}
-              </v-card-title>
-              <v-card-text>
-                <i18n class="mb-0" path="data.access.wfs.note.body" tag="p">
-                  <template #link>
-                    <a :href="wfsAPIURL" target="_blank">
-                      {{ wfsAPIURL }}
-                    </a>
-                  </template>
-                </i18n>
-              </v-card-text>
-            </v-card>
-          </div>
-          <div id="wps-subsection">
-            <h3>{{ $t('data.access.wps.title') }}</h3>
-            <i18n path="data.access.wps.blurb" tag="p">
-              <template #wps>
-                <a :href="wpsURL" target="_blank">
-                  {{ $t('common.wps') }}
-                </a>
-              </template>
-            </i18n>
-            <v-card class="mt-1 mb-4" color="info">
-              <v-card-title class="pt-3 pb-0">
-                {{ $t('data.access.wps.note.title') }}
-              </v-card-title>
-              <v-card-text>
-                <i18n class="mb-0" path="data.access.wps.note.body" tag="p">
-                  <template #link>
-                    <a :href="wpsAPIURL" target="_blank">
-                      {{ wpsAPIURL }}
-                    </a>
-                  </template>
-                </i18n>
-              </v-card-text>
-            </v-card>
-          </div>
-        </div>
-        <div id="definitions-service-section">
-          <h2>{{ $t('data.access.definitions.title') }}</h2>
-          <p>{{ $t('data.access.definitions.blurb') }}</p>
-          <v-card class="mt-1 mb-4" color="info">
-            <v-card-title class="pt-3 pb-0">
-              {{ $t('data.access.definitions.note.title') }}
-            </v-card-title>
-            <v-card-text>
-              <i18n
-                class="mb-0"
-                path="data.access.definitions.note.body"
-                tag="p"
-              >
-                <template #link>
-                  <a :href="definitionsURL" target="_blank">
-                    {{ definitionsURL }}
-                  </a>
-                </template>
-              </i18n>
-            </v-card-text>
-          </v-card>
-        </div>
-        <div id="iso-catalogue-section">
-          <h2>{{ $t('data.access.iso.title') }}</h2>
-          <p>{{ $t('data.access.iso.blurb-intro') }}</p>
-          <v-card class="mt-1 mb-4" color="info">
-            <v-card-title class="pt-3 pb-0">
-              {{ $t('data.access.iso.note.title') }}
-            </v-card-title>
-            <v-card-text>
-              <i18n class="mb-0" path="data.access.iso.note.body" tag="p">
-                <template #link>
-                  <a :href="isoAPIURL" target="_blank">
-                    {{ isoAPIURL }}
-                  </a>
-                </template>
-              </i18n>
-            </v-card-text>
-          </v-card>
-          <i18n path="data.access.iso.blurb-howto" tag="p">
-            <template #how-to>
-              <a :href="isoServicesURL" target="_blank">
+          <p>{{ $t('data.access.ogcapi.intro-provides') }}</p>
+          <i18n path="data.access.ogcapi.intro-consult" tag="p">
+            <template #webServicesHowTo>
+              <a :href="webServicesHowToURL" target="_blank">
                 {{ $t('data.access.iso.how-to') }}
               </a>
             </template>
           </i18n>
         </div>
+
         <div id="examples-section">
           <h2>{{ $t('data.access.examples.title') }}</h2>
           <i18n path="data.access.examples.blurb" tag="p">
             <template #github>
-              <a :href="githubURL" target="_blank">
-                {{ $t('common.github') }}
-              </a>
+              <a :href="githubURL" target="_blank">{{ $t('common.github') }}</a>
             </template>
           </i18n>
-          <v-card>
-            <v-list id="example-list" class="pa-0" dense>
-              <v-list-item>
-                <a :href="examples.pywoudc" target="_blank"> pywoudc </a>
-                : {{ $t('data.access.examples.links.pywoudc') }}
-              </v-list-item>
-              <v-divider />
-              <v-list-item>
-                <a :href="examples.notebooks" target="_blank"> notebooks </a>
-                : {{ $t('data.access.examples.links.notebooks') }}
-              </v-list-item>
-            </v-list>
-          </v-card>
+
+          <v-list id="example-list" dense>
+            <i18n path="data.access.examples.links.pywoudc" tag="v-list-item">
+              <template #pywoudc>
+                <a :href="examples.pywoudc" target="_blank">pywoudc</a>
+              </template>
+            </i18n>
+
+            <i18n path="data.access.examples.links.notebooks" tag="v-list-item">
+              <template #notebooks>
+                <a :href="examples.notebooks" target="_blank">notebooks</a>
+              </template>
+            </i18n>
+          </v-list>
         </div>
       </v-col>
     </v-row>
@@ -349,7 +193,8 @@ export default {
         'https://www.wmo.int/pages/prog/www/WIS/documents/MOAWMO_OGC.pdf',
       isoAPIURL: `${this.$config.WOUDC_UI_OWS_URL}/codelists.xml`,
       isoURL: 'https://www.isotc211.org/',
-      isoServicesURL: 'https://github.com/woudc/woudc/wiki/WebServicesHowto',
+      webServicesHowToURL:
+        'https://github.com/woudc/woudc/wiki/WebServicesHowto',
       ogcStandardsURL: 'https://opengeospatial.org/standards/cat',
       ogcURL: 'https://opengeospatial.org/',
       searchHelpURL:
@@ -364,16 +209,10 @@ export default {
       wpsAPIURL: `${this.$config.WOUDC_UI_OWS_URL}/wps?service=WPS&version=1.0.0&request=GetCapabilities`,
       wpsURL: 'https://www.opengeospatial.org/standards/wps',
       contentsSelectors: {
-        csw: 'csw-subsection',
-        definitions: 'definitions-service-section',
         examples: 'examples-section',
-        iso: 'iso-catalogue-section',
         search: 'data-search-section',
         waf: 'waf-section',
         web: 'web-services-section',
-        wfs: 'wfs-subsection',
-        wms: 'wms-subsection',
-        wps: 'wps-subsection',
       },
       examples: {
         pywoudc: 'https://github.com/woudc/pywoudc',
@@ -393,24 +232,7 @@ export default {
       ],
     }
   },
-  computed: {
-    tableOfContents() {
-      const sections = [
-        'search',
-        'waf',
-        'web',
-        'definitions',
-        'iso',
-        'examples',
-      ].map(this.prepareContentsLink)
-
-      sections[2].subsections = this.webContentsSubsections
-      return sections
-    },
-    webContentsSubsections() {
-      return ['csw', 'wms', 'wfs', 'wps'].map(this.prepareContentsLink)
-    },
-  },
+  computed: {},
   methods: {
     prepareContentsLink(key) {
       return {
@@ -429,9 +251,4 @@ export default {
 }
 </script>
 
-<style scoped>
-#contents-body,
-#example-list {
-  font-size: 14px;
-}
-</style>
+<style scoped></style>

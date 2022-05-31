@@ -4,7 +4,7 @@
       <v-col>
         <h2>{{ $t('common.welcome') }}</h2>
         <v-card itemscope itemtype="http://schema.org/GovernmentOrganization">
-          <v-card-title itemprop="name"> WOUDC </v-card-title>
+          <v-card-title itemprop="name">WOUDC</v-card-title>
           <v-card-subtitle itemprop="description">
             {{ $t('home.adTitle') }}
           </v-card-subtitle>
@@ -99,13 +99,17 @@
         </v-card>
       </v-col>
       <v-col cols="12" md="4">
-        <h3 class="h2 mt-2 mb-2">{{ $t('home.quickLinks') }}</h3>
+        <h3 class="h2 mt-2 mb-2">
+          {{ $t('home.quickLinks') }}
+        </h3>
         <div v-for="(linkItem, i) in quickLinks" :key="i">
           <nuxt-link :to="localePath(linkItem.link)">
             {{ $t(linkItem.title) }}
           </nuxt-link>
         </div>
-        <h3 class="h2 mt-2 mb-2">{{ $t('home.news.title') }}</h3>
+        <h3 class="h2 mt-2 mb-2">
+          {{ $t('home.news.title') }}
+        </h3>
         <div v-if="loaded">
           <div v-for="(newsItem, i) in recentNewsItems" :key="i">
             <nuxt-link

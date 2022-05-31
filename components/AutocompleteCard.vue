@@ -17,8 +17,7 @@
           small-chips
           deletable-chips
           @input="changeFilters($event, field.value)"
-        >
-        </v-autocomplete>
+        />
       </v-col>
     </v-col>
     <div class="pb-5 px-3">
@@ -52,7 +51,7 @@
           </v-badge>
         </template>
         <v-card-title class="py-3">
-          <v-icon class="mr-1"> mdi-alert </v-icon>
+          <v-icon class="mr-1">mdi-alert</v-icon>
           {{ $t('common.old-search.title') }}
         </v-card-title>
         <i18n path="common.old-search.body" tag="v-card-text">

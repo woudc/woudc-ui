@@ -14,10 +14,10 @@
         >
           <template #popup="element">
             <strong>{{ $t('data.instruments.instrument-type') }}</strong>
-            <span> {{ element.item.name }}</span>
+            <span>{{ element.item.name }}</span>
             <br />
             <strong>{{ $t('data.instruments.instrument-model') }}</strong>
-            <span> {{ element.item.model }}</span>
+            <span>{{ element.item.model }}</span>
             <br />
             <strong>{{ $t('data.instruments.station-name') }}</strong>
             <nuxt-link :to="'/data/stations/' + element.item.station_id">
@@ -25,14 +25,14 @@
             </nuxt-link>
             <br />
             <strong>{{ $t('data.instruments.contributor-name') }}</strong>
-            <span> {{ element.item.contributor_name }}</span>
+            <span>{{ element.item.contributor_name }}</span>
           </template>
         </selectable-map>
         <v-switch
           v-model="enableBboxSearch"
           class="mr-4 float-left"
           :label="$t('common.bbox.switch')"
-        ></v-switch>
+        />
         <v-chip v-if="boundingBoxArray !== null" label small class="my-5">
           {{ $t('common.bbox.title') }}{{ $t('common.colon-style') }}
           {{ boundingBoxArrayText(boundingBoxArray) }}
@@ -55,8 +55,7 @@
           :refresh="refreshInstruments"
           :reset="reset"
           :resettingfilters="resettingFilters"
-        >
-        </autocomplete-card>
+        />
         <selectable-table
           :headers="headers"
           :elements="displayedInstruments"

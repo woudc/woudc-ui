@@ -30,9 +30,13 @@
                   tag="li"
                 >
                   <template #pressure-plots>
-                    <strong>{{
-                      $t('data.products.ozonesonde.instructions.pressure-plots')
-                    }}</strong>
+                    <strong>
+                      {{
+                        $t(
+                          'data.products.ozonesonde.instructions.pressure-plots'
+                        )
+                      }}
+                    </strong>
                   </template>
                 </i18n>
                 <i18n
@@ -40,11 +44,13 @@
                   tag="li"
                 >
                   <template #temperature-plots>
-                    <strong>{{
-                      $t(
-                        'data.products.ozonesonde.instructions.temperature-plots'
-                      )
-                    }}</strong>
+                    <strong>
+                      {{
+                        $t(
+                          'data.products.ozonesonde.instructions.temperature-plots'
+                        )
+                      }}
+                    </strong>
                   </template>
                 </i18n>
                 <i18n
@@ -52,9 +58,11 @@
                   tag="li"
                 >
                   <template #flight-plots>
-                    <strong>{{
-                      $t('data.products.ozonesonde.instructions.flight-plots')
-                    }}</strong>
+                    <strong>
+                      {{
+                        $t('data.products.ozonesonde.instructions.flight-plots')
+                      }}
+                    </strong>
                   </template>
                 </i18n>
               </ul>
@@ -87,8 +95,7 @@
               placeholder="..."
               return-object
               @input="changeStation"
-            >
-            </v-select>
+            />
           </v-col>
           <v-col class="mt-1" align-self="center">
             <span class="pt-0">{{ $t('common.sort-by') }}</span>
@@ -104,8 +111,7 @@
           :items="yearOptions"
           :loading="loadingYears"
           :disabled="selectedStation === null || loadingYears"
-        >
-        </v-select>
+        />
       </v-col>
       <v-col>
         <selectable-map

@@ -20,6 +20,12 @@ module.exports = {
     'vue/valid-v-slot': ['error', { allowModifiers: true }],
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'prettier/prettier': [
+      'error',
+      {
+        htmlWhitespaceSensitivity: 'ignore',
+      },
+    ],
   },
   globals: {
     $nuxt: true, // prevent "no-undefined variables" when accessing $nuxt

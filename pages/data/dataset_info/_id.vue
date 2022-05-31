@@ -4,28 +4,28 @@
     <v-row>
       <v-col>
         <div class="mb-3">
-          <strong>{{ $t('data.info.descriptors.title') }}</strong
-          >&nbsp;
+          <strong>{{ $t('data.info.descriptors.title') }}</strong>
+          &nbsp;
           <span>{{ title }}</span>
         </div>
         <div class="mb-3">
-          <strong>{{ $t('data.info.descriptors.abstract') }}</strong
-          >&nbsp;
+          <strong>{{ $t('data.info.descriptors.abstract') }}</strong>
+          &nbsp;
           <span>{{ abstract }}</span>
         </div>
         <div class="mb-3">
-          <strong>{{ $t('data.info.descriptors.uri') }}</strong
-          >&nbsp;
+          <strong>{{ $t('data.info.descriptors.uri') }}</strong>
+          &nbsp;
           <a :href="uriDatasetDef" target="_blank">{{ uriDatasetDef }}</a>
         </div>
         <div class="mb-3">
-          <strong>{{ $t('data.info.descriptors.doi') }}</strong
-          >&nbsp;
+          <strong>{{ $t('data.info.descriptors.doi') }}</strong>
+          &nbsp;
           <a :href="doiURL" target="_blank">{{ doi }}</a>
         </div>
         <div class="mb-3">
-          <strong>{{ $t('data.info.descriptors.range') }}</strong
-          >&nbsp;
+          <strong>{{ $t('data.info.descriptors.range') }}</strong>
+          &nbsp;
           <i18n path="data.info.descriptors.range-template" tag="span">
             <template #start>
               {{ dateFrom }}
@@ -36,13 +36,13 @@
           </i18n>
         </div>
         <div class="mb-3">
-          <strong>{{ $t('data.info.descriptors.category') }}</strong
-          >&nbsp;
+          <strong>{{ $t('data.info.descriptors.category') }}</strong>
+          &nbsp;
           <span>{{ category }}</span>
         </div>
         <div class="mb-3">
-          <strong>{{ $t('data.info.descriptors.keywords') }}</strong
-          >&nbsp;
+          <strong>{{ $t('data.info.descriptors.keywords') }}</strong>
+          &nbsp;
           <v-chip
             v-for="word in keywords"
             :key="word"
@@ -57,19 +57,19 @@
           <strong>{{ $t('data.info.descriptors.links') }}</strong>
           <ul>
             <li v-if="wafDataset">
-              <a :href="datasetWafURL" target="_blank">{{
-                $t('data.info.links.waf')
-              }}</a>
+              <a :href="datasetWafURL" target="_blank">
+                {{ $t('data.info.links.waf') }}
+              </a>
             </li>
             <li>
-              <a :href="wfsURL" target="_blank">{{
-                $t('data.info.links.wfs')
-              }}</a>
+              <a :href="wfsURL" target="_blank">
+                {{ $t('data.info.links.wfs') }}
+              </a>
             </li>
             <li>
-              <a :href="wmsURL" target="_blank">{{
-                $t('data.info.links.wms')
-              }}</a>
+              <a :href="wmsURL" target="_blank">
+                {{ $t('data.info.links.wms') }}
+              </a>
             </li>
             <li>
               <nuxt-link

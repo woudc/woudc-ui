@@ -734,7 +734,7 @@
     "faq": "Foire aux questions",
     "filtering": {
       "title": "Filtres",
-      "apply": "Appliquer" 
+      "apply": "Appliquer"
     },
     "formats": "Formats de fichiers",
     "ftp": "en utilisant un client FTP",
@@ -928,8 +928,8 @@
       "examples": {
         "blurb": "Les exemples {github} suivants démontrent l’accessibilité de haut niveau et l’intégration dans les flux de travaux des Services Web du WOUDC :",
         "links": {
-          "notebooks": "Et regroupe toute une collection de flux de travaux provenant de divers centres de données qui sont implémentés comme cahiers IPython",
-          "pywoudc": "L’ensemble de haut niveau permet un accès pythonique aux données de l’OMM et du WOUDC"
+          "notebooks": "{notebooks} : Et regroupe toute une collection de flux de travaux provenant de divers centres de données qui sont implémentés comme cahiers IPython",
+          "pywoudc": "{pywoudc} : L’ensemble de haut niveau permet un accès pythonique aux données de l’OMM et du WOUDC"
         },
         "title": "Exemples"
       },
@@ -1010,6 +1010,9 @@
           "title": "Le WOUDC et le WPS de l’OGC"
         },
         "title": "Service de traitement web (WPS)"
+      },
+      "ogcapi": {
+        "intro-endpoint": "WOUDC fournit une API OGC centrale au point de terminaison suivant : {url}"
       }
     },
     "explore": {

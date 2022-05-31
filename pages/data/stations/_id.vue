@@ -17,19 +17,19 @@
           <template #popup="element">
             <strong>{{ $t('data.stations.gaw-id') }}</strong>
             <a :href="element.item.gaw_url" target="_blank">
-              <span> {{ element.item.gaw_id }}</span>
+              <span>{{ element.item.gaw_id }}</span>
             </a>
             <br />
             <strong>{{ $t('data.stations.station-id') }}</strong>
             <nuxt-link :to="'/data/stations/' + element.item.woudc_id">
-              <span> {{ element.item.woudc_id }}</span>
+              <span>{{ element.item.woudc_id }}</span>
             </nuxt-link>
             <br />
             <strong>{{ $t('data.stations.station-name') }}</strong>
-            <span> {{ element.item.name }}</span>
+            <span>{{ element.item.name }}</span>
             <br />
             <strong>{{ $t('data.stations.country-name') }}</strong>
-            <span> {{ element.item.country_name[$i18n.locale] }}</span>
+            <span>{{ element.item.country_name[$i18n.locale] }}</span>
           </template>
         </selectable-map>
       </v-col>

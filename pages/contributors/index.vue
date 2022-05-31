@@ -21,14 +21,14 @@
             </nuxt-link>
             <br />
             <strong>{{ $t('contributors.list.country-name') }}</strong>
-            <span> {{ element.item.country_name[$i18n.locale] }}</span>
+            <span>{{ element.item.country_name[$i18n.locale] }}</span>
           </template>
         </selectable-map>
         <v-switch
           v-model="enableBboxSearch"
           class="mr-4 float-left"
           :label="$t('common.bbox.switch')"
-        ></v-switch>
+        />
         <v-chip v-if="boundingBoxArray !== null" label small class="my-5">
           {{ $t('common.bbox.title') }}{{ $t('common.colon-style') }}
           {{ boundingBoxArrayText(boundingBoxArray) }}
@@ -51,8 +51,7 @@
           :refresh="refreshContributors"
           :reset="reset"
           :resettingfilters="resettingFilters"
-        >
-        </autocomplete-card>
+        />
         <selectable-table
           :elements="displayedContributors"
           :headers="headers"

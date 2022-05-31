@@ -26,10 +26,7 @@
             >
               <template #placeholder>
                 <v-row class="fill-height ma-0" align="center" justify="center">
-                  <v-progress-circular
-                    indeterminate
-                    color="grey-darken-4"
-                  ></v-progress-circular>
+                  <v-progress-circular indeterminate color="grey-darken-4" />
                 </v-row>
               </template>
             </v-img>
@@ -48,7 +45,7 @@
               align-self="center"
             >
               <v-btn icon class="float-right white--text" @click="step(-1)">
-                <v-icon x-large> mdi-menu-left </v-icon>
+                <v-icon x-large>mdi-menu-left</v-icon>
               </v-btn>
             </v-col>
             <v-col class="mx-6 full-height">
@@ -88,7 +85,7 @@
               align-self="center"
             >
               <v-btn icon class="float-left white--text" @click="step(1)">
-                <v-icon x-large> mdi-menu-right </v-icon>
+                <v-icon x-large>mdi-menu-right</v-icon>
               </v-btn>
             </v-col>
           </v-row>

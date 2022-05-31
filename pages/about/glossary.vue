@@ -21,7 +21,7 @@
               </nuxt-link>
             </template>
             <template #w3>
-              <a :href="w3URL" target="_blank"> www.w3.org </a>
+              <a :href="w3URL" target="_blank">www.w3.org</a>
             </template>
             <template #waf>
               <a :href="WOUDC_UI_WAF_URL" target="_blank">

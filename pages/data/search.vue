@@ -189,7 +189,7 @@
           v-model="enableBboxSearch"
           class="float-right"
           :label="$t('data.explore.bbox.switch')"
-        ></v-switch>
+        />
       </v-col>
     </v-row>
     <v-row>
@@ -199,7 +199,7 @@
           id="metrics-container"
           class="mb-2"
         >
-          <span>{{ $t('data.explore.distribution-for') }} </span>
+          <span>{{ $t('data.explore.distribution-for') }}</span>
           <v-chip label small class="ml-1">
             {{ selectedDataset }}
           </v-chip>
@@ -259,7 +259,7 @@
         <div v-else>
           <v-card v-if="searchOutOfDate" class="mt-1 mb-4" color="warning">
             <v-card-title class="pt-3 pb-0">
-              <v-icon class="mr-1"> mdi-alert </v-icon>
+              <v-icon class="mr-1">mdi-alert</v-icon>
               {{ $t('data.explore.old-search.title') }}
             </v-card-title>
             <i18n path="data.explore.old-search.body" tag="v-card-text">
