@@ -228,7 +228,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch('stations/downloadStationsByDataset').then(() => {
-      const stationsRaw = this.$store.getters['stations/uvindex']
+      const stationsRaw = this.$store.getters['stations/uv_index_hourly']
       this.stations = stationsRaw.map(unpackageStation)
       this.loadingStations = false
       this.loadingMap = false

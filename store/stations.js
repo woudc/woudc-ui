@@ -300,7 +300,7 @@ const actions = {
     commit('setStationsUmkehr2', stationsByDataset.umkehrn14_2)
     commit('setStationsRocketSonde', stationsByDataset.rocketsonde)
     commit('setStationsLidar', stationsByDataset.lidar)
-    commit('setStationsUVIndex', stationsByDataset.uvindex)
+    commit('setStationsUVIndex', stationsByDataset.uv_index_hourly)
   },
 }
 
