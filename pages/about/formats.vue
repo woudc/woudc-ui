@@ -12,7 +12,7 @@
       </template>
       <template #access>
         <nuxt-link :to="localePath('about-data_access')">
-          {{ $t('common.access') }}
+          <span>{{ $t('common.access') }}</span>
         </nuxt-link>
       </template>
     </i18n>
@@ -28,6 +28,7 @@
           <li>
             <a :href="contributorsURL" target="_blank">
               {{ $t('about.formats.contributor-guide.link') }}
+              <v-icon x-small>mdi-open-in-new</v-icon>
             </a>
           </li>
         </ul>
@@ -38,6 +39,7 @@
           <li v-for="(link, i) in prepareLinks(ozoneDatasets)" :key="i">
             <a :href="link.url" target="_blank">
               {{ link.text }}
+              <v-icon x-small>mdi-open-in-new</v-icon>
             </a>
           </li>
         </ul>
@@ -46,6 +48,7 @@
           <li v-for="(link, index) in prepareLinks(uvDatasets)" :key="index">
             <a :href="link.url" target="_blank">
               {{ link.text }}
+              <v-icon x-small>mdi-open-in-new</v-icon>
             </a>
           </li>
         </ul>

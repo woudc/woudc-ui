@@ -8,7 +8,7 @@
         <i18n path="data.explore.blurb.body-howto" tag="p">
           <template #how-to>
             <nuxt-link :to="localePath('data-data_access')">
-              {{ $t('data.explore.how-to') }}
+              <span>{{ $t('data.explore.how-to') }}</span>
             </nuxt-link>
           </template>
         </i18n>
@@ -311,22 +311,28 @@
               <nuxt-link
                 :to="localePath('data-stations') + '/' + row.item.platform_id"
               >
-                {{ row.item.platform_id }}
+                <span>{{ row.item.platform_id }}</span>
               </nuxt-link>
             </template>
             <template #item.station_gaw_id="row">
               <a :href="row.item.station_gaw_url" target="_blank">
-                {{ row.item.station_gaw_id }}
+                <span>
+                  {{ row.item.station_gaw_id }}
+                </span>
               </a>
             </template>
             <template #item.gaw_id="row">
               <a :href="row.item.gaw_url" target="_blank">
-                {{ row.item.gaw_id }}
+                <span>
+                  {{ row.item.gaw_id }}
+                </span>
               </a>
             </template>
             <template #item.contributor_acronym="row">
               <a :href="row.item.contributor_url" target="_blank">
-                {{ row.item.contributor_acronym }}
+                <span>
+                  {{ row.item.contributor_acronym }}
+                </span>
               </a>
             </template>
             <template #item.observation_time="row">

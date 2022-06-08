@@ -76,12 +76,18 @@
             <i18n path="home.blurb" tag="span">
               <template #wmo>
                 <a :href="wmoURL" target="_blank">
-                  {{ $t('common.wmo') }}
+                  <span>
+                    {{ $t('common.wmo') }}
+                    <v-icon x-small>mdi-open-in-new</v-icon>
+                  </span>
                 </a>
               </template>
               <template #gaw>
                 <a :href="gawURL" target="_blank">
-                  {{ $t('common.gaw') }}
+                  <span>
+                    {{ $t('common.gaw') }}
+                    <v-icon x-small>mdi-open-in-new</v-icon>
+                  </span>
                 </a>
               </template>
             </i18n>

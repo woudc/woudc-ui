@@ -6,12 +6,15 @@
         <ul>
           <li v-for="path in localLinks" :key="path">
             <nuxt-link :to="localePath('resources-' + path)">
-              {{ $t('resources.links.' + path) }}
+              <span>{{ $t('resources.links.' + path) }}</span>
             </nuxt-link>
           </li>
           <li>
             <a :href="softwareURL" target="_blank">
-              {{ $t('resources.links.software') }}
+              <span>
+                {{ $t('resources.links.software') }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </span>
             </a>
           </li>
         </ul>

@@ -795,7 +795,8 @@
     "wms": "Service de cartes Web de l’OGC",
     "woudc": "WOUDC",
     "woudcFull": "Centre mondial de données sur l’ozone et le rayonnement ultraviolet",
-    "wps": "Service de fonctionnalités web (WFS) de l’OGC"
+    "wps": "Service de fonctionnalités web (WFS) de l’OGC",
+    "ogcThe": "l'Open Geospatial Consortium"
   },
   "contact": {
     "blurb": {
@@ -1012,7 +1013,12 @@
         "title": "Service de traitement web (WPS)"
       },
       "ogcapi": {
-        "intro-endpoint": "WOUDC fournit une API OGC centrale au point de terminaison suivant : {url}"
+        "intro-endpoint": "Le WOUDC rend disponible ses APIs de l'OGC à l'adresse : {url}",
+        "title": "Services web et interfaces de programmation (API)",
+        "intro-api": "En plus des mécanismes traditionnels d’accès aux données, le WOUDC rend également disponible ses archives par le biais d'interfaces de programmation (API) et services web géospatiaux se conformant aux normes internationales.  Les APIs sont conçus pour faciliter les interactions machine à machine sur Internet, et peuvent être utilisées dans des outils en ligne, applications mobiles ainsi qu'autres applications web.",
+        "intro-ogc": "Les APIs de WOUDC supportent les standards ouverts de {ogc}  (OGC), qui assurent l’interopérabilité des données et facilitent leur découverte, leur accès et leur visualisation.  Les standards de l'OGC jouent un rôle prépondérant dans l'exchange de données météorologiques, climatiques et l'hydrométriques au sein de l’Organisation météorologique mondiale (OMM) et sont prises en charge par de nombreux outils et logiciels libres grand public et commerciaux.",
+        "intro-provides": "L'API rend possible la découverte, l’accès, et la visualisation pour toutes les données et métadonnées de WOUDC. Il fournit également les processus pour la validation et l'évaluation de la qualité des données.",
+        "intro-consult": "Veuillez consulter les {webServicesHowTo} pour plus de détails."
       }
     },
     "explore": {

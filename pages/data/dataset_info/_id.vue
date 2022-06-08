@@ -16,12 +16,18 @@
         <div class="mb-3">
           <strong>{{ $t('data.info.descriptors.uri') }}</strong>
           &nbsp;
-          <a :href="uriDatasetDef" target="_blank">{{ uriDatasetDef }}</a>
+          <a :href="uriDatasetDef" target="_blank">
+            {{ uriDatasetDef }}
+            <v-icon x-small>mdi-open-in-new</v-icon>
+          </a>
         </div>
         <div class="mb-3">
           <strong>{{ $t('data.info.descriptors.doi') }}</strong>
           &nbsp;
-          <a :href="doiURL" target="_blank">{{ doi }}</a>
+          <a :href="doiURL" target="_blank">
+            {{ doi }}
+            <v-icon x-small>mdi-open-in-new</v-icon>
+          </a>
         </div>
         <div class="mb-3">
           <strong>{{ $t('data.info.descriptors.range') }}</strong>
@@ -59,23 +65,26 @@
             <li v-if="wafDataset">
               <a :href="datasetWafURL" target="_blank">
                 {{ $t('data.info.links.waf') }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
               </a>
             </li>
             <li>
               <a :href="wfsURL" target="_blank">
                 {{ $t('data.info.links.wfs') }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
               </a>
             </li>
             <li>
               <a :href="wmsURL" target="_blank">
                 {{ $t('data.info.links.wms') }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
               </a>
             </li>
             <li>
               <nuxt-link
                 :to="localePath('data-search') + '?dataset=' + dataset_id"
               >
-                {{ $t('data.info.links.search-page') }}
+                <span>{{ $t('data.info.links.search-page') }}</span>
               </nuxt-link>
             </li>
           </ul>

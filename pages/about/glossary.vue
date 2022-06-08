@@ -12,12 +12,15 @@
           >
             <template #carcinogenesis>
               <a :href="carcinogensURL" target="_blank">
-                {{ $t('about.glossary.carcinogenesis') }}
+                <span>
+                  {{ $t('about.glossary.carcinogenesis') }}
+                  <v-icon x-small>mdi-open-in-new</v-icon>
+                </span>
               </a>
             </template>
             <template #registration-page>
               <nuxt-link :to="localePath('contributors-registration')">
-                {{ $t('common.registration-page') }}
+                <span>{{ $t('common.registration-page') }}</span>
               </nuxt-link>
             </template>
             <template #w3>
@@ -25,7 +28,10 @@
             </template>
             <template #waf>
               <a :href="WOUDC_UI_WAF_URL" target="_blank">
-                {{ WOUDC_UI_WAF_URL }}
+                <span>
+                  {{ WOUDC_UI_WAF_URL }}
+                  <v-icon x-small>mdi-open-in-new</v-icon>
+                </span>
               </a>
             </template>
           </i18n>

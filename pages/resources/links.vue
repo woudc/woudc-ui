@@ -7,7 +7,10 @@
         <ul>
           <li v-for="(value, key) in wmoURLs" :key="key">
             <a :href="value" target="_blank">
-              {{ $t('resources.related-links.links.' + key) }}
+              <span>
+                {{ $t('resources.related-links.links.' + key) }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </span>
             </a>
           </li>
         </ul>
@@ -15,7 +18,10 @@
         <ul>
           <li v-for="(value, key) in relatedURLs" :key="key">
             <a :href="value" target="_blank">
-              {{ $t('resources.related-links.links.' + key) }}
+              <span>
+                {{ $t('resources.related-links.links.' + key) }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </span>
             </a>
           </li>
         </ul>

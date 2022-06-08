@@ -795,7 +795,8 @@
     "wms": "OGC Web Map Service",
     "woudc": "WOUDC",
     "woudcFull": "World Ozone and Ultraviolet Radiation Data Centre",
-    "wps": "OGC Web Processing Service"
+    "wps": "OGC Web Processing Service",
+    "ogcThe": "Open Geospatial Consortium"
   },
   "contact": {
     "blurb": {

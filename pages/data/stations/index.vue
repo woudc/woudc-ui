@@ -15,7 +15,10 @@
           <template #popup="element">
             <strong>{{ $t('data.stations.gaw-id') }}</strong>
             <a :href="element.item.gaw_url" target="_blank">
-              <span>{{ element.item.gaw_id }}</span>
+              <span>
+                {{ element.item.gaw_id }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </span>
             </a>
             <br />
             <strong>{{ $t('data.stations.station-id') }}</strong>
@@ -70,13 +73,16 @@
               <nuxt-link
                 :to="localePath('data-stations') + '/' + row.item.woudc_id"
               >
-                {{ row.item.woudc_id }}
+                <span>{{ row.item.woudc_id }}</span>
               </nuxt-link>
             </td>
             <td>
               <span v-if="row.item.gaw_id !== null">
                 <a :href="row.item.gaw_url" target="_blank">
-                  {{ row.item.gaw_id }}
+                  <span>
+                    {{ row.item.gaw_id }}
+                    <v-icon x-small>mdi-open-in-new</v-icon>
+                  </span>
                 </a>
               </span>
             </td>

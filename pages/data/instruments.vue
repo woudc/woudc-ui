@@ -21,7 +21,7 @@
             <br />
             <strong>{{ $t('data.instruments.station-name') }}</strong>
             <nuxt-link :to="'/data/stations/' + element.item.station_id">
-              {{ element.item.station_name }}
+              <span>{{ element.item.station_name }}</span>
             </nuxt-link>
             <br />
             <strong>{{ $t('data.instruments.contributor-name') }}</strong>
@@ -74,7 +74,7 @@
               <nuxt-link
                 :to="localePath('data-stations') + '/' + row.item.station_id"
               >
-                {{ row.item.station_name }}
+                <span>{{ row.item.station_name }}</span>
               </nuxt-link>
             </td>
             <td>

@@ -70,7 +70,10 @@
             <td>{{ row.item.project }}</td>
             <td>
               <a :href="row.item.url" target="_blank">
-                {{ row.item.name }}
+                <span>
+                  {{ row.item.name }}
+                  <v-icon x-small>mdi-open-in-new</v-icon>
+                </span>
               </a>
             </td>
             <td>{{ row.item.country_name[$i18n.locale] }}</td>

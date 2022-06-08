@@ -9,7 +9,10 @@
       </template>
       <template #wis>
         <a :href="wisURL" target="_blank">
-          {{ $t('common.wis') }}
+          <span>
+            {{ $t('common.wis') }}
+            <v-icon x-small>mdi-open-in-new</v-icon>
+          </span>
         </a>
       </template>
     </i18n>
@@ -30,7 +33,10 @@
               label
             >
               <a :href="link.to" target="_blank">
-                {{ link.text }}
+                <span>
+                  {{ link.text }}
+                  <v-icon x-small>mdi-open-in-new</v-icon>
+                </span>
               </a>
             </v-chip>
           </template>
@@ -42,7 +48,10 @@
               label
             >
               <a :href="link.to" target="_blank">
-                {{ link.text }}
+                <span>
+                  {{ link.text }}
+                  <v-icon x-small>mdi-open-in-new</v-icon>
+                </span>
               </a>
             </v-chip>
           </template>
@@ -50,7 +59,7 @@
         <i18n path="about.standards.blurb-howto" tag="p">
           <template #access>
             <nuxt-link :to="localePath('about-data_access')">
-              {{ $t('common.access') }}
+              <span>{{ $t('common.access') }}</span>
             </nuxt-link>
           </template>
         </i18n>

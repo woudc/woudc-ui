@@ -6,7 +6,10 @@
         <ul>
           <li v-for="(value, key) in urls" :key="key">
             <a :href="value" target="_blank">
-              {{ $t('resources.working-groups.links.' + key) }}
+              <span>
+                {{ $t('resources.working-groups.links.' + key) }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </span>
             </a>
           </li>
         </ul>

@@ -13,7 +13,10 @@
           <template #item.link="link">
             <td>
               <a :href="link.item.to" target="_blank">
-                {{ link.item.text }}
+                <span>
+                  {{ link.item.text }}
+                  <v-icon x-small>mdi-open-in-new</v-icon>
+                </span>
               </a>
             </td>
           </template>

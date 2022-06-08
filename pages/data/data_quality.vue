@@ -8,7 +8,10 @@
         <i18n path="data.quality.gaw-blurb" tag="p">
           <template #gaw-qa>
             <a :href="gawURL" target="_blank">
-              {{ $t('data.quality.gaw-qa') }}
+              <span>
+                {{ $t('data.quality.gaw-qa') }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </span>
             </a>
           </template>
         </i18n>
@@ -16,7 +19,7 @@
         <i18n path="data.quality.sag.blurb.body-intro" tag="p">
           <template #sop>
             <nuxt-link :to="localePath('resources-sop')">
-              {{ $t('common.sop') }}
+              <span>{{ $t('common.sop') }}</span>
             </nuxt-link>
           </template>
         </i18n>
@@ -24,7 +27,10 @@
         <ul>
           <li v-for="link in sagLinks" :key="link.to">
             <a :href="link.to" target="_blank">
-              {{ link.text }}
+              <span>
+                {{ link.text }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </span>
             </a>
             ({{ link.note }})
           </li>
@@ -36,7 +42,7 @@
             <i18n path="data.quality.eccc.item1" tag="span">
               <template #guidelines>
                 <nuxt-link :to="localePath('about-formats')">
-                  {{ $t('common.guidelines') }}
+                  <span>{{ $t('common.guidelines') }}</span>
                 </nuxt-link>
               </template>
             </i18n>
@@ -49,7 +55,7 @@
             <i18n path="data.quality.eccc.item6" tag="span">
               <template #access>
                 <nuxt-link :to="localePath('data-data_access')">
-                  {{ $t('common.access') }}
+                  <span>{{ $t('common.access') }}</span>
                 </nuxt-link>
               </template>
             </i18n>

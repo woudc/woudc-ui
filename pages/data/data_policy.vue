@@ -4,12 +4,18 @@
     <i18n path="data.policy.blurb" tag="p">
       <template #wmo-policy>
         <a :href="wmoURL" target="_blank">
-          {{ $t('data.policy.wmo-policy') }}
+          <span>
+            {{ $t('data.policy.wmo-policy') }}
+            <v-icon x-small>mdi-open-in-new</v-icon>
+          </span>
         </a>
       </template>
       <template #gaw-policy>
         <a :href="gawURL" target="_blank">
-          {{ $t('data.policy.gaw-policy') }}
+          <span>
+            {{ $t('data.policy.gaw-policy') }}
+            <v-icon x-small>mdi-open-in-new</v-icon>
+          </span>
         </a>
       </template>
     </i18n>
@@ -20,7 +26,10 @@
         <i18n path="data.policy.wmo.blurb.body-resolution40" tag="p">
           <template #link>
             <a :href="resolution40" target="_blank">
-              {{ $t('data.policy.wmo.link') }}
+              <span>
+                {{ $t('data.policy.wmo.link') }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </span>
             </a>
           </template>
         </i18n>
@@ -38,7 +47,10 @@
         <i18n path="data.policy.doi.blurb" tag="p">
           <template #dois>
             <a :href="doisURL" target="_blank">
-              {{ $t('data.policy.doi.dois') }}
+              <span>
+                {{ $t('data.policy.doi.dois') }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </span>
             </a>
           </template>
         </i18n>
@@ -91,7 +103,7 @@
         <i18n path="data.policy.publishing.blurb-contributors" tag="p">
           <template #contributors-page>
             <nuxt-link :to="localePath('contributors')">
-              {{ $t('common.contributors-page') }}
+              <span>{{ $t('common.contributors-page') }}</span>
             </nuxt-link>
           </template>
         </i18n>

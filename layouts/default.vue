@@ -172,7 +172,7 @@
           rel="noreferrer"
           class="accent--text"
         >
-          {{ $config.appName }}
+          <span>{{ $config.appName }}</span>
         </a>
         {{ $config.appVersion }}
       </span>
@@ -182,7 +182,7 @@
         :to="localePath('contact')"
       >
         <v-icon class="mr-1 pb-1" color="white">mdi-email</v-icon>
-        {{ $t('banner.contact') }}
+        <span>{{ $t('banner.contact') }}</span>
       </nuxt-link>
     </v-footer>
   </v-app>
