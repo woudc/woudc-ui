@@ -22,7 +22,13 @@ export default {
           'A World Meteorological Organization (WMO) data centre supporting the Global Atmosphere Watch (GAW) program operated by Environment and Climate Change Canada.',
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: process.env.WOUDC_UI_ROUTER_BASE + '/favicon.ico',
+      },
+    ],
   },
   /*
    ** Customize the progress-bar color
