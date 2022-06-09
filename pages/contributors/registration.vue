@@ -5,7 +5,7 @@
     <i18n path="contributors.registration.blurb.body-submissions" tag="p">
       <template #submissions>
         <nuxt-link :to="localePath('contributors-submission')">
-          {{ $tc('common.submission', 2) }}
+          <span>{{ $tc('common.submission', 2) }}</span>
         </nuxt-link>
       </template>
     </i18n>
@@ -16,7 +16,7 @@
             <i18n path="contributors.registration.step1" tag="span">
               <template #policy>
                 <nuxt-link :to="localePath('data-data_policy')">
-                  {{ $t('common.policy') }}
+                  <span>{{ $t('common.policy') }}</span>
                 </nuxt-link>
               </template>
             </i18n>
@@ -25,12 +25,18 @@
             <i18n path="contributors.registration.step2" tag="span">
               <template #wmo-gaw>
                 <a :href="gawHomeURL" target="_blank">
-                  {{ $t('contributors.registration.wmo-gaw') }}
+                  <span>
+                    {{ $t('contributors.registration.wmo-gaw') }}
+                    <v-icon x-small>mdi-open-in-new</v-icon>
+                  </span>
                 </a>
               </template>
               <template #more>
                 <a :href="wmoGAWUrl" target="_blank">
-                  {{ $t('contributors.registration.more') }}
+                  <span>
+                    {{ $t('contributors.registration.more') }}
+                    <v-icon x-small>mdi-open-in-new</v-icon>
+                  </span>
                 </a>
               </template>
             </i18n>
@@ -39,7 +45,7 @@
             <i18n path="contributors.registration.step3" tag="span">
               <template #contacting>
                 <nuxt-link :to="localePath('contact')">
-                  {{ $t('contributors.registration.contacting') }}
+                  <span>{{ $t('contributors.registration.contacting') }}</span>
                 </nuxt-link>
               </template>
               <template #register>

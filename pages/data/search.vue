@@ -8,7 +8,7 @@
         <i18n path="data.explore.blurb.body-howto" tag="p">
           <template #how-to>
             <nuxt-link :to="localePath('data-data_access')">
-              {{ $t('data.explore.how-to') }}
+              <span>{{ $t('data.explore.how-to') }}</span>
             </nuxt-link>
           </template>
         </i18n>
@@ -189,7 +189,7 @@
           v-model="enableBboxSearch"
           class="float-right"
           :label="$t('data.explore.bbox.switch')"
-        ></v-switch>
+        />
       </v-col>
     </v-row>
     <v-row>
@@ -199,7 +199,7 @@
           id="metrics-container"
           class="mb-2"
         >
-          <span>{{ $t('data.explore.distribution-for') }} </span>
+          <span>{{ $t('data.explore.distribution-for') }}</span>
           <v-chip label small class="ml-1">
             {{ selectedDataset }}
           </v-chip>
@@ -259,7 +259,7 @@
         <div v-else>
           <v-card v-if="searchOutOfDate" class="mt-1 mb-4" color="warning">
             <v-card-title class="pt-3 pb-0">
-              <v-icon class="mr-1"> mdi-alert </v-icon>
+              <v-icon class="mr-1">mdi-alert</v-icon>
               {{ $t('data.explore.old-search.title') }}
             </v-card-title>
             <i18n path="data.explore.old-search.body" tag="v-card-text">
@@ -311,22 +311,28 @@
               <nuxt-link
                 :to="localePath('data-stations') + '/' + row.item.platform_id"
               >
-                {{ row.item.platform_id }}
+                <span>{{ row.item.platform_id }}</span>
               </nuxt-link>
             </template>
             <template #item.station_gaw_id="row">
               <a :href="row.item.station_gaw_url" target="_blank">
-                {{ row.item.station_gaw_id }}
+                <span>
+                  {{ row.item.station_gaw_id }}
+                </span>
               </a>
             </template>
             <template #item.gaw_id="row">
               <a :href="row.item.gaw_url" target="_blank">
-                {{ row.item.gaw_id }}
+                <span>
+                  {{ row.item.gaw_id }}
+                </span>
               </a>
             </template>
             <template #item.contributor_acronym="row">
               <a :href="row.item.contributor_url" target="_blank">
-                {{ row.item.contributor_acronym }}
+                <span>
+                  {{ row.item.contributor_acronym }}
+                </span>
               </a>
             </template>
             <template #item.observation_time="row">

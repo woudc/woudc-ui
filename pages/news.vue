@@ -41,9 +41,9 @@
             {{ newsItem.properties[`title_${$i18n.locale}`] }}
           </v-card-title>
           <v-card-subtitle>
-            <span class="blue--text text--darken-3">{{
-              newsItem.properties.published_date.slice(0, 10)
-            }}</span>
+            <span class="blue--text text--darken-3">
+              {{ newsItem.properties.published_date.slice(0, 10) }}
+            </span>
             <v-chip
               v-for="(keyword, j) in newsItem.properties[
                 `keywords_${$i18n.locale}`
@@ -63,8 +63,7 @@
           <v-card-text
             class="pt-3"
             v-html="newsItem.properties[`description_${$i18n.locale}`]"
-          >
-          </v-card-text>
+          />
           <!-- eslint-enable -->
         </v-card>
       </v-col>

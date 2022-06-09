@@ -50,7 +50,8 @@
               itemprop="itemListElement"
             >
               <span>
-                <strong>{{ year }}</strong> : {{ event }}
+                <strong>{{ year }}</strong>
+                : {{ event }}
               </span>
             </v-list-item>
           </v-list>

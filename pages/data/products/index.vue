@@ -10,7 +10,7 @@
           <ul>
             <li v-for="(path, key) in timeSeriesLinks" :key="key">
               <nuxt-link :to="localePath(path)">
-                {{ $t('data.products.time-series.links.' + key) }}
+                <span>{{ $t('data.products.time-series.links.' + key) }}</span>
               </nuxt-link>
             </li>
           </ul>
@@ -21,6 +21,7 @@
             <li v-for="(url, key) in relatedLinks" :key="key">
               <a :href="url" target="_blank">
                 {{ $t('data.products.related.links.' + key) }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
               </a>
             </li>
           </ul>
@@ -32,6 +33,7 @@
             <li v-for="(url, key) in mapsLinks" :key="key">
               <a :href="url" target="_blank">
                 {{ $t('data.products.maps.links.' + key) }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
               </a>
             </li>
           </ul>
@@ -42,6 +44,7 @@
             <li v-for="(url, key) in summariesLinks" :key="key">
               <a :href="url" target="_blank">
                 {{ $t('data.products.summaries.links.' + key) }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
               </a>
             </li>
           </ul>

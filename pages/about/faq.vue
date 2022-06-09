@@ -12,52 +12,61 @@
           <i18n :path="'about.faq.questions[' + index + '].answer'" tag="p">
             <template #policy>
               <nuxt-link :to="localePath('data-data_policy')">
-                {{ $t('common.policy') }}
+                <span>{{ $t('common.policy') }}</span>
               </nuxt-link>
             </template>
             <template #submission>
               <nuxt-link :to="localePath('contributors-submission')">
-                {{ $tc('common.submission', 1) }}
+                <span>{{ $tc('common.submission', 1) }}</span>
               </nuxt-link>
             </template>
             <template #registration-form>
               <nuxt-link :to="localePath('contributors-registration')">
-                {{ $t('common.registration-form') }}
+                <span>{{ $t('common.registration-form') }}</span>
               </nuxt-link>
             </template>
             <template #access>
               <nuxt-link :to="localePath('data-data_access')">
-                {{ $t('common.access') }}
+                <span>{{ $t('common.access') }}</span>
               </nuxt-link>
             </template>
             <template #search>
               <nuxt-link :to="localePath('data-search')">
-                {{ $t('common.search') }}
+                <span>{{ $t('common.search') }}</span>
               </nuxt-link>
             </template>
             <template #products>
               <nuxt-link :to="localePath('data-products')">
-                {{ $t('common.products') }}
+                <span>{{ $t('common.products') }}</span>
               </nuxt-link>
             </template>
             <template #contributors-page>
               <nuxt-link :to="localePath('contributors')">
-                {{ $t('common.contributors-page') }}
+                <span>{{ $t('common.contributors-page') }}</span>
               </nuxt-link>
             </template>
             <template #accessibility>
               <a :href="accessibilityURL" target="_blank">
-                {{ $t('common.accessibility') }}
+                <span>
+                  {{ $t('common.accessibility') }}
+                  <v-icon x-small>mdi-open-in-new</v-icon>
+                </span>
               </a>
             </template>
             <template #usability>
               <a :href="usabilityURL" target="_blank">
-                {{ $t('about.faq.usability') }}
+                <span>
+                  {{ $t('about.faq.usability') }}
+                  <v-icon x-small>mdi-open-in-new</v-icon>
+                </span>
               </a>
             </template>
             <template #w3c>
               <a :href="w3cURL" target="_blank">
-                {{ $t('common.w3c') }}
+                <span>
+                  {{ $t('common.w3c') }}
+                  <v-icon x-small>mdi-open-in-new</v-icon>
+                </span>
               </a>
             </template>
           </i18n>

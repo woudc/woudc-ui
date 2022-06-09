@@ -94,7 +94,20 @@ $ npx nuxt generate --dotenv .env.ops
 - Inform OPS team of URL of `.zip` or `tar.gz` file for install to server
   - example URL: https://github.com/woudc/woudc-ui/releases/tag/2.0.0-beta4
 
-## Linting
+## Linting and Prettier
+
+**Recomendation**: If using VS Code, install the extention, [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint). Then add the following settings to your `settings.json` for ESLint:
+
+```json
+    "eslint.options": {
+        "extensions": [".html", ".js", ".vue"]
+    },
+    "eslint.validate": [
+        "vue",
+        "html",
+        "javascript"
+    ]
+```
 
 Linting is incorporated when running `npm run dev` and when you `git commit`.
 
@@ -126,9 +139,11 @@ Please see the [nuxt-i18n routing guide](https://nuxt-community.github.io/nuxt-i
 
 ### Translate
 
-To translate text, use [BabelEdit](https://www.codeandweb.com/babeledit/download) and load the `.babel` file in the root of the project. If there are new `.vue` components, they need to be added in (by file or by folder). If translation needs to be sent to a 3rd party translator, BabelEdit can export the translation to a `CSV` which can be sent off to the translator. Once completed, import the `CSV` in to BabelEdit to apply the completed translations.
+To translate text:
 
-Alternatively, a FOSS program called [i18n Manager](https://github.com/gilmarsquinelato/i18n-manager) is recommended to manage translation text.
+- **Recommended**: In VS Code, use the [i18n Ally](https://marketplace.visualstudio.com/items?itemName=Lokalise.i18n-ally) extension
+- Use [BabelEdit](https://www.codeandweb.com/babeledit/download) and load the `.babel` file in the root of the project. If there are new `.vue` components, they need to be added in (by file or by folder). If translation needs to be sent to a 3rd party translator, BabelEdit can export the translation to a `CSV` which can be sent off to the translator. Once completed, import the `CSV` in to BabelEdit to apply the completed translations.
+- Alternatively, use the FOSS program called [i18n Manager](https://github.com/gilmarsquinelato/i18n-manager) to manage translation text.
 
 ## Testing
 

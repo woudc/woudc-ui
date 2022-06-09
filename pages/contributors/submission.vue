@@ -16,7 +16,7 @@
             <i18n path="contributors.submission.step1" tag="span">
               <template #formats>
                 <nuxt-link :to="localePath('about-formats')">
-                  {{ $t('common.formats') }}
+                  <span>{{ $t('common.formats') }}</span>
                 </nuxt-link>
               </template>
             </i18n>
@@ -25,7 +25,10 @@
             <i18n path="contributors.submission.step2" tag="span">
               <template #ftp>
                 <a :href="ftpPath" target="_blank">
-                  {{ $t('common.ftp') }}
+                  <span>
+                    {{ $t('common.ftp') }}
+                    <v-icon x-small>mdi-open-in-new</v-icon>
+                  </span>
                 </a>
               </template>
             </i18n>
@@ -43,7 +46,7 @@
         <i18n path="contributors.submission.blurb-contact" tag="p">
           <template #contact-us>
             <nuxt-link :to="localePath('contact')">
-              {{ $t('common.contact-us') }}
+              <span>{{ $t('common.contact-us') }}</span>
             </nuxt-link>
           </template>
         </i18n>

@@ -38,7 +38,7 @@
                   <v-list-item-title
                     class="ml-2 grey--text text--darken-4"
                     v-text="$t('banner.' + textTag)"
-                  ></v-list-item-title>
+                  />
                 </v-list-item-content>
                 <v-list-item-icon>
                   <v-icon>mdi-open-in-new</v-icon>
@@ -110,7 +110,7 @@
                   <v-list-item-title
                     class="grey--text text--darken-4"
                     v-text="$t('banner.' + textTag)"
-                  ></v-list-item-title>
+                  />
                 </v-list-item-content>
                 <v-list-item-icon>
                   <v-icon>mdi-open-in-new</v-icon>
@@ -121,7 +121,7 @@
                   <v-list-item-title
                     class="grey--text text--darken-4"
                     v-text="$t('banner.' + textTag)"
-                  ></v-list-item-title>
+                  />
                 </v-list-item-content>
               </v-list-item>
             </div>
@@ -164,24 +164,25 @@
       <nuxt />
     </v-main>
     <v-footer color="primary" class="white--text" app absolute>
-      <span
-        >&copy; {{ $config.appBuildYYYY }}
+      <span>
+        &copy; {{ $config.appBuildYYYY }}
         <a
           :href="$config.appHomepage"
           target="_blank"
           rel="noreferrer"
           class="accent--text"
-          >{{ $config.appName }}</a
         >
-        {{ $config.appVersion }}</span
-      >
+          <span>{{ $config.appName }}</span>
+        </a>
+        {{ $config.appVersion }}
+      </span>
       <v-spacer />
       <nuxt-link
         class="white--text mr-10 no-underline"
         :to="localePath('contact')"
       >
-        <v-icon class="mr-1 pb-1" color="white"> mdi-email </v-icon>
-        {{ $t('banner.contact') }}
+        <v-icon class="mr-1 pb-1" color="white">mdi-email</v-icon>
+        <span>{{ $t('banner.contact') }}</span>
       </nuxt-link>
     </v-footer>
   </v-app>

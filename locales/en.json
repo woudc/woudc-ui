@@ -734,7 +734,7 @@
     "faq": "Frequently Asked Questions",
     "filtering": {
       "title": "Filters",
-      "apply": "Apply" 
+      "apply": "Apply"
     },
     "formats": "File Formats",
     "ftp": "WOUDC FTP server",
@@ -795,7 +795,8 @@
     "wms": "OGC Web Map Service",
     "woudc": "WOUDC",
     "woudcFull": "World Ozone and Ultraviolet Radiation Data Centre",
-    "wps": "OGC Web Processing Service"
+    "wps": "OGC Web Processing Service",
+    "ogcThe": "Open Geospatial Consortium"
   },
   "contact": {
     "blurb": {
@@ -928,8 +929,8 @@
       "examples": {
         "blurb": "The following {github} examples provide high level access and workflow examples of integrating WOUDC Web Services:",
         "links": {
-          "notebooks": "A collection of data centre workflows implemented as IPython notebooks",
-          "pywoudc": "High level package providing Pythonic access to WMO WOUDC data services"
+          "notebooks": "{notebooks}: A collection of data centre workflows implemented as IPython notebooks",
+          "pywoudc": "{pywoudc}: High level package providing Pythonic access to WMO WOUDC data services"
         },
         "title": "Examples"
       },
@@ -1010,6 +1011,14 @@
           "title": "WOUDC OGC WPS"
         },
         "title": "Web Processing Service (WPS)"
+      },
+      "ogcapi": {
+        "intro-api": "In addition to traditional data access mechanisms, WOUDC has made the archive available using Web Application Programming Interfaces (APIs) and geospatial web services adhering to publically available international standards. Web APIs are designed to support machine to machine interaction over the Internet, and can be used in web, mobile or desktop applications and tools.",
+        "title": "Web Services and APIs",
+        "intro-ogc": "WOUDC APIs support open standards from the {ogc} (OGC) which facilitate interoperability and thus make ozone and UV data easy to discover, access, visualize and integrate. OGC standards play an important role in weather/climate/water data exchange as part of the WMO Information System and are supported by numerous off the shelf open source or commercial tools.",
+        "intro-endpoint": "WOUDC provides a central OGC API at the following endpoint: {url}",
+        "intro-provides": "The API provides discovery, access and visualization functionality to all WOUDC data and metadata, as well as providing processes for data validation and quality assessment.",
+        "intro-consult": "Please consult the {webServicesHowTo} for detailed information."
       }
     },
     "explore": {

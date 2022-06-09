@@ -23,7 +23,7 @@
             </nuxt-link>
             <br />
             <strong>{{ $t('contributors.list.country-name') }}</strong>
-            <span> {{ element.item.country_name[$i18n.locale] }}</span>
+            <span>{{ element.item.country_name[$i18n.locale] }}</span>
           </template>
         </selectable-map>
       </v-col>

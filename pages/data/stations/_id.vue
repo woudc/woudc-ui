@@ -17,19 +17,22 @@
           <template #popup="element">
             <strong>{{ $t('data.stations.gaw-id') }}</strong>
             <a :href="element.item.gaw_url" target="_blank">
-              <span> {{ element.item.gaw_id }}</span>
+              <span>
+                {{ element.item.gaw_id }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </span>
             </a>
             <br />
             <strong>{{ $t('data.stations.station-id') }}</strong>
             <nuxt-link :to="'/data/stations/' + element.item.woudc_id">
-              <span> {{ element.item.woudc_id }}</span>
+              <span>{{ element.item.woudc_id }}</span>
             </nuxt-link>
             <br />
             <strong>{{ $t('data.stations.station-name') }}</strong>
-            <span> {{ element.item.name }}</span>
+            <span>{{ element.item.name }}</span>
             <br />
             <strong>{{ $t('data.stations.country-name') }}</strong>
-            <span> {{ element.item.country_name[$i18n.locale] }}</span>
+            <span>{{ element.item.country_name[$i18n.locale] }}</span>
           </template>
         </selectable-map>
       </v-col>
@@ -108,13 +111,16 @@
             <nuxt-link
               :to="localePath('data-stations') + '/' + stn.item.woudc_id"
             >
-              {{ stn.item.woudc_id }}
+              <span>{{ stn.item.woudc_id }}</span>
             </nuxt-link>
           </template>
           <template #item.gaw_id="stn">
             <span v-if="stn.item.gaw_id !== null">
               <a :href="stn.item.gaw_url" target="_blank">
-                {{ stn.item.gaw_id }}
+                <span>
+                  {{ stn.item.gaw_id }}
+                  <v-icon x-small>mdi-open-in-new</v-icon>
+                </span>
               </a>
             </span>
           </template>
@@ -141,13 +147,16 @@
                     deployment.item.contributor
                   "
                 >
-                  {{ deployment.item.contributor }}
+                  <span>{{ deployment.item.contributor }}</span>
                 </nuxt-link>
               </td>
               <td>{{ deployment.item.contributor_project }}</td>
               <td>
                 <a :href="deployment.item.contributor_url" target="_blank">
-                  {{ deployment.item.contributor_name }}
+                  <span>
+                    {{ deployment.item.contributor_name }}
+                    <v-icon x-small>mdi-open-in-new</v-icon>
+                  </span>
                 </a>
               </td>
               <td>{{ deployment.item.start_date }}</td>

@@ -55,8 +55,7 @@
               placeholder="..."
               return-object
               @input="changeStation"
-            >
-            </v-select>
+            />
           </v-col>
           <v-col class="mt-1" align-self="center">
             <span class="pt-0">{{ $t('common.sort-by') }}</span>
@@ -74,16 +73,14 @@
           :disabled="selectedStation === null || loadingInstruments"
           return-object
           @input="changeInstrument"
-        >
-        </v-select>
+        />
         <h3>{{ $t('data.products.common.year') }}</h3>
         <v-select
           v-model="selectedYear"
           :items="yearOptions"
           :loading="loadingYears"
           :disabled="selectedStation === null || loadingYears"
-        >
-        </v-select>
+        />
       </v-col>
       <v-col>
         <selectable-map

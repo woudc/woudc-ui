@@ -22,12 +22,12 @@
           <v-card-text>
             <i18n path="contact.note.body" tag="span">
               <template #privacy-act>
-                <i
-                  ><a :href="privacyActURL" target="_blank">
+                <i>
+                  <a :href="privacyActURL" target="_blank">
                     {{ $t('common.privacy-act') }}
                     <v-icon small>mdi-open-in-new</v-icon>
-                  </a></i
-                >
+                  </a>
+                </i>
               </template>
             </i18n>
           </v-card-text>
@@ -42,12 +42,12 @@
           </div>
           <div>
             <h3>{{ $t('contact.by-mail') }}</h3>
-            <div v-text="$t('common.woudcFull')"></div>
-            <div v-text="$t('contact.mail-address.msc')"></div>
-            <div v-text="$t('contact.mail-address.eccc')"></div>
-            <div v-text="$t('contact.mail-address.street')"></div>
-            <div v-text="$t('contact.mail-address.city-prov-postcode')"></div>
-            <div v-text="$t('contact.mail-address.country')"></div>
+            <div v-text="$t('common.woudcFull')" />
+            <div v-text="$t('contact.mail-address.msc')" />
+            <div v-text="$t('contact.mail-address.eccc')" />
+            <div v-text="$t('contact.mail-address.street')" />
+            <div v-text="$t('contact.mail-address.city-prov-postcode')" />
+            <div v-text="$t('contact.mail-address.country')" />
           </div>
         </div>
       </v-col>
