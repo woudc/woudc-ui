@@ -699,7 +699,7 @@
     "contributors-list": "Contributors List",
     "contributors-registration": "Registration",
     "contributors-submission": "Data Submission",
-    "contributors-validation": "Data Validation",
+    "contributors-validation": "Data Validator",
     "data": "Data",
     "data-access": "Data Access",
     "data-info": "Dataset Information",
@@ -886,7 +886,23 @@
     },
     "validation": {
       "blurb": "This process performs syntax and format checks against a file in support of realtime format validation of ozone and ultraviolet radiation data submissions to the Data Centre.",
-      "title": "Data Validator"
+      "clear": "Clear",
+      "data": "Data",
+      "failed": {
+        "body": "Validation of csv file failed.",
+        "title": "Validation Failed",
+        "warnings": "Warnings"
+      },
+      "no-results": "No validation has been performed yet.",
+      "passed": "Validation successful",
+      "required": "(required)",
+      "table-instructions": {
+        "blurb": "Drag and drop an extended CSV file into the text area below or click the browse button to upload one from your computer. Click the Validate button to validate your format. You can make edits in the text area or click Clear to clear the text area.",
+        "label": "How to Use: Data Validator"
+      },
+      "title": "Data Validator",
+      "validate": "Validate",
+      "validation-results": "Validation Results"
     }
   },
   "data": {

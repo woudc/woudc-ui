@@ -219,6 +219,7 @@ export default {
             'contributors-registration': { link: 'contributors-registration' },
             'contributors-list': { link: 'contributors' },
             'contributors-submission': { link: 'contributors-submission' },
+            'contributors-validation': { link: 'contributors-validation' },
           },
         },
         resources: {
