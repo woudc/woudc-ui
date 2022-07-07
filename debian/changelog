@@ -1,10 +1,23 @@
-woudc-ui (2.0.0-beta14) bionic; urgency=medium
+woudc-ui (2.0.0-beta15) focal; urgency=medium
+
+  * Add Content-Security-Policy to apache config
+  * Fix to loading of UV index stations in graph products page
+  * Fix redirect URL of data-access page
+  * Update favicon with WMO favicon
+  * Update data-access page with new OGC-API descriptions
+  * Fix nightly deploy script to ensure group writable
+  * Fix via npm audit fix
+  * Fix past changelog entries to focal during the changeover
+
+ -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Thu, 7 Jul 2022 14:57:00 +0000
+
+woudc-ui (2.0.0-beta14) focal; urgency=medium
 
   * Revert change of startindex to offset query param
 
  -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Wed, 11 May 2022 14:46:00 +0000
 
-woudc-ui (2.0.0-beta13) bionic; urgency=medium
+woudc-ui (2.0.0-beta13) focal; urgency=medium
 
   * Add autocomplete column filters contributor, station and instrument pages
   * Update WMO URLs
@@ -15,7 +28,7 @@ woudc-ui (2.0.0-beta13) bionic; urgency=medium
 
  -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Tue, 10 May 2022 15:48:00 +0000
 
-woudc-ui (2.0.0-beta12) bionic; urgency=medium
+woudc-ui (2.0.0-beta12) focal; urgency=medium
 
   * Update and change dependencies for NodeJS 16.14.0
   * Add autocomplete filtering on station/instrument/contributor list pages
