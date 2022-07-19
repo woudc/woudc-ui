@@ -886,7 +886,23 @@
     },
     "validation": {
       "blurb": "Ce processus effectue des contrôles de syntaxe et de format sur un fichier à l'appui de temps réel le format de validation de l'ozone et le rayonnement ultraviolet soumission des données au centre de données.",
-      "title": "Validateur de données"
+      "clear": "Effacer",
+      "data": "Données",
+      "failed": {
+        "body": "La validation du fichier csv a échoué.",
+        "title": "Validation échouée",
+        "warnings": "Avertissements:"
+      },
+      "no-results": "Aucune validation n'a été effectuée.",
+      "passed": "Validation réussie",
+      "required": "(obligatoire)",
+      "table-instructions": {
+        "blurb": "Glissez et déposez un fichier CSV étendu dans la zone de texte ci-dessous ou cliquez sur le bouton Parcourir pour télécharger un à partir de votre ordinateur. Cliquez sur le bouton Valider pour valider votre format. Vous pouvez effectuer des modifications dans la zone de texte ou cliquez sur Effacer pour effacer la zone de texte.",
+        "label": "Guide d’utilisation: Validateur de données"
+      },
+      "title": "Validateur de données",
+      "validate": "Valide",
+      "validation-results": "Résultats de validation"
     }
   },
   "data": {
