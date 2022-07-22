@@ -152,3 +152,15 @@ Unit testing is done using [Jest](https://jestjs.io/docs/en/expect#content) and 
 Please see the guide on [testing single file components with Jest](https://vue-test-utils.vuejs.org/guides/#testing-single-file-components-with-jest).
 
 **Tip:** Don't write unit test for every single case. Instead, the next time you get an error in your development, write a unit test in the `/test` folder to help validate your code.
+
+# E2E Testing 
+
+Cypress E2E testing quickly verifies whether each web page is working properly and that API calls are properly returned.
+
+```bash
+#install cypress
+npm install cypress --save-dev
+
+#run e2e tests
+npm run cypress:open
+```
