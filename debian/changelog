@@ -1,3 +1,10 @@
+woudc-ui (2.0.0-beta16) focal; urgency=medium
+
+  * Add data validator tool
+  * Add Cypress E2E testing
+
+ -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Thu, 4 Aug 2022 14:20:00 +0000
+
 woudc-ui (2.0.0-beta15) focal; urgency=medium
 
   * Add Content-Security-Policy to apache config
