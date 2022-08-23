@@ -1,3 +1,9 @@
+woudc-ui (2.0.0-beta17.1) focal; urgency=medium
+
+  * Fix to debian/postinst
+
+ -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Tue, 23 Aug 2022 21:02:00 +0000
+
 woudc-ui (2.0.0-beta17) focal; urgency=medium
 
   * Add debian/postinst

@@ -1,8 +1,8 @@
 #!/bin/sh
 
-set -e 
+set -e
 
 USERNAME="woudcuser"
 GROUP="www-data"
 
-chown -R $USERNAME.$GROUP /web
+chown -R $USERNAME.$GROUP /web/woudc-ui/
