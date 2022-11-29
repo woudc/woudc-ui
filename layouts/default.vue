@@ -78,6 +78,7 @@
           open-on-focus
           transition="slide-y-transition"
           close-delay="100"
+          open-delay="200"
         >
           <template #activator="{ on, attrs }">
             <v-tabs color="accent" fixed-tabs>
