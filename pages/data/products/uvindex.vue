@@ -179,6 +179,10 @@ export default {
   head() {
     return {
       title: this.$t('data.products.uv-index.title'),
+      titleTemplate: this.$titleTemplate(
+        this.$t('common.woudc'),
+        this.$t('common.woudcFull')
+      ),
       meta: [
         {
           hid: 'description',

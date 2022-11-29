@@ -117,6 +117,10 @@ export default {
         : this.$t('error.other-error')
     return {
       title: errorTitle,
+      titleTemplate: this.$titleTemplate(
+        this.$t('common.woudc'),
+        this.$t('common.woudcFull')
+      ),
       meta: [
         {
           hid: 'description',

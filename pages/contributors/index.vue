@@ -139,6 +139,10 @@ export default {
   head() {
     return {
       title: this.$t('contributors.list.title'),
+      titleTemplate: this.$titleTemplate(
+        this.$t('common.woudc'),
+        this.$t('common.woudcFull')
+      ),
       meta: [
         {
           hid: 'description',

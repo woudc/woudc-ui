@@ -150,6 +150,10 @@ export default {
   head() {
     return {
       title: this.$t('data.policy.title'),
+      titleTemplate: this.$titleTemplate(
+        this.$t('common.woudc'),
+        this.$t('common.woudcFull')
+      ),
       meta: [
         {
           hid: 'description',

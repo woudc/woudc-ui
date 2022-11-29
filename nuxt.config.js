@@ -9,7 +9,7 @@ export default {
    ** Global headers of the page
    */
   head: {
-    titleTemplate: '%s - ' + pkg.name,
+    titleTemplate: `%s - WOUDC`, // default title template
     title: pkg.name || 'WOUDC',
     meta: [
       { charset: 'utf-8' },
@@ -39,9 +39,9 @@ export default {
    */
   css: ['@mdi/font/css/materialdesignicons.min.css'],
   /*
-   ** Plugins to load before mounting the App
+   ** Plugins to load to $root instance before mounting the App
    */
-  plugins: [],
+  plugins: ['~/plugins/woudcMeta.js'],
   /*
    ** Nuxt.js dev-modules
    */

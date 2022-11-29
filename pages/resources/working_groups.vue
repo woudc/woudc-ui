@@ -35,6 +35,10 @@ export default {
   head() {
     return {
       title: this.$t('resources.working-groups.title'),
+      titleTemplate: this.$titleTemplate(
+        this.$t('common.woudc'),
+        this.$t('common.woudcFull')
+      ),
       meta: [
         {
           hid: 'description',
