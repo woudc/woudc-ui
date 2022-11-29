@@ -91,15 +91,15 @@
 </template>
 
 <script>
-import woudcClient from '~/plugins/woudcClient'
+import woudcClient from '~/plugins/woudcClient.js'
 import {
   unpackageContributor,
   unpackageDeployment,
 } from '~/plugins/woudcJsonUtil.js'
 
-import mapInstructions from '~/components/MapInstructions'
-import tableInstructions from '~/components/TableInstructions'
-import SelectableMap from '~/components/SelectableMap'
+import mapInstructions from '~/components/MapInstructions.vue'
+import tableInstructions from '~/components/TableInstructions.vue'
+import SelectableMap from '~/components/SelectableMap.vue'
 
 export default {
   components: {
@@ -109,15 +109,22 @@ export default {
   },
   async validate({ params, $config }) {
     const acronym = params.id
+    let acronymValidated = false
     const url = $config.WOUDC_UI_API_URL + '/collections/contributors/items'
 
-    const queryParams = 'acronym=' + acronym
-    let found = true
-    await woudcClient.get(url + '?' + queryParams).catch(() => {
-      found = false
-    })
+    const queryParams = `acronym=${acronym}&resulttype=hits&f=json`
+    await woudcClient
+      .get(url + '?' + queryParams)
+      .then((response) => {
+        if (response.data.numberMatched >= 1) {
+          acronymValidated = true
+        }
+      })
+      .catch(() => {
+        acronymValidated = false
+      })
 
-    return found
+    return acronymValidated
   },
   data() {
     return {
