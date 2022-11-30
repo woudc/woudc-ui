@@ -30,7 +30,7 @@ A test plan to test all aspects of the UI. Ensure Developer Tools (F12) are enab
   - Table view of station
   - Table view of contributor `JMA`
   - Table view of instruments
-- Refresh the page to see if page loads correctly to ensure the `.htaccess` / apache redirect is working (SPA fallback to enable persistant routing)
+- Refresh the page to see if page loads correctly to ensure the `woudc-ui.conf` apache redirect is working (SPA fallback to enable persistant routing)
 
 ## Instrument List
 

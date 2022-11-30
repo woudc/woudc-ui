@@ -1,8 +1,0 @@
-# SPA fallback (enable persistent routing)
-
-RewriteEngine On
-RewriteBase /woudc-2.0/nightly/latest
-RewriteRule ^woudc-2.0/nightly/latest/200\.html$ - [L]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /woudc-2.0/nightly/latest/200.html [L]

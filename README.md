@@ -53,7 +53,8 @@ RewriteRule . /subfolder-name/200.html [L]
 </IfModule>
 ```
 
-After building your files (`npm run build`), you can copy the `.htaccess` sample to your `/dist` for convenience and modify it to according to your server settings.
+After building your files (`npm run build`), you can copy the `.htaccess` sample to your `/dist` for convenience and modify it to according to your server settings. 
+
 ```bash
 # modify to your web server specs
 vi .htaccess
@@ -64,6 +65,17 @@ npm run build
 # copy to /dist
 cp .htaccess ./dist
 ```
+
+Or modify your apache `.conf` setting for your application in similar fashion if you're not using `.htaccess` files. Example with application deployed on root domain:
+```xml
+<Location />
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^200\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /200.html [L]
+</Location>
 
 ## Environment variables (.env)
 
