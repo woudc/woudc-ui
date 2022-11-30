@@ -2,7 +2,7 @@
   <v-container>
     <h1>{{ $t('contributors.list.title') }}</h1>
     <h2 v-if="contributors.length > 0">
-      {{ contributors[0].acronym + ' - ' + contributors[0].name }}
+      {{ contributorAcronymTitle }}
     </h2>
     <p>{{ $t('contributors.list.blurb') }}</p>
     <v-row>
@@ -112,6 +112,17 @@ export default {
     let acronymValidated = false
     const url = $config.WOUDC_UI_API_URL + '/collections/contributors/items'
 
+    // fail for long acronyms or special characters
+    if (
+      acronym.length >= 40 ||
+      acronym.search(/[<>&%$#@!'"*()=\s]+/gi) !== -1
+    ) {
+      console.error(
+        'Contributor acronym in URL can not have special characters or it is too long'
+      )
+      return false
+    }
+
     const queryParams = `acronym=${acronym}&resulttype=hits&f=json`
     await woudcClient
       .get(url + '?' + queryParams)
@@ -137,7 +148,9 @@ export default {
   },
   head() {
     return {
-      title: this.$t('contributors.list.title'),
+      title: `${this.contributorAcronymTitle} - ${this.$t(
+        'contributors.list.title'
+      )}`,
       titleTemplate: this.$titleTemplate(
         this.$t('common.woudc'),
         this.$t('common.woudcFull')
@@ -152,6 +165,12 @@ export default {
     }
   },
   computed: {
+    contributorAcronymTitle() {
+      if (this.contributors.length === 0) {
+        return 'Unknown Contributor'
+      }
+      return this.contributors[0].acronym + ' - ' + this.contributors[0].name
+    },
     contributorHeaders() {
       const contributorKeys = [
         'acronym',

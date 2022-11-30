@@ -2,7 +2,7 @@
   <v-container>
     <h1>{{ $t('data.stations.title') }}</h1>
     <h2 v-if="station !== null">
-      {{ station.name + ' - ' + station.woudc_id }}
+      {{ stationIdTitle }}
     </h2>
     <p>{{ $t('data.stations.blurb') }}</p>
     <v-row>
@@ -204,6 +204,17 @@ export default {
     const woudcID = params.id
     const url = $config.WOUDC_UI_API_URL + '/collections/stations/items'
 
+    // fail for long IDs or special characters
+    if (
+      woudcID.length >= 20 ||
+      woudcID.search(/[<>&%$#@!'"*()=\s]+/gi) !== -1
+    ) {
+      console.error(
+        'Station ID in URL can not have special characters or it is too long'
+      )
+      return false
+    }
+
     let found = true
     await woudcClient.get(url + '/' + woudcID).catch(() => {
       found = false
@@ -228,7 +239,7 @@ export default {
   },
   head() {
     return {
-      title: this.$t('data.stations.title'),
+      title: `${this.stationIdTitle} - ${this.$t('data.stations.title')}`,
       titleTemplate: this.$titleTemplate(
         this.$t('common.woudc'),
         this.$t('common.woudcFull')
@@ -243,6 +254,12 @@ export default {
     }
   },
   computed: {
+    stationIdTitle() {
+      if (this.station === null) {
+        return 'Unknown Station'
+      }
+      return this.station.woudc_id + ' - ' + this.station.name
+    },
     deploymentHeaders() {
       const deploymentKeys = [
         'acronym',
