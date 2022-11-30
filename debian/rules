@@ -22,7 +22,6 @@ override_dh_install:
 	cp -ap dist debian/tmp/web/woudc-ui
 	cp deploy/default/woudc-ui.conf debian/tmp/web/woudc-ui
 	cp deploy/default/.env debian/tmp/web/woudc-ui
-	cp deploy/default/htaccess debian/tmp/web/woudc-ui/.htaccess
 	cp deploy/default/update-vars.sh debian/tmp/web/woudc-ui/update-vars.sh
 	dh_install --autodest
 

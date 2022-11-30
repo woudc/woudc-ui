@@ -70,7 +70,6 @@ echo "Installing npm dependencies"
 npm install
 echo "Building application files"
 npx nuxt generate --dotenv .env
-cp deploy/nightly/htaccess dist/.htaccess
 cp deploy/default/woudc-ui.conf dist/
 sed -i 's|Directory /data/web/woudc-ui/dist|Directory /data/web/gods/htdocs/woudc-2.0/nightly/latest|g' dist/woudc-ui.conf
 sed -i 's|/data/web/woudc-ui|/data/web/gods/htdocs/woudc-2.0/nightly/latest|g' dist/woudc-ui.conf
