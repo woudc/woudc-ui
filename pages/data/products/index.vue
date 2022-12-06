@@ -58,13 +58,6 @@
 export default {
   data() {
     return {
-      mapsLinks: {
-        global: 'http://exp-studies.tor.ec.gc.ca/e/ozone/Curr_allmap_g.htm',
-        north: 'http://exp-studies.tor.ec.gc.ca/e/ozone/Curr_allmap.htm',
-        south: 'http://exp-studies.tor.ec.gc.ca/e/ozone/Curr_allmap_s.htm',
-        archive: 'http://exp-studies.tor.ec.gc.ca/cgi-bin/selectMap',
-        individual: 'http://exp-studies.tor.ec.gc.ca/cgi-bin/dailyMaps',
-      },
       relatedLinks: {
         'totalozone-daily-monthly':
           this.$config.WOUDC_UI_WAF_URL + '/Summaries/TotalOzone',
@@ -111,6 +104,20 @@ export default {
         },
       ],
     }
+  },
+  computed: {
+    mapsLinks() {
+      const lang = this.$i18n.locale[0] // get "e" or "f"
+      return {
+        // similar key:values as the original mapsLinks from data() placed here,
+        // with the lang var that switches the e/f lang
+        global: `https://exp-studies.tor.ec.gc.ca/clf2/${lang}/Curr_allmap_g.html`,
+        north: `https://exp-studies.tor.ec.gc.ca/clf2/${lang}/Curr_allmap.html`,
+        south: `https://exp-studies.tor.ec.gc.ca/clf2/${lang}/Curr_allmap_s.html`,
+        archive: `https://exp-studies.tor.ec.gc.ca/cgi-bin/clf2/selectMap?lang=${lang}`,
+        individual: `https://exp-studies.tor.ec.gc.ca/cgi-bin/clf2/dailyMaps?lang=${lang}`,
+      }
+    },
   },
   nuxtI18n: {
     paths: {
