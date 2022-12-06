@@ -1,3 +1,16 @@
+woudc-ui (2.0.0-beta18) focal; urgency=medium
+
+  * Fix apache configs to disable index access of /_nuxt path
+  * Fix page title formats; remove woudc-ui name
+  * Add 200ms open delay on hover for primary menus to avoid UX issues
+  * Add proper XHR handling to validate contributor acronym names in contributor listing pages
+  * Update deploy-nightly.sh for proper SPA fallback config
+  * Remove use of .htaccess in debian deploy and other redundant apache .conf settings
+  * Fix substitle handling for single contributor or station pages
+  * Update ozonesonde map URLs
+
+ -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Tue, 06 Dec 2022 22:53:00 +0000
+
 woudc-ui (2.0.0-beta17.1) focal; urgency=medium
 
   * Fix to debian/postinst
