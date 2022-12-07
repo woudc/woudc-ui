@@ -1,3 +1,9 @@
+woudc-ui (2.0.0-beta18.1) focal; urgency=medium
+
+  * Fix apache config missing -Indexes for root application path
+
+ -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Wed, 07 Dec 2022 22:25:00 +0000
+
 woudc-ui (2.0.0-beta18) focal; urgency=medium
 
   * Fix apache configs to disable index access of /_nuxt path
