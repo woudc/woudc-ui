@@ -113,7 +113,12 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('about.formats.examples.blurb'),
+          content: this.$t('about.formats.description'),
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.$t('about.formats.keywords'),
         },
       ],
     }

@@ -164,6 +164,11 @@ export default {
           name: 'description',
           content: this.$t('home.adTitle'),
         },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.$t('home.keywords'),
+        },
       ],
     }
   },

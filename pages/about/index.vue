@@ -74,7 +74,12 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('about.home.blurb.body-intro'),
+          content: this.$t('about.home.description'),
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.$t('about.keywords'),
         },
       ],
     }

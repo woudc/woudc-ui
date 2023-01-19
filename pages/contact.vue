@@ -73,7 +73,12 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('contact.blurb.body-contact'),
+          content: this.$t('contact.description'),
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.$t('contact.keywords'),
         },
       ],
     }

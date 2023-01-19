@@ -96,7 +96,12 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('about.faq.blurb'),
+          content: this.$t('about.faq.description'),
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.$t('about.faq.keywords'),
         },
       ],
     }

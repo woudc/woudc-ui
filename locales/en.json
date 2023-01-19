@@ -153,7 +153,9 @@
         }
       ],
       "title": "Frequently Asked Questions",
-      "usability": "usability"
+      "usability": "usability",
+      "keywords": "faq,frequently asked questions,data access,data types",
+      "description": "Answers to frequently asked questions"
     },
     "formats": {
       "blurb": {
@@ -182,7 +184,9 @@
         "uv": "Ultraviolet Radiation Examples:"
       },
       "note": " The WOUDC does not accept files in binary formats such as MS-Excel or MS-Word.",
-      "title": "File Formats"
+      "title": "File Formats",
+      "keywords": "extcsv,file format,user guide,Extended CSV",
+      "description": "Describes the file format, structure and content of the WOUDC Standard Data File Format. (extcsv).  Samples of files are also included."
     },
     "glossary": {
       "blurb": "Terms related to the data centre, including definitions about network operations centres and words and phrases about the storage, management and the transmission of data.",
@@ -517,7 +521,9 @@
           "term": "WOUDC Platform ID"
         }
       ],
-      "title": "Glossary"
+      "title": "Glossary",
+      "keywords": "about,data, glossary,descriptions,terms,definitions",
+      "description": "List of terms specific to the WOUDC archive and data"
     },
     "home": {
       "blurb": {
@@ -540,7 +546,8 @@
         "title": "History of the Data Centre"
       },
       "news": "News and Updates:",
-      "title": "About WOUDC"
+      "title": "About WOUDC",
+      "description": "Description and overview about WOUDC"
     },
     "policy": {
       "blurb": "Use of the WOUDC data are governed by the {wmo-policy} and {gaw-policy}.",
@@ -683,8 +690,11 @@
           "wms": "OGC:WMS"
         }
       },
-      "title": "Standards"
-    }
+      "title": "Standards",
+      "keywords": "standards,discovery,access,visualization,OGC,WMS,WFS,CSW,ISO",
+      "description": "WOUDC standards support and implementation"
+    },
+    "keywords": "WOUDC,about,overview,ozone,ultraviolet radiation"
   },
   "banner": {
     "about": "About",
@@ -826,7 +836,9 @@
     "prompt": "Please provide information that we could use to contact you.",
     "required": "required",
     "subject": "Subject",
-    "title": "Contact WOUDC"
+    "title": "Contact WOUDC",
+    "keywords": "WOUDC,contact,email,address,inquiries,questions",
+    "description": "Contact information for WOUDC related inquiries"
   },
   "contributors": {
     "list": {
@@ -1477,7 +1489,8 @@
       "title": "News and Updates:"
     },
     "quickLinks": "Quick Links:",
-    "wmoLogo": "Logo: @.wmoFull"
+    "wmoLogo": "Logo: @.wmoFull",
+    "keywords": "ozone,ultraviolet,uv,totalozone,ozonesonde,umkehr,gaw,wmo,spectral,stations,instruments"
   },
   "news": {
     "blurb": "Data centre news, updates and notifications",

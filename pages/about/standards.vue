@@ -126,7 +126,12 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('about.standards.blurb-intro'),
+          content: this.$t('about.standards.description'),
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.$t('about.standards.keywords'),
         },
       ],
     }

@@ -62,7 +62,12 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('about.glossary.blurb'),
+          content: this.$t('about.glossary.description'),
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.$t('about.glossary.keywords'),
         },
       ],
     }

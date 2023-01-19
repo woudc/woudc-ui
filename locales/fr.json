@@ -153,7 +153,9 @@
         }
       ],
       "title": "Foire aux questions",
-      "usability": "l’utilisation"
+      "usability": "l’utilisation",
+      "keywords": "faq,foire aux questions, accès aux données,types de données",
+      "description": "Réponses aux questions fréquentes"
     },
     "formats": {
       "blurb": {
@@ -182,7 +184,9 @@
         "uv": "Exemples portant sur le rayonnement ultraviolet :"
       },
       "note": " Le WOUDC n’accepte pas les fichiers en format binaire comme les fichiers MS-Excel ou MS-Word, par exemple.",
-      "title": "Formats de fichier"
+      "title": "Formats de fichier",
+      "keywords": "extcsv, format de fichier, guide de l’utilisateur, CSV étendu",
+      "description": "Décrit le format de fichier, la structure et le contenu du format de fichier de données standard du WOUDC. (extcsv).  Des échantillons de fichiers sont aussi inclus."
     },
     "glossary": {
       "blurb": "Termes reliés au centre des données, y compris les définitions portant sur les centres d’exploitation du réseau et les mots et phrases qui portent sur l’entreposage, la gestion et la transmission de données.",
@@ -517,7 +521,9 @@
           "term": "WOUDC"
         }
       ],
-      "title": "Glossaire"
+      "title": "Glossaire",
+      "keywords": "à propos, données, glossaire, descriptions, termes, définitions",
+      "description": "Liste de termes propres aux archives et aux données du WOUDC"
     },
     "home": {
       "blurb": {
@@ -540,7 +546,8 @@
         "title": "Le centre de données - un peu d’histoire"
       },
       "news": "Nouvelles et mises à jour:",
-      "title": "Qu’est-ce que le WOUDC"
+      "title": "Qu’est-ce que le WOUDC",
+      "description": "Description et aperçu du WOUDC"
     },
     "policy": {
       "blurb": "L’utilisation des données du WOUDC est régie par la {wmo} et la {gaw}.",
@@ -683,8 +690,10 @@
           "wms": "OGC:WMS"
         }
       },
-      "title": "Normes"
-    }
+      "title": "Normes",
+      "description": "Soutien et mise en œuvre des normes"
+    },
+    "keywords": "WOUDC, description, vue d’ensemble, ozone, rayonnement ultraviolet"
   },
   "banner": {
     "about": "À propos",
@@ -826,7 +835,9 @@
     "prompt": "S'il vous plaît fournir des informations que nous pourrions utiliser pour communiquer avec vous.",
     "required": "obligatoire",
     "subject": "Sujet",
-    "title": "Communiquez avec le WOUDC"
+    "title": "Communiquez avec le WOUDC",
+    "keywords": "WOUDC,contact,courriel,adresse,requêtes,questions",
+    "description": "Informations de contact pour les demandes liées au WOUDC"
   },
   "contributors": {
     "list": {
@@ -1477,7 +1488,8 @@
       "title": "Nouvelles et mises à jour:"
     },
     "quickLinks": "Liens rapides:",
-    "wmoLogo": "Logo : @.wmoFull"
+    "wmoLogo": "Logo : @.wmoFull",
+    "keywords": "ozone,ultraviolet,uv,ozone total,sonde pour l’ozone,umkehr,vag,omm,spectral,stations,instruments"
   },
   "news": {
     "blurb": "Nouvelles pour le Centre de données, mises à jour et des notifications",
