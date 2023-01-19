@@ -148,7 +148,7 @@ export default {
   },
   head() {
     return {
-      title: `${this.contributorAcronymTitle} - ${this.$t(
+      title: `${encode(this.$route.params.id)} - ${this.$t(
         'contributors.list.title'
       )}`,
       titleTemplate: this.$titleTemplate(
@@ -160,7 +160,7 @@ export default {
           hid: 'description',
           name: 'description',
           content:
-            this.contributorAcronymTitle +
+            encode(this.$route.params.id) +
             ' - ' +
             this.$t('contributors.single.description'),
         },
