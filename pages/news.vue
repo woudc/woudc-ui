@@ -97,24 +97,15 @@ export default {
     }
   },
   computed: {
-    woudcLink() {
-      return 'https://woudc.org/home.php?lang=' + this.$i18n.locale
-    },
     ...mapState('news', ['newsItems']),
     sortedItems() {
       // let currNewsItem, currTag
       const allNewsItems = this.newsItems.json.features
-        .slice(0)
-        .sort((a, b) =>
-          a.properties.published_date.slice(0, 10) <
-          b.properties.published_date.slice(0, 10)
-            ? 1
-            : -1
-        )
       let sortedItems = []
       if (this.selectedTags.length === 0) {
         sortedItems = allNewsItems
       } else if (this.selectedTags.length > 0) {
+        // filter by tags
         for (const currNewsItem of allNewsItems) {
           sortedItems.push(currNewsItem)
           for (const currTag of this.selectedTags) {
