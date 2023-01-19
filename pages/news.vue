@@ -93,6 +93,11 @@ export default {
           name: 'description',
           content: this.$t('news.blurb'),
         },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.$t('news.keywords'),
+        },
       ],
     }
   },

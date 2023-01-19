@@ -1482,7 +1482,8 @@
   "news": {
     "blurb": "Nouvelles pour le Centre de données, mises à jour et des notifications",
     "reset": "Réinitialiser les filtres",
-    "title": "Nouvelles et mises à jour"
+    "title": "Nouvelles et mises à jour",
+    "keywords": "nouvelles,mises à jour,les notifications,les avis"
   },
   "resources": {
     "links": {

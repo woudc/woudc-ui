@@ -127,6 +127,11 @@ export default {
           name: 'description',
           content: errorTitle,
         },
+        {
+          hid: 'robots',
+          name: 'robots',
+          content: 'noarchive',
+        },
       ],
     }
   },
