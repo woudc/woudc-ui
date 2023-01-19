@@ -147,7 +147,12 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('contributors.list.blurb'),
+          content: this.$t('contributors.list.description'),
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.$t('contributors.list.keywords'),
         },
       ],
     }

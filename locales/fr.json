@@ -864,7 +864,9 @@
         "station_type": "Type de station",
         "station_id": "Identification de la station du WOUDC"
       },
-      "title": "Liste des contributeurs"
+      "title": "Liste des contributeurs",
+      "keywords": "WOUDC, données, contributeurs, organismes",
+      "description": "Liste des contributeurs, comprenant le nom et l’abréviation de l’institut ou de l’organisation, l’adresse, les coordonnées et l’information sur le fichier local."
     },
     "registration": {
       "blurb": {
@@ -880,7 +882,9 @@
       "step4": "Après réception et approbation de votre inscription, le WOUDC attribuera un emplacement FTP / compte FTP (avec un nom d'utilisateur / mot de passe personnel) à utiliser exclusivement pour la soumission des données.",
       "thanks": "Nous vous remercions de votre inscription au WOUDC.",
       "title": "Inscription",
-      "wmo-gaw": "OMM/VAG"
+      "wmo-gaw": "OMM/VAG",
+      "keywords": "contribuer, soumettre, nom d’utilisateur VAG, s’inscrire, inscription, plate-forme, station",
+      "description": "Énumération des étapes à suivre pour s’inscrire au WOUDC ou pour modifier une inscription existante."
     },
     "submission": {
       "blurb-contact": "Il est recommandé de soumettre les données au moins une fois par mois. Veuillez {contact-us} pour obtenir plus de renseignements",
@@ -893,7 +897,9 @@
       "step4": "Chacun des contributeurs transfère ses fichiers respectifs dans leur dossier individuel sur le serveur FTP (une fois transférés au WOUDC, les fichiers ne peuvent être mis à jour pour soumettre des fichiers mis à jour, il faut les transférer de nouveau en utilisant un nom de fichier différent)",
       "step5": "Veuillez vous déconnecter pour mettre fin à la session FTP",
       "subtitle": "Étapes de soumission des données",
-      "title": "Soumission de données"
+      "title": "Soumission de données",
+      "keywords": "contribuer, soumission, soumettre, identifiant VAG, s’inscrire, inscription, plate-forme,station",
+      "description": "Comment soumettre des données au WOUDC"
     },
     "validation": {
       "blurb": "Ce processus effectue des contrôles de syntaxe et de format sur un fichier à l'appui de temps réel le format de validation de l'ozone et le rayonnement ultraviolet soumission des données au centre de données.",
@@ -913,7 +919,14 @@
       },
       "title": "Validateur de données",
       "validate": "Valide",
-      "validation-results": "Résultats de validation"
+      "validation-results": "Résultats de validation",
+      "keywords": "validation,données,format,format,qa",
+      "description": "Vérificateur de format et évaluation de la qualité des fichiers de soumission de données sur l'ozone et le rayonnement ultraviolet."
+    },
+    "list-single": {},
+    "single": {
+      "keywords": "nom du contributeur, agence du contributeur, abréviation du contributeur, détails du contributeur, pays du contributeur, stations du contributeur",
+      "description": "Description d'un seul contributeur, y compris les stations du contributeur."
     }
   },
   "data": {

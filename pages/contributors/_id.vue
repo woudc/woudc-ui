@@ -96,7 +96,7 @@ import {
   unpackageContributor,
   unpackageDeployment,
 } from '~/plugins/woudcJsonUtil.js'
-
+import { encode } from 'html-entities'
 import mapInstructions from '~/components/MapInstructions.vue'
 import tableInstructions from '~/components/TableInstructions.vue'
 import SelectableMap from '~/components/SelectableMap.vue'
@@ -159,7 +159,15 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('contributors.list.blurb'),
+          content:
+            this.contributorAcronymTitle +
+            ' - ' +
+            this.$t('contributors.single.description'),
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.contributorAcronymKeywordList,
         },
       ],
     }
@@ -170,6 +178,15 @@ export default {
         return 'Unknown Contributor'
       }
       return this.contributors[0].acronym + ' - ' + this.contributors[0].name
+    },
+    contributorAcronymKeywordList() {
+      let keyword = encode(this.$route.params.id)
+      // if (this.contributors.length === 0) {
+      //   keyword += ', Unknown Contributor'
+      // } else {
+      //   keyword += ', ' + this.contributors[0].name
+      // }
+      return keyword + ', ' + this.$t('contributors.single.keywords')
     },
     contributorHeaders() {
       const contributorKeys = [

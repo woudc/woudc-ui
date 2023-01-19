@@ -73,7 +73,12 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('contributors.submission.blurb-intro'),
+          content: this.$t('contributors.submission.description'),
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.$t('contributors.submission.keywords'),
         },
       ],
     }

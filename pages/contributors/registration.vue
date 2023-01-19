@@ -83,7 +83,12 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('contributors.registration.blurb.body-accounts'),
+          content: this.$t('contributors.registration.description'),
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.$t('contributors.registration.keywords'),
         },
       ],
     }

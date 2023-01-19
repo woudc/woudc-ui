@@ -865,7 +865,9 @@
         "station_type": "Station Type",
         "station_id": "WOUDC Station ID"
       },
-      "title": "Contributor List"
+      "title": "Contributor List",
+      "keywords": "WOUDC,Data,contributors,agencies",
+      "description": "List of contributors, including the institute or organization name and abbreviation, address, contact information and local file information."
     },
     "registration": {
       "blurb": {
@@ -881,7 +883,9 @@
       "step4": "Upon receipt and approval of your registration, the WOUDC will assign an FTP location / account (with a personal username/password) to be used exclusively for data submission.",
       "thanks": "Thank you for registering with WOUDC.",
       "title": "Registration",
-      "wmo-gaw": "WMO/GAW"
+      "wmo-gaw": "WMO/GAW",
+      "keywords": "contribute,submit,GAW ID,register,registration,platform,station",
+      "description": "List of steps required to register with WOUDC and to edit existing data if already registered."
     },
     "submission": {
       "blurb-contact": "It is recommended that data be submitted at least once a month. Please {contact-us} for further information.",
@@ -894,7 +898,9 @@
       "step4": "Each contributor transfers their respective files to their individual folder on the FTP site (files cannot be updated after transfer to WOUDC. To submit updated data files, they must be transferred again, using a different file name)",
       "step5": "Log out to end the FTP session",
       "subtitle": "Data Submission Steps",
-      "title": "Data Submission"
+      "title": "Data Submission",
+      "keywords": "contribute,submission,submit,GAW ID,register,registration,platform,station",
+      "description": "How to submit data to WOUDC"
     },
     "validation": {
       "blurb": "This process performs syntax and format checks against a file in support of realtime format validation of ozone and ultraviolet radiation data submissions to the Data Centre.",
@@ -914,7 +920,14 @@
       },
       "title": "Data Validator",
       "validate": "Validate",
-      "validation-results": "Validation Results"
+      "validation-results": "Validation Results",
+      "keywords": "validation,data,format,qa",
+      "description": "Format checker and quality assessment for ozone and ultraviolet radiation data submission files."
+    },
+    "list-single": {},
+    "single": {
+      "keywords": "contributor name, contributor agency, contributor abbreviation, contributor details, contributor country, contributor stations",
+      "description": "Description of a single contributor, including the contributor stations."
     }
   },
   "data": {

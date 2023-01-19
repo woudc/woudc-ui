@@ -130,7 +130,12 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('contributors.validation.blurb'),
+          content: this.$t('contributors.validation.description'),
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.$t('contributors.validation.keywords'),
         },
       ],
     }
