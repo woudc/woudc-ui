@@ -249,7 +249,12 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('data.access.blurb.body-intro'),
+          content: this.$t('data.access.description'),
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.$t('data.access.keywords'),
         },
       ],
     }

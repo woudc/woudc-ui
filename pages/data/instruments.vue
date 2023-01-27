@@ -147,7 +147,12 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('data.instruments.blurb'),
+          content: this.$t('data.instruments.description'),
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.$t('data.instruments.keywords'),
         },
       ],
     }

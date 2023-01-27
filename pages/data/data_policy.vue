@@ -158,7 +158,12 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('data.policy.blurb'),
+          content: this.$t('data.policy.description'),
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.$t('data.policy.keywords'),
         },
       ],
     }

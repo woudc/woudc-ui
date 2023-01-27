@@ -62,7 +62,7 @@ export default {
   },
   head() {
     return {
-      title: this.$t('resources.related-links.links.title'),
+      title: this.$t('resources.links.links'),
       titleTemplate: this.$titleTemplate(
         this.$t('common.woudc'),
         this.$t('common.woudcFull')
@@ -71,7 +71,12 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('resources.related-links.links.other-title'),
+          content: this.$t('resources.links.links'),
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.$t('resources.links.keywords'),
         },
       ],
     }

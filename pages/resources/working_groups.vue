@@ -45,6 +45,11 @@ export default {
           name: 'description',
           content: this.$t('resources.working-groups.title'),
         },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.$t('resources.working-groups.keywords'),
+        },
       ],
     }
   },

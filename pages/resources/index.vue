@@ -42,7 +42,12 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('resources.links.links'),
+          content: this.$t('resources.description'),
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.$t('resources.keywords'),
         },
       ],
     }

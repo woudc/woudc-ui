@@ -1059,7 +1059,9 @@
         "intro-ogc": "Les APIs de WOUDC supportent les standards ouverts de {ogc}  (OGC), qui assurent l’interopérabilité des données et facilitent leur découverte, leur accès et leur visualisation.  Les standards de l'OGC jouent un rôle prépondérant dans l'exchange de données météorologiques, climatiques et l'hydrométriques au sein de l’Organisation météorologique mondiale (OMM) et sont prises en charge par de nombreux outils et logiciels libres grand public et commerciaux.",
         "intro-provides": "L'API rend possible la découverte, l’accès, et la visualisation pour toutes les données et métadonnées de WOUDC. Il fournit également les processus pour la validation et l'évaluation de la qualité des données.",
         "intro-consult": "Veuillez consulter les {webServicesHowTo} pour plus de détails."
-      }
+      },
+      "keywords": "accessibilité des données, téléchargement des données, services web, WAF, OGC, API, SCW,WFS,CSW,ISO,métadonnées, catalogue, cartes, données, observations, csv, fichier de formes, kml, json, geojson",
+      "description": "Marche à suivre pour accéder aux données archivées du WOUDC via le site web, la recherche, le WAF et les services web"
     },
     "explore": {
       "bbox": {
@@ -1228,7 +1230,9 @@
       "instrument-model": "Modèle de l’instrument :",
       "instrument-type": "Type d’instrument :",
       "station-name": "Nom de la station :",
-      "title": "Liste des instruments"
+      "title": "Liste des instruments",
+      "description": "Une liste d'instruments provenant des archives de données du WOUDC, comprenant le type d'instrument, le nom et le modèle.",
+      "keywords": "WOUDC, instruments, liste, modèle, type, numéro, recherche"
     },
     "links": {
       "dataset_info": "Information sur les jeux de données",
@@ -1309,7 +1313,9 @@
         "link": "Résolution 40 (Cg-XII)",
         "title": "Politique des données de l’Organisation météorologique mondiale"
       },
-      "wmo-policy": "politique sur les données de L’Organisation météorologique mondiale (OMM)"
+      "wmo-policy": "politique sur les données de L’Organisation météorologique mondiale (OMM)",
+      "description": "Politiques d’utilisation des données, protocoles et directives sur les citations",
+      "keywords": "données,citation,légal,utilisation,règlements,réglementation,utilisation des données,sécurité,protocole,reconnaissance,utilisation des données"
     },
     "products": {
       "blurb": "Des données de sortie spéciales sont préparées par le WOUDC afin d’aider les chercheurs et leur fournir des renseignements à valeur ajoutée ; certaines données comprennent des graphiques de série chronologique détaillant l’épaisseur de la colonne d’ozone total ainsi que des cartes indiquant la quantité d’ozone en temps quasi réel.",
@@ -1439,7 +1445,9 @@
         },
         "title": "Groupes consultatifs scientifiques"
       },
-      "title": "Qualité des données"
+      "title": "Qualité des données",
+      "description": "Résumé du contrôle de la qualité des données de WOUDC",
+      "keywords": "qualité des données,contrôle de la qualité,étalonnage"
     },
     "stations": {
       "blurb": "Les archives de données du WOUDC peuvent être classées par station. Pour connaître le numéro identificateur d’une station, sélectionner le lien des métadonnées sur le site Web du WOUDC, puis la région désirée. Vous pourrez ensuite consulter la liste des stations et leur numéro d’identification.",
@@ -1476,9 +1484,20 @@
       },
       "station-id": "Identification de la station du WOUDC :",
       "station-name": "Nom de la station :",
-      "title": "Liste des stations"
+      "title": "Liste des stations",
+      "description": "Liste de toutes les stations de l'archive de données WOUDC",
+      "keywords": "Stations, liste, recherche, identifiant gaw, nom de la station, pays, région OMM",
+      "single": {
+        "keywords": "Station, détails, fichiers soumis, observations, pays, plage de dates, contributeur de la station, instruments de la station",
+        "description": "Vue détaillée d'une seule station de l'archive de données WOUDC, y compris ses instruments, contributeur et plage de dates des fichiers de données"
+      }
     },
-    "title": "Données"
+    "title": "Données",
+    "description": "Données - Page d'accueil principale",
+    "search": {
+      "keywords": "WOUDC,données,recherche,consultation,téléchargement,vrac,services web,géospatial,csv,geojson,json",
+      "description": "Assure la fonctionnalité des requêtes envoyées au centre de données WOUDC et les résultats de consultation et de téléchargement"
+    }
   },
   "error": {
     "error-link-end": "page d'accueil",
@@ -1515,7 +1534,8 @@
       "links": "Liens de données connexes",
       "software": "Logiciel",
       "sop": "Procédures d'utilisation normalisées",
-      "working_groups": "Groupes de travail"
+      "working_groups": "Groupes de travail",
+      "keywords": "WOUDC, ressources, liens, sites connexes"
     },
     "procedures": {
       "blurb": "Liens vers les Procédures d'utilisation normalisées (PUN) sur l’ozone et les rayons UV Données sur le rayonnement.",
@@ -1556,7 +1576,8 @@
           "text": "Comparaison corrélative de l’index UV mondial relevé par les radiomètres multibandes : Harmonisation de l’index UV mondial et de l’irradiance spectrale"
         }
       },
-      "title": "Procédures d'utilisation normalisées"
+      "title": "Procédures d'utilisation normalisées",
+      "keywords": "WOUDC, instructions d’opération, ozone, rayons ultraviolets, ozone, données qualité, qa, qc, assurance de la qualité, contrôle de la qualité, PUN, normes, manuel"
     },
     "related-links": {
       "links": {
@@ -1590,7 +1611,10 @@
         "dobson": "Comité ad hoc pour le Dobson",
         "umkehr": "Sous-comité pour la méthode d’Umkehr"
       },
-      "title": "Groupes de travail"
-    }
+      "title": "Groupes de travail",
+      "keywords": "WOUDC,groupe de travail,WG,Brewer,Dobson,Umkehr"
+    },
+    "keywords": "Ressources,page,principale",
+    "description": "Ressources - Page d'accueil principale"
   }
 }

@@ -161,7 +161,12 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('data.stations.blurb'),
+          content: this.$t('data.stations.description'),
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.$t('data.stations.keywords'),
         },
       ],
     }

@@ -1060,7 +1060,9 @@
         "intro-endpoint": "WOUDC provides a central OGC API at the following endpoint: {url}",
         "intro-provides": "The API provides discovery, access and visualization functionality to all WOUDC data and metadata, as well as providing processes for data validation and quality assessment.",
         "intro-consult": "Please consult the {webServicesHowTo} for detailed information."
-      }
+      },
+      "keywords": "data access,data download,web services,WAF,OGC,API,WMS,WFS,CSW,ISO,metadata,catalogue,maps,data,observations,csv,shapefile,kml, json,geojson",
+      "description": "Methods in to access WOUDC data archive via website, search, WAF, and web services"
     },
     "explore": {
       "bbox": {
@@ -1229,7 +1231,9 @@
       "instrument-model": "Instrument Model:",
       "instrument-type": "Instrument Type:",
       "station-name": "Station Name:",
-      "title": "Instrument List"
+      "title": "Instrument List",
+      "description": "A list of instruments from the WOUDC data archive, including the instrument type, name and model.",
+      "keywords": "WOUDC, instruments, list, model, type, number, search"
     },
     "links": {
       "dataset_info": "Dataset Information",
@@ -1310,7 +1314,9 @@
         "link": "Resolution 40 (Cg-XII)",
         "title": "World Meteorological Organization Data Policy"
       },
-      "wmo-policy": "World Meteorological Organization (WMO) data policy"
+      "wmo-policy": "World Meteorological Organization (WMO) data policy",
+      "description": "Data Use Policies, Protocols and Citation Guidelines",
+      "keywords": "data,citation,legal,use,rules,regulations,use of data,security,protocol,acknowledgement,data use"
     },
     "products": {
       "blurb": "Special output data products are prepared by the WOUDC to assist researchers and provide value added information; some of the data products include total column ozone time series graphs and near real-time ozone maps.",
@@ -1440,7 +1446,9 @@
         },
         "title": "Scientific Advisory Groups"
       },
-      "title": "Data Quality"
+      "title": "Data Quality",
+      "description": "WOUDC Data Quality Assurance Summary",
+      "keywords": "data quality,qa,quality assurance,calibration"
     },
     "stations": {
       "blurb": "The WOUDC data archive can be sorted by station. To find out the identifying number of a particular station, select the metadata link on the WOUDC website and then the region that you are interested in. All available stations and their numbers for that region will then be displayed.",
@@ -1477,9 +1485,21 @@
       },
       "station-id": "WOUDC Station ID:",
       "station-name": "Station Name:",
-      "title": "Station List"
+      "title": "Station List",
+      "description": "List of all stations from the WOUDC data archive",
+      "keywords": "Stations, list, search, gaw id, station name, country, WMO region",
+      "single": {
+        "keywords": "Station, details, submitted files, observations, country, date range, station contributor, station instruments",
+        "description": "Detailed view of a single station from the WOUDC data archive, including its instruments, contributor and date range of data files"
+      }
     },
-    "title": "Data"
+    "title": "Data",
+    "description": "Data - Main landing page",
+    "keywords": "data,main,page",
+    "search": {
+      "description": "Provides functionality to query WOUDC data centre and browse / download results",
+      "keywords": "WOUDC,Data,Search,browse,download,bulk,web services,geospatial,csv,geojson,json"
+    }
   },
   "error": {
     "error-link-end": "home page",
@@ -1516,7 +1536,8 @@
       "links": "Related Data Links",
       "software": "Software",
       "sop": "Standard Operating Procedures",
-      "working_groups": "Working Groups"
+      "working_groups": "Working Groups",
+      "keywords": "WOUDC,resources,links,related sites"
     },
     "procedures": {
       "blurb": "Links to Standard Operating Procedures (SOP) related to Ozone and UV Radiation data.",
@@ -1557,7 +1578,8 @@
           "text": "Intercomparison of Global UV Index from Multiband Radiometers: Harmonization of Global UVI and Spectral Irradiance"
         }
       },
-      "title": "Standard Operating Procedures"
+      "title": "Standard Operating Procedures",
+      "keywords": "WOUDC,operating procedures,ozone,ultraviolet radiation,ozone,data quality,qa,qc,quality assurance,quality control,SOP,standards,manual"
     },
     "related-links": {
       "links": {
@@ -1591,7 +1613,10 @@
         "dobson": "Dobson Ad-Hoc Committee",
         "umkehr": "Umkehr Sub-Committee"
       },
-      "title": "Working Groups"
-    }
+      "title": "Working Groups",
+      "keywords": "WOUDC,working group,wg,brewer,dobson,umkehr"
+    },
+    "keywords": "Resources,main,page",
+    "description": "Resources - Main landing page"
   }
 }

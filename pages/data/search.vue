@@ -435,7 +435,12 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('data.explore.blurb.body-datasets'),
+          content: this.$t('data.search.description'),
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.$t('data.search.keywords'),
         },
       ],
     }

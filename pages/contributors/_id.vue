@@ -148,7 +148,7 @@ export default {
   },
   head() {
     return {
-      title: `${encode(this.$route.params.id)} - ${this.$t(
+      title: `${this.contributorAcronymTitle} - ${this.$t(
         'contributors.list.title'
       )}`,
       titleTemplate: this.$titleTemplate(
@@ -160,7 +160,7 @@ export default {
           hid: 'description',
           name: 'description',
           content:
-            encode(this.$route.params.id) +
+            this.contributorAcronymTitle +
             ' - ' +
             this.$t('contributors.single.description'),
         },
@@ -181,11 +181,11 @@ export default {
     },
     contributorAcronymKeywordList() {
       let keyword = encode(this.$route.params.id)
-      // if (this.contributors.length === 0) {
-      //   keyword += ', Unknown Contributor'
-      // } else {
-      //   keyword += ', ' + this.contributors[0].name
-      // }
+      if (this.contributors.length === 0) {
+        keyword += ', Unknown Contributor'
+      } else {
+        keyword += ', ' + this.contributors[0].name
+      }
       return keyword + ', ' + this.$t('contributors.single.keywords')
     },
     contributorHeaders() {

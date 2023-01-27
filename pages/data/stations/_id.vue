@@ -187,7 +187,7 @@
 import woudcClient from '~/plugins/woudcClient'
 import { getMetrics } from '~/plugins/api/wdr.api.processes'
 import { stripProperties, unpackageStation } from '~/plugins/woudcJsonUtil.js'
-
+import { encode } from 'html-entities'
 import mapInstructions from '~/components/MapInstructions'
 import tableInstructions from '~/components/TableInstructions'
 import SelectableMap from '~/components/SelectableMap'
@@ -248,7 +248,15 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('data.stations.blurb'),
+          content:
+            this.stationIdTitle +
+            ' - ' +
+            this.$t('data.stations.single.description'),
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.stationIdKeywordList,
         },
       ],
     }
@@ -258,7 +266,16 @@ export default {
       if (this.station === null) {
         return 'Unknown Station'
       }
-      return this.station.woudc_id + ' - ' + this.station.name
+      return encode(this.$route.params.id) + ' - ' + this.station.name
+    },
+    stationIdKeywordList() {
+      let keyword = encode(this.$route.params.id)
+      if (this.station == null) {
+        keyword += ', Unknown Station'
+      } else {
+        keyword += ', ' + this.station.name
+      }
+      return keyword + ', ' + this.$t('data.stations.single.keywords')
     },
     deploymentHeaders() {
       const deploymentKeys = [
