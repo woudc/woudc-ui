@@ -926,7 +926,7 @@
     },
     "list-single": {},
     "single": {
-      "keywords": "contributor name, contributor agency, contributor abbreviation, contributor details, contributor country, contributor stations",
+      "keywords": "contributor name, contributor agency, contributor abbreviation, contributor details, contributor country, contributor stations, contributor metadata",
       "description": "Description of a single contributor, including the contributor stations."
     }
   },
@@ -1489,7 +1489,7 @@
       "description": "List of all stations from the WOUDC data archive",
       "keywords": "Stations, list, search, gaw id, station name, country, WMO region",
       "single": {
-        "keywords": "Station, details, submitted files, observations, country, date range, station contributor, station instruments",
+        "keywords": "Station, details, submitted files, observations, country, date range, station contributor, station instruments, station metadata",
         "description": "Detailed view of a single station from the WOUDC data archive, including its instruments, contributor and date range of data files"
       }
     },

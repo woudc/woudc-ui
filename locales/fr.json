@@ -925,7 +925,7 @@
     },
     "list-single": {},
     "single": {
-      "keywords": "nom du contributeur, agence du contributeur, abréviation du contributeur, détails du contributeur, pays du contributeur, stations du contributeur",
+      "keywords": "nom du contributeur, agence du contributeur, abréviation du contributeur, détails du contributeur, pays du contributeur, stations du contributeur, métadonnées du contributeur",
       "description": "Description d'un seul contributeur, y compris les stations du contributeur."
     }
   },
@@ -1488,7 +1488,7 @@
       "description": "Liste de toutes les stations de l'archive de données WOUDC",
       "keywords": "Stations, liste, recherche, identifiant gaw, nom de la station, pays, région OMM",
       "single": {
-        "keywords": "Station, détails, fichiers soumis, observations, pays, plage de dates, contributeur de la station, instruments de la station",
+        "keywords": "Station, détails, fichiers soumis, observations, pays, plage de dates, contributeur de la station, instruments de la station, métadonnées de la station",
         "description": "Vue détaillée d'une seule station de l'archive de données WOUDC, y compris ses instruments, contributeur et plage de dates des fichiers de données"
       }
     },

@@ -173,16 +173,19 @@ export default {
     }
   },
   computed: {
+    encodedId() {
+      return encode(this.$route.params.id)
+    },
     contributorAcronymTitle() {
       if (this.contributors.length === 0) {
-        return 'Unknown Contributor'
+        return this.encodedId
       }
       return this.contributors[0].acronym + ' - ' + this.contributors[0].name
     },
     contributorAcronymKeywordList() {
-      let keyword = encode(this.$route.params.id)
+      let keyword = this.encodedId
       if (this.contributors.length === 0) {
-        keyword += ', Unknown Contributor'
+        keyword += ', Unknown contributor Name'
       } else {
         keyword += ', ' + this.contributors[0].name
       }

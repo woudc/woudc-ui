@@ -262,16 +262,19 @@ export default {
     }
   },
   computed: {
+    encodedId() {
+      return encode(this.$route.params.id)
+    },
     stationIdTitle() {
-      if (this.station === null) {
-        return 'Unknown Station'
+      if (this.station == null) {
+        return this.encodedId
       }
-      return encode(this.$route.params.id) + ' - ' + this.station.name
+      return this.encodedId + ' - ' + this.station.name
     },
     stationIdKeywordList() {
-      let keyword = encode(this.$route.params.id)
+      let keyword = this.encodedId
       if (this.station == null) {
-        keyword += ', Unknown Station'
+        keyword += ', Unknown station name'
       } else {
         keyword += ', ' + this.station.name
       }
