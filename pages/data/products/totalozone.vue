@@ -179,7 +179,12 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('data.products.totalozone.title'),
+          content: this.$t('data.products.totalozone.description'),
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.$t('data.products.totalozone.keywords'),
         },
       ],
     }

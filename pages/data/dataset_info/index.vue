@@ -58,7 +58,12 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('data.info.blurb'),
+          content: this.$t('data.info.description'),
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.$t('data.info.keywords'),
         },
       ],
     }

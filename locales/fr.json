@@ -1212,7 +1212,9 @@
         "vertical-ozone": "Courbe de répartition verticale de l’ozone"
       },
       "subtitle": "Jeu de données",
-      "title": "Information sur les jeux de données :"
+      "title": "Information sur les jeux de données :",
+      "description": "Fournit des informations spécifiques de l’ensemble de données",
+      "keywords": "WOUDC,Ensemble de données,métadonnées,métadonnées,doi"
     },
     "instruments": {
       "blurb": "Les archives de données du WOUDC peuvent être classées par instrument. La liste d’instruments comprend le type d’instrument, le nom et le modèle.",
@@ -1359,7 +1361,9 @@
           "pressure-plots": "Graphique du profil annuel de la Pression partielle d'ozone :",
           "temperature-plots": "Graphique du profil annuel de la température :"
         },
-        "title": "Schémas de sondes pour l’ozone"
+        "title": "Schémas de sondes pour l’ozone",
+        "keywords": "produits de données,sonde pour l’ozone,graphiques,diagramme",
+        "description": "Outil de recherche pour afficher les schémas de sondes d'ozone par année et par station"
       },
       "related": {
         "links": {
@@ -1399,7 +1403,9 @@
           "body-searching": "Soumettez la recherche pour afficher les graphiques de l'ozone total pour la station, l'instrument ou les instruments et l'année ou les années sélectionnés.",
           "body-selections": "Sélectionnez une {station} pour commencer. Une liste des {instruments} qui ont été utilisés par cette station sera disponible. Sélectionnez soit tous les instruments, soit un réseau d'instruments spécifique, et sélectionnez soit toutes les années, soit une année de fonctionnement spécifique dans la liste des {years}."
         },
-        "title": "Schémas d’ozone total"
+        "title": "Schémas d’ozone total",
+        "keywords": "produits de données,ozone total,graphiques,tracés",
+        "description": "Outil de recherche pour afficher les schémas d'ozone total par année, station et instrument"
       },
       "uv-index": {
         "instructions": {
@@ -1407,8 +1413,12 @@
           "body-searching": "Soumettez la recherche pour afficher les graphiques de l'indice UV pour la station, le ou les instruments et l'année ou les années sélectionnés.",
           "body-selections": "Sélectionnez une {station} pour commencer. Une liste des {instruments} qui ont été utilisés par cette station sera disponible : choisissez une des options. Sélectionnez soit toutes les {years}, soit une année spécifique dans la liste finale."
         },
-        "title": "Graphiques de l'indice UV"
-      }
+        "title": "Graphiques de l'indice UV",
+        "description": "Outil de recherche pour afficher les schémas d'indice UV par année, station et instrument",
+        "keywords": "produits de données,uv,indice,graphiques,diagramme"
+      },
+      "keywords": "données,téléchargement de données,ftp",
+      "description": "Liens vers les données existantes"
     },
     "quality": {
       "blurb": "Les données du WOUDC sont régies par le système de contrôle de la qualité de l’Organisation météorologique mondiale et sous la surveillance des Groupes consultatifs scientifiques sur l’ozone et le rayonnement UV solaire.",

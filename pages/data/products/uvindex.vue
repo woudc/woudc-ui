@@ -187,7 +187,12 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('data.products.uv-index.title'),
+          content: this.$t('data.products.uv-index.description'),
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.$t('data.products.uv-index.keywords'),
         },
       ],
     }

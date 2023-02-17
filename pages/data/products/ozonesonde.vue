@@ -206,7 +206,12 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('data.products.ozonesonde.title'),
+          content: this.$t('data.products.ozonesonde.description'),
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.$t('data.products.ozonesonde.keywords'),
         },
       ],
     }

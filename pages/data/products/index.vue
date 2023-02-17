@@ -100,7 +100,12 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('data.products.blurb'),
+          content: this.$t('data.products.description'),
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.$t('data.products.keywords'),
         },
       ],
     }

@@ -1213,7 +1213,9 @@
         "vertical-ozone": "Vertical Ozone Profile"
       },
       "subtitle": "Dataset",
-      "title": "Dataset Information:"
+      "title": "Dataset Information:",
+      "description": "Provides dataset specific information",
+      "keywords": "WOUDC,Dataset,metadata,doi"
     },
     "instruments": {
       "blurb": "The WOUDC data archive can be sorted by instrument. The instrument list includes the instrument type, name and model.",
@@ -1360,7 +1362,9 @@
           "pressure-plots": "Annual Profile Graph of Ozone Partial Pressure:",
           "temperature-plots": "Annual Profile Graph of Temperature:"
         },
-        "title": "Ozonesonde Plots"
+        "title": "Ozonesonde Plots",
+        "keywords": "data products,Ozonesonde,graphs,plots",
+        "description": "Search tool to display ozonesonde plots by year and station"
       },
       "related": {
         "links": {
@@ -1400,7 +1404,9 @@
           "body-searching": "Submit the search to display totalozone plots for the selected station, instrument(s) and year(s).",
           "body-selections": "Select a {station} to start. A list of {instruments} that have been used by that station will become available. Either select all instruments or a specific instrument network, and select either all years or a specific year of operation from the {years} list."
         },
-        "title": "Total Ozone Plots"
+        "title": "Total Ozone Plots",
+        "keywords": "data products,total ozone,graphs,plots",
+        "description": "Search tool to display total ozone plots by year, station and instrument"
       },
       "uv-index": {
         "instructions": {
@@ -1408,8 +1414,12 @@
           "body-searching": "Submit the search to display UV index plots for the selected station, instrument(s) and year(s).",
           "body-selections": "Select a {station} to start. A list of {instruments} that have been used by that station will become available: pick one of the options. Either select all {years} or a specific year from the final list."
         },
-        "title": "UV Index Plots"
-      }
+        "title": "UV Index Plots",
+        "description": "Search tool to display UV index plots by year, station and instrument",
+        "keywords": "data products,uv,index,graphs,plots"
+      },
+      "keywords": "data products,data download,ftp",
+      "description": "Legacy links to available data products"
     },
     "quality": {
       "blurb": "The WOUDC data are subject to the Global Atmosphere Watch quality assurance system and the oversight of the Scientific Advisory Groups on ozone and solar ultraviolet radiation.",
