@@ -65,7 +65,7 @@
                 <v-col id="preview-container" class="pa-0">
                   <img
                     class="full-height"
-                    alt="graphs[imagePreviewIndex].caption"
+                    :alt="graphs[imagePreviewIndex].caption"
                     :src="graphs[imagePreviewIndex].url"
                   />
                   <div class="text-left">

@@ -1418,7 +1418,26 @@
         "keywords": "produits de données,uv,indice,graphiques,diagramme"
       },
       "keywords": "données,téléchargement de données,ftp",
-      "description": "Liens vers les données existantes"
+      "description": "Liens vers les données existantes",
+      "ozone_maps": {
+        "title": "Cartes d'ozone",
+        "description": "Outil de recherche de cartes d'ozone par type d'ozone observé ou non observé, prévu, valeurs totales ou d'écart ou régions.",
+        "keywords": "cartes d'ozone, ozone observé, ozone total, écart par rapport à la normale, hémisphère nord, hémisphère sud, globe, global",
+        "north": "Nord",
+        "south": "Sud",
+        "globe": "Terre",
+        "month": "Mois",
+        "year": "Année",
+        "totalOzone": "Ozone totale",
+        "deviation": "Écart du normal",
+        "daily": "Moyenne",
+        "dateSelect": "Date",
+        "day01To10Mean": "Jour 1 à 10",
+        "day11To20Mean": "Jour 11 à 20",
+        "day21ToEndMean": "Jour 21 à la fin du mois",
+        "results": "Résultats de l'archive",
+        "monthlyMean": "Mensuel"
+      }
     },
     "quality": {
       "blurb": "Les données du WOUDC sont régies par le système de contrôle de la qualité de l’Organisation météorologique mondiale et sous la surveillance des Groupes consultatifs scientifiques sur l’ozone et le rayonnement UV solaire.",
