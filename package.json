@@ -36,6 +36,7 @@
     "leaflet": "^1.6.0",
     "nuxt": "^2.15.8",
     "nuxt-leaflet": "0.0.27",
+    "vue": "^2.7.15",
     "vue-chartjs": "^3.5.0",
     "vue-i18n": "^8.22.2",
     "vue-router": "^3.4.8",
