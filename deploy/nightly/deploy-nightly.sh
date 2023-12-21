@@ -80,5 +80,5 @@ sed -i 's|RewriteRule ^200\.html$|RewriteRule ^woudc-2.0/nightly/latest/200\.htm
 sed -i 's|RewriteRule . /200.html|RewriteRule . /woudc-2.0/nightly/latest/200.html|' dist/woudc-ui.conf
 cd ..
 ln -s $NIGHTLYDIR/dist latest
-chgrp dmsec -R $NIGHTLYDIR # ensure usergroup is dmsec
+chgrp eccc-hpc-cmdx -R $NIGHTLYDIR # ensure usergroup is dmsec
 chmod -R 775 $NIGHTLYDIR # ensure group writable
