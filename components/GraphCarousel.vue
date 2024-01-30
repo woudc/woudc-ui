@@ -100,6 +100,7 @@ export default {
   name: 'GraphCarousel',
   props: {
     graphs: { type: Array, required: true },
+    hide404s: { type: Boolean, default: false },
   },
   data() {
     return {
@@ -110,13 +111,15 @@ export default {
     }
   },
   computed: {
+    graphsSansErrors() {
+      return this.graphs.filter((graphUrl, index) => {
+        return !this.imageError[index]
+      })
+    },
     graphRows() {
       const rows = []
-      for (
-        let index = 0;
-        index < this.graphs.length;
-        index += this.graphsPerRow
-      ) {
+      const length = this.graphs.length
+      for (let index = 0; index < length; index += this.graphsPerRow) {
         const row = this.graphs.slice(index, index + this.graphsPerRow)
         rows.push(row)
       }

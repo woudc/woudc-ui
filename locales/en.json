@@ -1423,7 +1423,7 @@
       "ozone_maps": {
         "title": "Ozone maps",
         "description": "Search tool of ozone maps by observed or non-observed, forecast ozone type, total or deviation values or regions.",
-        "keywords": "ozone maps, observed ozone, total ozone, deviation from normal, northern hemisphere, southern hemisphere, globe, global",
+        "keywords": "ozone maps, observed ozone, forecasted ozone, individual sourced, combined sources, total ozone, deviation from normal, northern hemisphere, southern hemisphere, globe, global, Brewer, Dobson, TOMS, TOVS, GOME, KNMI, NCEP, SMOBA, TOAST",
         "north": "North",
         "south": "South",
         "globe": "Globe",
@@ -1455,7 +1455,30 @@
         "southernHemisphere": "Southern hemisphere",
         "northernHemisphere": "Northern hemisphere",
         "global": "Global",
-        "results": "Archive results"
+        "results": "Archive results",
+        "forecastType": "Forecast ozone date type",
+        "observedOzone": "Observed ozone",
+        "noForecast": "No forecast",
+        "forecastOnThisDay": "Forecasts for this day, prepared earlier",
+        "forcastForThisDay": "Forecasts prepared on this day, for future days",
+        "sourcedResults": "Results of individual sources",
+        "observedResults": "Results of observed ozone",
+        "sourcedForecastDesc": "Individual sources - Forecast",
+        "sourceObservedDesc": "Individual sources - Observed",
+        "sourcedObservedResults": "Results of observed ozone maps from individual sources",
+        "sourcedForecastResults": "Results of forecast ozone maps from individual sources",
+        "sourcedForecast": "Forecasted ozone",
+        "sourcedObserved": "Observed ozone",
+        "dayForecast": "{forecastNum}-day forecast | {forecastNum}-day forecast | {forecastNum}-day forecast",
+        "tovs": "TOVS satellite",
+        "toast": "TOAST analysis",
+        "groundBasedData": "Ground-based data",
+        "smoba": "SMOBA analysis",
+        "toms": "TOMS satellite",
+        "gome": "GOME satellite",
+        "ncep": "NCEP",
+        "knmi": "KNMI analysis",
+        "allSources": "All sources blended"
       }
     },
     "quality": {
@@ -1546,6 +1569,10 @@
     "search": {
       "description": "Provides functionality to query WOUDC data centre and browse / download results",
       "keywords": "WOUDC,Data,Search,browse,download,bulk,web services,geospatial,csv,geojson,json"
+    },
+    "error": {
+      "requiredField": "This field is required",
+      "dateOutOfRange": "Date must be between {dateStart} to {dateEnd}"
     }
   },
   "error": {
