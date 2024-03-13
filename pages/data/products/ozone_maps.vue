@@ -354,8 +354,7 @@ export default {
   },
   data() {
     return {
-      baseOzoneURL:
-        'https://beta-woudc-dev.cmc.ec.gc.ca/archive/px-testing/ozone_maps',
+      baseOzoneURL: `${this.$config.WOUDC_UI_WAF_URL}/px-testing/ozone_maps`,
       ozoneMapTab: 'global',
       archivedRerender: 0,
       archivedMeasurement: ['to'],
