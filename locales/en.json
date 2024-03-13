@@ -806,7 +806,8 @@
     "woudc": "WOUDC",
     "woudcFull": "World Ozone and Ultraviolet Radiation Data Centre",
     "wps": "OGC Web Processing Service",
-    "ogcThe": "Open Geospatial Consortium"
+    "ogcThe": "Open Geospatial Consortium",
+    "warning": "Warning:"
   },
   "contact": {
     "blurb": {
@@ -1478,7 +1479,24 @@
         "gome": "GOME satellite",
         "ncep": "NCEP",
         "knmi": "KNMI analysis",
-        "allSources": "All sources blended"
+        "allSources": "All sources blended",
+        "TOMS": "TOMS",
+        "nasaTomsHomepage": "NASA TOMS home page",
+        "noaaSmoba": "NOAA SMOBA (Stratosphere Monitoring Ozone Blended Analysis)",
+        "noaa": "NOAA",
+        "tovsAcronym": "TIROS Operational Vertical Sounder (TOVS)",
+        "dobsonUnits": "Dobson units",
+        "mapsDescIntro": "Maps of deviations represent total ozone deviations from the 1978-1988 level estimated using {toms} data. for all areas except the Antarctic, and from the pre-1980 level estimated using Dobson data over the Antarctic. The total ozone maps for the southern hemisphere are based on near-real time NASA Earth Probe Total Ozone Mapping Spectrometer (TOMS) gridded satellite data available from the {nasaTomsHomepage}, {noaaSmoba} data (if TOMS data are not available) and on ground-based measurements. Over the polar night night area Dobson and Brewer moon observations and/or {noaa}'s {tovsAcronym} satellite data are used. TOVS data are also used when the more reliable TOMS data are not available. The mapping algorithm is similar to those used used by the {wmoOzoneMappingCentre}. Total ozone values are given in {dobsonUnits}.",
+        "wmoOzoneMappingCentre": "WMO Ozone Mapping Centre",
+        "viewMapsIndividualSources": "View ozone maps from the individual data sources (TOMS, SMOBA, TOVS and ground-based)",
+        "mapsDescUpdateDaily": "These maps are normally updated daily at about 1400 UTC. However, this near-real-time system is automated, so if a system problem occurs outside of regular working hours, it will not be fixed until the following work day.",
+        "mapsDescNumbersDobsonUnits": "The numbers on the high resolution maps indicate total ozone values in Dobson Units measured at ground-based stations. Small symbols after the numbers indicate type of observation: the most reliable direct sun measurements have no symbols, less reliable observations from zenith sky light are marked by “z”. Focus moon observations during the polar night are marked by “+” symbol. All other types of measurements are marked by “*”. For more information on ground-based ozone measurements visit the WOUDC Web site.",
+        "mapsDescWarningRealtime": "The data are processed in near real-time, have not been fully validated, and are preliminary.",
+        "ozoneMapsInfo": "Information about ozone maps",
+        "aboutMeasurements": "The total ozone maps are based on ground-based measurements available from the World Ozone and Ultraviolet Radiation Data Centre. Preliminary near real-time data from ground-based observations were also used for the most recent maps. Total ozone values are given in Dobson Units. The numbers represent observations taken from ground stations situated at the bottom left corner of the number.",
+        "aboutDeviations": "Maps of deviations represent total ozone deviations from the 1978-1988 level estimated using Total Ozone Mapping Spectrometer (TOMS) data for all areas except the Antarctic and from the pre-1980 level estimated using Dobson data over the Antarctic.",
+        "aboutPoorCoverage": "Over areas with poor data coverage adjustments are made according to TOMS on Nimbus-7, Meteor-3, ADEOS and Earth Probe satellites. Over the polar night area Dobson and Brewer moon observations and/or NOAA's TIROS Operational Vertical Sounder (TOVS) satellite data are used. TOVS data are also used when the more reliable TOMS data are not available. The mapping algorithm is similar to those used by the WMO Ozone Mapping Centre.",
+        "aboutDateInterval": "The day part of the “Start date” can specify a day (1 to 31), a mean over the entire month (1-end) or the mean of a “10-day” period during the month (1-10, 11-20 or 21-end, which might be 8 or 9 or 11 days). It must logically correspond to the unit of the “Interval”."
       }
     },
     "quality": {
@@ -1569,10 +1587,6 @@
     "search": {
       "description": "Provides functionality to query WOUDC data centre and browse / download results",
       "keywords": "WOUDC,Data,Search,browse,download,bulk,web services,geospatial,csv,geojson,json"
-    },
-    "error": {
-      "requiredField": "This field is required",
-      "dateOutOfRange": "Date must be between {dateStart} to {dateEnd}"
     }
   },
   "error": {
@@ -1583,7 +1597,9 @@
       "other-error-text": "Something went wrong and we were unable to display this page."
     },
     "not-found": "We were unable to find that web page (Error 404)",
-    "other-error": "An error has occurred"
+    "other-error": "An error has occurred",
+    "requiredField": "This field is required",
+    "dateOutOfRange": "Date must be between {dateStart} to {dateEnd}"
   },
   "home": {
     "aboutWoudc": "About WOUDC",

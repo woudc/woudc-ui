@@ -25,6 +25,11 @@
       <h2>{{ $t('data.products.ozone_maps.globalDesc') }}</h2>
       <v-row>
         <v-col>
+          <ozone-maps-info />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
           <img :src="`${baseOzoneURL}/gl/current.gif`" class="recent" />
         </v-col>
         <v-col>
@@ -45,6 +50,11 @@
       <h2>{{ $t('data.products.ozone_maps.northernDesc') }}</h2>
       <v-row>
         <v-col>
+          <ozone-maps-info />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
           <img :src="`${baseOzoneURL}/nh/current.gif`" class="recent" />
         </v-col>
         <v-col>
@@ -63,6 +73,11 @@
 
     <section v-if="ozoneMapTab === 'southern'">
       <h2>{{ $t('data.products.ozone_maps.southernDesc') }}</h2>
+      <v-row>
+        <v-col>
+          <ozone-maps-info />
+        </v-col>
+      </v-row>
       <v-row>
         <v-col>
           <img :src="`${baseOzoneURL}/sh/current.gif`" class="recent" />
@@ -93,6 +108,7 @@
             :min="sourcedForecastMinDate"
             :rules="[ruleRequired, ruleSourcedForecastDate]"
             required
+            @input="generateSourcedForecastMapPaths"
           ></v-text-field>
           <v-select
             v-model="sourcedForecastType"
@@ -100,6 +116,7 @@
             :label="$t('data.products.ozone_maps.forecastType')"
             :rules="[ruleRequired]"
             required
+            @change="generateSourcedForecastMapPaths"
           ></v-select>
           <v-select
             v-model="sourcedForecastMeasurement"
@@ -109,6 +126,7 @@
             multiple
             chips
             required
+            @change="generateSourcedForecastMapPaths"
           ></v-select>
           <v-select
             v-model="sourcedForecastHemisphere"
@@ -118,7 +136,12 @@
             multiple
             chips
             required
+            @change="generateSourcedForecastMapPaths"
           ></v-select>
+
+          <v-overlay absolute opacity="0.66" :value="sourcedForecastLoading">
+            <v-progress-circular indeterminate />
+          </v-overlay>
         </v-col>
       </v-row>
 
@@ -157,6 +180,7 @@
             :min="sourcedObservedMinDate"
             :rules="[ruleRequired, ruleSourcedObservedDate]"
             required
+            @input="generateSourcedObservedMapPaths"
           ></v-text-field>
           <v-select
             v-model="sourcedObservedMeasurement"
@@ -166,6 +190,7 @@
             multiple
             chips
             required
+            @change="generateSourcedObservedMapPaths"
           ></v-select>
           <v-select
             v-model="sourcedObservedHemisphere"
@@ -175,22 +200,67 @@
             multiple
             chips
             required
+            @change="generateSourcedObservedMapPaths"
           ></v-select>
         </v-col>
+        <v-overlay absolute opacity="0.66" :value="sourcedObservedLoading">
+          <v-progress-circular indeterminate />
+        </v-overlay>
       </v-row>
 
       <h3>{{ $t('data.products.ozone_maps.sourcedObservedResults') }}</h3>
 
-      <graph-carousel
-        v-if="sourcedObservedMapPaths.length > 0"
-        :key="sourcedObservedRerender"
-        :graphs="sourcedObservedMapPaths"
-      ></graph-carousel>
+      <div v-if="Object.keys(sourcedObservedMapPaths).length > 0">
+        <div
+          v-for="(pathsByHemisphere, index) in sourcedObservedMapPaths"
+          :key="index"
+        >
+          <h3>{{ pathsByHemisphere.hemisphere }}</h3>
+          <graph-carousel
+            :key="sourcedObservedRerender"
+            :graphs="pathsByHemisphere.maps"
+          ></graph-carousel>
+        </div>
+      </div>
     </section>
 
     <section v-show="ozoneMapTab === 'archive'">
-      <h3>{{ $t('data.products.ozone_maps.mapsFromArchive') }}</h3>
+      <h2>{{ $t('data.products.ozone_maps.mapsFromArchive') }}</h2>
 
+      <v-row>
+        <v-col>
+          <v-expansion-panels accordion hover>
+            <v-expansion-panel>
+              <v-expansion-panel-header disable-icon-rotate>
+                {{ $t('data.products.ozone_maps.ozoneMapsInfo') }}
+                <template #actions>
+                  <v-icon color="info">mdi-information</v-icon>
+                </template>
+              </v-expansion-panel-header>
+              <v-expansion-panel-content>
+                <v-alert color="info" outlined text border="left">
+                  <i18n
+                    path="data.products.ozone_maps.aboutMeasurements"
+                    tag="p"
+                  ></i18n>
+                  <i18n
+                    path="data.products.ozone_maps.aboutDeviations"
+                    tag="p"
+                  ></i18n>
+                  <i18n
+                    path="data.products.ozone_maps.aboutPoorCoverage"
+                    tag="p"
+                  ></i18n>
+                  <i18n
+                    path="data.products.ozone_maps.aboutDateInterval"
+                    tag="p"
+                  ></i18n>
+                </v-alert>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels>
+        </v-col>
+      </v-row>
       <v-row>
         <v-col>
           <v-select
@@ -263,7 +333,7 @@
         </v-col>
       </v-row>
 
-      <h4>{{ $t('data.products.ozone_maps.results') }}</h4>
+      <h3>{{ $t('data.products.ozone_maps.results') }}</h3>
       <graph-carousel
         v-if="archivedMapSelPath.length > 0"
         :graphs="archivedMapSelPath"
@@ -275,10 +345,12 @@
 <script>
 import { DateTime } from 'luxon'
 import GraphCarousel from '~/components/GraphCarousel'
+import OzoneMapsInfo from '~/components/OzoneMapsInfo'
 
 export default {
   components: {
     'graph-carousel': GraphCarousel,
+    'ozone-maps-info': OzoneMapsInfo,
   },
   data() {
     return {
@@ -302,11 +374,19 @@ export default {
       sourcedForecastDate: DateTime.now().minus({ days: 1 }).toISODate(),
       sourcedForecastType: 'onThisDay', // forecasts for this day / prepared on this day
       sourcedForecastMeasurement: ['to'], // total ozone / std dev.
+      sourcedForecastSubPaths: [],
+      sourcedForecastMapPaths: {},
+      sourcedForecastPathsVerified: false,
+      sourcedForecastLoading: false,
       sourcedObservedRerender: 0,
       sourcedObservedMinDate: DateTime.fromISO('2000-01-01').toISODate(),
       sourcedObservedDate: DateTime.now().minus({ days: 1 }).toISODate(),
       sourcedObservedHemisphere: ['gl'], // north / south / global
       sourcedObservedMeasurement: ['to'], // total ozone / std dev.
+      sourcedObservedSubPaths: [],
+      sourcedObservedMapPaths: {},
+      sourcedObservedPathsVerified: false,
+      sourcedObservedLoading: false,
       measurementTypeAbbreviations: {
         // for filepathing control
         de: 'd',
@@ -440,21 +520,6 @@ export default {
         this.archivedIntervalType
       )
     },
-    sourcedForecastMapPaths() {
-      return this.generateSourcedForecastMapPaths(
-        this.sourcedForecastDate,
-        this.sourcedForecastHemisphere,
-        this.sourcedForecastMeasurement,
-        this.sourcedForecastType
-      )
-    },
-    sourcedObservedMapPaths() {
-      return this.generateSourcedObservedMapPaths(
-        this.sourcedObservedDate,
-        this.sourcedObservedHemisphere,
-        this.sourcedObservedMeasurement
-      )
-    },
     itemsForecastTypes() {
       return [
         {
@@ -502,15 +567,15 @@ export default {
     ruleRequired() {
       return (value) => {
         if (Array.isArray(value)) {
-          return value.length > 0 || this.$t('data.error.requiredField')
+          return value.length > 0 || this.$t('error.requiredField')
         }
-        return !!value || this.$t('data.error.requiredField')
+        return !!value || this.$t('error.requiredField')
       }
     },
     ruleSourcedForecastDate() {
       return (
         !!this.sourcedForecastDateIsValid ||
-        this.$t('data.error.dateOutOfRange', {
+        this.$t('error.dateOutOfRange', {
           dateStart: this.sourcedForecastMinDate,
           dateEnd: this.sourcedMaxDate,
         })
@@ -519,7 +584,7 @@ export default {
     ruleSourcedObservedDate() {
       return (
         !!this.sourcedObservedDateIsValid ||
-        this.$t('data.error.dateOutOfRange', {
+        this.$t('error.dateOutOfRange', {
           dateStart: this.sourcedObservedMinDate,
           dateEnd: this.sourcedMaxDate,
         })
@@ -528,11 +593,20 @@ export default {
     ruleArchivedDate() {
       return (
         !!this.archivedDateIsValid ||
-        this.$t('data.error.dateOutOfRange', {
+        this.$t('error.dateOutOfRange', {
           dateStart: this.archivedMinDate,
           dateEnd: this.archivedMaxDate,
         })
       )
+    },
+  },
+  watch: {
+    ozoneMapTab: function (newTab) {
+      if (newTab === 'observed') {
+        this.generateSourcedObservedMapPaths()
+      } else if (newTab === 'sourcedForecast') {
+        this.generateSourcedForecastMapPaths()
+      }
     },
   },
   methods: {
@@ -728,42 +802,40 @@ export default {
       return paths
     },
     /**
-     * Returns an array of objects containing the url and text caption of each ozone map given the following queries
-     * @param {string} date - YYYY-MM-DD date string
-     * @param {array} hemisphereTypes - North, south or the global hemisphere
-     * @param {array} measurementTypes - The types of measurements to include: total ozone and/or deviation
-     * @param {string} forecastType - Forecasts for this day or forecasts prepared on this day
-     * @return {object} Arrays of map paths by forecast number containing the url and text caption of each ozone map
+     * Updates sourcedForecastMapPaths; an object of arrays by forecast number containing the url and text caption of each ozone map given the following queries
      */
-    generateSourcedForecastMapPaths(
-      date,
-      hemisphereTypes,
-      measurementTypes, // []
-      forecastType
-    ) {
+    generateSourcedForecastMapPaths() {
       let paths = {} // breakdown by forecast number
-      let iDate = DateTime.fromISO(date)
+      this.sourcedForecastSubPaths = []
+      this.sourcedForecastPathsVerified = false
+      let iDate = DateTime.fromISO(this.sourcedForecastDate)
 
       // pre-validation checks
-      if (!this.sourcedForecastDateIsValid) {
-        return paths
+      if (
+        !this.sourcedForecastDateIsValid ||
+        this.sourcedForecastHemisphere.length === 0 ||
+        this.sourcedForecastMeasurement.length === 0
+      ) {
+        this.sourcedForecastMapPaths = {}
+        this.sourcedForecastRerender++
+        return false
       }
 
       // hemisphere type
-      for (const hemisphere of hemisphereTypes) {
+      for (const hemisphere of this.sourcedForecastHemisphere) {
         const captionHemisphere = this.itemValueToText(
           hemisphere,
           this.itemsMapHemisphere
         )
         const captionForecastType = this.itemValueToText(
-          forecastType,
+          this.sourcedForecastType,
           this.itemsForecastTypes
         )
         let pathByHemisphere = this.baseOzoneURL
         pathByHemisphere += `/f${hemisphere}500`
 
         // measurement type
-        for (const measureType of measurementTypes) {
+        for (const measureType of this.sourcedForecastMeasurement) {
           const captionMeasurementType = this.itemValueToText(
             measureType,
             this.itemsMeasurementType
@@ -773,12 +845,19 @@ export default {
           if (measureType === 'de') {
             pathByMeasureType += '_dev'
           }
+
+          // determine subpaths for URL validation
+          const subPath = pathByMeasureType.split('/').slice(-1)[0]
+          if (!this.sourcedForecastSubPaths.includes(subPath)) {
+            this.sourcedForecastSubPaths.push(subPath)
+          }
+
           const measureTypeAbbr = this.measurementTypeAbbreviations[measureType]
           pathByMeasureType += '/'
 
           // forecast number from 0 to 4
           for (let forecastNum = 0; forecastNum <= 4; forecastNum++) {
-            iDate = DateTime.fromISO(date) // reset
+            iDate = DateTime.fromISO(this.sourcedForecastDate) // reset
             if (!Object.hasOwn(paths, forecastNum)) {
               paths[forecastNum] = {
                 date: '',
@@ -789,7 +868,7 @@ export default {
 
             // date adjustment depending on forecastType
             // forecasts prepared on this day
-            if (forecastType === 'onThisDay') {
+            if (this.sourcedForecastType === 'onThisDay') {
               iDate = iDate.plus({ days: forecastNum })
             }
             const captionDate = iDate.toFormat('yyyy-LL-dd')
@@ -826,39 +905,46 @@ export default {
         }
       }
 
-      this.sourcedForecastRerender++
-      return paths
+      // validate paths
+      this.validateSourcedForecastPaths(paths)
     },
     /**
-     * Returns an array of objects containing the url and text caption of each ozone map given the following queries
-     * @param {string} date - YYYY-MM-DD date string
-     * @param {array} hemisphereTypes - North, south or the global hemisphere
-     * @param {array} measurementTypes - The types of measurements to include: total ozone and/or deviation
-     * @return {array} An array of arrays (by forecast day) of objects containing the url and text caption of each ozone map
+     * Updates sourcedObservedMapPath containing the url and text caption of each ozone map given the following queries
      */
-    generateSourcedObservedMapPaths(
-      date,
-      hemisphereTypes,
-      measurementTypes // []
-    ) {
-      let paths = []
+    generateSourcedObservedMapPaths() {
+      let paths = {}
+      this.sourcedObservedSubPaths = []
+      this.sourcedObservedPathsVerified = false
 
-      let iDate = DateTime.fromISO(date)
+      let iDate = DateTime.fromISO(this.sourcedObservedDate)
 
       // pre-validation checks
-      if (!this.sourcedObservedDateIsValid) {
-        return paths
+      if (
+        !this.sourcedObservedDateIsValid ||
+        this.sourcedObservedHemisphere.length === 0 ||
+        this.sourcedObservedMeasurement.length === 0
+      ) {
+        this.sourcedObservedMapPaths = {}
+        this.sourcedObservedRerender++
+        return false
       }
 
       // hemisphere type
-      for (const hemisphere of hemisphereTypes) {
+      for (const hemisphere of this.sourcedObservedHemisphere) {
         const captionHemisphere = this.itemValueToText(
           hemisphere,
           this.itemsMapHemisphere
         )
 
+        if (!Object.hasOwn(paths, hemisphere)) {
+          paths[hemisphere] = {
+            hemisphere: captionHemisphere,
+            maps: [],
+          }
+        }
+
         // measurement type
-        for (const measureType of measurementTypes) {
+        for (const measureType of this.sourcedObservedMeasurement) {
           let path = this.baseOzoneURL
 
           const captionMeasurementType = this.itemValueToText(
@@ -872,8 +958,14 @@ export default {
           if (measureType === 'de') {
             pathByMeasureType += '_dev'
           }
-          const measureTypeAbbr = this.measurementTypeAbbreviations[measureType]
 
+          // determine subpaths for URL validation
+          const subPath = pathByMeasureType.split('/').slice(-1)[0]
+          if (!this.sourcedObservedSubPaths.includes(subPath)) {
+            this.sourcedObservedSubPaths.push(subPath)
+          }
+
+          const measureTypeAbbr = this.measurementTypeAbbreviations[measureType]
           pathByMeasureType += `/${iDate.toFormat('yyyy')}`
 
           // sources
@@ -895,7 +987,8 @@ export default {
             caption.push(captionSourceName)
             caption.push(iDate.toFormat('yyyy-LL-dd'))
 
-            paths.push({
+            // breakdown path arrays by hemisphere
+            paths[hemisphere].maps.push({
               url: pathBySource,
               caption: caption.join(' / '),
             })
@@ -903,8 +996,102 @@ export default {
         }
       }
 
-      this.sourcedObservedRerender++
-      return paths
+      // validate paths
+      this.validateSourcedObservedPaths(paths)
+    },
+    async validateSourcedForecastPaths(paths) {
+      // group available list fetching
+      let availableListDispatchGroup = []
+      this.sourcedForecastLoading = true
+      for (const iSubPath of this.sourcedForecastSubPaths) {
+        availableListDispatchGroup.push(
+          this.$store.dispatch(
+            'ozoneMaps/retrieveAvailableListByPathId',
+            iSubPath
+          )
+        )
+      }
+      // handler after all relavant available lists are retrieved
+      Promise.all(availableListDispatchGroup)
+        .then(() => {
+          const forecastNum = Object.keys(paths)
+          for (const fn of forecastNum) {
+            for (let i = 0; i < paths[fn].maps.length; i++) {
+              let urlToCheck = paths[fn].maps[i].url
+              const substrSearch = 'ozone_maps/'
+              const lenSearch = substrSearch.length
+              urlToCheck = urlToCheck.substring(
+                urlToCheck.indexOf(substrSearch) + lenSearch
+              )
+              const urlParts = urlToCheck.split('/')
+              const subPathPart = urlParts[0]
+              const availableList =
+                this.$store.getters['ozoneMaps/getAvailableListByPathId'](
+                  subPathPart
+                )
+              // remove map path that is not available
+              if (availableList.indexOf(urlToCheck) === -1) {
+                paths[fn].maps.splice(i, 1)
+              }
+            }
+          }
+
+          // update modified paths (reduced via splice)
+          this.sourcedForecastMapPaths = paths
+          this.sourcedForecastRerender++
+
+          this.sourcedForecastPathsVerified = true
+        })
+        .finally(() => {
+          this.sourcedForecastLoading = false
+        })
+    },
+    async validateSourcedObservedPaths(paths) {
+      // group available list fetching
+      let availableListDispatchGroup = []
+      this.sourcedObservedLoading = true
+      for (const iSubPath of this.sourcedObservedSubPaths) {
+        availableListDispatchGroup.push(
+          this.$store.dispatch(
+            'ozoneMaps/retrieveAvailableListByPathId',
+            iSubPath
+          )
+        )
+      }
+      // handler after all relavant available lists are retrieved
+      Promise.all(availableListDispatchGroup)
+        .then(() => {
+          const hemispheres = Object.keys(paths)
+          for (const hp of hemispheres) {
+            for (let i = 0; i < paths[hp].maps.length; i++) {
+              let urlToCheck = paths[hp].maps[i].url
+              const substrSearch = 'ozone_maps/'
+              const lenSearch = substrSearch.length
+              urlToCheck = urlToCheck.substring(
+                urlToCheck.indexOf(substrSearch) + lenSearch
+              )
+              const urlParts = urlToCheck.split('/')
+              const subPathPart = urlParts[0]
+              const availableList =
+                this.$store.getters['ozoneMaps/getAvailableListByPathId'](
+                  subPathPart
+                )
+              // remove map path that is not available
+              if (availableList.indexOf(urlToCheck) === -1) {
+                paths[hp].maps.splice(i, 1)
+              }
+            }
+          }
+
+          // update modified paths (reduced via splice)
+          this.sourcedObservedMapPaths = paths
+          this.sourcedObservedRerender++
+
+          this.sourcedObservedPathsVerified = true
+        })
+        .finally(() => {
+          this.sourcedObservedLoading = false
+        })
     },
   },
   nuxtI18n: {
