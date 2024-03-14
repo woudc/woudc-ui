@@ -1471,14 +1471,7 @@
         "sourcedForecast": "Forecasted ozone",
         "sourcedObserved": "Observed ozone",
         "dayForecast": "{forecastNum}-day forecast | {forecastNum}-day forecast | {forecastNum}-day forecast",
-        "tovs": "TOVS satellite",
-        "toast": "TOAST analysis",
         "groundBasedData": "Ground-based data",
-        "smoba": "SMOBA analysis",
-        "toms": "TOMS satellite",
-        "gome": "GOME satellite",
-        "ncep": "NCEP",
-        "knmi": "KNMI analysis",
         "allSources": "All sources blended",
         "TOMS": "TOMS",
         "nasaTomsHomepage": "NASA TOMS home page",
@@ -1496,7 +1489,37 @@
         "aboutMeasurements": "The total ozone maps are based on ground-based measurements available from the World Ozone and Ultraviolet Radiation Data Centre. Preliminary near real-time data from ground-based observations were also used for the most recent maps. Total ozone values are given in Dobson Units. The numbers represent observations taken from ground stations situated at the bottom left corner of the number.",
         "aboutDeviations": "Maps of deviations represent total ozone deviations from the 1978-1988 level estimated using Total Ozone Mapping Spectrometer (TOMS) data for all areas except the Antarctic and from the pre-1980 level estimated using Dobson data over the Antarctic.",
         "aboutPoorCoverage": "Over areas with poor data coverage adjustments are made according to TOMS on Nimbus-7, Meteor-3, ADEOS and Earth Probe satellites. Over the polar night area Dobson and Brewer moon observations and/or NOAA's TIROS Operational Vertical Sounder (TOVS) satellite data are used. TOVS data are also used when the more reliable TOMS data are not available. The mapping algorithm is similar to those used by the WMO Ozone Mapping Centre.",
-        "aboutDateInterval": "The day part of the “Start date” can specify a day (1 to 31), a mean over the entire month (1-end) or the mean of a “10-day” period during the month (1-10, 11-20 or 21-end, which might be 8 or 9 or 11 days). It must logically correspond to the unit of the “Interval”."
+        "aboutDateInterval": "The day part of the “Start date” can specify a day (1 to 31), a mean over the entire month (1-end) or the mean of a “10-day” period during the month (1-10, 11-20 or 21-end, which might be 8 or 9 or 11 days). It must logically correspond to the unit of the “Interval”.",
+        "detailedExplanationOfTheseMaps": "Detailed explanation of these maps",
+        "dt": {
+          "allSourcesBlended": "All sources blended",
+          "groundBasedData": "Ground-based data",
+          "gome": "GOME satellite",
+          "knmi": "KNMI analysis",
+          "smoba": "SMOBA analysis",
+          "toast": "TOAST analysis",
+          "toms": "TOMS satellite",
+          "tovs": "TOVS satellite",
+          "ncep": "NCEP"
+        },
+        "dd": {
+          "allSourcesBlended": "“All sources blended” is a smaller copy of the total ozone maps found in the Ozone map archive. It is built from a blend of the other maps. Satellite data have been smoothed.",
+          "groundBasedData": "“Ground-based data” are from instruments on the ground, Brewers, Dobsons, filter ozonometers, {saozInstruments}. New data are contributed by {eccc}, the {russianCentralAerologicalObservatory}, and by agencies in many other countries. Older data have been obtained from the World Ozone and Ultraviolet Radiation Data Centre (WOUDC). Data quality is best when taken on a sunny day, but techniques are available to measure ozone during cloudy days and sometimes at night using lunar light.",
+          "toms": "“TOMS satellite” is from {nasa}'s {tomsFullName} on board the Earth Probe satellite. Data from the OMI instrument are also included here.",
+          "tovs": "“TOVS satellite” is from {noaa}'s {tovsFullName} on the NOAA polar-orbiting satellites. Its data is less reliable than TOMS data but TOVS can see ozone at night, in particular during the polar night.",
+          "gome": "“GOME satellite”. For the period 1995-2003, data is from the {esaFullName}'s {gomeFullName} on board the {esa2FullName}. For the period from 2008, data is from the {gome2} instrument on board {metOpA} (launched in October 2006) provided by the {wdrsatFullName}."
+        },
+        "saozInstruments": "SAOZ instruments",
+        "russianCentralAerologicalObservatory": "Russian Central Aerological Observatory",
+        "tomsFullName": "Total Ozone Mapping Spectrometer (TOMS)",
+        "nasa": "NASA",
+        "tovsFullName": "TIROS Operational Vertical Sounder (TOVS)",
+        "gomeFullName": "Global Ozone Monitoring Experiment (GOME)",
+        "esaFullname": "European Space Agency (ESA)",
+        "wdcrsatFullName": "World Data Center for Remote Sensing of the Atmosphere (WDC-RSAT)",
+        "gome2": "GOME-2",
+        "ers2FullName": "European Remote Sensing Satellite-2 (ERS-2)",
+        "metOpA": "MetOp-A"
       }
     },
     "quality": {

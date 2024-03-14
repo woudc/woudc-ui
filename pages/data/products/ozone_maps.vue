@@ -98,6 +98,12 @@
 
     <section v-show="ozoneMapTab === 'sourcedForecast'">
       <h2>{{ $t('data.products.ozone_maps.sourcedForecastDesc') }}</h2>
+
+      <v-row>
+        <v-col>
+          <ozone-maps-detailed-info></ozone-maps-detailed-info>
+        </v-col>
+      </v-row>
       <v-row>
         <v-col>
           <v-text-field
@@ -346,11 +352,13 @@
 import { DateTime } from 'luxon'
 import GraphCarousel from '~/components/GraphCarousel'
 import OzoneMapsInfo from '~/components/OzoneMapsInfo'
+import OzoneMapsDetailedInfo from '~/components/OzoneMapsDetailedInfo'
 
 export default {
   components: {
     'graph-carousel': GraphCarousel,
     'ozone-maps-info': OzoneMapsInfo,
+    'ozone-maps-detailed-info': OzoneMapsDetailedInfo,
   },
   data() {
     return {
@@ -425,18 +433,18 @@ export default {
     sourcedAbbreviations() {
       return {
         observed: {
-          o: this.$t('data.products.ozone_maps.allSources'),
-          g: this.$t('data.products.ozone_maps.groundBasedData'),
-          m: this.$t('data.products.ozone_maps.gome'),
-          k: this.$t('data.products.ozone_maps.knmi'),
-          s: this.$t('data.products.ozone_maps.smoba'),
-          t: this.$t('data.products.ozone_maps.toast'),
-          p: this.$t('data.products.ozone_maps.toms'),
-          v: this.$t('data.products.ozone_maps.tovs'),
+          o: this.$t('data.products.ozone_maps.dt.allSourcesBlended'),
+          g: this.$t('data.products.ozone_maps.dt.groundBasedData'),
+          m: this.$t('data.products.ozone_maps.dt.gome'),
+          k: this.$t('data.products.ozone_maps.dt.knmi'),
+          s: this.$t('data.products.ozone_maps.dt.smoba'),
+          t: this.$t('data.products.ozone_maps.dt.toast'),
+          p: this.$t('data.products.ozone_maps.dt.toms'),
+          v: this.$t('data.products.ozone_maps.dt.tovs'),
         },
         forecasted: {
-          k: this.$t('data.products.ozone_maps.knmi'),
-          n: this.$t('data.products.ozone_maps.ncep'),
+          k: this.$t('data.products.ozone_maps.dt.knmi'),
+          n: this.$t('data.products.ozone_maps.dt.ncep'),
         },
       }
     },
