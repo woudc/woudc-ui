@@ -556,24 +556,25 @@
         "dois": "DOIs",
         "note1": {
           "items": {
-            "ozone": "Ozone: doi:10.14287/10000001",
-            "uv": "Rayonnement UV: doi:10.14287/10000002"
+            "ozone": "Ozone : doi:10.14287/10000001",
+            "uv": "Rayonnement UV : doi:10.14287/10000002"
           },
           "title": "Identificateurs d'objets numériques WOUDC (premier ordre)"
         },
         "note2": {
           "items": {
-            "broadband": "Large bande: doi:10.14287/10000012",
-            "lidar": "Lidar: doi:10.14287/10000007",
-            "multiband": "Multibande: doi:10.14287/10000010",
-            "ozonesonde": "Sonde pour l’ozone: doi:10.14287/10000008",
-            "rocketsonde": "RocketSonde: doi:10.14287/10000009",
-            "spectral": "Spectrale: doi:10.14287/10000011",
-            "totalozone": "Ozone total - observations quotidiennes: doi:10.14287/10000004",
-            "totalozoneobs": "Ozone total - Observations horaires: doi:10.14287/10000003",
-            "umkehr1": "UmkehrN14 (Niveau 1.0): doi:10.14287/10000005",
-            "umkehr2": "UmkehrN14 (Niveau 2.0): doi:10.14287/10000006",
-            "uv-index": "Indice UV: doi:10.14287/10000013"
+            "broadband": "Large bande : doi:10.14287/10000012",
+            "lidar": "Lidar : doi:10.14287/10000007",
+            "multiband": "Multibande : doi:10.14287/10000010",
+            "ozonesonde": "Sonde pour l’ozone : doi:10.14287/10000008",
+            "rocketsonde": "RocketSonde : doi:10.14287/10000009",
+            "spectral": "Spectrale: doi : 10.14287/10000011",
+            "totalozone": "Ozone total - observations quotidiennes : doi:10.14287/10000004",
+            "totalozoneobs": "Ozone total - observations horaires : doi:10.14287/10000003",
+            "umkehr1": "UmkehrN14 (Niveau 1.0) : doi:10.14287/10000005",
+            "umkehr2": "UmkehrN14 (Niveau 2.0) : doi:10.14287/10000006",
+            "uv-index": "Indice UV : doi:10.14287/10000013",
+            "josie-besos": "@:data.products.josieBesos.title : 10.14287/100000014"
           },
           "title": "Identificateurs d'objets numériques WOUDC (ensembles de données)"
         },
@@ -806,7 +807,10 @@
     "woudc": "WOUDC",
     "woudcFull": "Centre mondial de données sur l’ozone et le rayonnement ultraviolet",
     "wps": "Service de fonctionnalités web (WFS) de l’OGC",
-    "ogcThe": "l'Open Geospatial Consortium"
+    "ogcThe": "l'Open Geospatial Consortium",
+    "abstract_": "Abstrait :",
+    "abstract": "Abstrait",
+    "datasets": "Jeux de données"
   },
   "contact": {
     "blurb": {
@@ -1477,6 +1481,17 @@
         "gome2": "GOME-2",
         "ers2FullName": "Satellite Européen pour la Télédétection, Numéro 2 (ERS-2)",
         "metOpA": "MetOp-A"
+      },
+      "josieBesos": {
+        "title": "Données de l'Expérience d'intercomparaison des sondes d'ozone de Jülich (JOSIE) et l'Expérience de ballons sur les standards des sondes d'ozone (BESOS)",
+        "description": "L'objectif de la campagne Balloon Experiment on Standards for Ozone Sondes (BESOS) est d'établir un ensemble de procédures opérationnelles standard (SOP) pour le lancement des sondes d'ozone à cellule de concentration électrochimique (ECC) sur les sites GAW (Organisation météorologique mondiale, Veille atmosphérique mondiale) de l'OMM. \nLa campagne fait suite à la série d'études de chambres ECC réalisées au cours de l'expérience intercomparicon des sondes d'ozone de Jülich (JOSIE) de 1996 à 2000 au Centre mondial d'étalonnage des sondes d'ozone (WCCOS) au Forschungszentrum de Jülich (Allemagne).",
+        "keywords": "JOSIE,BESOS,sonde d'ozone,intercomparaison",
+        "besosBlurb": "En 2004, la campagne de terrain BESOS (Balloon Experiment on Standards for Ozonesondes) de l'OMM, réalisée à Laramie (Wyoming, USA), a déployé une grande gondole avec 18 ozonesondes et l'OPM du WCCOS {attribution} avec des résultats similaires à ceux de JOSIE.",
+        "josieBlurb": "Afin d'évaluer les performances de diverses sondes d'ozone électrochimiques et de garantir la cohérence des données des sondes d'ozone, l'installation de simulation environnementale du Forschungszentrum Juelich a été créée en 1994 sous le nom du {wccosAndAbbr} de l'OMM-GAW dans le cadre \nde leur plan d’assurance qualité (AQ). \nÀ partir de 1996, une série de campagnes du {josieandAbbr} ont depuis été menées au WCCOS pour évaluer différents types des sondes d'ozone {attribution}.",
+        "wccos": "WCCOS",
+        "josie": "JOSIE",
+        "wccosAndAbbr": "Centre mondial d'étalonnage des sondes d'ozone (WCCOS)",
+        "josieAndAbbr": "l'Expérience d'intercomparaison des sondes d'ozone de Jülich (JOSIE)"
       }
     },
     "quality": {
@@ -1591,7 +1606,7 @@
       "title": "Nouvelles et mises à jour:"
     },
     "quickLinks": "Liens rapides:",
-    "wmoLogo": "Logo : @.wmoFull",
+    "wmoLogo": "Logo : l'Organisation météorologique mondiale",
     "keywords": "ozone,ultraviolet,uv,ozone total,sonde pour l’ozone,umkehr,vag,omm,spectral,stations,instruments"
   },
   "news": {

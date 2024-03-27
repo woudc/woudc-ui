@@ -25,8 +25,15 @@ export default {
     link: [
       {
         rel: 'icon',
-        type: 'image/x-icon',
-        href: process.env.WOUDC_UI_ROUTER_BASE + '/favicon.ico',
+        type: 'image/png',
+        sizes: '32x32',
+        href: process.env.WOUDC_UI_ROUTER_BASE + 'wmo-favicon-32x32.png',
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        href: process.env.WOUDC_UI_ROUTER_BASE + 'wmo-favicon-16x16.png',
       },
     ],
   },

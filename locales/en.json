@@ -807,7 +807,10 @@
     "woudcFull": "World Ozone and Ultraviolet Radiation Data Centre",
     "wps": "OGC Web Processing Service",
     "ogcThe": "Open Geospatial Consortium",
-    "warning": "Warning:"
+    "warning": "Warning:",
+    "abstract_": "Abstract:",
+    "abstract": "Abstract",
+    "datasets": "Datasets"
   },
   "contact": {
     "blurb": {
@@ -1269,7 +1272,8 @@
             "totalozoneobs": "Total Ozone - Hourly Observations: doi:10.14287/10000003",
             "umkehr1": "UmkehrN14 (Level 1.0): doi:10.14287/10000005",
             "umkehr2": "UmkehrN14 (Level 2.0): doi:10.14287/10000006",
-            "uv-index": "UV Index: doi:10.14287/10000013"
+            "uv-index": "UV Index: doi:10.14287/10000013",
+            "josie-besos": "@:data.products.josieBesos.title: 10.14287/100000014"
           },
           "title": "WOUDC Digital Object Identifiers (datasets)"
         },
@@ -1520,6 +1524,17 @@
         "gome2": "GOME-2",
         "ers2FullName": "European Remote Sensing Satellite-2 (ERS-2)",
         "metOpA": "MetOp-A"
+      },
+      "josieBesos": {
+        "title": "Jülich Ozone Sonde Intercomparison Experiment (JOSIE) and Balloon Experiment on Standards for Ozone Sondes (BESOS) data",
+        "description": "The Balloon Experiment on Standards for Ozone Sondes (BESOS) campaign goal is to establish a set of standard operating procedures (SOP) for launching electrochemical concentration cell (ECC) ozonesondes at WMOs GAW (World Meteorological Organization, Global Atmospheric Watch) sites. The campaign is a follow-on to the series of ECC chamber studies performed during the 1996-2000 Jülich Ozone Sonde Intercomparicon Experiment's (JOSIE) at the World Calibration Center for Ozone Sondes (WCCOS) in the Forschungszentrum, Jülich (Germany)",
+        "keywords": "JOSIE,BESOS,ozonesonde,intercomparison",
+        "besosBlurb": "In 2004 the WMO BESOS (Balloon Experiment on Standards for Ozonesondes) field campaign, carried out in Laramie (Wyoming, USA), deployed a large gondola with 18 ozonesondes and the OPM of WCCOS {attribution} with results similar to those of JOSIE.",
+        "josieBlurb": "In order to assess the performance of various electrochemical ozonesondes and to guarantee consistency in ozonesonde data, the environmental simulation facility at the Forschungszentrum Juelich has been established in 1994 as the {wccosAndAbbr} of WMO-GAW as part of their Quality Assurance (QA) plan. Beginning in 1996, a series of {josieAndAbbr} campaigns has since been conducted at the WCCOS to evaluate different ozonesonde types {attribution}.",
+        "wccos": "WCCOS",
+        "josie": "JOSIE",
+        "wccosAndAbbr": "World Calibration Centre for Ozone Sondes (WCCOS)",
+        "josieAndAbbr": "Jülich Ozone Sonde Intercomparison Experiment (JOSIE)"
       }
     },
     "quality": {
@@ -1635,7 +1650,7 @@
       "title": "News and Updates:"
     },
     "quickLinks": "Quick Links:",
-    "wmoLogo": "Logo: @.wmoFull",
+    "wmoLogo": "Logo: World Meteorological Organization",
     "keywords": "ozone,ultraviolet,uv,totalozone,ozonesonde,umkehr,gaw,wmo,spectral,stations,instruments"
   },
   "news": {

@@ -46,6 +46,11 @@
         <div id="summaries">
           <h2>{{ $t('data.products.summaries.title') }}</h2>
           <ul>
+            <li>
+              <nuxt-link :to="localePath('data-products-josie_besos')">
+                <span>{{ $t('data.products.josieBesos.title') }}</span>
+              </nuxt-link>
+            </li>
             <li v-for="(url, key) in summariesLinks" :key="key">
               <a :href="url" target="_blank">
                 {{ $t('data.products.summaries.links.' + key) }}

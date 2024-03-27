@@ -19,13 +19,17 @@
               <v-icon>{{ group.icon }}</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-title v-text="$t('banner.' + groupTag)" />
+              <v-list-item-title>
+                {{ $t('banner.' + groupTag) }}
+              </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
           <v-list-group v-else color="grey darken-4" :prepend-icon="group.icon">
             <template #activator>
               <v-list-item-content>
-                <v-list-item-title v-text="$t('banner.' + groupTag)" />
+                <v-list-item-title>
+                  {{ $t('banner.' + groupTag) }}
+                </v-list-item-title>
               </v-list-item-content>
             </template>
             <div v-for="(section, textTag) in group.sections" :key="textTag">
@@ -35,10 +39,9 @@
                 target="_blank"
               >
                 <v-list-item-content>
-                  <v-list-item-title
-                    class="ml-2 grey--text text--darken-4"
-                    v-text="$t('banner.' + textTag)"
-                  />
+                  <v-list-item-title class="ml-2 grey--text text--darken-4">
+                    {{ $t('banner.' + textTag) }}
+                  </v-list-item-title>
                 </v-list-item-content>
                 <v-list-item-icon>
                   <v-icon>mdi-open-in-new</v-icon>
@@ -46,10 +49,9 @@
               </v-list-item>
               <v-list-item v-else :to="localePath(section.link)" nuxt>
                 <v-list-item-content>
-                  <v-list-item-title
-                    class="ml-2 grey--text text--darken-4"
-                    v-text="$t('banner.' + textTag)"
-                  />
+                  <v-list-item-title class="ml-2 grey--text text--darken-4">
+                    >{{ $t('banner.' + textTag) }}
+                  </v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
             </div>
@@ -60,10 +62,15 @@
     <v-app-bar color="primary" app hide-on-scroll>
       <h5
         v-if="$vuetify.breakpoint.mdAndUp"
-        class="text-md-h6 ml-5 font-weight-regular"
+        class="text-md-h6 ml-5 font-weight-regular text-no-wrap"
       >
+        <img
+          :src="require('~/assets/wmo-logo_on_dark_bg.svg')"
+          :alt="$t('home.wmoLogo')"
+          class="d-inline-block wmo-logo-banner"
+        />
         <nuxt-link
-          class="no-underline underline-on-hover white--text"
+          class="no-underline underline-on-hover white--text d-inline-block"
           :to="localePath('/')"
         >
           {{ $t('common.woudcFull') }}
@@ -108,10 +115,9 @@
                 target="_blank"
               >
                 <v-list-item-content>
-                  <v-list-item-title
-                    class="grey--text text--darken-4"
-                    v-text="$t('banner.' + textTag)"
-                  />
+                  <v-list-item-title class="grey--text text--darken-4">
+                    {{ $t('banner.' + textTag) }}
+                  </v-list-item-title>
                 </v-list-item-content>
                 <v-list-item-icon>
                   <v-icon>mdi-open-in-new</v-icon>
@@ -119,10 +125,9 @@
               </v-list-item>
               <v-list-item v-else :to="localePath(section.link)" nuxt>
                 <v-list-item-content>
-                  <v-list-item-title
-                    class="grey--text text--darken-4"
-                    v-text="$t('banner.' + textTag)"
-                  />
+                  <v-list-item-title class="grey--text text--darken-4">
+                    {{ $t('banner.' + textTag) }}
+                  </v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
             </div>
@@ -136,8 +141,13 @@
       />
       <h5
         v-if="$vuetify.breakpoint.smAndDown"
-        class="text-md-h6 ml-5 font-weight-regular"
+        class="text-md-h6 ml-5 font-weight-regular d-inline-block"
       >
+        <img
+          :src="require('~/assets/wmo-logo_on_dark_bg.svg')"
+          :alt="$t('home.wmoLogo')"
+          class="d-inline-block wmo-logo-banner"
+        />
         <nuxt-link
           class="no-underline underline-on-hover white--text"
           :to="localePath('/')"
@@ -263,5 +273,10 @@ export default {
 }
 .no-underline {
   text-decoration: none;
+}
+.wmo-logo-banner {
+  max-height: 40px;
+  padding: 0.05em 0px 0.35em 0px;
+  vertical-align: middle;
 }
 </style>

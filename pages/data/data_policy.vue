@@ -3,7 +3,7 @@
     <h1>{{ $t('data.policy.title') }}</h1>
     <i18n path="data.policy.blurb" tag="p">
       <template #wmo-policy>
-        <a :href="wmoURL" target="_blank">
+        <a :href="wmoURL" target="_blank" hreflang="en">
           <span>
             {{ $t('data.policy.wmo-policy') }}
             <v-icon x-small>mdi-open-in-new</v-icon>
@@ -11,7 +11,7 @@
         </a>
       </template>
       <template #gaw-policy>
-        <a :href="gawURL" target="_blank">
+        <a :href="gawURL" target="_blank" hreflang="en">
           <span>
             {{ $t('data.policy.gaw-policy') }}
             <v-icon x-small>mdi-open-in-new</v-icon>
@@ -46,7 +46,7 @@
         <h2>{{ $t('data.policy.doi.title') }}</h2>
         <i18n path="data.policy.doi.blurb" tag="p">
           <template #dois>
-            <a :href="doisURL" target="_blank">
+            <a :href="doisURL" target="_blank" hreflang="en">
               <span>
                 {{ $t('data.policy.doi.dois') }}
                 <v-icon x-small>mdi-open-in-new</v-icon>
@@ -73,7 +73,7 @@
           <v-card-text>
             <ul>
               <li v-for="dataset in datasetOrder" :key="dataset">
-                {{ $t('data.policy.doi.note2.items.' + dataset) }}
+                {{ $t(`data.policy.doi.note2.items.${dataset}`) }}
               </li>
             </ul>
           </v-card-text>
@@ -139,12 +139,13 @@ export default {
         'multiband',
         'spectral',
         'uv-index',
+        'josie-besos',
       ],
       doisURL: 'https://en.wikipedia.org/wiki/Digital_object_identifier',
       gawURL: 'https://gawsis.meteoswiss.ch/GAWSIS/index.html#/faq/',
       resolution40:
         'https://www.wmo.int/pages/prog/hwrp/documents/wmo_827_enCG-XII-Res40.pdf',
-      wmoURL: 'https://www.wmo.int/pages/about/exchangingdata_en.html',
+      wmoURL: 'https://wmo.int/activities/type-of-activity/exchange-data',
     }
   },
   head() {
