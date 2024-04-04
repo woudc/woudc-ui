@@ -1483,15 +1483,15 @@
         "metOpA": "MetOp-A"
       },
       "josieBesos": {
-        "title": "Données de l'Expérience d'intercomparaison des sondes d'ozone de Jülich (JOSIE) et l'Expérience de ballons sur les standards des sondes d'ozone (BESOS)",
-        "description": "L'objectif de la campagne Balloon Experiment on Standards for Ozone Sondes (BESOS) est d'établir un ensemble de procédures opérationnelles standard (SOP) pour le lancement des sondes d'ozone à cellule de concentration électrochimique (ECC) sur les sites GAW (Organisation météorologique mondiale, Veille atmosphérique mondiale) de l'OMM. \nLa campagne fait suite à la série d'études de chambres ECC réalisées au cours de l'expérience intercomparicon des sondes d'ozone de Jülich (JOSIE) de 1996 à 2000 au Centre mondial d'étalonnage des sondes d'ozone (WCCOS) au Forschungszentrum de Jülich (Allemagne).",
+        "title": "Données de l'Expérience d'Intercomparaison des Sondes d'Ozone de Jülich (EISOJ) et l'Expérience de Ballons sur les Standards des Sondes d'Ozone (EBSSO)",
+        "description": "L'objectif de la campagne de {besosAndAbbr} est d'établir un ensemble de procédures opérationnelles standard (SOP) pour le lancement des sondes d'ozone à cellule de concentration électrochimique (CCE) sur les sites GAW de l'OMM (Organisation Météorologique Mondiale, Global atmospheric watch). \nLa campagne fait suite à la série d'études de chambres ECC réalisées au cours de l'expérience intercomparicon des sondes d'ozone de Jülich (JOSIE) de 1996 à 2000 au Centre mondial d'étalonnage des sondes d'ozone (WCCOS) au Forschungszentrum de Jülich (Allemagne).",
         "keywords": "JOSIE,BESOS,sonde d'ozone,intercomparaison",
-        "besosBlurb": "En 2004, la campagne de terrain BESOS (Balloon Experiment on Standards for Ozonesondes) de l'OMM, réalisée à Laramie (Wyoming, USA), a déployé une grande gondole avec 18 ozonesondes et l'OPM du WCCOS {attribution} avec des résultats similaires à ceux de JOSIE.",
-        "josieBlurb": "Afin d'évaluer les performances de diverses sondes d'ozone électrochimiques et de garantir la cohérence des données des sondes d'ozone, l'installation de simulation environnementale du Forschungszentrum Juelich a été créée en 1994 sous le nom du {wccosAndAbbr} de l'OMM-GAW dans le cadre \nde leur plan d’assurance qualité (AQ). \nÀ partir de 1996, une série de campagnes du {josieandAbbr} ont depuis été menées au WCCOS pour évaluer différents types des sondes d'ozone {attribution}.",
+        "besosBlurb": "En 2004, la campagne de terrain de l'EBSSO (Expérience de Ballons sur les Standards des Sondes d'Ozone) de l'OMM, réalisée à Laramie (Wyoming, USA), a déployé une grande gondole avec 18 ozonesondes et l'OPM du CMESO {attribution} avec des résultats similaires à ceux de l'EISOJ.",
+        "josieBlurb": "Afin d'évaluer les performances de diverses sondes d'ozone électrochimiques et de garantir la cohérence des données des sondes d'ozone, l'installation de simulation environnementale du Forschungszentrum Juelich a été créée en 1994 sous le nom du {wccosAndAbbr} de l'OMM-GAW dans le cadre \nde leur plan d’assurance qualité (AQ). \nÀ partir de 1996, une série de campagnes du {josieAndAbbr} ont depuis été menées au (CMESO) pour évaluer différents types des sondes d'ozone {attribution}.",
         "wccos": "WCCOS",
         "josie": "JOSIE",
-        "wccosAndAbbr": "Centre mondial d'étalonnage des sondes d'ozone (WCCOS)",
-        "josieAndAbbr": "l'Expérience d'intercomparaison des sondes d'ozone de Jülich (JOSIE)"
+        "wccosAndAbbr": "Centre Mondial d'Étalonnage des Sondes d'Ozone (CMESO)",
+        "josieAndAbbr": "Expérience d'Intercomparaison des Sondes d'Ozone de Jülich (EISOJ) "
       }
     },
     "quality": {
