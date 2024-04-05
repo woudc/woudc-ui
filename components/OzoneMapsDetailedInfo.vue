@@ -11,7 +11,12 @@
         <v-expansion-panel-content>
           <p>Data are obtained from</p>
           <ul>
-            <li></li>
+            <li>{{ $t('data.products.ozone_maps.dataSourcesFrom.toms') }}</li>
+            <li>{{ $t('data.products.ozone_maps.dataSourcesFrom.omi') }}</li>
+            <li>{{ $t('data.products.ozone_maps.dataSourcesFrom.smoba') }}</li>
+            <li>{{ $t('data.products.ozone_maps.dataSourcesFrom.tovs') }}</li>
+            <li>{{ $t('data.products.ozone_maps.dataSourcesFrom.gome') }}</li>
+            <li>{{ $t('data.products.ozone_maps.dataSourcesFrom.toast') }}</li>
           </ul>
 
           <!-- prettier-ignore -->

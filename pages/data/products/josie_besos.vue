@@ -118,7 +118,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: '/data/products/josie-besos',
-      fr: `/donnees/produits/josie-besos`,
+      fr: `/donnees/produits/eisoj-ebsso`,
     },
   },
 }
