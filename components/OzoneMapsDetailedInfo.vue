@@ -12,11 +12,6 @@
           <p>Data are obtained from</p>
           <ul>
             <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
           </ul>
 
           <!-- prettier-ignore -->

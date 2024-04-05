@@ -106,7 +106,7 @@
       "wps": {
         "blurb": "Le {wps} fournit une interface populaire pour permettre à l’utilisateur d’accéder aux données géospatiales. Le Service de fonctionnalités web (WFS) est habituellement utilisé pour effectuer des recherches personnalisées ou obtenir un accès brut aux fonctionnalités géospatiales. Le WFS du WOUDC permet l’accès à des données archivées dans divers formats comme le format CSV étendu, KML, CSV, GML, le fichier de formes ESRI, MapInfo, GeoJSON et NetCDF.",
         "note": {
-          "body": "Le WOUDC fournit le WPS de l'OGC (version 1.0.0.0) au point d'extrémité suivant : {link}",
+          "body": "Le WOUDC fournit le WPS de l’OGC (version 1.0.0.0) au point d’extrémité suivant : {link}",
           "title": "Le WOUDC et le WPS de l’OGC"
         },
         "title": "Service de traitement web (WPS)"
@@ -277,7 +277,7 @@
           "term": "Formulaire"
         },
         {
-          "definition": "Le nombre d’heures soustraites à l’heure locale afin d’obtenir l’UTC (le nombre est positif pour les fuseaux horaires à l’est et l’heure locale est définie par la source des données), comme décrite dans la norme ISO-8601 sur l'heure (hh).",
+          "definition": "Le nombre d’heures soustraites à l’heure locale afin d’obtenir l’UTC (le nombre est positif pour les fuseaux horaires à l’est et l’heure locale est définie par la source des données), comme décrite dans la norme ISO-8601 sur l’heure (hh).",
           "term": "Fuseau horaire"
         },
         {
@@ -365,7 +365,7 @@
           "term": "Organisme"
         },
         {
-          "definition": "Une forme spéciale d’oxygène dont la formule chimique est O3. L’ozone de la stratosphère absorbe les rayons ultraviolets biologiquement néfastes du soleil. L’ozone est l’une des classes de données actuelles du WOUDC et comprend ces catégories de données : colonne d’ozone total (deux niveaux : quotidien et mensuel), profils verticaux lidar, profils verticaux de sonde pour l’ozone, et profils verticaux (deux niveaux : valeur N et C-Umkehr) d'Umkehrn.",
+          "definition": "Une forme spéciale d’oxygène dont la formule chimique est O3. L’ozone de la stratosphère absorbe les rayons ultraviolets biologiquement néfastes du soleil. L’ozone est l’une des classes de données actuelles du WOUDC et comprend ces catégories de données : colonne d’ozone total (deux niveaux : quotidien et mensuel), profils verticaux lidar, profils verticaux de sonde pour l’ozone, et profils verticaux (deux niveaux : valeur N et C-Umkehr) d’Umkehrn.",
           "term": "Ozone"
         },
         {
@@ -477,7 +477,7 @@
           "term": "Type d’instrument"
         },
         {
-          "definition": "Pour les mesures obtenues à l’aide de la technique Umkehr avec 14 valeurs-N (représentant 14 angles zénithaux du soleil). Il s’agit d’une catégorie de données définie par le WOUDC. Se référer à l'ozone.",
+          "definition": "Pour les mesures obtenues à l’aide de la technique Umkehr avec 14 valeurs-N (représentant 14 angles zénithaux du soleil). Il s’agit d’une catégorie de données définie par le WOUDC. Se référer à l’ozone.",
           "term": "UmkehrN14"
         },
         {
@@ -540,7 +540,7 @@
           "1992": "les données sur le rayonnement solaire ultraviolet (UV) ont été ajoutées aux archives ; le centre de données a alors été rebaptisé le Centre mondial de données sur l’ozone et le rayonnement ultraviolet (WOUDC)",
           "1995": "site initial et le site FTP ont été créé",
           "1996": "les premières données du cdrom ont été produites",
-          "2006": "les premières données du DVD ROM avec l'archive complète sont sorties",
+          "2006": "les premières données du DVD ROM avec l’archive complète sont sorties",
           "2015": "le site Web du WOUDC, mis à jour, fournit des mécanismes modernisés qui soutiennent la découverte, la visualisation et la gestion des données sur l’ozone et les UV, en plus d’en favoriser l’accessibilité"
         },
         "title": "Le centre de données - un peu d’histoire"
@@ -559,7 +559,7 @@
             "ozone": "Ozone : doi:10.14287/10000001",
             "uv": "Rayonnement UV : doi:10.14287/10000002"
           },
-          "title": "Identificateurs d'objets numériques WOUDC (premier ordre)"
+          "title": "Identificateurs d’objets numériques WOUDC (premier ordre)"
         },
         "note2": {
           "items": {
@@ -576,9 +576,9 @@
             "uv-index": "Indice UV : doi:10.14287/10000013",
             "josie-besos": "@:data.products.josieBesos.title : 10.14287/100000014"
           },
-          "title": "Identificateurs d'objets numériques WOUDC (ensembles de données)"
+          "title": "Identificateurs d’objets numériques WOUDC (ensembles de données)"
         },
-        "title": "Identificateurs d'objets numériques (DOI)"
+        "title": "Identificateurs d’objets numériques (DOI)"
       },
       "gaw": {
         "blurb": "L’utilisation des données obtenues de l’un des Centre mondial de données (CMD) de la VAG de l’OMM est régie par la déclaration suivante, endossée par le Conseil exécutif et la Commission des sciences de l’atmosphère (CE/CSA), un groupe de travail composé d’experts de la pollution environnementale et la chimie atmosphérique [OMM, 2001a].:",
@@ -593,7 +593,7 @@
         "blurb": "Lors de la publication de produits extraites du WOUDC, tels que des graphiques, listes, cartes ou métadonnées, vous devez indiquer que ces produits proviennent du WOUDC, en utilisant la citation appropriée comme indiqué dans l’exemple suivant.",
         "note": {
           "body": "Environnement et Changement climatique Canada, Toronto (n.d.). Organisation météorologique mondiale-Programme de Veille de l’atmosphère du globe (OMM-VAG)/Centre mondial des données sur l’ozone et le rayonnement ultraviolet (WOUDC) Page consultée le 24 octobre 2013 : https://woudc.org.",
-          "title": "Exemple (3) : Citation d'un produit provenant du site du WOUDC"
+          "title": "Exemple (3) : Citation d’un produit provenant du site du WOUDC"
         },
         "title": "Publication de produits"
       },
@@ -725,7 +725,7 @@
     "resources-groups": "Groupes de travail",
     "resources-links": "Liens de données connexes",
     "resources-software": "Logiciel",
-    "resources-sop": "Procédures d'utilisation normalisées"
+    "resources-sop": "Procédures d’utilisation normalisées"
   },
   "common": {
     "access": "accès aux données",
@@ -749,16 +749,16 @@
     "formats": "Formats de fichiers",
     "ftp": "en utilisant un client FTP",
     "gaw": "VAG",
-    "gawFull": "Veille de l'atmosphère globale",
+    "gawFull": "Veille de l’atmosphère globale",
     "github": "GitHub",
     "guidelines": "des directives",
     "instructions": "Instructions",
     "interoperability": "interopérabilité de l’OMM",
     "iso": "International Organization for Standardization",
     "map-instructions": {
-      "body-panning": "{panning} Cliquez sur n'importe quelle partie de la carte interactive et faites-la glisser. Ou alors, déplacer le curseur sur la fenêtre de la carte avec la touche {tab} et déplacez-vous à l’aide des touches fléchées.",
+      "body-panning": "{panning} Cliquez sur n’importe quelle partie de la carte interactive et faites-la glisser. Ou alors, déplacer le curseur sur la fenêtre de la carte avec la touche {tab} et déplacez-vous à l’aide des touches fléchées.",
       "body-zooming": "{zooming} Pour agrandir ou réduire la vue, servez-vous de la roulette de votre souris lorsque votre curseur se trouve sur la carte, ou cliquez sur la {plus} ou la touche {minus}. Ou alors, déplacez le curseur sur la fenêtre de la carte avec la touche {tab} et cliquez sur la {plus} ou la touche {minus}. Pour effectuer un zoom arrière complet, appuyez sur le bouton \"Voir le globe\".",
-      "label": "Guide d'utilisation : Carte interactive",
+      "label": "Guide d’utilisation : Carte interactive",
       "panning": "Déplacement :",
       "tab": "tabulation (TAB)",
       "zooming": "Zoom :"
@@ -767,7 +767,7 @@
     "ogc": "Open Geospatial Consortium",
     "ogc-cs": "service de catalogue de l’OGC",
     "old-search": {
-      "body": "Vous avez apporté des modifications dans le formulaire de recherche qui ne correspondent pas avec les résultats de la recherche affichés actuellement. S'il vous plaît appuyez sur la {search} pour mettre à jour les résultats de la recherche.",
+      "body": "Vous avez apporté des modifications dans le formulaire de recherche qui ne correspondent pas avec les résultats de la recherche affichés actuellement. S’il vous plaît appuyez sur la {search} pour mettre à jour les résultats de la recherche.",
       "title": "Anciens résultats"
     },
     "policy": "politique en matière de données",
@@ -788,10 +788,10 @@
     "submit": "Soumettre",
     "table-instructions": {
       "body-filtering": "{filtering} Pour filtrer le tableau, indiquez les termes dans la barre de recherche en haut de chaque colonne ou la barre \"rechercher tout\".",
-      "body-paging": "{paging} Changer l'option \"voir les entrées\" dans la liste déroulante pour changer le nombre de stations à afficher sur la page. Cliquez sur \"suivant\" ou \"précédent\" pour afficher plus de pages du tableau.",
+      "body-paging": "{paging} Changer l’option \"voir les entrées\" dans la liste déroulante pour changer le nombre de stations à afficher sur la page. Cliquez sur \"suivant\" ou \"précédent\" pour afficher plus de pages du tableau.",
       "body-sorting": "{sorting} Pour trier le tableau, cliquez sur les flèches à côté des intitulés des colonnes.",
       "filtering": "Filtrer :",
-      "label": "Guide d'utilisation : Tableau interactif",
+      "label": "Guide d’utilisation : Tableau interactif",
       "paging": "Pagination :",
       "sorting": "Trier :"
     },
@@ -807,7 +807,7 @@
     "woudc": "WOUDC",
     "woudcFull": "Centre mondial de données sur l’ozone et le rayonnement ultraviolet",
     "wps": "Service de fonctionnalités web (WFS) de l’OGC",
-    "ogcThe": "l'Open Geospatial Consortium",
+    "ogcThe": "l’Open Geospatial Consortium",
     "abstract_": "Abstrait :",
     "abstract": "Abstrait",
     "datasets": "Jeux de données"
@@ -833,11 +833,11 @@
     "message": "Message",
     "name": "Nom",
     "note": {
-      "body": "Tous les renseignements personnels créés, recueillis ou conservés par le ministère sont protégés par la {privacy-act}. Cela signifie qu'on vous informera des fins auxquelles ces renseignements sont recueillis et de la façon dont vous pouvez exercer votre droit d'accès à ces renseignements. Le cas échéant, on vous demandera d'exprimer votre consentement par rapport à ces renseignements.",
+      "body": "Tous les renseignements personnels créés, recueillis ou conservés par le ministère sont protégés par la {privacy-act}. Cela signifie qu’on vous informera des fins auxquelles ces renseignements sont recueillis et de la façon dont vous pouvez exercer votre droit d’accès à ces renseignements. Le cas échéant, on vous demandera d’exprimer votre consentement par rapport à ces renseignements.",
       "title": "Énoncé de collecte de renseignements personnels"
     },
     "other-channels": "Voies de service",
-    "prompt": "S'il vous plaît fournir des informations que nous pourrions utiliser pour communiquer avec vous.",
+    "prompt": "S’il vous plaît fournir des informations que nous pourrions utiliser pour communiquer avec vous.",
     "required": "obligatoire",
     "subject": "Sujet",
     "title": "Communiquez avec le WOUDC",
@@ -856,7 +856,7 @@
         "name": "Nom du contributeur",
         "project": "Projet",
         "start_date": "À partir de cette date",
-        "wmo_region_id": "Région de l'OMM"
+        "wmo_region_id": "Région de l’OMM"
       },
       "contributor-name": "Nom du contributeur :",
       "country-name": "Nom du pays :",
@@ -883,8 +883,8 @@
       "register": "nouvelle inscription",
       "step1": "Lire la {policy} du WOUDC ;",
       "step2": "Obtenir un identifiant VAG (obligatoire) pour chacune des stations en s’inscrivant avec {wmo-gaw} ({more});",
-      "step3": "Compléter le processus d'enregistrement de WOUDC en {contacting} avec comme titre : {register} et inclut votre nouvel identifiant VAG ; et",
-      "step4": "Après réception et approbation de votre inscription, le WOUDC attribuera un emplacement FTP / compte FTP (avec un nom d'utilisateur / mot de passe personnel) à utiliser exclusivement pour la soumission des données.",
+      "step3": "Compléter le processus d’enregistrement de WOUDC en {contacting} avec comme titre : {register} et inclut votre nouvel identifiant VAG ; et",
+      "step4": "Après réception et approbation de votre inscription, le WOUDC attribuera un emplacement FTP / compte FTP (avec un nom d’utilisateur / mot de passe personnel) à utiliser exclusivement pour la soumission des données.",
       "thanks": "Nous vous remercions de votre inscription au WOUDC.",
       "title": "Inscription",
       "wmo-gaw": "OMM/VAG",
@@ -907,7 +907,7 @@
       "description": "Comment soumettre des données au WOUDC"
     },
     "validation": {
-      "blurb": "Ce processus effectue des contrôles de syntaxe et de format sur un fichier à l'appui de temps réel le format de validation de l'ozone et le rayonnement ultraviolet soumission des données au centre de données.",
+      "blurb": "Ce processus effectue des contrôles de syntaxe et de format sur un fichier à l’appui de temps réel le format de validation de l’ozone et le rayonnement ultraviolet soumission des données au centre de données.",
       "clear": "Effacer",
       "data": "Données",
       "failed": {
@@ -915,7 +915,7 @@
         "title": "Validation échouée",
         "warnings": "Avertissements:"
       },
-      "no-results": "Aucune validation n'a été effectuée.",
+      "no-results": "Aucune validation n’a été effectuée.",
       "passed": "Validation réussie",
       "required": "(obligatoire)",
       "table-instructions": {
@@ -926,12 +926,12 @@
       "validate": "Valide",
       "validation-results": "Résultats de validation",
       "keywords": "validation,données,format,format,qa",
-      "description": "Vérificateur de format et évaluation de la qualité des fichiers de soumission de données sur l'ozone et le rayonnement ultraviolet."
+      "description": "Vérificateur de format et évaluation de la qualité des fichiers de soumission de données sur l’ozone et le rayonnement ultraviolet."
     },
     "list-single": {},
     "single": {
       "keywords": "nom du contributeur, agence du contributeur, abréviation du contributeur, détails du contributeur, pays du contributeur, stations du contributeur, métadonnées du contributeur",
-      "description": "Description d'un seul contributeur, y compris les stations du contributeur."
+      "description": "Description d’un seul contributeur, y compris les stations du contributeur."
     }
   },
   "data": {
@@ -1014,7 +1014,7 @@
           "body-intro": "Toutes les archives de fichiers de données qui ont été envoyées par les contributeurs en format CSV étendu sont disponibles sur {waf} les utilisateurs peuvent les parcourir, les télécharger ou les intégrer à leurs flux de travaux."
         },
         "how-to": "instructions de WAF",
-        "summary": "données d'archives",
+        "summary": "données d’archives",
         "title": "Dossier accessible sur le web (WAF)"
       },
       "web": {
@@ -1052,17 +1052,17 @@
       "wps": {
         "blurb": "Le {wps} fournit une interface populaire pour permettre à l’utilisateur d’accéder aux données géospatiales. Le Service de fonctionnalités web (WFS) est habituellement utilisé pour effectuer des recherches personnalisées ou obtenir un accès brut aux fonctionnalités géospatiales. Le WFS du WOUDC permet l’accès à des données archivées dans divers formats comme le format CSV étendu, KML, CSV, GML, le fichier de formes ESRI, MapInfo, GeoJSON et NetCDF.",
         "note": {
-          "body": "Le WOUDC fournit le WPS de l'OGC (version 1.0.0.0) au point d'extrémité suivant : {link}",
+          "body": "Le WOUDC fournit le WPS de l’OGC (version 1.0.0.0) au point d’extrémité suivant : {link}",
           "title": "Le WOUDC et le WPS de l’OGC"
         },
         "title": "Service de traitement web (WPS)"
       },
       "ogcapi": {
-        "intro-endpoint": "Le WOUDC rend disponible ses APIs de l'OGC à l'adresse : {url}",
+        "intro-endpoint": "Le WOUDC rend disponible ses APIs de l’OGC à l’adresse : {url}",
         "title": "Services web et interfaces de programmation (API)",
-        "intro-api": "En plus des mécanismes traditionnels d’accès aux données, le WOUDC rend également disponible ses archives par le biais d'interfaces de programmation (API) et services web géospatiaux se conformant aux normes internationales.  Les APIs sont conçus pour faciliter les interactions machine à machine sur Internet, et peuvent être utilisées dans des outils en ligne, applications mobiles ainsi qu'autres applications web.",
-        "intro-ogc": "Les APIs de WOUDC supportent les standards ouverts de {ogc}  (OGC), qui assurent l’interopérabilité des données et facilitent leur découverte, leur accès et leur visualisation.  Les standards de l'OGC jouent un rôle prépondérant dans l'exchange de données météorologiques, climatiques et l'hydrométriques au sein de l’Organisation météorologique mondiale (OMM) et sont prises en charge par de nombreux outils et logiciels libres grand public et commerciaux.",
-        "intro-provides": "L'API rend possible la découverte, l’accès, et la visualisation pour toutes les données et métadonnées de WOUDC. Il fournit également les processus pour la validation et l'évaluation de la qualité des données.",
+        "intro-api": "En plus des mécanismes traditionnels d’accès aux données, le WOUDC rend également disponible ses archives par le biais d’interfaces de programmation (API) et services web géospatiaux se conformant aux normes internationales.  Les APIs sont conçus pour faciliter les interactions machine à machine sur Internet, et peuvent être utilisées dans des outils en ligne, applications mobiles ainsi qu’autres applications web.",
+        "intro-ogc": "Les APIs de WOUDC supportent les standards ouverts de {ogc}  (OGC), qui assurent l’interopérabilité des données et facilitent leur découverte, leur accès et leur visualisation.  Les standards de l’OGC jouent un rôle prépondérant dans l’exchange de données météorologiques, climatiques et l’hydrométriques au sein de l’Organisation météorologique mondiale (OMM) et sont prises en charge par de nombreux outils et logiciels libres grand public et commerciaux.",
+        "intro-provides": "L’API rend possible la découverte, l’accès, et la visualisation pour toutes les données et métadonnées de WOUDC. Il fournit également les processus pour la validation et l’évaluation de la qualité des données.",
         "intro-consult": "Veuillez consulter les {webServicesHowTo} pour plus de détails."
       },
       "keywords": "accessibilité des données, téléchargement des données, services web, WAF, OGC, API, SCW,WFS,CSW,ISO,métadonnées, catalogue, cartes, données, observations, csv, fichier de formes, kml, json, geojson",
@@ -1095,16 +1095,16 @@
         "data-centers": {
           "eubrewnet": "EUBREWNET",
           "label": "Centres de données connexes",
-          "totalozone": "Colonne d'ozone total",
+          "totalozone": "Colonne d’ozone total",
           "uv-irradiance": "Rayonnement UV",
-          "vertical-ozone": "Courbe de réparition verticale de l'ozone"
+          "vertical-ozone": "Courbe de réparition verticale de l’ozone"
         },
         "placeholder": "Choisis un Jeu de Données",
         "title": "Jeu de Données",
         "totalozone": {
           "daily": "Ozone total - Observations quotidiennes",
           "hourly": "Ozone total - Observations horaires",
-          "label": "Colonne d'ozone total"
+          "label": "Colonne d’ozone total"
         },
         "uv-irradiance": {
           "broadband": "Large bande",
@@ -1114,9 +1114,9 @@
           "uv-index": "Indice UV"
         },
         "vertical-ozone": {
-          "label": "Courbe de réparition verticale de l'ozone",
+          "label": "Courbe de réparition verticale de l’ozone",
           "lidar": "Lidar",
-          "ozonesonde": "Sonde pour l'ozone",
+          "ozonesonde": "Sonde pour l’ozone",
           "rocketsonde": "RocketSonde",
           "umkehr1": "UmkehrN14 (Niveau 1.0)",
           "umkehr2": "UmkehrN14 (Niveau 2.0)"
@@ -1132,7 +1132,7 @@
       },
       "no-results": "Aucune recherche n’a été effectuée.",
       "old-search": {
-        "body": "Vous avez apporté des modifications dans le formulaire de recherche qui ne correspondent pas avec les résultats de la recherche affichés actuellement. S'il vous plaît appuyez sur la {search} pour mettre à jour les résultats de la recherche.",
+        "body": "Vous avez apporté des modifications dans le formulaire de recherche qui ne correspondent pas avec les résultats de la recherche affichés actuellement. S’il vous plaît appuyez sur la {search} pour mettre à jour les résultats de la recherche.",
         "title": "Anciens résultats"
       },
       "search-results": "Résultats de la recherche",
@@ -1148,7 +1148,7 @@
         "country-name_en": "Pays",
         "country-name_fr": "Pays",
         "daily-date": "Date",
-        "daily-nobs": "Nombre d'observations",
+        "daily-nobs": "Nombre d’observations",
         "daily-utc_begin": "Heure en UTC de la première observation",
         "daily-utc_end": "Heure en UTC de la dernière observation",
         "end-datetime": "Heure en UTC de la dernière observation",
@@ -1157,10 +1157,10 @@
         "instrument-model": "Modèle de l’instrument",
         "instrument-name": "Nom de l’instrument",
         "instrument-serial": "Numéro de l’instrument",
-        "instrument-type": "Type d'instrument",
-        "measurement": "Nom de l'ensemble de données",
+        "instrument-type": "Type d’instrument",
+        "measurement": "Nom de l’ensemble de données",
         "monthly-date": "Mensuelle Date",
-        "monthly-npts": "Mensuelle Nombre d'observations",
+        "monthly-npts": "Mensuelle Nombre d’observations",
         "o3partialpressure": "Pression Partielle de O3",
         "observation-date": "Date de l’observation (UTC)",
         "observation-time": "Heure d’instance (UTC)",
@@ -1181,18 +1181,18 @@
       "title": "Rechercher et télécharger de données"
     },
     "info": {
-      "blurb": "L'archive de données WOUDC peut fournir des informations de haut niveau sur chaque ensemble de données. Sélectionnez un ensemble de données d'intérêt pour voir ses métadonnées de découverte de l'ISO et une carte contextuelle des stations.",
+      "blurb": "L’archive de données WOUDC peut fournir des informations de haut niveau sur chaque ensemble de données. Sélectionnez un ensemble de données d’intérêt pour voir ses métadonnées de découverte de l’ISO et une carte contextuelle des stations.",
       "descriptors": {
         "abstract": "Abstract :",
         "category": "Catégorie de sujet ISO :",
         "doi": "DOI :",
         "keywords": "Mots-clés :",
-        "links": "Liens d'accès :",
+        "links": "Liens d’accès :",
         "map": "Plan des stations",
         "range": "Étendue temporelle :",
         "range-template": "De {start} á {end}",
         "title": "Titre :",
-        "uri": "URI de l'ensemble de données :"
+        "uri": "URI de l’ensemble de données :"
       },
       "links": {
         "broadband": "Large bande",
@@ -1229,7 +1229,7 @@
         "dataset": "Catégorie de données",
         "end_date": "Jusqu’à cette date",
         "model": "Modèle de l’instrument",
-        "name": "Type d'instrument",
+        "name": "Type d’instrument",
         "start_date": "À partir de cette date",
         "station_name": "Nom de la station",
         "waf_url": "Dossier accessible sur le web"
@@ -1238,7 +1238,7 @@
       "instrument-type": "Type d’instrument :",
       "station-name": "Nom de la station :",
       "title": "Liste des instruments",
-      "description": "Une liste d'instruments provenant des archives de données du WOUDC, comprenant le type d'instrument, le nom et le modèle.",
+      "description": "Une liste d’instruments provenant des archives de données du WOUDC, comprenant le type d’instrument, le nom et le modèle.",
       "keywords": "WOUDC, instruments, liste, modèle, type, numéro, recherche"
     },
     "links": {
@@ -1258,7 +1258,7 @@
             "ozone": "Ozone: doi:10.14287/10000001",
             "uv": "Rayonnement UV: doi:10.14287/10000002"
           },
-          "title": "Identificateurs d'objets numériques WOUDC (premier ordre)"
+          "title": "Identificateurs d’objets numériques WOUDC (premier ordre)"
         },
         "note2": {
           "items": {
@@ -1274,9 +1274,9 @@
             "umkehr2": "UmkehrN14 (Niveau 2.0): doi:10.14287/10000006",
             "uv-index": "Indice UV: doi:10.14287/10000013"
           },
-          "title": "Identificateurs d'objets numériques WOUDC (ensembles de données)"
+          "title": "Identificateurs d’objets numériques WOUDC (ensembles de données)"
         },
-        "title": "Identificateurs d'objets numériques (DOI)"
+        "title": "Identificateurs d’objets numériques (DOI)"
       },
       "gaw": {
         "blurb": "L’utilisation des données obtenues de l’un des Centre mondial de données (CMD) de la VAG de l’OMM est régie par la déclaration suivante, endossée par le Conseil exécutif et la Commission des sciences de l’atmosphère (CE/CSA), un groupe de travail composé d’experts de la pollution environnementale et la chimie atmosphérique [OMM, 2001a].:",
@@ -1291,7 +1291,7 @@
         "blurb": "Lors de la publication de produits extraites du WOUDC, tels que des graphiques, listes, cartes ou métadonnées, vous devez indiquer que ces produits proviennent du WOUDC, en utilisant la citation appropriée comme indiqué dans l’exemple suivant.",
         "note": {
           "body": "Environnement et Changement climatique Canada, Toronto (n.d.). Organisation météorologique mondiale-Programme de Veille de l’atmosphère du globe (OMM-VAG)/Centre mondial des données sur l’ozone et le rayonnement ultraviolet (WOUDC) Page consultée le 24 octobre 2013 : https://woudc.org.",
-          "title": "Exemple (3) : Citation d'un produit provenant du site du WOUDC"
+          "title": "Exemple (3) : Citation d’un produit provenant du site du WOUDC"
         },
         "title": "Publication de produits"
       },
@@ -1351,44 +1351,44 @@
       },
       "ozonesonde": {
         "image-captions": {
-          "flights": "Sondage de l'ozone :",
-          "pressure": "Pression partielle de l'ozone (mPa)",
+          "flights": "Sondage de l’ozone :",
+          "pressure": "Pression partielle de l’ozone (mPa)",
           "temperature": "Température (degrés Celsius)"
         },
         "instructions": {
-          "body-flights": "{flight-plots} Les graphiques présentent les mesures acquises pour chaque envolée de l'année à la station ; pour chaque observation d'envolée, la pression est présentée avec la pression partielle en bleu, et l'altitude est présentée avec la température en rouge",
+          "body-flights": "{flight-plots} Les graphiques présentent les mesures acquises pour chaque envolée de l’année à la station ; pour chaque observation d’envolée, la pression est présentée avec la pression partielle en bleu, et l’altitude est présentée avec la température en rouge",
           "body-grouping": "Les graphiques de sonde pour l’ozone sont regroupés par année dans les résultats de recherche.",
-          "body-pressure": "{pressure-plots} Graphique d'une coupe temps-altitude pour la pression partielle d'ozone mesurée par les sondes pour l’ozone d'ECC",
-          "body-searching": "Lancer la recherche pour afficher les graphiques de sonde pour l’ozone pour l'année et la station sélectionnée. Les graphiques de sonde pour l’ozone sont présentés pour chaque année sélectionée :",
-          "body-selections": "Sélectionner une {station} pour démarrer. Il en résultera une liste d'{years} pour lesquelles des données sont disponibles à la station. Veuillez sélectionner soit toutes les années soit une année spécifique.",
-          "body-temperature": "{temperature-plots} Graphique d'une coupe temps-altitude pour la température mesurée par les sondes pour l’ozone d'ECC",
+          "body-pressure": "{pressure-plots} Graphique d’une coupe temps-altitude pour la pression partielle d’ozone mesurée par les sondes pour l’ozone d’ECC",
+          "body-searching": "Lancer la recherche pour afficher les graphiques de sonde pour l’ozone pour l’année et la station sélectionnée. Les graphiques de sonde pour l’ozone sont présentés pour chaque année sélectionée :",
+          "body-selections": "Sélectionner une {station} pour démarrer. Il en résultera une liste d’{years} pour lesquelles des données sont disponibles à la station. Veuillez sélectionner soit toutes les années soit une année spécifique.",
+          "body-temperature": "{temperature-plots} Graphique d’une coupe temps-altitude pour la température mesurée par les sondes pour l’ozone d’ECC",
           "flight-plots": "Graphiques de vol de la sonde à ozone :",
-          "pressure-plots": "Graphique du profil annuel de la Pression partielle d'ozone :",
+          "pressure-plots": "Graphique du profil annuel de la Pression partielle d’ozone :",
           "temperature-plots": "Graphique du profil annuel de la température :"
         },
         "title": "Schémas de sondes pour l’ozone",
         "keywords": "produits de données,sonde pour l’ozone,graphiques,diagramme",
-        "description": "Outil de recherche pour afficher les schémas de sondes d'ozone par année et par station"
+        "description": "Outil de recherche pour afficher les schémas de sondes d’ozone par année et par station"
       },
       "related": {
         "links": {
           "ozone-zonal": "Moyenne de l’ozone par zone obtenue par les instruments au sol",
           "spectral": "Résumés et schémas des UV spectraux mensuels",
-          "tost": "Ensemble de données cartographié par des Trajectoires provenant des sondages d'Ozone dans la Stratosphère et la Troposphère (TOST)",
+          "tost": "Ensemble de données cartographié par des Trajectoires provenant des sondages d’Ozone dans la Stratosphère et la Troposphère (TOST)",
           "totalozone-daily-monthly": "Données sommaires de l’ozone total : Moyennes quotidiennes et mensuelles",
           "totalozone-satellite-ground": "Comparaison des résultats d’ozone total obtenus au sol et par satellite",
           "umkehr": "Données obtenues par la technique Umkehr par algorithme"
         },
-        "title": "Produits relatifs à l'ozone"
+        "title": "Produits relatifs à l’ozone"
       },
       "summaries": {
         "links": {
           "gaw-reports": "VAG recherche et rapports de surveillance - OMM",
-          "ozone-hole": "Du trou d'ozone Watch - NASA",
-          "ozone-reports": "Recherche sur l'ozone mondial de surveillance et les rapports de projet - de l'OMM",
-          "polar-bulletins": "Les bulletins sur l'ozone de l'Antarctique et de l'Arctique - OMM",
+          "ozone-hole": "Du trou d’ozone Watch - NASA",
+          "ozone-reports": "Recherche sur l’ozone mondial de surveillance et les rapports de projet - de l’OMM",
+          "polar-bulletins": "Les bulletins sur l’ozone de l’Antarctique et de l’Arctique - OMM",
           "sampo": "Mesures de satellite en orbite polaire - FMI",
-          "temis": "Emission troposphérique service surveillance d'Internet"
+          "temis": "Emission troposphérique service surveillance d’Internet"
         },
         "title": "Sommaires et rapports des données"
       },
@@ -1405,21 +1405,21 @@
       "totalozone": {
         "instructions": {
           "body-grouping": "Les graphiques de Totalozone sont regroupés par année dans le résultat de la recherche.",
-          "body-searching": "Soumettez la recherche pour afficher les graphiques de l'ozone total pour la station, l'instrument ou les instruments et l'année ou les années sélectionnés.",
-          "body-selections": "Sélectionnez une {station} pour commencer. Une liste des {instruments} qui ont été utilisés par cette station sera disponible. Sélectionnez soit tous les instruments, soit un réseau d'instruments spécifique, et sélectionnez soit toutes les années, soit une année de fonctionnement spécifique dans la liste des {years}."
+          "body-searching": "Soumettez la recherche pour afficher les graphiques de l’ozone total pour la station, l’instrument ou les instruments et l’année ou les années sélectionnés.",
+          "body-selections": "Sélectionnez une {station} pour commencer. Une liste des {instruments} qui ont été utilisés par cette station sera disponible. Sélectionnez soit tous les instruments, soit un réseau d’instruments spécifique, et sélectionnez soit toutes les années, soit une année de fonctionnement spécifique dans la liste des {years}."
         },
         "title": "Schémas d’ozone total",
         "keywords": "produits de données,ozone total,graphiques,tracés",
-        "description": "Outil de recherche pour afficher les schémas d'ozone total par année, station et instrument"
+        "description": "Outil de recherche pour afficher les schémas d’ozone total par année, station et instrument"
       },
       "uv-index": {
         "instructions": {
-          "body-grouping": "Les graphiques de l'indice UV sont regroupés par année dans le résultat de la recherche.",
-          "body-searching": "Soumettez la recherche pour afficher les graphiques de l'indice UV pour la station, le ou les instruments et l'année ou les années sélectionnés.",
+          "body-grouping": "Les graphiques de l’indice UV sont regroupés par année dans le résultat de la recherche.",
+          "body-searching": "Soumettez la recherche pour afficher les graphiques de l’indice UV pour la station, le ou les instruments et l’année ou les années sélectionnés.",
           "body-selections": "Sélectionnez une {station} pour commencer. Une liste des {instruments} qui ont été utilisés par cette station sera disponible : choisissez une des options. Sélectionnez soit toutes les {years}, soit une année spécifique dans la liste finale."
         },
-        "title": "Graphiques de l'indice UV",
-        "description": "Outil de recherche pour afficher les schémas d'indice UV par année, station et instrument",
+        "title": "Graphiques de l’indice UV",
+        "description": "Outil de recherche pour afficher les schémas d’indice UV par année, station et instrument",
         "keywords": "produits de données,uv,indice,graphiques,diagramme"
       },
       "keywords": "données,téléchargement de données,ftp",
@@ -1430,22 +1430,22 @@
         "forecastOnThisDay": "Prévisions pour ce jour-ci, préparées en avance",
         "forcastForThisDay": "Prévisions préparées ce jour-ci, pour les jours venants",
         "sourcedResults": "Résultats des sources individuelles",
-        "dayForecast": "Prévision de {forecastNum} jours | Prévision d'{forecastNum} jours | Prévision de {forecastNum} jours",
+        "dayForecast": "Prévision de {forecastNum} jours | Prévision d’{forecastNum} jours | Prévision de {forecastNum} jours",
         "groundBasedData": "Données prises au sol",
         "allSources": "Toutes sources mélangées",
-        "keywords": "cartes d'ozone, ozone observé, ozone prévu, sources individuelles, sources combinées, ozone total, écart par rapport à la normale, hémisphère nord, hémisphère sud, globe, mondial, Brewer, Dobson, TOMS, TOVS, GOME, KNMI, NCEP, SMOBA, TOAST",
+        "keywords": "cartes d’ozone, ozone observé, ozone prévu, sources individuelles, sources combinées, ozone total, écart par rapport à la normale, hémisphère nord, hémisphère sud, globe, mondial, Brewer, Dobson, TOMS, TOVS, GOME, KNMI, NCEP, SMOBA, TOAST",
         "mapsDescIntro": "Les cartes des écarts représentent une estimation des écarts de l’ozone total au niveau de 1978 à 1988 d’après les données {toms}. pour toutes les régions sauf l’Antarctique, et du niveau d’avant 1980 estimé d’après les données des spectromètres Dobson au-dessus de l’Antarctique. Les cartes de l’ozone total pour l’hémisphère Sud sont réalisées, d’une part, à partir des données maillées provenant du spectromètre imageur d’ozone total (TOMS) à bord du satellite Earth Probe, disponibles de la {nasaTomsHomepage}, {noaaSmoba} (si les données de TOMS ne sont pas disponible), et des mesures effectuées au sol. Dans la région plongée dans la nuit polaire, on a recours aux données des observations du Brewer en lumière lunaire et/ou aux celles du {tovsAcronym} de la NOAA. On utilisera également les données TOVS, à défaut de disposer des données plus fiables du TOMS. L’algorithme de mappage s’apparente à ceux qu’utilise le centre de mappage de l’ozone de l’OMM . Les valeurs de l’ozone total sont exprimées en {dobsonUnits}.",
         "viewMapsIndividualSources": "Voir les cartes de l’ozone des sources de données particulières",
         "mapsDescUpdateDaily": "Les cartes sont normalement mises à jour quotidiennement à environ 1400 UTC. Le système qui fonctionne en temps quasi réel est toutefois automatisé, et si un problème survient en dehors des heures normales de travail, il ne sera pas réglé avant le prochain jour ouvrable.",
         "mapsDescNumbersDobsonUnits": "Les nombres figurant sur les cartes à la résolution accrue représentent les valeurs de l’ozone total en dobsons mesurées aux stations terrestres. Les petits symboles qui suivent les nombres indiquent le type d’observation : L’absence de symboles signifie une mesure par soleil direct, la plus fiable; les relevés moins fiables de la lumière du ciel au zénith sont marqués d’un « z »; les relevés lunaires focalisés effectués pendant la nuit polaire sont marqués d’un « + ». Tous les autres relevés sont marqués d’un « * ». Pour de plus amples informations sur les relevés de l’ozone pris au sol, visiter le site Web à WOUDC.",
         "mapsDescWarningRealtime": "Les données étant traitées en temps quasi réel, elles ne sont pas toutes validées et sont donc préliminaires.",
         "dobsonUnits": "dobsons",
-        "ozoneMapsInfo": "Informations sur les cartes d'ozone",
-        "aboutMeasurements": "Les cartes d'ozone total reposent sur des mesures au sol provenant du Centre mondial des données sur l'ozone et le rayonnement ultraviolet. On a aussi utilisé les données préliminiaires en temps quasi-réel des mesures au sol pour les cartes les plus récentes. Les valeurs de l'ozone total sont exprimées en dobsons. Les nombres représentent les observations des stations terrestres qui se trouvent à leur gauche sur la carte.",
-        "aboutDeviations": "Les cartes des écarts représentent les écarts de l'ozone total par rapport au niveau de 1978 à 1988 estimé d'après les données du spectromètre imageur de l'ozone total (TOMS) pour toutes les régions sauf l'Antarctique. Avant 1980 les niveaux de l'Antarctique sont estimés utilisant les données des instruments Dobson.",
+        "ozoneMapsInfo": "Informations sur les cartes d’ozone",
+        "aboutMeasurements": "Les cartes d’ozone total reposent sur des mesures au sol provenant du Centre mondial des données sur l’ozone et le rayonnement ultraviolet. On a aussi utilisé les données préliminiaires en temps quasi-réel des mesures au sol pour les cartes les plus récentes. Les valeurs de l’ozone total sont exprimées en dobsons. Les nombres représentent les observations des stations terrestres qui se trouvent à leur gauche sur la carte.",
+        "aboutDeviations": "Les cartes des écarts représentent les écarts de l’ozone total par rapport au niveau de 1978 à 1988 estimé d’après les données du spectromètre imageur de l’ozone total (TOMS) pour toutes les régions sauf l’Antarctique. Avant 1980 les niveaux de l’Antarctique sont estimés utilisant les données des instruments Dobson.",
         "aboutPoorCoverage": "Dans les régions où les données sont rares, on ajuste les mesures en fonction des données TOMS provenant des satellites Nimbus-7, Meteor-3, ADEOS et Earth Probe. Où il y a la nuit polaire on utilise les observations lunaires des instruments Dobson et Brewer et/ou les données du satellite TIROS Operational Vertical Sounder (TOVS) de NOAA. On utilise aussi les données de TOVS lorsque les données de TOMS, qui sont plus fiables, ne sont pas disponibles. L’algorithme de cartographie est similaire à celui utilisé par le Centre OMM de la cartographie de l’ozone.",
-        "aboutDateInterval": "La partie « jour » de la « Date de départ » peut spécifier un jour (1 à 31), un moyen qui couvre le mois entier (1er à la fin) ou le moyen d'une période de « 10 jours » pendant le mois (1er au 10, 11 au 20, 21 à la fin, qui peut durer 8 ou 9 ou 11 jours). Elle doit correspondre logiquement à l'unité de l'« Intervalle ».",
-        "title": "Cartes d'ozone",
+        "aboutDateInterval": "La partie « jour » de la « Date de départ » peut spécifier un jour (1 à 31), un moyen qui couvre le mois entier (1er à la fin) ou le moyen d’une période de « 10 jours » pendant le mois (1er au 10, 11 au 20, 21 à la fin, qui peut durer 8 ou 9 ou 11 jours). Elle doit correspondre logiquement à l’unité de l’« Intervalle ».",
+        "title": "Cartes d’ozone",
         "tovsAcronym": "Sondeur vertical opérationnel TIROS (TOVS)",
         "wmoOzoneMappingCentre": "centre de mappage de l’ozone de l’OMM ",
         "noaa": "NOAA",
@@ -1464,34 +1464,35 @@
           "ncep": "NCEP"
         },
         "dd": {
-          "allSourcesBlended": "« Mélange de toutes les sources » est une plus petite copie des cartes d'ozone total situées dans l'archive des cartes d'ozone. Il est construit d'un mélange des autres cartes. Les données des satellites ont été lissées.",
-          "groundBasedData": "« Données prises au sol » ont leur origine dans les instruments au sol, c.-à-d. les Brewer, les Dobson, les ozonomètres de type filtre, les {saozInstruments} (Système d'Analyse par Observations Zénithales). Les données récentes sont contribuées par {eccc}, l'{russianCentralAerologicalObservatory}, et par des agences situées dans plusieurs autres pays. Les données plus âgées ont été obtenues du Centre mondial des données sur l'ozone et le rayonnement ultraviolet (WOUDC). Les données de meilleure qualité s'achève pendant les jours de plein soleil. Pourtant les techniques existent pour mesurer l'ozone pendant les jours nuageux et parfois pendant la nuit en utilisant la lumière lunaire.",
-          "toms": "« Satellite TOMS » signifie les données prises du {tomsFullName} de la {nasa} à bord du satellite Earth Probe. De plus, les données de l'instrument OMI se figurent ici.",
-          "tovs": "« Satellite TOVS » signifie les données prises du {tovsFullName} de la {noaa} à bord des satellites de la NOAA en orbite polaire. Ses données sont moins fiables que celles du TOMS. Pourtant le TOVS est capable de voir l'ozone pendant la nuit, en particulier la nuit polaire.",
-          "gome": "« Satellite GOME ». Pour la période 1995 à 2003, les données sont de la {gomeFullName} de l'{esaFullName} à bord du {ers2FullName}. À partir de 2008, les données sont de l'instrument {gome2} à bord du {metOpA} (lancé en octobre 2006) pourvu par le {wdrsatFullName}."
+          "allSourcesBlended": "« Mélange de toutes les sources » est une plus petite copie des cartes d’ozone total situées dans l’archive des cartes d’ozone. Il est construit d’un mélange des autres cartes. Les données des satellites ont été lissées.",
+          "groundBasedData": "« Données prises au sol » ont leur origine dans les instruments au sol, c.-à-d. les Brewer, les Dobson, les ozonomètres de type filtre, les {saozInstruments} (Système d’Analyse par Observations Zénithales). Les données récentes sont contribuées par {eccc}, l’{russianCentralAerologicalObservatory}, et par des agences situées dans plusieurs autres pays. Les données plus âgées ont été obtenues du Centre mondial des données sur l’ozone et le rayonnement ultraviolet (WOUDC). Les données de meilleure qualité s’achève pendant les jours de plein soleil. Pourtant les techniques existent pour mesurer l’ozone pendant les jours nuageux et parfois pendant la nuit en utilisant la lumière lunaire.",
+          "toms": "« Satellite TOMS » signifie les données prises du {tomsFullName} de la {nasa} à bord du satellite Earth Probe. De plus, les données de l’instrument OMI se figurent ici.",
+          "tovs": "« Satellite TOVS » signifie les données prises du {tovsFullName} de la {noaa} à bord des satellites de la NOAA en orbite polaire. Ses données sont moins fiables que celles du TOMS. Pourtant le TOVS est capable de voir l’ozone pendant la nuit, en particulier la nuit polaire.",
+          "gome": "« Satellite GOME ». Pour la période 1995 à 2003, les données sont de la {gomeFullName} de l’{esaFullName} à bord du {ers2FullName}. À partir de 2008, les données sont de l’instrument {gome2} à bord du {metOpA} (lancé en octobre 2006) pourvu par le {wdrsatFullName}."
         },
-        "saozInstruments": "instruments SAOZ (Système d'Analyse par Observations Zénithales)",
+        "saozInstruments": "instruments SAOZ (Système d’Analyse par Observations Zénithales)",
         "russianCentralAerologicalObservatory": "Observatioire Central Aérologique Russe",
-        "tomsFullName": "Spectromètre imageur d'ozone total (TOMS)",
+        "tomsFullName": "Spectromètre imageur d’ozone total (TOMS)",
         "nasa": "NASA",
         "tovsFullName": "Sondeur vertical opérationnel Tiros (TOVS)",
-        "gomeFullName": "experience mondiale pour la surveillance de l'ozone (GOME)",
+        "gomeFullName": "experience mondiale pour la surveillance de l’ozone (GOME)",
         "esaFullname": "Agence Spatiale Européenne (ESA)",
-        "wdcrsatFullName": "Centre Mondial pour la Télédétection de l'Atmosphère (WDC-RSAT)",
+        "wdcrsatFullName": "Centre Mondial pour la Télédétection de l’Atmosphère (WDC-RSAT)",
         "gome2": "GOME-2",
         "ers2FullName": "Satellite Européen pour la Télédétection, Numéro 2 (ERS-2)",
         "metOpA": "MetOp-A"
       },
       "josieBesos": {
-        "title": "Données de l'Expérience d'Intercomparaison des Sondes d'Ozone de Jülich (EISOJ) et l'Expérience de Ballons sur les Standards des Sondes d'Ozone (EBSSO)",
-        "description": "L'objectif de la campagne de {besosAndAbbr} est d'établir un ensemble de procédures opérationnelles standard (SOP) pour le lancement des sondes d'ozone à cellule de concentration électrochimique (CCE) sur les sites GAW de l'OMM (Organisation Météorologique Mondiale, Global atmospheric watch). \nLa campagne fait suite à la série d'études de chambres ECC réalisées au cours de l'expérience intercomparicon des sondes d'ozone de Jülich (JOSIE) de 1996 à 2000 au Centre mondial d'étalonnage des sondes d'ozone (WCCOS) au Forschungszentrum de Jülich (Allemagne).",
-        "keywords": "JOSIE,BESOS,sonde d'ozone,intercomparaison",
-        "besosBlurb": "En 2004, la campagne de terrain de l'EBSSO (Expérience de Ballons sur les Standards des Sondes d'Ozone) de l'OMM, réalisée à Laramie (Wyoming, USA), a déployé une grande gondole avec 18 ozonesondes et l'OPM du CMESO {attribution} avec des résultats similaires à ceux de l'EISOJ.",
-        "josieBlurb": "Afin d'évaluer les performances de diverses sondes d'ozone électrochimiques et de garantir la cohérence des données des sondes d'ozone, l'installation de simulation environnementale du Forschungszentrum Juelich a été créée en 1994 sous le nom du {wccosAndAbbr} de l'OMM-GAW dans le cadre \nde leur plan d’assurance qualité (AQ). \nÀ partir de 1996, une série de campagnes de l'{josieAndAbbr} ont depuis été menées au (CMESO) pour évaluer différents types des sondes d'ozone {attribution}.",
+        "title": "Données de l’Expérience d’Intercomparaison des Sondes d’Ozone de Jülich (EISOJ) et l’Expérience de Ballons sur les Standards des Sondes d’Ozone (EBSSO)",
+        "description": "L’objectif de la campagne de {besosAndAbbr} est d’établir un ensemble de procédures opérationnelles standard (SOP) pour le lancement des sondes d’ozone à cellule de concentration électrochimique (CCE) sur les sites GAW de l’OMM (Organisation Météorologique Mondiale, Global atmospheric watch). \nLa campagne fait suite à la série d’études de chambres ECC réalisées au cours de l’expérience intercomparicon des sondes d’ozone de Jülich (JOSIE) de 1996 à 2000 au Centre mondial d’étalonnage des sondes d’ozone (WCCOS) au Forschungszentrum de Jülich (Allemagne).",
+        "keywords": "JOSIE,BESOS,sonde d’ozone,intercomparaison",
+        "besosBlurb": "En 2004, la campagne de terrain de l’EBSSO (Expérience de Ballons sur les Standards des Sondes d’Ozone) de l’OMM, réalisée à Laramie (Wyoming, USA), a déployé une grande gondole avec 18 ozonesondes et l’OPM du CMESO {attribution} avec des résultats similaires à ceux de l’EISOJ.",
+        "josieBlurb": "Afin d’évaluer les performances de diverses sondes d’ozone électrochimiques et de garantir la cohérence des données des sondes d’ozone, l’installation de simulation environnementale du Forschungszentrum Juelich a été créée en 1994 sous le nom du {wccosAndAbbr} de l’OMM-GAW dans le cadre \nde leur plan d’assurance qualité (AQ). \nÀ partir de 1996, une série de campagnes de l’{josieAndAbbr} ont depuis été menées au (CMESO) pour évaluer différents types des sondes d’ozone {attribution}.",
         "wccos": "WCCOS",
-        "josie": "JOSIE",
-        "wccosAndAbbr": "Centre Mondial d'Étalonnage des Sondes d'Ozone (CMESO)",
-        "josieAndAbbr": "Expérience d'Intercomparaison des Sondes d'Ozone de Jülich (EISOJ) "
+        "josie": "EISOJ",
+        "wccosAndAbbr": "Centre Mondial d’Étalonnage des Sondes d’Ozone (CMESO)",
+        "josieAndAbbr": "Expérience d’Intercomparaison des Sondes d’Ozone de Jülich (EISOJ) ",
+        "besos": "EBSSO"
       }
     },
     "quality": {
@@ -1549,7 +1550,7 @@
         "dataset": "Catégorie de données",
         "end_date": "Jusqu’à cette date",
         "model": "Modèle de l’instrument",
-        "name": "Type d'instrument",
+        "name": "Type d’instrument",
         "serial": "Numéro de l’instrument",
         "start_date": "À partir de cette date",
         "waf_url": "Dossier accessible sur le web"
@@ -1563,42 +1564,42 @@
         "name": "Nom de la station",
         "start_date": "À partir de cette date",
         "type": "Type de station",
-        "wmo_region_id": "Région de l'OMM",
+        "wmo_region_id": "Région de l’OMM",
         "woudc_id": "Identification de la station du WOUDC"
       },
       "station-id": "Identification de la station du WOUDC :",
       "station-name": "Nom de la station :",
       "title": "Liste des stations",
-      "description": "Liste de toutes les stations de l'archive de données WOUDC",
+      "description": "Liste de toutes les stations de l’archive de données WOUDC",
       "keywords": "Stations, liste, recherche, identifiant gaw, nom de la station, pays, région OMM",
       "single": {
         "keywords": "Station, détails, fichiers soumis, observations, pays, plage de dates, contributeur de la station, instruments de la station, métadonnées de la station",
-        "description": "Vue détaillée d'une seule station de l'archive de données WOUDC, y compris ses instruments, contributeur et plage de dates des fichiers de données"
+        "description": "Vue détaillée d’une seule station de l’archive de données WOUDC, y compris ses instruments, contributeur et plage de dates des fichiers de données"
       }
     },
     "title": "Données",
-    "description": "Données - Page d'accueil principale",
+    "description": "Données - Page d’accueil principale",
     "search": {
       "keywords": "WOUDC,données,recherche,consultation,téléchargement,vrac,services web,géospatial,csv,geojson,json",
       "description": "Assure la fonctionnalité des requêtes envoyées au centre de données WOUDC et les résultats de consultation et de téléchargement"
     }
   },
   "error": {
-    "error-link-end": "page d'accueil",
+    "error-link-end": "page d’accueil",
     "error-link-start": "Retournez à la",
     "error-text": {
       "not-found-text": "Nous sommes désolés que vous ayez abouti ici. La page que vous recherchez peut avoir déménagé ou été supprimé.",
       "other-error-text": "Une erreur s’est produite et il n’est pas possible d’afficher cette page."
     },
     "not-found": "Nous ne pouvons trouver cette page Web (Erreur 404)",
-    "other-error": "Une erreur s'est produite",
+    "other-error": "Une erreur s’est produite",
     "requiredField": "Ce champ est obligatoire",
     "dateOutOfRange": "La date doit être choisie entre {dateStart} et {dateEnd}"
   },
   "home": {
     "aboutWoudc": "Qu’est-ce que le WOUDC",
     "adTitle": "Découvrez, visualisez ou accédez aux archives mondiales des données terrestres sur l’ozone et le rayonnement UV",
-    "blurb": "Un centre de données de l'Organisation métérologique mondiale ({wmo}) qui supporte le programme de Veille de l’atmosphère du globe ({gaw}) opéré par Environnement et Changement climatique Canada.",
+    "blurb": "Un centre de données de l’Organisation métérologique mondiale ({wmo}) qui supporte le programme de Veille de l’atmosphère du globe ({gaw}) opéré par Environnement et Changement climatique Canada.",
     "gawLogo": "Logo : @.gawFull",
     "learnMore": "En savoir plus",
     "news": {
@@ -1606,7 +1607,7 @@
       "title": "Nouvelles et mises à jour:"
     },
     "quickLinks": "Liens rapides:",
-    "wmoLogo": "Logo : l'Organisation météorologique mondiale",
+    "wmoLogo": "Logo : l’Organisation météorologique mondiale",
     "keywords": "ozone,ultraviolet,uv,ozone total,sonde pour l’ozone,umkehr,vag,omm,spectral,stations,instruments"
   },
   "news": {
@@ -1619,12 +1620,12 @@
     "links": {
       "links": "Liens de données connexes",
       "software": "Logiciel",
-      "sop": "Procédures d'utilisation normalisées",
+      "sop": "Procédures d’utilisation normalisées",
       "working_groups": "Groupes de travail",
       "keywords": "WOUDC, ressources, liens, sites connexes"
     },
     "procedures": {
-      "blurb": "Liens vers les Procédures d'utilisation normalisées (PUN) sur l’ozone et les rayons UV Données sur le rayonnement.",
+      "blurb": "Liens vers les Procédures d’utilisation normalisées (PUN) sur l’ozone et les rayons UV Données sur le rayonnement.",
       "headers": {
         "category": "Catégorie",
         "link": "PUN",
@@ -1662,7 +1663,7 @@
           "text": "Comparaison corrélative de l’index UV mondial relevé par les radiomètres multibandes : Harmonisation de l’index UV mondial et de l’irradiance spectrale"
         }
       },
-      "title": "Procédures d'utilisation normalisées",
+      "title": "Procédures d’utilisation normalisées",
       "keywords": "WOUDC, instructions d’opération, ozone, rayons ultraviolets, ozone, données qualité, qa, qc, assurance de la qualité, contrôle de la qualité, PUN, normes, manuel"
     },
     "related-links": {
@@ -1672,14 +1673,14 @@
         "esrl": "Laboratoire de recherche sur le système terrestre / division mondiale de surveillance (ESRL / GMD) - NOAA",
         "eubrewnet": "Réseau européen pour le Brewer (de EUBREWNET)",
         "euvdb": "Base de données UV européenne (EUVDB)",
-        "gawsis": "Système d'information sur les stations de la VAG (GAWSIS)",
-        "gozcards": "Chimie de l'ozone mondial et connexes enregistrements de données de traces de gaz pour la stratosphère (GOZCARDS) - NASA",
+        "gawsis": "Système d’information sur les stations de la VAG (GAWSIS)",
+        "gozcards": "Chimie de l’ozone mondial et connexes enregistrements de données de traces de gaz pour la stratosphère (GOZCARDS) - NASA",
         "mozaic": "Base de données MOZAIC / IAGOS ",
-        "ndacc": "Réseau de détection des changements de composition de l'atmosphère (NDACC) - NOAA",
-        "oscar": "L'outil OSCAR",
+        "ndacc": "Réseau de détection des changements de composition de l’atmosphère (NDACC) - NOAA",
+        "oscar": "L’outil OSCAR",
         "polar": "Réseau de surveillance NSF Polar Programs UV",
         "projects": "Projets et campagnes",
-        "shadoz": "Sondes d'ozone additionnelles de l'hémisphère sud (SHADOZ) - NASA",
+        "shadoz": "Sondes d’ozone additionnelles de l’hémisphère sud (SHADOZ) - NASA",
         "uvi": "Archives Polar / UVI données - NASA",
         "wdc-aerosol": "Centre mondial de données relatives aux aérosols",
         "wdc-ghg": "Centre mondial de données relatives aux gaz à effet de serre",
@@ -1693,7 +1694,7 @@
     "title": "Ressources",
     "working-groups": {
       "links": {
-        "brewer": "Groupe d'utilasateurs pour le Brewer",
+        "brewer": "Groupe d’utilasateurs pour le Brewer",
         "dobson": "Comité ad hoc pour le Dobson",
         "umkehr": "Sous-comité pour la méthode d’Umkehr"
       },
@@ -1701,6 +1702,6 @@
       "keywords": "WOUDC,groupe de travail,WG,Brewer,Dobson,Umkehr"
     },
     "keywords": "Ressources,page,principale",
-    "description": "Ressources - Page d'accueil principale"
+    "description": "Ressources - Page d’accueil principale"
   }
 }

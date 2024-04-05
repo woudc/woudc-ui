@@ -4,14 +4,14 @@
 
     <h2>{{ $t('common.abstract') }}</h2>
 
+    <!-- prettier-ignore -->
     <i18n path="data.products.josieBesos.josieBlurb" tag="p">
       <template #wccosAndAbbr>
         <a
           href="https://www.wccos-josie.org/en/wccos"
           hreflang="en"
           target="_blank"
-        >
-          {{ $t('data.products.josieBesos.wccosAndAbbr') }}
+        >{{ $t('data.products.josieBesos.wccosAndAbbr') }}
           <v-icon small>mdi-open-in-new</v-icon>
         </a>
       </template>
@@ -20,8 +20,7 @@
           href="https://www.wccos-josie.org/en/josie"
           hreflang="en"
           target="_blank"
-        >
-          {{ $t('data.products.josieBesos.josieAndAbbr') }}
+        >{{ $t('data.products.josieBesos.josieAndAbbr') }}
           <v-icon small>mdi-open-in-new</v-icon>
         </a>
       </template>
@@ -61,40 +60,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      dataList: [
-        {
-          text: 'JOSIE 1996',
-          href: `${this.$config.WOUDC_UI_WAF_URL}/Summaries/josie-besos/JOSIE 1996 Data.zip`,
-        },
-        {
-          text: 'JOSIE 1998',
-          href: `${this.$config.WOUDC_UI_WAF_URL}/Summaries/josie-besos/JOSIE 1998 Data.zip`,
-        },
-        {
-          text: 'JOSIE 2000',
-          href: `${this.$config.WOUDC_UI_WAF_URL}/Summaries/josie-besos/JOSIE 2000 Data.zip`,
-        },
-        {
-          text: 'JOSIE 2002',
-          href: `${this.$config.WOUDC_UI_WAF_URL}/Summaries/josie-besos/JOSIE 2002 Data.zip`,
-        },
-        {
-          text: 'JOSIE 2009 & 2010',
-          href: `${this.$config.WOUDC_UI_WAF_URL}/Summaries/josie-besos/JOSIE 2009 & 2010 Data.zip`,
-        },
-        {
-          text: 'JOSIE 2017-SHADOZ',
-          href: `${this.$config.WOUDC_UI_WAF_URL}/Summaries/josie-besos/JOSIE-SHADOZ 2017 Data.zip`,
-        },
-        {
-          text: 'BESOS 2004',
-          href: `${this.$config.WOUDC_UI_WAF_URL}/Summaries/josie-besos/BESOS 2004 Data.zip`,
-        },
-      ],
-    }
-  },
   head() {
     return {
       title: this.$t('data.products.josieBesos.title'),
@@ -115,6 +80,40 @@ export default {
         },
       ],
     }
+  },
+  computed: {
+    dataList() {
+      return [
+        {
+          text: `${this.$t('data.products.josieBesos.josie')} 1996`,
+          href: `${this.$config.WOUDC_UI_WAF_URL}/Summaries/josie-besos/JOSIE 1996 Data.zip`,
+        },
+        {
+          text: `${this.$t('data.products.josieBesos.josie')} 1998`,
+          href: `${this.$config.WOUDC_UI_WAF_URL}/Summaries/josie-besos/JOSIE 1998 Data.zip`,
+        },
+        {
+          text: `${this.$t('data.products.josieBesos.josie')} 2000`,
+          href: `${this.$config.WOUDC_UI_WAF_URL}/Summaries/josie-besos/JOSIE 2000 Data.zip`,
+        },
+        {
+          text: `${this.$t('data.products.josieBesos.josie')} 2002`,
+          href: `${this.$config.WOUDC_UI_WAF_URL}/Summaries/josie-besos/JOSIE 2002 Data.zip`,
+        },
+        {
+          text: `${this.$t('data.products.josieBesos.josie')} 2009 & 2010`,
+          href: `${this.$config.WOUDC_UI_WAF_URL}/Summaries/josie-besos/JOSIE 2009 & 2010 Data.zip`,
+        },
+        {
+          text: `${this.$t('data.products.josieBesos.josie')}-SHADOZ 2017`,
+          href: `${this.$config.WOUDC_UI_WAF_URL}/Summaries/josie-besos/JOSIE-SHADOZ 2017 Data.zip`,
+        },
+        {
+          text: `${this.$t('data.products.josieBesos.besos')} 2004`,
+          href: `${this.$config.WOUDC_UI_WAF_URL}/Summaries/josie-besos/BESOS 2004 Data.zip`,
+        },
+      ]
+    },
   },
   nuxtI18n: {
     paths: {

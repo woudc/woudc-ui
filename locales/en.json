@@ -1534,7 +1534,8 @@
         "wccos": "WCCOS",
         "josie": "JOSIE",
         "wccosAndAbbr": "World Calibration Centre for Ozone Sondes (WCCOS)",
-        "josieAndAbbr": "Jülich Ozone Sonde Intercomparison Experiment (JOSIE)"
+        "josieAndAbbr": "Jülich Ozone Sonde Intercomparison Experiment (JOSIE)",
+        "besos": "BESOS"
       }
     },
     "quality": {
