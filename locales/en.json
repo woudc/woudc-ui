@@ -1504,14 +1504,25 @@
           "toast": "TOAST analysis",
           "toms": "TOMS satellite",
           "tovs": "TOVS satellite",
-          "ncep": "NCEP"
+          "ncep": "NCEP",
+          "knmiAnalysis": "KNMI analysis",
+          "knmiForecasts": "KNMI",
+          "totalOzone": "Total ozone",
+          "deviationFromNormal": "Deviation from normal"
         },
         "dd": {
           "allSourcesBlended": "“All sources blended” is a smaller copy of the total ozone maps found in the Ozone map archive. It is built from a blend of the other maps. Satellite data have been smoothed.",
           "groundBasedData": "“Ground-based data” are from instruments on the ground, Brewers, Dobsons, filter ozonometers, {saozInstruments}. New data are contributed by {eccc}, the {russianCentralAerologicalObservatory}, and by agencies in many other countries. Older data have been obtained from the World Ozone and Ultraviolet Radiation Data Centre (WOUDC). Data quality is best when taken on a sunny day, but techniques are available to measure ozone during cloudy days and sometimes at night using lunar light.",
           "toms": "“TOMS satellite” is from {nasa}'s {tomsFullName} on board the Earth Probe satellite. Data from the OMI instrument are also included here.",
           "tovs": "“TOVS satellite” is from {noaa}'s {tovsFullName} on the NOAA polar-orbiting satellites. Its data is less reliable than TOMS data but TOVS can see ozone at night, in particular during the polar night.",
-          "gome": "“GOME satellite”. For the period 1995-2003, data is from the {esaFullName}'s {gomeFullName} on board the {esa2FullName}. For the period from 2008, data is from the {gome2} instrument on board {metOpA} (launched in October 2006) provided by the {wdrsatFullName}."
+          "gome": "“GOME satellite”. For the period 1995-2003, data is from the {esaFullName}'s {gomeFullName} on board the {esa2FullName}. For the period from 2008, data is from the {gome2} instrument on board {metOpA} (launched in October 2006) provided by the {wdrsatFullName}.",
+          "knmiAnalysis": "“KNMI analysis” is based on the GOME Fast delivery service data (up to 2003), and data from the SCIAMACHY instrument on the Envisat satellite, interpreted by the TEMIS service (starting 2004), provided by the Royal Netherlands Meteorological Institute (KNMI).",
+          "smoba": "“SMOBA analysis” is from NOAA's Stratosphere Monitoring Ozone Blended Analysis (SMOBA), which uses measurements from SBUV/2 (Solar backscatter ultraviolet instrument) equatorward of the polar night with TOVS ozone data blended from the terminator poleward.",
+          "toast": "“TOAST analysis” is from NOAA's Total Ozone Analysis using SBUV/2 and TOVS, which uses measurements from SBUV/2 and TOVS.",
+          "ncep": "“NCEP” forecasts are issued daily by the National Centers for Environmental Prediction (NCEP) of the National Oceanographic and Atmospheric Administration (NOAA) in the USA, for every 6 hours from 0 to 120, at 0h UTC each day. These maps are a subset, representing every 24 hours from 12 to 108, i.e. for 12h UTC on days 0 to 4.",
+          "knmiForecasts": "“KNMI” forecasts are issued daily by the Royal Netherlands Meteorological Institute (KNMI), representing every day from 0 to 4, at 12h UTC.",
+          "totalOzone": "“Total Ozone” represents the total amount of ozone in a vertical column reaching from the earth's surface to the top of the atmosphere. Values are given in Dobson Units.",
+          "deviationFromNormal": "“Deviation from Normal” represents total ozone deviations from the 1978-1988 level estimated using TOMS data. Values are given in percent."
         },
         "saozInstruments": "SAOZ instruments",
         "russianCentralAerologicalObservatory": "Russian Central Aerological Observatory",
@@ -1523,7 +1534,17 @@
         "wdcrsatFullName": "World Data Center for Remote Sensing of the Atmosphere (WDC-RSAT)",
         "gome2": "GOME-2",
         "ers2FullName": "European Remote Sensing Satellite-2 (ERS-2)",
-        "metOpA": "MetOp-A"
+        "metOpA": "MetOp-A",
+        "dataSourcesFrom": {
+          "toms": "the Total Ozone Mapping Spectrometer (TOMS) on NASA's Earth Probe satellite",
+          "omi": "the OMI (\"Ozone Monitoring Instrument\") instrument, a joint project of the Netherlands Agency for Aerospace Programmes (NIVR), and the Finnish Meteorological Institute (FMI) on board NASA's EOS Aura satellite. OMI data are available from the NASA TOMS site and are processed with Version 8 of the TOMS processing algorithm",
+          "smoba": "NOAA's Stratosphere Monitoring Ozone Blended Analysis (SMOBA)",
+          "tovs": "NOAA's TIROS Operational Vertical Sounder (TOVS)",
+          "gome": "the Global Ozone Monitoring Experiment (GOME) on the European Space Agency's (ESA) ERS-2 satellite and GOME-2 on EUMETSAT's MetOp-A satellite",
+          "toast": "NOAA's TOAST, and from observations taken at ground-based stations by many national agencies."
+        },
+        "illustrationPurposes": "These maps are for purposes of illustration only. For any more detailed use of the data, please go to the original sources mentioned above.",
+        "dataObtainedFrom": "Data are obtained from"
       },
       "josieBesos": {
         "title": "Jülich Ozone Sonde Intercomparison Experiment (JOSIE) and Balloon Experiment on Standards for Ozone Sondes (BESOS) data",

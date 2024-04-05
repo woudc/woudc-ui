@@ -223,6 +223,7 @@
         >
           <h3>{{ pathsByHemisphere.hemisphere }}</h3>
           <graph-carousel
+            v-if="pathsByHemisphere.maps.length > 0"
             :key="sourcedObservedRerender"
             :graphs="pathsByHemisphere.maps"
           ></graph-carousel>
@@ -1039,6 +1040,7 @@ export default {
               // remove map path that is not available
               if (availableList.indexOf(urlToCheck) === -1) {
                 paths[fn].maps.splice(i, 1)
+                i-- // adjust i because current i will become i+1 (the next i)
               }
             }
           }
@@ -1071,12 +1073,14 @@ export default {
           const hemispheres = Object.keys(paths)
           for (const hp of hemispheres) {
             for (let i = 0; i < paths[hp].maps.length; i++) {
+              // extract out the subPath for validation: "{hemisphere}500/{yyyy}/{measureType}{sourceAbbrv}{yyyymmdd}.gif"
               let urlToCheck = paths[hp].maps[i].url
               const substrSearch = 'ozone_maps/'
               const lenSearch = substrSearch.length
               urlToCheck = urlToCheck.substring(
                 urlToCheck.indexOf(substrSearch) + lenSearch
               )
+              // extract out the "{hemisphere}500"
               const urlParts = urlToCheck.split('/')
               const subPathPart = urlParts[0]
               const availableList =
@@ -1086,6 +1090,7 @@ export default {
               // remove map path that is not available
               if (availableList.indexOf(urlToCheck) === -1) {
                 paths[hp].maps.splice(i, 1)
+                i-- // adjust i because current i will become i+1 (the next i)
               }
             }
           }
@@ -1093,7 +1098,6 @@ export default {
           // update modified paths (reduced via splice)
           this.sourcedObservedMapPaths = paths
           this.sourcedObservedRerender++
-
           this.sourcedObservedPathsVerified = true
         })
         .finally(() => {

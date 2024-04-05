@@ -1461,14 +1461,25 @@
           "toast": "Analyse TOAST",
           "toms": "Satellite TOMS",
           "tovs": "Satellite TOVS",
-          "ncep": "NCEP"
+          "ncep": "NCEP",
+          "knmiAnalysis": "Analyse de KNMI",
+          "knmiForecasts": "KNMI",
+          "totalOzone": "Ozone total",
+          "deviationFromNormal": "Écart du normal"
         },
         "dd": {
           "allSourcesBlended": "« Mélange de toutes les sources » est une plus petite copie des cartes d’ozone total situées dans l’archive des cartes d’ozone. Il est construit d’un mélange des autres cartes. Les données des satellites ont été lissées.",
           "groundBasedData": "« Données prises au sol » ont leur origine dans les instruments au sol, c.-à-d. les Brewer, les Dobson, les ozonomètres de type filtre, les {saozInstruments} (Système d’Analyse par Observations Zénithales). Les données récentes sont contribuées par {eccc}, l’{russianCentralAerologicalObservatory}, et par des agences situées dans plusieurs autres pays. Les données plus âgées ont été obtenues du Centre mondial des données sur l’ozone et le rayonnement ultraviolet (WOUDC). Les données de meilleure qualité s’achève pendant les jours de plein soleil. Pourtant les techniques existent pour mesurer l’ozone pendant les jours nuageux et parfois pendant la nuit en utilisant la lumière lunaire.",
           "toms": "« Satellite TOMS » signifie les données prises du {tomsFullName} de la {nasa} à bord du satellite Earth Probe. De plus, les données de l’instrument OMI se figurent ici.",
           "tovs": "« Satellite TOVS » signifie les données prises du {tovsFullName} de la {noaa} à bord des satellites de la NOAA en orbite polaire. Ses données sont moins fiables que celles du TOMS. Pourtant le TOVS est capable de voir l’ozone pendant la nuit, en particulier la nuit polaire.",
-          "gome": "« Satellite GOME ». Pour la période 1995 à 2003, les données sont de la {gomeFullName} de l’{esaFullName} à bord du {ers2FullName}. À partir de 2008, les données sont de l’instrument {gome2} à bord du {metOpA} (lancé en octobre 2006) pourvu par le {wdrsatFullName}."
+          "gome": "« Satellite GOME ». Pour la période 1995 à 2003, les données sont de la {gomeFullName} de l’{esaFullName} à bord du {ers2FullName}. À partir de 2008, les données sont de l’instrument {gome2} à bord du {metOpA} (lancé en octobre 2006) pourvu par le {wdrsatFullName}.",
+          "knmiAnalysis": "« Analyse de KNMI » est basée sur le Service d'expédition rapide du GOME (jusqu'à 2003), et les données de l'instrument SCIAMACHY à bord du satellite Envisat, interpretées par le service TEMIS (à partir de 2004), fournie par l'Institut météorologique royal néerlandais (KNMI).",
+          "smoba": "« Analyse SMOBA » signifie les données prises de l'analyse harmonisé de l'ozone, monitorage de la stratosphère (SMOBA) de la NOAA, qui utilise les mesures du SBUV/2 (détecteur de rayonnements solaires rétrodiffusés), sauf dans les régions couvertes par la nuit polaire où les données du TOVS sont prises.",
+          "toast": "« Analyse TOAST » signifie les données prises de l'Analyse de l'ozone total en utilisant le SBUV/2 et le TOVS (Total Ozone Analysis using SBUV/2 and TOVS) de la NOAA, qui utilise les mesures du SBUV/2 et du TOVS.",
+          "ncep": "Les prévisions « NCEP » sont émises quotidiennement par les National Centers for Environmental Prediction (Centres nationaux pour les prévisions environnementales) (NCEP) de la National Oceanic and Atmospheric Administration (Administration océanique et atmosphérique nationale) (NOAA) aux É.-U.A., pour chaque 6 heures de 0 jusqu'à 120, à 0h UTC chaque jour. Ces cartes-ci forment un sous-ensemble, représentant toutes les 24 heures de 12 à 108, c-à-d pour 12h UTC tous les jours de 0 à 4.",
+          "knmiForecasts": "Les prévisions « KNMI » sont émises quotidiennement par le Institut météorologique royal néerlandais (KNMI), représentant tous les jours de 0 à 4, à 12h UTC.",
+          "totalOzone": "« Ozone total » représente la quantité totale d'ozone dans une colonne verticale qui s'étend de la surface de la terre jusqu'à l'extrémité supérieure de l'atmosphère. Les valeurs sont présentées en dobsons.",
+          "deviationFromNormal": "« Écart du normal » représente une estimation des écarts de l'ozone total au niveau de 1978 à 1988 d'après les données TOMS. Les valeurs sont présentées en pourcentage."
         },
         "saozInstruments": "instruments SAOZ (Système d’Analyse par Observations Zénithales)",
         "russianCentralAerologicalObservatory": "Observatioire Central Aérologique Russe",
@@ -1480,7 +1491,17 @@
         "wdcrsatFullName": "Centre Mondial pour la Télédétection de l’Atmosphère (WDC-RSAT)",
         "gome2": "GOME-2",
         "ers2FullName": "Satellite Européen pour la Télédétection, Numéro 2 (ERS-2)",
-        "metOpA": "MetOp-A"
+        "metOpA": "MetOp-A",
+        "dataSourcesFrom": {
+          "toms": "le Spectromètre imageur d'ozone total (TOMS) à bord du satellite Earth Probe de la NASA",
+          "omi": "l'instrument OMI (\"Ozone Monitoring Instrument\", instrument pour la surveillance de l'ozone), une collaboration de l'Agence Néerlandaise pour les programmes aérospatiales (NIVR) et l'Institut Finlandais de la métérologie (FMI), à bord du satellite Aura de l'EOS de la NASA. Les données d'OMI sont disponible au site du TOMS de la NASA et sont traitées par la version 8 de l'algorithme de traitement de TOMS",
+          "smoba": "Stratosphere Monitoring Ozone Blended Analysis (SMOBA) de la NOAA",
+          "tovs": "TIROS Operational Vertical Sounder (TOVS) de la NOAA",
+          "gome": "l'appareillage de surveillance mondiale de l'ozone (GOME) à bord du satellite ERS-2 de l'Agence spatiale européenne (ESA) et GOME-2 à bord du satellite MetOp-A de la EUMETSAT",
+          "toast": "TOAST de la NOAA, et d'observations prises aux stations au sol par plusieurs agences nationaux."
+        },
+        "illustrationPurposes": "On vous présente des cartes dans le seul but d'illustration. Pour utiliser davantage ces données, veuiller accéder aux sources originales mentionnées ci-haut.",
+        "dataObtainedFrom": "Les données sont fournies par"
       },
       "josieBesos": {
         "title": "Données de l’Expérience d’Intercomparaison des Sondes d’Ozone de Jülich (EISOJ) et l’Expérience de Ballons sur les Standards des Sondes d’Ozone (EBSSO)",

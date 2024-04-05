@@ -9,7 +9,7 @@
           </template>
         </v-expansion-panel-header>
         <v-expansion-panel-content>
-          <p>Data are obtained from</p>
+          <p>{{ $t('data.products.ozone_maps.dataObtainedFrom') }}</p>
           <ul>
             <li>{{ $t('data.products.ozone_maps.dataSourcesFrom.toms') }}</li>
             <li>{{ $t('data.products.ozone_maps.dataSourcesFrom.omi') }}</li>
@@ -20,7 +20,7 @@
           </ul>
 
           <!-- prettier-ignore -->
-          <dl>
+          <dl class="mt-2">
             <dt>{{ $t('data.products.ozone_maps.dt.allSourcesBlended') }}</dt>
             <i18n
               path="data.products.ozone_maps.dd.allSourcesBlended"
@@ -120,7 +120,51 @@
                   hreflang="en" target="_blank">
                   {{ $t('data.products.ozone_maps.wdcrsatFullName') }}</a></template>
             </i18n>
+
+            <dt>{{ $t('data.products.ozone_maps.dt.knmiAnalysis') }}</dt>
+            <i18n
+              path="data.products.ozone_maps.dd.knmiAnalysis"
+              tag="dd"
+            ></i18n>
+
+            <dt>{{ $t('data.products.ozone_maps.dt.smoba') }}</dt>
+            <i18n
+              path="data.products.ozone_maps.dd.smoba"
+              tag="dd"
+            ></i18n>
+
+            <dt>{{ $t('data.products.ozone_maps.dt.toast') }}</dt>
+            <i18n
+              path="data.products.ozone_maps.dd.toast"
+              tag="dd"
+            ></i18n>
+
+            <dt>{{ $t('data.products.ozone_maps.dt.ncep') }}</dt>
+            <i18n
+              path="data.products.ozone_maps.dd.ncep"
+              tag="dd"
+            ></i18n>
+
+            <dt>{{ $t('data.products.ozone_maps.dt.knmiForecasts') }}</dt>
+            <i18n
+              path="data.products.ozone_maps.dd.knmiForecasts"
+              tag="dd"
+            ></i18n>
+
+            <dt>{{ $t('data.products.ozone_maps.dt.totalOzone') }}</dt>
+            <i18n
+              path="data.products.ozone_maps.dd.totalOzone"
+              tag="dd"
+            ></i18n>
+
+            <dt>{{ $t('data.products.ozone_maps.dt.deviationFromNormal') }}</dt>
+            <i18n
+              path="data.products.ozone_maps.dd.deviationFromNormal"
+              tag="dd"
+            ></i18n>
           </dl>
+
+          <p>{{ $t('data.products.ozone_maps.illustrationPurposes') }}</p>
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
