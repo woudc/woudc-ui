@@ -559,7 +559,7 @@
             "ozone": "Ozone: doi:10.14287/10000001",
             "uv": "UV Radiation: doi:10.14287/10000002"
           },
-          "title": "WOUDC Digital Object Identifiers (first order)"
+          "title": "Dataset categories"
         },
         "note2": {
           "items": {
@@ -575,7 +575,7 @@
             "umkehr2": "UmkehrN14 (Level 2.0): doi:10.14287/10000006",
             "uv-index": "UV Index: doi:10.14287/10000013"
           },
-          "title": "WOUDC Digital Object Identifiers (datasets)"
+          "title": "Datasets"
         },
         "title": "Digital Object Identifiers (DOI)"
       },
@@ -1258,7 +1258,7 @@
             "ozone": "Ozone: doi:10.14287/10000001",
             "uv": "UV Radiation: doi:10.14287/10000002"
           },
-          "title": "WOUDC Digital Object Identifiers (first order)"
+          "title": "Dataset categories"
         },
         "note2": {
           "items": {
@@ -1275,7 +1275,7 @@
             "uv-index": "UV Index: doi:10.14287/10000013",
             "josie-besos": "@:data.products.josieBesos.title: 10.14287/100000014"
           },
-          "title": "WOUDC Digital Object Identifiers (datasets)"
+          "title": "Datasets"
         },
         "title": "Digital Object Identifiers (DOI)"
       },

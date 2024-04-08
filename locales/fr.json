@@ -559,7 +559,7 @@
             "ozone": "Ozone : doi:10.14287/10000001",
             "uv": "Rayonnement UV : doi:10.14287/10000002"
           },
-          "title": "Identificateurs d’objets numériques WOUDC (premier ordre)"
+          "title": "Catégorie d'ensemble de données"
         },
         "note2": {
           "items": {
@@ -576,7 +576,7 @@
             "uv-index": "Indice UV : doi:10.14287/10000013",
             "josie-besos": "@:data.products.josieBesos.title : 10.14287/100000014"
           },
-          "title": "Identificateurs d’objets numériques WOUDC (ensembles de données)"
+          "title": "Ensembles de données"
         },
         "title": "Identificateurs d’objets numériques (DOI)"
       },
@@ -1258,7 +1258,7 @@
             "ozone": "Ozone: doi:10.14287/10000001",
             "uv": "Rayonnement UV: doi:10.14287/10000002"
           },
-          "title": "Identificateurs d’objets numériques WOUDC (premier ordre)"
+          "title": "Catégorie d'ensemble de données"
         },
         "note2": {
           "items": {
@@ -1274,7 +1274,7 @@
             "umkehr2": "UmkehrN14 (Niveau 2.0): doi:10.14287/10000006",
             "uv-index": "Indice UV: doi:10.14287/10000013"
           },
-          "title": "Identificateurs d’objets numériques WOUDC (ensembles de données)"
+          "title": "Ensembles de données"
         },
         "title": "Identificateurs d’objets numériques (DOI)"
       },
