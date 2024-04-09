@@ -18,11 +18,11 @@
     </i18n>
     <v-row>
       <v-col>
-        <v-card class="mt-1 mb-4" color="info">
-          <v-card-text>
+        <v-alert class="mt-1 mb-4" color="info" outlined text border="left">
+          <div>
             {{ $t('about.formats.note') }}
-          </v-card-text>
-        </v-card>
+          </div>
+        </v-alert>
         <h2>{{ $t('about.formats.contributor-guide.title') }}</h2>
         <ul>
           <li>

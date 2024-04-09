@@ -35,14 +35,14 @@
         </i18n>
         <h2>{{ $t('data.policy.gaw.title') }}</h2>
         <p>{{ $t('data.policy.gaw.blurb') }}</p>
-        <v-card color="info">
-          <v-card-title>
+        <v-alert color="info" outlined text border="left">
+          <h3>
             {{ $t('data.policy.gaw.note.title') }}
-          </v-card-title>
-          <v-card-text>
+          </h3>
+          <div>
             {{ $t('data.policy.gaw.note.body') }}
-          </v-card-text>
-        </v-card>
+          </div>
+        </v-alert>
         <h2>{{ $t('data.policy.doi.title') }}</h2>
         <i18n path="data.policy.doi.blurb" tag="p">
           <template #dois>
@@ -54,52 +54,52 @@
             </a>
           </template>
         </i18n>
-        <v-card color="info" class="mb-4">
-          <v-card-title>
+        <v-alert color="info" outlined text border="left" class="mb-4">
+          <h3>
             {{ $t('data.policy.doi.note1.title') }}
-          </v-card-title>
-          <v-card-text>
+          </h3>
+          <div>
             <ul>
               <li v-for="dataClass in classOrder" :key="dataClass">
                 {{ $t('data.policy.doi.note1.items.' + dataClass) }}
               </li>
             </ul>
-          </v-card-text>
-        </v-card>
-        <v-card color="info">
-          <v-card-title class="info">
+          </div>
+        </v-alert>
+        <v-alert color="info" outlined text border="left">
+          <h3>
             {{ $t('data.policy.doi.note2.title') }}
-          </v-card-title>
-          <v-card-text>
+          </h3>
+          <div>
             <ul>
               <li v-for="dataset in datasetOrder" :key="dataset">
                 {{ $t(`data.policy.doi.note2.items.${dataset}`) }}
               </li>
             </ul>
-          </v-card-text>
-        </v-card>
+          </div>
+        </v-alert>
         <h2>{{ $t('data.policy.publishing.title') }}</h2>
         <p>{{ $t('data.policy.publishing.blurb-citations') }}</p>
-        <v-card color="info" class="mb-4">
-          <v-card-title>
+        <v-alert color="info" outlined text border="left" class="mb-4">
+          <h3>
             {{ $t('data.policy.publishing.note1.title') }}
-          </v-card-title>
-          <v-card-text>
+          </h3>
+          <div>
             {{ $t('data.policy.publishing.note1.body') }}
-          </v-card-text>
-        </v-card>
-        <v-card color="info">
-          <v-card-title>
+          </div>
+        </v-alert>
+        <v-alert color="info" outlined text border="left">
+          <h3>
             {{ $t('data.policy.publishing.note2.title') }}
-          </v-card-title>
-          <v-card-text>
+          </h3>
+          <div>
             <ol>
               <li v-for="dataClass in classOrder" :key="dataClass">
                 {{ $t('data.policy.publishing.note2.items.' + dataClass) }}
               </li>
             </ol>
-          </v-card-text>
-        </v-card>
+          </div>
+        </v-alert>
         <i18n path="data.policy.publishing.blurb-contributors" tag="p">
           <template #contributors-page>
             <nuxt-link :to="localePath('contributors')">
@@ -109,14 +109,14 @@
         </i18n>
         <h2>{{ $t('data.policy.products.title') }}</h2>
         <p>{{ $t('data.policy.products.blurb') }}</p>
-        <v-card color="info">
-          <v-card-title>
+        <v-alert color="info" outlined text border="left">
+          <h3>
             {{ $t('data.policy.products.note.title') }}
-          </v-card-title>
-          <v-card-text>
+          </h3>
+          <div>
             {{ $t('data.policy.products.note.body') }}
-          </v-card-text>
-        </v-card>
+          </div>
+        </v-alert>
       </v-col>
     </v-row>
   </v-container>

@@ -15,23 +15,19 @@
             <strong>{{ $t('common.woudc') }}</strong>
           </template>
         </i18n>
-        <v-card class="mt-1 mb-4" color="info">
-          <v-card-title class="pt-3 pb-0">
-            {{ $t('contact.note.title') }}
-          </v-card-title>
-          <v-card-text>
-            <i18n path="contact.note.body" tag="span">
-              <template #privacy-act>
-                <i>
-                  <a :href="privacyActURL" target="_blank">
-                    {{ $t('common.privacy-act') }}
-                    <v-icon small>mdi-open-in-new</v-icon>
-                  </a>
-                </i>
-              </template>
-            </i18n>
-          </v-card-text>
-        </v-card>
+        <v-alert class="mt-1 mb-4" color="info" outlined text border="left">
+          <h3>{{ $t('contact.note.title') }}</h3>
+          <i18n path="contact.note.body" tag="div">
+            <template #privacy-act>
+              <i>
+                <a :href="privacyActURL" target="_blank">
+                  {{ $t('common.privacy-act') }}
+                  <v-icon small>mdi-open-in-new</v-icon>
+                </a>
+              </i>
+            </template>
+          </i18n>
+        </v-alert>
         <div id="other-contacts">
           <h2>{{ $t('contact.other-channels') }}</h2>
           <div>

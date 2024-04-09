@@ -11,30 +11,30 @@
             </nuxt-link>
           </template>
         </i18n>
-        <v-card class="mb-4" color="info">
-          <v-card-title class="pt-3 pb-0">
+        <v-alert class="mb-4" color="info" outlined text border="left">
+          <h3>
             {{ $t('data.access.note1.title') }}
-          </v-card-title>
-          <i18n path="data.access.note1.body" tag="v-card-text">
+          </h3>
+          <i18n path="data.access.note1.body" tag="div">
             <template #policy>
               <nuxt-link :to="localePath('data-data_policy')">
                 <span>{{ $t('common.policy') }}</span>
               </nuxt-link>
             </template>
           </i18n>
-        </v-card>
-        <v-card class="mb-4" color="info">
-          <v-card-title class="pt-3 pb-0">
+        </v-alert>
+        <v-alert class="mb-4" color="info" outlined text border="left">
+          <h3>
             {{ $t('data.access.note2.title') }}
-          </v-card-title>
-          <i18n path="data.access.note2.body" tag="v-card-text">
+          </h3>
+          <i18n path="data.access.note2.body" tag="div">
             <template #stations-page>
               <nuxt-link :to="localePath('data-stations')">
                 <span>{{ $t('common.stations-page') }}</span>
               </nuxt-link>
             </template>
           </i18n>
-        </v-card>
+        </v-alert>
       </v-col>
       <v-col sm="12" md="4" cols="12">
         <v-card id="table-of-contents">
@@ -97,11 +97,11 @@
               </a>
             </template>
           </i18n>
-          <v-card class="mb-4" color="info">
-            <v-card-text>
+          <v-alert class="mb-4" color="info" outlined text border="left">
+            <div>
               {{ $t('data.access.search.note') }}
-            </v-card-text>
-          </v-card>
+            </div>
+          </v-alert>
         </div>
         <div id="waf-section">
           <h2>{{ $t('data.access.waf.title') }}</h2>
@@ -141,8 +141,8 @@
               </a>
             </template>
           </i18n>
-          <v-card class="mb-4" color="info">
-            <i18n path="data.access.ogcapi.intro-endpoint" tag="v-card-text">
+          <v-alert class="mb-4" color="info" outlined text border="left">
+            <i18n path="data.access.ogcapi.intro-endpoint" tag="div">
               <template #url>
                 <strong>
                   <a :href="$config.WOUDC_UI_API_URL" target="_blank">
@@ -152,7 +152,7 @@
                 </strong>
               </template>
             </i18n>
-          </v-card>
+          </v-alert>
           <p>{{ $t('data.access.ogcapi.intro-provides') }}</p>
           <i18n path="data.access.ogcapi.intro-consult" tag="p">
             <template #webServicesHowTo>
