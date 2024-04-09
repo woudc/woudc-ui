@@ -43,7 +43,7 @@ const actions = {
     }
 
     const response = await axios.get(
-      `${this.$config.WOUDC_UI_WAF_URL}/px-testing/ozone_maps/${pathId}/index.json`
+      `${this.$config.WOUDC_UI_WAF_URL}/products/ozone_maps/${pathId}/index.json`
     )
     commit('setAvailableList', {
       pathId: pathId,

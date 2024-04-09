@@ -810,7 +810,8 @@
     "warning": "Warning:",
     "abstract_": "Abstract:",
     "abstract": "Abstract",
-    "datasets": "Datasets"
+    "datasets": "Datasets",
+    "noResultsAvailable": "No results found"
   },
   "contact": {
     "blurb": {

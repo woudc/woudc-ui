@@ -810,7 +810,8 @@
     "ogcThe": "l’Open Geospatial Consortium",
     "abstract_": "Abstrait :",
     "abstract": "Abstrait",
-    "datasets": "Jeux de données"
+    "datasets": "Jeux de données",
+    "noResultsAvailable": "Aucun résultat trouvé"
   },
   "contact": {
     "blurb": {

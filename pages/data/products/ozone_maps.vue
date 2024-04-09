@@ -221,12 +221,17 @@
           v-for="(pathsByHemisphere, index) in sourcedObservedMapPaths"
           :key="index"
         >
-          <h3>{{ pathsByHemisphere.hemisphere }}</h3>
+          <h3 class="mt-2">{{ pathsByHemisphere.hemisphere }}</h3>
           <graph-carousel
             v-if="pathsByHemisphere.maps.length > 0"
             :key="sourcedObservedRerender"
             :graphs="pathsByHemisphere.maps"
           ></graph-carousel>
+          <div v-else>
+            <span class="font-italic">
+              {{ $t('common.noResultsAvailable') }}
+            </span>
+          </div>
         </div>
       </div>
     </section>
@@ -363,7 +368,7 @@ export default {
   },
   data() {
     return {
-      baseOzoneURL: `${this.$config.WOUDC_UI_WAF_URL}/px-testing/ozone_maps`,
+      baseOzoneURL: `${this.$config.WOUDC_UI_WAF_URL}/products/ozone_maps`,
       ozoneMapTab: 'global',
       archivedRerender: 0,
       archivedMeasurement: ['to'],
