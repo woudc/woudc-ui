@@ -358,6 +358,7 @@
       <h3 class="mt-2">{{ $t('data.products.ozone_maps.results') }}</h3>
       <graph-carousel
         v-if="archivedMapSelPath.length > 0"
+        :key="archivedRerender"
         :graphs="archivedMapSelPath"
       ></graph-carousel>
       <div v-else>
