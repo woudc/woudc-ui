@@ -151,14 +151,16 @@
         </v-col>
       </v-row>
 
-      <!-- <h3>{{ $t('data.products.ozone_maps.sourcedForecastResults') }}</h3> -->
+      <h3 class="mt-2">
+        {{ $t('data.products.ozone_maps.sourcedForecastResults') }}
+      </h3>
 
       <div v-if="Object.hasOwn(sourcedForecastMapPaths, '0')">
         <div
           v-for="(forecastDayNPaths, index) in sourcedForecastMapPaths"
           :key="index"
         >
-          <h3>
+          <h3 class="mt-2">
             {{
               $tc('data.products.ozone_maps.dayForecast', index, {
                 forecastNum: index,
@@ -167,9 +169,15 @@
             - {{ forecastDayNPaths.date }}
           </h3>
           <graph-carousel
+            v-if="forecastDayNPaths.maps.length > 0"
             :key="sourcedForecastRerender"
             :graphs="forecastDayNPaths.maps"
           ></graph-carousel>
+          <div v-else>
+            <span class="font-italic">
+              {{ $t('common.noResultsAvailable') }}
+            </span>
+          </div>
         </div>
       </div>
     </section>
@@ -214,7 +222,9 @@
         </v-overlay>
       </v-row>
 
-      <h3>{{ $t('data.products.ozone_maps.sourcedObservedResults') }}</h3>
+      <h3 class="mt-2">
+        {{ $t('data.products.ozone_maps.sourcedObservedResults') }}
+      </h3>
 
       <div v-if="Object.keys(sourcedObservedMapPaths).length > 0">
         <div
@@ -345,11 +355,16 @@
         </v-col>
       </v-row>
 
-      <h3>{{ $t('data.products.ozone_maps.results') }}</h3>
+      <h3 class="mt-2">{{ $t('data.products.ozone_maps.results') }}</h3>
       <graph-carousel
         v-if="archivedMapSelPath.length > 0"
         :graphs="archivedMapSelPath"
       ></graph-carousel>
+      <div v-else>
+        <span class="font-italic">
+          {{ $t('common.noResultsAvailable') }}
+        </span>
+      </div>
     </section>
   </v-container>
 </template>

@@ -1502,7 +1502,8 @@
           "toast": "TOAST de la NOAA, et d'observations prises aux stations au sol par plusieurs agences nationaux."
         },
         "illustrationPurposes": "On vous présente des cartes dans le seul but d'illustration. Pour utiliser davantage ces données, veuiller accéder aux sources originales mentionnées ci-haut.",
-        "dataObtainedFrom": "Les données sont fournies par"
+        "dataObtainedFrom": "Les données sont fournies par",
+        "toms": "TOMS"
       },
       "josieBesos": {
         "title": "Données de l’Expérience d’Intercomparaison des Sondes d’Ozone de Jülich (EISOJ) et l’Expérience de Ballons sur les Standards des Sondes d’Ozone (EBSSO)",
