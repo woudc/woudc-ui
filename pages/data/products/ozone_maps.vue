@@ -1,7 +1,6 @@
 <template>
   <v-container>
     <h1>{{ $t('data.products.ozone_maps.title') }}</h1>
-    <!-- <h2>{{ $t('data.products.common.search') }}</h2> -->
     <v-btn-toggle v-model="ozoneMapTab" mandatory>
       <v-btn value="global">{{ $t('data.products.ozone_maps.global') }}</v-btn>
       <v-btn value="northern">
@@ -260,29 +259,47 @@
           <v-expansion-panels accordion hover>
             <v-expansion-panel>
               <v-expansion-panel-header disable-icon-rotate>
-                {{ $t('data.products.ozone_maps.ozoneMapsInfo') }}
+                {{ $t('data.products.ozone_maps.ozoneMapsInfoArchived') }}
                 <template #actions>
                   <v-icon color="info">mdi-information</v-icon>
                 </template>
               </v-expansion-panel-header>
               <v-expansion-panel-content>
+                <!-- prettier-ignore -->
                 <v-alert color="info" outlined text border="left">
                   <i18n
                     path="data.products.ozone_maps.aboutMeasurements"
                     tag="p"
-                  ></i18n>
+                  >
+                    <template #dobsonUnits>
+                      <a href="https://en.wikipedia.org/wiki/Dobson_unit" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.dobsonUnits') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
+                    </template>
+                  </i18n>
                   <i18n
                     path="data.products.ozone_maps.aboutDeviations"
                     tag="p"
-                  ></i18n>
+                  >
+                    <template #level19781988>
+                      <a :href="`https://exp-studies.tor.ec.gc.ca/clf2/${$i18n.locale[0]}/normalozone.html`" :hreflang="$i18n.locale" target="_blank">{{ $t('data.products.ozone_maps.level19781988') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
+                    </template>
+                    <template #tomsFullName>
+                      <a href="https://science.nasa.gov/missions/toms" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.tomsFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
+                    </template>
+                  </i18n>
                   <i18n
                     path="data.products.ozone_maps.aboutPoorCoverage"
                     tag="p"
-                  ></i18n>
-                  <i18n
-                    path="data.products.ozone_maps.aboutDateInterval"
-                    tag="p"
-                  ></i18n>
+                  >
+                    <template #toms>
+                      <a href="https://science.nasa.gov/missions/toms" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.toms') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
+                    </template>
+                    <template #tovsFullName>
+                      <a href="https://www.ozonelayer.noaa.gov/action/tovs.htm" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.tovsFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
+                    </template>
+                    <template #wmoOzoneMappingCentre>
+                      <a href="https://lap.physics.auth.gr/ozonemaps" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.wmoOzoneMappingCentre') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
+                    </template>
+                  </i18n>
                 </v-alert>
               </v-expansion-panel-content>
             </v-expansion-panel>

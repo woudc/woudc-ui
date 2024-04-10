@@ -15,13 +15,13 @@
             <ul>
               <i18n path="data.products.ozone_maps.dataSourcesFrom.toms" tag="li">
                 <template #tomsFullName>
-                  <a href="https://science.nasa.gov/missions/toms/" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.tomsFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
+                  <a href="https://science.nasa.gov/missions/toms" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.tomsFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
                 </template>
                 <template #nasa>
                   <a href="https://www.nasa.gov/" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.nasa') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
                 </template>
                 <template #earthProbe>
-                  <a href="https://science.nasa.gov/missions/toms/" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.earthProbe') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
+                  <a href="https://science.nasa.gov/missions/toms" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.earthProbe') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
                 </template>
               </i18n>
               <i18n path="data.products.ozone_maps.dataSourcesFrom.omi" tag="li">
@@ -29,7 +29,7 @@
                   <a href="" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.omiFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
                 </template>
                 <template #nivrFullName>
-                  <a href="https://www.spaceoffice.nl/en/" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.nivrFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
+                  <a href="https://www.spaceoffice.nl/en" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.nivrFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
                 </template>
                 <template #fmiFullName>
                   <a href="https://www.ilmatieteenlaitos.fi" hreflang="fi" target="_blank">{{ $t('data.products.ozone_maps.fmiFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
@@ -44,7 +44,7 @@
                   <a href="https://aura.gsfc.nasa.gov" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.aura') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
                 </template>
                 <template #nasaTomsSite>
-                  <a href="https://science.nasa.gov/mission/toms-ep/" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.nasaTomsSite') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
+                  <a href="https://science.nasa.gov/mission/toms-ep" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.nasaTomsSite') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
                 </template>
               </i18n>
               <i18n path="data.products.ozone_maps.dataSourcesFrom.smoba" tag="li">
@@ -147,7 +147,7 @@
               >
                 <template #tovsFullName>
                   <a
-                    href="https://www.ospo.noaa.gov/Products/atmosphere/soundings/atovs/"
+                    href="https://www.ospo.noaa.gov/Products/atmosphere/soundings/atovs"
                     hreflang="en" target="_blank">
                     {{ $t('data.products.ozone_maps.tovsFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
                 <template #noaa>
@@ -280,8 +280,8 @@
                 path="data.products.ozone_maps.dd.deviationFromNormal"
                 tag="dd"
               >
-                <template #19781988level>
-                  <a :href="`https://exp-studies.tor.ec.gc.ca/clf2/${$i18n.locale}/normalozone.html`" :hreflang="$i18n.locale" target="_blank">{{ $t('data.products.ozone_maps.19781988level') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
+                <template #level19781988>
+                  <a :href="`https://exp-studies.tor.ec.gc.ca/clf2/${$i18n.locale[0]}/normalozone.html`" :hreflang="$i18n.locale" target="_blank">{{ $t('data.products.ozone_maps.level19781988') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
                 </template>
               </i18n>
             </dl>
@@ -311,5 +311,6 @@ export default {
 <style scoped>
 dt {
   font-weight: bold;
+  margin-top: 0.5em;
 }
 </style>

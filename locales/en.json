@@ -1491,10 +1491,10 @@
         "mapsDescNumbersDobsonUnits": "The numbers on the high resolution maps indicate total ozone values in Dobson Units measured at ground-based stations. Small symbols after the numbers indicate type of observation: the most reliable direct sun measurements have no symbols, less reliable observations from zenith sky light are marked by “z”. Focus moon observations during the polar night are marked by “+” symbol. All other types of measurements are marked by “*”. For more information on ground-based ozone measurements visit the WOUDC Web site.",
         "mapsDescWarningRealtime": "The data are processed in near real-time, have not been fully validated, and are preliminary.",
         "ozoneMapsInfo": "Information about ozone maps",
-        "aboutMeasurements": "The total ozone maps are based on ground-based measurements available from the World Ozone and Ultraviolet Radiation Data Centre. Preliminary near real-time data from ground-based observations were also used for the most recent maps. Total ozone values are given in Dobson Units. The numbers represent observations taken from ground stations situated at the bottom left corner of the number.",
-        "aboutDeviations": "Maps of deviations represent total ozone deviations from the 1978-1988 level estimated using Total Ozone Mapping Spectrometer (TOMS) data for all areas except the Antarctic and from the pre-1980 level estimated using Dobson data over the Antarctic.",
-        "aboutPoorCoverage": "Over areas with poor data coverage adjustments are made according to TOMS on Nimbus-7, Meteor-3, ADEOS and Earth Probe satellites. Over the polar night area Dobson and Brewer moon observations and/or NOAA's TIROS Operational Vertical Sounder (TOVS) satellite data are used. TOVS data are also used when the more reliable TOMS data are not available. The mapping algorithm is similar to those used by the WMO Ozone Mapping Centre.",
-        "aboutDateInterval": "The day part of the “Start date” can specify a day (1 to 31), a mean over the entire month (1-end) or the mean of a “10-day” period during the month (1-10, 11-20 or 21-end, which might be 8 or 9 or 11 days). It must logically correspond to the unit of the “Interval”.",
+        "aboutMeasurements": "The total ozone maps are based on ground-based measurements available from the World Ozone and Ultraviolet Radiation Data Centre. Preliminary near real-time data from ground-based observations were also used for the most recent maps. Total ozone values are given in {dobsonUnits}. The numbers represent observations taken from ground stations situated at the bottom left corner of the number.",
+        "aboutDeviations": "Maps of deviations represent total ozone deviations from the {level19781988} estimated using {tomsFullName} data for all areas except the Antarctic and from the pre-1980 level estimated using Dobson data over the Antarctic.",
+        "aboutPoorCoverage": "Over areas with poor data coverage adjustments are made according to {toms} on Nimbus-7, Meteor-3, ADEOS and Earth Probe satellites. Over the polar night area Dobson and Brewer moon observations and/or NOAA's {tovsFullName} satellite data are used. TOVS data are also used when the more reliable TOMS data are not available. The mapping algorithm is similar to those used by the {wmoOzoneMappingCentre}.",
+        "aboutDateInterval": "The “@data.products.ozone_maps.meanType” can specify a day (1 to 31), a mean over the entire month (1-end) or the mean of a “10-day” period during the month (1-10, 11-20 or 21-end, which might be 8 or 9 or 11 days). It must logically correspond to the unit of the “Interval type”.",
         "detailedExplanationOfTheseMaps": "Detailed explanation of these maps",
         "dt": {
           "allSourcesBlended": "All sources blended",
@@ -1523,7 +1523,7 @@
           "ncep": "“NCEP” forecasts are issued daily by the {ncepFullName} of the {noaaFullName} in the USA, for every 6 hours from 0 to 120, at 0h UTC each day. These maps are a subset, representing every 24 hours from 12 to 108, i.e. for 12h UTC on days 0 to 4.",
           "knmiForecasts": "“KNMI” forecasts are issued daily by the {knmiFullName}, representing every day from 0 to 4, at 12h UTC.",
           "totalOzone": "“Total Ozone” represents the total amount of ozone in a vertical column reaching from the earth's surface to the top of the atmosphere. Values are given in {dobsonUnits}.",
-          "deviationFromNormal": "“Deviation from Normal” represents total ozone deviations from the {19781988level} estimated using TOMS data. Values are given in percent."
+          "deviationFromNormal": "“Deviation from Normal” represents total ozone deviations from the {level19781988} estimated using TOMS data. Values are given in percent."
         },
         "saozInstruments": "SAOZ instruments",
         "russianCentralAerologicalObservatory": "Russian Central Aerological Observatory",
@@ -1567,7 +1567,8 @@
         "toastFullName": "Total Ozone Analysis using SBUV/2 and TOVS (TOAST)",
         "noaaFullName": "National Oceanographic and Atmospheric Administration (NOAA)",
         "ncepFullName": "National Centers for Environmental Prediction (NCEP)",
-        "19781988level": "1978-1988 level"
+        "level19781988": "1978-1988 level",
+        "ozoneMapsInfoArchived": "Information about archived ozone maps"
       },
       "josieBesos": {
         "title": "Jülich Ozone Sonde Intercomparison Experiment (JOSIE) and Balloon Experiment on Standards for Ozone Sondes (BESOS) data",

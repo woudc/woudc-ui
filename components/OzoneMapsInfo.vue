@@ -49,7 +49,7 @@
                   {{ $t('data.products.ozone_maps.tovsFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
               <template #wmoOzoneMappingCentre>
                 <a
-                  href="https://lap.physics.auth.gr/ozonemaps/"
+                  href="https://lap.physics.auth.gr/ozonemaps"
                   hreflang="en"
                   target="_blank"
                 >{{ $t('data.products.ozone_maps.wmoOzoneMappingCentre') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
