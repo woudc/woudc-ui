@@ -184,6 +184,12 @@
 
     <section v-show="ozoneMapTab === 'observed'">
       <h2>{{ $t('data.products.ozone_maps.sourceObservedDesc') }}</h2>
+
+      <v-row>
+        <v-col>
+          <ozone-maps-detailed-info></ozone-maps-detailed-info>
+        </v-col>
+      </v-row>
       <v-row>
         <v-col>
           <v-text-field
