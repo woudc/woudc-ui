@@ -1,3 +1,14 @@
+woudc-ui (2.0.0-beta19) focal; urgency=medium
+
+  * Added ozone maps data products search page
+  * Added JOSIE-BESOS data products page
+  * Changed favicon to newer WMO logo
+  * Added WMO logo on header title
+  * SEO, description and keywords fixes
+  * Minor styling improvements
+
+ -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Wed, 10 Apr 2024 22:33:00 +0000
+
 woudc-ui (2.0.0-beta18.1) focal; urgency=medium
 
   * Fix apache config missing -Indexes for root application path
