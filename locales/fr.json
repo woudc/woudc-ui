@@ -1461,7 +1461,7 @@
         "aboutDeviations": "Les cartes des écarts représentent les écarts de l’ozone total par rapport au {level19781988} estimé d’après les données du {tomsFullName} pour toutes les régions sauf l’Antarctique. Avant 1980 les niveaux de l’Antarctique sont estimés utilisant les données des instruments Dobson.",
         "aboutPoorCoverage": "Dans les régions où les données sont rares, on ajuste les mesures en fonction des données TOMS provenant des satellites Nimbus-7, Meteor-3, ADEOS et Earth Probe. Où il y a la nuit polaire on utilise les observations lunaires des instruments Dobson et Brewer et/ou les données du satellite de {tovsFullName} de NOAA. On utilise aussi les données de TOVS lorsque les données de TOMS, qui sont plus fiables, ne sont pas disponibles. L’algorithme de cartographie est similaire à celui utilisé par le {wmoOzoneMappingCentre}.",
         "aboutDateInterval": "Le « @data.products.ozone_maps.meanType » peut spécifier un jour (1 à 31), un moyen qui couvre le mois entier (1er à la fin) ou le moyen d’une période de « 10 jours » pendant le mois (1er au 10, 11 au 20, 21 à la fin, qui peut durer 8 ou 9 ou 11 jours). Elle doit correspondre logiquement à l’unité de l’« Type d’intervalle ».",
-        "title": "Cartes d’ozone",
+        "title": "Cartes de l’ozone",
         "tovsAcronym": "Sondeur vertical opérationnel TIROS (TOVS)",
         "wmoOzoneMappingCentre": "centre de mappage de l’ozone de l’OMM ",
         "noaa": "NOAA",
@@ -1563,7 +1563,8 @@
         "northernDesc": "La carte de l’ozone total pour le plus récent jour complet pour l’hémisphère Nord",
         "southernDesc": "La carte de l’ozone total pour le plus récent jour complet pour l’hémisphère Sud",
         "sourcedForecastDesc": "Sources particulières - Prévisions",
-        "ozoneMapsInfoArchived": "Informations sur les cartes d’ozone archivées"
+        "ozoneMapsInfoArchived": "Informations sur les cartes d’ozone archivées",
+        "titleSearch": "Recherche de cartes de l’ozone"
       },
       "josieBesos": {
         "title": "Données de l’Expérience d’Intercomparaison des Sondes d’Ozone de Jülich (EISOJ) et l’Expérience de Ballons sur les Standards des Sondes d’Ozone (EBSSO)",

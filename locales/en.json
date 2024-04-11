@@ -1568,7 +1568,8 @@
         "noaaFullName": "National Oceanographic and Atmospheric Administration (NOAA)",
         "ncepFullName": "National Centers for Environmental Prediction (NCEP)",
         "level19781988": "1978-1988 level",
-        "ozoneMapsInfoArchived": "Information about archived ozone maps"
+        "ozoneMapsInfoArchived": "Information about archived ozone maps",
+        "titleSearch": "Ozone maps search"
       },
       "josieBesos": {
         "title": "Jülich Ozone Sonde Intercomparison Experiment (JOSIE) and Balloon Experiment on Standards for Ozone Sondes (BESOS) data",

@@ -32,7 +32,7 @@
           <ul>
             <li>
               <nuxt-link :to="localePath('data-products-ozone_maps')">
-                <span>{{ $t('data.products.ozone_maps.title') }}</span>
+                <span>{{ $t('data.products.ozone_maps.titleSearch') }}</span>
               </nuxt-link>
             </li>
             <li v-for="(url, key) in mapsLinks" :key="key">
