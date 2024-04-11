@@ -11,8 +11,8 @@
         <!-- prettier-ignore -->
         <v-expansion-panel-content>
           <v-alert color="info" outlined text border="left">
-            <p>{{ $t('data.products.ozone_maps.dataObtainedFrom') }}</p>
-            <ul>
+            <p v-if="isObservedSources">{{ $t('data.products.ozone_maps.dataObtainedFrom') }}</p>
+            <ul v-if="isObservedSources">
               <i18n path="data.products.ozone_maps.dataSourcesFrom.toms" tag="li">
                 <template #tomsFullName>
                   <a href="https://science.nasa.gov/missions/toms" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.tomsFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
@@ -94,199 +94,205 @@
             </ul>
 
             <dl class="mt-2">
-              <dt>{{ $t('data.products.ozone_maps.dt.allSourcesBlended') }}</dt>
-              <i18n
-                path="data.products.ozone_maps.dd.allSourcesBlended"
-                tag="dd"
-              >
-              </i18n>
+              <div v-if="isObservedSources">
+                <dt>{{ $t('data.products.ozone_maps.dt.allSourcesBlended') }}</dt>
+                <i18n
+                  path="data.products.ozone_maps.dd.allSourcesBlended"
+                  tag="dd"
+                >
+                </i18n>
 
-              <dt>{{ $t('data.products.ozone_maps.dt.groundBasedData') }}</dt>
-              <i18n
-                path="data.products.ozone_maps.dd.groundBasedData"
-                tag="dd"
-              >
-                <template #saozInstruments>
-                  <a
-                    href="https://saoz.obs.uvsq.fr/SAOZSol-UK.html"
-                    hreflang="en" target="_blank">
-                    {{ $t('data.products.ozone_maps.saozInstruments') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
-                <template #eccc>
-                  <a
-                    :href="eccc[$i18n.locale]"
-                    :hreflang="$i18n.locale" target="_blank">
-                    {{ $t('contact.mail-address.eccc') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
-                <template #russianCentralAerologicalObservatory>
-                  <a
-                    href="https://www.cao-rhms.ru/"
-                    hreflang="en" target="_blank">
-                    {{ $t('data.products.ozone_maps.russianCentralAerologicalObservatory') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
-              </i18n>
+                <dt>{{ $t('data.products.ozone_maps.dt.groundBasedData') }}</dt>
+                <i18n
+                  path="data.products.ozone_maps.dd.groundBasedData"
+                  tag="dd"
+                >
+                  <template #saozInstruments>
+                    <a
+                      href="https://saoz.obs.uvsq.fr/SAOZSol-UK.html"
+                      hreflang="en" target="_blank">
+                      {{ $t('data.products.ozone_maps.saozInstruments') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
+                  <template #eccc>
+                    <a
+                      :href="eccc[$i18n.locale]"
+                      :hreflang="$i18n.locale" target="_blank">
+                      {{ $t('contact.mail-address.eccc') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
+                  <template #russianCentralAerologicalObservatory>
+                    <a
+                      href="https://www.cao-rhms.ru/"
+                      hreflang="en" target="_blank">
+                      {{ $t('data.products.ozone_maps.russianCentralAerologicalObservatory') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
+                </i18n>
 
-              <dt>{{ $t('data.products.ozone_maps.dt.toms') }}</dt>
-              <i18n
-                path="data.products.ozone_maps.dd.toms"
-                tag="dd"
-              >
-                <template #tomsFullName>
-                  <a
-                    href="https://science.nasa.gov/missions/toms/"
-                    hreflang="en" target="_blank">
-                    {{ $t('data.products.ozone_maps.tomsFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
-                <template #nasa>
-                  <a
-                    href="https://www.nasa.gov/"
-                    hreflang="en" target="_blank">
-                    {{ $t('data.products.ozone_maps.nasa') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
-              </i18n>
+                <dt>{{ $t('data.products.ozone_maps.dt.toms') }}</dt>
+                <i18n
+                  path="data.products.ozone_maps.dd.toms"
+                  tag="dd"
+                >
+                  <template #tomsFullName>
+                    <a
+                      href="https://science.nasa.gov/missions/toms/"
+                      hreflang="en" target="_blank">
+                      {{ $t('data.products.ozone_maps.tomsFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
+                  <template #nasa>
+                    <a
+                      href="https://www.nasa.gov/"
+                      hreflang="en" target="_blank">
+                      {{ $t('data.products.ozone_maps.nasa') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
+                </i18n>
 
-              <dt>{{ $t('data.products.ozone_maps.dt.tovs') }}</dt>
-              <i18n
-                path="data.products.ozone_maps.dd.tovs"
-                tag="dd"
-              >
-                <template #tovsFullName>
-                  <a
-                    href="https://www.ospo.noaa.gov/Products/atmosphere/soundings/atovs"
-                    hreflang="en" target="_blank">
-                    {{ $t('data.products.ozone_maps.tovsFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
-                <template #noaa>
-                  <a
-                    href="https://www.noaa.gov"
-                    hreflang="en" target="_blank">
-                    {{ $t('data.products.ozone_maps.noaa') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
-              </i18n>
+                <dt>{{ $t('data.products.ozone_maps.dt.tovs') }}</dt>
+                <i18n
+                  path="data.products.ozone_maps.dd.tovs"
+                  tag="dd"
+                >
+                  <template #tovsFullName>
+                    <a
+                      href="https://www.ospo.noaa.gov/Products/atmosphere/soundings/atovs"
+                      hreflang="en" target="_blank">
+                      {{ $t('data.products.ozone_maps.tovsFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
+                  <template #noaa>
+                    <a
+                      href="https://www.noaa.gov"
+                      hreflang="en" target="_blank">
+                      {{ $t('data.products.ozone_maps.noaa') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
+                </i18n>
 
-              <dt>{{ $t('data.products.ozone_maps.dt.gome') }}</dt>
-              <i18n
-                path="data.products.ozone_maps.dd.gome"
-                tag="dd"
-              >
-                <template #gomeFullName>
-                  <a
-                    href="https://wdc.dlr.de/sensors/gome"
-                    hreflang="en" target="_blank">
-                    {{ $t('data.products.ozone_maps.gomeFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
-                <template #esaFullName>
-                  <a
-                    href="https://www.noaa.gov"
-                    hreflang="en" target="_blank">
-                    {{ $t('data.products.ozone_maps.esaFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
-                <template #ers2FullName>
-                  <a
-                    href="https://www.deos.tudelft.nl/ers/ers2info.html"
-                    hreflang="en" target="_blank">
-                    {{ $t('data.products.ozone_maps.ers2FullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
-                <template #gome2>
-                  <a
-                    href="https://wdc.dlr.de/sensors/gome2"
-                    hreflang="en" target="_blank">
-                    {{ $t('data.products.ozone_maps.gome2') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
-                <template #metOpA>
-                  <a
-                    href="https://www.esa.int/Applications/Observing_the_Earth/MetOp_overview"
-                    hreflang="en" target="_blank">
-                    {{ $t('data.products.ozone_maps.metOpA') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
-                <template #wdcrsatFullName>
-                  <a
-                    href="https://wdc.dlr.de"
-                    hreflang="en" target="_blank">
-                    {{ $t('data.products.ozone_maps.wdcrsatFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
-              </i18n>
+                <dt>{{ $t('data.products.ozone_maps.dt.gome') }}</dt>
+                <i18n
+                  path="data.products.ozone_maps.dd.gome"
+                  tag="dd"
+                >
+                  <template #gomeFullName>
+                    <a
+                      href="https://wdc.dlr.de/sensors/gome"
+                      hreflang="en" target="_blank">
+                      {{ $t('data.products.ozone_maps.gomeFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
+                  <template #esaFullName>
+                    <a
+                      href="https://www.noaa.gov"
+                      hreflang="en" target="_blank">
+                      {{ $t('data.products.ozone_maps.esaFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
+                  <template #ers2FullName>
+                    <a
+                      href="https://www.deos.tudelft.nl/ers/ers2info.html"
+                      hreflang="en" target="_blank">
+                      {{ $t('data.products.ozone_maps.ers2FullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
+                  <template #gome2>
+                    <a
+                      href="https://wdc.dlr.de/sensors/gome2"
+                      hreflang="en" target="_blank">
+                      {{ $t('data.products.ozone_maps.gome2') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
+                  <template #metOpA>
+                    <a
+                      href="https://www.esa.int/Applications/Observing_the_Earth/MetOp_overview"
+                      hreflang="en" target="_blank">
+                      {{ $t('data.products.ozone_maps.metOpA') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
+                  <template #wdcrsatFullName>
+                    <a
+                      href="https://wdc.dlr.de"
+                      hreflang="en" target="_blank">
+                      {{ $t('data.products.ozone_maps.wdcrsatFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
+                </i18n>
 
-              <dt>{{ $t('data.products.ozone_maps.dt.knmiAnalysis') }}</dt>
-              <i18n
-                path="data.products.ozone_maps.dd.knmiAnalysis"
-                tag="dd"
-              >
-                <template #gomeFastDeliveryService>
-                  <a href="https://www.knmi.nl/kennis-en-datacentrum/publicatie/a-fast-delivery-system-of-the-retrieval-of-near-real-time-ozone-colomns-from-gome-data" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.gomeFastDeliveryService') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
-                </template>
-                <template #sciamachy>
-                  <a href="https://earth.esa.int/eogateway/instruments/sciamachy" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.sciamachy') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
-                </template>
-                <template #envisat>
-                  <a href="https://earth.esa.int/eogateway/missions/envisat" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.envisat') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
-                </template>
-                <template #temis>
-                  <a href="https://www.temis.nl" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.temis') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
-                </template>
-                <template #knmiFullName>
-                  <a href="https://www.knmi.nl/home" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.knmiFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
-                </template>
-              </i18n>
+                <dt>{{ $t('data.products.ozone_maps.dt.knmiAnalysis') }}</dt>
+                <i18n
+                  path="data.products.ozone_maps.dd.knmiAnalysis"
+                  tag="dd"
+                >
+                  <template #gomeFastDeliveryService>
+                    <a href="https://www.knmi.nl/kennis-en-datacentrum/publicatie/a-fast-delivery-system-of-the-retrieval-of-near-real-time-ozone-colomns-from-gome-data" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.gomeFastDeliveryService') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
+                  </template>
+                  <template #sciamachy>
+                    <a href="https://earth.esa.int/eogateway/instruments/sciamachy" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.sciamachy') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
+                  </template>
+                  <template #envisat>
+                    <a href="https://earth.esa.int/eogateway/missions/envisat" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.envisat') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
+                  </template>
+                  <template #temis>
+                    <a href="https://www.temis.nl" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.temis') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
+                  </template>
+                  <template #knmiFullName>
+                    <a href="https://www.knmi.nl/home" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.knmiFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
+                  </template>
+                </i18n>
 
-              <dt>{{ $t('data.products.ozone_maps.dt.smoba') }}</dt>
-              <i18n
-                path="data.products.ozone_maps.dd.smoba"
-                tag="dd"
-              >
-                <template #noaa>
-                  <a href="https://www.noaa.gov" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.noaa') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
-                </template>
-                <template #smobaFullName>
-                  <a href="https://www.cpc.ncep.noaa.gov/products/stratosphere/SMOBA" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.smobaFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
-                </template>
-              </i18n>
+                <dt>{{ $t('data.products.ozone_maps.dt.smoba') }}</dt>
+                <i18n
+                  path="data.products.ozone_maps.dd.smoba"
+                  tag="dd"
+                >
+                  <template #noaa>
+                    <a href="https://www.noaa.gov" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.noaa') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
+                  </template>
+                  <template #smobaFullName>
+                    <a href="https://www.cpc.ncep.noaa.gov/products/stratosphere/SMOBA" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.smobaFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
+                  </template>
+                </i18n>
 
-              <dt>{{ $t('data.products.ozone_maps.dt.toast') }}</dt>
-              <i18n
-                path="data.products.ozone_maps.dd.toast"
-                tag="dd"
-              >
-                <template #noaa>
-                  <a href="https://www.noaa.gov" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.noaa') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
-                </template>
-                <template #toastFullName>
-                  <a href="https://www.ospo.noaa.gov/Products/atmosphere/ntoast/index.html" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.toastFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
-                </template>
-              </i18n>
+                <dt>{{ $t('data.products.ozone_maps.dt.toast') }}</dt>
+                <i18n
+                  path="data.products.ozone_maps.dd.toast"
+                  tag="dd"
+                >
+                  <template #noaa>
+                    <a href="https://www.noaa.gov" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.noaa') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
+                  </template>
+                  <template #toastFullName>
+                    <a href="https://www.ospo.noaa.gov/Products/atmosphere/ntoast/index.html" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.toastFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
+                  </template>
+                </i18n>
+              </div>
 
-              <dt>{{ $t('data.products.ozone_maps.dt.ncep') }}</dt>
-              <i18n
-                path="data.products.ozone_maps.dd.ncep"
-                tag="dd"
-              >
-                <template #ncepFullName>
-                  <a href="https://www.weather.gov/ncep" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.ncepFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
-                </template>
-                <template #noaaFullName>
-                  <a href="https://www.noaa.gov" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.noaaFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
-                </template>
-              </i18n>
+              <div v-if="isForecastSources">
+                <dt>{{ $t('data.products.ozone_maps.dt.ncep') }}</dt>
+                <i18n
+                  path="data.products.ozone_maps.dd.ncep"
+                  tag="dd"
+                >
+                  <template #ncepFullName>
+                    <a href="https://www.weather.gov/ncep" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.ncepFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
+                  </template>
+                  <template #noaaFullName>
+                    <a href="https://www.noaa.gov" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.noaaFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
+                  </template>
+                </i18n>
 
-              <dt>{{ $t('data.products.ozone_maps.dt.knmiForecasts') }}</dt>
-              <i18n
-                path="data.products.ozone_maps.dd.knmiForecasts"
-                tag="dd"
-              >
-                <template #knmiFullName>
-                  <a href="https://www.knmi.nl/home" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.knmiFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
-                </template>
-              </i18n>
+                <dt>{{ $t('data.products.ozone_maps.dt.knmiForecasts') }}</dt>
+                <i18n
+                  path="data.products.ozone_maps.dd.knmiForecasts"
+                  tag="dd"
+                >
+                  <template #knmiFullName>
+                    <a href="https://www.knmi.nl/home" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.knmiFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
+                  </template>
+                </i18n>
+              </div>
 
-              <dt>{{ $t('data.products.ozone_maps.dt.totalOzone') }}</dt>
-              <i18n
-                path="data.products.ozone_maps.dd.totalOzone"
-                tag="dd"
-              >
-                <template #dobsonUnits>
-                  <a href="https://en.wikipedia.org/wiki/Dobson_unit" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.dobsonUnits') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
-                </template>
-              </i18n>
+              <div v-if="isObservedSources || isForecastSources">
+                <dt>{{ $t('data.products.ozone_maps.dt.totalOzone') }}</dt>
+                <i18n
+                  path="data.products.ozone_maps.dd.totalOzone"
+                  tag="dd"
+                >
+                  <template #dobsonUnits>
+                    <a href="https://en.wikipedia.org/wiki/Dobson_unit" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.dobsonUnits') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
+                  </template>
+                </i18n>
 
-              <dt>{{ $t('data.products.ozone_maps.dt.deviationFromNormal') }}</dt>
-              <i18n
-                path="data.products.ozone_maps.dd.deviationFromNormal"
-                tag="dd"
-              >
-                <template #level19781988>
-                  <a :href="`https://exp-studies.tor.ec.gc.ca/clf2/${$i18n.locale[0]}/normalozone.html`" :hreflang="$i18n.locale" target="_blank">{{ $t('data.products.ozone_maps.level19781988') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
-                </template>
-              </i18n>
+                <dt>{{ $t('data.products.ozone_maps.dt.deviationFromNormal') }}</dt>
+                <i18n
+                  path="data.products.ozone_maps.dd.deviationFromNormal"
+                  tag="dd"
+                >
+                  <template #level19781988>
+                    <a :href="`https://exp-studies.tor.ec.gc.ca/clf2/${$i18n.locale[0]}/normalozone.html`" :hreflang="$i18n.locale" target="_blank">{{ $t('data.products.ozone_maps.level19781988') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
+                  </template>
+                </i18n>
+              </div>
             </dl>
 
-            <p>{{ $t('data.products.ozone_maps.illustrationPurposes') }}</p>
+            <p class="mt-2">{{ $t('data.products.ozone_maps.illustrationPurposes') }}</p>
           </v-alert>
         </v-expansion-panel-content>
       </v-expansion-panel>
@@ -297,6 +303,10 @@
 <script>
 export default {
   name: 'OzoneMapsDetailedInfo',
+  props: {
+    isObservedSources: { type: Boolean, default: false },
+    isForecastSources: { type: Boolean, default: false },
+  },
   data() {
     return {
       eccc: {

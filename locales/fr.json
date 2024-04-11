@@ -1450,7 +1450,7 @@
         "groundBasedData": "Données prises au sol",
         "allSources": "Toutes sources mélangées",
         "keywords": "cartes d’ozone, ozone observé, ozone prévu, sources particulières, sources combinées, ozone total, écart par rapport à la normale, hémisphère nord, hémisphère sud, globe, mondial, Brewer, Dobson, TOMS, TOVS, GOME, KNMI, NCEP, SMOBA, TOAST",
-        "mapsDescIntro": "Les cartes des écarts représentent une estimation des écarts de l’ozone total au niveau de 1978 à 1988 d’après les données du {tomsFullName} pour toutes les régions sauf l’Antarctique, et du niveau d’avant 1980 estimé d’après les données des spectromètres Dobson au-dessus de l’Antarctique. Les cartes de l’ozone total pour l’hémisphère Sud sont réalisées, d’une part, à partir des données maillées provenant du @:data.products.ozone_maps.tomsFullName à bord du satellite Earth Probe, disponibles de la {nasaFullName}, {smobaFullName} (si les données de TOMS ne sont pas disponible), et des mesures effectuées au sol. Dans la région plongée dans la nuit polaire, on a recours aux données des observations du Brewer en lumière lunaire et/ou aux celles du {tovsFullName} de la NOAA. On utilisera également les données TOVS, à défaut de disposer des données plus fiables du TOMS. L’algorithme de mappage s’apparente à ceux qu’utilise le centre de mappage de l’ozone de l’OMM . Les valeurs de l’ozone total sont exprimées en {dobsonUnits}.",
+        "mapsDescIntro": "Les cartes des écarts représentent une estimation des écarts de l’ozone total au niveau de 1978 à 1988 d’après les données du {tomsFullName} pour toutes les régions sauf l’Antarctique, et du niveau d’avant 1980 estimé d’après les données des spectromètres Dobson au-dessus de l’Antarctique.",
         "viewMapsIndividualSources": "Voir les cartes de l’ozone des sources de données particulières",
         "mapsDescUpdateDaily": "Les cartes sont normalement mises à jour quotidiennement à environ 1400 UTC. Le système qui fonctionne en temps quasi réel est toutefois automatisé, et si un problème survient en dehors des heures normales de travail, il ne sera pas réglé avant le prochain jour ouvrable.",
         "mapsDescNumbersDobsonUnits": "Les nombres figurant sur les cartes à la résolution accrue représentent les valeurs de l’ozone total en dobsons mesurées aux stations terrestres. Les petits symboles qui suivent les nombres indiquent le type d’observation : L’absence de symboles signifie une mesure par soleil direct, la plus fiable; les relevés moins fiables de la lumière du ciel au zénith sont marqués d’un « z »; les relevés lunaires focalisés effectués pendant la nuit polaire sont marqués d’un « + ». Tous les autres relevés sont marqués d’un « * ». Pour de plus amples informations sur les relevés de l’ozone pris au sol, visiter le site Web à WOUDC.",
@@ -1564,7 +1564,8 @@
         "southernDesc": "La carte de l’ozone total pour le plus récent jour complet pour l’hémisphère Sud",
         "sourcedForecastDesc": "Sources particulières - Prévisions",
         "ozoneMapsInfoArchived": "Informations sur les cartes d’ozone archivées",
-        "titleSearch": "Rechercher de cartes de l’ozone"
+        "titleSearch": "Rechercher de cartes de l’ozone",
+        "totalOzoneInDobsonUnits": "Les valeurs de l’ozone total sont exprimées en {dobsonUnits}."
       },
       "josieBesos": {
         "title": "Données de l’Expérience d’Intercomparaison des Sondes d’Ozone de Jülich (EISOJ) et l’Expérience de Ballons sur les Standards des Sondes d’Ozone (EBSSO)",

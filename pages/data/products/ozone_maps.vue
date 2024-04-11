@@ -100,7 +100,9 @@
 
       <v-row>
         <v-col>
-          <ozone-maps-detailed-info></ozone-maps-detailed-info>
+          <ozone-maps-detailed-info
+            is-forecast-sources
+          ></ozone-maps-detailed-info>
         </v-col>
       </v-row>
       <v-row>
@@ -186,7 +188,9 @@
 
       <v-row>
         <v-col>
-          <ozone-maps-detailed-info></ozone-maps-detailed-info>
+          <ozone-maps-detailed-info
+            is-observed-sources
+          ></ozone-maps-detailed-info>
         </v-col>
       </v-row>
       <v-row>
@@ -284,20 +288,6 @@
                     </template>
                     <template #tomsFullName>
                       <a href="https://science.nasa.gov/missions/toms" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.tomsFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
-                    </template>
-                  </i18n>
-                  <i18n
-                    path="data.products.ozone_maps.aboutPoorCoverage"
-                    tag="p"
-                  >
-                    <template #toms>
-                      <a href="https://science.nasa.gov/missions/toms" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.toms') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
-                    </template>
-                    <template #tovsFullName>
-                      <a href="https://www.ozonelayer.noaa.gov/action/tovs.htm" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.tovsFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
-                    </template>
-                    <template #wmoOzoneMappingCentre>
-                      <a href="https://lap.physics.auth.gr/ozonemaps" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.wmoOzoneMappingCentre') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
                     </template>
                   </i18n>
                 </v-alert>

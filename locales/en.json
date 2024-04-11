@@ -1484,7 +1484,7 @@
         "noaa": "NOAA",
         "tovsAcronym": "TIROS Operational Vertical Sounder (TOVS)",
         "dobsonUnits": "Dobson units",
-        "mapsDescIntro": "Maps of deviations represent total ozone deviations from the 1978-1988 level estimated using {tomsFullName} data for all areas except the Antarctic, and from the pre-1980 level estimated using Dobson data over the Antarctic. The total ozone maps for the southern hemisphere are based on near-real time NASA Earth Probe @:data.products.ozone_maps.tomsFullName gridded satellite data available from the {nasaFullName}, {smobaFullName} data (if TOMS data are not available) and on ground-based measurements. Over the polar night night area Dobson and Brewer moon observations and/or {noaa}'s {tovsFullName} satellite data are used. TOVS data are also used when the more reliable TOMS data are not available. The mapping algorithm is similar to those used used by the {wmoOzoneMappingCentre}. Total ozone values are given in {dobsonUnits}.",
+        "mapsDescIntro": "Maps of deviations represent total ozone deviations from the 1978-1988 level estimated using {tomsFullName} data for all areas except the Antarctic, and from the pre-1980 level estimated using Dobson data over the Antarctic.",
         "wmoOzoneMappingCentre": "WMO Ozone Mapping Centre",
         "viewMapsIndividualSources": "View ozone maps from the individual data sources (TOMS, SMOBA, TOVS and ground-based)",
         "mapsDescUpdateDaily": "These maps are normally updated daily at about 1400 UTC. However, this near-real-time system is automated, so if a system problem occurs outside of regular working hours, it will not be fixed until the following work day.",
@@ -1569,7 +1569,8 @@
         "ncepFullName": "National Centers for Environmental Prediction (NCEP)",
         "level19781988": "1978-1988 level",
         "ozoneMapsInfoArchived": "Information about archived ozone maps",
-        "titleSearch": "Ozone maps search"
+        "titleSearch": "Ozone maps search",
+        "totalOzoneInDobsonUnits": "Total ozone values are given in {dobsonUnits}."
       },
       "josieBesos": {
         "title": "Jülich Ozone Sonde Intercomparison Experiment (JOSIE) and Balloon Experiment on Standards for Ozone Sondes (BESOS) data",
