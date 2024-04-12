@@ -6,21 +6,21 @@
 
     <!-- prettier-ignore -->
     <i18n path="data.products.josieBesos.josieBlurb" tag="p">
-      <template #wccosAndAbbr>
+      <template #wccosFullName>
         <a
           href="https://www.wccos-josie.org/en/wccos"
           hreflang="en"
           target="_blank"
-        >{{ $t('data.products.josieBesos.wccosAndAbbr') }}
+        >{{ $t('data.products.josieBesos.wccosFullName') }}
           <v-icon small>mdi-open-in-new</v-icon>
         </a>
       </template>
-      <template #josieAndAbbr>
+      <template #josieFullName>
         <a
           href="https://www.wccos-josie.org/en/josie"
           hreflang="en"
           target="_blank"
-        >{{ $t('data.products.josieBesos.josieAndAbbr') }}
+        >{{ $t('data.products.josieBesos.josieFullName') }}
           <v-icon small>mdi-open-in-new</v-icon>
         </a>
       </template>
@@ -71,7 +71,10 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('data.products.josieBesos.description'),
+          content: this.$t('data.products.josieBesos.metaDescription', {
+            josie: this.$t('data.products.josieBesos.josie'),
+            besos: this.$t('data.products.josieBesos.besos'),
+          }),
         },
         {
           hid: 'keywords',

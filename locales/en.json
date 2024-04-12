@@ -1494,7 +1494,7 @@
         "aboutMeasurements": "The total ozone maps are based on ground-based measurements available from the World Ozone and Ultraviolet Radiation Data Centre. Preliminary near real-time data from ground-based observations were also used for the most recent maps. Total ozone values are given in {dobsonUnits}. The numbers represent observations taken from ground stations situated at the bottom left corner of the number.",
         "aboutDeviations": "Maps of deviations represent total ozone deviations from the {level19781988} estimated using {tomsFullName} data for all areas except the Antarctic and from the pre-1980 level estimated using Dobson data over the Antarctic.",
         "aboutPoorCoverage": "Over areas with poor data coverage adjustments are made according to {toms} on Nimbus-7, Meteor-3, ADEOS and Earth Probe satellites. Over the polar night area Dobson and Brewer moon observations and/or NOAA's {tovsFullName} satellite data are used. TOVS data are also used when the more reliable TOMS data are not available. The mapping algorithm is similar to those used by the {wmoOzoneMappingCentre}.",
-        "aboutDateInterval": "The “@data.products.ozone_maps.meanType” can specify a day (1 to 31), a mean over the entire month (1-end) or the mean of a “10-day” period during the month (1-10, 11-20 or 21-end, which might be 8 or 9 or 11 days). It must logically correspond to the unit of the “Interval type”.",
+        "aboutDateInterval": "The “@:data.products.ozone_maps.meanType” can specify a day (1 to 31), a mean over the entire month (1-end) or the mean of a “10-day” period during the month (1-10, 11-20 or 21-end, which might be 8 or 9 or 11 days). It must logically correspond to the unit of the “Interval type”.",
         "detailedExplanationOfTheseMaps": "Detailed explanation of these maps",
         "dt": {
           "allSourcesBlended": "All sources blended",
@@ -1574,15 +1574,15 @@
       },
       "josieBesos": {
         "title": "Jülich Ozone Sonde Intercomparison Experiment (JOSIE) and Balloon Experiment on Standards for Ozone Sondes (BESOS) data",
-        "description": "The {besosAndAbbr} campaign goal is to establish a set of standard operating procedures (SOP) for launching electrochemical concentration cell (ECC) ozonesondes at WMOs GAW (World Meteorological Organization, Global Atmospheric Watch) sites. The campaign is a follow-on to the series of ECC chamber studies performed during the 1996-2000 Jülich Ozone Sonde Intercomparicon Experiment's (JOSIE) at the World Calibration Center for Ozone Sondes (WCCOS) in the Forschungszentrum, Jülich (Germany)",
-        "keywords": "JOSIE,BESOS,ozonesonde,intercomparison",
+        "keywords": "@:data.products.josieBesos.josie,@:data.products.josieBesos.besos,ozonesonde,intercomparison",
         "besosBlurb": "In 2004 the WMO BESOS (Balloon Experiment on Standards for Ozonesondes) field campaign, carried out in Laramie (Wyoming, USA), deployed a large gondola with 18 ozonesondes and the OPM of WCCOS {attribution} with results similar to those of JOSIE.",
-        "josieBlurb": "In order to assess the performance of various electrochemical ozonesondes and to guarantee consistency in ozonesonde data, the environmental simulation facility at the Forschungszentrum Juelich has been established in 1994 as the {wccosAndAbbr} of WMO-GAW as part of their Quality Assurance (QA) plan. Beginning in 1996, a series of {josieAndAbbr} campaigns has since been conducted at the WCCOS to evaluate different ozonesonde types {attribution}.",
+        "josieBlurb": "In order to assess the performance of various electrochemical ozonesondes and to guarantee consistency in ozonesonde data, the environmental simulation facility at the Forschungszentrum Juelich has been established in 1994 as the {wccosFullName} of WMO-GAW as part of their Quality Assurance (QA) plan. Beginning in 1996, a series of {josieFullName} campaigns has since been conducted at the WCCOS to evaluate different ozonesonde types {attribution}.",
         "wccos": "WCCOS",
         "josie": "JOSIE",
-        "wccosAndAbbr": "World Calibration Centre for Ozone Sondes (WCCOS)",
-        "josieAndAbbr": "Jülich Ozone Sonde Intercomparison Experiment (JOSIE)",
-        "besos": "BESOS"
+        "besos": "BESOS",
+        "metaDescription": "Dataset download links and abstract of the {josie}-{besos} data products (@:data.products.josieBesos.title).",
+        "josieFullName": "Jülich Ozone Sonde Intercomparison Experiment (JOSIE)",
+        "wccosFullName": "World Calibration Centre for Ozone Sondes (WCCOS)"
       }
     },
     "quality": {
@@ -1691,7 +1691,7 @@
     "aboutWoudc": "About WOUDC",
     "adTitle": "Discover, Visualize and Access a Global Archive of Ground-based Ozone and UV Radiation Data",
     "blurb": "A World Meteorological Organization ({wmo}) data center supporting the Global Atmosphere Watch ({gaw}) program operated by Environment and Climate Change Canada.",
-    "gawLogo": "Logo: @.gawFull",
+    "gawLogo": "Logo: @:common.gawFull",
     "learnMore": "Learn more",
     "news": {
       "more": "More...",
