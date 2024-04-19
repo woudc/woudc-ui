@@ -70,6 +70,7 @@ export default {
   vuetify: {
     defaultAssets: false, // defaults to local mdi icons and font
     theme: {
+      options: { cspNonce: 'dQw4w9WgXcQ' },
       themes: {
         light: {
           primary: '#085eab',
