@@ -229,7 +229,7 @@
             :startdate="selectedYearRange[0]"
             :enddate="selectedYearRange[1]"
             :metrics="metricsByYear"
-            :style="{ 'max-height': '240px', 'min-height': '160px' }"
+            class="metrics-chart"
           />
           <span>{{ $t('data.explore.file-count') }} {{ filesInRange }}</span>
         </div>
@@ -1419,7 +1419,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .v-select-list .v-subheader {
   font-weight: bold;
   background-color: #e4e4e4;
@@ -1443,5 +1443,9 @@ input[type='number'] {
 .btn-right {
   border-bottom-left-radius: 0px;
   border-top-left-radius: 0px;
+}
+.metrics-chart {
+  max-height: 240px;
+  min-height: 160px;
 }
 </style>

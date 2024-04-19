@@ -93,7 +93,7 @@
           :startdate="selectedYearRange[0]"
           :enddate="selectedYearRange[1]"
           :metrics="metricsByYear"
-          :style="{ 'max-height': '260px', 'min-height': '200px' }"
+          class="metrics-chart"
         />
       </v-col>
     </v-row>
@@ -500,3 +500,10 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.metrics-chart {
+  max-height: 260px;
+  min-height: 200px;
+}
+</style>
