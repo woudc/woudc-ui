@@ -9,7 +9,7 @@
       <v-btn value="southern">
         {{ $t('data.products.ozone_maps.southernHemisphere') }}
       </v-btn>
-      <v-btn value="sourcedForecast">
+      <v-btn value="forecast">
         {{ $t('data.products.ozone_maps.sourcedForecast') }}
       </v-btn>
       <v-btn value="observed">
@@ -95,7 +95,7 @@
       </v-row>
     </section>
 
-    <section v-show="ozoneMapTab === 'sourcedForecast'">
+    <section v-show="ozoneMapTab === 'forecast'">
       <h2>{{ $t('data.products.ozone_maps.sourcedForecastDesc') }}</h2>
 
       <v-row>
@@ -399,6 +399,14 @@ export default {
     return {
       baseOzoneURL: `${this.$config.WOUDC_UI_WAF_URL}/products/ozone_maps`,
       ozoneMapTab: 'global',
+      ozoneMapTypes: [
+        'global',
+        'northern',
+        'southern',
+        'forecast',
+        'observed',
+        'archive',
+      ],
       archivedRerender: 0,
       archivedMeasurement: ['to'],
       archivedDateRangeType: 'daily', // day / 10 day mean / monthly mean
@@ -646,10 +654,16 @@ export default {
     ozoneMapTab: function (newTab) {
       if (newTab === 'observed') {
         this.generateSourcedObservedMapPaths()
-      } else if (newTab === 'sourcedForecast') {
+      } else if (newTab === 'forecast') {
         this.generateSourcedForecastMapPaths()
       }
     },
+  },
+  created() {
+    const sanitizedOzoneType = encodeURIComponent(this.$route.query.type)
+    if (this.ozoneMapTypes.includes(sanitizedOzoneType)) {
+      this.ozoneMapTab = sanitizedOzoneType
+    }
   },
   methods: {
     changeArchiveDateRangeType(changedType) {
