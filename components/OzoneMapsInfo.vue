@@ -20,6 +20,12 @@
                 >{{ $t('data.products.ozone_maps.dobsonUnits') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
             </i18n>
             <i18n path="data.products.ozone_maps.mapsDescIntro" tag="p">
+              <template #level19781988>
+                <a
+                  :href="`https://exp-studies.tor.ec.gc.ca/clf2/${$i18n.locale[0]}/normalozone.html`"
+                  :hreflang="$i18n.locale"
+                  target="_blank"
+                >{{ $t('data.products.ozone_maps.level19781988') }}<v-icon x-small>mdi-open-in-new</v-icon></a></template>
               <template #tomsFullName>
                 <a
                   href="https://science.nasa.gov/missions/toms/"
