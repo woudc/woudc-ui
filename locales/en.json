@@ -1344,12 +1344,12 @@
         "blurb": "Near-real time, global total ozone maps, normally updated daily at approximately 1400 UTC.",
         "links": {
           "archive": "Ozone Map Archive",
-          "global": "Most Recent Global Total Ozone Maps",
+          "global": "Most recent global total ozone maps",
           "individual": "Recent Ozone Maps Individual Data Sources and Ozone Forecast Maps",
-          "north": "Ozone Maps for the Northern Hemisphere",
-          "south": "Ozone Maps for the Southern Hemisphere"
+          "north": "Most recent total ozone maps of the northern hemisphere",
+          "south": "Most recent total ozone maps of the southern hemisphere"
         },
-        "title": "Ozone Maps"
+        "title": "Ozone maps"
       },
       "ozonesonde": {
         "image-captions": {
@@ -1570,7 +1570,13 @@
         "level19781988": "1978-1988 level",
         "ozoneMapsInfoArchived": "Information about archived ozone maps",
         "titleSearch": "Ozone maps search",
-        "totalOzoneInDobsonUnits": "Total ozone values are given in {dobsonUnits}."
+        "totalOzoneInDobsonUnits": "Total ozone values are given in {dobsonUnits}.",
+        "titleGlobal": "Most recent total ozone maps for the globe",
+        "titleNorthern": "Most recent total ozone maps for the northern hemisphere",
+        "titleSouthern": "Most recent total ozone maps for the southern hemisphere",
+        "titleForecast": "Search forecasted ozone maps from individual sources",
+        "titleObserved": "Search observed ozone maps from individual sources",
+        "titleArchived": "Search archived ozone maps"
       },
       "josieBesos": {
         "title": "Jülich Ozone Sonde Intercomparison Experiment (JOSIE) and Balloon Experiment on Standards for Ozone Sondes (BESOS) data",

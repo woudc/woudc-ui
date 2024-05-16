@@ -1565,7 +1565,13 @@
         "sourcedForecastDesc": "Sources particulières - Prévisions",
         "ozoneMapsInfoArchived": "Informations sur les cartes d’ozone archivées",
         "titleSearch": "Rechercher de cartes de l’ozone",
-        "totalOzoneInDobsonUnits": "Les valeurs de l’ozone total sont exprimées en {dobsonUnits}."
+        "totalOzoneInDobsonUnits": "Les valeurs de l’ozone total sont exprimées en {dobsonUnits}.",
+        "titleArchived": "Rechercher des cartes de l'ozone archivées",
+        "titleObserved": "Rechercher des cartes de l'ozone observées provenant de sources particulières",
+        "titleSouthern": "Cartes de l'ozone total les plus récentes pour l'hémisphère sud",
+        "titleNorthern": "Cartes de l'ozone total les plus récentes pour l'hémisphère nord",
+        "titleGlobal": "Cartes de l'ozone total les plus récentes pour le globe",
+        "titleForecast": "Rechercher des cartes de l'ozone prévu provenant de sources particulières"
       },
       "josieBesos": {
         "title": "Données de l’Expérience d’Intercomparaison des Sondes d’Ozone de Jülich (EISOJ) et l’Expérience de Ballons sur les Standards des Sondes d’Ozone (EBSSO)",
