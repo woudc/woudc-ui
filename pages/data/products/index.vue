@@ -72,6 +72,13 @@
                 <span>{{ $t('data.products.ozone_maps.titleArchived') }}</span>
               </nuxt-link>
             </li>
+            <li>
+              <nuxt-link
+                :to="`${localePath('data-products-normal-ozone-maps')}`"
+              >
+                <span>{{ $t('data.products.normal-ozone-maps.title') }}</span>
+              </nuxt-link>
+            </li>
           </ul>
         </div>
         <div id="summaries">
