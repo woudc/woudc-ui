@@ -50,7 +50,7 @@ export default {
   },
   data() {
     return {
-      baseOzoneClimatologyURL: `${this.$config.WOUDC_UI_WAF_URL}/products/ozone_maps/climatology/`,
+      baseOzoneClimatologyURL: `${this.$config.WOUDC_UI_WAF_URL}/products/ozone_maps/climatology`,
       ozoneMapTab: 'global',
       normalozoneMapTypes: ['global', 'northern', 'southern'],
       months: [
