@@ -286,7 +286,7 @@
                   tag="dd"
                 >
                   <template #level19781988>
-                    <a :href="`https://exp-studies.tor.ec.gc.ca/clf2/${$i18n.locale[0]}/normalozone.html`" :hreflang="$i18n.locale" target="_blank">{{ $t('data.products.ozone_maps.level19781988') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
+                    <nuxt-link :to="`${localePath('data-products-normal_ozone_maps')}`">{{ $t('data.products.ozone_maps.level19781988') }}</nuxt-link>
                   </template>
                 </i18n>
               </div>

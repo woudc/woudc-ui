@@ -15,35 +15,38 @@
 
     <section v-if="ozoneMapTab === 'global'">
       <h2>{{ $t('data.products.normal-ozone-maps.globalDesc') }}</h2>
-      <graph-carousel
-        :key="Object.keys(normalOzoneMapsGlobal)"
-        :graphs="normalOzoneMapsGlobal"
-      ></graph-carousel>
+
+      <normal-ozone-maps-info class="mt-2 mb-2"></normal-ozone-maps-info>
+
+      <graph-carousel :graphs="normalOzoneMapsGlobal"></graph-carousel>
     </section>
 
     <section v-if="ozoneMapTab === 'northern'">
       <h2>{{ $t('data.products.normal-ozone-maps.northernDesc') }}</h2>
-      <graph-carousel
-        :key="Object.keys(normalOzoneMapsNorthern)"
-        :graphs="normalOzoneMapsNorthern"
-      ></graph-carousel>
+
+      <normal-ozone-maps-info class="mt-2 mb-2"></normal-ozone-maps-info>
+
+      <graph-carousel :graphs="normalOzoneMapsNorthern"></graph-carousel>
     </section>
 
     <section v-if="ozoneMapTab === 'southern'">
       <h2>{{ $t('data.products.normal-ozone-maps.southernDesc') }}</h2>
-      <graph-carousel
-        :key="Object.keys(normalOzoneMapsSouthern)"
-        :graphs="normalOzoneMapsSouthern"
-      ></graph-carousel>
+
+      <normal-ozone-maps-info class="mt-2 mb-2"></normal-ozone-maps-info>
+
+      <graph-carousel :graphs="normalOzoneMapsSouthern"></graph-carousel>
     </section>
   </v-container>
 </template>
 
 <script>
 import GraphCarousel from '~/components/GraphCarousel'
+import NormalOzoneMapsInfo from '~/components/NormalOzoneMapsInfo'
+
 export default {
   components: {
     'graph-carousel': GraphCarousel,
+    'normal-ozone-maps-info': NormalOzoneMapsInfo,
   },
   data() {
     return {
@@ -129,10 +132,21 @@ export default {
       return ozoneMaps
     },
   },
+  watch: {
+    ozoneMapTab: function (newTab) {
+      this.$router.push({ query: { type: newTab } })
+    },
+    '$route.query.type'() {
+      const sanitizedOzoneType = encodeURIComponent(this.$route.query.type)
+      if (this.normalozoneMapTypes.includes(sanitizedOzoneType)) {
+        this.ozoneMapTab = sanitizedOzoneType
+      }
+    },
+  },
   created() {
     const sanitizedOzoneType = encodeURIComponent(this.$route.query.type)
     if (this.normalozoneMapTypes.includes(sanitizedOzoneType)) {
-      this.normalozoneMapTypes = sanitizedOzoneType
+      this.ozoneMapTab = sanitizedOzoneType
     }
   },
 }

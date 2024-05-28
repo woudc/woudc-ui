@@ -284,7 +284,7 @@
                     tag="p"
                   >
                     <template #level19781988>
-                      <a :href="`https://exp-studies.tor.ec.gc.ca/clf2/${$i18n.locale[0]}/normalozone.html`" :hreflang="$i18n.locale" target="_blank">{{ $t('data.products.ozone_maps.level19781988') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
+                      <nuxt-link :to="`${localePath('data-products-normal_ozone_maps')}`">{{ $t('data.products.ozone_maps.level19781988') }}</nuxt-link>
                     </template>
                     <template #tomsFullName>
                       <a href="https://science.nasa.gov/missions/toms" hreflang="en" target="_blank">{{ $t('data.products.ozone_maps.tomsFullName') }}<v-icon x-small>mdi-open-in-new</v-icon></a>
@@ -652,10 +652,17 @@ export default {
   },
   watch: {
     ozoneMapTab: function (newTab) {
+      this.$router.push({ query: { type: newTab } })
       if (newTab === 'observed') {
         this.generateSourcedObservedMapPaths()
       } else if (newTab === 'forecast') {
         this.generateSourcedForecastMapPaths()
+      }
+    },
+    '$route.query.type'() {
+      const sanitizedOzoneType = encodeURIComponent(this.$route.query.type)
+      if (this.ozoneMapTypes.includes(sanitizedOzoneType)) {
+        this.ozoneMapTab = sanitizedOzoneType
       }
     },
   },

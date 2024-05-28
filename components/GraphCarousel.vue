@@ -36,7 +36,12 @@
       </v-col>
     </v-row>
     <v-dialog v-model="imagePreviewActive" fullscreen>
-      <div id="preview-background" @click="exitPreview">
+      <div
+        id="preview-background"
+        @click="exitPreview"
+        @keyup.left.exact="step(-1)"
+        @keyup.right.exact="step(1)"
+      >
         <div id="preview-content-wrapper" class="full-height mt-6">
           <v-row class="full-height" justify="center">
             <v-col

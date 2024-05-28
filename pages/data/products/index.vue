@@ -74,7 +74,7 @@
             </li>
             <li>
               <nuxt-link
-                :to="`${localePath('data-products-normal-ozone-maps')}`"
+                :to="`${localePath('data-products-normal_ozone_maps')}`"
               >
                 <span>{{ $t('data.products.normal-ozone-maps.title') }}</span>
               </nuxt-link>

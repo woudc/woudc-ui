@@ -1591,15 +1591,15 @@
         "wccosFullName": "World Calibration Centre for Ozone Sondes (WCCOS)"
       },
       "normal-ozone-maps": {
-        "title": "Maps of normal ozone",
-        "description": "These maps show the mean 1978-1988 level estimated using Total Ozone Mapping Spectrometer (TOMS) data for all areas except the Antarctic and from the pre-1980 level estimated using Dobson data over the Antarctic.",
-        "keywords": "normal ozone maps, ozone maps, global, southen hemisphere, northern hemisphere, globle, Mean total ozone, total ozone, maps of normal ozone",
+        "title": "Normal ozone maps (1978-1988)",
+        "description": "Estimated mean total ozone maps by month and hemisphere. The estimated mean is between 1978-1988 level using Total Ozone Mapping Spectrometer (TOMS) for all areas except the Anatartic and from the pre-1980 level using Dobson data over the Antarctic.",
+        "keywords": "normals, mean, ozone maps, global, southen hemisphere, northern hemisphere, 1978-1988, estimated, TOMS, Dobson",
         "global": "Global",
-        "globalDesc": "Mean total ozone by month",
-        "northern": "Northern",
-        "southernDesc": "The mean total ozone by month for the southern hemisphere",
-        "southern": "Southern",
-        "northernDesc": "The mean total ozone by month for the northern hemisphere",
+        "globalDesc": "Mean total ozone maps by month for the globe",
+        "northern": "Northern hermisphere",
+        "southernDesc": "Mean total ozone maps by month for the southern hemisphere",
+        "southern": "Southern hemisphere",
+        "northernDesc": "Mean total ozone maps by month for the northern hemisphere",
         "captions": {
           "globe": {
             "jan": "The mean total ozone for the globe in January.",
@@ -1645,7 +1645,9 @@
           },
           "beginning": "The mean total ozone for the ",
           "globle": "globe"
-        }
+        },
+        "aboutNormalOzoneMaps": "These maps show the mean 1978-1988 level estimated using Total Ozone Mapping Spectrometer (TOMS) data for all areas except the Antarctic and from the pre-1980 level estimated using Dobson data over the Antarctic.",
+        "infoAboutNormals": "Information about normal ozone maps"
       }
     },
     "quality": {

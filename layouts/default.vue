@@ -9,7 +9,7 @@
       app
     >
       <v-list nav>
-        <div v-for="(group, groupTag) in links" :key="groupTag">
+        <div v-for="(group, groupTag, index) in links" :key="index">
           <v-list-item
             v-if="group.sections == undefined"
             :to="localePath(group.link)"
@@ -32,7 +32,10 @@
                 </v-list-item-title>
               </v-list-item-content>
             </template>
-            <div v-for="(section, textTag) in group.sections" :key="textTag">
+            <div
+              v-for="(section, textTag, indexSection) in group.sections"
+              :key="indexSection"
+            >
               <v-list-item
                 v-if="section.type === 'external'"
                 :href="section.link"
@@ -78,8 +81,8 @@
       </h5>
       <template v-if="$vuetify.breakpoint.mdAndUp" #extension>
         <v-menu
-          v-for="(group, groupTag) in links"
-          :key="groupTag"
+          v-for="(group, groupTag, index) in links"
+          :key="index"
           offset-y
           open-on-hover
           open-on-focus
@@ -108,7 +111,10 @@
             </v-tabs>
           </template>
           <v-list v-if="group.sections" color="accent" nav>
-            <div v-for="(section, textTag) in group.sections" :key="textTag">
+            <div
+              v-for="(section, textTag, indexSection) in group.sections"
+              :key="indexSection"
+            >
               <v-list-item
                 v-if="section.type === 'external'"
                 :href="section.link"

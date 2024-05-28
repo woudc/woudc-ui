@@ -1586,15 +1586,15 @@
         "wccosFullName": "Centre Mondial d’Étalonnage des Sondes d’Ozone (CMESO)"
       },
       "normal-ozone-maps": {
-        "title": "Cartes de l'ozone normale",
-        "description": "Ces cartes montrent le niveau moyen de 1978-1988 estimé à l'aide des données du spectromètre de cartographie de l'ozone total (TOMS) pour toutes les zones à l'exception de l'Antarctique, ainsi que le niveau d'avant 1980 estimé à l'aide des données de Dobson au-dessus de l'Antarctique.",
-        "keywords": "cartes normales de l'ozone, cartes de l'ozone, global, hémisphère sud, hémisphère nord, globe, ozone total moyen, ozone total, cartes de l'ozone normal",
+        "title": "Cartes normales de l'ozone (1978-1988)",
+        "description": "Cartes de l’ozone total moyen estimées par mois et par hémisphère. \nLa moyenne estimée se situe entre le niveau de 1978 et 1988 en utilisant le spectromètre imageur de l’ozone total (TOMS) pour toutes les zones à l'exception de l'Anatartique et le niveau d'avant 1980 en utilisant les données Dobson sur l'Antarctique.",
+        "keywords": "normales, moyennes, cartes de l'ozone, mondiales, hémisphère sud, hémisphère nord, 1978-1988, estimées, TOMS, Dobson",
         "global": "Mondial",
         "northern": "Hémisphère Nord",
-        "southern": "Hémisphère Sud",
-        "globalDesc": "L’ozone total moyen par mois",
-        "northernDesc": "La carte de l’ozone total moyen par mois pour l’hémisphère Nord",
-        "southernDesc": "La carte de l’ozone total moyen par mois pour l’hémisphère Sud",
+        "southern": "Hémisphère sud",
+        "globalDesc": "Cartes de l'ozone total moyen par mois pour le globe",
+        "northernDesc": "Cartes de l'ozone total moyen par mois pour l'hémisphère nord",
+        "southernDesc": "Cartes de l'ozone total moyen par mois pour l’hémisphère Sud",
         "captions": {
           "globe": {
             "jan": "L'ozone total moyen pour le globe en janvier.",
@@ -1640,7 +1640,9 @@
           },
           "beginning": "L'ozone total moyen pour le",
           "globle": "globe"
-        }
+        },
+        "aboutNormalOzoneMaps": "Ces cartes montrent le niveau moyen de 1978-1988 estimé d’après les données du spectromètre imageur de l’ozone total (TOMS) pour toutes les régions sauf l’Antarctique. Les niveaux de l’Antarctique sont estimés utilisant les données des instruments Dobson avant 1980.",
+        "infoAboutNormals": "Informations sur les cartes normales de l'ozone"
       }
     },
     "quality": {
