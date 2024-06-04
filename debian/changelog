@@ -3,15 +3,15 @@ woudc-ui (2.0.0-beta20) focal; urgency=medium
   * Added "Maps of normal ozone" page
   * Updated text information for ozone maps pages
   * Changed links of ozone map products to the new ozone maps search page with links by individual types and allowing query params for each type
+  * Changed route structure of ozone maps and normal ozone maps pages to use optional dynamic routes for its tabs
   * Fixed meta description of josie-besos page
   * Fixed to incorrect formatting of vue-i18n linked locale messages
   * Fixed to missing links for ozone maps pages
   * Fixed Strict-Transport-Security
   * Fixed nightly redirects
   * Fixed Vue warnings from layouts/default.vue
-  * Removed trailing slashes in browser URL on app deployment
 
- -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Tue, 04 Jun 2024 16:10:00 +0000
+ -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Tue, 04 Jun 2024 21:05:00 +0000
 
 woudc-ui (2.0.0-beta19) focal; urgency=medium
 
