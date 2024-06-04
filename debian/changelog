@@ -9,8 +9,9 @@ woudc-ui (2.0.0-beta20) focal; urgency=medium
   * Fixed Strict-Transport-Security
   * Fixed nightly redirects
   * Fixed Vue warnings from layouts/default.vue
+  * Removed trailing slashes in browser URL on app deployment
 
- -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Tue, 28 May 2024 20:36:00 +0000
+ -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Tue, 04 Jun 2024 16:10:00 +0000
 
 woudc-ui (2.0.0-beta19) focal; urgency=medium
 
