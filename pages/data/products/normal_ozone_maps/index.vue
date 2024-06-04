@@ -52,7 +52,7 @@ export default {
     return {
       baseOzoneClimatologyURL: `${this.$config.WOUDC_UI_WAF_URL}/products/ozone_maps/climatology`,
       ozoneMapTab: 'global',
-      normalozoneMapTypes: ['global', 'northern', 'southern'],
+      normalOzoneMapTypes: ['global', 'northern', 'southern'],
       months: [
         'jan',
         'feb',
@@ -133,21 +133,32 @@ export default {
     },
   },
   watch: {
-    ozoneMapTab: function (newTab) {
-      this.$router.push({ query: { type: newTab } })
+    ozoneMapTab(newTab) {
+      this.$router.push({
+        params: { type: newTab },
+      })
     },
-    '$route.query.type'() {
-      const sanitizedOzoneType = encodeURIComponent(this.$route.query.type)
-      if (this.normalozoneMapTypes.includes(sanitizedOzoneType)) {
+    '$route.params.type'() {
+      const sanitizedOzoneType = encodeURIComponent(this.$route.params.type)
+      if (this.normalOzoneMapTypes.includes(sanitizedOzoneType)) {
         this.ozoneMapTab = sanitizedOzoneType
       }
     },
   },
   created() {
-    const sanitizedOzoneType = encodeURIComponent(this.$route.query.type)
-    if (this.normalozoneMapTypes.includes(sanitizedOzoneType)) {
+    const sanitizedOzoneType = encodeURIComponent(this.$route.params.type)
+    if (this.normalOzoneMapTypes.includes(sanitizedOzoneType)) {
       this.ozoneMapTab = sanitizedOzoneType
+      this.$router.push({
+        params: { type: this.ozoneMapTab },
+      })
     }
+  },
+  nuxtI18n: {
+    paths: {
+      en: '/data/products/normal-ozone-maps/:type?',
+      fr: `/donnees/produits/cartes-normales-de-l'ozone/:type?`,
+    },
   },
 }
 </script>

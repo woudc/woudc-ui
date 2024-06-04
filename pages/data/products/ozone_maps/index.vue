@@ -658,18 +658,18 @@ export default {
         this.generateSourcedForecastMapPaths()
       }
       this.$router.push({
-        query: { type: newTab },
+        params: { type: newTab },
       })
     },
-    '$route.query.type'() {
-      const sanitizedOzoneType = encodeURIComponent(this.$route.query.type)
+    '$route.params.type'(type) {
+      const sanitizedOzoneType = encodeURIComponent(type)
       if (this.ozoneMapTypes.includes(sanitizedOzoneType)) {
         this.ozoneMapTab = sanitizedOzoneType
       }
     },
   },
   created() {
-    const sanitizedOzoneType = encodeURIComponent(this.$route.query.type)
+    const sanitizedOzoneType = encodeURIComponent(this.$route.params.type)
     if (this.ozoneMapTypes.includes(sanitizedOzoneType)) {
       this.ozoneMapTab = sanitizedOzoneType
     }
@@ -1164,8 +1164,8 @@ export default {
   },
   nuxtI18n: {
     paths: {
-      en: '/data/products/ozone-maps',
-      fr: `/donnees/produits/cartes-d'ozone`,
+      en: '/data/products/ozone-maps/:type?',
+      fr: `/donnees/produits/cartes-d'ozone/:type?`,
     },
   },
 }

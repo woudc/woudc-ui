@@ -32,42 +32,60 @@
           <ul>
             <li>
               <nuxt-link
-                :to="`${localePath('data-products-ozone_maps')}?type=global`"
+                :to="`${localePath({
+                  name: 'data-products-ozone_maps',
+                  params: { type: 'global' },
+                })}`"
               >
                 <span>{{ $t('data.products.ozone_maps.titleGlobal') }}</span>
               </nuxt-link>
             </li>
             <li>
               <nuxt-link
-                :to="`${localePath('data-products-ozone_maps')}?type=northern`"
+                :to="`${localePath({
+                  name: 'data-products-ozone_maps',
+                  params: { type: 'northern' },
+                })}`"
               >
                 <span>{{ $t('data.products.ozone_maps.titleNorthern') }}</span>
               </nuxt-link>
             </li>
             <li>
               <nuxt-link
-                :to="`${localePath('data-products-ozone_maps')}?type=southern`"
+                :to="`${localePath({
+                  name: 'data-products-ozone_maps',
+                  params: { type: 'southern' },
+                })}`"
               >
                 <span>{{ $t('data.products.ozone_maps.titleSouthern') }}</span>
               </nuxt-link>
             </li>
             <li>
               <nuxt-link
-                :to="`${localePath('data-products-ozone_maps')}?type=forecast`"
+                :to="`${localePath({
+                  name: 'data-products-ozone_maps',
+                  params: { type: 'forecast' },
+                })}`"
               >
                 <span>{{ $t('data.products.ozone_maps.titleForecast') }}</span>
               </nuxt-link>
             </li>
             <li>
               <nuxt-link
-                :to="`${localePath('data-products-ozone_maps')}?type=observed`"
+                :to="`${localePath({
+                  name: 'data-products-ozone_maps',
+                  params: { type: 'observed' },
+                })}`"
               >
                 <span>{{ $t('data.products.ozone_maps.titleObserved') }}</span>
               </nuxt-link>
             </li>
             <li>
               <nuxt-link
-                :to="`${localePath('data-products-ozone_maps')}?type=archive`"
+                :to="`${localePath({
+                  name: 'data-products-ozone_maps',
+                  params: { type: 'archive' },
+                })}`"
               >
                 <span>{{ $t('data.products.ozone_maps.titleArchived') }}</span>
               </nuxt-link>

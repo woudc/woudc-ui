@@ -4,7 +4,6 @@ import pkg from './package.json'
 export default {
   router: {
     base: process.env.WOUDC_UI_ROUTER_BASE || '/',
-    trailingSlash: false,
   },
   /*
    ** Global headers of the page
