@@ -651,13 +651,15 @@ export default {
     },
   },
   watch: {
-    ozoneMapTab: function (newTab) {
-      this.$router.push({ query: { type: newTab } })
+    ozoneMapTab(newTab) {
       if (newTab === 'observed') {
         this.generateSourcedObservedMapPaths()
       } else if (newTab === 'forecast') {
         this.generateSourcedForecastMapPaths()
       }
+      this.$router.push({
+        query: { type: newTab },
+      })
     },
     '$route.query.type'() {
       const sanitizedOzoneType = encodeURIComponent(this.$route.query.type)
