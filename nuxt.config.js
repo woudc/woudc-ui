@@ -2,6 +2,7 @@ import colors from 'vuetify/es5/util/colors'
 import pkg from './package.json'
 
 export default {
+  telemetry: false, // disable prompt to collect annoynmous data from nuxt
   router: {
     base: process.env.WOUDC_UI_ROUTER_BASE || '/',
   },
