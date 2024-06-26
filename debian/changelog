@@ -1,3 +1,9 @@
+woudc-ui (2.0.0-beta20.1) focal; urgency=medium
+
+  * Fix previously removed CS Policy
+
+ -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Wed, 26 Jun 2024 21:38:00 +0000
+
 woudc-ui (2.0.0-beta20) focal; urgency=medium
 
   * Added "Maps of normal ozone" page
