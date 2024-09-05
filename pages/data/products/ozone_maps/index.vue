@@ -802,6 +802,10 @@ export default {
               iDate.minus({ [iType]: iDeltaAgo }).toISODate()
             )
           }
+
+          if (iDate.toFormat('yyyy-LL-dd') < this.archivedMinDate) {
+            continue // skip if date is less than min date
+          }
         }
 
         // 1st subpath: date range type: monthly or 10 day
