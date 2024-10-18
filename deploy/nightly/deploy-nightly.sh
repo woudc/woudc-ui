@@ -64,7 +64,7 @@ done
 echo "Generating nightly build for $TIMESTAMP"
 rm -fr latest
 mkdir $NIGHTLYDIR && cd $NIGHTLYDIR
-git clone $GITREPO .
+git clone $GITREPO . -b master --depth=1
 cp deploy/nightly/.env .
 echo "Installing npm dependencies"
 npm install
