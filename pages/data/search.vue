@@ -1148,7 +1148,7 @@ export default {
         let response = await woudcClient.get(
           UVIndexURL +
             '?offset=' +
-            offset
+            offset +
             '&limit=' +
             Limit +
             '&' +
