@@ -1141,14 +1141,14 @@ export default {
       let itemsPerPage = this.options['itemsPerPage']
       let page = this.options['page']
 
-      const startIndex = page * itemsPerPage - itemsPerPage
+      const offset = page * itemsPerPage - itemsPerPage
       const Limit = itemsPerPage
 
       if (this.selectedDatasetID === 'uv_index_hourly') {
         let response = await woudcClient.get(
           UVIndexURL +
-            '?startindex=' +
-            startIndex +
+            '?offset=' +
+            offset
             '&limit=' +
             Limit +
             '&' +
@@ -1159,8 +1159,8 @@ export default {
       } else if (this.selectedDatasetID === 'TotalOzone') {
         let response = await woudcClient.get(
           totalOzoneURL +
-            '?startindex=' +
-            startIndex +
+            '?offset=' +
+            offset +
             '&limit=' +
             Limit +
             '&' +
@@ -1176,8 +1176,8 @@ export default {
       ) {
         let response = await woudcClient.get(
           peerDataRecordsURL +
-            '?startindex=' +
-            startIndex +
+            '?offset=' +
+            offset +
             '&limit=' +
             Limit +
             '&' +
@@ -1187,7 +1187,7 @@ export default {
         this.dataRecords = response.data.features.map(stripProperties)
       } else if (this.selectedDatasetID === 'OzoneSonde') {
         let response = await woudcClient.get(
-          ozoneSondeURL + '?startindex=' + page + '&limit=1' + '&' + queryParams
+          ozoneSondeURL + '?offset=' + page + '&limit=1' + '&' + queryParams
         )
         this.numberMatched =
           response.data.numberMatched * this.options.itemsPerPage
@@ -1214,8 +1214,8 @@ export default {
       } else {
         let response = await woudcClient.get(
           dataRecordsURL +
-            '?startindex=' +
-            startIndex +
+            '?offset=' +
+            offset +
             '&limit=' +
             Limit +
             '&' +
