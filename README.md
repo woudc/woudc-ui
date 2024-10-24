@@ -37,6 +37,33 @@ $ npx nuxt generate --dotenv .env.ops
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
 
+
+## Docker
+
+Docker commands:
+```bash
+# build
+docker build -t woudc-ui .
+
+# run container
+docker run -d -p 6081:6081 woudc-ui
+```
+
+Docker compose commands:
+```bash
+# build
+docker compose -f docker-compose.yml build
+
+# take down container
+docker compose -f docker-compose.yml down
+
+# ensure container is removed
+docker container rm -f woudc-ui-nightly
+
+# run container
+docker compose -f docker-compose.yml up -d
+```
+
 ## SPA fallback in deployment
 
 Since not all pages in WOUDC will be pre-generated, a fallback is required to redirect to `200.html` to handle pages with dynamic data.
@@ -53,7 +80,7 @@ RewriteRule . /subfolder-name/200.html [L]
 </IfModule>
 ```
 
-After building your files (`npm run build`), you can copy the `.htaccess` sample to your `/dist` for convenience and modify it to according to your server settings. 
+After building your files (`npm run build`), you can copy the `.htaccess` sample to your `/dist` for convenience and modify it to according to your server settings.
 
 ```bash
 # modify to your web server specs
@@ -92,10 +119,10 @@ $ npx nuxt generate --dotenv .env.ops
 ## Debian packaging and general release tagging for OPS
 
 - Update `version` in `package.json`
-- Ensure `.env` and `woudc-ui.conf` in `/deploy/default` are set correctly 
+- Ensure `.env` and `woudc-ui.conf` in `/deploy/default` are set correctly
 - Update `/debian/changelog` with `dch` command:
   - `dch -v x.y.z -u medium -D bionic -M` where `x.y.z` is the version (ie. `2.0.0-beta1`)
-- Commit the `changelog` into repo: 
+- Commit the `changelog` into repo:
   - `git commit -m 'update release version' debian/changelog`
   - `git push upstream master`
 - Create git tag in one of two ways:
@@ -131,7 +158,7 @@ Your code can be linted by running `npm run lint` to check for validation. You c
 
 ## SEO
 
-SEO is handled by Nuxt in the [`head()` method](https://nuxtjs.org/api/pages-head). 
+SEO is handled by Nuxt in the [`head()` method](https://nuxtjs.org/api/pages-head).
 
 ### Microdata
 
@@ -165,7 +192,7 @@ Please see the guide on [testing single file components with Jest](https://vue-t
 
 **Tip:** Don't write unit test for every single case. Instead, the next time you get an error in your development, write a unit test in the `/test` folder to help validate your code.
 
-# E2E Testing 
+# E2E Testing
 
 Cypress E2E testing quickly verifies whether each web page is working properly and that API calls are properly returned.
 
