@@ -53,7 +53,6 @@ echo "Generating nightly build for $TIMESTAMP"
 rm -fr latest
 mkdir $NIGHTLYDIR && cd $NIGHTLYDIR
 git clone $GITREPO . -b master --depth=1
-cp deploy/nightly/.env.docker .
 
 echo "Stopping/building/starting Docker setup"
 docker compose -f docker-compose.yml build --no-cache
