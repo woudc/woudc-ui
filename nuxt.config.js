@@ -63,7 +63,13 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/axios', '@nuxtjs/pwa', '@nuxtjs/i18n', 'nuxt-leaflet'],
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/pwa',
+    '@nuxtjs/i18n',
+    'nuxt-leaflet',
+    '@nuxtjs/sitemap',
+  ],
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
@@ -92,6 +98,13 @@ export default {
         },
       },
     },
+  },
+  /*
+   ** @nuxtjs/sitemap module options
+   */
+  sitemap: {
+    hostname: 'https://beta.woudc.org',
+    i18n: true,
   },
   /*
    ** nuxt-i18n module global options

@@ -46,7 +46,7 @@ Docker commands:
 docker build -t woudc-ui .
 
 # run container
-docker run -d -p 6081:6081 woudc-ui
+docker run -d --rm --name woudc-ui-nightly -p 6081:6081 woudc-ui
 ```
 
 Docker compose commands:
