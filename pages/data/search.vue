@@ -494,7 +494,7 @@ export default {
           'uv_daily_max',
           'actions',
         ]
-      } else if (this.selectedDatasetID === 'TotalOzone') {
+      } else if (this.selectedDatasetID === 'TotalOzone_1.0') {
         headerKeys = [
           'observation_date',
           'contributor_acronym',
@@ -521,7 +521,7 @@ export default {
           'end_datetime',
           'actions',
         ]
-      } else if (this.selectedDatasetID === 'OzoneSonde') {
+      } else if (this.selectedDatasetID === 'OzoneSonde_1.0') {
         headerKeys = [
           'timestamp_date',
           'contributor_acronym',
@@ -555,20 +555,20 @@ export default {
     datasetOptions() {
       const datasetSections = {
         totalozone: {
-          daily: 'TotalOzone',
-          hourly: 'TotalOzoneObs',
+          daily: 'TotalOzone_1.0',
+          hourly: 'TotalOzoneObs_1.0',
         },
         'vertical-ozone': {
-          lidar: 'Lidar',
-          ozonesonde: 'OzoneSonde',
+          lidar: 'Lidar_1.0',
+          ozonesonde: 'OzoneSonde_1.0',
           umkehr1: 'UmkehrN14_1.0',
           umkehr2: 'UmkehrN14_2.0',
-          rocketsonde: 'RocketSonde',
+          rocketsonde: 'RocketSonde_1.0',
         },
         'uv-irradiance': {
-          broadband: 'Broad-band',
-          multiband: 'Multi-band',
-          spectral: 'Spectral',
+          broadband: 'Broad-band_1.0',
+          multiband: 'Multi-band_1.0',
+          spectral: 'Spectral_1.0',
           'uv-index': 'uv_index_hourly',
         },
         'data-centers': {
@@ -1065,7 +1065,7 @@ export default {
           station_id: this.selectedStationID,
           instrument_name: this.selectedInstrumentID,
         }
-      } else if (this.selectedDatasetID === 'TotalOzone') {
+      } else if (this.selectedDatasetID === 'TotalOzone_1.0') {
         selected = {
           country_id: this.selectedCountryID,
           station_id: this.selectedStationID,
@@ -1086,7 +1086,7 @@ export default {
           station_id: this.selectedStationID,
           instrument_name: this.selectedInstrumentID,
         }
-      } else if (this.selectedDatasetID === 'OzoneSonde') {
+      } else if (this.selectedDatasetID === 'OzoneSonde_1.0') {
         selected = {
           country_id: this.selectedCountryID,
           station_id: this.selectedStationID,
@@ -1156,7 +1156,7 @@ export default {
         )
         this.numberMatched = response.data.numberMatched
         this.dataRecords = response.data.features.map(stripProperties)
-      } else if (this.selectedDatasetID === 'TotalOzone') {
+      } else if (this.selectedDatasetID === 'TotalOzone_1.0') {
         let response = await woudcClient.get(
           totalOzoneURL +
             '?offset=' +
@@ -1185,7 +1185,7 @@ export default {
         )
         this.numberMatched = response.data.numberMatched
         this.dataRecords = response.data.features.map(stripProperties)
-      } else if (this.selectedDatasetID === 'OzoneSonde') {
+      } else if (this.selectedDatasetID === 'OzoneSonde_1.0') {
         let response = await woudcClient.get(
           ozoneSondeURL + '?offset=' + page + '&limit=1' + '&' + queryParams
         )

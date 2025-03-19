@@ -1,5 +1,4 @@
 # for local development
-version: '2.0-nightly'
 services:
   woudc-ui:
     image: woudc/woudc-ui:nightly
