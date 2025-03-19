@@ -27,7 +27,7 @@
 #
 ###################################################################
 
-DOCKER_PROJECT_NAME=woudc-ui-nightly
+DOCKER_PROJECT_NAME=woudc-ui
 DOCKER_COMPOSE_ARGS=--file docker-compose.yml --project-name $(DOCKER_PROJECT_NAME)
 
 build:
