@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import { latLngBounds } from 'leaflet'
 export default {
   name: 'SelectableMap',
   props: {
@@ -132,12 +133,25 @@ export default {
   methods: {
     autoZoomToCountry(countryCode) {
       const boundaries = this.$store.getters['countries/boundaries']
-
       if (boundaries[countryCode] === null) {
         this.$nextTick(this.autoZoomToMarkers)
       } else {
+        const markers = this.elements.map(
+          (element) => element.geometry.coordinates
+        )
+        let coordinates = []
+        coordinates = [...markers, ...boundaries[countryCode]]
+
+        const lats = coordinates.map((coord) => coord[0])
+        const lngs = coordinates.map((coord) => coord[1])
+        const southWest = [Math.min(...lats), Math.min(...lngs)]
+        const northEast = [Math.max(...lats), Math.max(...lngs)]
+
+        const coordinateBounds = latLngBounds(southWest, northEast)
         const map = this.$refs['woudc-map']
-        map.fitBounds(boundaries[countryCode])
+        map.fitBounds(coordinateBounds, {
+          animate: true,
+        })
       }
     },
     autoZoomToMarkers() {
@@ -145,7 +159,11 @@ export default {
       const map = this.$refs['woudc-map']
 
       const bounds = markerGroup.mapObject.getBounds()
-      map.fitBounds(bounds)
+      map.fitBounds(bounds, {
+        padding: [50, 50],
+        maxZoom: 12,
+        animate: true,
+      })
     },
     emitBoundaryChange(event) {
       const bounds = event.target.getBounds()
