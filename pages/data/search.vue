@@ -279,6 +279,7 @@
             }"
             :loading="loadingDataRecords"
           >
+            <!-- eslint-disable-next-line vue/valid-v-slot -->
             <template #item.observation_date="row">
               <p
                 v-if="
@@ -292,6 +293,7 @@
                 {{ row.item.observation_date.substring(0, 10) }}
               </p>
             </template>
+            <!-- eslint-disable vue/valid-v-slot -->
             <template
               v-if="
                 oldSearchParams['dataset'] === 'uv_index_hourly' ||
@@ -301,12 +303,14 @@
               "
               #item.station_id="row"
             >
+              <!-- eslint-enable vue/valid-v-slot -->
               <nuxt-link
                 :to="localePath('data-stations') + '/' + row.item.station_id"
               >
                 {{ row.item.station_id }}
               </nuxt-link>
             </template>
+            <!-- eslint-disable-next-line vue/valid-v-slot -->
             <template v-else #item.platform_id="row">
               <nuxt-link
                 :to="localePath('data-stations') + '/' + row.item.platform_id"
@@ -314,6 +318,7 @@
                 <span>{{ row.item.platform_id }}</span>
               </nuxt-link>
             </template>
+            <!-- eslint-disable-next-line vue/valid-v-slot -->
             <template #item.station_gaw_id="row">
               <a :href="row.item.station_gaw_url" target="_blank">
                 <span>
@@ -321,6 +326,7 @@
                 </span>
               </a>
             </template>
+            <!-- eslint-disable-next-line vue/valid-v-slot -->
             <template #item.gaw_id="row">
               <a :href="row.item.gaw_url" target="_blank">
                 <span>
@@ -328,6 +334,7 @@
                 </span>
               </a>
             </template>
+            <!-- eslint-disable-next-line vue/valid-v-slot -->
             <template #item.contributor_acronym="row">
               <a :href="row.item.contributor_url" target="_blank">
                 <span>
@@ -335,16 +342,19 @@
                 </span>
               </a>
             </template>
+            <!-- eslint-disable-next-line vue/valid-v-slot -->
             <template #item.observation_time="row">
               <p v-if="row.item.observation_time">
                 {{ row.item.observation_time.substring(11, 13) }}
               </p>
             </template>
+            <!-- eslint-disable-next-line vue/valid-v-slot -->
             <template #item.timestamp_utc="row">
               <p v-if="row.item.timestamp_utc">
                 {{ row.item.timestamp_utc.substring(0, 10) }}
               </p>
             </template>
+            <!-- eslint-disable-next-line vue/valid-v-slot -->
             <template #item.actions="row">
               <a :href="row.item.url" target="_blank">
                 <v-icon>mdi-file-download</v-icon>
