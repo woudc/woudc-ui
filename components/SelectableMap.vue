@@ -43,7 +43,6 @@
 </template>
 
 <script>
-import { latLngBounds } from 'leaflet'
 export default {
   name: 'SelectableMap',
   props: {
@@ -147,7 +146,7 @@ export default {
         const southWest = [Math.min(...lats), Math.min(...lngs)]
         const northEast = [Math.max(...lats), Math.max(...lngs)]
 
-        const coordinateBounds = latLngBounds(southWest, northEast)
+        const coordinateBounds = this.$L.latLngBounds(southWest, northEast)
         const map = this.$refs['woudc-map']
         map.fitBounds(coordinateBounds, {
           animate: true,
