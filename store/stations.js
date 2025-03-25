@@ -289,18 +289,20 @@ const actions = {
       state.stnDataPairs,
       state.stationsByID
     )
+    console.log('stationsByDataset', stationsByDataset)
 
-    commit('setStationsOzoneSonde', stationsByDataset.ozonesonde)
-    commit('setStationsTotalOzone', stationsByDataset.totalozone)
-    commit('setStationsTotalOzoneObs', stationsByDataset.totalozoneobs)
-    commit('setStationsBroadband', stationsByDataset.broadband)
-    commit('setStationsMultiband', stationsByDataset.multiband)
-    commit('setStationsSpectral', stationsByDataset.spectral)
-    commit('setStationsUmkehr1', stationsByDataset.umkehrn14_1)
-    commit('setStationsUmkehr2', stationsByDataset.umkehrn14_2)
-    commit('setStationsRocketSonde', stationsByDataset.rocketsonde)
-    commit('setStationsLidar', stationsByDataset.lidar)
-    commit('setStationsUVIndex', stationsByDataset.uv_index_hourly)
+    commit('setStationsOzoneSonde', stationsByDataset['ozonesonde_1.0'])
+    commit('setStationsTotalOzone', stationsByDataset['totalozone_1.0'])
+    commit('setStationsTotalOzoneObs', stationsByDataset['totalozoneobs_1.0'])
+    commit('setStationsBroadband', stationsByDataset['broadband_1.0'])
+    commit('setStationsMultiband', stationsByDataset['multiband_1.0'])
+    commit('setStationsSpectral', stationsByDataset['spectral_1.0'])
+    commit('setStationsUmkehr1', stationsByDataset['umkehrn14_1_1.0'])
+    commit('setStationsUmkehr2', stationsByDataset['umkehrn14_2_1.0'])
+    commit('setStationsRocketSonde', stationsByDataset['rocketsonde_1.0'])
+    commit('setStationsLidar', stationsByDataset['lidar_1.0'])
+    // TODO to be confirmed: uv_index_hourly_1.0 or uv_index_hourly_2.0 or uv_index_hourly
+    commit('setStationsUVIndex', stationsByDataset['uv_index_hourly_1.0'])
   },
 }
 
