@@ -289,7 +289,6 @@ const actions = {
       state.stnDataPairs,
       state.stationsByID
     )
-    console.log('stationsByDataset', stationsByDataset)
 
     commit('setStationsOzoneSonde', stationsByDataset['ozonesonde_1.0'])
     commit('setStationsTotalOzone', stationsByDataset['totalozone_1.0'])
