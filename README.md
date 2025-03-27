@@ -181,8 +181,7 @@ Please see the [nuxt-i18n routing guide](https://nuxt-community.github.io/nuxt-i
 To translate text:
 
 - **Recommended**: In VS Code, use the [i18n Ally](https://marketplace.visualstudio.com/items?itemName=Lokalise.i18n-ally) extension
-- Use [BabelEdit](https://www.codeandweb.com/babeledit/download) and load the `.babel` file in the root of the project. If there are new `.vue` components, they need to be added in (by file or by folder). If translation needs to be sent to a 3rd party translator, BabelEdit can export the translation to a `CSV` which can be sent off to the translator. Once completed, import the `CSV` in to BabelEdit to apply the completed translations.
-- Alternatively, use the FOSS program called [i18n Manager](https://github.com/gilmarsquinelato/i18n-manager) to manage translation text.
+- Use the FOSS program called [i18n Manager](https://github.com/gilmarsquinelato/i18n-manager) to manage translation text.
 
 ## Testing
 

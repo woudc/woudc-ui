@@ -3,29 +3,20 @@ import { getDistinct } from '~/plugins/api/wdr.api.processes'
 
 const groupStationsByDataset = (stnDataPairs, stationsByID) => {
   const stationsByDataset = {}
-  const uvIndexDatasets = ['Broad-band', 'Spectral']
+  const uvIndexDatasetIds = ['Broad-band_1.0', 'Spectral_1.0']
 
   for (const stnDataPair of stnDataPairs) {
-    const dataset = stnDataPair.properties.dataset_id
+    const datasetID = stnDataPair.properties.dataset_id
     const stationID = stnDataPair.properties.station_id
     const station = stationsByID[stationID]
 
     // Instead of using the straight dataset key name, use a shorter lowercase name.
     const datasetKeys = []
-    if (dataset === 'UmkehrN14_1.0') {
-      const level = 1
-      const key = 'umkehrn14_' + parseInt(level)
-      datasetKeys.push(key)
-    } else if (dataset === 'UmkehrN14_2.0') {
-      const level = 2
-      const key = 'umkehrn14_' + parseInt(level)
-      datasetKeys.push(key)
-    } else {
-      const key = dataset.replace('-', '').toLowerCase()
-      datasetKeys.push(key)
-    }
+    const datasetKey = datasetID.replace('-', '').toLowerCase()
+    datasetKeys.push(datasetKey)
 
-    if (uvIndexDatasets.includes(dataset)) {
+    // create uv_index_hourly dataset
+    if (uvIndexDatasetIds.includes(datasetID)) {
       datasetKeys.push('uv_index_hourly')
     }
 
@@ -151,10 +142,10 @@ const mutations = {
   setStationsSpectral(state, stations) {
     state.spectral = stations
   },
-  setStationsUmkehr1(state, stations) {
+  setStationsUmkehrN14_1(state, stations) {
     state.umkehrn14_1 = stations
   },
-  setStationsUmkehr2(state, stations) {
+  setStationsUmkehrN14_2(state, stations) {
     state.umkehrn14_2 = stations
   },
   setStationsRocketSonde(state, stations) {
@@ -296,12 +287,11 @@ const actions = {
     commit('setStationsBroadband', stationsByDataset['broadband_1.0'])
     commit('setStationsMultiband', stationsByDataset['multiband_1.0'])
     commit('setStationsSpectral', stationsByDataset['spectral_1.0'])
-    commit('setStationsUmkehr1', stationsByDataset['umkehrn14_1_1.0'])
-    commit('setStationsUmkehr2', stationsByDataset['umkehrn14_2_1.0'])
+    commit('setStationsUmkehrN14_1', stationsByDataset['umkehrn14_1.0'])
+    commit('setStationsUmkehrN14_2', stationsByDataset['umkehrn14_2.0'])
     commit('setStationsRocketSonde', stationsByDataset['rocketsonde_1.0'])
     commit('setStationsLidar', stationsByDataset['lidar_1.0'])
-    // TODO to be confirmed: uv_index_hourly_1.0 or uv_index_hourly_2.0 or uv_index_hourly
-    commit('setStationsUVIndex', stationsByDataset['uv_index_hourly_1.0'])
+    commit('setStationsUVIndex', stationsByDataset['uv_index_hourly'])
   },
 }
 
