@@ -413,12 +413,12 @@ export default {
 
       this.loadingInstruments = true
 
-      const broadbandParams = queryParams + '&dataset=Broad-band'
+      const broadbandParams = queryParams + '&dataset=Broad-band_1.0'
       const broadbandResponse = await woudcClient.get(
         instrumentsURL + '?' + broadbandParams
       )
 
-      const spectralParams = queryParams + '&dataset=Spectral'
+      const spectralParams = queryParams + '&dataset=Spectral_1.0'
       const spectralResponse = await woudcClient.get(
         instrumentsURL + '?' + spectralParams
       )
