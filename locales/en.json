@@ -1177,7 +1177,8 @@
         "timestamp-date": "Observation Date (UTC)",
         "timestamp-utc": "Observation Date (UTC)",
         "uv-daily_max": "UV Index Daily Max",
-        "uv-index": "UV Index Hourly Average"
+        "uv-index": "UV Index Hourly Average",
+        "dataset-id": "Dataset ID"
       },
       "title": "Data Search and Download"
     },

@@ -754,7 +754,7 @@
     "guidelines": "des directives",
     "instructions": "Instructions",
     "interoperability": "interopérabilité de l’OMM",
-    "iso": "International Organization for Standardization",
+    "iso": "Organisation internationale de normalisation",
     "map-instructions": {
       "body-panning": "{panning} Cliquez sur n’importe quelle partie de la carte interactive et faites-la glisser. Ou alors, déplacer le curseur sur la fenêtre de la carte avec la touche {tab} et déplacez-vous à l’aide des touches fléchées.",
       "body-zooming": "{zooming} Pour agrandir ou réduire la vue, servez-vous de la roulette de votre souris lorsque votre curseur se trouve sur la carte, ou cliquez sur la {plus} ou la touche {minus}. Ou alors, déplacez le curseur sur la fenêtre de la carte avec la touche {tab} et cliquez sur la {plus} ou la touche {minus}. Pour effectuer un zoom arrière complet, appuyez sur le bouton \"Voir le globe\".",
@@ -780,8 +780,8 @@
     "search": "recherche de données / téléchargement",
     "sop": "procédures opérationnelles normalisées",
     "sort-by": "Ordre par",
-    "station-id": "Identification de la Station",
-    "station-name": "Nom de la Station",
+    "station-id": "Identifiant de la station",
+    "station-name": "Nom de la station",
     "stations": "stations enregistrées",
     "stations-page": "liste des stations",
     "submission": "soumission des données | soumissions de données",
@@ -868,7 +868,7 @@
         "station_name": "Nom de la station",
         "start_date": "À partir de cette date",
         "station_type": "Type de station",
-        "station_id": "Identification de la station du WOUDC"
+        "station_id": "Identifiant de la station du WOUDC"
       },
       "title": "Liste des contributeurs",
       "keywords": "WOUDC, données, contributeurs, organismes",
@@ -1086,9 +1086,9 @@
         "body-search": "Pour chercher et télécharger des données, sélectionnez l’ensemble de données et la période d’observation. Vous pouvez également choisir l’étendue géographique de votre recherche et cliquer sur envoyer la requête. Toutes les données disponibles pour cette période seront affichées."
       },
       "country": {
-        "id": "Identifiant du Pays",
-        "name": "Nom du Pays",
-        "placeholder": "Choisis un Pays",
+        "id": "Identifiant du pays",
+        "name": "Nom du pays",
+        "placeholder": "Choisis un pays",
         "title": "Pays"
       },
       "dataset": {
@@ -1119,8 +1119,8 @@
           "lidar": "Lidar",
           "ozonesonde": "Sonde pour l’ozone",
           "rocketsonde": "RocketSonde",
-          "umkehr1": "UmkehrN14 (Niveau 1.0)",
-          "umkehr2": "UmkehrN14 (Niveau 2.0)"
+          "umkehr1": "UmkehrN14 (niveau 1.0)",
+          "umkehr2": "UmkehrN14 (niveau 2.0)"
         }
       },
       "distribution-for": "Distribution de données pour :",
@@ -1128,7 +1128,7 @@
       "file-count": "Nombre total de fichiers dans cet intervalle :",
       "how-to": "Guide d’utilisation",
       "instrument": {
-        "placeholder": "Choisis un Instrument",
+        "placeholder": "Choisis un instrument",
         "title": "Instrument"
       },
       "no-results": "Aucune recherche n’a été effectuée.",
@@ -1139,7 +1139,7 @@
       "search-results": "Résultats de la recherche",
       "start": "Année de Début",
       "station": {
-        "placeholder": "Choisis une Station",
+        "placeholder": "Choisis une station",
         "title": "Station"
       },
       "table-headers": {
@@ -1162,22 +1162,23 @@
         "measurement": "Nom de l’ensemble de données",
         "monthly-date": "Mensuelle Date",
         "monthly-npts": "Mensuelle Nombre d’observations",
-        "o3partialpressure": "Pression Partielle de O3",
+        "o3partialpressure": "Pression partielle de O3",
         "observation-date": "Date de l’observation (UTC)",
         "observation-time": "Heure d’instance (UTC)",
-        "platform-id": "Identification de la plate-forme",
+        "platform-id": "Identifiant de la plate-forme",
         "platform-type": "Type de plate-forme",
         "pressure": "Pression",
         "processed-datetime": "Date et heure de traitement",
         "start-datetime": "Heure en UTC de la première observation",
         "station-gaw_id": "Identifiant VAG",
-        "station-id": "Identification de la plate-forme",
+        "station-id": "Identifiant de la plate-forme",
         "station-name": "Nom de la station",
         "temperature": "Température",
         "timestamp-date": "Date de l’observation (UTC)",
         "timestamp-utc": "Date de l’observation (UTC)",
         "uv-daily_max": "Indice UV jornalier max",
-        "uv-index": "Indice UV moyen horaire"
+        "uv-index": "Indice UV moyen horaire",
+        "dataset-id": "Identifiant de jeu de données"
       },
       "title": "Rechercher et télécharger de données"
     },
@@ -1715,9 +1716,9 @@
         "start_date": "À partir de cette date",
         "type": "Type de station",
         "wmo_region_id": "Région de l’OMM",
-        "woudc_id": "Identification de la station du WOUDC"
+        "woudc_id": "Identifiant de la station du WOUDC"
       },
-      "station-id": "Identification de la station du WOUDC :",
+      "station-id": "Identifiant de la station du WOUDC :",
       "station-name": "Nom de la station :",
       "title": "Liste des stations",
       "description": "Liste de toutes les stations de l’archive de données WOUDC",
