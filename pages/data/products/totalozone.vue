@@ -379,7 +379,7 @@ export default {
     async refreshInstruments() {
       const instrumentsURL =
         this.$config.WOUDC_UI_API_URL + '/collections/instruments/items'
-      let queryParams = 'sortby=name,serial&dataset=TotalOzone_1.0'
+      let queryParams = 'sortby=name,serial&dataset_id=TotalOzone_1.0'
       queryParams += '&station_id=' + this.selectedStationID
 
       this.loadingInstruments = true

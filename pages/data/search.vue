@@ -546,7 +546,7 @@ export default {
       } else {
         headerKeys = [
           'timestamp_utc',
-          'content_category',
+          'dataset_id',
           'platform_type',
           'platform_id',
           'instrument_name',
@@ -1048,19 +1048,17 @@ export default {
       if (this.options['sortBy'].length === 0) {
         const sortByParams = {
           uv_index_hourly: 'observation_date,station_id,dataset_id',
-          TotalOzone: 'daily_date,station_id',
+          'TotalOzone_1.0': 'daily_date,station_id',
           peer_data_records: 'start_datetime,station_id,measurement',
           ndacc_total: 'start_datetime,station_id,measurement',
           ndacc_vertical: 'start_datetime,station_id,measurement',
           ndacc_uv: 'start_datetime,station_id,measurement',
-          OzoneSonde: 'timestamp_date,station_id',
-          data_records: 'timestamp_date,platform_id,content_category',
+          'OzoneSonde_1.0': 'timestamp_date,station_id',
+          data_records: 'timestamp_date,platform_id,dataset_id',
         }
-        if (sortByParams[this.selectedDatasetID] !== undefined) {
-          queryParams = 'sortby=-' + sortByParams[this.selectedDatasetID]
-        } else {
-          queryParams = 'sortby=-' + sortByParams['data_records']
-        }
+        queryParams =
+          'sortby=-' +
+          (sortByParams[this.selectedDatasetID] || sortByParams['data_records'])
       } else {
         queryParams =
           this.options['sortDesc'][0] == true
@@ -1104,7 +1102,7 @@ export default {
         }
       } else {
         selected = {
-          content_category: this.selectedDatasetID,
+          dataset_id: this.selectedDatasetID,
           platform_country: this.selectedCountryID,
           platform_id: this.selectedStationID,
           instrument_name: this.selectedInstrumentID,
@@ -1279,6 +1277,7 @@ export default {
 
       let paramNames = {
         dataset: this.selectedDatasetID,
+        // dataset: this.datasetIdToCategory(this.selectedDatasetID),
         country: this.selectedCountryID,
         station: this.selectedStationID,
         network: this.selectedInstrumentID,
@@ -1296,8 +1295,8 @@ export default {
       for (const currParam of Object.entries(paramNames)) {
         const paramValue = currParam[1]
         if (paramValue === 'uv_index_hourly') {
-          // Use spectral for graph until multi dataset metrics are available
-          inputs.dataset = 'Spectral'
+          inputs.dataset =
+            'Spectral_1.0,Spectral_2.0,Broad-band_1.0,Broad-band_2.0'
         } else if (paramValue !== null) {
           inputs[currParam[0]] = paramValue
         }
@@ -1418,6 +1417,22 @@ export default {
         // Set the actual intended value for the start year.
         this.selectedYearRange = [newStartYear, oldEndYear]
       })
+    },
+    datasetIdToCategory(dataset_id) {
+      const validCategories = {
+        'TotalOzone_1.0': 'TotalOzone',
+        'TotalOzoneObs_1.0': 'TotalOzoneObs',
+        'Lidar_1.0': 'Lidar',
+        'OzoneSonde_1.0': 'OzoneSonde',
+        'UmkehrN14_1.0': 'UmkehrN14',
+        'UmkehrN14_2.0': 'UmkehrN14',
+        'RocketSonde_1.0': 'RocketSonde',
+        'Broad-band_1.0': 'Broad-band',
+        'Multi-band_1.0': 'Multi-band',
+        'Spectral_1.0': 'Spectral',
+      }
+
+      return validCategories[dataset_id] ?? dataset_id
     },
   },
   nuxtI18n: {
