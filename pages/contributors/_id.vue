@@ -57,6 +57,7 @@
             {{ contributor.item.country_name[$i18n.locale] }}
           </template>
         </v-data-table>
+        <h3>{{ $t('contributors.list.contributor-stations') }}</h3>
         <v-data-table
           id="deployments-table"
           :headers="deploymentHeaders"
@@ -247,7 +248,8 @@ export default {
 
       const deploymentsURL =
         this.$config.WOUDC_UI_API_URL + '/collections/deployments/items'
-      const queryParams = 'contributor=' + acronym + '&sortby=station_id'
+      const queryParams =
+        'contributor_acronym=' + acronym + '&sortby=station_id'
 
       const deploymentsResponse = await woudcClient.get(
         deploymentsURL + '?' + queryParams

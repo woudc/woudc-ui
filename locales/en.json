@@ -872,7 +872,8 @@
       },
       "title": "Contributor List",
       "keywords": "WOUDC,Data,contributors,agencies",
-      "description": "List of contributors, including the institute or organization name and abbreviation, address, contact information and local file information."
+      "description": "List of contributors, including the institute or organization name and abbreviation, address, contact information and local file information.",
+      "contributor-stations": "Contributor Stations"
     },
     "registration": {
       "blurb": {
@@ -1234,7 +1235,8 @@
         "name": "Instrument Type",
         "start_date": "Date From",
         "station_name": "Station Name",
-        "waf_url": "Web Accessible Folder"
+        "waf_url": "Web Accessible Folder",
+        "dataset_id": "Dataset ID"
       },
       "instrument-model": "Instrument Model:",
       "instrument-type": "Instrument Type:",
@@ -1698,7 +1700,8 @@
         "end_date": "Date To",
         "name": "Contributor Name",
         "project": "Project",
-        "start_date": "Date From"
+        "start_date": "Date From",
+        "contributor_acronym": "Contributor Acronym"
       },
       "gaw-id": "GAW ID:",
       "instrument-headers": {
@@ -1709,7 +1712,8 @@
         "name": "Instrument Type",
         "serial": "Instrument Number",
         "start_date": "Date From",
-        "waf_url": "Web Accessible Folder"
+        "waf_url": "Web Accessible Folder",
+        "dataset_id": "Dataset ID"
       },
       "station-headers": {
         "country_name_en": "Station Country",
@@ -1731,7 +1735,9 @@
       "single": {
         "keywords": "Station, details, submitted files, observations, country, date range, station contributor, station instruments, station metadata",
         "description": "Detailed view of a single station from the WOUDC data archive, including its instruments, contributor and date range of data files"
-      }
+      },
+      "station-contributors": "Station Contributors",
+      "station-instruments": "Station Instruments"
     },
     "title": "Data",
     "description": "Data - Main landing page",

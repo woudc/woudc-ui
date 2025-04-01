@@ -6,7 +6,7 @@ function instrumentModelID(instrumentModelObj) {
     instrumentModelObj.properties.name,
     instrumentModelObj.properties.model,
     instrumentModelObj.properties.station_id,
-    instrumentModelObj.properties.dataset,
+    instrumentModelObj.properties.dataset_id,
   ]
   return components.join(':')
 }
@@ -69,7 +69,7 @@ const actions = {
     const inputs = {
       index: 'instrument',
       distinct: {
-        modelResolution: ['name', 'model', 'station_id', 'dataset'],
+        modelResolution: ['name', 'model', 'station_id', 'dataset_id'],
       },
       source: [
         'station_name',
@@ -142,7 +142,7 @@ const actions = {
     const instrumentFields = [
       'name',
       'model',
-      'dataset',
+      'dataset_id',
       'data_class',
       'station_name',
     ]

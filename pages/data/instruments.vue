@@ -66,7 +66,7 @@
           <template #row="row">
             <td>{{ row.item.name }}</td>
             <td>{{ row.item.model }}</td>
-            <td>{{ row.item.dataset }}</td>
+            <td>{{ row.item.dataset_id }}</td>
             <td>{{ row.item.start_date }}</td>
             <td>{{ row.item.end_date }}</td>
             <td>{{ row.item.data_class }}</td>
@@ -179,7 +179,7 @@ export default {
       const headerKeys = [
         'name',
         'model',
-        'dataset',
+        'dataset_id',
         'start_date',
         'end_date',
         'data_class',
@@ -242,7 +242,7 @@ export default {
       this.loadingInstruments = true
       if (
         this.selectedFilters['data_class'].length == 0 &&
-        this.selectedFilters['dataset'].length == 0 &&
+        this.selectedFilters['dataset_id'].length == 0 &&
         this.selectedFilters['model'].length == 0 &&
         this.selectedFilters['name'].length == 0 &&
         this.selectedFilters['station_name'].length == 0
@@ -257,8 +257,8 @@ export default {
             (ins) =>
               (filters['data_class'].includes(ins['data_class']) == true ||
                 filters['data_class'].length == 0) &&
-              (filters['dataset'].includes(ins['dataset']) == true ||
-                filters['dataset'].length == 0) &&
+              (filters['dataset_id'].includes(ins['dataset_id']) == true ||
+                filters['dataset_id'].length == 0) &&
               (filters['model'].includes(ins['model']) == true ||
                 filters['model'].length == 0) &&
               (filters['name'].includes(ins['name']) == true ||

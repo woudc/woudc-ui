@@ -107,6 +107,7 @@
           hide-default-footer
           class="elevation-1 mb-4"
         >
+          <!-- eslint-disable-next-line vue/valid-v-slot -->
           <template #item.woudc_id="stn">
             <nuxt-link
               :to="localePath('data-stations') + '/' + stn.item.woudc_id"
@@ -114,6 +115,7 @@
               <span>{{ stn.item.woudc_id }}</span>
             </nuxt-link>
           </template>
+          <!-- eslint-disable-next-line vue/valid-v-slot -->
           <template #item.gaw_id="stn">
             <span v-if="stn.item.gaw_id !== null">
               <a :href="stn.item.gaw_url" target="_blank">
@@ -124,10 +126,12 @@
               </a>
             </span>
           </template>
+          <!-- eslint-disable-next-line vue/valid-v-slot -->
           <template #item.country="stn">
             {{ stn.item.country_name[$i18n.locale] }}
           </template>
         </v-data-table>
+        <h3>{{ $t('data.stations.station-contributors') }}</h3>
         <v-data-table
           v-if="deployments.length > 0"
           id="deployments-table"
@@ -144,10 +148,10 @@
                   :to="
                     localePath('contributors') +
                     '/' +
-                    deployment.item.contributor
+                    deployment.item.contributor_acronym
                   "
                 >
-                  <span>{{ deployment.item.contributor }}</span>
+                  <span>{{ deployment.item.contributor_acronym }}</span>
                 </nuxt-link>
               </td>
               <td>{{ deployment.item.contributor_project }}</td>
@@ -164,6 +168,7 @@
             </tr>
           </template>
         </v-data-table>
+        <h3>{{ $t('data.stations.station-instruments') }}</h3>
         <v-data-table
           v-if="instruments.length > 0"
           id="instruments-table"
@@ -172,6 +177,7 @@
           :loading="loadingTables"
           class="elevation-1"
         >
+          <!-- eslint-disable-next-line vue/valid-v-slot -->
           <template #item.waf_url="instrument">
             <a :href="instrument.item.waf_url" target="_blank">
               <v-icon>mdi-file-download</v-icon>
@@ -304,7 +310,7 @@ export default {
         'start_date',
         'end_date',
         'data_class',
-        'dataset',
+        'dataset_id',
         'waf_url',
       ]
 
@@ -477,7 +483,7 @@ export default {
       const deploymentsURL =
         this.$config.WOUDC_UI_API_URL + '/collections/deployments/items'
 
-      let queryParams = 'station_id=' + woudcID + '&sortby=contributor'
+      let queryParams = 'station_id=' + woudcID + '&sortby=contributor_name'
       const deploymentsResponse = await woudcClient.get(
         deploymentsURL + '?' + queryParams
       )
@@ -485,7 +491,7 @@ export default {
       this.deployments = deploymentsResponse.data.features.map(stripProperties)
 
       queryParams =
-        'station_id=' + woudcID + '&sortby=dataset,name,model,serial'
+        'station_id=' + woudcID + '&sortby=dataset_id,name,model,serial'
       const instrumentsResponse = await woudcClient.get(
         instrumentsURL + '?' + queryParams
       )

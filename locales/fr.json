@@ -692,7 +692,8 @@
         }
       },
       "title": "Normes",
-      "description": "Soutien et mise en œuvre des normes"
+      "description": "Soutien et mise en œuvre des normes",
+      "keywords": "standards,découverte,accès,visualization,OGC,WMS,WFS,CSW,ISO"
     },
     "keywords": "WOUDC, description, vue d’ensemble, ozone, rayonnement ultraviolet"
   },
@@ -872,7 +873,8 @@
       },
       "title": "Liste des contributeurs",
       "keywords": "WOUDC, données, contributeurs, organismes",
-      "description": "Liste des contributeurs, comprenant le nom et l’abréviation de l’institut ou de l’organisation, l’adresse, les coordonnées et l’information sur le fichier local."
+      "description": "Liste des contributeurs, comprenant le nom et l’abréviation de l’institut ou de l’organisation, l’adresse, les coordonnées et l’information sur le fichier local.",
+      "contributor-stations": "Stations du contributeur"
     },
     "registration": {
       "blurb": {
@@ -1234,7 +1236,8 @@
         "name": "Type d’instrument",
         "start_date": "À partir de cette date",
         "station_name": "Nom de la station",
-        "waf_url": "Dossier accessible sur le web"
+        "waf_url": "Dossier accessible sur le web",
+        "dataset_id": "Identifiant du jeu de données"
       },
       "instrument-model": "Modèle de l’instrument :",
       "instrument-type": "Type d’instrument :",
@@ -1274,7 +1277,8 @@
             "totalozoneobs": "Ozone total - Observations horaires: doi:10.14287/10000003",
             "umkehr1": "UmkehrN14 (Niveau 1.0): doi:10.14287/10000005",
             "umkehr2": "UmkehrN14 (Niveau 2.0): doi:10.14287/10000006",
-            "uv-index": "Indice UV: doi:10.14287/10000013"
+            "uv-index": "Indice UV: doi:10.14287/10000013",
+            "josie-besos": "@:data.products.josieBesos.title: 10.14287/100000014"
           },
           "title": "Ensembles de données"
         },
@@ -1572,7 +1576,8 @@
         "titleSouthern": "Cartes de l'ozone total les plus récentes pour l'hémisphère sud",
         "titleNorthern": "Cartes de l'ozone total les plus récentes pour l'hémisphère nord",
         "titleGlobal": "Cartes de l'ozone total les plus récentes pour le globe",
-        "titleForecast": "Rechercher des cartes de l'ozone prévu provenant de sources particulières"
+        "titleForecast": "Rechercher des cartes de l'ozone prévu provenant de sources particulières",
+        "observedResults": "Résultats de l'ozone observé"
       },
       "josieBesos": {
         "title": "Données de l’Expérience d’Intercomparaison des Sondes d’Ozone de Jülich (EISOJ) et l’Expérience de Ballons sur les Standards des Sondes d’Ozone (EBSSO)",
@@ -1693,7 +1698,8 @@
         "end_date": "Jusqu’à cette date",
         "name": "Nom du contributeur",
         "project": "Projet",
-        "start_date": "À partir de cette date"
+        "start_date": "À partir de cette date",
+        "contributor_acronym": "Acronyme du contributeur"
       },
       "gaw-id": "Identifiant VAG :",
       "instrument-headers": {
@@ -1704,7 +1710,8 @@
         "name": "Type d’instrument",
         "serial": "Numéro de l’instrument",
         "start_date": "À partir de cette date",
-        "waf_url": "Dossier accessible sur le web"
+        "waf_url": "Dossier accessible sur le web",
+        "dataset_id": "Identifiant du jeu de données"
       },
       "station-headers": {
         "country_name_en": "Pays de la station",
@@ -1726,14 +1733,17 @@
       "single": {
         "keywords": "Station, détails, fichiers soumis, observations, pays, plage de dates, contributeur de la station, instruments de la station, métadonnées de la station",
         "description": "Vue détaillée d’une seule station de l’archive de données WOUDC, y compris ses instruments, contributeur et plage de dates des fichiers de données"
-      }
+      },
+      "station-contributors": "Contributeurs de la station",
+      "station-instruments": "Instruments de la station"
     },
     "title": "Données",
     "description": "Données - Page d’accueil principale",
     "search": {
       "keywords": "WOUDC,données,recherche,consultation,téléchargement,vrac,services web,géospatial,csv,geojson,json",
       "description": "Assure la fonctionnalité des requêtes envoyées au centre de données WOUDC et les résultats de consultation et de téléchargement"
-    }
+    },
+    "keywords": "données,principal,page"
   },
   "error": {
     "error-link-end": "page d’accueil",
