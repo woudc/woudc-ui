@@ -284,9 +284,8 @@ export default {
       this.graphURLs = {}
       for (const year of yearsInRange) {
         const instrumentCaps = this.instrumentKeyToCaps(this.selectedInstrument)
-        const instrumentCapsPadded = this.instrumentKeySerialPad(instrumentCaps)
 
-        const components = ['dailyuv', stationID, instrumentCapsPadded, year]
+        const components = ['dailyuv', stationID, instrumentCaps, year]
         const filename = components.join('-') + '.png'
 
         const instrumentName = this.selectedInstrument.replace('_', ' #')
@@ -384,16 +383,12 @@ export default {
     },
     instrumentKeyToCaps(instrumentKey) {
       const [name, model, serial] = instrumentKey.split('_')
-      const nameCaps =
-        name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()
+      const capitalize = (word) =>
+        word[0].toUpperCase() + word.slice(1).toLowerCase()
+      const nameCaps = capitalize(name)
+      const modelCaps = capitalize(model)
 
-      return [nameCaps, model, serial].join('_')
-    },
-    instrumentKeySerialPad(instrumentKey) {
-      const [name, model, serial] = instrumentKey.split('_')
-      const serialPadded = serial.padStart(3, '0')
-
-      return [name, model, serialPadded].join('_')
+      return [nameCaps, modelCaps, serial].join('_')
     },
     instrumentToSelectOption(instrument) {
       const name = instrument.properties.name
@@ -401,7 +396,7 @@ export default {
       const serial = instrument.properties.serial
 
       return {
-        text: name + ' ' + model + ' #' + serial.padStart(3, '0'),
+        text: name + ' ' + model + ' #' + serial,
         value: this.instrumentToKey(instrument),
       }
     },

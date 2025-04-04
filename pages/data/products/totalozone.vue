@@ -290,8 +290,7 @@ export default {
         this.graphURLs[year] = []
         const duplicateInstruments = []
         for (const instrument of instruments) {
-          const instrumentKey =
-            instrument.name + '_' + instrument.serial.padStart(3, '0')
+          const instrumentKey = instrument.name + '_' + instrument.serial
           const filename =
             'dailytotO3-' +
             stationID +
@@ -301,8 +300,7 @@ export default {
             year +
             '.png'
 
-          const instrumentName =
-            instrument.name + ' #' + instrument.serial.padStart(3, '0')
+          const instrumentName = instrument.name + ' #' + instrument.serial
           const plotURL = root + 'stn' + stationID + '/' + filename
 
           if (duplicateInstruments.includes(instrumentKey)) {
@@ -435,7 +433,7 @@ export default {
     sortInstruments(instruments) {
       instruments.forEach((feature) => {
         const network = feature.properties.name
-        const serial = feature.properties.serial.padStart(3, '0')
+        const serial = feature.properties.serial
         const key = network + ' #' + serial
 
         feature.key = key
