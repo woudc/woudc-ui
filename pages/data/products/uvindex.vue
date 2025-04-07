@@ -386,9 +386,8 @@ export default {
       const capitalize = (word) =>
         word[0].toUpperCase() + word.slice(1).toLowerCase()
       const nameCaps = capitalize(name)
-      const modelCaps = capitalize(model)
 
-      return [nameCaps, modelCaps, serial].join('_')
+      return [nameCaps, model, serial].join('_')
     },
     instrumentToSelectOption(instrument) {
       const name = instrument.properties.name
