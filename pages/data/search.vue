@@ -335,10 +335,10 @@
               </a>
             </template>
             <!-- eslint-disable-next-line vue/valid-v-slot -->
-            <template #item.contributor_acronym="row">
+            <template #item.contributor_id="row">
               <a :href="row.item.contributor_url" target="_blank">
                 <span>
-                  {{ row.item.contributor_acronym }}
+                  {{ row.item.contributor_id }}
                 </span>
               </a>
             </template>
@@ -491,7 +491,7 @@ export default {
       if (this.selectedDatasetID === 'uv_index_hourly') {
         headerKeys = [
           'observation_date',
-          'contributor_acronym',
+          'contributor_id',
           'station_id',
           'station_gaw_id',
           this.countryOrder,
@@ -507,7 +507,7 @@ export default {
       } else if (this.selectedDatasetID === 'TotalOzone_1.0') {
         headerKeys = [
           'observation_date',
-          'contributor_acronym',
+          'contributor_id',
           'station_id',
           'station_gaw_id',
           this.countryOrder,
@@ -522,7 +522,7 @@ export default {
       } else if (this.peerOrNdaccDatasets.includes(this.selectedDatasetID)) {
         headerKeys = [
           'observation_date',
-          'contributor_acronym',
+          'contributor_id',
           'station_id',
           'gaw_id',
           'measurement',
@@ -534,7 +534,7 @@ export default {
       } else if (this.selectedDatasetID === 'OzoneSonde_1.0') {
         headerKeys = [
           'timestamp_date',
-          'contributor_acronym',
+          'contributor_id',
           'station_id',
           'station_gaw_id',
           this.countryOrder,

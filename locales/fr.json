@@ -1180,7 +1180,8 @@
         "timestamp-utc": "Date de l’observation (UTC)",
         "uv-daily_max": "Indice UV jornalier max",
         "uv-index": "Indice UV moyen horaire",
-        "dataset-id": "Identifiant de jeu de données"
+        "dataset-id": "Identifiant de jeu de données",
+        "contributor_id": "Identifiant du contributeur"
       },
       "title": "Rechercher et télécharger de données"
     },
