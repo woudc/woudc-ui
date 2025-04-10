@@ -1180,7 +1180,7 @@
         "uv-daily_max": "UV Index Daily Max",
         "uv-index": "UV Index Hourly Average",
         "dataset-id": "Dataset ID",
-        "contributor_id": "Contributor ID"
+        "contributor-id": "Contributor ID"
       },
       "title": "Data Search and Download"
     },

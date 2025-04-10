@@ -1181,7 +1181,7 @@
         "uv-daily_max": "Indice UV jornalier max",
         "uv-index": "Indice UV moyen horaire",
         "dataset-id": "Identifiant de jeu de données",
-        "contributor_id": "Identifiant du contributeur"
+        "contributor-id": "Identifiant du contributeur"
       },
       "title": "Rechercher et télécharger de données"
     },
