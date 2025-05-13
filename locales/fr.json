@@ -1066,7 +1066,8 @@
         "intro-api": "En plus des mécanismes traditionnels d’accès aux données, le WOUDC rend également disponible ses archives par le biais d’interfaces de programmation (API) et services web géospatiaux se conformant aux normes internationales.  Les APIs sont conçus pour faciliter les interactions machine à machine sur Internet, et peuvent être utilisées dans des outils en ligne, applications mobiles ainsi qu’autres applications web.",
         "intro-ogc": "Les APIs de WOUDC supportent les standards ouverts de {ogc}  (OGC), qui assurent l’interopérabilité des données et facilitent leur découverte, leur accès et leur visualisation.  Les standards de l’OGC jouent un rôle prépondérant dans l’exchange de données météorologiques, climatiques et l’hydrométriques au sein de l’Organisation météorologique mondiale (OMM) et sont prises en charge par de nombreux outils et logiciels libres grand public et commerciaux.",
         "intro-provides": "L’API rend possible la découverte, l’accès, et la visualisation pour toutes les données et métadonnées de WOUDC. Il fournit également les processus pour la validation et l’évaluation de la qualité des données.",
-        "intro-consult": "Veuillez consulter les {webServicesHowTo} pour plus de détails."
+        "intro-consult": "Veuillez consulter les {webServicesHowTo} pour plus de détails.",
+        "abbr": "API de l’OGC"
       },
       "keywords": "accessibilité des données, téléchargement des données, services web, WAF, OGC, API, SCW,WFS,CSW,ISO,métadonnées, catalogue, cartes, données, observations, csv, fichier de formes, kml, json, geojson",
       "description": "Marche à suivre pour accéder aux données archivées du WOUDC via le site web, la recherche, le WAF et les services web"

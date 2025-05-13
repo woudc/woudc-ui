@@ -1,5 +1,5 @@
 {
-  "baseUrl": "https://beta.woudc.org/en",
+  "baseUrl": "https://woudc.org/en",
   "basePath": "/en",
   "integrationFolder": "test/e2e/integration"
 }

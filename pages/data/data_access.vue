@@ -154,14 +154,6 @@
             </i18n>
           </v-alert>
           <p>{{ $t('data.access.ogcapi.intro-provides') }}</p>
-          <i18n path="data.access.ogcapi.intro-consult" tag="p">
-            <template #webServicesHowTo>
-              <a :href="webServicesHowToURL" target="_blank">
-                {{ $t('data.access.iso.how-to') }}
-                <v-icon x-small>mdi-open-in-new</v-icon>
-              </a>
-            </template>
-          </i18n>
         </div>
 
         <div id="examples-section">
@@ -204,12 +196,9 @@
 export default {
   data() {
     return {
-      cswURL: `${this.$config.WOUDC_UI_OWS_URL}/csw?service=CSW&version=2.0.2&request=GetCapabilities`,
-      definitionsURL: `${this.$config.WOUDC_UI_OWS_URL}/def`,
       githubURL: 'https://github.com/woudc',
       interoperabilityURL:
         'https://www.wmo.int/pages/prog/www/WIS/documents/MOAWMO_OGC.pdf',
-      isoAPIURL: `${this.$config.WOUDC_UI_OWS_URL}/codelists.xml`,
       isoURL: 'https://www.isotc211.org/',
       webServicesHowToURL:
         'https://github.com/woudc/woudc/wiki/WebServicesHowto',
@@ -219,12 +208,9 @@ export default {
         'https://github.com/woudc/woudc/wiki/DataSearchDownloadHowto',
       wafGuideURL: 'https://github.com/woudc/woudc/wiki/WAFHowto',
       wafSummaryURL: `${this.$config.WOUDC_UI_WAF_URL}/Summaries/dataset-snapshots`,
-      wfsAPIURL: `${this.$config.WOUDC_UI_OWS_URL}/ows?service=WFS&version=1.1.0&request=GetCapabilities`,
       wfsURL: 'https://www.opengeospatial.org/standards/wfs',
       wisURL: 'https://www.wmo.int/pages/prog/www/WIS/',
-      wmsAPIURL: `${this.$config.WOUDC_UI_OWS_URL}/ows?service=WMS&version=1.3.0&request=GetCapabilities`,
       wmsURL: 'https://www.opengeospatial.org/standards/wms',
-      wpsAPIURL: `${this.$config.WOUDC_UI_OWS_URL}/wps?service=WPS&version=1.0.0&request=GetCapabilities`,
       wpsURL: 'https://www.opengeospatial.org/standards/wps',
       contentsSelectors: {
         examples: 'examples-section',

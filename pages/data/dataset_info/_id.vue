@@ -69,14 +69,8 @@
               </a>
             </li>
             <li>
-              <a :href="wfsURL" target="_blank">
-                {{ $t('data.info.links.wfs') }}
-                <v-icon x-small>mdi-open-in-new</v-icon>
-              </a>
-            </li>
-            <li>
-              <a :href="wmsURL" target="_blank">
-                {{ $t('data.info.links.wms') }}
+              <a :href="$config.WOUDC_UI_API_URL" target="_blank">
+                {{ $t('data.access.ogcapi.abbr') }}
                 <v-icon x-small>mdi-open-in-new</v-icon>
               </a>
             </li>
@@ -168,18 +162,6 @@ export default {
     datasetWafURL() {
       const archivePath = this.$config.WOUDC_UI_WAF_URL + '/Archive-NewFormat'
       return `${archivePath}/${this.wafDataset}`
-    },
-    wfsURL() {
-      return (
-        this.$config.WOUDC_UI_OWS_URL +
-        '/ows?service=WFS&version=1.1.0&request=GetCapabilities'
-      )
-    },
-    wmsURL() {
-      return (
-        this.$config.WOUDC_UI_OWS_URL +
-        '/ows?service=WMS&version=1.3.0&request=GetCapabilities'
-      )
     },
   },
   mounted() {

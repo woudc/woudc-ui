@@ -1065,7 +1065,8 @@
         "intro-ogc": "WOUDC APIs support open standards from the {ogc} (OGC) which facilitate interoperability and thus make ozone and UV data easy to discover, access, visualize and integrate. OGC standards play an important role in weather/climate/water data exchange as part of the WMO Information System and are supported by numerous off the shelf open source or commercial tools.",
         "intro-endpoint": "WOUDC provides a central OGC API at the following endpoint: {url}",
         "intro-provides": "The API provides discovery, access and visualization functionality to all WOUDC data and metadata, as well as providing processes for data validation and quality assessment.",
-        "intro-consult": "Please consult the {webServicesHowTo} for detailed information."
+        "intro-consult": "Please consult the {webServicesHowTo} for detailed information.",
+        "abbr": "OGC API"
       },
       "keywords": "data access,data download,web services,WAF,OGC,API,WMS,WFS,CSW,ISO,metadata,catalogue,maps,data,observations,csv,shapefile,kml, json,geojson",
       "description": "Methods in to access WOUDC data archive via website, search, WAF, and web services"
