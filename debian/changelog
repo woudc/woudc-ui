@@ -10,6 +10,7 @@ woudc-ui (2.0.0) focal; urgency=medium
   * Removed instrument serial 0 padding to reflect graph product changes
   * Replaced all beta.woudc.org with woudc.org URLs
   * Updated graph product queries to include properties= and increased limit=
+  * Update deploy/default files
 
  -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Wed, 21 May 2025 16:15:11 +0000
 
