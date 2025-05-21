@@ -322,6 +322,7 @@ export default {
         this.$config.WOUDC_UI_API_URL + '/collections/data_records/items'
       let queryParams = 'sortby=timestamp_date&content_category=TotalOzone'
       queryParams += '&platform_id=' + this.selectedStationID
+      queryParams += '&properties=timestamp_date,instrument_name,instrument_number'
 
       if (this.selectedInstrumentID !== null) {
         let instrument_number = parseInt(
@@ -329,8 +330,9 @@ export default {
         )
         queryParams +=
           '&instrument_name=' + this.selectedInstrument.element.properties.name
-        queryParams += '&instrument_number=' + instrument_number + '&limit=5000'
+        queryParams += '&instrument_number=' + instrument_number
       }
+      queryParams += '&limit=10000'
 
       const dataRecordsResponse = await woudcClient.get(
         dataRecordsURL + '?' + queryParams
@@ -379,6 +381,7 @@ export default {
         this.$config.WOUDC_UI_API_URL + '/collections/instruments/items'
       let queryParams = 'sortby=name,serial&dataset_id=TotalOzone_1.0'
       queryParams += '&station_id=' + this.selectedStationID
+      queryParams += '&properties=name,model,serial'
 
       this.loadingInstruments = true
       const instrumentsResponse = await woudcClient.get(
@@ -388,7 +391,7 @@ export default {
       const instrumentKeys = []
       const instruments = []
       for (const feature of instrumentsResponse.data.features) {
-        const key = feature.properties.name + ' #' + feature.properties.serial
+        const key = `${feature.properties.name} #${feature.properties.serial}`
 
         if (!(key in instrumentKeys)) {
           instrumentKeys.push(key)
