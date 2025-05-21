@@ -1,3 +1,18 @@
+woudc-ui (2.0.0) focal; urgency=medium
+
+  * Fixed display of number of past ozone maps to maintain about 1970-01-01 for archived maps
+  * Added Docker implementation for nightly build
+  * Replaced startindex= with offset= for woudc-api queries
+  * Added sitemap generation
+  * Updated dataset_id and other IDs to reflect woudc-api changes
+  * Fixed autoZoomToCountry consider station markers of the country as well
+  * Updated french text translations
+  * Removed instrument serial 0 padding to reflect graph product changes
+  * Replaced all beta.woudc.org with woudc.org URLs
+  * Updated graph product queries to include properties= and increased limit=
+
+ -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Wed, 21 May 2025 16:15:11 +0000
+
 woudc-ui (2.0.0-beta20.1) focal; urgency=medium
 
   * Fix previously removed CS Policy
