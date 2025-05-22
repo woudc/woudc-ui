@@ -8,7 +8,7 @@ BASEDIR=/web/woudc-ui
 for ui_file in `find $BASEDIR/dist -type f -name "state.js"`
 do
     sed -i "s#https:\\\u002F\\\u002Fwoudc.org#$WOUDC_UI_BASE_URL#g" $ui_file
-    sed -i "s#https:\\\u002F\\\u002Fapi.woudc.org\\\u002Foapi#$WOUDC_UI_API_URL#g" $ui_file
+    sed -i "s#https:\\\u002F\\\u002Fapi.woudc.org#$WOUDC_UI_API_URL#g" $ui_file
     sed -i "s#https:\\\u002F\\\u002Fwoudc.org\\\u002Farchive#$WOUDC_UI_WAF_URL#g" $ui_file
 done
 
