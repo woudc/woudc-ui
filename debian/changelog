@@ -1,3 +1,9 @@
+woudc-ui (2.0.3) focal; urgency=medium
+
+  * Fixed missing `s` in https URL
+
+ -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Fri, 23 May 2025 14:11:06 +0000
+
 woudc-ui (2.0.2) focal; urgency=medium
 
   * Fixed update-vars.sh permission and sed value for API URL replacement
