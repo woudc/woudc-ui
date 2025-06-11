@@ -51,7 +51,7 @@ export default {
         eubrewnet: 'http://www.eubrewnet.org/cost1207/',
         euvdb: 'https://www1.muk.uni-hannover.de/~seckmeyer/EDUCE/',
         gozcards:
-          'https://mls.jpl.nasa.gov/eos-aura-mls/data-products/gozcards',
+          'https://www.earthdata.nasa.gov/about/competitive-programs/measures/global-ozone-chemistry-data-records-stratosphere',
         mozaic: 'http://www.iagos-data.fr/',
         ndacc: 'http://www.ndacc.org/',
         polar: 'http://uv.biospherical.com/',
