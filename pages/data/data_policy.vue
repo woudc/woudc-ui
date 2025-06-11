@@ -144,7 +144,7 @@ export default {
       doisURL: 'https://en.wikipedia.org/wiki/Digital_object_identifier',
       gawURL: 'https://gawsis.meteoswiss.ch/GAWSIS/index.html#/faq/',
       resolution40:
-        'https://www.wmo.int/pages/prog/hwrp/documents/wmo_827_enCG-XII-Res40.pdf',
+        'https://community.wmo.int/en/resolution-40',
       wmoURL: 'https://wmo.int/activities/type-of-activity/exchange-data',
     }
   },
