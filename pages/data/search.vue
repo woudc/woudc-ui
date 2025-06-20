@@ -245,9 +245,92 @@
         >
           {{ $t('common.submit') }}
         </v-btn>
-        <v-btn class="btn-right" :disabled="loadingAll" @click="reset()">
+        <v-btn class="btn-middle" :disabled="loadingAll" @click="reset()">
           {{ $t('common.reset') }}
         </v-btn>
+        <v-dialog scrollable max-width="1000px">
+          <template #activator="{ on, attrs }">
+            <v-btn
+              class="btn-right"
+              color="primary blue lighten-1"
+              :loading="loadingDataRecords"
+              v-bind="attrs"
+              v-on="on"
+              @click="generateDownloadLinks"
+            >
+              {{ $t('common.download') }}
+            </v-btn>
+          </template>
+          <v-card :loading="loadingDownloadURLs">
+            <v-card-title>
+              {{ $t('common.download') }}
+            </v-card-title>
+            <v-divider></v-divider>
+            <v-card-text
+              style="max-height: 500px; overflow-y: auto; padding: 0"
+            >
+              <v-simple-table>
+                <template #default>
+                  <thead>
+                    <tr>
+                      <th class="text-left">
+                        {{ $t('common.records') }}
+                      </th>
+                      <th class="text-left">
+                        {{ $t('common.webview') }}
+                      </th>
+                      <th class="text-left">{{ $t('common.csv') }}</th>
+                      <th class="text-left">{{ $t('common.geojson') }}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      v-for="(item, index) in download_urls || []"
+                      :key="index"
+                    >
+                      <td style="max-width: 150px">
+                        {{ item.records }}
+                      </td>
+                      <td style="max-width: 450px">
+                        <v-btn
+                          color="primary"
+                          :href="item.html"
+                          target="_blank"
+                        >
+                          {{ $t('common.viewhtml') }}
+                          <v-icon right>mdi-open-in-new</v-icon>
+                        </v-btn>
+                      </td>
+                      <td>
+                        <v-btn
+                          color="primary"
+                          :href="item.csv"
+                          :download="`download_${item.records}.csv`"
+                          target="_blank"
+                        >
+                          {{ $t('common.downloadcsv') }}
+                          <v-icon right>mdi-open-in-new</v-icon>
+                        </v-btn>
+                      </td>
+                      <td>
+                        <v-btn
+                          color="primary"
+                          :href="item.geojson"
+                          :download="`download-${item.records}.json`"
+                          target="_blank"
+                        >
+                          {{ $t('common.downloadgeojson') }}
+                          <v-icon right>mdi-open-in-new</v-icon>
+                        </v-btn>
+                      </td>
+                    </tr>
+                  </tbody>
+                </template>
+              </v-simple-table>
+            </v-card-text>
+            <v-divider></v-divider>
+          </v-card>
+        </v-dialog>
       </v-col>
     </v-row>
     <v-row>
@@ -399,6 +482,7 @@ export default {
       loadingInstruments: true,
       loadingMap: true,
       loadingStations: true,
+      loadingDownloadURLs: true,
       mapBoundingBox: null,
       mapFocusCountry: null,
       metricsByYear: {},
@@ -418,11 +502,16 @@ export default {
         groupBy: [],
         groupDesc: [],
       },
+      query: null,
+      queryLast: null,
+      queryPaginated: null,
+      queryPaginatedLast: null,
+      download_urls: [],
       resettingMap: false,
       selectedCountry: null,
       selectedCountryID: null,
       selectedDataset: null,
-      selectedDatasetID: null,
+      selectedDatasetID: 'data_records',
       selectedInstrument: null,
       selectedInstrumentID: null,
       selectedStation: null,
@@ -517,6 +606,7 @@ export default {
           'daily_utc_begin',
           'daily_utc_end',
           'daily_nobs',
+          'instrument_name',
           'actions',
         ]
       } else if (this.peerOrNdaccDatasets.includes(this.selectedDatasetID)) {
@@ -590,9 +680,10 @@ export default {
       }
 
       const datasetOptions = []
+      // all data records option
       datasetOptions.push({
         text: this.$t('common.all'),
-        value: null,
+        value: 'data_records',
       })
 
       for (const [section, children] of Object.entries(datasetSections)) {
@@ -744,7 +835,7 @@ export default {
     options: {
       async handler() {
         if (this.oldSearchExists == true && this.loadedTable == true) {
-          this.refreshDataRecords(true)
+          this.refreshDataRecords()
         }
         this.loadedTable = true
       },
@@ -779,6 +870,35 @@ export default {
     })
   },
   methods: {
+    async generateDownloadLinks() {
+      this.loadingDownloadURLs = true
+      this.generateQueryURL()
+      await this.getQueryHits()
+      this.download_urls = []
+      for (
+        let offset = 0;
+        offset <= this.numberMatched;
+        offset += this.$config.WOUDC_UI_API_MAX_LIMIT
+      ) {
+        const html = `${this.query}&offset=${offset}&limit=${this.$config.WOUDC_UI_API_MAX_LIMIT}&f=html`
+        const csv = `${this.query}&offset=${offset}&limit=${this.$config.WOUDC_UI_API_MAX_LIMIT}&f=csv`
+        const geojson = `${this.query}&offset=${offset}&limit=${this.$config.WOUDC_UI_API_MAX_LIMIT}&f=json`
+        let records = `${offset + 1}-${
+          offset + this.$config.WOUDC_UI_API_MAX_LIMIT
+        }`
+        if (offset + this.$config.WOUDC_UI_API_MAX_LIMIT > this.numberMatched) {
+          records = `${offset + 1}-${this.numberMatched}`
+        }
+        const item = {
+          records: records,
+          html: html,
+          csv: csv,
+          geojson: geojson,
+        }
+        this.download_urls.push(item)
+      }
+      this.loadingDownloadURLs = false
+    },
     addToStartYear(amount) {
       const newStartYear = this.selectedYearRange[0] + amount
       this.setStartYear(newStartYear)
@@ -846,7 +966,7 @@ export default {
       this.selectedInstrumentID = null
 
       // populate dropdowns below (station, instrument)
-      const newDropdowns = await this.sendDropdownRequest(
+      const newDropdowns = await this.getCountryStationInstrument(
         this.selectedDatasetID,
         this.selectedCountryID,
         null
@@ -881,7 +1001,7 @@ export default {
       this.selectedInstrumentID = null
 
       // update dropdowns below (instrument)
-      const newDropdowns = await this.sendDropdownRequest(
+      const newDropdowns = await this.getCountryStationInstrument(
         this.selectedDatasetID,
         this.selectedStationID !== null ? null : this.selectedCountryID,
         this.selectedStationID
@@ -946,7 +1066,7 @@ export default {
         ]
       this.selectedCountry = country.element
       this.selectedCountryID = country.value
-      const newDropdowns = await this.sendDropdownRequest(
+      const newDropdowns = await this.getCountryStationInstrument(
         this.selectedDatasetID,
         this.selectedCountryID,
         null
@@ -981,6 +1101,18 @@ export default {
         element: station,
       }
     },
+    resetResultsOptions() {
+      this.options = {
+        page: 1,
+        itemsPerPage: 10,
+        sortDesc: [],
+        sortBy: [],
+        multiSort: false,
+        mustSort: false,
+        groupBy: [],
+        groupDesc: [],
+      }
+    },
     async reset() {
       this.loadingMap = true
       this.enableBboxSearch = true
@@ -1001,12 +1133,7 @@ export default {
       this.oldDataRecordHeadersExists = false
       this.oldSearchExists = false
       this.oldSearchParams = {}
-      this.options = {
-        page: 1,
-        itemsPerPage: 10,
-        sortDesc: [],
-        sortBy: [],
-      }
+      this.resetResultsOptions()
       this.numberMatched = 0
 
       this.loadingCountries = true
@@ -1024,9 +1151,9 @@ export default {
 
       this.refreshMetrics()
     },
-    async refreshDataRecords(paginate = false) {
-      this.loadingDataRecords = true
-      this.dataRecordHeaders = this.newDataRecordHeaders
+    generateQueryURL(paginate = false) {
+      this.query = null
+      this.queryPaginated = null
 
       const dataRecordsURL =
         this.$config.WOUDC_UI_API_URL + '/collections/data_records/items'
@@ -1045,6 +1172,7 @@ export default {
       }
 
       let queryParams = ''
+
       if (this.options['sortBy'].length === 0) {
         const sortByParams = {
           uv_index_hourly: 'observation_date,station_id,dataset_id',
@@ -1066,49 +1194,42 @@ export default {
             : 'sortby=' + this.options['sortBy']
       }
 
-      let selected = {}
-      if (this.selectedDatasetID === 'uv_index_hourly') {
-        selected = {
-          country_id: this.selectedCountryID,
-          station_id: this.selectedStationID,
-          instrument_name: this.selectedInstrumentID,
-        }
-      } else if (this.selectedDatasetID === 'TotalOzone_1.0') {
-        selected = {
-          country_id: this.selectedCountryID,
-          station_id: this.selectedStationID,
-          instrument_name: this.selectedInstrumentID,
-        }
-      } else if (this.selectedDatasetID === 'peer_data_records') {
-        selected = {
-          source: 'eubrewnet',
-          country_id: this.selectedCountryID,
-          station_id: this.selectedStationID,
-          instrument_name: this.selectedInstrumentID,
-        }
-      } else if (this.ndaccDatasets.includes(this.selectedDatasetID)) {
-        selected = {
-          source: 'ndacc',
-          measurement: ndacc_datasets[this.selectedDatasetID],
-          country_id: this.selectedCountryID,
-          station_id: this.selectedStationID,
-          instrument_name: this.selectedInstrumentID,
-        }
-      } else if (this.selectedDatasetID === 'OzoneSonde_1.0') {
-        selected = {
-          country_id: this.selectedCountryID,
-          station_id: this.selectedStationID,
-          instrument_name: this.selectedInstrumentID,
-        }
-      } else {
-        selected = {
-          dataset_id: this.selectedDatasetID,
-          platform_country: this.selectedCountryID,
-          platform_id: this.selectedStationID,
-          instrument_name: this.selectedInstrumentID,
-        }
+      let selected = {
+        instrument_name: this.selectedInstrumentID,
       }
 
+      let country_id_key = 'country_id'
+      let station_id_key = 'station_id'
+
+      // dataset handling selection
+      if (this.selectedDatasetID === 'Broad-band_1.0') {
+        selected.content_category = 'Broad-band' // include 1.0 and 2.
+        country_id_key = 'platform_country'
+        station_id_key = 'platform_id'
+      } else if (this.selectedDatasetID === 'Spectral_1.0') {
+        selected.content_category = 'Spectral' // include 1.0 and 2.0
+        country_id_key = 'platform_country'
+        station_id_key = 'platform_id'
+      } else if (this.selectedDatasetID === 'peer_data_records') {
+        selected.source = 'eubrewnet'
+      } else if (this.ndaccDatasets.includes(this.selectedDatasetID)) {
+        selected.source = 'ndacc'
+        selected.measurement = ndacc_datasets[this.selectedDatasetID]
+      } else if (this.selectedDatasetID === 'data_records') {
+        selected.dataset_id = null
+        country_id_key = 'platform_country'
+        station_id_key = 'platform_id'
+      } else {
+        // data_records filtered by dataset_id
+        selected.dataset_id = this.selectedDatasetID
+        country_id_key = 'platform_country'
+        station_id_key = 'platform_id'
+      }
+
+      selected[country_id_key] = this.selectedCountryID
+      selected[station_id_key] = this.selectedStationID
+
+      // bbox handling
       if (
         this.selectedCountry === null &&
         this.selectedStationID === null &&
@@ -1123,11 +1244,14 @@ export default {
         selected['bbox'] = bboxParams.substring(1)
       }
 
+      // generate query params based on selected dropdown options
       for (const [field, value] of Object.entries(selected)) {
         if (value !== null) {
           queryParams += '&' + field + '=' + value
         }
       }
+
+      // year range
       if (
         this.selectedYearRange[0] != this.minSelectableYear ||
         this.selectedYearRange[1] != this.maxSelectableYear
@@ -1141,6 +1265,7 @@ export default {
         queryParams = queryParams + '&' + datetimeParams
       }
 
+      // for results pagination handling
       if (paginate == false) {
         this.options['itemsPerPage'] = 10
         this.options['page'] = 1
@@ -1153,85 +1278,67 @@ export default {
       const Limit = itemsPerPage
 
       if (this.selectedDatasetID === 'uv_index_hourly') {
-        let response = await woudcClient.get(
-          UVIndexURL +
-            '?offset=' +
-            offset +
-            '&limit=' +
-            Limit +
-            '&' +
-            queryParams
-        )
-        this.numberMatched = response.data.numberMatched
-        this.dataRecords = response.data.features.map(stripProperties)
+        this.query = `${UVIndexURL}?${queryParams}`
       } else if (this.selectedDatasetID === 'TotalOzone_1.0') {
-        let response = await woudcClient.get(
-          totalOzoneURL +
-            '?offset=' +
-            offset +
-            '&limit=' +
-            Limit +
-            '&' +
-            queryParams
-        )
-        this.numberMatched = response.data.numberMatched
-        this.dataRecords = response.data.features.map(stripProperties)
+        this.query = `${totalOzoneURL}?${queryParams}`
       } else if (
         (this.selectedDatasetID === 'peer_data_records') |
         (this.selectedDatasetID === 'ndacc_total') |
         (this.selectedDatasetID === 'ndacc_uv') |
         (this.selectedDatasetID === 'ndacc_vertical')
       ) {
-        let response = await woudcClient.get(
-          peerDataRecordsURL +
-            '?offset=' +
-            offset +
-            '&limit=' +
-            Limit +
-            '&' +
-            queryParams
-        )
-        this.numberMatched = response.data.numberMatched
-        this.dataRecords = response.data.features.map(stripProperties)
+        this.query = `${peerDataRecordsURL}?${queryParams}`
       } else if (this.selectedDatasetID === 'OzoneSonde_1.0') {
-        let response = await woudcClient.get(
-          ozoneSondeURL + '?offset=' + page + '&limit=1' + '&' + queryParams
-        )
-        this.numberMatched =
-          response.data.numberMatched * this.options.itemsPerPage
-        let r = []
-        let totalLength = 0
-        // results are first few entries of every file
-        for (let i = 0; i < response.data.features.length; i++) {
-          const length = response.data.features[i].properties.pressure.length
-          for (let j = 0; j < length; j++) {
-            const index = totalLength + j
-            if (index < this.options.itemsPerPage) {
-              r[index] = JSON.parse(JSON.stringify(response.data.features[i]))
-              r[index].properties.o3partialpressure =
-                response.data.features[i].properties.o3partialpressure[j]
-              r[index].properties.pressure =
-                response.data.features[i].properties.pressure[j]
-              r[index].properties.temperature =
-                response.data.features[i].properties.temperature[j]
-            }
-          }
-          totalLength += length
-        }
-        this.dataRecords = r.map(stripProperties)
+        this.query = `${ozoneSondeURL}?${queryParams}`
       } else {
-        let response = await woudcClient.get(
-          dataRecordsURL +
-            '?offset=' +
-            offset +
-            '&limit=' +
-            Limit +
-            '&' +
-            queryParams
-        )
-        this.numberMatched = response.data.numberMatched
-        this.dataRecords = response.data.features.map(stripProperties)
+        this.query = `${dataRecordsURL}?${queryParams}`
       }
+      this.queryPaginated = `${this.query}&offset=${offset}&limit=${Limit}&f=json`
+    },
+    async getQueryHits() {
+      if (this.queryLast !== null && this.query === this.queryLast) {
+        return // avoid making the same query
+      }
+      let responseHits = await woudcClient.get(
+        `${this.query}&resulttype=hits&f=json`
+      )
+      this.numberMatched = responseHits.data.numberMatched
+      this.queryLast = this.query
+      this.resetResultsOptions()
+    },
+    async refreshDataRecords() {
+      this.generateQueryURL(true)
+      if (
+        this.queryPaginatedLast !== null &&
+        this.queryPaginated === this.queryPaginatedLast
+      ) {
+        return // avoid making the same query
+      }
+      this.loadingDataRecords = true
+      this.dataRecordHeaders = this.newDataRecordHeaders
+
+      await this.getQueryHits()
+      let response = await woudcClient.get(this.queryPaginated)
+      this.queryPaginatedLast = this.queryPaginated
+
+      // re-interpreit profile data columns (pressure, temp, o3pp) to simplify display
+      if (this.selectedDatasetID === 'OzoneSonde_1.0') {
+        response.data.features.forEach((feature) => {
+          let o3partialpressures = feature.properties.o3partialpressure
+          let pressures = feature.properties.pressure
+          let temperatures = feature.properties.temperature
+          feature.properties.o3partialpressure = `Min: ${Math.min(
+            ...o3partialpressures
+          )}, Max: ${Math.max(...o3partialpressures)}`
+          feature.properties.pressure = `Min: ${Math.min(
+            ...pressures
+          )}, Max: ${Math.max(...pressures)}`
+          feature.properties.temperature = `Min: ${Math.min(
+            ...temperatures
+          )}, Max: ${Math.max(...temperatures)}`
+        })
+      }
+      this.dataRecords = response.data.features.map(stripProperties)
 
       this.oldSearchParams = {
         country: this.selectedCountryID,
@@ -1251,7 +1358,7 @@ export default {
     },
     async refreshDropdowns() {
       // retrieve all new countries/stations/instruments based on current selection
-      const newDropdowns = await this.sendDropdownRequest(
+      const newDropdowns = await this.getCountryStationInstrument(
         this.selectedDatasetID,
         this.selectedCountryID,
         this.selectedStationID
@@ -1276,7 +1383,10 @@ export default {
       }
 
       let paramNames = {
-        dataset: this.selectedDatasetID,
+        dataset:
+          this.selectedDatasetID !== 'data_records'
+            ? this.selectedDatasetID
+            : null,
         // dataset: this.datasetIdToCategory(this.selectedDatasetID),
         country: this.selectedCountryID,
         station: this.selectedStationID,
@@ -1292,13 +1402,18 @@ export default {
         paramNames['source'] = 'eubrewnet'
       }
 
-      for (const currParam of Object.entries(paramNames)) {
-        const paramValue = currParam[1]
-        if (paramValue === 'uv_index_hourly') {
+      for (const [key, value] of Object.entries(paramNames)) {
+        if (key === 'dataset' && value === 'uv_index_hourly') {
           inputs.dataset =
             'Spectral_1.0,Spectral_2.0,Broad-band_1.0,Broad-band_2.0'
-        } else if (paramValue !== null) {
-          inputs[currParam[0]] = paramValue
+        } else if (key === 'dataset' && value === 'Broad-band_1.0') {
+          inputs.dataset = 'Broad-band_1.0,Broad-band_2.0'
+        } else if (key === 'dataset' && value === 'Spectral_1.0') {
+          inputs.dataset = 'Spectral_1.0,Spectral_2.0'
+        } else if (key === 'dataset' && value === 'data_records') {
+          // omit
+        } else if (value !== null) {
+          inputs[key] = value
         }
       }
 
@@ -1349,22 +1464,27 @@ export default {
       }
       this.refreshMetrics()
     },
-    async sendDropdownRequest(dataset, country, station) {
+    async getCountryStationInstrument(dataset, country, station) {
       const inputs = {}
 
       const selections = { dataset, country, station }
-      for (const currSelection of Object.entries(selections)) {
-        const selected = currSelection[1]
-        if (selected === 'uv_index_hourly') {
-          inputs.domain = 'Broad-band,Spectral'
-        } else if (selected !== null) {
-          inputs[currSelection[0]] = selected
-          if (this.peerDatasets.includes(selected)) {
-            inputs.source = 'eubrewnet'
-          }
-          if (this.ndaccDatasets.includes(selected)) {
-            inputs.source = 'ndacc'
-          }
+      for (const [key, value] of Object.entries(selections)) {
+        if (key === 'dataset' && value === 'data_records') {
+          continue // Skip if dataset is 'data_records'
+        } else if (key === 'dataset' && value === 'Broad-band_1.0') {
+          inputs.dataset = 'Broad-band_1.0,Broad-band_2.0'
+        } else if (key === 'dataset' && value === 'Spectral_1.0') {
+          inputs.dataset = 'Spectral_1.0,Spectral_2.0'
+        } else if (key === 'dataset' && value === 'uv_index_hourly') {
+          inputs.dataset =
+            'Spectral_1.0,Spectral_2.0,Broad-band_1.0,Broad-band_2.0'
+        } else if (key === 'dataset' && this.peerDatasets.includes(value)) {
+          inputs.source = 'eubrewnet'
+        } else if (key === 'dataset' && this.ndaccDatasets.includes(value)) {
+          inputs.source = 'ndacc'
+        } else if (value !== null) {
+          // Ensure no null values are passed
+          inputs[key] = value
         }
       }
 
@@ -1472,5 +1592,11 @@ input[type='number'] {
 .metrics-chart {
   max-height: 240px;
   min-height: 160px;
+}
+.sticky-header {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 100;
 }
 </style>

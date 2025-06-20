@@ -202,4 +202,7 @@ export default {
   margin-right: 20px;
   z-index: 0;
 }
+.leaflet-attribution-flag {
+  display: none !important;
+}
 </style>
