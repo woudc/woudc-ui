@@ -245,9 +245,93 @@
         >
           {{ $t('common.submit') }}
         </v-btn>
-        <v-btn class="btn-right" :disabled="loadingAll" @click="reset()">
+        <v-btn class="btn-middle" :disabled="loadingAll" @click="reset()">
           {{ $t('common.reset') }}
         </v-btn>
+        <v-dialog v-model="dialog" scrollable max-width="1000px">
+          <template #activator="{ on, attrs }">
+            <v-btn
+              class="btn-right"
+              color="primary blue lighten-1"
+              :loading="loadingDataRecords"
+              v-bind="attrs"
+              v-on="on"
+              @click="() => DownloadFiles()"
+            >
+              {{ $t('common.download') }}
+            </v-btn>
+          </template>
+          <v-card>
+            <v-card-title
+              class="sticky-header d-flex justify-space-between align-center"
+            >
+              {{ $t('common.download') }}
+              <v-spacer />
+              <v-btn icon @click="dialog = false">
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+            </v-card-title>
+            <v-divider></v-divider>
+            <v-card-text
+              style="max-height: 500px; overflow-y: auto; padding: 0"
+            >
+              <v-simple-table>
+                <template #default>
+                  <thead>
+                    <tr>
+                      <th class="text-left">
+                        {{ $t('common.records') }}
+                      </th>
+                      <th class="text-left">
+                        {{ $t('common.webview') }}
+                      </th>
+                      <th class="text-left">{{ $t('common.csv') }}</th>
+                      <th class="text-left">{{ $t('common.geojson') }}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      v-for="(item, index) in download_urls || []"
+                      :key="index"
+                    >
+                      <td style="max-width: 150px">
+                        {{ item.records }}
+                      </td>
+                      <td style="max-width: 450px">
+                        <a :href="item.html" target="_blank" rel="noopener">
+                          {{ item.html }}
+                        </a>
+                      </td>
+                      <td>
+                        <v-btn
+                          color="primary"
+                          small
+                          :href="item.csv"
+                          download
+                          target="_blank"
+                        >
+                          {{ $t('common.downloadcsv') }}
+                        </v-btn>
+                      </td>
+                      <td>
+                        <v-btn
+                          color="primary"
+                          small
+                          @click="
+                            downloadGeoJson(item.geojson, `data_records.json`)
+                          "
+                        >
+                          {{ $t('common.downloadgeojson') }}
+                        </v-btn>
+                      </td>
+                    </tr>
+                  </tbody>
+                </template>
+              </v-simple-table>
+            </v-card-text>
+            <v-divider></v-divider>
+          </v-card>
+        </v-dialog>
       </v-col>
     </v-row>
     <v-row>
@@ -418,6 +502,8 @@ export default {
         groupBy: [],
         groupDesc: [],
       },
+      query: null,
+      download_urls: [],
       resettingMap: false,
       selectedCountry: null,
       selectedCountryID: null,
@@ -432,6 +518,7 @@ export default {
       stations: [],
       stationsWithMetadata: [],
       stationOrder: 'name',
+      dialog: false,
     }
   },
   head() {
@@ -779,6 +866,42 @@ export default {
     })
   },
   methods: {
+    DownloadFiles() {
+      // This code runs when the button is clicked!
+      this.refreshDataRecords()
+      const numberMatched = this.numberMatched
+      const LIMIT = 10000
+      // const format='json' // or 'csv'
+      this.download_urls = []
+      for (let offset = 0; offset <= numberMatched; offset += LIMIT) {
+        const html = `${this.query}&offset=${offset}&f=html&limit=${LIMIT}`
+        const csv = `${this.query}&offset=${offset}&f=csv&limit=${LIMIT}`
+        const geojson = `${this.query}&offset=${offset}&f=json&limit=${LIMIT}`
+        const records = `${offset + 1}-${offset + LIMIT}`
+        const item = {
+          records: records,
+          html: html,
+          csv: csv,
+          geojson: geojson,
+        }
+        this.download_urls.push(item)
+      }
+    },
+    async downloadGeoJson(url, filename) {
+      try {
+        const response = await fetch(url)
+        const blob = await response.blob()
+        const link = document.createElement('a')
+        link.href = URL.createObjectURL(blob)
+        link.download = filename
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+        URL.revokeObjectURL(link.href)
+      } catch (e) {
+        alert('Failed to download file.')
+      }
+    },
     addToStartYear(amount) {
       const newStartYear = this.selectedYearRange[0] + amount
       this.setStartYear(newStartYear)
@@ -1025,6 +1148,7 @@ export default {
       this.refreshMetrics()
     },
     async refreshDataRecords(paginate = false) {
+      this.query = null
       this.loadingDataRecords = true
       this.dataRecordHeaders = this.newDataRecordHeaders
 
@@ -1153,6 +1277,7 @@ export default {
       const Limit = itemsPerPage
 
       if (this.selectedDatasetID === 'uv_index_hourly') {
+        this.query = UVIndexURL + '?' + queryParams
         let response = await woudcClient.get(
           UVIndexURL +
             '?offset=' +
@@ -1165,6 +1290,7 @@ export default {
         this.numberMatched = response.data.numberMatched
         this.dataRecords = response.data.features.map(stripProperties)
       } else if (this.selectedDatasetID === 'TotalOzone_1.0') {
+        this.query = totalOzoneURL + '?' + queryParams
         let response = await woudcClient.get(
           totalOzoneURL +
             '?offset=' +
@@ -1182,6 +1308,8 @@ export default {
         (this.selectedDatasetID === 'ndacc_uv') |
         (this.selectedDatasetID === 'ndacc_vertical')
       ) {
+        this.query = peerDataRecordsURL + '?' + queryParams
+
         let response = await woudcClient.get(
           peerDataRecordsURL +
             '?offset=' +
@@ -1194,6 +1322,7 @@ export default {
         this.numberMatched = response.data.numberMatched
         this.dataRecords = response.data.features.map(stripProperties)
       } else if (this.selectedDatasetID === 'OzoneSonde_1.0') {
+        this.query = ozoneSondeURL + '?' + queryParams
         let response = await woudcClient.get(
           ozoneSondeURL + '?offset=' + page + '&limit=1' + '&' + queryParams
         )
@@ -1220,6 +1349,7 @@ export default {
         }
         this.dataRecords = r.map(stripProperties)
       } else {
+        this.query = dataRecordsURL + '?' + queryParams
         let response = await woudcClient.get(
           dataRecordsURL +
             '?offset=' +
@@ -1472,5 +1602,11 @@ input[type='number'] {
 .metrics-chart {
   max-height: 240px;
   min-height: 160px;
+}
+.sticky-header {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 100;
 }
 </style>
