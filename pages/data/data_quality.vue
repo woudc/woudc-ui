@@ -72,7 +72,7 @@ export default {
     return {
       gawURL: 'https://community.wmo.int/quality-assurance',
       sagURLs: {
-        brewer: 'http://exp-studies.tor.ec.gc.ca/e/ozone/ozone.htm',
+        brewer: 'https://open.canada.ca/data/en/dataset/bc0966ea-086b-46be-aa80-2490d9028eb5',
         dobson:
           'https://www.esrl.noaa.gov/gmd/ozwv/dobson/troubleshooting.html',
         ozonesonde:

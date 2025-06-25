@@ -33,15 +33,15 @@ export default {
       linkURLs: {
         brewer: this.$config.WOUDC_UI_WAF_URL + '/Documentation/SOP_Documents',
         dobson:
-          'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW183-Dobson-WEB.pdf',
+          'https://library.wmo.int/idurl/4/47538',
         'ozone-quality':
-          'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW_201.pdf',
+          'https://library.wmo.int/idurl/4/55131',
         'uv-quality':
-          'https://www.wmo.int/pages/prog/arep/gaw/documents/Final_GAW198_18_June.pdf',
+          'https://library.wmo.int/idurl/4/47579',
         'uv-instruments':
-          'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW191_TD_No_1538_web.pdf',
+          'https://library.wmo.int/idurl/4/59989',
         'uv-study':
-          'https://www.wmo.int/pages/prog/arep/gaw/documents/GAW190_TD_No_1537_web.pdf',
+          'https://library.wmo.int/idurl/4/58935',
       },
     }
   },

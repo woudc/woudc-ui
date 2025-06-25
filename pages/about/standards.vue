@@ -82,7 +82,7 @@ export default {
         gml: 'https://www.opengeospatial.org/standards/gml',
         iso: 'https://www.wmo.int/pages/prog/www/metadata/WMO-core-metadata.html',
         wigos:
-          'https://www.wmo.int/pages/prog/www/wigos/documents/Cg-17/WIGOS_Metadata.pdf',
+          'https://library.wmo.int/viewer/55626/download?file=1192_en.pdf&type=pdf&navigator=1',
       },
       serviceURLs: {
         csw: 'https://www.opengeospatial.org/standards/cat',
