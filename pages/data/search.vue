@@ -248,7 +248,7 @@
         <v-btn class="btn-middle" :disabled="loadingAll" @click="reset()">
           {{ $t('common.reset') }}
         </v-btn>
-        <v-dialog v-model="dialog" scrollable max-width="1000px">
+        <v-dialog scrollable max-width="1000px">
           <template #activator="{ on, attrs }">
             <v-btn
               class="btn-right"
@@ -256,20 +256,14 @@
               :loading="loadingDataRecords"
               v-bind="attrs"
               v-on="on"
-              @click="() => DownloadFiles()"
+              @click="generateDownloadLinks"
             >
               {{ $t('common.download') }}
             </v-btn>
           </template>
           <v-card>
-            <v-card-title
-              class="sticky-header d-flex justify-space-between align-center"
-            >
+            <v-card-title>
               {{ $t('common.download') }}
-              <v-spacer />
-              <v-btn icon @click="dialog = false">
-                <v-icon>mdi-close</v-icon>
-              </v-btn>
             </v-card-title>
             <v-divider></v-divider>
             <v-card-text
@@ -314,15 +308,12 @@
                         </v-btn>
                       </td>
                       <td>
-                        <v-btn
-                          color="primary"
-                          small
-                          @click="
-                            downloadGeoJson(item.geojson, `data_records.json`)
-                          "
+                        <a
+                          :href="item.geojson"
+                          :download="`download-${item.records}.json`"
                         >
                           {{ $t('common.downloadgeojson') }}
-                        </v-btn>
+                        </a>
                       </td>
                     </tr>
                   </tbody>
@@ -503,6 +494,8 @@ export default {
         groupDesc: [],
       },
       query: null,
+      queryLast: null,
+      queryPaginated: null,
       download_urls: [],
       resettingMap: false,
       selectedCountry: null,
@@ -518,7 +511,6 @@ export default {
       stations: [],
       stationsWithMetadata: [],
       stationOrder: 'name',
-      dialog: false,
     }
   },
   head() {
@@ -866,18 +858,19 @@ export default {
     })
   },
   methods: {
-    DownloadFiles() {
-      // This code runs when the button is clicked!
-      this.refreshDataRecords()
-      const numberMatched = this.numberMatched
+    async generateDownloadLinks() {
+      this.generateQueryURL()
+      await this.getQueryHits()
       const LIMIT = 10000
-      // const format='json' // or 'csv'
       this.download_urls = []
-      for (let offset = 0; offset <= numberMatched; offset += LIMIT) {
+      for (let offset = 0; offset <= this.numberMatched; offset += LIMIT) {
         const html = `${this.query}&offset=${offset}&f=html&limit=${LIMIT}`
         const csv = `${this.query}&offset=${offset}&f=csv&limit=${LIMIT}`
         const geojson = `${this.query}&offset=${offset}&f=json&limit=${LIMIT}`
-        const records = `${offset + 1}-${offset + LIMIT}`
+        let records = `${offset + 1}-${offset + LIMIT}`
+        if (offset + LIMIT > this.numberMatched) {
+          records = `${offset + 1}-${this.numberMatched}`
+        }
         const item = {
           records: records,
           html: html,
@@ -1104,6 +1097,18 @@ export default {
         element: station,
       }
     },
+    resetResultsOptions() {
+      this.options = {
+        page: 1,
+        itemsPerPage: 10,
+        sortDesc: [],
+        sortBy: [],
+        multiSort: false,
+        mustSort: false,
+        groupBy: [],
+        groupDesc: [],
+      }
+    },
     async reset() {
       this.loadingMap = true
       this.enableBboxSearch = true
@@ -1124,12 +1129,7 @@ export default {
       this.oldDataRecordHeadersExists = false
       this.oldSearchExists = false
       this.oldSearchParams = {}
-      this.options = {
-        page: 1,
-        itemsPerPage: 10,
-        sortDesc: [],
-        sortBy: [],
-      }
+      this.resetResultsOptions()
       this.numberMatched = 0
 
       this.loadingCountries = true
@@ -1147,10 +1147,9 @@ export default {
 
       this.refreshMetrics()
     },
-    async refreshDataRecords(paginate = false) {
+    generateQueryURL(paginate = false) {
       this.query = null
-      this.loadingDataRecords = true
-      this.dataRecordHeaders = this.newDataRecordHeaders
+      this.queryPaginated = null
 
       const dataRecordsURL =
         this.$config.WOUDC_UI_API_URL + '/collections/data_records/items'
@@ -1169,6 +1168,7 @@ export default {
       }
 
       let queryParams = ''
+
       if (this.options['sortBy'].length === 0) {
         const sortByParams = {
           uv_index_hourly: 'observation_date,station_id,dataset_id',
@@ -1191,6 +1191,8 @@ export default {
       }
 
       let selected = {}
+
+      // dataset handling selection
       if (this.selectedDatasetID === 'uv_index_hourly') {
         selected = {
           country_id: this.selectedCountryID,
@@ -1233,6 +1235,7 @@ export default {
         }
       }
 
+      // bbox handling
       if (
         this.selectedCountry === null &&
         this.selectedStationID === null &&
@@ -1247,11 +1250,14 @@ export default {
         selected['bbox'] = bboxParams.substring(1)
       }
 
+      // generate query params based on selected dropdown options
       for (const [field, value] of Object.entries(selected)) {
         if (value !== null) {
           queryParams += '&' + field + '=' + value
         }
       }
+
+      // year range
       if (
         this.selectedYearRange[0] != this.minSelectableYear ||
         this.selectedYearRange[1] != this.maxSelectableYear
@@ -1265,6 +1271,7 @@ export default {
         queryParams = queryParams + '&' + datetimeParams
       }
 
+      // for results pagination handling
       if (paginate == false) {
         this.options['itemsPerPage'] = 10
         this.options['page'] = 1
@@ -1277,89 +1284,59 @@ export default {
       const Limit = itemsPerPage
 
       if (this.selectedDatasetID === 'uv_index_hourly') {
-        this.query = UVIndexURL + '?' + queryParams
-        let response = await woudcClient.get(
-          UVIndexURL +
-            '?offset=' +
-            offset +
-            '&limit=' +
-            Limit +
-            '&' +
-            queryParams
-        )
-        this.numberMatched = response.data.numberMatched
-        this.dataRecords = response.data.features.map(stripProperties)
+        this.query = `${UVIndexURL}?${queryParams}`
       } else if (this.selectedDatasetID === 'TotalOzone_1.0') {
-        this.query = totalOzoneURL + '?' + queryParams
-        let response = await woudcClient.get(
-          totalOzoneURL +
-            '?offset=' +
-            offset +
-            '&limit=' +
-            Limit +
-            '&' +
-            queryParams
-        )
-        this.numberMatched = response.data.numberMatched
-        this.dataRecords = response.data.features.map(stripProperties)
+        this.query = `${totalOzoneURL}?${queryParams}`
       } else if (
         (this.selectedDatasetID === 'peer_data_records') |
         (this.selectedDatasetID === 'ndacc_total') |
         (this.selectedDatasetID === 'ndacc_uv') |
         (this.selectedDatasetID === 'ndacc_vertical')
       ) {
-        this.query = peerDataRecordsURL + '?' + queryParams
-
-        let response = await woudcClient.get(
-          peerDataRecordsURL +
-            '?offset=' +
-            offset +
-            '&limit=' +
-            Limit +
-            '&' +
-            queryParams
-        )
-        this.numberMatched = response.data.numberMatched
-        this.dataRecords = response.data.features.map(stripProperties)
+        this.query = `${peerDataRecordsURL}?${queryParams}`
       } else if (this.selectedDatasetID === 'OzoneSonde_1.0') {
-        this.query = ozoneSondeURL + '?' + queryParams
-        let response = await woudcClient.get(
-          ozoneSondeURL + '?offset=' + page + '&limit=1' + '&' + queryParams
-        )
-        this.numberMatched =
-          response.data.numberMatched * this.options.itemsPerPage
-        let r = []
-        let totalLength = 0
-        // results are first few entries of every file
-        for (let i = 0; i < response.data.features.length; i++) {
-          const length = response.data.features[i].properties.pressure.length
-          for (let j = 0; j < length; j++) {
-            const index = totalLength + j
-            if (index < this.options.itemsPerPage) {
-              r[index] = JSON.parse(JSON.stringify(response.data.features[i]))
-              r[index].properties.o3partialpressure =
-                response.data.features[i].properties.o3partialpressure[j]
-              r[index].properties.pressure =
-                response.data.features[i].properties.pressure[j]
-              r[index].properties.temperature =
-                response.data.features[i].properties.temperature[j]
-            }
-          }
-          totalLength += length
-        }
-        this.dataRecords = r.map(stripProperties)
+        this.query = `${ozoneSondeURL}?${queryParams}`
       } else {
-        this.query = dataRecordsURL + '?' + queryParams
-        let response = await woudcClient.get(
-          dataRecordsURL +
-            '?offset=' +
-            offset +
-            '&limit=' +
-            Limit +
-            '&' +
-            queryParams
-        )
-        this.numberMatched = response.data.numberMatched
+        this.query = `${dataRecordsURL}?${queryParams}`
+      }
+      this.queryPaginated = `${this.query}&offset=${offset}&limit=${Limit}`
+    },
+    async getQueryHits() {
+      if (this.queryLast !== null && this.query === this.queryLast) {
+        return // skip if the same
+      }
+      let responseHits = await woudcClient.get(`${this.query}&resulttype=hits`)
+      this.numberMatched = responseHits.data.numberMatched
+      this.queryLast = this.query
+      this.resetResultsOptions()
+    },
+    async refreshDataRecords() {
+      this.generateQueryURL(true)
+      this.loadingDataRecords = true
+      this.dataRecordHeaders = this.newDataRecordHeaders
+
+      await this.getQueryHits()
+
+      if (this.selectedDatasetID === 'OzoneSonde_1.0') {
+        let response = await woudcClient.get(this.queryPaginated)
+        response.data.features.forEach((feature) => {
+          let o3partialpressures = feature.properties.o3partialpressure
+          let pressures = feature.properties.pressure
+          let temperatures = feature.properties.temperature
+          feature.properties.o3partialpressure = `Min: ${Math.min(
+            ...o3partialpressures
+          )}, Max: ${Math.max(...o3partialpressures)}`
+          feature.properties.pressure = `Min: ${Math.min(
+            ...pressures
+          )}, Max: ${Math.max(...pressures)}`
+          feature.properties.temperature = `Min: ${Math.min(
+            ...temperatures
+          )}, Max: ${Math.max(...temperatures)}`
+        })
+        this.dataRecords = response.data.features.map(stripProperties)
+      } else {
+        // all other datasets
+        let response = await woudcClient.get(this.queryPaginated)
         this.dataRecords = response.data.features.map(stripProperties)
       }
 
