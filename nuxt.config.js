@@ -172,6 +172,7 @@ export default {
   publicRuntimeConfig: {
     WOUDC_UI_BASE_URL: process.env.WOUDC_UI_BASE_URL,
     WOUDC_UI_API_URL: process.env.WOUDC_UI_API_URL,
+    WOUDC_UI_API_MAX_LIMIT: process.env.WOUDC_UI_API_MAX_LIMIT || 10000,
     WOUDC_UI_EMAIL_ADDRESS: process.env.WOUDC_UI_EMAIL_ADDRESS,
     WOUDC_UI_WAF_URL: process.env.WOUDC_UI_WAF_URL,
     WOUDC_UI_WMO_REGIONS_URL: process.env.WOUDC_UI_WMO_REGIONS_URL,
