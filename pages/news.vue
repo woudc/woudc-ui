@@ -33,12 +33,18 @@
         </v-btn>
         <v-card
           v-for="(newsItem, i) in sortedItems"
-          :id="newsItem.properties.published_date.slice(0, 10)"
+          :id="newsItem.id.replace(/[-:]/g, '_')"
           :key="i"
           class="mb-6"
         >
           <v-card-title>
-            {{ newsItem.properties[`title_${$i18n.locale}`] }}
+            <!-- eslint-disable-next-line vue/no-parsing-error -->
+            <nuxt-link
+              :to="`${localePath('news')}#${newsItem.id.replace(/[-:]/g, '_')}`"
+              @click.prevent="scrollToAnchor(newsItem.id)"
+            >
+              {{ newsItem.properties[`title_${$i18n.locale}`] }}
+            </nuxt-link>
           </v-card-title>
           <v-card-subtitle>
             <span class="blue--text text--darken-3">
@@ -126,16 +132,10 @@ export default {
       return sortedItems
     },
   },
-  created() {
-    this.loadNewsItems()
-  },
-  updated() {
-    if (this.$route.hash) {
-      const stringHash = this.$route.hash.toString()
-      const id = '#\\32 ' + stringHash.slice(2, stringHash.length)
-      const el = document.querySelector(id)
-      el && window.scrollTo(0, el.offsetTop - 5)
-    }
+  async mounted() {
+    await this.loadNewsItems()
+    const id = this.$route.hash.toString().substring(1) // Remove `#` from the hash
+    this.scrollToAnchor(id)
   },
   methods: {
     async loadNewsItems() {
@@ -157,6 +157,20 @@ export default {
       } else if (inputSelectedTag !== '') {
         this.$data.selectedTags.push(inputSelectedTag)
       }
+    },
+    scrollToAnchor(id) {
+      this.$nextTick(() => {
+        const newsCard = document.getElementById(id.replace(/[-:]/g, '_')) // Match ID transformation
+        if (newsCard) {
+          const newsCardPosition = newsCard.getBoundingClientRect().top
+          const offsetPosition = newsCardPosition + window.pageYOffset - 40
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth',
+          })
+        }
+      })
     },
   },
   nuxtI18n: {
