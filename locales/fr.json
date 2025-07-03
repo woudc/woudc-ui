@@ -787,6 +787,8 @@
     "stations-page": "liste des stations",
     "submission": "soumission des données | soumissions de données",
     "submit": "Soumettre",
+    "downloadGeoJson": "Télécharger comme Geojson",
+    "downloadCSV": "Télécharger comme CSV",
     "table-instructions": {
       "body-filtering": "{filtering} Pour filtrer le tableau, indiquez les termes dans la barre de recherche en haut de chaque colonne ou la barre \"rechercher tout\".",
       "body-paging": "{paging} Changer l’option \"voir les entrées\" dans la liste déroulante pour changer le nombre de stations à afficher sur la page. Cliquez sur \"suivant\" ou \"précédent\" pour afficher plus de pages du tableau.",
@@ -812,7 +814,16 @@
     "abstract_": "Abstrait :",
     "abstract": "Abstrait",
     "datasets": "Jeux de données",
-    "noResultsAvailable": "Aucun résultat trouvé"
+    "noResultsAvailable": "Aucun résultat trouvé",
+    "close": "Fermer",
+    "download": "Télécharger",
+    "records": "Enregistrements",
+    "csv": "CSV",
+    "geojson": "GeoJSON",
+    "webview": "Site web de l'API",
+    "downloadcsv": "Télécharger CSV",
+    "downloadgeojson": "Télécharger GeoJSON",
+    "viewhtml": "Afficher en HTML"
   },
   "contact": {
     "blurb": {
