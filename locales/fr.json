@@ -19,22 +19,6 @@
         },
         "title": "Table des matières"
       },
-      "csw": {
-        "blurb": "Le {ogc-cs} fournit une interface commune pour permettre à l’usager de découvrir, de parcourir et de faire des recherches de métadonnées (des données au sujet des données) facilement. Le CSW du WOUDC fournit un catalogue de type Pages Jaunes de toutes les données du WOUDC disponibles dans les archives. Les registres de métadonnées sont formatés selon les normes du contenu des métadonnées géospatiales ISO 19115/19139.",
-        "note": {
-          "body": "Le WOUDC donne accès au CSW de l’OGC (version 2.0.2) à ces différents endroits : {link}",
-          "title": "Le WOUDC et le CSW de l’OGC"
-        },
-        "title": "Service de catalogue pour le web (CSW)"
-      },
-      "definitions": {
-        "blurb": "Les services web sont modélisés et gérés grâce à une taxonomie des données. Il existe un service dedéfinitions, fondé sur un modèle RDF, servant à décrire la taxonomie des données du WOUDC et les liens qui les unissent.",
-        "note": {
-          "body": "Le WOUDC fournit le modèle RDF/SKOS aux endroits suivants : {link}",
-          "title": "Le service de définitions du WOUDC"
-        },
-        "title": "Service de définitions"
-      },
       "examples": {
         "blurb": "Les exemples {github} suivants démontrent l’accessibilité de haut niveau et l’intégration dans les flux de travaux des Services Web du WOUDC :",
         "links": {
@@ -42,16 +26,6 @@
           "pywoudc": "L’ensemble de haut niveau permet un accès pythonique aux données de l’OMM et du WOUDC"
         },
         "title": "Exemples"
-      },
-      "iso": {
-        "blurb-howto": "Veuillez consulter les {how-to} pour plus de détails.",
-        "blurb-intro": "Les listes de codes sont gérées en conformité avec la norme ISO 19115. Il existe un catalogue répertoriant les listes de codes servant à décrire une variété d’objets de domaine du WOUDC servant dans les métadonnées.",
-        "how-to": "instructions pour les services web",
-        "note": {
-          "body": "Le WOUDC donne accès au catalogue des listes de codes aux endroits suivants : {link}",
-          "title": "Catalogue répertoriant les listes de codes du WOUDC"
-        },
-        "title": "Catalogue des listes de codes ISO"
       },
       "note1": {
         "body": "Toutes les données et métadonnées sont assujetties à la {policy} du WOUDC.",
@@ -83,33 +57,6 @@
           "title": "Ces services web de l’OGC sont mis à la disposition des utilisateurs afin d’assurer une accessibilité des données rapideet conforme aux normes :"
         },
         "title": "Services web"
-      },
-      "wfs": {
-        "blurb": {
-          "body-intro": "Le {wfs} fournit une interface populaire pour permettre à l’utilisateur d’accéder aux données géospatiales. Le Service de fonctionnalités web (WFS) est habituellement utilisé pour effectuer des recherches personnalisées ou obtenir un accès brut aux fonctionnalités géospatiales. Le WFS du WOUDC permet l’accès à des données archivées dans divers formats comme le format CSV étendu, KML, CSV, GML, le fichier de formes ESRI, MapInfo, GeoJSON et NetCDF.",
-          "body-limits": "Le WFS a une limite côté serveur de 200000 entités au maximum, afin de pouvoir assurer la qualité du service et en garantir la disponibilité."
-        },
-        "note": {
-          "body": "Le WOUDC donne accès au WFS de l’OGC (versions 1.0.0 - 1.1.0) à ces différents endroits : {link}",
-          "title": "Le WOUDC et le WFS de l’OGC"
-        },
-        "title": "Service de caractéristiques web (WFS)"
-      },
-      "wms": {
-        "blurb": "Le {wms} fournit une interface populaire utilisée pour visualiser des couches de données géospatiales. Le WMS est souvent utilisé pour effectuer une visualisation simple sur le web ou sur une application SIG à l’aide des formats d’image adaptés pour une utilisation sur le web comme les formats PNG ou JPEG, par exemple.",
-        "note": {
-          "body": "Le WOUDC donne accès au WMS de l’OGC (versions 1.1.1 - 1.3.0) à cet endroit : {link}",
-          "title": "Le WOUDC et le WMS de l’OGC"
-        },
-        "title": "Service de cartes web (WMS)"
-      },
-      "wps": {
-        "blurb": "Le {wps} fournit une interface populaire pour permettre à l’utilisateur d’accéder aux données géospatiales. Le Service de fonctionnalités web (WFS) est habituellement utilisé pour effectuer des recherches personnalisées ou obtenir un accès brut aux fonctionnalités géospatiales. Le WFS du WOUDC permet l’accès à des données archivées dans divers formats comme le format CSV étendu, KML, CSV, GML, le fichier de formes ESRI, MapInfo, GeoJSON et NetCDF.",
-        "note": {
-          "body": "Le WOUDC fournit le WPS de l’OGC (version 1.0.0.0) au point d’extrémité suivant : {link}",
-          "title": "Le WOUDC et le WPS de l’OGC"
-        },
-        "title": "Service de traitement web (WPS)"
       }
     },
     "faq": {
@@ -820,7 +767,7 @@
     "records": "Enregistrements",
     "csv": "CSV",
     "geojson": "GeoJSON",
-    "webview": "Site web de l'API",
+    "webview": "Site web de l’API",
     "downloadcsv": "Télécharger CSV",
     "downloadgeojson": "Télécharger GeoJSON",
     "viewhtml": "Afficher en HTML"
@@ -1584,13 +1531,16 @@
         "ozoneMapsInfoArchived": "Informations sur les cartes d’ozone archivées",
         "titleSearch": "Rechercher de cartes de l’ozone",
         "totalOzoneInDobsonUnits": "Les valeurs de l’ozone total sont exprimées en {dobsonUnits}.",
-        "titleArchived": "Rechercher des cartes de l'ozone archivées",
-        "titleObserved": "Rechercher des cartes de l'ozone observées provenant de sources particulières",
-        "titleSouthern": "Cartes de l'ozone total les plus récentes pour l'hémisphère sud",
-        "titleNorthern": "Cartes de l'ozone total les plus récentes pour l'hémisphère nord",
-        "titleGlobal": "Cartes de l'ozone total les plus récentes pour le globe",
-        "titleForecast": "Rechercher des cartes de l'ozone prévu provenant de sources particulières",
-        "observedResults": "Résultats de l'ozone observé"
+        "titleArchived": "Rechercher des cartes de l’ozone archivées",
+        "titleObserved": "Rechercher des cartes de l’ozone observées provenant de sources particulières",
+        "titleSouthern": "Cartes de l’ozone total les plus récentes pour l’hémisphère sud",
+        "titleNorthern": "Cartes de l’ozone total les plus récentes pour l’hémisphère nord",
+        "titleGlobal": "Cartes de l’ozone total les plus récentes pour le globe",
+        "titleForecast": "Rechercher des cartes de l’ozone prévu provenant de sources particulières",
+        "observedResults": "Résultats de l’ozone observé",
+        "TOMS": "TOMS",
+        "individualSourceDesc": "Cartes d’ozone à partir de sources individuelles",
+        "individualSourced": "Provenant de source individuelle"
       },
       "josieBesos": {
         "title": "Données de l’Expérience d’Intercomparaison des Sondes d’Ozone de Jülich (EISOJ) et l’Expérience de Ballons sur les Standards des Sondes d’Ozone (EBSSO)",
@@ -1600,68 +1550,68 @@
         "wccos": "WCCOS",
         "josie": "EISOJ",
         "besos": "EBSSO",
-        "metaDescription": "Liens de téléchargement de l'ensemble de données et résumé des produits de données de l'{josie}-{besos} (@:data.products.josieBesos.title).",
+        "metaDescription": "Liens de téléchargement de l’ensemble de données et résumé des produits de données de l’{josie}-{besos} (@:data.products.josieBesos.title).",
         "josieFullName": "Expérience d’Intercomparaison des Sondes d’Ozone de Jülich (EISOJ) ",
         "wccosFullName": "Centre Mondial d’Étalonnage des Sondes d’Ozone (CMESO)"
       },
       "normal-ozone-maps": {
-        "title": "Cartes normales de l'ozone (1978-1988)",
-        "description": "Cartes de l’ozone total moyen estimées par mois et par hémisphère. \nLa moyenne estimée se situe entre le niveau de 1978 et 1988 en utilisant le spectromètre imageur de l’ozone total (TOMS) pour toutes les zones à l'exception de l'Anatartique et le niveau d'avant 1980 en utilisant les données Dobson sur l'Antarctique.",
-        "keywords": "normales, moyennes, cartes de l'ozone, mondiales, hémisphère sud, hémisphère nord, 1978-1988, estimées, TOMS, Dobson",
+        "title": "Cartes normales de l’ozone (1978-1988)",
+        "description": "Cartes de l’ozone total moyen estimées par mois et par hémisphère. La moyenne estimée se situe entre le niveau de 1978 et 1988 en utilisant le spectromètre imageur de l’ozone total (TOMS) pour toutes les zones à l’exception de l’Anatartique et le niveau d'avant 1980 en utilisant les données Dobson sur l’Antarctique.",
+        "keywords": "normales, moyennes, cartes de l’ozone, mondiales, hémisphère sud, hémisphère nord, 1978-1988, estimées, TOMS, Dobson",
         "global": "Mondial",
         "northern": "Hémisphère Nord",
         "southern": "Hémisphère sud",
-        "globalDesc": "Cartes de l'ozone total moyen par mois pour le globe",
-        "northernDesc": "Cartes de l'ozone total moyen par mois pour l'hémisphère nord",
-        "southernDesc": "Cartes de l'ozone total moyen par mois pour l’hémisphère Sud",
+        "globalDesc": "Cartes de l’ozone total moyen par mois pour le globe",
+        "northernDesc": "Cartes de l’ozone total moyen par mois pour l’hémisphère nord",
+        "southernDesc": "Cartes de l’ozone total moyen par mois pour l’hémisphère Sud",
         "captions": {
           "globe": {
-            "jan": "L'ozone total moyen pour le globe en janvier.",
-            "feb": "L'ozone total moyen pour le globe en février.",
-            "mar": "L'ozone total moyen pour le globe en mars.",
-            "apr": "L'ozone total moyen pour le globe en avril.",
-            "may": "L'ozone total moyen pour le globe en mai.",
-            "jun": "L'ozone total moyen pour le globe en juin.",
-            "jul": "L'ozone total moyen pour le globe en juillet.",
-            "aug": "L'ozone total moyen pour le globe en août.",
-            "sept": "L'ozone total moyen pour le globe en septembre.",
-            "oct": "L'ozone total moyen pour le globe en octobre.",
-            "nov": "L'ozone total moyen pour le globe en novembre.",
-            "dec": "L'ozone total moyen pour le globe en décembre."
+            "jan": "L’ozone total moyen pour le globe en janvier.",
+            "feb": "L’ozone total moyen pour le globe en février.",
+            "mar": "L’ozone total moyen pour le globe en mars.",
+            "apr": "L’ozone total moyen pour le globe en avril.",
+            "may": "L’ozone total moyen pour le globe en mai.",
+            "jun": "L’ozone total moyen pour le globe en juin.",
+            "jul": "L’ozone total moyen pour le globe en juillet.",
+            "aug": "L’ozone total moyen pour le globe en août.",
+            "sept": "L’ozone total moyen pour le globe en septembre.",
+            "oct": "L’ozone total moyen pour le globe en octobre.",
+            "nov": "L’ozone total moyen pour le globe en novembre.",
+            "dec": "L’ozone total moyen pour le globe en décembre."
           },
           "northern": {
-            "jan": "L'ozone total moyen pour l’hémisphère Nord en janvier.",
-            "feb": "L'ozone total moyen pour l’hémisphère Nord en février.",
-            "mar": "L'ozone total moyen pour l’hémisphère Nord en mars.",
-            "apr": "L'ozone total moyen pour l’hémisphère Nord en avril.",
-            "may": "L'ozone total moyen pour l’hémisphère Nord en mai.",
-            "jun": "L'ozone total moyen pour l’hémisphère Nord en juin.",
-            "jul": "L'ozone total moyen pour l’hémisphère Nord en juillet.",
-            "aug": "L'ozone total moyen pour l’hémisphère Nord en août.",
-            "sept": "L'ozone total moyen pour l’hémisphère Nord en septembre.",
-            "oct": "L'ozone total moyen pour l’hémisphère Nord en octobre.",
-            "nov": "L'ozone total moyen pour l’hémisphère Nord en novembre.",
-            "dec": "L'ozone total moyen pour l’hémisphère Nord en décembre."
+            "jan": "L’ozone total moyen pour l’hémisphère Nord en janvier.",
+            "feb": "L’ozone total moyen pour l’hémisphère Nord en février.",
+            "mar": "L’ozone total moyen pour l’hémisphère Nord en mars.",
+            "apr": "L’ozone total moyen pour l’hémisphère Nord en avril.",
+            "may": "L’ozone total moyen pour l’hémisphère Nord en mai.",
+            "jun": "L’ozone total moyen pour l’hémisphère Nord en juin.",
+            "jul": "L’ozone total moyen pour l’hémisphère Nord en juillet.",
+            "aug": "L’ozone total moyen pour l’hémisphère Nord en août.",
+            "sept": "L’ozone total moyen pour l’hémisphère Nord en septembre.",
+            "oct": "L’ozone total moyen pour l’hémisphère Nord en octobre.",
+            "nov": "L’ozone total moyen pour l’hémisphère Nord en novembre.",
+            "dec": "L’ozone total moyen pour l’hémisphère Nord en décembre."
           },
           "southern": {
-            "jan": "L'ozone total moyen pour l’hémisphère Sud en janvier.",
-            "feb": "L'ozone total moyen pour l’hémisphère Sud en février.",
-            "mar": "L'ozone total moyen pour l’hémisphère Sud en mars.",
-            "apr": "L'ozone total moyen pour l’hémisphère Sud en avril.",
-            "may": "L'ozone total moyen pour l’hémisphère Sud en mai.",
-            "jun": "L'ozone total moyen pour l’hémisphère Sud en juin.",
-            "jul": "L'ozone total moyen pour l’hémisphère Sud en juillet.",
-            "aug": "L'ozone total moyen pour l’hémisphère Sud en août.",
-            "sept": "L'ozone total moyen pour l’hémisphère Sud en septembre.",
-            "oct": "L'ozone total moyen pour l’hémisphère Sud en octobre.",
-            "nov": "L'ozone total moyen pour l’hémisphère Sud en novembre.",
-            "dec": "L'ozone total moyen pour l’hémisphère Sud en décembre."
+            "jan": "L’ozone total moyen pour l’hémisphère Sud en janvier.",
+            "feb": "L’ozone total moyen pour l’hémisphère Sud en février.",
+            "mar": "L’ozone total moyen pour l’hémisphère Sud en mars.",
+            "apr": "L’ozone total moyen pour l’hémisphère Sud en avril.",
+            "may": "L’ozone total moyen pour l’hémisphère Sud en mai.",
+            "jun": "L’ozone total moyen pour l’hémisphère Sud en juin.",
+            "jul": "L’ozone total moyen pour l’hémisphère Sud en juillet.",
+            "aug": "L’ozone total moyen pour l’hémisphère Sud en août.",
+            "sept": "L’ozone total moyen pour l’hémisphère Sud en septembre.",
+            "oct": "L’ozone total moyen pour l’hémisphère Sud en octobre.",
+            "nov": "L’ozone total moyen pour l’hémisphère Sud en novembre.",
+            "dec": "L’ozone total moyen pour l’hémisphère Sud en décembre."
           },
-          "beginning": "L'ozone total moyen pour le",
+          "beginning": "L’ozone total moyen pour le",
           "globle": "globe"
         },
         "aboutNormalOzoneMaps": "Ces cartes montrent le niveau moyen de 1978-1988 estimé d’après les données du spectromètre imageur de l’ozone total (TOMS) pour toutes les régions sauf l’Antarctique. Les niveaux de l’Antarctique sont estimés utilisant les données des instruments Dobson avant 1980.",
-        "infoAboutNormals": "Informations sur les cartes normales de l'ozone"
+        "infoAboutNormals": "Informations sur les cartes normales de l’ozone"
       }
     },
     "quality": {
