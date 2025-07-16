@@ -156,6 +156,14 @@ export default {
     filenames: {
       // app: '[name].js'
     },
+    extend(config, { isClient }) {
+      if (isClient) {
+        config.performance = {
+          maxAssetSize: 1843.2 * 1024, // Increase asset size limit (e.g., 1.8 MB)
+          maxEntrypointSize: 1843.2 * 1024, // Increase entrypoint size limit (e.g., 1.8 MB)
+        }
+      }
+    },
   },
   generate: {
     fallback: '200.html',
