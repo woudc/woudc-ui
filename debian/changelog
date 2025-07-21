@@ -13,7 +13,7 @@ woudc-ui (2.1.0) jammy; urgency=medium
   * Increased asset and entrypoint size limit warning to 1.8MB during build
   * Other minor vulnerability fixes and config changes
 
- -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Mon, 07 Jul 2025 16:16:00 +0000
+ -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Mon, 21 Jul 2025 16:49:00 +0000
 
 woudc-ui (2.1~alpha) jammy; urgency=medium
 
