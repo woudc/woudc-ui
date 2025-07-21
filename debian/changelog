@@ -1,3 +1,20 @@
+woudc-ui (2.1.0) jammy; urgency=medium
+
+  * Fixed broken links
+  * Added download button to data search page
+  * Refactored data search page:
+    - OzoneSonde search results show summaries of profiles per row rather than entire profile per rows
+    - Broadband and Spectral search includes 1.0 and 2.0 results
+    - TotalOzone Daily search results includes instrument name
+    - Download limits set with WOUDC_UI_API_MAX_LIMIT env variable
+    - Other minor fixes and code cleanup
+  * Added anchor links to headers of each news item in news page
+  * Converted titles to sentence casing where appropriate
+  * Increased asset and entrypoint size limit warning to 1.8MB during build
+  * Other minor vulnerability fixes and config changes
+
+ -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Mon, 07 Jul 2025 16:16:00 +0000
+
 woudc-ui (2.1~alpha) jammy; urgency=medium
 
   * Jammy release testing
