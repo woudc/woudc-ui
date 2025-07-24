@@ -1,3 +1,9 @@
+woudc-ui (2.1.1) jammy; urgency=medium
+
+  * Fix data search page querying with the wrong country/station parameter for data products
+
+ -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Thu, 24 Jul 2025 21:53:00 +0000
+
 woudc-ui (2.1.0) jammy; urgency=medium
 
   * Fixed broken links
