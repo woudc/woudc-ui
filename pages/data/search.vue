@@ -713,6 +713,19 @@ export default {
 
       return fileCount
     },
+    // obsInRange() {
+    //   const startYear = this.selectedYearRange[0]
+    //   const endYear = this.selectedYearRange[1]
+
+    //   let obsCount = 0
+    //   for (let year = startYear; year <= endYear; year++) {
+    //     if (year in this.metricsByYear) {
+    //       obsCount += this.metricsByYear[year].totalObs
+    //     }
+    //   }
+
+    //   return obsCount
+    // },
     instrumentOptions() {
       const nullOption = {
         text: this.$t('common.all'),
@@ -1219,6 +1232,14 @@ export default {
         selected.dataset_id = null
         country_id_key = 'platform_country'
         station_id_key = 'platform_id'
+      } else if (
+        // WOUDC data products
+        ['TotalOzone_1.0', 'OzoneSonde_1.0', 'uv_index_hourly'].includes(
+          this.selectedDatasetID
+        )
+      ) {
+        country_id_key = 'country_id'
+        station_id_key = 'station_id'
       } else {
         // data_records filtered by dataset_id
         selected.dataset_id = this.selectedDatasetID
