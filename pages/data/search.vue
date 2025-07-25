@@ -1216,7 +1216,7 @@ export default {
 
       // dataset handling selection
       if (this.selectedDatasetID === 'Broad-band_1.0') {
-        selected.content_category = 'Broad-band' // include 1.0 and 2.
+        selected.content_category = 'Broad-band' // include 1.0 and 2.0
         country_id_key = 'platform_country'
         station_id_key = 'platform_id'
       } else if (this.selectedDatasetID === 'Spectral_1.0') {
@@ -1229,6 +1229,7 @@ export default {
         selected.source = 'ndacc'
         selected.measurement = ndacc_datasets[this.selectedDatasetID]
       } else if (this.selectedDatasetID === 'data_records') {
+        // All WOUDC data
         selected.dataset_id = null
         country_id_key = 'platform_country'
         station_id_key = 'platform_id'
@@ -1238,6 +1239,7 @@ export default {
           this.selectedDatasetID
         )
       ) {
+        selected.dataset_id = null
         country_id_key = 'country_id'
         station_id_key = 'station_id'
       } else {
@@ -1268,6 +1270,7 @@ export default {
       // generate query params based on selected dropdown options
       for (const [field, value] of Object.entries(selected)) {
         if (value !== null) {
+          // remove null values from query
           queryParams += '&' + field + '=' + value
         }
       }
