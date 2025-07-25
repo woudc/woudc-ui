@@ -1,3 +1,9 @@
+woudc-ui (2.1.2) jammy; urgency=medium
+
+  * Fix data search page to ensure no further querying by dataset_id for data products
+
+ -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Fri, 25 Jul 2025 14:01:00 +0000
+
 woudc-ui (2.1.1) jammy; urgency=medium
 
   * Fix data search page querying with the wrong country/station parameter for data products
