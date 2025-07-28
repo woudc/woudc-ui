@@ -42,11 +42,6 @@
           </i18n>
         </div>
         <div class="mb-3">
-          <strong>{{ $t('data.info.descriptors.category') }}</strong>
-          &nbsp;
-          <span>{{ category }}</span>
-        </div>
-        <div class="mb-3">
           <strong>{{ $t('data.info.descriptors.keywords') }}</strong>
           &nbsp;
           <v-chip
@@ -62,8 +57,14 @@
         <div>
           <strong>{{ $t('data.info.descriptors.links') }}</strong>
           <ul>
-            <li v-if="wafDataset">
-              <a :href="datasetWafURL" target="_blank">
+            <li>
+              <a :href="firstwafURL" target="_blank">
+                {{ $t('data.info.links.waf') }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </a>
+            </li>
+            <li v-if="hasSecondWAF">
+              <a :href="secondwafURL" target="_blank">
                 {{ $t('data.info.links.waf') }}
                 <v-icon x-small>mdi-open-in-new</v-icon>
               </a>
@@ -117,10 +118,16 @@ export default {
     return {
       abstract: null,
       aliases: {
-        broadband: 'broad-band',
-        multiband: 'multi-band',
-        umkehrn14_1: 'umkehrn14_1.0',
-        umkehrn14_2: 'umkehrn14_2.0',
+        broadband: 'Broad-band',
+        multiband: 'Multi-band',
+        umkehrn14_1: 'UmkehrN14_1.0',
+        umkehrn14_2: 'UmkehrN14_2.0',
+        totalozone: 'TotalOzone',
+        totalozoneobs: 'TotalOzoneObs',
+        lidar: 'Lidar',
+        ozonesonde: 'OzoneSonde',
+        rocketsonde: 'RocketSonde',
+        spectral: 'Spectral',
       },
       category: null,
       collectionItem: null,
@@ -136,7 +143,8 @@ export default {
       stations: [],
       title: null,
       uriDatasetDef: null,
-      wafDataset: null,
+      // wafDataset: null,
+      wafURL: [],
     }
   },
   head() {
@@ -159,9 +167,18 @@ export default {
     doiURL() {
       return `http://dx.doi.org/${this.doi}`
     },
+    firstwafURL() {
+      return this.wafURL[0]
+    },
+    secondwafURL() {
+      return this.wafURL[1]
+    },
     datasetWafURL() {
       const archivePath = this.$config.WOUDC_UI_WAF_URL + '/Archive-NewFormat'
       return `${archivePath}/${this.wafDataset}`
+    },
+    hasSecondWAF: function () {
+      return this.wafURL.length > 1
     },
   },
   mounted() {
@@ -179,22 +196,26 @@ export default {
       } else {
         this.dataset = this.$route.params.id
       }
+
       const discoveryMetadataURL =
         this.$config.WOUDC_UI_API_URL + '/collections/discovery_metadata/items'
-      this.uriDatasetDef = discoveryMetadataURL + '?identifier=' + this.dataset
-      const response = await woudcClient.get(this.uriDatasetDef)
-      this.collectionItem = response.data.features[0].properties
 
-      this.dataset_id = this.collectionItem.identifier
-      this.title = this.collectionItem[`title_${this.$i18n.locale}`]
-      this.abstract = this.collectionItem[`abstract_${this.$i18n.locale}`]
-      this.doi = this.collectionItem.doi
-      this.dateFrom = this.collectionItem.temporal_begin
-      this.dateTo = this.collectionItem.temporal_end
-      this.category = this.collectionItem.topic_category
-      this.keywords = this.collectionItem[`keywords_${this.$i18n.locale}`]
-      if (this.dataset !== 'uv_index_hourly') {
-        this.wafDataset = this.collectionItem.waf[`label_${this.$i18n.locale}`]
+      this.uriDatasetDef = `${discoveryMetadataURL}/${this.dataset}?f=json`
+
+      const response = await woudcClient.get(this.uriDatasetDef)
+      this.collectionItem = response
+
+      this.dataset_id = this.collectionItem.data.id
+      this.title = this.collectionItem.data.properties.title
+      this.abstract = this.collectionItem.data.properties.description
+      this.doi = this.collectionItem.data.properties.externalIds[0].value
+      this.dateFrom = this.collectionItem.data.time.interval[0]
+      this.dateTo = this.collectionItem.data.time.interval[1]
+      this.keywords = this.collectionItem.data.properties.keywords
+      for (const item of this.collectionItem.data.links) {
+        if (item.title == 'Web Accessible Folder (WAF)') {
+          this.wafURL.push(item.href)
+        }
       }
     },
     stationText(station) {
