@@ -888,18 +888,17 @@ export default {
       this.generateQueryURL()
       await this.getQueryHits()
       this.download_urls = []
-      for (
-        let offset = 0;
-        offset <= this.numberMatched;
-        offset += this.$config.WOUDC_UI_API_MAX_LIMIT
-      ) {
-        const html = `${this.query}&offset=${offset}&limit=${this.$config.WOUDC_UI_API_MAX_LIMIT}&f=html`
-        const csv = `${this.query}&offset=${offset}&limit=${this.$config.WOUDC_UI_API_MAX_LIMIT}&f=csv`
-        const geojson = `${this.query}&offset=${offset}&limit=${this.$config.WOUDC_UI_API_MAX_LIMIT}&f=json`
-        let records = `${offset + 1}-${
-          offset + this.$config.WOUDC_UI_API_MAX_LIMIT
-        }`
-        if (offset + this.$config.WOUDC_UI_API_MAX_LIMIT > this.numberMatched) {
+      let MAX_LIMIT = this.$config.WOUDC_UI_API_MAX_LIMIT
+      // adjust MAX_LIMIT for ozonesonde data product
+      if (this.selectedDatasetID === 'OzoneSonde_1.0') {
+        MAX_LIMIT = 1000
+      }
+      for (let offset = 0; offset <= this.numberMatched; offset += MAX_LIMIT) {
+        const html = `${this.query}&offset=${offset}&limit=${MAX_LIMIT}&f=html`
+        const csv = `${this.query}&offset=${offset}&limit=${MAX_LIMIT}&f=csv`
+        const geojson = `${this.query}&offset=${offset}&limit=${MAX_LIMIT}&f=json`
+        let records = `${offset + 1}-${offset + MAX_LIMIT}`
+        if (offset + MAX_LIMIT > this.numberMatched) {
           records = `${offset + 1}-${this.numberMatched}`
         }
         const item = {
