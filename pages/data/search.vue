@@ -891,7 +891,7 @@ export default {
       let MAX_LIMIT = this.$config.WOUDC_UI_API_MAX_LIMIT
       // adjust MAX_LIMIT for ozonesonde data product
       if (this.selectedDatasetID === 'OzoneSonde_1.0') {
-        MAX_LIMIT = 1000
+        MAX_LIMIT = 100
       }
       for (let offset = 0; offset <= this.numberMatched; offset += MAX_LIMIT) {
         const html = `${this.query}&offset=${offset}&limit=${MAX_LIMIT}&f=html`
