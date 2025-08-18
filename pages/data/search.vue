@@ -357,9 +357,7 @@
             :items="dataRecords"
             :options.sync="options"
             :server-items-length="numberMatched"
-            :footer-props="{
-              'items-per-page-options': [10, 25, 50, 100, 500],
-            }"
+            :footer-props="dataTableFooterOption"
             :loading="loadingDataRecords"
           >
             <!-- eslint-disable-next-line vue/valid-v-slot -->
@@ -827,6 +825,15 @@ export default {
         this.loadingMap ||
         this.loadingDataRecords
       )
+    },
+    dataTableFooterOption() {
+      let itemsPerPageOption = [10, 25, 50, 100]
+      if (this.selectedDatasetID !== 'OzoneSonde_1.0') {
+        itemsPerPageOption.push(500)
+      }
+      return {
+        'items-per-page-options': itemsPerPageOption,
+      }
     },
   },
   watch: {
