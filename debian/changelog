@@ -1,3 +1,10 @@
+woudc-ui (2.1.4) jammy; urgency=medium
+
+  * Further reducet limit to 100 for OzoneSonde dataset search
+  * Reduce pagination of data search table to max 100 for OzoneSonde
+
+ -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Mon, 18 Aug 2025 16:33:10 +0000
+
 woudc-ui (2.1.3) jammy; urgency=medium
 
   * Restrict limit to 1000 for OzoneSonde dataset search to prevent overloading API
