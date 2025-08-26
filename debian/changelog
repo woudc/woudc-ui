@@ -1,3 +1,9 @@
+woudc-api (2.2.0) jammy; urgency=medium
+
+  * Update dataset information pages to accomodate discovery_metadata collection change
+
+ -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Tue, 26 Aug 2025 18:50:00 +0000
+
 woudc-ui (2.1.4) jammy; urgency=medium
 
   * Further reducet limit to 100 for OzoneSonde dataset search
