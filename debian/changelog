@@ -1,4 +1,4 @@
-woudc-api (2.2.0) jammy; urgency=medium
+woudc-ui (2.2.0) jammy; urgency=medium
 
   * Update dataset information pages to accomodate discovery_metadata collection change
 
