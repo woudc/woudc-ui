@@ -1,3 +1,9 @@
+woudc-ui (2.2.1) jammy; urgency=medium
+
+  * Fixed missing locale setting in dataset information page
+
+ -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Fri, 29 Aug 2025 15:20:00 +0000
+
 woudc-ui (2.2.0) jammy; urgency=medium
 
   * Update dataset information pages to accomodate discovery_metadata collection change
