@@ -200,7 +200,7 @@ export default {
       const discoveryMetadataURL =
         this.$config.WOUDC_UI_API_URL + '/collections/discovery_metadata/items'
 
-      this.uriDatasetDef = `${discoveryMetadataURL}/${this.dataset}?f=json`
+      this.uriDatasetDef = `${discoveryMetadataURL}/${this.dataset}?f=json&lang=${this.$i18n.locale}`
 
       const response = await woudcClient.get(this.uriDatasetDef)
       this.collectionItem = response
