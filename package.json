@@ -30,7 +30,7 @@
     "@nuxtjs/axios": "^5.12.0",
     "@nuxtjs/i18n": "^7.2.0",
     "@nuxtjs/pwa": "^3.0.0-beta.20",
-    "axios": "^0.30.0",
+    "axios": "^1.12.0",
     "chart.js": "^2.9.3",
     "html-entities": "^2.3.3",
     "leaflet": "^1.6.0",
