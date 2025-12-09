@@ -108,9 +108,24 @@
         <h3 class="h2 mt-2 mb-2">
           {{ $t('home.quickLinks') }}
         </h3>
-        <div v-for="(linkItem, i) in quickLinks" :key="i">
-          <nuxt-link :to="localePath(linkItem.link)">
-            {{ $t(linkItem.title) }}
+        <div>
+          <nuxt-link :to="localePath('data-search')">
+            {{ $t('data.explore.title') }}
+          </nuxt-link>
+        </div>
+        <div>
+          <nuxt-link :to="localePath('data-stations')">
+            {{ $t('data.stations.title') }}
+          </nuxt-link>
+        </div>
+        <div>
+          <nuxt-link :to="localePath('data-data_access')">
+            {{ $t('data.access.title') }}
+          </nuxt-link>
+        </div>
+        <div>
+          <nuxt-link :to="localePath('resources-links')">
+            {{ $t('resources.related-links.title') }}
           </nuxt-link>
         </div>
         <h3 class="h2 mt-2 mb-2">
@@ -173,34 +188,6 @@ export default {
     }
   },
   computed: {
-    woudcLink() {
-      return (
-        'https://woudc.org/home.php?lang=' +
-        this.$i18n.locale +
-        '/' +
-        this.$t('news.title')
-      )
-    },
-    quickLinks() {
-      return [
-        {
-          title: 'data.explore.title',
-          link: 'data-search',
-        },
-        {
-          title: 'data.stations.title',
-          link: 'data-stations',
-        },
-        {
-          title: 'data.access.web.title',
-          link: 'data-data_access',
-        },
-        {
-          title: 'resources.related-links.title',
-          link: 'resources-links',
-        },
-      ]
-    },
     ...mapState('news', ['newsItems']),
     recentNewsItems() {
       const recentNewsItems = this.newsItems.json.features
@@ -222,13 +209,6 @@ export default {
       this.$store.dispatch('news/loadNews').then(() => {
         this.loaded = true
       })
-    },
-    prepareContentsLink(key) {
-      return {
-        text: this.$t('data.access.contents.links.' + key),
-        selector: this.contentsSelectors[key],
-        subsections: null,
-      }
     },
   },
 }

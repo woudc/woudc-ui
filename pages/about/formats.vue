@@ -36,18 +36,18 @@
         <p>{{ $t('about.formats.examples.blurb') }}</p>
         <h3>{{ $t('about.formats.examples.ozone') }}</h3>
         <ul>
-          <li v-for="(link, i) in prepareLinks(ozoneDatasets)" :key="i">
-            <a :href="link.url" target="_blank">
-              {{ link.text }}
+          <li v-for="(dataset, key) in ozoneDatasets" :key="key">
+            <a :href="dataset.url" target="_blank">
+              {{ dataset.text }}
               <v-icon x-small>mdi-open-in-new</v-icon>
             </a>
           </li>
         </ul>
         <h3>{{ $t('about.formats.examples.uv') }}</h3>
         <ul>
-          <li v-for="(link, index) in prepareLinks(uvDatasets)" :key="index">
-            <a :href="link.url" target="_blank">
-              {{ link.text }}
+          <li v-for="(dataset, key) in uvDatasets" :key="key">
+            <a :href="dataset.url" target="_blank">
+              {{ dataset.text }}
               <v-icon x-small>mdi-open-in-new</v-icon>
             </a>
           </li>
@@ -62,44 +62,6 @@ export default {
   data() {
     return {
       contributorsURL: 'https://guide.woudc.org/en/',
-      exampleURLs: {
-        broadband:
-          this.$config.WOUDC_UI_WAF_URL +
-          '/Documentation/Examples-extCSV/Broad-band.csv',
-        lidar:
-          this.$config.WOUDC_UI_WAF_URL +
-          '/Documentation/Examples-extCSV/Lidar.csv',
-        multiband:
-          this.$config.WOUDC_UI_WAF_URL +
-          '/Documentation/Examples-extCSV/Multi-band.csv',
-        ozonesonde:
-          this.$config.WOUDC_UI_WAF_URL +
-          '/Documentation/Examples-extCSV/Ozonesonde.csv',
-        spectral:
-          this.$config.WOUDC_UI_WAF_URL +
-          '/Documentation/Examples-extCSV/Spectral.csv',
-        totalozone:
-          this.$config.WOUDC_UI_WAF_URL +
-          '/Documentation/Examples-extCSV/TotalOzone-Brewer.csv',
-        totalozoneobs:
-          this.$config.WOUDC_UI_WAF_URL +
-          '/Documentation/Examples-extCSV/TotalOzoneObs.csv',
-        umkehr1:
-          this.$config.WOUDC_UI_WAF_URL +
-          '/Documentation/Examples-extCSV/Umkehr-N_values-Dobson.csv',
-        umkehr2:
-          this.$config.WOUDC_UI_WAF_URL +
-          '/Documentation/Examples-extCSV/Umkehr_UMK92Retrieval-Dobson.csv',
-      },
-      ozoneDatasets: [
-        'lidar',
-        'ozonesonde',
-        'totalozone',
-        'totalozoneobs',
-        'umkehr1',
-        'umkehr2',
-      ],
-      uvDatasets: ['broadband', 'multiband', 'spectral'],
     }
   },
   head() {
@@ -123,14 +85,68 @@ export default {
       ],
     }
   },
-  methods: {
-    prepareLinks(datasets) {
-      return datasets.map((dataset) => {
-        return {
-          text: this.$t('about.formats.examples.links.' + dataset),
-          url: this.exampleURLs[dataset],
-        }
-      })
+  computed: {
+    ozoneDatasets() {
+      return {
+        lidar: {
+          text: this.$t('about.formats.examples.links.lidar'),
+          url:
+            this.$config.WOUDC_UI_WAF_URL +
+            '/Documentation/Examples-extCSV/Lidar.csv',
+        },
+        ozonesonde: {
+          text: this.$t('about.formats.examples.links.ozonesonde'),
+          url:
+            this.$config.WOUDC_UI_WAF_URL +
+            '/Documentation/Examples-extCSV/Ozonesonde.csv',
+        },
+        totalozone: {
+          text: this.$t('about.formats.examples.links.totalozone'),
+          url:
+            this.$config.WOUDC_UI_WAF_URL +
+            '/Documentation/Examples-extCSV/TotalOzone-Brewer.csv',
+        },
+        totalozoneobs: {
+          text: this.$t('about.formats.examples.links.totalozoneobs'),
+          url:
+            this.$config.WOUDC_UI_WAF_URL +
+            '/Documentation/Examples-extCSV/TotalOzoneObs.csv',
+        },
+        umkehr1: {
+          text: this.$t('about.formats.examples.links.umkehr1'),
+          url:
+            this.$config.WOUDC_UI_WAF_URL +
+            '/Documentation/Examples-extCSV/Umkehr-N_values-Dobson.csv',
+        },
+        umkehr2: {
+          text: this.$t('about.formats.examples.links.umkehr2'),
+          url:
+            this.$config.WOUDC_UI_WAF_URL +
+            '/Documentation/Examples-extCSV/Umkehr_UMK92Retrieval-Dobson.csv',
+        },
+      }
+    },
+    uvDatasets() {
+      return {
+        broadband: {
+          text: this.$t('about.formats.examples.links.broadband'),
+          url:
+            this.$config.WOUDC_UI_WAF_URL +
+            '/Documentation/Examples-extCSV/Broad-band.csv',
+        },
+        multiband: {
+          text: this.$t('about.formats.examples.links.multiband'),
+          url:
+            this.$config.WOUDC_UI_WAF_URL +
+            '/Documentation/Examples-extCSV/Multi-band.csv',
+        },
+        spectral: {
+          text: this.$t('about.formats.examples.links.spectral'),
+          url:
+            this.$config.WOUDC_UI_WAF_URL +
+            '/Documentation/Examples-extCSV/Spectral.csv',
+        },
+      }
     },
   },
   nuxtI18n: {

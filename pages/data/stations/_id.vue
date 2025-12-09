@@ -287,59 +287,106 @@ export default {
       return keyword + ', ' + this.$t('data.stations.single.keywords')
     },
     deploymentHeaders() {
-      const deploymentKeys = [
-        'acronym',
-        'project',
-        'name',
-        'start_date',
-        'end_date',
+      return [
+        {
+          text: this.$t('data.stations.deployment-headers.acronym'),
+          value: 'acronym',
+        },
+        {
+          text: this.$t('data.stations.deployment-headers.project'),
+          value: 'project',
+        },
+        {
+          text: this.$t('data.stations.deployment-headers.name'),
+          value: 'name',
+        },
+        {
+          text: this.$t('data.stations.deployment-headers.start_date'),
+          value: 'start_date',
+        },
+        {
+          text: this.$t('data.stations.deployment-headers.end_date'),
+          value: 'end_date',
+        },
       ]
-
-      return deploymentKeys.map((key) => {
-        return {
-          text: this.$t('data.stations.deployment-headers.' + key),
-          value: key,
-        }
-      })
     },
     instrumentHeaders() {
-      const instrumentKeys = [
-        'name',
-        'model',
-        'serial',
-        'start_date',
-        'end_date',
-        'data_class',
-        'dataset_id',
-        'waf_url',
+      return [
+        {
+          text: this.$t('data.stations.instrument-headers.name'),
+          value: 'name',
+        },
+        {
+          text: this.$t('data.stations.instrument-headers.model'),
+          value: 'model',
+        },
+        {
+          text: this.$t('data.stations.instrument-headers.serial'),
+          value: 'serial',
+        },
+        {
+          text: this.$t('data.stations.instrument-headers.start_date'),
+          value: 'start_date',
+        },
+        {
+          text: this.$t('data.stations.instrument-headers.end_date'),
+          value: 'end_date',
+        },
+        {
+          text: this.$t('data.stations.instrument-headers.data_class'),
+          value: 'data_class',
+        },
+        {
+          text: this.$t('data.stations.instrument-headers.dataset_id'),
+          value: 'dataset_id',
+        },
+        {
+          text: this.$t('data.stations.instrument-headers.waf_url'),
+          value: 'waf_url',
+        },
       ]
-
-      return instrumentKeys.map((key) => {
-        return {
-          text: this.$t('data.stations.instrument-headers.' + key),
-          value: key,
-        }
-      })
     },
     stationHeaders() {
-      const stationKeys = [
-        'woudc_id',
-        'gaw_id',
-        'start_date',
-        'end_date',
-        'name',
-        `country_name_${this.$i18n.locale}`,
-        'last_validated_datetime',
-        'type',
-        'wmo_region_id',
+      return [
+        {
+          text: this.$t('data.stations.station-headers.woudc_id'),
+          value: 'woudc_id',
+        },
+        {
+          text: this.$t('data.stations.station-headers.gaw_id'),
+          value: 'gaw_id',
+        },
+        {
+          text: this.$t('data.stations.station-headers.start_date'),
+          value: 'start_date',
+        },
+        {
+          text: this.$t('data.stations.station-headers.end_date'),
+          value: 'end_date',
+        },
+        {
+          text: this.$t('data.stations.station-headers.name'),
+          value: 'name',
+        },
+        {
+          text: this.$t(`data.stations.station-headers.country_name`),
+          value: `country_name_${this.$i18n.locale}`,
+        },
+        {
+          text: this.$t(
+            'data.stations.station-headers.last_validated_datetime'
+          ),
+          value: 'last_validated_datetime',
+        },
+        {
+          text: this.$t('data.stations.station-headers.type'),
+          value: 'type',
+        },
+        {
+          text: this.$t('data.stations.station-headers.wmo_region_id'),
+          value: 'wmo_region_id',
+        },
       ]
-
-      return stationKeys.map((key) => {
-        return {
-          text: this.$t('data.stations.station-headers.' + key),
-          value: key,
-        }
-      })
     },
     maxSelectableYear() {
       return new Date().getFullYear()
@@ -482,16 +529,16 @@ export default {
         this.$config.WOUDC_UI_API_URL + '/collections/instruments/items'
       const deploymentsURL =
         this.$config.WOUDC_UI_API_URL + '/collections/deployments/items'
+      let MAX_LIMIT = this.$config.WOUDC_UI_API_MAX_LIMIT
 
-      let queryParams = 'station_id=' + woudcID + '&sortby=contributor_name'
+      let queryParams = `station_id=${woudcID}&sortby=contributor_name&limit=${MAX_LIMIT}`
       const deploymentsResponse = await woudcClient.get(
         deploymentsURL + '?' + queryParams
       )
 
       this.deployments = deploymentsResponse.data.features.map(stripProperties)
 
-      queryParams =
-        'station_id=' + woudcID + '&sortby=dataset_id,name,model,serial'
+      queryParams = `station_id=${woudcID}&sortby=dataset_id,name,model,serial&limit=${MAX_LIMIT}`
       const instrumentsResponse = await woudcClient.get(
         instrumentsURL + '?' + queryParams
       )

@@ -8,9 +8,25 @@
           <h2>{{ $t('data.products.time-series.title') }}</h2>
           <p>{{ $t('data.products.time-series.blurb') }}</p>
           <ul>
-            <li v-for="(path, key) in timeSeriesLinks" :key="key">
-              <nuxt-link :to="localePath(path)">
-                <span>{{ $t('data.products.time-series.links.' + key) }}</span>
+            <li>
+              <nuxt-link :to="localePath('data-products-ozonesonde')">
+                <span>
+                  {{ $t('data.products.time-series.links.ozonesonde') }}
+                </span>
+              </nuxt-link>
+            </li>
+            <li>
+              <nuxt-link :to="localePath('data-products-totalozone')">
+                <span>
+                  {{ $t('data.products.time-series.links.totalozone') }}
+                </span>
+              </nuxt-link>
+            </li>
+            <li>
+              <nuxt-link :to="localePath('data-products-uvindex')">
+                <span>
+                  {{ $t('data.products.time-series.links.uv-index') }}
+                </span>
               </nuxt-link>
             </li>
           </ul>
@@ -18,9 +34,67 @@
         <div id="related-products">
           <h2>{{ $t('data.products.related.title') }}</h2>
           <ul>
-            <li v-for="(url, key) in relatedLinks" :key="key">
-              <a :href="url" target="_blank">
-                {{ $t('data.products.related.links.' + key) }}
+            <li>
+              <a
+                :href="$config.WOUDC_UI_WAF_URL + '/Summaries/TotalOzone'"
+                target="_blank"
+              >
+                {{ $t('data.products.related.links.totalozone-daily-monthly') }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </a>
+            </li>
+            <li>
+              <a
+                :href="
+                  $config.WOUDC_UI_WAF_URL +
+                  '/Projects-Campaigns/Ground-Sat_Plots/'
+                "
+                target="_blank"
+              >
+                {{
+                  $t('data.products.related.links.totalozone-satellite-ground')
+                }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </a>
+            </li>
+            <li>
+              <a
+                :href="$config.WOUDC_UI_WAF_URL + '/Summaries/Umkehr'"
+                target="_blank"
+              >
+                {{ $t('data.products.related.links.umkehr') }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </a>
+            </li>
+            <li>
+              <a
+                :href="$config.WOUDC_UI_WAF_URL + '/Summaries/Spectral_UV'"
+                target="_blank"
+              >
+                {{ $t('data.products.related.links.spectral') }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </a>
+            </li>
+            <li>
+              <a
+                :href="
+                  $config.WOUDC_UI_WAF_URL + '/Projects-Campaigns/ZonalMeans'
+                "
+                target="_blank"
+              >
+                {{ $t('data.products.related.links.ozone-zonal') }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </a>
+            </li>
+            <li>
+              <a
+                :href="
+                  $config.WOUDC_UI_WAF_URL +
+                  '/products/ozone/vertical-ozone-profile/ozonesonde/1.0/tost'
+                "
+                target="_blank"
+              >
+                {{ $t('data.products.related.links.tost') }}
                 <v-icon x-small>mdi-open-in-new</v-icon>
               </a>
             </li>
@@ -107,9 +181,48 @@
                 <span>{{ $t('data.products.josieBesos.title') }}</span>
               </nuxt-link>
             </li>
-            <li v-for="(url, key) in summariesLinks" :key="key">
-              <a :href="url" target="_blank">
-                {{ $t('data.products.summaries.links.' + key) }}
+            <li>
+              <a
+                href="https://community.wmo.int/activity-areas/gaw/science/stratospheric-ozone-and-uv-radiation"
+                target="_blank"
+              >
+                {{ $t('data.products.summaries.links.polar-bulletins') }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </a>
+            </li>
+            <li>
+              <a href="https://community.wmo.int/gaw-reports" target="_blank">
+                {{ $t('data.products.summaries.links.gaw-reports') }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://community.wmo.int/wmo-global-ozone-research-and-monitoring-project-reports"
+                target="_blank"
+              >
+                {{ $t('data.products.summaries.links.ozone-reports') }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://ozonewatch.gsfc.nasa.gov/SH.html"
+                target="_blank"
+              >
+                {{ $t('data.products.summaries.links.ozone-hole') }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </a>
+            </li>
+            <li>
+              <a href="https://sampo.fmi.fi/" target="_blank">
+                {{ $t('data.products.summaries.links.sampo') }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </a>
+            </li>
+            <li>
+              <a href="http://www.temis.nl/index.php" target="_blank">
+                {{ $t('data.products.summaries.links.temis') }}
                 <v-icon x-small>mdi-open-in-new</v-icon>
               </a>
             </li>
@@ -122,39 +235,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      relatedLinks: {
-        'totalozone-daily-monthly':
-          this.$config.WOUDC_UI_WAF_URL + '/Summaries/TotalOzone',
-        'totalozone-satellite-ground':
-          this.$config.WOUDC_UI_WAF_URL +
-          '/Projects-Campaigns/Ground-Sat_Plots/',
-        umkehr: this.$config.WOUDC_UI_WAF_URL + '/Summaries/Umkehr',
-        spectral: this.$config.WOUDC_UI_WAF_URL + '/Summaries/Spectral_UV',
-        'ozone-zonal':
-          this.$config.WOUDC_UI_WAF_URL + '/Projects-Campaigns/ZonalMeans',
-        tost:
-          this.$config.WOUDC_UI_WAF_URL +
-          '/products/ozone/vertical-ozone-profile/ozonesonde/1.0/tost',
-      },
-      summariesLinks: {
-        'polar-bulletins':
-          'https://community.wmo.int/activity-areas/gaw/science/stratospheric-ozone-and-uv-radiation',
-        'gaw-reports': 'https://community.wmo.int/gaw-reports',
-        'ozone-reports':
-          'https://community.wmo.int/wmo-global-ozone-research-and-monitoring-project-reports',
-        'ozone-hole': 'https://ozonewatch.gsfc.nasa.gov/SH.html',
-        sampo: 'https://sampo.fmi.fi/',
-        temis: 'http://www.temis.nl/index.php',
-      },
-      timeSeriesLinks: {
-        ozonesonde: 'data-products-ozonesonde',
-        totalozone: 'data-products-totalozone',
-        'uv-index': 'data-products-uvindex',
-      },
-    }
-  },
   head() {
     return {
       title: this.$t('data.products.title'),

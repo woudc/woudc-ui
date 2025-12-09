@@ -96,7 +96,8 @@ export default {
       const ozoneMaps = this.months.map((month, index) => {
         const paddedNumber = (index + 1).toString().padStart(2, '0')
         const caption = this.$t(
-          `data.products.normal-ozone-maps.captions.globe.${month}`
+          'data.products.normal-ozone-maps.captions.globe',
+          { month: this.$t(`commmon.month.${month}`) }
         )
         const url = `${baseOzoneClimatologyURL}/gl_cl/to${paddedNumber}.gif`
         return { caption, url }
@@ -109,7 +110,8 @@ export default {
       const ozoneMaps = this.months.map((month, index) => {
         const paddedNumber = (index + 1).toString().padStart(2, '0')
         const caption = this.$t(
-          `data.products.normal-ozone-maps.captions.northern.${month}`
+          'data.products.normal-ozone-maps.captions.northern',
+          { month: this.$t(`commmon.month.${month}`) }
         )
         const url = `${baseOzoneClimatologyURL}/nh_cl/to${paddedNumber}.gif`
         return { caption, url }
@@ -123,7 +125,8 @@ export default {
       const ozoneMaps = this.months.map((month, index) => {
         const paddedNumber = (index + 1).toString().padStart(2, '0')
         const caption = this.$t(
-          `data.products.normal-ozone-maps.captions.southern.${month}`
+          'data.products.normal-ozone-maps.captions.southern',
+          { month: this.$t(`commmon.month.${month}`) }
         )
         const url = `${baseOzoneClimatologyURL}/sh_cl/to${paddedNumber}.gif`
         return { caption, url }

@@ -4,17 +4,19 @@
     <p>{{ $t('about.faq.blurb') }}</p>
     <v-row>
       <v-col>
-        <div
-          v-for="(question, index) in $t('about.faq.questions')"
-          :key="index"
-        >
-          <h4>{{ question.text }}</h4>
-          <i18n :path="'about.faq.questions[' + index + '].answer'" tag="p">
+        <div>
+          <h4>{{ $t('about.faq.questions.dataAccess.question') }}</h4>
+          <i18n path="about.faq.questions.dataAccess.answer" tag="p">
             <template #policy>
               <nuxt-link :to="localePath('data-data_policy')">
                 <span>{{ $t('common.policy') }}</span>
               </nuxt-link>
             </template>
+          </i18n>
+        </div>
+        <div>
+          <h4>{{ $t('about.faq.questions.dataSubmission.question') }}</h4>
+          <i18n path="about.faq.questions.dataSubmission.answer" tag="p">
             <template #submission>
               <nuxt-link :to="localePath('contributors-submission')">
                 <span>{{ $tc('common.submission', 1) }}</span>
@@ -25,11 +27,21 @@
                 <span>{{ $t('common.registration-form') }}</span>
               </nuxt-link>
             </template>
+          </i18n>
+        </div>
+        <div>
+          <h4>{{ $t('about.faq.questions.accessArchive.question') }}</h4>
+          <i18n path="about.faq.questions.accessArchive.answer" tag="p">
             <template #access>
               <nuxt-link :to="localePath('data-data_access')">
                 <span>{{ $t('common.access') }}</span>
               </nuxt-link>
             </template>
+          </i18n>
+        </div>
+        <div>
+          <h4>{{ $t('about.faq.questions.dataAvailable.question') }}</h4>
+          <i18n path="about.faq.questions.dataAvailable.answer" tag="p">
             <template #search>
               <nuxt-link :to="localePath('data-search')">
                 <span>{{ $t('common.search') }}</span>
@@ -40,11 +52,45 @@
                 <span>{{ $t('common.products') }}</span>
               </nuxt-link>
             </template>
+          </i18n>
+        </div>
+        <div>
+          <h4>{{ $t('about.faq.questions.dataSources.question') }}</h4>
+          <i18n path="about.faq.questions.dataSources.answer" tag="p">
             <template #contributors-page>
               <nuxt-link :to="localePath('contributors')">
                 <span>{{ $t('common.contributors-page') }}</span>
               </nuxt-link>
             </template>
+          </i18n>
+        </div>
+        <div>
+          <h4>{{ $t('about.faq.questions.updateFrequency.question') }}</h4>
+          <i18n path="about.faq.questions.updateFrequency.answer" tag="p">
+            <template #access>
+              <nuxt-link :to="localePath('data-data_access')">
+                <span>{{ $t('common.access') }}</span>
+              </nuxt-link>
+            </template>
+          </i18n>
+        </div>
+        <div>
+          <h4>{{ $t('about.faq.questions.dataResponsibility.question') }}</h4>
+          <i18n
+            path="about.faq.questions.dataResponsibility.answer"
+            tag="p"
+          ></i18n>
+        </div>
+        <div>
+          <h4>{{ $t('about.faq.questions.automaticAccess.question') }}</h4>
+          <i18n
+            path="about.faq.questions.automaticAccess.answer"
+            tag="p"
+          ></i18n>
+        </div>
+        <div>
+          <h4>{{ $t('about.faq.questions.mobileAccess.question') }}</h4>
+          <i18n path="about.faq.questions.mobileAccess.answer" tag="p">
             <template #accessibility>
               <a :href="accessibilityURL" target="_blank">
                 <span>
@@ -54,7 +100,10 @@
               </a>
             </template>
             <template #usability>
-              <a :href="usabilityURL" target="_blank">
+              <a
+                href="https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=24227"
+                target="_blank"
+              >
                 <span>
                   {{ $t('about.faq.usability') }}
                   <v-icon x-small>mdi-open-in-new</v-icon>
@@ -62,7 +111,7 @@
               </a>
             </template>
             <template #w3c>
-              <a :href="w3cURL" target="_blank">
+              <a href="https://www.w3.org/WAI/intro/wcag" target="_blank">
                 <span>
                   {{ $t('common.w3c') }}
                   <v-icon x-small>mdi-open-in-new</v-icon>
@@ -78,13 +127,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      accessibilityURL: 'https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=23601',
-      usabilityURL: 'https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=24227',
-      w3cURL: 'https://www.w3.org/WAI/intro/wcag',
-    }
-  },
   head() {
     return {
       title: this.$t('about.faq.title'),

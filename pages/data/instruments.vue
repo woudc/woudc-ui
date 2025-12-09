@@ -176,23 +176,40 @@ export default {
       }
     },
     headers() {
-      const headerKeys = [
-        'name',
-        'model',
-        'dataset_id',
-        'start_date',
-        'end_date',
-        'data_class',
-        'station_name',
-        'waf_url',
+      return [
+        {
+          text: this.$t('data.instruments.headers.name'),
+          value: 'name',
+        },
+        {
+          text: this.$t('data.instruments.headers.model'),
+          value: 'model',
+        },
+        {
+          text: this.$t('data.instruments.headers.dataset_id'),
+          value: 'dataset_id',
+        },
+        {
+          text: this.$t('data.instruments.headers.start_date'),
+          value: 'start_date',
+        },
+        {
+          text: this.$t('data.instruments.headers.end_date'),
+          value: 'end_date',
+        },
+        {
+          text: this.$t('data.instruments.headers.data_class'),
+          value: 'data_class',
+        },
+        {
+          text: this.$t('data.instruments.headers.station_name'),
+          value: 'station_name',
+        },
+        {
+          text: this.$t('data.instruments.headers.waf_url'),
+          value: 'waf_url',
+        },
       ]
-
-      return headerKeys.map((key) => {
-        return {
-          text: this.$t('data.instruments.headers.' + key),
-          value: key,
-        }
-      })
     },
     visibleInstruments() {
       if (this.boundingBox === null) {

@@ -171,22 +171,36 @@ export default {
       }
     },
     headers() {
-      const contributorKeys = [
-        'acronym',
-        'project',
-        'name',
-        `country_name_${this.$i18n.locale}`,
-        'start_date',
-        'end_date',
-        'wmo_region_id',
+      return [
+        {
+          text: this.$t('contributors.list.contributor-headers.acronym'),
+          value: 'acronym',
+        },
+        {
+          text: this.$t('contributors.list.contributor-headers.project'),
+          value: 'project',
+        },
+        {
+          text: this.$t('contributors.list.contributor-headers.name'),
+          value: 'name',
+        },
+        {
+          text: this.$t('contributors.list.contributor-headers.country_name'),
+          value: `country_name_${this.$i18n.locale}`,
+        },
+        {
+          text: this.$t('contributors.list.contributor-headers.start_date'),
+          value: 'start_date',
+        },
+        {
+          text: this.$t('contributors.list.contributor-headers.end_date'),
+          value: 'end_date',
+        },
+        {
+          text: this.$t('contributors.list.contributor-headers.wmo_region_id'),
+          value: 'wmo_region_id',
+        },
       ]
-
-      return contributorKeys.map((key) => {
-        return {
-          text: this.$t('contributors.list.contributor-headers.' + key),
-          value: key,
-        }
-      })
     },
     visibleContributors() {
       if (this.boundingBox === null) {

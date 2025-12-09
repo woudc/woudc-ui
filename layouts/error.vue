@@ -7,19 +7,16 @@
             <v-icon color="red" class="d-flex align-start mt-1">
               mdi-alert
             </v-icon>
-            <h2 v-t="{ path: 'error.not-found', locale: 'en' }" class="mx-1" />
+            <h2 class="mx-1">{{ $i18n.t('error.not-found', 'en') }}</h2>
           </div>
-          <p v-t="{ path: 'error.error-text.not-found-text', locale: 'en' }" />
+          <p>{{ $i18n.t('error.error-text.not-found-text', 'en') }}</p>
           <div class="d-flex">
-            <li
-              v-t="{ path: 'error.error-link-start', locale: 'en' }"
-              class="ml-10"
-            />
-            <a
-              v-t="{ path: 'error.error-link-end', locale: 'en' }"
-              :href="$config.WOUDC_UI_BASE_URL"
-              class="ml-1"
-            />
+            <li class="ml-10">
+              {{ $i18n.t('error.error-link-start', 'en') }}
+            </li>
+            <a :href="$config.WOUDC_UI_BASE_URL" class="ml-1">
+              {{ $i18n.t('error.error-link-end', 'en') }}
+            </a>
           </div>
         </v-col>
         <v-col cols="12" md="6" sm="12" xl="3" lg="4" justify="center">
@@ -27,19 +24,16 @@
             <v-icon color="red" class="d-flex align-start mt-1">
               mdi-alert
             </v-icon>
-            <h2 v-t="{ path: 'error.not-found', locale: 'fr' }" class="mx-1" />
+            <h2 class="mx-1">{{ $i18n.t('error.not-found', 'fr') }}</h2>
           </div>
-          <p v-t="{ path: 'error.error-text.not-found-text', locale: 'fr' }" />
+          <p>{{ $i18n.t('error.error-text.not-found-text', 'fr') }}</p>
           <div class="d-flex">
-            <li
-              v-t="{ path: 'error.error-link-start', locale: 'fr' }"
-              class="ml-10"
-            />
-            <a
-              v-t="{ path: 'error.error-link-end', locale: 'fr' }"
-              :href="$config.WOUDC_UI_BASE_URL"
-              class="ml-1"
-            />
+            <li class="ml-10">
+              {{ $i18n.t('error.error-link-start', 'fr') }}
+            </li>
+            <a :href="$config.WOUDC_UI_BASE_URL" class="ml-1">
+              {{ $i18n.t('error.error-link-end', 'fr') }}
+            </a>
           </div>
         </v-col>
       </v-row>
@@ -51,24 +45,20 @@
             <v-icon color="red" class="d-flex align-start mt-1">
               mdi-alert-circle
             </v-icon>
-            <h2
-              v-t="{ path: 'error.other-error', locale: 'en' }"
-              class="mx-1"
-            />
+            <h2 class="mx-1">
+              {{ $i18n.t('error.other-error', 'en') }}
+            </h2>
           </div>
-          <p
-            v-t="{ path: 'error.error-text.other-error-text', locale: 'en' }"
-          />
+          <p>
+            {{ $i18n.t('error.error-text.other-error-text', 'en') }}
+          </p>
           <div class="d-flex">
-            <li
-              v-t="{ path: 'error.error-link-start', locale: 'en' }"
-              class="ml-10"
-            />
-            <a
-              v-t="{ path: 'error.error-link-end', locale: 'en' }"
-              :href="$config.WOUDC_UI_BASE_URL"
-              class="ml-1"
-            />
+            <li class="ml-10">
+              {{ $i18n.t('error.error-link-start', 'en') }}
+            </li>
+            <a :href="$config.WOUDC_UI_BASE_URL" class="ml-1">
+              {{ $i18n.t('error.error-link-end', 'en') }}
+            </a>
           </div>
         </v-col>
         <v-col cols="12" md="6" sm="12" xl="3" lg="4">
@@ -76,24 +66,20 @@
             <v-icon color="red" class="d-flex align-start mt-1">
               mdi-alert-circle
             </v-icon>
-            <h2
-              v-t="{ path: 'error.other-error', locale: 'fr' }"
-              class="mx-1"
-            />
+            <h2 class="mx-1">
+              {{ $i18n.t('error.other-error', 'fr') }}
+            </h2>
           </div>
-          <p
-            v-t="{ path: 'error.error-text.other-error-text', locale: 'fr' }"
-          />
+          <p>
+            {{ $i18n.t('error.error-text.other-error-text', 'fr') }}
+          </p>
           <div class="d-flex">
-            <li
-              v-t="{ path: 'error.error-link-start', locale: 'fr' }"
-              class="ml-10"
-            />
-            <a
-              v-t="{ path: 'error.error-link-end', locale: 'fr' }"
-              :href="$config.WOUDC_UI_BASE_URL"
-              class="ml-1"
-            />
+            <li class="ml-10">
+              {{ $i18n.t('error.error-link-start', 'fr') }}
+            </li>
+            <a :href="$config.WOUDC_UI_BASE_URL" class="ml-1">
+              {{ $i18n.t('error.error-link-end', 'fr') }}
+            </a>
           </div>
         </v-col>
       </v-row>

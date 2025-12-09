@@ -4,9 +4,19 @@
     <v-row>
       <v-col>
         <ul>
-          <li v-for="path in localLinks" :key="path">
-            <nuxt-link :to="localePath('resources-' + path)">
-              <span>{{ $t('resources.links.' + path) }}</span>
+          <li>
+            <nuxt-link :to="localePath('resources-sop')">
+              <span>{{ $t('resources.links.sop') }}</span>
+            </nuxt-link>
+          </li>
+          <li>
+            <nuxt-link :to="localePath('resources-working_groups')">
+              <span>{{ $t('resources.links.working_groups') }}</span>
+            </nuxt-link>
+          </li>
+          <li>
+            <nuxt-link :to="localePath('resources-links')">
+              <span>{{ $t('resources.links.links') }}</span>
             </nuxt-link>
           </li>
           <li>
@@ -27,7 +37,6 @@
 export default {
   data() {
     return {
-      localLinks: ['sop', 'working_groups', 'links'],
       softwareURL: 'https://github.com/woudc/woudc/wiki',
     }
   },

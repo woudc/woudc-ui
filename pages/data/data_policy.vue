@@ -60,8 +60,11 @@
           </h3>
           <div>
             <ul>
-              <li v-for="dataClass in classOrder" :key="dataClass">
-                {{ $t('data.policy.doi.note1.items.' + dataClass) }}
+              <li>
+                {{ $t('data.policy.doi.note1.items.ozone') }}
+              </li>
+              <li>
+                {{ $t('data.policy.doi.note1.items.uv') }}
               </li>
             </ul>
           </div>
@@ -72,8 +75,41 @@
           </h3>
           <div>
             <ul>
-              <li v-for="dataset in datasetOrder" :key="dataset">
-                {{ $t(`data.policy.doi.note2.items.${dataset}`) }}
+              <li>
+                {{ $t('data.policy.doi.note2.items.totalozone') }}
+              </li>
+              <li>
+                {{ $t('data.policy.doi.note2.items.totalozoneobs') }}
+              </li>
+              <li>
+                {{ $t('data.policy.doi.note2.items.lidar') }}
+              </li>
+              <li>
+                {{ $t('data.policy.doi.note2.items.ozonesonde') }}
+              </li>
+              <li>
+                {{ $t('data.policy.doi.note2.items.umkehr1') }}
+              </li>
+              <li>
+                {{ $t('data.policy.doi.note2.items.umkehr2') }}
+              </li>
+              <li>
+                {{ $t('data.policy.doi.note2.items.rocketsonde') }}
+              </li>
+              <li>
+                {{ $t('data.policy.doi.note2.items.broadband') }}
+              </li>
+              <li>
+                {{ $t('data.policy.doi.note2.items.multiband') }}
+              </li>
+              <li>
+                {{ $t('data.policy.doi.note2.items.spectral') }}
+              </li>
+              <li>
+                {{ $t('data.policy.doi.note2.items.uv-index') }}
+              </li>
+              <li>
+                {{ $t('data.policy.doi.note2.items.josie-besos') }}
               </li>
             </ul>
           </div>
@@ -94,8 +130,11 @@
           </h3>
           <div>
             <ol>
-              <li v-for="dataClass in classOrder" :key="dataClass">
-                {{ $t('data.policy.publishing.note2.items.' + dataClass) }}
+              <li>
+                {{ $t('data.policy.publishing.note2.items.ozone') }}
+              </li>
+              <li>
+                {{ $t('data.policy.publishing.note2.items.uv') }}
               </li>
             </ol>
           </div>
@@ -126,25 +165,9 @@
 export default {
   data() {
     return {
-      classOrder: ['ozone', 'uv'],
-      datasetOrder: [
-        'totalozone',
-        'totalozoneobs',
-        'lidar',
-        'ozonesonde',
-        'umkehr1',
-        'umkehr2',
-        'rocketsonde',
-        'broadband',
-        'multiband',
-        'spectral',
-        'uv-index',
-        'josie-besos',
-      ],
       doisURL: 'https://en.wikipedia.org/wiki/Digital_object_identifier',
       gawURL: 'https://gawsis.meteoswiss.ch/GAWSIS/index.html#/faq/',
-      resolution40:
-        'https://community.wmo.int/en/resolution-40',
+      resolution40: 'https://community.wmo.int/en/resolution-40',
       wmoURL: 'https://wmo.int/activities/type-of-activity/exchange-data',
     }
   },

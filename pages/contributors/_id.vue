@@ -193,39 +193,64 @@ export default {
       return keyword + ', ' + this.$t('contributors.single.keywords')
     },
     contributorHeaders() {
-      const contributorKeys = [
-        'acronym',
-        'project',
-        'name',
-        'country',
-        'start_date',
-        'end_date',
-        'wmo_region_id',
+      return [
+        {
+          text: this.$t('contributors.list.contributor-headers.acronym'),
+          value: 'acronym',
+        },
+        {
+          text: this.$t('contributors.list.contributor-headers.project'),
+          value: 'project',
+        },
+        {
+          text: this.$t('contributors.list.contributor-headers.name'),
+          value: 'name',
+        },
+        {
+          text: this.$t('contributors.list.contributor-headers.country'),
+          value: 'country',
+        },
+        {
+          text: this.$t('contributors.list.contributor-headers.start_date'),
+          value: 'start_date',
+        },
+        {
+          text: this.$t('contributors.list.contributor-headers.end_date'),
+          value: 'end_date',
+        },
+        {
+          text: this.$t('contributors.list.contributor-headers.wmo_region_id'),
+          value: 'wmo_region_id',
+        },
       ]
-
-      return contributorKeys.map((key) => {
-        return {
-          text: this.$t('contributors.list.contributor-headers.' + key),
-          value: key,
-        }
-      })
     },
     deploymentHeaders() {
-      const deploymentKeys = [
-        'station_id',
-        'station_name',
-        'station_type',
-        `country_name_${this.$i18n.locale}`,
-        'start_date',
-        'end_date',
+      return [
+        {
+          text: this.$t('contributors.list.deployment-headers.station_id'),
+          value: 'station_id',
+        },
+        {
+          text: this.$t('contributors.list.deployment-headers.station_name'),
+          value: 'station_name',
+        },
+        {
+          text: this.$t('contributors.list.deployment-headers.station_type'),
+          value: 'station_type',
+        },
+        {
+          text: this.$t('contributors.list.deployment-headers.country_name'),
+          value: `country_name_${this.$i18n.locale}`,
+        },
+        {
+          text: this.$t('contributors.list.deployment-headers.start_date'),
+          value: 'start_date',
+        },
+        {
+          text: this.$t('contributors.list.deployment-headers.end_date'),
+          value: 'end_date',
+        },
       ]
-
-      return deploymentKeys.map((key) => {
-        return {
-          text: this.$t('contributors.list.deployment-headers.' + key),
-          value: key,
-        }
-      })
     },
   },
   watch: {
@@ -248,8 +273,8 @@ export default {
 
       const deploymentsURL =
         this.$config.WOUDC_UI_API_URL + '/collections/deployments/items'
-      const queryParams =
-        'contributor_acronym=' + acronym + '&sortby=station_id'
+      let MAX_LIMIT = this.$config.WOUDC_UI_API_MAX_LIMIT
+      const queryParams = `contributor_acronym=${acronym}&sortby=station_id&limit=${MAX_LIMIT}`
 
       const deploymentsResponse = await woudcClient.get(
         deploymentsURL + '?' + queryParams

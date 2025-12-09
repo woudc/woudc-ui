@@ -71,13 +71,6 @@ export default {
   data() {
     return {
       gawURL: 'https://community.wmo.int/quality-assurance',
-      sagURLs: {
-        brewer: 'https://open.canada.ca/data/en/dataset/bc0966ea-086b-46be-aa80-2490d9028eb5',
-        dobson:
-          'https://www.esrl.noaa.gov/gmd/ozwv/dobson/troubleshooting.html',
-        ozonesonde:
-          'https://www.fz-juelich.de/iek/iek-8/EN/Expertise/Infrastructure/WCCOS/WCCOS_node.html',
-      },
     }
   },
   head() {
@@ -103,13 +96,23 @@ export default {
   },
   computed: {
     sagLinks() {
-      const linkOrder = ['dobson', 'brewer', 'ozonesonde']
-
-      return linkOrder.map((key) => {
-        const defn = this.$t('data.quality.sag.links.' + key)
-        defn.to = this.sagURLs[key]
-        return defn
-      })
+      return [
+        {
+          text: this.$t('data.quality.sag.links.dobson.text'),
+          to: 'https://www.esrl.noaa.gov/gmd/ozwv/dobson/troubleshooting.html',
+          note: this.$t('data.quality.sag.links.dobson.note'),
+        },
+        {
+          text: this.$t('data.quality.sag.links.brewer.text'),
+          to: 'https://open.canada.ca/data/en/dataset/bc0966ea-086b-46be-aa80-2490d9028eb5',
+          note: this.$t('data.quality.sag.links.brewer.note'),
+        },
+        {
+          text: this.$t('data.quality.sag.links.ozonesonde.text'),
+          to: 'https://www.fz-juelich.de/iek/iek-8/EN/Expertise/Infrastructure/WCCOS/WCCOS_node.html',
+          note: this.$t('data.quality.sag.links.ozonesonde.note'),
+        },
+      ]
     },
   },
   nuxtI18n: {

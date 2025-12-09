@@ -2,9 +2,29 @@
   <v-container>
     <h2>{{ $t('data.title') }}</h2>
     <ul>
-      <li v-for="path in localLinks" :key="path">
-        <nuxt-link :to="localePath('data-' + path)">
-          {{ $t('data.links.' + path) }}
+      <li>
+        <nuxt-link :to="localePath('data-search')">
+          {{ $t('data.links.search') }}
+        </nuxt-link>
+      </li>
+      <li>
+        <nuxt-link :to="localePath('data-products')">
+          {{ $t('data.links.products') }}
+        </nuxt-link>
+      </li>
+      <li>
+        <nuxt-link :to="localePath('data-dataset_info')">
+          {{ $t('data.links.dataset_info') }}
+        </nuxt-link>
+      </li>
+      <li>
+        <nuxt-link :to="localePath('data-stations')">
+          {{ $t('data.links.stations') }}
+        </nuxt-link>
+      </li>
+      <li>
+        <nuxt-link :to="localePath('data-instruments')">
+          {{ $t('data.links.instruments') }}
         </nuxt-link>
       </li>
     </ul>
@@ -13,17 +33,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      localLinks: [
-        'search',
-        'products',
-        'dataset_info',
-        'stations',
-        'instruments',
-      ],
-    }
-  },
   head() {
     return {
       title: this.$t('data.title'),

@@ -9,18 +9,14 @@
       app
     >
       <v-list nav>
-        <div v-for="(group, groupTag, index) in links" :key="index">
-          <v-list-item
-            v-if="group.sections == undefined"
-            :to="localePath(group.link)"
-            nuxt
-          >
+        <div v-for="group in navigationLinks" :key="group.id">
+          <v-list-item v-if="!group.sections" :to="localePath(group.link)" nuxt>
             <v-list-item-icon>
               <v-icon>{{ group.icon }}</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>
-                {{ $t('banner.' + groupTag) }}
+                {{ group.title }}
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
@@ -28,14 +24,11 @@
             <template #activator>
               <v-list-item-content>
                 <v-list-item-title>
-                  {{ $t('banner.' + groupTag) }}
+                  {{ group.title }}
                 </v-list-item-title>
               </v-list-item-content>
             </template>
-            <div
-              v-for="(section, textTag, indexSection) in group.sections"
-              :key="indexSection"
-            >
+            <div v-for="section in group.sections" :key="section.id">
               <v-list-item
                 v-if="section.type === 'external'"
                 :href="section.link"
@@ -43,7 +36,7 @@
               >
                 <v-list-item-content>
                   <v-list-item-title class="ml-2 grey--text text--darken-4">
-                    {{ $t('banner.' + textTag) }}
+                    {{ section.title }}
                   </v-list-item-title>
                 </v-list-item-content>
                 <v-list-item-icon>
@@ -53,7 +46,7 @@
               <v-list-item v-else :to="localePath(section.link)" nuxt>
                 <v-list-item-content>
                   <v-list-item-title class="ml-2 grey--text text--darken-4">
-                    >{{ $t('banner.' + textTag) }}
+                    {{ section.title }}
                   </v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
@@ -81,8 +74,8 @@
       </h5>
       <template v-if="$vuetify.breakpoint.mdAndUp" #extension>
         <v-menu
-          v-for="(group, groupTag, index) in links"
-          :key="index"
+          v-for="group in navigationLinks"
+          :key="group.id"
           offset-y
           open-on-hover
           open-on-focus
@@ -94,7 +87,7 @@
             <v-tabs color="accent" fixed-tabs>
               <v-tab v-if="group.sections" v-bind="attrs" v-on="on">
                 <v-icon>{{ group.icon }}</v-icon>
-                <span class="pl-1">{{ $t('banner.' + groupTag) }}</span>
+                <span class="pl-1">{{ group.title }}</span>
                 <v-icon>mdi-chevron-down</v-icon>
               </v-tab>
               <v-tab
@@ -106,15 +99,12 @@
                 <v-icon color="accent">
                   {{ group.icon }}
                 </v-icon>
-                <span class="pl-1">{{ $t('banner.' + groupTag) }}</span>
+                <span class="pl-1">{{ group.title }}</span>
               </v-tab>
             </v-tabs>
           </template>
           <v-list v-if="group.sections" color="accent" nav>
-            <div
-              v-for="(section, textTag, indexSection) in group.sections"
-              :key="indexSection"
-            >
+            <div v-for="section in group.sections" :key="section.id">
               <v-list-item
                 v-if="section.type === 'external'"
                 :href="section.link"
@@ -122,7 +112,7 @@
               >
                 <v-list-item-content>
                   <v-list-item-title class="grey--text text--darken-4">
-                    {{ $t('banner.' + textTag) }}
+                    {{ section.title }}
                   </v-list-item-title>
                 </v-list-item-content>
                 <v-list-item-icon>
@@ -132,7 +122,7 @@
               <v-list-item v-else :to="localePath(section.link)" nuxt>
                 <v-list-item-content>
                   <v-list-item-title class="grey--text text--darken-4">
-                    {{ $t('banner.' + textTag) }}
+                    {{ section.title }}
                   </v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
@@ -210,64 +200,158 @@ export default {
   data() {
     return {
       drawerOpen: false,
-      links: {
-        data: {
+      navigationLinks: [
+        {
+          id: 'data',
           icon: 'mdi-database',
           link: 'data',
-          sections: {
-            'data-search': { link: 'data-search' },
-            'data-access': { link: 'data-data_access' },
-            'data-quality': { link: 'data-data_quality' },
-            'data-policy': { link: 'data-data_policy' },
-            'data-products': { link: 'data-products' },
-            'data-info': { link: 'data-dataset_info' },
-            'data-stations': { link: 'data-stations' },
-            'data-instruments': { link: 'data-instruments' },
-          },
+          title: this.$t('banner.data'),
+          sections: [
+            {
+              id: 'data-search',
+              link: 'data-search',
+              title: this.$t('banner.data-search'),
+            },
+            {
+              id: 'data-access',
+              link: 'data-data_access',
+              title: this.$t('banner.data-access'),
+            },
+            {
+              id: 'data-quality',
+              link: 'data-data_quality',
+              title: this.$t('banner.data-quality'),
+            },
+            {
+              id: 'data-policy',
+              link: 'data-data_policy',
+              title: this.$t('banner.data-policy'),
+            },
+            {
+              id: 'data-products',
+              link: 'data-products',
+              title: this.$t('banner.data-products'),
+            },
+            {
+              id: 'data-info',
+              link: 'data-dataset_info',
+              title: this.$t('banner.data-info'),
+            },
+            {
+              id: 'data-stations',
+              link: 'data-stations',
+              title: this.$t('banner.data-stations'),
+            },
+            {
+              id: 'data-instruments',
+              link: 'data-instruments',
+              title: this.$t('banner.data-instruments'),
+            },
+          ],
         },
-        contributors: {
+        {
+          id: 'contributors',
           icon: 'mdi-account-group',
           link: 'contributors',
-          sections: {
-            'contributors-guide': {
+          title: this.$t('banner.contributors'),
+          sections: [
+            {
+              id: 'contributors-guide',
               type: 'external',
               link: 'https://guide.woudc.org',
+              title: this.$t('banner.contributors-guide'),
             },
-            'contributors-registration': { link: 'contributors-registration' },
-            'contributors-list': { link: 'contributors' },
-            'contributors-submission': { link: 'contributors-submission' },
-            'contributors-validation': { link: 'contributors-validation' },
-          },
+            {
+              id: 'contributors-registration',
+              link: 'contributors-registration',
+              title: this.$t('banner.contributors-registration'),
+            },
+            {
+              id: 'contributors-list',
+              link: 'contributors',
+              title: this.$t('banner.contributors-list'),
+            },
+            {
+              id: 'contributors-submission',
+              link: 'contributors-submission',
+              title: this.$t('banner.contributors-submission'),
+            },
+            {
+              id: 'contributors-validation',
+              link: 'contributors-validation',
+              title: this.$t('banner.contributors-validation'),
+            },
+          ],
         },
-        resources: {
+        {
+          id: 'resources',
           icon: 'mdi-book-open-variant',
           link: 'resources',
-          sections: {
-            'resources-sop': { link: 'resources-sop' },
-            'resources-groups': { link: 'resources-working_groups' },
-            'resources-links': { link: 'resources-links' },
-            'resources-software': {
+          title: this.$t('banner.resources'),
+          sections: [
+            {
+              id: 'resources-sop',
+              link: 'resources-sop',
+              title: this.$t('banner.resources-sop'),
+            },
+            {
+              id: 'resources-groups',
+              link: 'resources-working_groups',
+              title: this.$t('banner.resources-groups'),
+            },
+            {
+              id: 'resources-links',
+              link: 'resources-links',
+              title: this.$t('banner.resources-links'),
+            },
+            {
+              id: 'resources-software',
               type: 'external',
               link: 'https://github.com/woudc/woudc/wiki',
+              title: this.$t('banner.resources-software'),
             },
-          },
+          ],
         },
-        news: {
+        {
+          id: 'news',
           icon: 'mdi-newspaper',
           link: 'news',
+          title: this.$t('banner.news'),
         },
-        about: {
+        {
+          id: 'about',
           icon: 'mdi-information',
           link: 'about',
-          sections: {
-            'about-home': { link: 'about' },
-            'about-standards': { link: 'about-standards' },
-            'about-formats': { link: 'about-formats' },
-            'about-glossary': { link: 'about-glossary' },
-            'about-faq': { link: 'about-faq' },
-          },
+          title: this.$t('banner.about'),
+          sections: [
+            {
+              id: 'about-home',
+              link: 'about',
+              title: this.$t('banner.about-home'),
+            },
+            {
+              id: 'about-standards',
+              link: 'about-standards',
+              title: this.$t('banner.about-standards'),
+            },
+            {
+              id: 'about-formats',
+              link: 'about-formats',
+              title: this.$t('banner.about-formats'),
+            },
+            {
+              id: 'about-glossary',
+              link: 'about-glossary',
+              title: this.$t('banner.about-glossary'),
+            },
+            {
+              id: 'about-faq',
+              link: 'about-faq',
+              title: this.$t('banner.about-faq'),
+            },
+          ],
         },
-      },
+      ],
     }
   },
 }

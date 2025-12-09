@@ -44,14 +44,52 @@
             itemscope
             itemtype="http://schema.org/ItemList"
           >
-            <v-list-item
-              v-for="(event, year, i) in $t('about.home.history.milestones')"
-              :key="i"
-              itemprop="itemListElement"
-            >
+            <v-list-item itemprop="itemListElement">
               <span>
-                <strong>{{ year }}</strong>
-                : {{ event }}
+                <strong>1960</strong>
+                : {{ $t('about.home.history.milestones.1960') }}
+              </span>
+            </v-list-item>
+            <v-list-item itemprop="itemListElement">
+              <span>
+                <strong>1964</strong>
+                : {{ $t('about.home.history.milestones.1964') }}
+              </span>
+            </v-list-item>
+            <v-list-item itemprop="itemListElement">
+              <span>
+                <strong>1992</strong>
+                : {{ $t('about.home.history.milestones.1992') }}
+              </span>
+            </v-list-item>
+            <v-list-item itemprop="itemListElement">
+              <span>
+                <strong>1995</strong>
+                : {{ $t('about.home.history.milestones.1995') }}
+              </span>
+            </v-list-item>
+            <v-list-item itemprop="itemListElement">
+              <span>
+                <strong>1996</strong>
+                : {{ $t('about.home.history.milestones.1996') }}
+              </span>
+            </v-list-item>
+            <v-list-item itemprop="itemListElement">
+              <span>
+                <strong>2006</strong>
+                : {{ $t('about.home.history.milestones.2006') }}
+              </span>
+            </v-list-item>
+            <v-list-item itemprop="itemListElement">
+              <span>
+                <strong>2015</strong>
+                : {{ $t('about.home.history.milestones.2015') }}
+              </span>
+            </v-list-item>
+            <v-list-item itemprop="itemListElement">
+              <span>
+                <strong>2025</strong>
+                : {{ $t('about.home.history.milestones.2025') }}
               </span>
             </v-list-item>
           </v-list>

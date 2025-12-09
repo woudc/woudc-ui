@@ -4,10 +4,29 @@
     <v-row>
       <v-col>
         <ul>
-          <li v-for="(value, key) in urls" :key="key">
-            <a :href="value" target="_blank">
+          <li>
+            <a :href="brewerURL" target="_blank">
               <span>
-                {{ $t('resources.working-groups.links.' + key) }}
+                {{ $t('resources.working-groups.links.brewer') }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="http://www.o3soft.eu/dobsonweb/committee.html"
+              target="_blank"
+            >
+              <span>
+                {{ $t('resources.working-groups.links.dobson') }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a :href="umkehrURL" target="_blank">
+              <span>
+                {{ $t('resources.working-groups.links.umkehr') }}
                 <v-icon x-small>mdi-open-in-new</v-icon>
               </span>
             </a>
@@ -22,14 +41,11 @@
 export default {
   data() {
     return {
-      urls: {
-        brewer:
-          this.$config.WOUDC_UI_WAF_URL + '/Documentation/www/bdms/meetings/',
-        dobson: 'http://www.o3soft.eu/dobsonweb/committee.html',
-        umkehr:
-          this.$config.WOUDC_UI_WAF_URL +
-          '/Publications/Meeting_Reports/Umkehr_Sub-Committee/',
-      },
+      brewerURL:
+        this.$config.WOUDC_UI_WAF_URL + '/Documentation/www/bdms/meetings/',
+      umkehrURL:
+        this.$config.WOUDC_UI_WAF_URL +
+        '/Publications/Meeting_Reports/Umkehr_Sub-Committee/',
     }
   },
   head() {

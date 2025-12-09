@@ -6,14 +6,86 @@
       <v-col>
         <h2>{{ $t('data.info.subtitle') }}</h2>
         <ul>
-          <li v-for="section in sectionOrder" :key="section">
-            <span>{{ $t('data.info.sections.' + section) }}</span>
+          <li>
+            <span>{{ $t('data.info.sections.totalozone') }}</span>
             <ul>
-              <li v-for="dataset in links[section]" :key="dataset">
+              <li>
                 <nuxt-link
-                  :to="localePath('data-dataset_info') + '/' + dataset"
+                  :to="localePath('data-dataset_info') + '/totalozone'"
                 >
-                  {{ $t('data.info.links.' + dataset) }}
+                  {{ $t('data.info.links.totalozone') }}
+                </nuxt-link>
+              </li>
+              <li>
+                <nuxt-link
+                  :to="localePath('data-dataset_info') + '/totalozoneobs'"
+                >
+                  {{ $t('data.info.links.totalozoneobs') }}
+                </nuxt-link>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <span>{{ $t('data.info.sections.vertical-ozone') }}</span>
+            <ul>
+              <li>
+                <nuxt-link :to="localePath('data-dataset_info') + '/lidar'">
+                  {{ $t('data.info.links.lidar') }}
+                </nuxt-link>
+              </li>
+              <li>
+                <nuxt-link
+                  :to="localePath('data-dataset_info') + '/ozonesonde'"
+                >
+                  {{ $t('data.info.links.ozonesonde') }}
+                </nuxt-link>
+              </li>
+              <li>
+                <nuxt-link
+                  :to="localePath('data-dataset_info') + '/rocketsonde'"
+                >
+                  {{ $t('data.info.links.rocketsonde') }}
+                </nuxt-link>
+              </li>
+              <li>
+                <nuxt-link
+                  :to="localePath('data-dataset_info') + '/umkehrn14_1'"
+                >
+                  {{ $t('data.info.links.umkehrn14_1') }}
+                </nuxt-link>
+              </li>
+              <li>
+                <nuxt-link
+                  :to="localePath('data-dataset_info') + '/umkehrn14_2'"
+                >
+                  {{ $t('data.info.links.umkehrn14_2') }}
+                </nuxt-link>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <span>{{ $t('data.info.sections.uv-irradiance') }}</span>
+            <ul>
+              <li>
+                <nuxt-link :to="localePath('data-dataset_info') + '/broadband'">
+                  {{ $t('data.info.links.broadband') }}
+                </nuxt-link>
+              </li>
+              <li>
+                <nuxt-link :to="localePath('data-dataset_info') + '/multiband'">
+                  {{ $t('data.info.links.multiband') }}
+                </nuxt-link>
+              </li>
+              <li>
+                <nuxt-link :to="localePath('data-dataset_info') + '/spectral'">
+                  {{ $t('data.info.links.spectral') }}
+                </nuxt-link>
+              </li>
+              <li>
+                <nuxt-link
+                  :to="localePath('data-dataset_info') + '/uv_index_hourly'"
+                >
+                  {{ $t('data.info.links.uv_index_hourly') }}
                 </nuxt-link>
               </li>
             </ul>
@@ -26,27 +98,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      links: {
-        totalozone: ['totalozone', 'totalozoneobs'],
-        'uv-irradiance': [
-          'broadband',
-          'multiband',
-          'spectral',
-          'uv_index_hourly',
-        ],
-        'vertical-ozone': [
-          'lidar',
-          'ozonesonde',
-          'rocketsonde',
-          'umkehrn14_1',
-          'umkehrn14_2',
-        ],
-      },
-      sectionOrder: ['totalozone', 'vertical-ozone', 'uv-irradiance'],
-    }
-  },
   head() {
     return {
       title: this.$t('data.info.title'),

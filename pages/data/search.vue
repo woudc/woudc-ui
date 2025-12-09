@@ -269,7 +269,7 @@
             <v-card-text
               style="max-height: 500px; overflow-y: auto; padding: 0"
             >
-              <v-simple-table>
+              <v-simple-table class="elevation-1">
                 <template #default>
                   <thead>
                     <tr>
@@ -355,7 +355,7 @@
             class="elevation-1"
             :headers="dataRecordHeaders"
             :items="dataRecords"
-            :options.sync="options"
+            :options.sync="optionsResultsTable"
             :server-items-length="numberMatched"
             :footer-props="dataTableFooterOption"
             :loading="loadingDataRecords"
@@ -490,7 +490,7 @@ export default {
       oldDataRecordHeadersExists: false,
       oldSearchExists: false,
       oldSearchParams: {},
-      options: {
+      optionsResultsTable: {
         page: 1,
         itemsPerPage: 10,
         sortDesc: [],
@@ -574,127 +574,270 @@ export default {
       return [nullOption].concat(countryOptions)
     },
     newDataRecordHeaders() {
+      const commonHeaders = {
+        observationDate: {
+          text: this.$t('data.explore.table-headers.observation-date'),
+          value: 'observation_date',
+        },
+        contributorId: {
+          text: this.$t('data.explore.table-headers.contributor-id'),
+          value: 'contributor_id',
+        },
+        stationId: {
+          text: this.$t('data.explore.table-headers.station-id'),
+          value: 'station_id',
+        },
+        stationGawId: {
+          text: this.$t('data.explore.table-headers.station-gaw_id'),
+          value: 'station_gaw_id',
+        },
+        gawId: {
+          text: this.$t('data.explore.table-headers.gaw-id'),
+          value: 'gaw_id',
+        },
+        instrumentName: {
+          text: this.$t('data.explore.table-headers.instrument-name'),
+          value: 'instrument_name',
+        },
+        instrumentType: {
+          text: this.$t('data.explore.table-headers.instrument-type'),
+          value: 'instrument_type',
+        },
+        instrumentModel: {
+          text: this.$t('data.explore.table-headers.instrument-model'),
+          value: 'instrument_model',
+        },
+        instrumentSerial: {
+          text: this.$t('data.explore.table-headers.instrument-serial'),
+          value: 'instrument_serial',
+        },
+        actions: {
+          text: this.$t('data.explore.table-headers.actions'),
+          value: 'actions',
+        },
+      }
+
+      const countryHeader = {
+        text: this.countryOrder,
+        value: this.countryOrder,
+      }
+
       let headerKeys = []
       if (this.selectedDatasetID === 'uv_index_hourly') {
         headerKeys = [
-          'observation_date',
-          'contributor_id',
-          'station_id',
-          'station_gaw_id',
-          this.countryOrder,
-          'observation_time',
-          'station_name',
-          'instrument_name',
-          'instrument_model',
-          'instrument_serial',
-          'uv_index',
-          'uv_daily_max',
-          'actions',
+          commonHeaders.observationDate,
+          commonHeaders.contributorId,
+          commonHeaders.stationId,
+          commonHeaders.stationGawId,
+          countryHeader,
+          {
+            text: this.$t('data.explore.table-headers.observation-time'),
+            value: 'observation_time',
+          },
+          {
+            text: this.$t('data.explore.table-headers.station-name'),
+            value: 'station_name',
+          },
+          commonHeaders.instrumentName,
+          commonHeaders.instrumentModel,
+          commonHeaders.instrumentSerial,
+          {
+            text: this.$t('data.explore.table-headers.uv-index'),
+            value: 'uv_index',
+          },
+          {
+            text: this.$t('data.explore.table-headers.uv-daily_max'),
+            value: 'uv_daily_max',
+          },
+          commonHeaders.actions,
         ]
       } else if (this.selectedDatasetID === 'TotalOzone_1.0') {
         headerKeys = [
-          'observation_date',
-          'contributor_id',
-          'station_id',
-          'station_gaw_id',
-          this.countryOrder,
-          'monthly_date',
-          'monthly_npts',
-          'daily_date',
-          'daily_utc_begin',
-          'daily_utc_end',
-          'daily_nobs',
-          'instrument_name',
-          'actions',
+          commonHeaders.observationDate,
+          commonHeaders.contributorId,
+          commonHeaders.stationId,
+          commonHeaders.stationGawId,
+          countryHeader,
+          {
+            text: this.$t('data.explore.table-headers.monthly-date'),
+            value: 'monthly_date',
+          },
+          {
+            text: this.$t('data.explore.table-headers.monthly-npts'),
+            value: 'monthly_npts',
+          },
+          {
+            text: this.$t('data.explore.table-headers.daily-date'),
+            value: 'daily_date',
+          },
+          {
+            text: this.$t('data.explore.table-headers.daily-utc_begin'),
+            value: 'daily_utc_begin',
+          },
+          {
+            text: this.$t('data.explore.table-headers.daily-utc_end'),
+            value: 'daily_utc_end',
+          },
+          {
+            text: this.$t('data.explore.table-headers.daily-nobs'),
+            value: 'daily_nobs',
+          },
+          commonHeaders.instrumentName,
+          commonHeaders.actions,
         ]
       } else if (this.peerOrNdaccDatasets.includes(this.selectedDatasetID)) {
         headerKeys = [
-          'observation_date',
-          'contributor_id',
-          'station_id',
-          'gaw_id',
-          'measurement',
-          'instrument_type',
-          'start_datetime',
-          'end_datetime',
-          'actions',
+          commonHeaders.observationDate,
+          commonHeaders.contributorId,
+          commonHeaders.stationId,
+          commonHeaders.gawId,
+          {
+            text: this.$t('data.explore.table-headers.measurement'),
+            value: 'measurement',
+          },
+          commonHeaders.instrumentType,
+          {
+            text: this.$t('data.explore.table-headers.start-datetime'),
+            value: 'start_datetime',
+          },
+          {
+            text: this.$t('data.explore.table-headers.end-datetime'),
+            value: 'end_datetime',
+          },
+          commonHeaders.actions,
         ]
       } else if (this.selectedDatasetID === 'OzoneSonde_1.0') {
         headerKeys = [
-          'timestamp_date',
-          'contributor_id',
-          'station_id',
-          'station_gaw_id',
-          this.countryOrder,
-          'o3partialpressure',
-          'pressure',
-          'temperature',
-          'actions',
+          {
+            text: this.$t('data.explore.table-headers.timestamp-date'),
+            value: 'timestamp_date',
+          },
+          commonHeaders.contributorId,
+          commonHeaders.stationId,
+          commonHeaders.stationGawId,
+          countryHeader,
+          {
+            text: this.$t('data.explore.table-headers.o3partialpressure'),
+            value: 'o3partialpressure',
+          },
+          {
+            text: this.$t('data.explore.table-headers.pressure'),
+            value: 'pressure',
+          },
+          {
+            text: this.$t('data.explore.table-headers.temperature'),
+            value: 'temperature',
+          },
+          commonHeaders.actions,
         ]
       } else {
         headerKeys = [
-          'timestamp_utc',
-          'dataset_id',
-          'platform_type',
-          'platform_id',
-          'instrument_name',
-          'processed_datetime',
-          'actions',
+          {
+            text: this.$t('data.explore.table-headers.timestamp-utc'),
+            value: 'timestamp_utc',
+          },
+          {
+            text: this.$t('data.explore.table-headers.dataset-id'),
+            value: 'dataset_id',
+          },
+          {
+            text: this.$t('data.explore.table-headers.platform-type'),
+            value: 'platform_type',
+          },
+          {
+            text: this.$t('data.explore.table-headers.platform-id'),
+            value: 'platform_id',
+          },
+          commonHeaders.instrumentName,
+          {
+            text: this.$t('data.explore.table-headers.processed-datetime'),
+            value: 'processed_datetime',
+          },
+          commonHeaders.actions,
         ]
       }
 
-      return headerKeys.map((key) => {
-        return {
-          text: this.$t('data.explore.table-headers.' + key.replace('_', '-')),
-          value: key,
-        }
-      })
+      return headerKeys
     },
     datasetOptions() {
-      const datasetSections = {
-        totalozone: {
-          daily: 'TotalOzone_1.0',
-          hourly: 'TotalOzoneObs_1.0',
+      const datasetOptions = [
+        {
+          text: this.$t('common.all'),
+          value: 'data_records',
         },
-        'vertical-ozone': {
-          lidar: 'Lidar_1.0',
-          ozonesonde: 'OzoneSonde_1.0',
-          umkehr1: 'UmkehrN14_1.0',
-          umkehr2: 'UmkehrN14_2.0',
-          rocketsonde: 'RocketSonde_1.0',
+        {
+          header: this.$t('data.explore.dataset.totalozone.label'),
         },
-        'uv-irradiance': {
-          broadband: 'Broad-band_1.0',
-          multiband: 'Multi-band_1.0',
-          spectral: 'Spectral_1.0',
-          'uv-index': 'uv_index_hourly',
+        {
+          text: this.$t('data.explore.dataset.totalozone.daily'),
+          value: 'TotalOzone_1.0',
         },
-        'data-centers': {
-          totalozone: 'ndacc_total',
-          'vertical-ozone': 'ndacc_vertical',
-          'uv-irradiance': 'ndacc_uv',
-          eubrewnet: 'peer_data_records',
+        {
+          text: this.$t('data.explore.dataset.totalozone.hourly'),
+          value: 'TotalOzoneObs_1.0',
         },
-      }
-
-      const datasetOptions = []
-      // all data records option
-      datasetOptions.push({
-        text: this.$t('common.all'),
-        value: 'data_records',
-      })
-
-      for (const [section, children] of Object.entries(datasetSections)) {
-        datasetOptions.push({
-          header: this.$t('data.explore.dataset.' + section + '.label'),
-        })
-        for (const [subsection, id] of Object.entries(children)) {
-          datasetOptions.push({
-            text: this.$t('data.explore.dataset.' + section + '.' + subsection),
-            value: id,
-          })
-        }
-      }
+        {
+          header: this.$t('data.explore.dataset.vertical-ozone.label'),
+        },
+        {
+          text: this.$t('data.explore.dataset.vertical-ozone.lidar'),
+          value: 'Lidar_1.0',
+        },
+        {
+          text: this.$t('data.explore.dataset.vertical-ozone.ozonesonde'),
+          value: 'OzoneSonde_1.0',
+        },
+        {
+          text: this.$t('data.explore.dataset.vertical-ozone.umkehr1'),
+          value: 'UmkehrN14_1.0',
+        },
+        {
+          text: this.$t('data.explore.dataset.vertical-ozone.umkehr2'),
+          value: 'UmkehrN14_2.0',
+        },
+        {
+          text: this.$t('data.explore.dataset.vertical-ozone.rocketsonde'),
+          value: 'RocketSonde_1.0',
+        },
+        {
+          header: this.$t('data.explore.dataset.uv-irradiance.label'),
+        },
+        {
+          text: this.$t('data.explore.dataset.uv-irradiance.broadband'),
+          value: 'Broad-band_1.0',
+        },
+        {
+          text: this.$t('data.explore.dataset.uv-irradiance.multiband'),
+          value: 'Multi-band_1.0',
+        },
+        {
+          text: this.$t('data.explore.dataset.uv-irradiance.spectral'),
+          value: 'Spectral_1.0',
+        },
+        {
+          text: this.$t('data.explore.dataset.uv-irradiance.uv-index'),
+          value: 'uv_index_hourly',
+        },
+        {
+          header: this.$t('data.explore.dataset.data-centers.label'),
+        },
+        {
+          text: this.$t('data.explore.dataset.data-centers.totalozone'),
+          value: 'ndacc_total',
+        },
+        {
+          text: this.$t('data.explore.dataset.data-centers.vertical-ozone'),
+          value: 'ndacc_vertical',
+        },
+        {
+          text: this.$t('data.explore.dataset.data-centers.uv-irradiance'),
+          value: 'ndacc_uv',
+        },
+        {
+          text: this.$t('data.explore.dataset.data-centers.eubrewnet'),
+          value: 'peer_data_records',
+        },
+      ]
 
       return datasetOptions
     },
@@ -852,7 +995,7 @@ export default {
         }
       },
     },
-    options: {
+    optionsResultsTable: {
       async handler() {
         if (this.oldSearchExists == true && this.loadedTable == true) {
           this.refreshDataRecords()
@@ -1121,7 +1264,7 @@ export default {
       }
     },
     resetResultsOptions() {
-      this.options = {
+      this.optionsResultsTable = {
         page: 1,
         itemsPerPage: 10,
         sortDesc: [],
@@ -1192,7 +1335,7 @@ export default {
 
       let queryParams = ''
 
-      if (this.options['sortBy'].length === 0) {
+      if (this.optionsResultsTable['sortBy'].length === 0) {
         const sortByParams = {
           uv_index_hourly: 'observation_date,station_id,dataset_id',
           'TotalOzone_1.0': 'daily_date,station_id',
@@ -1208,9 +1351,9 @@ export default {
           (sortByParams[this.selectedDatasetID] || sortByParams['data_records'])
       } else {
         queryParams =
-          this.options['sortDesc'][0] == true
-            ? 'sortby=-' + this.options['sortBy']
-            : 'sortby=' + this.options['sortBy']
+          this.optionsResultsTable['sortDesc'][0] == true
+            ? 'sortby=-' + this.optionsResultsTable['sortBy']
+            : 'sortby=' + this.optionsResultsTable['sortBy']
       }
 
       let selected = {
@@ -1297,12 +1440,12 @@ export default {
 
       // for results pagination handling
       if (paginate == false) {
-        this.options['itemsPerPage'] = 10
-        this.options['page'] = 1
+        this.optionsResultsTable['itemsPerPage'] = 10
+        this.optionsResultsTable['page'] = 1
         this.loadedTable = false
       }
-      let itemsPerPage = this.options['itemsPerPage']
-      let page = this.options['page']
+      let itemsPerPage = this.optionsResultsTable['itemsPerPage']
+      let page = this.optionsResultsTable['page']
 
       const offset = page * itemsPerPage - itemsPerPage
       const Limit = itemsPerPage
@@ -1599,15 +1742,6 @@ export default {
   font-weight: bold;
   background-color: #e4e4e4;
   padding-left: 12px;
-}
-
-/* Hide "spinner" buttons on numeric inputs */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  display: none;
-}
-input[type='number'] {
-  -moz-appearance: textfield; /* Firefox */
 }
 
 .btn-left {
