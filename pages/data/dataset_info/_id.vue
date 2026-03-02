@@ -76,11 +76,35 @@
               </a>
             </li>
             <li>
+              <a :href="OGCAPIinJson" target="_blank">
+                {{ $t('data.info.links.api_json') }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </a>
+            </li>
+            <li>
+              <a :href="metadataAPIURL" target="_blank">
+                {{ $t('data.info.links.metadata') }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </a>
+            </li>
+            <li>
+              <a :href="datasetHTML" target="_blank">
+                {{ $t('data.info.links.dataset', { dataset_name: dataset }) }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </a>
+            </li>
+            <li>
               <nuxt-link
                 :to="localePath('data-search') + '?dataset=' + dataset_id"
               >
                 <span>{{ $t('data.info.links.search-page') }}</span>
               </nuxt-link>
+            </li>
+            <li>
+              <a :href="mqttURL" target="_blank">
+                {{ $t('data.info.links.mqtt') }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </a>
             </li>
           </ul>
         </div>
@@ -180,6 +204,9 @@ export default {
     hasSecondWAF: function () {
       return this.wafURL.length > 1
     },
+    mqttURL() {
+      return 'mqtts://everyone:everyone@broker.woudc.org:8883'
+    },
   },
   mounted() {
     this.init()
@@ -201,6 +228,9 @@ export default {
         this.$config.WOUDC_UI_API_URL + '/collections/discovery_metadata/items'
 
       this.uriDatasetDef = `${discoveryMetadataURL}/${this.dataset}?f=json&lang=${this.$i18n.locale}`
+      this.datasetHTML = `${discoveryMetadataURL}/${this.dataset}?f=html&lang=${this.$i18n.locale}`
+      this.metadataAPIURL = discoveryMetadataURL
+      this.OGCAPIinJson = this.$config.WOUDC_UI_API_URL + '?f=json'
 
       const response = await woudcClient.get(this.uriDatasetDef)
       this.collectionItem = response

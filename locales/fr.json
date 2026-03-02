@@ -886,7 +886,11 @@
         "umkehrn14_1": "UmkehrN14 (Niveau 1.0)",
         "umkehrn14_2": "UmkehrN14 (Niveau 2.0)",
         "uv_index_hourly": "Indice UV",
-        "waf": "Dossier accessible sur le web (WAF)"
+        "waf": "Dossier accessible sur le web (WAF)",
+        "mqtt": "MQTT broker",
+        "metadata": "Discovery Metadata on OGC API",
+        "dataset": "{dataset_name} sur l’API de l’OGC",
+        "api_json": "OGC API as JSON"
       },
       "sections": {
         "totalozone": "Colonne d’ozone total",
