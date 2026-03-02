@@ -9,9 +9,9 @@
           <span>{{ title }}</span>
         </div>
         <div class="mb-3">
-          <strong>{{ $t('data.info.descriptors.abstract') }}</strong>
+          <strong>{{ $t('data.info.descriptors.description') }}</strong>
           &nbsp;
-          <span>{{ abstract }}</span>
+          <span>{{ description }}</span>
         </div>
         <div class="mb-3">
           <strong>{{ $t('data.info.descriptors.uri') }}</strong>
@@ -57,15 +57,9 @@
         <div>
           <strong>{{ $t('data.info.descriptors.links') }}</strong>
           <ul>
-            <li>
-              <a :href="firstwafURL" target="_blank">
-                {{ $t('data.info.links.waf') }}
-                <v-icon x-small>mdi-open-in-new</v-icon>
-              </a>
-            </li>
-            <li v-if="hasSecondWAF">
-              <a :href="secondwafURL" target="_blank">
-                {{ $t('data.info.links.waf') }}
+            <li v-for="(wafItem, i) in wafURL" :key="i">
+              <a :href="wafItem.href" target="_blank">
+                {{ wafItem.title }}
                 <v-icon x-small>mdi-open-in-new</v-icon>
               </a>
             </li>
@@ -76,11 +70,48 @@
               </a>
             </li>
             <li>
+              <a :href="OGCAPIinJson" target="_blank">
+                {{ $t('data.info.links.api_json') }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </a>
+            </li>
+            <li>
+              <a :href="discoveryMetadataItemsURL" target="_blank">
+                {{ $t('data.info.links.metadata') }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </a>
+            </li>
+            <li v-if="linkCollection">
+              <a :href="linkCollection.href" target="_blank">
+                {{
+                  $t('data.info.links.dataset', {
+                    dataset_name: linkCollection.title,
+                  })
+                }}
+                <v-icon x-small>mdi-open-in-new</v-icon>
+              </a>
+            </li>
+            <li>
               <nuxt-link
                 :to="localePath('data-search') + '?dataset=' + dataset_id"
               >
                 <span>{{ $t('data.info.links.search-page') }}</span>
               </nuxt-link>
+            </li>
+            <li v-if="linkMqtts">
+              <strong>
+                {{ $t('data.info.links.dataNotification') }}
+              </strong>
+              <ul>
+                <li>
+                  <strong>{{ $t('data.info.links.mqtt_broker') }}</strong>
+                  <code>{{ linkMqtts.href }}</code>
+                </li>
+                <li>
+                  <strong>{{ $t('data.info.links.topic') }}</strong>
+                  <code>{{ linkMqtts.channel }}</code>
+                </li>
+              </ul>
             </li>
           </ul>
         </div>
@@ -116,7 +147,7 @@ export default {
   },
   data() {
     return {
-      abstract: null,
+      description: null,
       aliases: {
         broadband: 'Broad-band',
         multiband: 'Multi-band',
@@ -130,7 +161,7 @@ export default {
         spectral: 'Spectral',
       },
       category: null,
-      collectionItem: null,
+      collectionItemJson: {},
       dataset: null,
       dataset_id: null,
       dateFrom: null,
@@ -143,7 +174,6 @@ export default {
       stations: [],
       title: null,
       uriDatasetDef: null,
-      // wafDataset: null,
       wafURL: [],
     }
   },
@@ -167,18 +197,19 @@ export default {
     doiURL() {
       return `http://dx.doi.org/${this.doi}`
     },
-    firstwafURL() {
-      return this.wafURL[0]
+    linkMqtts() {
+      const link = this.collectionItemJson?.links?.filter((link) =>
+        link.href.toLowerCase().includes('mqtts')
+      )?.[0]
+
+      return link || false
     },
-    secondwafURL() {
-      return this.wafURL[1]
-    },
-    datasetWafURL() {
-      const archivePath = this.$config.WOUDC_UI_WAF_URL + '/Archive-NewFormat'
-      return `${archivePath}/${this.wafDataset}`
-    },
-    hasSecondWAF: function () {
-      return this.wafURL.length > 1
+    linkCollection() {
+      const link = this.collectionItemJson?.links?.filter(
+        (link) => link.title.toLowerCase() == this.title.toLowerCase()
+      )?.[0]
+
+      return link || false
     },
   },
   mounted() {
@@ -201,22 +232,27 @@ export default {
         this.$config.WOUDC_UI_API_URL + '/collections/discovery_metadata/items'
 
       this.uriDatasetDef = `${discoveryMetadataURL}/${this.dataset}?f=json&lang=${this.$i18n.locale}`
+      this.discoveryMetadataItemsURL = discoveryMetadataURL
+      this.OGCAPIinJson = this.$config.WOUDC_UI_API_URL + '?f=json'
 
       const response = await woudcClient.get(this.uriDatasetDef)
-      this.collectionItem = response
-
-      this.dataset_id = this.collectionItem.data.id
-      this.title = this.collectionItem.data.properties.title
-      this.abstract = this.collectionItem.data.properties.description
-      this.doi = this.collectionItem.data.properties.externalIds[0].value
-      this.dateFrom = this.collectionItem.data.time.interval[0]
-      this.dateTo = this.collectionItem.data.time.interval[1]
-      this.keywords = this.collectionItem.data.properties.keywords
-      for (const item of this.collectionItem.data.links) {
-        if (item.title == 'Web Accessible Folder (WAF)') {
-          this.wafURL.push(item.href)
-        }
+      this.collectionItemJson = response.data
+      this.dataset_id = this.collectionItemJson.id.split(':').pop()
+      if (
+        !this.dataset_id.includes('_1.0') ||
+        !this.dataset_id.includes('_2.0')
+      ) {
+        this.dataset_id += '_1.0' // default to 1.0
       }
+      this.title = this.collectionItemJson.properties.title
+      this.description = this.collectionItemJson.properties.description
+      this.doi = this.collectionItemJson.properties.externalIds[0].value
+      this.dateFrom = this.collectionItemJson.time.interval[0]
+      this.dateTo = this.collectionItemJson.time.interval[1]
+      this.keywords = this.collectionItemJson.properties.keywords
+      this.wafURL = this.collectionItemJson.links
+        .filter((link) => link.title.toLowerCase().includes('(waf)'))
+        .sort((a, b) => a.title.localeCompare(b.title))
     },
     stationText(station) {
       if (station.gaw_id === null) {
