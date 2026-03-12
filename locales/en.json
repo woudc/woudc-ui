@@ -863,7 +863,6 @@
     "info": {
       "blurb": "The WOUDC data archive can provide high level information about each dataset. Select a dataset of interest to see its ISO discovery metadata and a contextual map of the stations.",
       "descriptors": {
-        "abstract": "Abstract:",
         "doi": "DOI:",
         "keywords": "Keywords:",
         "links": "Access links:",
@@ -871,7 +870,8 @@
         "range": "Temporal extent:",
         "range-template": "From {start} to {end}",
         "title": "Title:",
-        "uri": "Dataset URI:"
+        "uri": "Dataset URI:",
+        "description": "Description:"
       },
       "links": {
         "broadband": "Broad-band",
@@ -886,7 +886,12 @@
         "umkehrn14_1": "UmkehrN14 (Level 1.0)",
         "umkehrn14_2": "UmkehrN14 (Level 2.0)",
         "uv_index_hourly": "UV Index",
-        "waf": "Web Accessible Folder (WAF)"
+        "metadata": "Discovery metadata on OGC API",
+        "dataset": "{dataset_name} on OGC API",
+        "api_json": "OGC API as JSON",
+        "dataNotification": "MQTT data notifications",
+        "mqtt_broker": "MQTT broker URL:",
+        "topic": "MQTT topic:"
       },
       "sections": {
         "totalozone": "Total column ozone",
