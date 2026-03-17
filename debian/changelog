@@ -1,3 +1,16 @@
+woudc-ui (2.3.0) jammy; urgency=medium
+
+  * Updated data standards and data access page
+  * Updated dataset information page to reflect the new discovery metadata data format
+  * Fix single contributor and station page to show all its stations and instruments
+  * Reworked XHR requests with &limit= to use WOUDC_UI_API_MAX_LIMIT by default
+  * Refactor all vue-i18n usage with simplified i18n key references and removed unused keys
+  * Update woudc-ui.conf to exclude /archive links from rewrite and preserve apache response codes like 404
+  * Minor package version bumps for npm audit fix
+  * Other minor fixes
+
+ -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Tue, 17 Mar 2026 17:07:10 +0000
+
 woudc-ui (2.2.1) jammy; urgency=medium
 
   * Fixed missing locale setting in dataset information page
