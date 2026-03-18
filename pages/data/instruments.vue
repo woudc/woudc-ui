@@ -118,7 +118,7 @@ export default {
       oldSearchParams: {
         bbox: [-180, -90, 180, 90],
         data_class: [],
-        dataset: [],
+        dataset_id: [],
         enableBboxSearch: true,
         model: [],
         name: [],
@@ -129,7 +129,7 @@ export default {
       selectedInstrument: null,
       selectedFilters: {
         data_class: [],
-        dataset: [],
+        dataset_id: [],
         model: [],
         name: [],
         station_name: [],

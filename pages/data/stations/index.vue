@@ -186,23 +186,47 @@ export default {
     },
     headers() {
       const headerKeys = [
-        'woudc_id',
-        'gaw_id',
-        'start_date',
-        'end_date',
-        'name',
-        `country_name_${this.$i18n.locale}`,
-        'last_validated_datetime',
-        'type',
-        'wmo_region_id',
+        {
+          value: 'woudc_id',
+          text: this.$t('data.stations.station-headers.woudc_id'),
+        },
+        {
+          value: 'gaw_id',
+          text: this.$t('data.stations.station-headers.gaw_id'),
+        },
+        {
+          value: 'start_date',
+          text: this.$t('data.stations.station-headers.start_date'),
+        },
+        {
+          value: 'end_date',
+          text: this.$t('data.stations.station-headers.end_date'),
+        },
+        {
+          value: 'name',
+          text: this.$t('data.stations.station-headers.name'),
+        },
+        {
+          value: `country_name_${this.$i18n.locale}`,
+          text: this.$t('data.stations.station-headers.country_name'),
+        },
+        {
+          value: 'last_validated_datetime',
+          text: this.$t(
+            'data.stations.station-headers.last_validated_datetime'
+          ),
+        },
+        {
+          value: 'type',
+          text: this.$t('data.stations.station-headers.type'),
+        },
+        {
+          value: 'wmo_region_id',
+          text: this.$t('data.stations.station-headers.wmo_region_id'),
+        },
       ]
 
-      return headerKeys.map((key) => {
-        return {
-          text: this.$t('data.stations.station-headers.' + key),
-          value: key,
-        }
-      })
+      return headerKeys
     },
     visibleStations() {
       if (this.boundingBox === null) {
