@@ -1,3 +1,9 @@
+woudc-ui (2.3.1) jammy; urgency=medium
+
+  * Fix incorrect param and i18n key in station and instrument page
+
+ -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Wed, 18 Mar 2026 22:00:00 +0000
+
 woudc-ui (2.3.0) jammy; urgency=medium
 
   * Updated data standards and data access page
