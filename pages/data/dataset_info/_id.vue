@@ -34,10 +34,10 @@
           &nbsp;
           <i18n path="data.info.descriptors.range-template" tag="span">
             <template #start>
-              {{ dateFrom }}
+              <v-chip label small>{{ dateFrom }}</v-chip>
             </template>
             <template #end>
-              {{ dateTo }}
+              <v-chip label small>{{ dateTo }}</v-chip>
             </template>
           </i18n>
         </div>
