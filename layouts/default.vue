@@ -200,7 +200,11 @@ export default {
   data() {
     return {
       drawerOpen: false,
-      navigationLinks: [
+    }
+  },
+  computed: {
+    navigationLinks() {
+      return [
         {
           id: 'data',
           icon: 'mdi-database',
@@ -351,8 +355,8 @@ export default {
             },
           ],
         },
-      ],
-    }
+      ]
+    },
   },
 }
 </script>
