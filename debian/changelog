@@ -1,3 +1,11 @@
+woudc-ui (2.3.2) jammy; urgency=medium
+
+  * Fix navigation links not switching language
+  * Improved temporal display of dataset information page
+  * Major fixes to data search page
+
+ -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Fri, 20 Mar 2026 22:00:00 +0000
+
 woudc-ui (2.3.1) jammy; urgency=medium
 
   * Fix incorrect param and i18n key in station and instrument page
