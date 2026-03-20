@@ -84,7 +84,7 @@ const compareOnKey = function (key) {
 // compare function for sorting by obj[key] with locale (accented characters)
 const compareLocaleOnKey = function (key) {
   return function (a, b) {
-    return a[key].localeCompare(b[key])
+    return (a[key] ?? '').localeCompare(b[key] ?? '')
   }
 }
 

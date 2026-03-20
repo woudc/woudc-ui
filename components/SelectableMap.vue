@@ -148,9 +148,14 @@ export default {
 
         const coordinateBounds = this.$L.latLngBounds(southWest, northEast)
         const map = this.$refs['woudc-map']
-        map.fitBounds(coordinateBounds, {
-          animate: true,
-        })
+        try {
+          map.fitBounds(coordinateBounds, {
+            animate: true,
+          })
+        } catch (err) {
+          this.zoomToGlobe()
+          console.error('Could not fitBounds with coordinateBounds.', err)
+        }
       }
     },
     autoZoomToMarkers() {
@@ -158,11 +163,16 @@ export default {
       const map = this.$refs['woudc-map']
 
       const bounds = markerGroup.mapObject.getBounds()
-      map.fitBounds(bounds, {
-        padding: [50, 50],
-        maxZoom: 12,
-        animate: true,
-      })
+      try {
+        map.fitBounds(bounds, {
+          padding: [50, 50],
+          maxZoom: 12,
+          animate: true,
+        })
+      } catch (err) {
+        this.zoomToGlobe()
+        console.error('Could not fitBounds with resulting bounds.', err)
+      }
     },
     emitBoundaryChange(event) {
       const bounds = event.target.getBounds()

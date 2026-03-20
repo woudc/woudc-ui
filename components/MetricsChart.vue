@@ -21,7 +21,20 @@ export default {
         maintainAspectRatio: false,
         responsive: true,
         scales: {
-          yAxes: [{ id: 'observations' }, { id: 'files' }],
+          yAxes: [
+            {
+              id: 'observations',
+              ticks: {
+                min: 0,
+              },
+            },
+            {
+              id: 'files',
+              ticks: {
+                min: 0,
+              },
+            },
+          ],
         },
       },
     }
