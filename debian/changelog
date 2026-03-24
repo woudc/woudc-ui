@@ -1,3 +1,9 @@
+woudc-ui (2.3.3) jammy; urgency=medium
+
+  * Fix data access page not rendering mermaid chart when navigated
+
+ -- Kevin Ngai <kevin.ngai@ec.gc.ca>  Tue, 24 Mar 2026 22:00:00 +0000
+
 woudc-ui (2.3.2) jammy; urgency=medium
 
   * Fix navigation links not switching language
