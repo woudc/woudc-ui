@@ -405,12 +405,38 @@ export default {
       ],
       script: [
         {
-          // mermaid syntax render
+          hid: 'mermaid',
           src: 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js',
-          async: true,
+          defer: true,
+          callback: () => {
+            if (window.mermaid) {
+              window.mermaid.initialize({ startOnLoad: false })
+            }
+          },
         },
       ],
     }
+  },
+  mounted() {
+    this.initMermaid()
+  },
+  methods: {
+    initMermaid(attempts = 0) {
+      if (window.mermaid) {
+        // redundant with callback() to ensure it's loaded
+        window.mermaid.initialize({ startOnLoad: false })
+        // render all mermaid classes
+        window.mermaid.run({
+          querySelector: '.mermaid',
+        })
+      } else if (attempts < 50) {
+        console.log('Not yet!', attempts)
+        // if mermaid not loaded, retry recursively up to 50 times (5 seconds)
+        setTimeout(() => this.initMermaid(attempts + 1), 100)
+      } else {
+        console.error('Mermaid charts failed to load')
+      }
+    },
   },
   nuxtI18n: {
     paths: {
