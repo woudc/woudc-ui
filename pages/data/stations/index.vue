@@ -60,6 +60,7 @@
           :refresh="refreshStations"
           :reset="reset"
           :resettingfilters="resettingFilters"
+          :downloadurls="returnDownloadLinks"
         />
         <selectable-table
           :headers="headers"
@@ -102,6 +103,7 @@
 
 <script>
 import { unpackageStation } from '~/plugins/woudcJsonUtil.js'
+import woudcClient from '~/plugins/woudcClient.js'
 
 import mapInstructions from '~/components/MapInstructions'
 import tableInstructions from '~/components/TableInstructions'
@@ -148,6 +150,8 @@ export default {
         wmo_region_id: [],
       },
       stations: [],
+      download_urls: {},
+      loadingDownloadLinks: false,
     }
   },
   head() {
@@ -238,7 +242,21 @@ export default {
         })
       }
     },
+    returnDownloadLinks() {
+      if (this.loadingDownloadLinks == false) {
+        this.generateDownloadLinks()
+      }
+      return this.download_urls
+    },
   },
+  watch: {
+    selectedFilters: {
+      handler() {
+        this.refreshStations()
+      },
+      deep: true,
+    },
+  }, // load data
   mounted() {
     Promise.all([
       this.$store.dispatch('stations/downloadStations'),
@@ -276,6 +294,97 @@ export default {
         parseFloat(boundingBoxArray[3]).toFixed(2) +
         ' ]'
       )
+    },
+    async generateDownloadLinks() {
+      this.loadingDownloadLinks = true
+      await this.generateQueryURL()
+      await this.getQueryHits()
+      const limitValue =
+        this.numberMatched == 0
+          ? ''
+          : `limit=${this.$config.WOUDC_UI_API_MAX_LIMIT}`
+      const separator =
+        limitValue == '' ? '' : this.query.includes('?') ? '&' : '?'
+      const csv = `${this.query}${separator}${limitValue}&f=csv`
+      const geojson = `${this.query}${separator}${limitValue}&f=json`
+      const item = {
+        record_name: 'stations',
+        csv: csv,
+        geojson: geojson,
+      }
+      this.download_urls = item
+    },
+    async getQueryHits() {
+      if (this.queryLast !== null && this.query === this.queryLast) {
+        return // avoid making the same query
+      }
+      let responseHits = await woudcClient.get(`${this.query}`)
+      this.numberMatched = responseHits.data.numberMatched
+      this.queryLast = this.query
+    },
+    async generateQueryURL() {
+      this.query = null
+      const stationsURL =
+        this.$config.WOUDC_UI_API_URL + '/collections/stations/items'
+
+      let queryParams = ''
+      let sortByParams = ''
+      this.idQuery = '' // for station names -> id
+      let selected = {}
+      this.woudcIds = []
+
+      if (
+        this.selectedFilters['woudc_id'].length == 0 &&
+        this.selectedFilters['gaw_id'].length == 0 &&
+        this.selectedFilters['name'].length == 0 &&
+        this.selectedFilters['country_name'].length == 0 &&
+        this.selectedFilters['type'].length == 0 &&
+        this.selectedFilters['wmo_region_id'].length == 0
+      ) {
+        this.query = `${stationsURL}`
+      } else {
+        for (const filter of Object.keys(this.selectedFilters)) {
+          if (this.selectedFilters[filter].length !== 0) {
+            if (filter == 'country_name') {
+              let country_name = `country_name_${this.$i18n.locale}`
+              selected[country_name] = this.selectedFilters.country_name
+            } else {
+              selected[filter] = this.selectedFilters[filter]
+            }
+          }
+        }
+        // generate query params based on selected dropdown options
+        for (const [field, value] of Object.entries(selected)) {
+          if (value !== null) {
+            // remove null values from query
+            let filter = value
+            if (value.length > 1) {
+              // want to use an OR operator
+              filter = value.join('|')
+            }
+            let separator = queryParams == '' ? '?' : '&'
+            queryParams += separator + field + '=' + filter
+          }
+        }
+      }
+      let separator = queryParams == '' ? '?' : '&'
+      sortByParams = queryParams += `${separator}sortby=-woudc_id`
+      this.query = `${stationsURL}${sortByParams}`
+
+      // bbox handling
+      if (
+        this.selectedFilters.country_name === null &&
+        this.selectedStation === null &&
+        this.enableBboxSearch == true &&
+        this.mapBoundingBox !== null
+      ) {
+        // Select only countries and stations visible on the map
+        let bboxParams = ''
+        for (const coord of this.boundingBoxArray) {
+          bboxParams = bboxParams + ',' + coord
+        }
+        selected['bbox'] = bboxParams.substring(1)
+      }
     },
     async refreshStations() {
       this.loadingTable = true
@@ -322,6 +431,7 @@ export default {
       this.oldSearchParams['bbox'] = this.boundingBoxArray
       this.oldSearchParams['enableBboxSearch'] = this.enableBboxSearch
       this.loadingTable = false
+      await this.generateDownloadLinks()
     },
     async reset() {
       this.loadingTable = true
@@ -343,6 +453,7 @@ export default {
       this.resettingMap = false
       this.loadingMap = false
       this.loadingTable = false
+      await this.generateDownloadLinks()
     },
   },
   nuxtI18n: {
