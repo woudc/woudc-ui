@@ -35,10 +35,10 @@
           <tr v-for="resource in resourceRows" :key="resource.resource">
             <td>{{ resource.resource }}</td>
             <td>
-              <v-chip label>{{ resource.formats }}</v-chip>
+              <v-chip label color="chipBg">{{ resource.formats }}</v-chip>
             </td>
             <td>
-              <v-chip label>{{ resource.services }}</v-chip>
+              <v-chip label color="chipBg">{{ resource.services }}</v-chip>
             </td>
           </tr>
         </tbody>

@@ -46,8 +46,14 @@
               {{ newsItem.properties[`title_${$i18n.locale}`] }}
             </nuxt-link>
           </v-card-title>
-          <v-card-subtitle>
-            <span class="blue--text text--darken-3">
+          <v-card-subtitle
+            :class="
+              $vuetify.theme.dark
+                ? 'blue--text text--lighten-2'
+                : 'blue--text text--darken-4'
+            "
+          >
+            <span>
               {{ newsItem.properties.published_date.slice(0, 10) }}
             </span>
             <v-chip
