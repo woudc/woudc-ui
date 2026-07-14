@@ -206,6 +206,68 @@
       </v-list>
     </v-card>
 
+    <h3>{{ $t('data.access.usage_policy') }}</h3>
+
+    <h4>{{ $t('data.access.acceptable_rules') }}</h4>
+
+    <p>{{ $t('data.access.obective_of_usage') }}</p>
+
+    <h4>{{ $t('data.access.usage_rules_and_best_practices') }}</h4>
+
+    <p>
+      {{ $t('data.access.usage_limits') }}
+    </p>
+
+    <ul class="mb-4">
+      <i18n path="data.access.usage_limit_1_per_second" tag="li">
+        <template #contact_us>
+          <nuxt-link :to="localePath('contact')">
+            {{ $t('common.contact-us') }}
+          </nuxt-link>
+        </template>
+      </i18n>
+      <li>{{ $t('data.access.usage_limit_revoke') }}</li>
+    </ul>
+
+    <p>
+      {{ $t('data.access.best_practices') }}
+    </p>
+
+    <ul class="mb-4">
+      <i18n path="data.access.best_practice_review" tag="li">
+        <template #WAF>
+          <a :href="$config.WOUDC_UI_WAF_URL" target="_blank">
+            <span>
+              {{ $t('data.access.woudcWAF') }}
+              <v-icon x-small>mdi-open-in-new</v-icon>
+            </span>
+          </a>
+        </template>
+      </i18n>
+      <li>{{ $t('data.access.best_practice_user_agent') }}</li>
+      <li>{{ $t('data.access.best_practice_no_cache') }}</li>
+      <li>{{ $t('data.access.best_practice_review_logs') }}</li>
+    </ul>
+
+    <p>
+      {{ $t('data.access.usage_rules_for_woudc_api') }}
+    </p>
+
+    <ul class="mb-4">
+      <li>{{ $t('data.access.usage_bulk') }}</li>
+      <li>{{ $t('data.access.woudc_api_workflow') }}</li>
+    </ul>
+
+    <h3>{{ $t('data.access.usage_policy_updates') }}</h3>
+
+    <i18n path="data.access.usage_policy_subject_to_change" tag="p">
+      <template #news>
+        <nuxt-link :to="localePath('news')">
+          {{ $t('data.access.news_page') }}
+        </nuxt-link>
+      </template>
+    </i18n>
+
     <h2>{{ $t('data.access.wmoInfoSystem') }}</h2>
 
     <p>{{ $t('data.access.wis2Desc') }}</p>
@@ -271,7 +333,7 @@
       <ul class="mb-4">
         <i18n path="data.access.wis2LinksRawData" tag="li">
           <template #woudcWAF>
-            <a href="https://woudc.org/archive" target="_blank">
+            <a :href="$config.WOUDC_UI_WAF_URL" target="_blank">
               {{ $t('data.access.woudcWAF') }}
             </a>
             <v-icon x-small>mdi-open-in-new</v-icon>
@@ -279,7 +341,7 @@
         </i18n>
         <i18n path="data.access.wis2LinksAPIaccess" tag="li">
           <template #woudcAPI>
-            <a href="https://api.woudc.org" target="_blank">
+            <a :href="$config.WOUDC_UI_API_URL" target="_blank">
               {{ $t('data.access.woudcAPI') }}
             </a>
             <v-icon x-small>mdi-open-in-new</v-icon>

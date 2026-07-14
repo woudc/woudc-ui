@@ -758,7 +758,25 @@
       "wis2WoudcDataShare": "Les données du WOUDC sont partagées sur WIS2 et peuvent être découvertes, consultées et récupérées conformément au Règlement technique WIS2 de l’OMM.",
       "wmoInfoSystem": "Système d’information de l’OMM",
       "wmoUnifiedDataPolicy": "Politique unifiée sur les données de l’OMM pour l’échange international des données du système terrestre (Résolution 1 (Cg-Ext(2021)))",
-      "woudcAPIDescription": "L’API du WOUDC est accessible à {woudcAPILink}. Cette API offre des fonctionnalités de découverte, d’accès, de visualisation et de traitement pour toutes les données et métadonnées du WOUDC, ainsi que des processus de validation des données, de génération de rapports et d’évaluation de la qualité."
+      "woudcAPIDescription": "L’API du WOUDC est accessible à {woudcAPILink}. Cette API offre des fonctionnalités de découverte, d’accès, de visualisation et de traitement pour toutes les données et métadonnées du WOUDC, ainsi que des processus de validation des données, de génération de rapports et d’évaluation de la qualité.",
+      "usage_policy": "Politique d'utilisation",
+      "acceptable_rules": "Utilisation acceptable des services du WOUDC",
+      "best_practice_no_cache": "S'assurer qu'il n'y a pas d'utilisation d'entêtes 'no-cache' dans les requêtes HTTP, comme 'Cache-Control : no-cache' et 'Pragma : no-cache'",
+      "best_practice_review": "Examiner et évaluer le flux de votre application et déterminer quel mécanisme d'accès aux données du SMC répond le mieux à vos besoins. Par exemple, la création d'une archive locale de données devrait être effectuée en téléchargeant les instantanés des ensembles de données depuis le {WAF}, et non via les services API du WOUDC",
+      "obective_of_usage": "L'objectif de la politique d'utilisation du service est de garantir à tous les utilisateurs bénéficient d'un accès efficace et ininterrompu aux services du WOUDC. Veuillez vous référer aux règles d'utilisation et aux pratiques exemplaires suivantes pour garantir une bonne utilisation des services du WOUDC. Il est important de noter que le WOUDC se réserve le droit de bloquer les usagers qui ne respectent pas cette politique d'utilisation.",
+      "usage_rules_and_best_practices": "Règles d'utilisation et pratiques exemplaires",
+      "usage_limits": "Limites d'utilisation :",
+      "usage_limit_1_per_second": "Si votre utilisation de nos services de données ou celle de votre application entraine 86400 requêtes par jour ou plus (environ 1 requête par seconde), veuillez {contact_us} afin que nous puissions vous aider à optimiser l'utilisation de nos services de données",
+      "best_practices": "Pratiques exemplaires :",
+      "best_practice_user_agent": "Ajouter un entête HTTP Agent-Utilisateur (HTTP User-Agent) significatif aux requêtes HTTP",
+      "best_practice_review_logs": "Examiner les registres d'application (logs) pour s'assurer que des demandes valides sont faites et que le flux de travail attendu est correctement mis en oeuvre",
+      "usage_rules_for_woudc_api": "Règles d'utilisation des services de l'API du WOUDC",
+      "usage_bulk": "La récupération en masse ou par lots des collections de l'API WOUDC est interdite. WOUDC se réserve le droit de bloquer les applications implémentant ce comportement",
+      "woudc_api_workflow": "Pour les flux spécifiques aux données de l'API WOUDC, il convient d'utiliser des « queryables » afin de récupérer des données JSON/CSV plus petites.",
+      "usage_policy_updates": "Mise à jour de la politique d'utilisation des services",
+      "usage_policy_subject_to_change": "Cette politique est sujet à changement afin de garantir la qualité du service pour les utilisateurs des données du WOUDC. Les mises à jour seront communiquées via les {news} et par courriel aux contributeurs de données du WOUDC.",
+      "news_page": "nouvelles",
+      "usage_limit_revoke": "Toute utilisation régulière dépassant cette limite pourrait entraîner une limitation ou une suppression de votre accès et/ou de celui de votre application"
     },
     "explore": {
       "bbox": {
