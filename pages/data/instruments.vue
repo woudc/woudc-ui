@@ -222,6 +222,14 @@ export default {
       }
     },
   },
+  watch: {
+    selectedFilters: {
+      handler() {
+        this.refreshInstruments()
+      },
+      deep: true,
+    },
+  },
   mounted() {
     Promise.all([
       this.$store.dispatch('instruments/downloadDistinctModels'),

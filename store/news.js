@@ -25,7 +25,8 @@ const mutations = {
 const actions = {
   async loadNews({ commit }) {
     const URL =
-      this.$config.WOUDC_UI_API_URL + '/collections/notifications/items?f=json&sortby=-published_date'
+      this.$config.WOUDC_UI_API_URL +
+      '/collections/notifications/items?f=json&sortby=-published_date'
     try {
       const response = await woudcClient.get(URL)
       commit('setNewsItems', {

@@ -20,49 +20,27 @@
         />
       </v-col>
     </v-col>
-    <div class="pb-5 px-3">
-      <v-tooltip
-        v-model="toolTipOn"
-        class="mt-1 mb-4 align-content-start"
-        bottom
-      >
-        <template #activator="{ onBadge }">
-          <v-badge
-            :value="searchOutOfDate"
-            class="mx-2"
-            icon="mdi-refresh"
-            color="green"
-            bordered
-            overlap
-            v-on="onBadge"
-          >
-            <v-btn
-              class="btn-left"
-              color="primary"
-              :disabled="loadingitems"
-              :loading="loadingitems"
-              @mouseover="onButton = true"
-              @mouseleave="onButton = false"
-              @click="refresh()"
-              @input="oldSearchExists = true"
-            >
-              {{ $t('common.filtering.apply') }}
-            </v-btn>
-          </v-badge>
-        </template>
-        <v-card-title class="py-3">
-          <v-icon class="mr-1">mdi-alert</v-icon>
-          {{ $t('common.old-search.title') }}
-        </v-card-title>
-        <i18n path="common.old-search.body" tag="v-card-text">
-          <template #search>
-            <strong>{{ $t('common.filtering.apply') }}</strong>
-          </template>
-        </i18n>
-      </v-tooltip>
-      <v-btn class="btn-right" :disabled="loadingitems" @click="reset()">
-        {{ $t('common.reset') }}
-      </v-btn>
+    <div v-if="notInstrumentPage">
+      <div class="pb-5 px-3">
+        <v-btn
+          class="mx-2 white--text"
+          color="#1976D2"
+          :download="`download-${downloadurls.record_name}.json`"
+          target="_blank"
+          :href="downloadurls.geojson"
+        >
+          {{ $t('common.download') }} {{ $t('common.geojson') }}
+        </v-btn>
+        <v-btn
+          color="#1976D2"
+          class="white--text"
+          :download="`download-${downloadurls.record_name}.csv`"
+          target="_blank"
+          :href="downloadurls.csv"
+        >
+          {{ $t('common.download') }} {{ $t('common.csv') }}
+        </v-btn>
+      </div>
     </div>
   </v-card>
 </template>
@@ -82,6 +60,15 @@ export default {
     resettingfilters: { type: Boolean, required: false, default: false },
     selectedfilters: { type: Object, required: false, default: null },
     value: { type: String, required: false, default: null },
+    downloadurls: {
+      type: Object,
+      required: false,
+      default: () => ({
+        record_name: null,
+        csv: null,
+        json: null,
+      }),
+    },
   },
   data() {
     return {
@@ -95,6 +82,9 @@ export default {
   computed: {
     toolTipOn() {
       return this.searchOutOfDate && this.onButton
+    },
+    notInstrumentPage() {
+      return this.downloadurls.record_name != null
     },
   },
   watch: {

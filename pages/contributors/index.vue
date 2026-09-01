@@ -51,6 +51,7 @@
           :refresh="refreshContributors"
           :reset="reset"
           :resettingfilters="resettingFilters"
+          :downloadurls="returnDownloadLinks"
         />
         <selectable-table
           :elements="displayedContributors"
@@ -89,6 +90,7 @@
 
 <script>
 import { unpackageContributor } from '~/plugins/woudcJsonUtil.js'
+import woudcClient from '~/plugins/woudcClient.js'
 
 import mapInstructions from '~/components/MapInstructions'
 import tableInstructions from '~/components/TableInstructions'
@@ -134,6 +136,8 @@ export default {
         wmo_region_id: [],
       },
       selectedContributor: null,
+      download_urls: {},
+      loadingDownloadLinks: false,
     }
   },
   head() {
@@ -211,6 +215,20 @@ export default {
           return this.boundingBox.contains(coords)
         })
       }
+    },
+    returnDownloadLinks() {
+      if (this.loadingDownloadLinks == false) {
+        this.generateDownloadLinks()
+      }
+      return this.download_urls
+    },
+  },
+  watch: {
+    selectedFilters: {
+      handler() {
+        this.refreshContributors()
+      },
+      deep: true,
     },
   },
   async mounted() {
@@ -307,6 +325,7 @@ export default {
       this.oldSearchParams['bbox'] = this.boundingBoxArray
       this.oldSearchParams['enableBboxSearch'] = this.enableBboxSearch
       this.loadingTable = false
+      await this.generateDownloadLinks()
     },
     async reset() {
       this.loadingTable = true
@@ -328,6 +347,79 @@ export default {
       this.resettingMap = false
       this.loadingMap = false
       this.loadingTable = false
+      await this.generateDownloadLinks()
+    },
+    async generateDownloadLinks() {
+      this.loadingDownloadLinks = true
+      await this.generateQueryURL()
+      await this.getQueryHits()
+      const limitValue =
+        this.numberMatched == 0
+          ? ''
+          : `limit=${this.$config.WOUDC_UI_API_MAX_LIMIT}`
+      const separator =
+        limitValue == '' ? '' : this.query.includes('?') ? '&' : '?'
+      const csv = `${this.query}${separator}${limitValue}&f=csv`
+      const geojson = `${this.query}${separator}${limitValue}&f=json`
+      const item = {
+        record_name: 'contributors',
+        csv: csv,
+        geojson: geojson,
+      }
+      this.download_urls = item
+    },
+    async getQueryHits() {
+      if (this.queryLast !== null && this.query === this.queryLast) {
+        return // avoid making the same query
+      }
+      let responseHits = await woudcClient.get(`${this.query}`)
+      this.numberMatched = responseHits.data.numberMatched
+      this.queryLast = this.query
+    },
+    async generateQueryURL() {
+      this.query = null
+      const contributorsURL =
+        this.$config.WOUDC_UI_API_URL + '/collections/contributors/items'
+
+      let queryParams = ''
+      this.idQuery = '' // for contributor names -> id
+      let selected = {}
+      this.ids = []
+
+      if (
+        this.selectedFilters['acronym'].length == 0 &&
+        this.selectedFilters['project'].length == 0 &&
+        this.selectedFilters['name'].length == 0 &&
+        this.selectedFilters['country_name'].length == 0 &&
+        this.selectedFilters['wmo_region_id'].length == 0
+      ) {
+        this.query = `${contributorsURL}`
+      } else {
+        for (const filter of Object.keys(this.selectedFilters)) {
+          if (this.selectedFilters[filter].length !== 0) {
+            if (filter == 'country_name') {
+              let country_name = `country_name_${this.$i18n.locale}`
+              selected[country_name] = this.selectedFilters.country_name
+            } else {
+              selected[filter] = this.selectedFilters[filter]
+            }
+          }
+        }
+        // generate query params based on selected dropdown options
+        for (const [field, value] of Object.entries(selected)) {
+          if (value !== null) {
+            // remove null values from query
+            let filter = value
+            if (value.length > 1) {
+              // want to use an OR operator
+              filter = value.join('|')
+            }
+            let separator = queryParams == '' ? '?' : '&'
+            queryParams += separator + field + '=' + filter
+          }
+        }
+      }
+      this.query = `${contributorsURL}${queryParams}`
     },
   },
   nuxtI18n: {
