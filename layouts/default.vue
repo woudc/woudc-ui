@@ -1,10 +1,11 @@
 <template>
   <v-app>
+    >
     <v-navigation-drawer
       v-if="$vuetify.breakpoint.smAndDown"
       v-model="drawerOpen"
       color="accent"
-      temporary
+      temporary-+
       fixed
       app
     >
@@ -166,6 +167,21 @@
       >
         Français
       </nuxt-link>
+      <v-btn
+        icon
+        width="30"
+        height="30"
+        class="ml-3 mr-3"
+        @click="toggleVuetifyTheme"
+      >
+        <v-avatar size="30" :color="$vuetify.theme.dark ? 'black' : 'white'">
+          <v-icon :color="$vuetify.theme.dark ? 'white' : 'black'">
+            {{
+              $vuetify.theme.dark ? 'mdi-weather-sunny' : 'mdi-weather-night'
+            }}
+          </v-icon>
+        </v-avatar>
+      </v-btn>
     </v-app-bar>
     <v-main>
       <nuxt />
@@ -356,6 +372,12 @@ export default {
           ],
         },
       ]
+    },
+  },
+  methods: {
+    toggleVuetifyTheme() {
+      // Flips the Vuetify framework theme boolean value
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
     },
   },
 }

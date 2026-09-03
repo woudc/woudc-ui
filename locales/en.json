@@ -1379,7 +1379,29 @@
     },
     "quickLinks": "Quick links:",
     "wmoLogo": "Logo: World Meteorological Organization",
-    "keywords": "ozone,ultraviolet,uv,totalozone,ozonesonde,umkehr,gaw,wmo,spectral,stations,instruments"
+    "keywords": "ozone,ultraviolet,uv,totalozone,ozonesonde,umkehr,gaw,wmo,spectral,stations,instruments",
+    "dataAccessCard": {
+      "description": "Explore ozone and UV radiation observations from around the world. Learn how to search, access, and use WOUDC datasets.",
+      "button": "Access Data"
+    },
+    "ContributorRegistrationCard": {
+      "subtitle": "Help advance atmospheric science",
+      "title": "Contributor Registration",
+      "buttonDetail": "Register as a Contributor",
+      "button": "Register",
+      "description": "Share your ozone and UV observations with the global scientific community. Contribute data that supports research, environmental monitoring, and informed decision-making worldwide."
+    },
+    "collections": {
+      "collections": "Collections",
+      "stations": "Stations",
+      "dataRecords": "Data records",
+      "instruments": "Instruments",
+      "descriptions": {
+        "stations": "View our stations",
+        "dataRecords": "View our data records",
+        "instruments": "View our instruments",
+        "contributors": "View our contributors"
+      }}
   },
   "news": {
     "blurb": "Data centre news, updates and notifications",
