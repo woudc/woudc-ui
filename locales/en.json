@@ -758,7 +758,25 @@
       "gdcQuerySearchTO3BrewerObs": "Total ozone Brewer observations data",
       "wis2GDCRealTime": "The WIS2 GDC search results provide access links (raw data download, API, notifications). For access to real-time data, a user can connect and subscribe to one of the WIS2 Global Brokers specified in the search results, via the MQTT protocol.",
       "noteWIS2Json": "Note that the WIS2 GDC provides search results in HTML or JSON. JSON results are made available by adding {feqjson} to search queries.",
-      "exampleAPILinks": "Example API links"
+      "exampleAPILinks": "Example API links",
+      "usage_policy": "Usage policy",
+      "usage_limits": "Usage limits:",
+      "usage_limit_1_per_second": "If the application or user invokes 86,400 requests per day or higher (about 1 request per second), {contact_us} to assist you in the optimal use of our data services",
+      "usage_limit_revoke": "Any consistent usage over this limit may be subject to having access limited or otherwise revoked fo the given user and / application",
+      "acceptable_rules": "Acceptable use of WOUDC services",
+      "obective_of_usage": "The objective of the service usage policy is to ensure all users benefit from efficient and uninterrupted access to WOUDC services. Please refer to the following usage rules and best practices to ensure proper usage. It is important to note that WOUDC reserves the right to block users not respecting this usage policy.",
+      "usage_rules_and_best_practices": "Usage rules and best practices",
+      "best_practices": "Best practices:",
+      "best_practice_review": "Review and assess application workflow and determine which WOUDC data access mechanism best suits the needs of the application. For example, building a local archive of data should be performed by downloading the dataset snapshots from the {WAF}, as opposed to the WOUDC API services",
+      "best_practice_user_agent": "Add a meaningful HTTP User-Agent header to HTTP requests",
+      "best_practice_no_cache": "Ensure there is no usage of 'no-cache' headers in HTTP requests, such as 'Cache-Control: no-cache' and 'Pragma: no-cache'",
+      "best_practice_review_logs": "Review application logs to ensure valid requests are made and expected workflow is correctly implemented",
+      "usage_rules_for_woudc_api": "Usage rules for WOUDC API",
+      "usage_bulk": "Bulk and batch retrieval of WOUDC API collections is prohibited. WOUDC reserves the right to block applications implementing this behaviour",
+      "woudc_api_workflow": "For WOUDC API data-specific workflows, queryables should be used to retrieve smaller JSON/CSV payloads",
+      "usage_policy_updates": "Service usage policy updates",
+      "usage_policy_subject_to_change": "This policy is subject to change to ensure quality of service for WOUDC data users. Updates will be communicated via the {news} and emails to WOUDC data contributors.",
+      "news_page": "news"
     },
     "explore": {
       "bbox": {
