@@ -907,9 +907,9 @@
         "metadata": "Discovery metadata on OGC API",
         "dataset": "{dataset_name} on OGC API",
         "api_json": "OGC API as JSON",
-        "dataNotification": "MQTT data notifications",
-        "mqtt_broker": "MQTT broker URL:",
-        "topic": "MQTT topic:"
+        "dataNotification": "WIS2 data subscription and notifications:",
+        "mqtt_broker": "Broker:",
+        "topic": "Topic:"
       },
       "sections": {
         "totalozone": "Total column ozone",
