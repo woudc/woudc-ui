@@ -889,7 +889,7 @@
         "metadata": "Métadonnées de découverte sur l’API de l’OGC",
         "dataset": "{dataset_name} sur l’API de l’OGC",
         "api_json": "API de l’OGC au format JSON",
-        "dataNotification": "Abonnement aux données et notifications WIS2 :",
+        "dataNotification": "Abonnement aux données et notifications WIS2",
         "mqtt_broker": "Courtier :",
         "topic": "Sujet :"
       },
